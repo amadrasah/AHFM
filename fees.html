@@ -1,0 +1,198 @@
+<!DOCTYPE html>
+<html lang="bn">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Fees Management - AHIFM ERP</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+</head>
+<body class="bg-gray-100 font-sans">
+
+    <div class="flex h-screen overflow-hidden">
+        
+        <!-- Sidebar -->
+        <aside class="w-64 bg-emerald-900 text-white flex flex-col shadow-lg hidden md:flex">
+            <div class="p-4 bg-emerald-950 text-center border-b border-emerald-800">
+                <h1 class="font-bold text-lg">AHIFM ERP</h1>
+                <p class="text-xs text-emerald-300">ম্যানেজমেন্ট সিস্টেম</p>
+            </div>
+
+            <nav class="flex-1 overflow-y-auto p-4 space-y-2 text-sm">
+                <a href="index.html" class="flex items-center gap-3 p-2.5 rounded hover:bg-emerald-800 transition">
+                    <i class="fa-solid fa-house"></i> 01. Home
+                </a>
+                <a href="institution.html" class="flex items-center gap-3 p-2.5 rounded hover:bg-emerald-800 transition">
+                    <i class="fa-solid fa-school"></i> 02. Institution
+                </a>
+                <a href="students.html" class="flex items-center gap-3 p-2.5 rounded hover:bg-emerald-800 transition">
+                    <i class="fa-solid fa-user-graduate"></i> 03. Student Management
+                </a>
+                <a href="teachers.html" class="flex items-center gap-3 p-2.5 rounded hover:bg-emerald-800 transition">
+                    <i class="fa-solid fa-chalkboard-user"></i> 04. Teacher & Staff
+                </a>
+                <a href="academic.html" class="flex items-center gap-3 p-2.5 rounded hover:bg-emerald-800 transition">
+                    <i class="fa-solid fa-book-open"></i> 05. Academic
+                </a>
+                <a href="examination.html" class="flex items-center gap-3 p-2.5 rounded hover:bg-emerald-800 transition">
+                    <i class="fa-solid fa-file-pen"></i> 06. Examination
+                </a>
+                <a href="attendance.html" class="flex items-center gap-3 p-2.5 rounded hover:bg-emerald-800 transition">
+                    <i class="fa-solid fa-clock"></i> 07. Attendance
+                </a>
+                <a href="accounts.html" class="flex items-center gap-3 p-2.5 rounded hover:bg-emerald-800 transition">
+                    <i class="fa-solid fa-wallet"></i> 08. Accounts
+                </a>
+                <a href="fees.html" class="flex items-center gap-3 p-2.5 rounded bg-emerald-800 text-white font-medium">
+                    <i class="fa-solid fa-receipt"></i> 09. Fees Management
+                </a>
+                <a href="dashboard.html" class="flex items-center gap-3 p-2.5 rounded hover:bg-emerald-800 transition">
+                    <i class="fa-solid fa-chart-pie"></i> 10. Dashboard
+                </a>
+                <a href="notice.html" class="flex items-center gap-3 p-2.5 rounded hover:bg-emerald-800 transition">
+                    <i class="fa-solid fa-bullhorn"></i> 11. Notice Board
+                </a>
+                <a href="settings.html" class="flex items-center gap-3 p-2.5 rounded hover:bg-emerald-800 transition">
+                    <i class="fa-solid fa-gear"></i> 22. Settings
+                </a>
+            </nav>
+        </aside>
+
+        <!-- Main Content Area -->
+        <div class="flex-1 flex flex-col overflow-y-auto">
+            
+            <!-- Top Navbar -->
+            <header class="bg-white shadow-sm p-4 flex justify-between items-center">
+                <div class="flex items-center gap-3">
+                    <span class="font-bold text-emerald-800 text-xl">ফি ম্যানেজমেন্ট ও কালেকশন (Fees Management)</span>
+                </div>
+                <div class="flex items-center gap-4">
+                    <span class="text-sm text-gray-600">অ্যাডমিন প্যানেল</span>
+                    <a href="index.html" class="bg-red-600 text-white px-4 py-1.5 rounded text-sm font-medium hover:bg-red-700">লগআউট</a>
+                </div>
+            </header>
+
+            <!-- Page Content -->
+            <main class="p-6 space-y-6">
+                
+                <!-- Summary Cards -->
+                <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
+                    <div class="bg-white p-5 rounded-xl shadow-sm border-l-4 border-emerald-600">
+                        <p class="text-gray-500 text-sm">আজকের মোট ফি আদায়</p>
+                        <h3 class="text-2xl font-bold text-gray-800">৳ ১২,৫০০</h3>
+                    </div>
+                    <div class="bg-white p-5 rounded-xl shadow-sm border-l-4 border-blue-600">
+                        <p class="text-gray-500 text-sm">চলতি মাসের মোট আদায়</p>
+                        <h3 class="text-2xl font-bold text-gray-800">৳ ৩,২৫,০০০</h3>
+                    </div>
+                    <div class="bg-white p-5 rounded-xl shadow-sm border-l-4 border-red-600">
+                        <p class="text-gray-500 text-sm">মোট বকেয়া (Due)</p>
+                        <h3 class="text-2xl font-bold text-gray-800">৳ ৪৫,০০০</h3>
+                    </div>
+                </div>
+
+                <!-- Action Bar -->
+                <div class="flex justify-between items-center bg-white p-4 rounded-xl shadow-sm">
+                    <div class="w-full md:w-1/3">
+                        <input type="text" placeholder="স্টুডেন্ট আইডি বা নাম দিয়ে খুঁজুন..." class="w-full px-4 py-2 border rounded-lg focus:outline-none focus:ring-2 focus:ring-emerald-600">
+                    </div>
+                    <div>
+                        <button onclick="document.getElementById('feeModal').classList.remove('hidden')" class="bg-emerald-600 text-white px-5 py-2 rounded-lg font-medium hover:bg-emerald-700 flex items-center gap-2">
+                            <i class="fa-solid fa-plus-circle"></i> নতুন ফি গ্রহণ (Collect Fee)
+                        </button>
+                    </div>
+                </div>
+
+                <!-- Recent Fee Collection Table -->
+                <div class="bg-white rounded-xl shadow-sm overflow-hidden">
+                    <div class="p-4 border-b font-bold text-gray-800">সাম্প্রতিক ফি আদায়ের তালিকা (Recent Collections)</div>
+                    <div class="overflow-x-auto">
+                        <table class="w-full text-left border-collapse">
+                            <thead>
+                                <tr class="bg-gray-50 text-gray-600 text-sm border-b">
+                                    <th class="p-3">রসিদ নং</th>
+                                    <th class="p-3">আইডি / রোল</th>
+                                    <th class="p-3">শিক্ষার্থীর নাম</th>
+                                    <th class="p-3">শ্রেণি</th>
+                                    <th class="p-3">ফি-এর খাত</th>
+                                    <th class="p-3">পরিমাণ</th>
+                                    <th class="p-3">তারিখ</th>
+                                    <th class="p-3 text-center">রসিদ (Receipt)</th>
+                                </tr>
+                            </thead>
+                            <tbody class="text-sm text-gray-700 divide-y">
+                                <tr class="hover:bg-gray-50">
+                                    <td class="p-3 font-semibold text-emerald-800">REC-2026-001</td>
+                                    <td class="p-3">2026101</td>
+                                    <td class="p-3">মুহাম্মদ আব্দুল্লাহ</td>
+                                    <td class="p-3">আলিম প্রথম বর্ষ</td>
+                                    <td class="p-3">টিউশন ফি (অক্টোবর)</td>
+                                    <td class="p-3 font-bold text-gray-900">৳ ১,৫০০</td>
+                                    <td class="p-3 text-gray-500">০৫ অক্টোবর ২০২৬</td>
+                                    <td class="p-3 text-center">
+                                        <button class="bg-blue-100 text-blue-700 px-3 py-1 rounded text-xs font-medium hover:bg-blue-200"><i class="fa-solid fa-print"></i> প্রিন্ট</button>
+                                    </td>
+                                </tr>
+                                <tr class="hover:bg-gray-50">
+                                    <td class="p-3 font-semibold text-emerald-800">REC-2026-002</td>
+                                    <td class="p-3">2026102</td>
+                                    <td class="p-3">ফাতিমা তুজ জোহরা</td>
+                                    <td class="p-3">দাখিল দশম শ্রেণি</td>
+                                    <td class="p-3">পরীক্ষার ফি</td>
+                                    <td class="p-3 font-bold text-gray-900">৳ ৮০০</td>
+                                    <td class="p-3 text-gray-500">০৪ অক্টোবর ২০২৬</td>
+                                    <td class="p-3 text-center">
+                                        <button class="bg-blue-100 text-blue-700 px-3 py-1 rounded text-xs font-medium hover:bg-blue-200"><i class="fa-solid fa-print"></i> প্রিন্ট</button>
+                                    </td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+
+            </main>
+
+        </div>
+    </div>
+
+    <!-- Modal for Collect Fee (ফি গ্রহণের পপআপ ফর্ম) -->
+    <div id="feeModal" class="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center hidden z-50">
+        <div class="bg-white w-full max-w-lg rounded-xl shadow-lg p-6 relative">
+            <div class="flex justify-between items-center border-b pb-3 mb-4">
+                <h3 class="font-bold text-lg text-emerald-800">শিক্ষার্থীর ফি গ্রহণ ফর্ম</h3>
+                <button onclick="document.getElementById('feeModal').classList.add('hidden')" class="text-gray-500 hover:text-red-600 font-bold text-xl">&times;</button>
+            </div>
+            
+            <form class="space-y-4">
+                <div>
+                    <label class="block text-sm font-medium text-gray-700 mb-1">শিক্ষার্থীর আইডি / রোল</label>
+                    <input type="text" class="w-full px-3 py-2 border rounded-lg focus:outline-none focus:ring-2 focus:ring-emerald-600" placeholder="যেমন: 2026101">
+                </div>
+                <div>
+                    <label class="block text-sm font-medium text-gray-700 mb-1">ফি-এর ধরণ (Fee Type)</label>
+                    <select class="w-full px-3 py-2 border rounded-lg focus:outline-none focus:ring-2 focus:ring-emerald-600">
+                        <option>টিউশন ফি</option>
+                        <option>ভর্তি ফি</option>
+                        <option>পরীক্ষার ফি</option>
+                        <option>রেজিস্ট্রেশন ফি</option>
+                        <option>অন্যান্য ফি</option>
+                    </select>
+                </div>
+                <div>
+                    <label class="block text-sm font-medium text-gray-700 mb-1">টাকার পরিমাণ (Amount)</label>
+                    <input type="number" class="w-full px-3 py-2 border rounded-lg focus:outline-none focus:ring-2 focus:ring-emerald-600" placeholder="টাকার পরিমাণ লিখুন">
+                </div>
+                <div>
+                    <label class="block text-sm font-medium text-gray-700 mb-1">মাস / বিবরণ</label>
+                    <input type="text" class="w-full px-3 py-2 border rounded-lg focus:outline-none focus:ring-2 focus:ring-emerald-600" placeholder="যেমন: অক্টোবর ২০২৬">
+                </div>
+                <div class="flex justify-end gap-3 pt-4 border-t">
+                    <button type="button" onclick="document.getElementById('feeModal').classList.add('hidden')" class="px-4 py-2 bg-gray-300 rounded-lg text-gray-700 hover:bg-gray-400">বাতিল</button>
+                    <button type="submit" class="px-5 py-2 bg-emerald-600 text-white rounded-lg hover:bg-emerald-700">ফি গ্রহণ ও রসিদ প্রিন্ট</button>
+                </div>
+            </form>
+        </div>
+    </div>
+
+</body>
+</html>

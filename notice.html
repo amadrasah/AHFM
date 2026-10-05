@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Notice Management - Abdullah Hat Islamia Fazil Madrasah</title>
+    <title>Routine & Calendar - Abdullah Hat Islamia Fazil Madrasah</title>
     <script src="https://cdn.tailwindcss.com"></script>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     <link rel="stylesheet" href="style.css">
@@ -50,10 +50,10 @@
                 <a href="dashboard.html" class="flex items-center gap-2.5 p-2 rounded hover:bg-emerald-800 transition">
                     <i class="fa-solid fa-chart-pie w-4"></i> 📊 10. Dashboard
                 </a>
-                <a href="notice.html" class="flex items-center gap-2.5 p-2 rounded bg-emerald-800 text-white font-medium">
+                <a href="notice.html" class="flex items-center gap-2.5 p-2 rounded hover:bg-emerald-800 transition">
                     <i class="fa-solid fa-bullhorn w-4"></i> 📢 11. Notice Management
                 </a>
-                <a href="routine.html" class="flex items-center gap-2.5 p-2 rounded hover:bg-emerald-800 transition">
+                <a href="routine.html" class="flex items-center gap-2.5 p-2 rounded bg-emerald-800 text-white font-medium">
                     <i class="fa-solid fa-calendar-days w-4"></i> 📅 12. Routine & Calendar
                 </a>
                 <a href="certificates.html" class="flex items-center gap-2.5 p-2 rounded hover:bg-emerald-800 transition">
@@ -95,7 +95,7 @@
             <!-- Top Navbar -->
             <header class="bg-white shadow-sm p-4 flex justify-between items-center no-print">
                 <div class="flex items-center gap-3">
-                    <span class="font-bold text-emerald-800 text-lg">📢 Notice Management (নোটিশ বোর্ড ব্যবস্থাপনা)</span>
+                    <span class="font-bold text-emerald-800 text-lg">📅 Routine & Calendar (রুটিন ও ক্যালেন্ডার)</span>
                 </div>
                 <div class="flex items-center gap-4">
                     <span class="text-sm text-gray-600 font-medium"><i class="fa-solid fa-user-shield text-emerald-700 mr-1"></i> সুপার অ্যাডমিন</span>
@@ -109,75 +109,75 @@
                 <!-- Page Header Banner -->
                 <div class="bg-gradient-to-r from-emerald-800 to-emerald-950 text-white p-6 rounded-2xl shadow-sm flex flex-col md:flex-row justify-between items-center gap-4">
                     <div>
-                        <h2 class="text-xl font-bold">মাদ্রাসা অফিসিয়াল নোটিশ ও সার্কুলার প্যানেল</h2>
-                        <p class="text-emerald-200 text-xs mt-1">সাধারণ নোটিশ, পরীক্ষা সংক্রান্ত বিজ্ঞপ্তি, ভর্তি বিজ্ঞপ্তি, ছুটির নোটিশ ও ডাউনলোডযোগ্য পিডিএফ সংযুক্তি।</p>
+                        <h2 class="text-xl font-bold">ক্লাস রুটিন, পরীক্ষার সময়সূচি ও অ্যাকাডেমিক ক্যালেন্ডার প্যানেল</h2>
+                        <p class="text-emerald-200 text-xs mt-1">শ্রেণি রুটিন, পরীক্ষার রুটিন, বার্ষিক পঞ্জিকা, সরকারি ও বার্ষিক ছুটির তালিকা এবং মাদ্রাসার ইভেন্ট ম্যানেজমেন্ট।</p>
                     </div>
                     <div class="flex gap-2">
-                        <button class="bg-white text-emerald-900 px-4 py-2 rounded-xl font-bold text-xs hover:bg-emerald-50 transition shadow-sm">নতুন নোটিশ প্রকাশ করুন</button>
+                        <button class="bg-white text-emerald-900 px-4 py-2 rounded-xl font-bold text-xs hover:bg-emerald-50 transition shadow-sm">নতুন রুটিন বা ইভেন্ট যোগ করুন</button>
                     </div>
                 </div>
 
                 <!-- Sub-Modules Grid Layout (5 Features) -->
                 <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
                     
-                    <!-- 1. General Notice -->
+                    <!-- 1. Class Routine -->
                     <div class="bg-white p-5 rounded-xl shadow-sm border-t-4 border-emerald-600 space-y-3">
                         <div class="flex items-center justify-between border-b pb-2">
                             <h3 class="font-bold text-gray-800 text-sm flex items-center gap-2">
-                                <i class="fa-solid fa-bullhorn text-emerald-600"></i> General Notice
+                                <i class="fa-solid fa-clock text-emerald-600"></i> Class Routine
                             </h3>
-                            <span class="text-xs bg-emerald-50 text-emerald-700 px-2 py-0.5 rounded font-semibold">সাধারণ নোটিশ</span>
+                            <span class="text-xs bg-emerald-50 text-emerald-700 px-2 py-0.5 rounded font-semibold">ক্লাস রুটিন</span>
                         </div>
-                        <p class="text-xs text-gray-600 leading-relaxed">শিক্ষার্থী, শিক্ষক ও অভিভাবকদের উদ্দেশ্যে মাদrosার সাধারণ ও জরুরি প্রশাসনিক ঘোষণা প্রকাশ।</p>
-                        <button class="w-full bg-emerald-50 text-emerald-700 py-1.5 rounded text-xs font-bold hover:bg-emerald-100 transition">সাধারণ নোটিশ প্যানেল</button>
+                        <p class="text-xs text-gray-600 leading-relaxed">ইবতেদায়ী থেকে ফাজিল পর্যন্ত প্রতিটি শ্রেণির পিরিয়ডভিত্তিক ক্লাস রুটিন ও শিক্ষক দায়িত্ব বণ্টন।</p>
+                        <button class="w-full bg-emerald-50 text-emerald-700 py-1.5 rounded text-xs font-bold hover:bg-emerald-100 transition">ক্লাস রুটিন প্যানেল</button>
                     </div>
 
-                    <!-- 2. Exam Notice -->
+                    <!-- 2. Exam Routine -->
                     <div class="bg-white p-5 rounded-xl shadow-sm border-t-4 border-blue-600 space-y-3">
                         <div class="flex items-center justify-between border-b pb-2">
                             <h3 class="font-bold text-gray-800 text-sm flex items-center gap-2">
-                                <i class="fa-solid fa-file-lines text-blue-600"></i> Exam Notice
+                                <i class="fa-solid fa-file-lines text-blue-600"></i> Exam Routine
                             </h3>
-                            <span class="text-xs bg-blue-50 text-blue-700 px-2 py-0.5 rounded font-semibold">পরীক্ষার নোটিশ</span>
+                            <span class="text-xs bg-blue-50 text-blue-700 px-2 py-0.5 rounded font-semibold">পরীক্ষার রুটিন</span>
                         </div>
-                        <p class="text-xs text-gray-600 leading-relaxed">পরীক্ষার রুটিন, সিট প্ল্যান, ফি জমাদানের শেষ তারিখ এবং ফলাফল প্রকাশের বিজ্ঞপ্তি প্রকাশ।</p>
-                        <button class="w-full bg-blue-50 text-blue-700 py-1.5 rounded text-xs font-bold hover:bg-blue-100 transition">পরীক্ষার নোটিশ ম্যানেজ</button>
+                        <p class="text-xs text-gray-600 leading-relaxed">অর্ধবার্ষিক, বার্ষিক ও প্রাক-নির্বাচনী পরীক্ষার তারিখ, সময় ও বিষয়ভিত্তিক সময়সূচি প্রকাশ।</p>
+                        <button class="w-full bg-blue-50 text-blue-700 py-1.5 rounded text-xs font-bold hover:bg-blue-100 transition">পরীক্ষার রুটিন ম্যানেজ</button>
                     </div>
 
-                    <!-- 3. Admission Notice -->
+                    <!-- 3. Academic Calendar -->
                     <div class="bg-white p-5 rounded-xl shadow-sm border-t-4 border-purple-600 space-y-3">
                         <div class="flex items-center justify-between border-b pb-2">
                             <h3 class="font-bold text-gray-800 text-sm flex items-center gap-2">
-                                <i class="fa-solid fa-user-plus text-purple-600"></i> Admission Notice
+                                <i class="fa-solid fa-calendar-days text-purple-600"></i> Academic Calendar
                             </h3>
-                            <span class="text-xs bg-purple-50 text-purple-700 px-2 py-0.5 rounded font-semibold">ভর্তি নোটিশ</span>
+                            <span class="text-xs bg-purple-50 text-purple-700 px-2 py-0.5 rounded font-semibold">অ্যাকাডেমিক ক্যালেন্ডার</span>
                         </div>
-                        <p class="text-xs text-gray-600 leading-relaxed">নতুন শিক্ষাবর্ষে ভর্তির নিয়মাবলী, সিট সংখ্যা, বয়সসীমা ও ভর্তি পরীক্ষার বিজ্ঞপ্তি প্রচার।</p>
-                        <button class="w-full bg-purple-50 text-purple-700 py-1.5 rounded text-xs font-bold hover:bg-purple-100 transition">ভর্তি নোটিশ প্যানেল</button>
+                        <p class="text-xs text-gray-600 leading-relaxed">সম্পূর্ণ শিক্ষাবর্ষের কর্মদিবস, ক্লাস শুরুর তারিখ, পরীক্ষার সময় এবং ছুটির সমন্বিত পঞ্জিকা।</p>
+                        <button class="w-full bg-purple-50 text-purple-700 py-1.5 rounded text-xs font-bold hover:bg-purple-100 transition">ক্যালেন্ডার প্যানেল</button>
                     </div>
 
-                    <!-- 4. Holiday Notice -->
+                    <!-- 4. Holidays -->
                     <div class="bg-white p-5 rounded-xl shadow-sm border-t-4 border-amber-600 space-y-3">
                         <div class="flex items-center justify-between border-b pb-2">
                             <h3 class="font-bold text-gray-800 text-sm flex items-center gap-2">
-                                <i class="fa-solid fa-calendar-days text-amber-600"></i> Holiday Notice
+                                <i class="fa-solid fa-umbrella-beach text-amber-600"></i> Holidays List
                             </h3>
-                            <span class="text-xs bg-amber-50 text-amber-700 px-2 py-0.5 rounded font-semibold">ছুটির নোটিশ</span>
+                            <span class="text-xs bg-amber-50 text-amber-700 px-2 py-0.5 rounded font-semibold">ছুটির তালিকা</span>
                         </div>
-                        <p class="text-xs text-gray-600 leading-relaxed">সরকারি ছুটি, পবিত্র রমজান, ঈদুল ফিতর, ঈদুল আজহা ও বার্ষিক অবকাশকালীন ছুটির নোটিশ।</p>
-                        <button class="w-full bg-amber-50 text-amber-700 py-1.5 rounded text-xs font-bold hover:bg-amber-100 transition">ছুটির নোটিশ প্যানেল</button>
+                        <p class="text-xs text-gray-600 leading-relaxed">সরকারি ছুটির দিন, ধর্মীয় উৎসব এবং মাদ্রাসার বিশেষ অবকাশকালীন ছুটির তালিকা সংরক্ষণ।</p>
+                        <button class="w-full bg-amber-50 text-amber-700 py-1.5 rounded text-xs font-bold hover:bg-amber-100 transition">ছুটির তালিকা দেখুন</button>
                     </div>
 
-                    <!-- 5. Downloadable PDF -->
+                    <!-- 5. Events -->
                     <div class="bg-white p-5 rounded-xl shadow-sm border-t-4 border-indigo-600 space-y-3">
                         <div class="flex items-center justify-between border-b pb-2">
                             <h3 class="font-bold text-gray-800 text-sm flex items-center gap-2">
-                                <i class="fa-solid fa-file-pdf text-indigo-600"></i> Downloadable PDF
+                                <i class="fa-solid fa-star text-indigo-600"></i> Events & Programs
                             </h3>
-                            <span class="text-xs bg-indigo-50 text-indigo-700 px-2 py-0.5 rounded font-semibold">পিডিএফ সংযুক্তি</span>
+                            <span class="text-xs bg-indigo-50 text-indigo-700 px-2 py-0.5 rounded font-semibold">ইভেন্ট ও অনুষ্ঠান</span>
                         </div>
-                        <p class="text-xs text-gray-600 leading-relaxed">নোটিশের সাথে অফিশিয়াল পিডিএফ ফাইল বা ফরম আপলোড ও ডাউনলোডের সুবিধা যুক্তকরণ।</p>
-                        <button class="w-full bg-indigo-50 text-indigo-700 py-1.5 rounded text-xs font-bold hover:bg-indigo-100 transition">পিডিএফ ম্যানেজমেন্ট</button>
+                        <p class="text-xs text-gray-600 leading-relaxed">বার্ষিক ওয়াজ মাহফিল, মিলাদ মাহফিল, ক্রীড়া প্রতিযোগিতা ও জাতীয় দিবস উদযাপন ইভেন্ট শিডিউলিং।</p>
+                        <button class="w-full bg-indigo-50 text-indigo-700 py-1.5 rounded text-xs font-bold hover:bg-indigo-100 transition">ইভেন্ট ম্যানেজমেন্ট</button>
                     </div>
 
                 </div>

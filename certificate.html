@@ -1,0 +1,120 @@
+<!DOCTYPE html>
+<html lang="bn">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Student Certificate - AHIFM ERP</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link rel="stylesheet" href="style.css">
+</head>
+<body class="bg-gray-100 font-sans">
+
+    <div class="flex h-screen overflow-hidden">
+        
+        <!-- Sidebar -->
+        <aside class="w-64 bg-emerald-900 text-white flex flex-col shadow-lg hidden md:flex no-print">
+            <div class="p-4 bg-emerald-950 text-center border-b border-emerald-800">
+                <h1 class="font-bold text-lg">AHIFM ERP</h1>
+                <p class="text-xs text-emerald-300">ম্যানেজমেন্ট সিস্টেম</p>
+            </div>
+
+            <nav class="flex-1 overflow-y-auto p-4 space-y-2 text-sm">
+                <a href="index.html" class="flex items-center gap-3 p-2.5 rounded hover:bg-emerald-800 transition">
+                    <i class="fa-solid fa-house"></i> 01. Home
+                </a>
+                <a href="students.html" class="flex items-center gap-3 p-2.5 rounded hover:bg-emerald-800 transition">
+                    <i class="fa-solid fa-user-graduate"></i> 03. Student Management
+                </a>
+                <a href="certificate.html" class="flex items-center gap-3 p-2.5 rounded bg-emerald-800 text-white font-medium">
+                    <i class="fa-solid fa-award"></i> 18. Certificate & Testimonial
+                </a>
+                <a href="routine.html" class="flex items-center gap-3 p-2.5 rounded hover:bg-emerald-800 transition">
+                    <i class="fa-solid fa-calendar-days"></i> 16. Routine & Calendar
+                </a>
+                <a href="notice.html" class="flex items-center gap-3 p-2.5 rounded hover:bg-emerald-800 transition">
+                    <i class="fa-solid fa-bullhorn"></i> 11. Notice Board
+                </a>
+                <a href="settings.html" class="flex items-center gap-3 p-2.5 rounded hover:bg-emerald-800 transition">
+                    <i class="fa-solid fa-gear"></i> 22. Settings
+                </a>
+            </nav>
+        </aside>
+
+        <!-- Main Content Area -->
+        <div class="flex-1 flex flex-col overflow-y-auto">
+            
+            <!-- Top Navbar -->
+            <header class="bg-white shadow-sm p-4 flex justify-between items-center no-print">
+                <div class="flex items-center gap-3">
+                    <span class="font-bold text-emerald-800 text-xl">প্রশংসাপত্র ও সার্টিফিকেট জেনারেটর</span>
+                </div>
+                <div class="flex items-center gap-4">
+                    <span class="text-sm text-gray-600">অ্যাডমিন প্যানেল</span>
+                    <a href="index.html" class="bg-red-600 text-white px-4 py-1.5 rounded text-sm font-medium hover:bg-red-700">লগআউট</a>
+                </div>
+            </header>
+
+            <!-- Page Content -->
+            <main class="p-6 space-y-6">
+                
+                <!-- Action Bar / Student Selector -->
+                <div class="bg-white p-4 rounded-xl shadow-sm flex flex-wrap justify-between items-center gap-4 no-print">
+                    <div class="flex items-center gap-3 w-full md:w-auto">
+                        <input type="text" placeholder="শিক্ষার্থীর আইডি বা নাম দিয়ে খুঁজুন..." class="px-4 py-2 border rounded-lg focus:outline-none focus:ring-2 focus:ring-emerald-600 text-sm w-72">
+                        <button class="bg-emerald-600 text-white px-4 py-2 rounded-lg font-medium hover:bg-emerald-700 text-sm">লোড করুন</button>
+                    </div>
+                    <div>
+                        <button onclick="window.print()" class="bg-gray-800 text-white px-5 py-2 rounded-lg font-medium hover:bg-gray-900 flex items-center gap-2 text-sm">
+                            <i class="fa-solid fa-print"></i> সার্টিফিকেট প্রিন্ট করুন
+                        </button>
+                    </div>
+                </div>
+
+                <!-- Printable Certificate Box -->
+                <div class="bg-white p-10 rounded-2xl shadow-sm border-8 border-double border-emerald-800 max-w-4xl mx-auto printable-area relative overflow-hidden">
+                    
+                    <!-- Watermark Logo Style (Optional) -->
+                    <div class="absolute inset-0 flex items-center justify-center opacity-5 pointer-events-none">
+                        <i class="fa-solid fa-graduation-cap text-9xl text-emerald-900"></i>
+                    </div>
+
+                    <!-- Header -->
+                    <div class="text-center space-y-1 border-b-2 border-emerald-800 pb-4">
+                        <h2 class="text-2xl font-bold text-emerald-900">আল-হেরা ইসলামিয়া ফাযিল মাদরাসা</h2>
+                        <p class="text-xs text-gray-600">স্থাপিত: ১৯৯৫ খ্রিঃ | EIIN: ১২৩৪৫৬</p>
+                        <p class="text-sm font-semibold text-emerald-700">নোয়াখালী সদর, নোয়াখালী।</p>
+                    </div>
+
+                    <div class="text-center my-6">
+                        <span class="bg-emerald-800 text-white px-6 py-1.5 rounded-full text-sm font-bold tracking-wider uppercase">প্রশংসাপত্র (Testimonial)</span>
+                    </div>
+
+                    <!-- Body Content -->
+                    <div class="text-gray-800 leading-loose text-base px-6 my-6 text-justify">
+                        এই মর্মে প্রত্যয়ন করা যাইতেছে যে, <b>মুহাম্মদ আব্দুল্লাহ</b>, পিতা: <b>মওলানা আব্দুর রহমান</b>, মাতা: <b>ফাতিমা বেগম</b>, অত্র মাদ্রাসার আলিম (বিজ্ঞান/সাধারণ) বিভাগ হইতে ২০২৬ সনের আলিম পরীক্ষায় অংশগ্রহণ করিয়া কৃতিত্বের সহিত <b>জিপিএ-৪.৫০</b> গ্রেড অর্জন করিয়া উত্তীর্ণ হইয়াছে।
+                        <br><br>
+                        সে অত্র প্রতিষ্ঠানে অধ্যয়নকালে নিয়মিত মাদ্রাসায় উপস্থিত থাকিত এবং তাহার নৈতিক চরিত্র ও আচরণ অত্যন্ত সন্তোষজনক ছিল। আমি তাহার ভবিষ্যৎ জীবনের সর্বাঙ্গীন উন্নতি ও কল্যাণ কামনা করি।
+                    </div>
+
+                    <!-- Signatures -->
+                    <div class="flex justify-between items-end mt-16 pt-8 px-6 text-sm">
+                        <div class="text-center">
+                            <div class="border-t border-gray-400 w-40 pt-1">শ্রেনি শিক্ষক / প্রোভাইডার</div>
+                        </div>
+                        <div class="text-center">
+                            <p class="text-xs text-gray-500 mb-8">তারিখ: ০৫ অক্টোবর ২০২৬</p>
+                            <div class="border-t border-gray-400 w-40 pt-1 font-bold">অধ্যক্ষ / মুহতামিম</div>
+                        </div>
+                    </div>
+
+                </div>
+
+            </main>
+
+        </div>
+    </div>
+
+    <script src="script.js"></script>
+</body>
+</html>

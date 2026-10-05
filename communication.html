@@ -1,0 +1,194 @@
+<!DOCTYPE html>
+<html lang="bn">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Communication & SMS - AHIFM ERP</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link rel="stylesheet" href="style.css">
+</head>
+<body class="bg-gray-100 font-sans">
+
+    <div class="flex h-screen overflow-hidden">
+        
+        <!-- Sidebar -->
+        <aside class="w-64 bg-emerald-900 text-white flex flex-col shadow-lg hidden md:flex no-print">
+            <div class="p-4 bg-emerald-950 text-center border-b border-emerald-800">
+                <h1 class="font-bold text-lg">AHIFM ERP</h1>
+                <p class="text-xs text-emerald-300">ম্যানেজমেন্ট সিস্টেম</p>
+            </div>
+
+            <nav class="flex-1 overflow-y-auto p-4 space-y-2 text-sm">
+                <a href="index.html" class="flex items-center gap-3 p-2.5 rounded hover:bg-emerald-800 transition">
+                    <i class="fa-solid fa-house"></i> 01. Home
+                </a>
+                <a href="dashboard.html" class="flex items-center gap-3 p-2.5 rounded hover:bg-emerald-800 transition">
+                    <i class="fa-solid fa-chart-pie"></i> 10. Dashboard
+                </a>
+                <a href="communication.html" class="flex items-center gap-3 p-2.5 rounded bg-emerald-800 text-white font-medium">
+                    <i class="fa-solid fa-comments"></i> 25. Communication & SMS
+                </a>
+                <a href="settings.html" class="flex items-center gap-3 p-2.5 rounded hover:bg-emerald-800 transition">
+                    <i class="fa-solid fa-gear"></i> 22. Settings
+                </a>
+            </nav>
+        </aside>
+
+        <!-- Main Content Area -->
+        <div class="flex-1 flex flex-col overflow-y-auto">
+            
+            <!-- Top Navbar -->
+            <header class="bg-white shadow-sm p-4 flex justify-between items-center no-print">
+                <div class="flex items-center gap-3">
+                    <span class="font-bold text-emerald-800 text-xl">কমিউনিকেশন ও এসএমএস মডিউল</span>
+                </div>
+                <div class="flex items-center gap-4">
+                    <span class="text-sm text-gray-600">অ্যাডমিন প্যানেল</span>
+                    <a href="index.html" class="bg-red-600 text-white px-4 py-1.5 rounded text-sm font-medium hover:bg-red-700">লগআউট</a>
+                </div>
+            </header>
+
+            <!-- Page Content -->
+            <main class="p-6 space-y-6">
+                
+                <!-- SMS Gateway Stats -->
+                <div class="grid grid-cols-1 md:grid-cols-4 gap-4">
+                    <div class="bg-white p-4 rounded-xl shadow-sm border-l-4 border-emerald-600">
+                        <p class="text-gray-500 text-xs">এসএমএস ব্যালেন্স</p>
+                        <h3 class="text-xl font-bold text-emerald-700 mt-1">৫,৪৫০ টি</h3>
+                    </div>
+                    <div class="bg-white p-4 rounded-xl shadow-sm border-l-4 border-blue-600">
+                        <p class="text-gray-500 text-xs">আজ প্রেরিত মোট এসএমএস</p>
+                        <h3 class="text-xl font-bold text-blue-700 mt-1">১২০ টি</h3>
+                    </div>
+                    <div class="bg-white p-4 rounded-xl shadow-sm border-l-4 border-purple-600">
+                        <p class="text-gray-500 text-xs">গেটওয়ে স্ট্যাটাস</p>
+                        <h3 class="text-xl font-bold text-purple-700 mt-1">সক্রিয় (Active)</h3>
+                    </div>
+                    <div class="bg-white p-4 rounded-xl shadow-sm border-l-4 border-amber-600">
+                        <p class="text-gray-500 text-xs">সফলতার হার</p>
+                        <h3 class="text-xl font-bold text-amber-700 mt-1">৯৯.৮%</h3>
+                    </div>
+                </div>
+
+                <!-- Communication Categories Section -->
+                <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+                    
+                    <!-- 1. Student Notification -->
+                    <div class="bg-white p-6 rounded-xl shadow-sm border border-gray-100 space-y-4">
+                        <div class="flex items-center gap-3 border-b pb-3">
+                            <div class="w-10 h-10 rounded-lg bg-emerald-100 text-emerald-800 flex items-center justify-center font-bold">
+                                <i class="fa-solid fa-user-graduate"></i>
+                            </div>
+                            <div>
+                                <h3 class="font-bold text-gray-800">Student Notification</h3>
+                                <p class="text-xs text-gray-500">শিক্ষার্থী ও অভিভাবকদের উপস্থিতি বা ফি বকেয়ার এসএমএস</p>
+                            </div>
+                        </div>
+                        <form class="space-y-3 text-sm">
+                            <div>
+                                <label class="block font-medium text-gray-700 mb-1">শ্রেণি নির্বাচন করুন</label>
+                                <select class="w-full px-3 py-2 border rounded-lg focus:outline-none focus:ring-2 focus:ring-emerald-600">
+                                    <option>সকল শ্রেণি (দাখিল ও আলিম)</option>
+                                    <option>আলিম প্রথম বর্ষ</option>
+                                    <option>দাখিল দশম শ্রেণি</option>
+                                </select>
+                            </div>
+                            <div>
+                                <label class="block font-medium text-gray-700 mb-1">মেসেজের বিষয়</label>
+                                <textarea rows="3" placeholder="যেমন: আপনার সন্তান অত্র মাদ্রাসায় অত্র তারিখে উপস্থিত/অনুপস্থিত ছিল..." class="w-full px-3 py-2 border rounded-lg focus:outline-none focus:ring-2 focus:ring-emerald-600"></textarea>
+                            </div>
+                            <button type="submit" class="w-full bg-emerald-600 text-white py-2 rounded-lg font-medium hover:bg-emerald-700 text-sm">শিক্ষার্থী নোটিশ পাঠান</button>
+                        </form>
+                    </div>
+
+                    <!-- 2. Teacher Notification -->
+                    <div class="bg-white p-6 rounded-xl shadow-sm border border-gray-100 space-y-4">
+                        <div class="flex items-center gap-3 border-b pb-3">
+                            <div class="w-10 h-10 rounded-lg bg-blue-100 text-blue-800 flex items-center justify-center font-bold">
+                                <i class="fa-solid fa-chalkboard-user"></i>
+                            </div>
+                            <div>
+                                <h3 class="font-bold text-gray-800">Teacher Notification</h3>
+                                <p class="text-xs text-gray-500">শিক্ষক ও স্টাফবৃন্দের জরুরি মিটিং বা নির্দেশনা</p>
+                            </div>
+                        </div>
+                        <form class="space-y-3 text-sm">
+                            <div>
+                                <label class="block font-medium text-gray-700 mb-1">প্রাপক শিক্ষক গ্রুপ</label>
+                                <select class="w-full px-3 py-2 border rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-600">
+                                    <option>সকল শিক্ষক ও স্টাফ</option>
+                                    <option>দাখিল বিভাগের শিক্ষকগণ</option>
+                                    <option>আলিম বিভাগের শিক্ষকগণ</option>
+                                </select>
+                            </div>
+                            <div>
+                                <label class="block font-medium text-gray-700 mb-1">মেসেজের বিষয়</label>
+                                <textarea rows="3" placeholder="যেমন: আগামীকালের জরুরি সভায় যথাসময়ে উপস্থিত থাকার অনুরোধ করা হলো..." class="w-full px-3 py-2 border rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-600"></textarea>
+                            </div>
+                            <button type="submit" class="w-full bg-blue-600 text-white py-2 rounded-lg font-medium hover:bg-blue-700 text-sm">শিক্ষকদের নোটিশ পাঠান</button>
+                        </form>
+                    </div>
+
+                    <!-- 3. Notice Alert -->
+                    <div class="bg-white p-6 rounded-xl shadow-sm border border-gray-100 space-y-4">
+                        <div class="flex items-center gap-3 border-b pb-3">
+                            <div class="w-10 h-10 rounded-lg bg-amber-100 text-amber-800 flex items-center justify-center font-bold">
+                                <i class="fa-solid fa-bullhorn"></i>
+                            </div>
+                            <div>
+                                <h3 class="font-bold text-gray-800">Notice Alert</h3>
+                                <p class="text-xs text-gray-500">সাধারণ নোটিশ বা ছুটির ঘোষণা সংক্রান্ত এসএমএস অ্যালার্ট</p>
+                            </div>
+                        </div>
+                        <form class="space-y-3 text-sm">
+                            <div>
+                                <label class="block font-medium text-gray-700 mb-1">নোটিশের শিরোনাম / বিষয়</label>
+                                <input type="text" placeholder="যেমন: ঈদে মিলাদুন্নবী (সা:) উপলক্ষে ছুটি" class="w-full px-3 py-2 border rounded-lg focus:outline-none focus:ring-2 focus:ring-amber-600">
+                            </div>
+                            <div>
+                                <label class="block font-medium text-gray-700 mb-1">সংক্ষিপ্ত বিবরণ (SMS Text)</label>
+                                <textarea rows="3" placeholder="নোটিশের সংক্ষিপ্ত সারসংক্ষেপ লিখুন..." class="w-full px-3 py-2 border rounded-lg focus:outline-none focus:ring-2 focus:ring-amber-600"></textarea>
+                            </div>
+                            <button type="submit" class="w-full bg-amber-600 text-white py-2 rounded-lg font-medium hover:bg-amber-700 text-sm">নোটিশ অ্যালার্ট ব্রডকাস্ট করুন</button>
+                        </form>
+                    </div>
+
+                    <!-- 4. Emergency Message -->
+                    <div class="bg-white p-6 rounded-xl shadow-sm border border-gray-100 space-y-4">
+                        <div class="flex items-center gap-3 border-b pb-3">
+                            <div class="w-10 h-10 rounded-lg bg-red-100 text-red-800 flex items-center justify-center font-bold">
+                                <i class="fa-solid fa-triangle-exclamation"></i>
+                            </div>
+                            <div>
+                                <h3 class="font-bold text-gray-800">Emergency Message</h3>
+                                <p class="text-xs text-gray-500">জরুরি আবহাওয়া বা বিশেষ পরিস্থিতিতে তাৎক্ষণিক বার্তা</p>
+                            </div>
+                        </div>
+                        <form class="space-y-3 text-sm">
+                            <div>
+                                <label class="block font-medium text-gray-700 mb-1">জরুরি বার্তার ধরন</label>
+                                <select class="w-full px-3 py-2 border rounded-lg focus:outline-none focus:ring-2 focus:ring-red-600">
+                                    <option>তীব্র তাপপ্রবাহ / আবহাওয়া জনিত ছুটি</option>
+                                    <option>জরুরি ঘোষণা / রেড অ্যালার্ট</option>
+                                </select>
+                            </div>
+                            <div>
+                                <label class="block font-medium text-gray-700 mb-1">জরুরি নির্দেশনা</label>
+                                <textarea rows="3" placeholder="বিশেষ সতর্কতা বা জরুরি বার্তা এখানে লিখুন..." class="w-full px-3 py-2 border rounded-lg focus:outline-none focus:ring-2 focus:ring-red-600"></textarea>
+                            </div>
+                            <button type="submit" class="w-full bg-red-600 text-white py-2 rounded-lg font-medium hover:bg-red-700 text-sm">জরুরি বার্তা প্রেরণ করুন</button>
+                        </form>
+                    </div>
+
+                </div>
+
+            </main>
+
+        </div>
+    </div>
+
+    <script src="script.js"></script>
+</body>
+</html>

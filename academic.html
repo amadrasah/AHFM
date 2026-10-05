@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Academic Management - AHIFM ERP</title>
+    <title>Academic Management - Abdullah Hat Islamia Fazil Madrasah</title>
     <script src="https://cdn.tailwindcss.com"></script>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     <link rel="stylesheet" href="style.css">
@@ -12,25 +12,79 @@
 
     <div class="flex h-screen overflow-hidden">
         
-        <!-- Sidebar -->
-        <aside class="w-64 bg-emerald-900 text-white flex flex-col shadow-lg hidden md:flex no-print">
-            <div class="p-4 bg-emerald-950 text-center border-b border-emerald-800">
-                <h1 class="font-bold text-lg">AHIFM ERP</h1>
-                <p class="text-xs text-emerald-300">ম্যানেজমেন্ট সিস্টেম</p>
+        <!-- Sidebar with 22 Modules -->
+        <aside class="w-72 bg-emerald-900 text-white flex flex-col shadow-lg overflow-y-auto no-print">
+            <div class="p-4 bg-emerald-950 text-center border-b border-emerald-800 sticky top-0 z-10">
+                <h1 class="font-bold text-base">AHIFM ERP</h1>
+                <p class="text-xs text-emerald-300">Abdullah Hat Islamia Fazil Madrasah</p>
             </div>
 
-            <nav class="flex-1 overflow-y-auto p-4 space-y-2 text-sm">
-                <a href="index.html" class="flex items-center gap-3 p-2.5 rounded hover:bg-emerald-800 transition">
-                    <i class="fa-solid fa-house"></i> 01. Home
+            <nav class="flex-1 p-3 space-y-1 text-xs">
+                <a href="index.html" class="flex items-center gap-2.5 p-2 rounded hover:bg-emerald-800 transition">
+                    <i class="fa-solid fa-house w-4"></i> 🏠 01. Home
                 </a>
-                <a href="dashboard.html" class="flex items-center gap-3 p-2.5 rounded hover:bg-emerald-800 transition">
-                    <i class="fa-solid fa-chart-pie"></i> 10. Dashboard
+                <a href="institution.html" class="flex items-center gap-2.5 p-2 rounded hover:bg-emerald-800 transition">
+                    <i class="fa-solid fa-school w-4"></i> 🏫 02. Institution
                 </a>
-                <a href="academic.html" class="flex items-center gap-3 p-2.5 rounded bg-emerald-800 text-white font-medium">
-                    <i class="fa-solid fa-book-open"></i> 27. Academic Management
+                <a href="students.html" class="flex items-center gap-2.5 p-2 rounded hover:bg-emerald-800 transition">
+                    <i class="fa-solid fa-user-graduate w-4"></i> 👨‍🎓 03. Student Management
                 </a>
-                <a href="settings.html" class="flex items-center gap-3 p-2.5 rounded hover:bg-emerald-800 transition">
-                    <i class="fa-solid fa-gear"></i> 22. Settings
+                <a href="teachers.html" class="flex items-center gap-2.5 p-2 rounded hover:bg-emerald-800 transition">
+                    <i class="fa-solid fa-chalkboard-user w-4"></i> 👨‍🏫 04. Teacher & Staff
+                </a>
+                <a href="academic.html" class="flex items-center gap-2.5 p-2 rounded bg-emerald-800 text-white font-medium">
+                    <i class="fa-solid fa-book-open w-4"></i> 📚 05. Academic Management
+                </a>
+                <a href="examination.html" class="flex items-center gap-2.5 p-2 rounded hover:bg-emerald-800 transition">
+                    <i class="fa-solid fa-file-lines w-4"></i> 📝 06. Examination
+                </a>
+                <a href="attendance.html" class="flex items-center gap-2.5 p-2 rounded hover:bg-emerald-800 transition">
+                    <i class="fa-solid fa-clipboard-user w-4"></i> 🕐 07. Attendance
+                </a>
+                <a href="accounts.html" class="flex items-center gap-2.5 p-2 rounded hover:bg-emerald-800 transition">
+                    <i class="fa-solid fa-wallet w-4"></i> 💰 08. Accounts
+                </a>
+                <a href="fees.html" class="flex items-center gap-2.5 p-2 rounded hover:bg-emerald-800 transition">
+                    <i class="fa-solid fa-receipt w-4"></i> 🧾 09. Fees Management
+                </a>
+                <a href="dashboard.html" class="flex items-center gap-2.5 p-2 rounded hover:bg-emerald-800 transition">
+                    <i class="fa-solid fa-chart-pie w-4"></i> 📊 10. Dashboard
+                </a>
+                <a href="notice.html" class="flex items-center gap-2.5 p-2 rounded hover:bg-emerald-800 transition">
+                    <i class="fa-solid fa-bullhorn w-4"></i> 📢 11. Notice Management
+                </a>
+                <a href="routine.html" class="flex items-center gap-2.5 p-2 rounded hover:bg-emerald-800 transition">
+                    <i class="fa-solid fa-calendar-days w-4"></i> 📅 12. Routine & Calendar
+                </a>
+                <a href="certificates.html" class="flex items-center gap-2.5 p-2 rounded hover:bg-emerald-800 transition">
+                    <i class="fa-solid fa-award w-4"></i> 📄 13. Certificates
+                </a>
+                <a href="inventory.html" class="flex items-center gap-2.5 p-2 rounded hover:bg-emerald-800 transition">
+                    <i class="fa-solid fa-boxes-stacked w-4"></i> 📦 14. Inventory
+                </a>
+                <a href="library.html" class="flex items-center gap-2.5 p-2 rounded hover:bg-emerald-800 transition">
+                    <i class="fa-solid fa-books w-4"></i> 📖 15. Library
+                </a>
+                <a href="transport.html" class="flex items-center gap-2.5 p-2 rounded hover:bg-emerald-800 transition">
+                    <i class="fa-solid fa-bus w-4"></i> 🚌 16. Transport
+                </a>
+                <a href="hostel.html" class="flex items-center gap-2.5 p-2 rounded hover:bg-emerald-800 transition">
+                    <i class="fa-solid fa-bed w-4"></i> 🍚 17. Hostel / Facilities
+                </a>
+                <a href="communication.html" class="flex items-center gap-2.5 p-2 rounded hover:bg-emerald-800 transition">
+                    <i class="fa-solid fa-comments w-4"></i> 📱 18. Communication
+                </a>
+                <a href="users.html" class="flex items-center gap-2.5 p-2 rounded hover:bg-emerald-800 transition">
+                    <i class="fa-solid fa-shield-halved w-4"></i> 🔐 19. User & Security
+                </a>
+                <a href="cloud-backup.html" class="flex items-center gap-2.5 p-2 rounded hover:bg-emerald-800 transition">
+                    <i class="fa-solid fa-cloud-arrow-up w-4"></i> ☁️ 20. Cloud & Backup
+                </a>
+                <a href="reports.html" class="flex items-center gap-2.5 p-2 rounded hover:bg-emerald-800 transition">
+                    <i class="fa-solid fa-chart-line w-4"></i> 📈 21. Reports
+                </a>
+                <a href="settings.html" class="flex items-center gap-2.5 p-2 rounded hover:bg-emerald-800 transition">
+                    <i class="fa-solid fa-gear w-4"></i> ⚙️️ 22. Settings
                 </a>
             </nav>
         </aside>
@@ -41,168 +95,113 @@
             <!-- Top Navbar -->
             <header class="bg-white shadow-sm p-4 flex justify-between items-center no-print">
                 <div class="flex items-center gap-3">
-                    <span class="font-bold text-emerald-800 text-xl">অ্যাকাডেমিক ম্যানেজমেন্ট মডিউল</span>
+                    <span class="font-bold text-emerald-800 text-lg">📚 Academic Management (একাডেমিক ব্যবস্থাপনা)</span>
                 </div>
                 <div class="flex items-center gap-4">
-                    <span class="text-sm text-gray-600">অ্যাডমিন প্যানেল</span>
-                    <a href="index.html" class="bg-red-600 text-white px-4 py-1.5 rounded text-sm font-medium hover:bg-red-700">লগআউট</a>
+                    <span class="text-sm text-gray-600 font-medium"><i class="fa-solid fa-user-shield text-emerald-700 mr-1"></i> সুপার অ্যাডমিন</span>
+                    <a href="index.html" class="bg-red-600 text-white px-4 py-1.5 rounded text-xs font-medium hover:bg-red-700">লগআউট</a>
                 </div>
             </header>
 
             <!-- Page Content -->
             <main class="p-6 space-y-6">
                 
-                <!-- Sub-Module Overview Cards Grid -->
-                <div class="grid grid-cols-1 md:grid-cols-3 lg:grid-cols-6 gap-4 text-center">
-                    <div class="bg-white p-4 rounded-xl shadow-sm border-t-4 border-emerald-600">
-                        <i class="fa-solid fa-book text-emerald-600 text-xl mb-1"></i>
-                        <p class="text-xs text-gray-500 font-medium">Subject Mgmt</p>
-                        <h4 class="font-bold text-gray-800 text-sm mt-1">বিষয় নির্ধারণ</h4>
+                <!-- Page Header Banner -->
+                <div class="bg-gradient-to-r from-emerald-800 to-emerald-950 text-white p-6 rounded-2xl shadow-sm flex flex-col md:flex-row justify-between items-center gap-4">
+                    <div>
+                        <h2 class="text-xl font-bold">একাডেমিক স্ট্রাকচার ও কারিকুলাম প্যানেল</h2>
+                        <p class="text-emerald-200 text-xs mt-1">ক্লাস, সাবজেক্ট, গ্রুপ, সেকশন, একাডেমিক ইয়ার, রুটিন এবং একাডেমিক ক্যালেন্ডার পরিচালনা।</p>
                     </div>
-                    <div class="bg-white p-4 rounded-xl shadow-sm border-t-4 border-blue-600">
-                        <i class="fa-solid fa-layer-group text-blue-600 text-xl mb-1"></i>
-                        <p class="text-xs text-gray-500 font-medium">Group Mgmt</p>
-                        <h4 class="font-bold text-gray-800 text-sm mt-1">বিজ্ঞান/মানবিক</h4>
-                    </div>
-                    <div class="bg-white p-4 rounded-xl shadow-sm border-t-4 border-purple-600">
-                        <i class="fa-solid fa-school text-purple-600 text-xl mb-1"></i>
-                        <p class="text-xs text-gray-500 font-medium">Section Mgmt</p>
-                        <h4 class="font-bold text-gray-800 text-sm mt-1">শাখা (A, B)</h4>
-                    </div>
-                    <div class="bg-white p-4 rounded-xl shadow-sm border-t-4 border-amber-600">
-                        <i class="fa-solid fa-calendar-days text-amber-600 text-xl mb-1"></i>
-                        <p class="text-xs text-gray-500 font-medium">Academic Year</p>
-                        <h4 class="font-bold text-gray-800 text-sm mt-1">শিক্ষাবর্ষ ২০২৬</h4>
-                    </div>
-                    <div class="bg-white p-4 rounded-xl shadow-sm border-t-4 border-teal-600">
-                        <i class="fa-solid fa-clock text-teal-600 text-xl mb-1"></i>
-                        <p class="text-xs text-gray-500 font-medium">Routine</p>
-                        <h4 class="font-bold text-gray-800 text-sm mt-1">ক্লাস রুটিন</h4>
-                    </div>
-                    <div class="bg-white p-4 rounded-xl shadow-sm border-t-4 border-indigo-600">
-                        <i class="fa-solid fa-calendar-check text-indigo-600 text-xl mb-1"></i>
-                        <p class="text-xs text-gray-500 font-medium">Academic Calendar</p>
-                        <h4 class="font-bold text-gray-800 text-sm mt-1">বার্ষিক ক্যালেন্ডার</h4>
+                    <div class="flex gap-2">
+                        <button class="bg-white text-emerald-900 px-4 py-2 rounded-xl font-bold text-xs hover:bg-emerald-50 transition shadow-sm">নতুন ক্লাস যোগ করুন</button>
                     </div>
                 </div>
 
-                <!-- Section 1: Subject, Group & Section Management Form/Table Area -->
-                <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+                <!-- Sub-Modules Grid Layout (7 Features) -->
+                <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
                     
-                    <!-- Subject Management Box -->
-                    <div class="bg-white p-6 rounded-xl shadow-sm space-y-4">
-                        <div class="flex justify-between items-center border-b pb-3">
-                            <h3 class="font-bold text-gray-800 flex items-center gap-2">
-                                <i class="fa-solid fa-book text-emerald-600"></i> Subject Management (বিষয় ব্যবস্থাপনা)
+                    <!-- 1. Class Management -->
+                    <div class="bg-white p-5 rounded-xl shadow-sm border-t-4 border-emerald-600 space-y-3">
+                        <div class="flex items-center justify-between border-b pb-2">
+                            <h3 class="font-bold text-gray-800 text-sm flex items-center gap-2">
+                                <i class="fa-solid fa-school text-emerald-600"></i> Class Management
                             </h3>
-                            <button class="bg-emerald-600 text-white px-3 py-1.5 rounded-lg text-xs font-medium hover:bg-emerald-700">নতুন বিষয় যুক্ত করুন</button>
+                            <span class="text-xs bg-emerald-50 text-emerald-700 px-2 py-0.5 rounded font-semibold">ক্লাস</span>
                         </div>
-                        <div class="overflow-x-auto">
-                            <table class="w-full text-left border-collapse text-sm">
-                                <thead>
-                                    <tr class="bg-gray-50 text-gray-600 border-b">
-                                        <th class="p-2.5">বিষয়ের নাম</th>
-                                        <th class="p-2.5">কোড</th>
-                                        <th class="p-2.5">শ্রেণি</th>
-                                        <th class="p-2.5 text-center">কার্যক্রম</th>
-                                    </tr>
-                                </thead>
-                                <tbody class="text-gray-700 divide-y">
-                                    <tr>
-                                        <td class="p-2.5 font-medium">আল-কুরআন আল-কারিম</td>
-                                        <td class="p-2.5 text-gray-500">১০১</td>
-                                        <td class="p-2.5">দাখিল দশম</td>
-                                        <td class="p-2.5 text-center">
-                                            <button class="text-blue-600 hover:text-blue-800 mr-2" title="এডিট"><i class="fa-solid fa-pen"></i></button>
-                                            <button class="text-red-600 hover:text-red-800" title="ডিলিট"><i class="fa-solid fa-trash"></i></button>
-                                        </td>
-                                    </tr>
-                                    <tr>
-                                        <td class="p-2.5 font-medium">আল-ফিকাউল ইসলামী</td>
-                                        <td class="p-2.5 text-gray-500">১০২</td>
-                                        <td class="p-2.5">দাখিল নবম</td>
-                                        <td class="p-2.5 text-center">
-                                            <button class="text-blue-600 hover:text-blue-800 mr-2" title="এডিট"><i class="fa-solid fa-pen"></i></button>
-                                            <button class="text-red-600 hover:text-red-800" title="ডিলিট"><i class="fa-solid fa-trash"></i></button>
-                                        </td>
-                                    </tr>
-                                </tbody>
-                            </table>
-                        </div>
+                        <p class="text-xs text-gray-600 leading-relaxed">ইবতেদায়ী থেকে ফাজিল স্তর পর্যন্ত বিভিন্ন শ্রেণি ও তার বিবরণী কনফিগারেশন।</p>
+                        <button class="w-full bg-emerald-50 text-emerald-700 py-1.5 rounded text-xs font-bold hover:bg-emerald-100 transition">ক্লাস তালিকা পরিচালনা</button>
                     </div>
 
-                    <!-- Group & Section Management Box -->
-                    <div class="bg-white p-6 rounded-xl shadow-sm space-y-4">
-                        <div class="flex justify-between items-center border-b pb-3">
-                            <h3 class="font-bold text-gray-800 flex items-center gap-2">
-                                <i class="fa-solid fa-layer-group text-blue-600"></i> Group & Section Management
+                    <!-- 2. Subject Management -->
+                    <div class="bg-white p-5 rounded-xl shadow-sm border-t-4 border-blue-600 space-y-3">
+                        <div class="flex items-center justify-between border-b pb-2">
+                            <h3 class="font-bold text-gray-800 text-sm flex items-center gap-2">
+                                <i class="fa-solid fa-book text-blue-600"></i> Subject Management
                             </h3>
-                            <button class="bg-blue-600 text-white px-3 py-1.5 rounded-lg text-xs font-medium hover:bg-blue-700">গ্রুপ/শাখা তৈরি</button>
+                            <span class="text-xs bg-blue-50 text-blue-700 px-2 py-0.5 rounded font-semibold">বিষয়</span>
                         </div>
-                        <div class="space-y-3 text-sm">
-                            <div class="p-3 bg-gray-50 rounded-lg border flex justify-between items-center">
-                                <div>
-                                    <span class="font-semibold text-gray-800">গ্রুপ (Group):</span> সাধারণ ও বিজ্ঞান বিভাগ
-                                </div>
-                                <span class="bg-blue-100 text-blue-800 px-2 py-0.5 rounded text-xs font-semibold">সক্রিয়</span>
-                            </div>
-                            <div class="p-3 bg-gray-50 rounded-lg border flex justify-between items-center">
-                                <div>
-                                    <span class="font-semibold text-gray-800">শাখা (Section):</span> শাখা-ক (শাপলা) ও শাখা-খ (গোলাপ)
-                                </div>
-                                <span class="bg-purple-100 text-purple-800 px-2 py-0.5 rounded text-xs font-semibold">সক্রিয়</span>
-                            </div>
-                            <div class="p-3 bg-gray-50 rounded-lg border flex justify-between items-center">
-                                <div>
-                                    <span class="font-semibold text-gray-800">শিক্ষাবর্ষ (Academic Year):</span> ২০২৬ শিক্ষাবর্ষ
-                                </div>
-                                <span class="bg-amber-100 text-amber-800 px-2 py-0.5 rounded text-xs font-semibold">চলমান</span>
-                            </div>
-                        </div>
+                        <p class="text-xs text-gray-600 leading-relaxed">আবশ্যিক, ঐচ্ছিক, আরবি ও সাধারণ বিষয়ের কোড, পূর্ণমান এবং শিক্ষক অ্যাসাইনমেন্ট।</p>
+                        <button class="w-full bg-blue-50 text-blue-700 py-1.5 rounded text-xs font-bold hover:bg-blue-100 transition">বিষয় সেটআপ</button>
                     </div>
 
-                </div>
-
-                <!-- Section 2: Routine & Academic Calendar Preview -->
-                <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
-                    
-                    <!-- Class Routine Box -->
-                    <div class="bg-white p-6 rounded-xl shadow-sm space-y-4">
-                        <div class="flex justify-between items-center border-b pb-3">
-                            <h3 class="font-bold text-gray-800 flex items-center gap-2">
-                                <i class="fa-solid fa-clock text-teal-600"></i> Routine (ক্লাস রুটিন ও সময়সূচি)
+                    <!-- 3. Group Management -->
+                    <div class="bg-white p-5 rounded-xl shadow-sm border-t-4 border-purple-600 space-y-3">
+                        <div class="flex items-center justify-between border-b pb-2">
+                            <h3 class="font-bold text-gray-800 text-sm flex items-center gap-2">
+                                <i class="fa-solid fa-layer-group text-purple-600"></i> Group Management
                             </h3>
-                            <button class="bg-teal-600 text-white px-3 py-1.5 rounded-lg text-xs font-medium hover:bg-teal-700">রুটিন আপলোড / তৈরি</button>
+                            <span class="text-xs bg-purple-50 text-purple-700 px-2 py-0.5 rounded font-semibold">গ্রুপ</span>
                         </div>
-                        <p class="text-xs text-gray-500">প্রতিটি শ্রেণির পিরিয়ডভিত্তিক ক্লাস রুটিন এবং শিক্ষক বন্টন তালিকা:</p>
-                        <div class="p-4 bg-teal-50 border border-teal-200 rounded-lg text-sm flex justify-between items-center">
-                            <div>
-                                <h4 class="font-bold text-teal-900">দাখিল দশম শ্রেণির মূল রুটিন - ২০২৬</h4>
-                                <p class="text-xs text-teal-700 mt-0.5">সর্বশেষ আপডেট: ০২ অক্টোবর ২০২৬</p>
-                            </div>
-                            <button class="bg-teal-700 text-white px-3 py-1 rounded text-xs font-medium hover:bg-teal-800">দেখুন / প্রিন্ট</button>
-                        </div>
+                        <p class="text-xs text-gray-600 leading-relaxed">বিজ্ঞান, মানবিক, ব্যবসায় শিক্ষা কিংবা মাদ্রাসা বোর্ডের বিশেষ বিভাগসমূহ পরিচালনা।</p>
+                        <button class="w-full bg-purple-50 text-purple-700 py-1.5 rounded text-xs font-bold hover:bg-purple-100 transition">গ্রুপ ম্যানেজমেন্ট</button>
                     </div>
 
-                    <!-- Academic Calendar Box -->
-                    <div class="bg-white p-6 rounded-xl shadow-sm space-y-4">
-                        <div class="flex justify-between items-center border-b pb-3">
-                            <h3 class="font-bold text-gray-800 flex items-center gap-2">
-                                <i class="fa-solid fa-calendar-check text-indigo-600"></i> Academic Calendar (বার্ষিক পঞ্জিকা)
+                    <!-- 4. Section Management -->
+                    <div class="bg-white p-5 rounded-xl shadow-sm border-t-4 border-amber-600 space-y-3">
+                        <div class="flex items-center justify-between border-b pb-2">
+                            <h3 class="font-bold text-gray-800 text-sm flex items-center gap-2">
+                                <i class="fa-solid fa-columns text-amber-600"></i> Section Management
                             </h3>
-                            <button class="bg-indigo-600 text-white px-3 py-1.5 rounded-lg text-xs font-medium hover:bg-indigo-700">ইভেন্ট যোগ করুন</button>
+                            <span class="text-xs bg-amber-50 text-amber-700 px-2 py-0.5 rounded font-semibold">সেকশন</span>
                         </div>
-                        <p class="text-xs text-gray-500">পরীক্ষার তারিখ, বার্ষিক ক্রীড়া প্রতিযোগিতা ও ছুটির নির্ধারিত দিনপঞ্জি:</p>
-                        <div class="space-y-2 text-sm">
-                            <div class="flex justify-between items-center p-2.5 bg-gray-50 rounded border">
-                                <span class="font-medium text-gray-800">অর্ধবার্ষিক পরীক্ষা শুরু</span>
-                                <span class="text-xs text-gray-500 font-semibold bg-white px-2 py-1 rounded border">১৫ মে ২০২৬</span>
-                            </div>
-                            <div class="flex justify-between items-center p-2.5 bg-gray-50 rounded border">
-                                <span class="font-medium text-gray-800">বার্ষিক ক্রীড়া ও সাংস্কৃতিক অনুষ্ঠান</span>
-                                <span class="text-xs text-gray-500 font-semibold bg-white px-2 py-1 rounded border">২০ ডিসেম্বর ২০২৬</span>
-                            </div>
+                        <p class="text-xs text-gray-600 leading-relaxed">প্রতিটি শ্রেণির শাখা (যেমন: ক, খ বা Section A, B) এবং ছাত্রসংখ্যা নির্ধারণ।</p>
+                        <button class="w-full bg-amber-50 text-amber-700 py-1.5 rounded text-xs font-bold hover:bg-amber-100 transition">সেকশন কনফিগারেশন</button>
+                    </div>
+
+                    <!-- 5. Academic Year -->
+                    <div class="bg-white p-5 rounded-xl shadow-sm border-t-4 border-indigo-600 space-y-3">
+                        <div class="flex items-center justify-between border-b pb-2">
+                            <h3 class="font-bold text-gray-800 text-sm flex items-center gap-2">
+                                <i class="fa-solid fa-calendar-days text-indigo-600"></i> Academic Year
+                            </h3>
+                            <span class="text-xs bg-indigo-50 text-indigo-700 px-2 py-0.5 rounded font-semibold">সেশন</span>
                         </div>
+                        <p class="text-xs text-gray-600 leading-relaxed">বর্তমান শিক্ষাবর্ষ ও সেশন ম্যানেজমেন্ট এবং পূর্ববর্তী সেশনের আর্কাইভ সংরক্ষণ।</p>
+                        <button class="w-full bg-indigo-50 text-indigo-700 py-1.5 rounded text-xs font-bold hover:bg-indigo-100 transition">একাডেমিক ইয়ার সেটআপ</button>
+                    </div>
+
+                    <!-- 6. Routine -->
+                    <div class="bg-white p-5 rounded-xl shadow-sm border-t-4 border-teal-600 space-y-3">
+                        <div class="flex items-center justify-between border-b pb-2">
+                            <h3 class="font-bold text-gray-800 text-sm flex items-center gap-2">
+                                <i class="fa-solid fa-clock text-teal-600"></i> Class Routine
+                            </h3>
+                            <span class="text-xs bg-teal-50 text-teal-700 px-2 py-0.5 rounded font-semibold">রুটিন</span>
+                        </div>
+                        <p class="text-xs text-gray-600 leading-relaxed">শ্রেণিভিত্তিক পিরিয়ড রুটিন, শিক্ষক রুটিন এবং সময়সূচি তৈরি ও প্রিন্ট করার ব্যবস্থা।</p>
+                        <button class="w-full bg-teal-50 text-teal-700 py-1.5 rounded text-xs font-bold hover:bg-teal-100 transition">রুটিন ম্যানেজমেন্ট</button>
+                    </div>
+
+                    <!-- 7. Academic Calendar -->
+                    <div class="bg-white p-5 rounded-xl shadow-sm border-t-4 border-rose-600 space-y-3">
+                        <div class="flex items-center justify-between border-b pb-2">
+                            <h3 class="font-bold text-gray-800 text-sm flex items-center gap-2">
+                                <i class="fa-solid fa-calendar-check text-rose-600"></i> Academic Calendar
+                            </h3>
+                            <span class="text-xs bg-rose-50 text-rose-700 px-2 py-0.5 rounded font-semibold">ক্যালেন্ডার</span>
+                        </div>
+                        <p class="text-xs text-gray-600 leading-relaxed">বার্ষিক ছুটির তালিকা, পরীক্ষার সম্ভাব্য তারিখ ও মাদ্রাসার বিভিন্ন কার্যক্রমের বার্ষিক সূচি।</p>
+                        <button class="w-full bg-rose-50 text-rose-700 py-1.5 rounded text-xs font-bold hover:bg-rose-100 transition">ক্যালেন্ডার দেখুন</button>
                     </div>
 
                 </div>

@@ -1,0 +1,216 @@
+<!DOCTYPE html>
+<html lang="bn">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Inventory Management - Abdullah Hat Islamia Fazil Madrasah</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link rel="stylesheet" href="style.css">
+</head>
+<body class="bg-gray-100 font-sans">
+
+    <div class="flex h-screen overflow-hidden">
+        
+        <!-- Sidebar with 22 Modules -->
+        <aside class="w-72 bg-emerald-900 text-white flex flex-col shadow-lg overflow-y-auto no-print">
+            <div class="p-4 bg-emerald-950 text-center border-b border-emerald-800 sticky top-0 z-10">
+                <h1 class="font-bold text-base">AHIFM ERP</h1>
+                <p class="text-xs text-emerald-300">Abdullah Hat Islamia Fazil Madrasah</p>
+            </div>
+
+            <nav class="flex-1 p-3 space-y-1 text-xs">
+                <a href="index.html" class="flex items-center gap-2.5 p-2 rounded hover:bg-emerald-800 transition">
+                    <i class="fa-solid fa-house w-4"></i> 🏠 01. Home
+                </a>
+                <a href="institution.html" class="flex items-center gap-2.5 p-2 rounded hover:bg-emerald-800 transition">
+                    <i class="fa-solid fa-school w-4"></i> 🏫 02. Institution
+                </a>
+                <a href="students.html" class="flex items-center gap-2.5 p-2 rounded hover:bg-emerald-800 transition">
+                    <i class="fa-solid fa-user-graduate w-4"></i> 👨‍🎓 03. Student Management
+                </a>
+                <a href="teachers.html" class="flex items-center gap-2.5 p-2 rounded hover:bg-emerald-800 transition">
+                    <i class="fa-solid fa-chalkboard-user w-4"></i> 👨‍🏫 04. Teacher & Staff
+                </a>
+                <a href="academic.html" class="flex items-center gap-2.5 p-2 rounded hover:bg-emerald-800 transition">
+                    <i class="fa-solid fa-book-open w-4"></i> 📚 05. Academic Management
+                </a>
+                <a href="examination.html" class="flex items-center gap-2.5 p-2 rounded hover:bg-emerald-800 transition">
+                    <i class="fa-solid fa-file-lines w-4"></i> 📝 06. Examination
+                </a>
+                <a href="attendance.html" class="flex items-center gap-2.5 p-2 rounded hover:bg-emerald-800 transition">
+                    <i class="fa-solid fa-clipboard-user w-4"></i> 🕐 07. Attendance
+                </a>
+                <a href="accounts.html" class="flex items-center gap-2.5 p-2 rounded hover:bg-emerald-800 transition">
+                    <i class="fa-solid fa-wallet w-4"></i> 💰 08. Accounts
+                </a>
+                <a href="fees.html" class="flex items-center gap-2.5 p-2 rounded hover:bg-emerald-800 transition">
+                    <i class="fa-solid fa-receipt w-4"></i> 🧾 09. Fees Management
+                </a>
+                <a href="dashboard.html" class="flex items-center gap-2.5 p-2 rounded hover:bg-emerald-800 transition">
+                    <i class="fa-solid fa-chart-pie w-4"></i> 📊 10. Dashboard
+                </a>
+                <a href="notice.html" class="flex items-center gap-2.5 p-2 rounded hover:bg-emerald-800 transition">
+                    <i class="fa-solid fa-bullhorn w-4"></i> 📢 11. Notice Management
+                </a>
+                <a href="routine.html" class="flex items-center gap-2.5 p-2 rounded hover:bg-emerald-800 transition">
+                    <i class="fa-solid fa-calendar-days w-4"></i> 📅 12. Routine & Calendar
+                </a>
+                <a href="certificates.html" class="flex items-center gap-2.5 p-2 rounded hover:bg-emerald-800 transition">
+                    <i class="fa-solid fa-award w-4"></i> 📄 13. Certificates
+                </a>
+                <a href="inventory.html" class="flex items-center gap-2.5 p-2 rounded bg-emerald-800 text-white font-medium">
+                    <i class="fa-solid fa-boxes-stacked w-4"></i> 📦 14. Inventory
+                </a>
+                <a href="library.html" class="flex items-center gap-2.5 p-2 rounded hover:bg-emerald-800 transition">
+                    <i class="fa-solid fa-book-bookmark w-4"></i> 📖 15. Library
+                </a>
+                <a href="transport.html" class="flex items-center gap-2.5 p-2 rounded hover:bg-emerald-800 transition">
+                    <i class="fa-solid fa-bus w-4"></i> 🚌 16. Transport
+                </a>
+                <a href="hostel.html" class="flex items-center gap-2.5 p-2 rounded hover:bg-emerald-800 transition">
+                    <i class="fa-solid fa-bed w-4"></i> 🍚 17. Hostel / Facilities
+                </a>
+                <a href="communication.html" class="flex items-center gap-2.5 p-2 rounded hover:bg-emerald-800 transition">
+                    <i class="fa-solid fa-comments w-4"></i> 📱 18. Communication
+                </a>
+                <a href="users.html" class="flex items-center gap-2.5 p-2 rounded hover:bg-emerald-800 transition">
+                    <i class="fa-solid fa-shield-halved w-4"></i> 🔐 19. User & Security
+                </a>
+                <a href="cloud-backup.html" class="flex items-center gap-2.5 p-2 rounded hover:bg-emerald-800 transition">
+                    <i class="fa-solid fa-cloud-arrow-up w-4"></i> ☁️ 20. Cloud & Backup
+                </a>
+                <a href="reports.html" class="flex items-center gap-2.5 p-2 rounded hover:bg-emerald-800 transition">
+                    <i class="fa-solid fa-chart-line w-4"></i> 📈 21. Reports
+                </a>
+                <a href="settings.html" class="flex items-center gap-2.5 p-2 rounded hover:bg-emerald-800 transition">
+                    <i class="fa-solid fa-gear w-4"></i> ⚙️ 22. Settings
+                </a>
+            </nav>
+        </aside>
+
+        <!-- Main Content Area -->
+        <div class="flex-1 flex flex-col overflow-y-auto">
+            
+            <!-- Top Navbar -->
+            <header class="bg-white shadow-sm p-4 flex justify-between items-center no-print">
+                <div class="flex items-center gap-3">
+                    <span class="font-bold text-emerald-800 text-lg">📦 Inventory Management (ইনভেন্টরি ও সম্পদ ব্যবস্থাপনা)</span>
+                </div>
+                <div class="flex items-center gap-4">
+                    <span class="text-sm text-gray-600 font-medium"><i class="fa-solid fa-user-shield text-emerald-700 mr-1"></i> সুপার অ্যাডমিন</span>
+                    <a href="index.html" class="bg-red-600 text-white px-4 py-1.5 rounded text-xs font-medium hover:bg-red-700">লগআউট</a>
+                </div>
+            </header>
+
+            <!-- Page Content -->
+            <main class="p-6 space-y-6">
+                
+                <!-- Page Header Banner -->
+                <div class="bg-gradient-to-r from-emerald-800 to-emerald-950 text-white p-6 rounded-2xl shadow-sm flex flex-col md:flex-row justify-between items-center gap-4">
+                    <div>
+                        <h2 class="text-xl font-bold">মাদ্রাসা ইনভেন্টরি ও সম্পদ ট্র্যাকিং প্যানেল</h2>
+                        <p class="text-emerald-200 text-xs mt-1">বই, আসবাবপত্র, কম্পিউটার/আইসিটি যন্ত্রপাতি, ল্যাব সামগ্রী, ক্রীড়া সরঞ্জাম এবং স্টক ইন ও আউট ব্যবস্থাপনা।</p>
+                    </div>
+                    <div class="flex gap-2">
+                        <button class="bg-white text-emerald-900 px-4 py-2 rounded-xl font-bold text-xs hover:bg-emerald-50 transition shadow-sm">নতুন স্টক এন্ট্রি</button>
+                    </div>
+                </div>
+
+                <!-- Sub-Modules Grid Layout (7 Features) -->
+                <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+                    
+                    <!-- 1. Books -->
+                    <div class="bg-white p-5 rounded-xl shadow-sm border-t-4 border-emerald-600 space-y-3">
+                        <div class="flex items-center justify-between border-b pb-2">
+                            <h3 class="font-bold text-gray-800 text-sm flex items-center gap-2">
+                                <i class="fa-solid fa-book text-emerald-600"></i> Books Inventory
+                            </h3>
+                            <span class="text-xs bg-emerald-50 text-emerald-700 px-2 py-0.5 rounded font-semibold">পাঠ্যবই ও কিতাব</span>
+                        </div>
+                        <p class="text-xs text-gray-600 leading-relaxed">মাদ্রাসার পাঠ্যবই, বোর্ড বই এবং রেফারেন্স কিতাবের স্টকের পরিমাণ ও বিবরণ সংরক্ষণ।</p>
+                        <button class="w-full bg-emerald-50 text-emerald-700 py-1.5 rounded text-xs font-bold hover:bg-emerald-100 transition">বইয়ের স্টক</button>
+                    </div>
+
+                    <!-- 2. Furniture -->
+                    <div class="bg-white p-5 rounded-xl shadow-sm border-t-4 border-amber-600 space-y-3">
+                        <div class="flex items-center justify-between border-b pb-2">
+                            <h3 class="font-bold text-gray-800 text-sm flex items-center gap-2">
+                                <i class="fa-solid fa-chair text-amber-600"></i> Furniture
+                            </h3>
+                            <span class="text-xs bg-amber-50 text-amber-700 px-2 py-0.5 rounded font-semibold">আসবাবপত্র</span>
+                        </div>
+                        <p class="text-xs text-gray-600 leading-relaxed">বেঞ্চ, ডেস্ক, চেয়ার, আলমারি, হোয়াইটবোর্ড ও অন্যান্য আসবাবপত্রের স্টক ও অবস্থা ট্র্যাকিং।</p>
+                        <button class="w-full bg-amber-50 text-amber-700 py-1.5 rounded text-xs font-bold hover:bg-amber-100 transition">আসবাবপত্র প্যানেল</button>
+                    </div>
+
+                    <!-- 3. Computer / ICT -->
+                    <div class="bg-white p-5 rounded-xl shadow-sm border-t-4 border-blue-600 space-y-3">
+                        <div class="flex items-center justify-between border-b pb-2">
+                            <h3 class="font-bold text-gray-800 text-sm flex items-center gap-2">
+                                <i class="fa-solid fa-desktop text-blue-600"></i> Computer / ICT
+                            </h3>
+                            <span class="text-xs bg-blue-50 text-blue-700 px-2 py-0.5 rounded font-semibold">আইসিটি যন্ত্রপাতি</span>
+                        </div>
+                        <p class="text-xs text-gray-600 leading-relaxed">কম্পিউটার ল্যাব পিসি, ল্যাপটপ, প্রজেক্টর, প্রিন্টার, রাউটার ও আইসিটি যন্ত্রপাতির হিসাব।</p>
+                        <button class="w-full bg-blue-50 text-blue-700 py-1.5 rounded text-xs font-bold hover:bg-blue-100 transition">আইসিটি স্টক</button>
+                    </div>
+
+                    <!-- 4. Laboratory -->
+                    <div class="bg-white p-5 rounded-xl shadow-sm border-t-4 border-purple-600 space-y-3">
+                        <div class="flex items-center justify-between border-b pb-2">
+                            <h3 class="font-bold text-gray-800 text-sm flex items-center gap-2">
+                                <i class="fa-solid fa-flask text-purple-600"></i> Laboratory
+                            </h3>
+                            <span class="text-xs bg-purple-50 text-purple-700 px-2 py-0.5 rounded font-semibold">ল্যাব সরঞ্জাম</span>
+                        </div>
+                        <p class="text-xs text-gray-600 leading-relaxed">বিজ্ঞান ল্যাবের বিভিন্ন যন্ত্রপাতি, কেমিক্যাল, গ্লাসওয়্যার ও প্র্যাকটিক্যাল সামগ্রীর তালিকা।</p>
+                        <button class="w-full bg-purple-50 text-purple-700 py-1.5 rounded text-xs font-bold hover:bg-purple-100 transition">ল্যাব স্টক প্যানেল</button>
+                    </div>
+
+                    <!-- 5. Sports Equipment -->
+                    <div class="bg-white p-5 rounded-xl shadow-sm border-t-4 border-rose-600 space-y-3">
+                        <div class="flex items-center justify-between border-b pb-2">
+                            <h3 class="font-bold text-gray-800 text-sm flex items-center gap-2">
+                                <i class="fa-solid fa-futbol text-rose-600"></i> Sports Equipment
+                            </h3>
+                            <span class="text-xs bg-rose-50 text-rose-700 px-2 py-0.5 rounded font-semibold">ক্রীড়া সরঞ্জাম</span>
+                        </div>
+                        <p class="text-xs text-gray-600 leading-relaxed">ফুটবল, ক্রিকেট ব্যাট-বল, ব্যাডমিন্টন ও বার্ষিক ক্রীড়া প্রতিযোগিতার বিভিন্ন ইক্যুইপমেন্ট।</p>
+                        <button class="w-full bg-rose-50 text-rose-700 py-1.5 rounded text-xs font-bold hover:bg-rose-100 transition">ক্রীড়া সামগ্রী</button>
+                    </div>
+
+                    <!-- 6. Stock In -->
+                    <div class="bg-white p-5 rounded-xl shadow-sm border-t-4 border-indigo-600 space-y-3">
+                        <div class="flex items-center justify-between border-b pb-2">
+                            <h3 class="font-bold text-gray-800 text-sm flex items-center gap-2">
+                                <i class="fa-solid fa-arrow-down-long text-indigo-600"></i> Stock In
+                            </h3>
+                            <span class="text-xs bg-indigo-50 text-indigo-700 px-2 py-0.5 rounded font-semibold">স্টক ইন (ক্রয়/গ্রহণ)</span>
+                        </div>
+                        <p class="text-xs text-gray-600 leading-relaxed">নতুন পণ্য ক্রয় বা মাদ্রাসায় যেকোনো সামগ্রী নতুন যুক্ত হওয়ার এন্ট্রি ও ভাউচার বা রসিদ যুক্তকরণ।</p>
+                        <button class="w-full bg-indigo-50 text-indigo-700 py-1.5 rounded text-xs font-bold hover:bg-indigo-100 transition">স্টক ইন এন্ট্রি</button>
+                    </div>
+
+                    <!-- 7. Stock Out -->
+                    <div class="bg-white p-5 rounded-xl shadow-sm border-t-4 border-teal-600 space-y-3">
+                        <div class="flex items-center justify-between border-b pb-2">
+                            <h3 class="font-bold text-gray-800 text-sm flex items-center gap-2">
+                                <i class="fa-solid fa-arrow-up-long text-teal-600"></i> Stock Out
+                            </h3>
+                            <span class="text-xs bg-teal-50 text-teal-700 px-2 py-0.5 rounded font-semibold">স্টক আউট (বিতরণ/ব্যবহার)</span>
+                        </div>
+                        <p class="text-xs text-gray-600 leading-relaxed">বিভিন্ন বিভাগ বা শিক্ষকদের মাঝে সামগ্রী বিতরণ, নষ্ট হওয়া বা ব্যবহারের ফলে স্টক থেকে বাদ দেওয়া।</p>
+                        <button class="w-full bg-teal-50 text-teal-700 py-1.5 rounded text-xs font-bold hover:bg-teal-100 transition">স্টক আউট প্যানেল</button>
+                    </div>
+
+                </div>
+
+            </main>
+
+        </div>
+    </div>
+
+    <script src="script.js"></script>
+</body>
+</html>

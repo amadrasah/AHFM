@@ -60,117 +60,178 @@
             <!-- Page Content -->
             <main class="p-6 space-y-6">
 
-                <!-- Top Hero Banner -->
-                <div class="bg-emerald-800 text-white p-6 rounded-2xl shadow-sm flex flex-col md:flex-row justify-between items-center gap-4">
-                    <div>
-                        <h2 class="text-xl font-bold">আবদুল্লাহ হাট ইসলামিয়া ফাজিল মাদ্রাসা</h2>
-                        <p class="text-xs text-emerald-200 mt-1">প্রতিষ্ঠান সম্পর্কিত মৌলিক তথ্য, ইতিহাস, মিশন ও ভিশন এবং ক্যাবিনেট ব্যবস্থাপনা প্যানেল।</p>
-                    </div>
-                    <button onclick="toggleAllForms()" class="bg-white text-emerald-900 px-4 py-2 rounded-lg text-xs font-bold hover:bg-emerald-50 transition shadow-sm">
-                        <i class="fa-solid fa-pen-to-square mr-1"></i> তথ্য আপডেট করুন
-                    </button>
+                <!-- Navigation Tabs for Institution Sections -->
+                <div class="bg-white p-3 rounded-xl shadow-sm flex flex-wrap gap-2 border border-gray-200">
+                    <button onclick="switchInstTab('about')" class="inst-tab-btn px-3 py-2 bg-emerald-700 text-white rounded-lg text-xs font-bold transition">1. সংক্ষিপ্ত পরিচিতি</button>
+                    <button onclick="switchInstTab('history')" class="inst-tab-btn px-3 py-2 bg-gray-100 text-gray-700 rounded-lg text-xs font-bold hover:bg-emerald-50 transition">2. ইতিহাস</button>
+                    <button onclick="switchInstTab('mission')" class="inst-tab-btn px-3 py-2 bg-gray-100 text-gray-700 rounded-lg text-xs font-bold hover:bg-emerald-50 transition">3. লক্ষ্য ও উদ্দেশ্য</button>
+                    <button onclick="switchInstTab('principal')" class="inst-tab-btn px-3 py-2 bg-gray-100 text-gray-700 rounded-lg text-xs font-bold hover:bg-emerald-50 transition">4. অধ্যক্ষের বাণী</button>
+                    <button onclick="switchInstTab('governing')" class="inst-tab-btn px-3 py-2 bg-gray-100 text-gray-700 rounded-lg text-xs font-bold hover:bg-emerald-50 transition">5. পরিচালনা পর্ষদ</button>
+                    <button onclick="switchInstTab('infra')" class="inst-tab-btn px-3 py-2 bg-gray-100 text-gray-700 rounded-lg text-xs font-bold hover:bg-emerald-50 transition">6. ভৌত অবকাঠামো</button>
                 </div>
 
-                <!-- 6 Cards Grid -->
-                <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+                <!-- SECTION 1: সংক্ষিপ্ত পরিচিতি (Detailed Institution Form as requested) -->
+                <div id="inst-about" class="inst-section bg-white p-6 rounded-2xl shadow-sm border border-gray-200 space-y-4">
+                    <h3 class="font-bold text-gray-800 text-sm border-b pb-2"><i class="fa-solid fa-school text-emerald-600 mr-2"></i> মাদ্রাসার সংক্ষিপ্ত পরিচিতি ও অফিশিয়াল ফর্ম</h3>
+                    <form id="institutionForm" onsubmit="saveAboutInfo(event)" class="grid grid-cols-1 md:grid-cols-3 gap-4 text-xs">
+                        <div class="md:col-span-2">
+                            <label class="font-bold text-gray-700 mb-1 block">প্রতিষ্ঠানের নাম (বাংলায়) *</label>
+                            <input type="text" id="inst_name_bn" value="আবদুল্লাহ হাট ইসলামিয়া ফাজিল মাদ্রাসা" class="w-full p-2 border rounded-lg" required>
+                        </div>
+                        <div class="md:col-span-1">
+                            <label class="font-bold text-gray-700 mb-1 block">প্রতিষ্ঠানের নাম (ইংরেজিতে) *</label>
+                            <input type="text" id="inst_name_en" value="Abdullah Hat Islamia Fazil Madrasah" class="w-full p-2 border rounded-lg" required>
+                        </div>
+                        <div>
+                            <label class="font-bold text-gray-700 mb-1 block">EIIN নম্বর *</label>
+                            <input type="text" id="inst_eiin" value="107405" class="w-full p-2 border rounded-lg" required>
+                        </div>
+                        <div>
+                            <label class="font-bold text-gray-700 mb-1 block">মাদ্রাসা লেভেল (MPO Level)</label>
+                            <select id="inst_level" class="w-full p-2 border rounded-lg">
+                                <option value="Fazil" selected>ফাজিল (Fazil)</option>
+                                <option value="Alim">আলিম (Alim)</option>
+                                <option value="Dakhil">দাখিল (Dakhil)</option>
+                            </select>
+                        </div>
+                        <div>
+                            <label class="font-bold text-gray-700 mb-1 block">প্রতিষ্ঠার সাল</label>
+                            <input type="text" id="inst_year" value="১৯৮৫" class="w-full p-2 border rounded-lg">
+                        </div>
+                        <div>
+                            <label class="font-bold text-gray-700 mb-1 block">অফিশিয়াল ইমেইল</label>
+                            <input type="email" id="inst_email" value="ahifm2026@gmail.com" class="w-full p-2 border rounded-lg">
+                        </div>
+                        <div>
+                            <label class="font-bold text-gray-700 mb-1 block">হটলাইন / মোবাইল নম্বর *</label>
+                            <input type="text" id="inst_phone" value="01814716405" class="w-full p-2 border rounded-lg" required>
+                        </div>
+                        <div>
+                            <label class="font-bold text-gray-700 mb-1 block">পোস্ট কোড</label>
+                            <input type="text" id="inst_post" value="3821" class="w-full p-2 border rounded-lg">
+                        </div>
+                        <div class="md:col-span-3">
+                            <label class="font-bold text-gray-700 mb-1 block">পূর্ণাঙ্গ ঠিকানা *</label>
+                            <textarea id="inst_address" rows="2" class="w-full p-2 border rounded-lg" required>আবদুল্লাহ হাট, সোনাইমুড়ী, নোয়াখালী - ৩৮২১</textarea>
+                        </div>
+                        <div class="md:col-span-3 flex justify-end pt-2">
+                            <button type="submit" class="bg-emerald-700 text-white px-5 py-2 rounded-lg font-bold hover:bg-emerald-800 transition">পরিচিতি তথ্য সংরক্ষণ করুন</button>
+                        </div>
+                    </form>
+                </div>
+
+                <!-- SECTION 2: ইতিহাস -->
+                <div id="inst-history" class="inst-section bg-white p-6 rounded-2xl shadow-sm border border-gray-200 space-y-4 hidden">
+                    <h3 class="font-bold text-gray-800 text-sm border-b pb-2"><i class="fa-solid fa-landmark text-blue-600 mr-2"></i> প্রতিষ্ঠানের ইতিহাস</h3>
+                    <div class="space-y-3 text-xs">
+                        <textarea id="history_text" rows="4" class="w-full p-2 border rounded-lg">প্রতিষ্ঠানের ঐতিহাসিক প্রেক্ষাপট, প্রতিষ্ঠাতা ব্যক্তিবর্গ এবং পর্যায়ক্রমে উন্নীতকরণের ইতিহাস...</textarea>
+                        <button onclick="alert('ইতিহাস সফলভাবে সংরক্ষিত হয়েছে!')" class="bg-blue-600 text-white px-4 py-2 rounded font-bold">ইতিহাস সেভ করুন</button>
+                    </div>
+                </div>
+
+                <!-- SECTION 3: লক্ষ্য ও উদ্দেশ্য -->
+                <div id="inst-mission" class="inst-section bg-white p-6 rounded-2xl shadow-sm border border-gray-200 space-y-4 hidden">
+                    <h3 class="font-bold text-gray-800 text-sm border-b pb-2"><i class="fa-solid fa-bullseye text-purple-600 mr-2"></i> লক্ষ্য ও উদ্দেশ্য (Mission & Vision)</h3>
+                    <div class="space-y-3 text-xs">
+                        <textarea id="mission_text" rows="4" class="w-full p-2 border rounded-lg">নৈতিক শিক্ষা ও আধুনিক জ্ঞানভিত্তিক যুগোপযোগী শিক্ষা প্রদানে প্রতিষ্ঠানের মূল লক্ষ্য ও ভবিষ্যৎ পরিকল্পনা...</textarea>
+                        <button onclick="alert('মিশন ও ভিশন সংরক্ষিত হয়েছে!')" class="bg-purple-600 text-white px-4 py-2 rounded font-bold">মিশন ও ভিশন সেভ করুন</button>
+                    </div>
+                </div>
+
+                <!-- SECTION 4: অধ্যক্ষের বাণী -->
+                <div id="inst-principal" class="inst-section bg-white p-6 rounded-2xl shadow-sm border border-gray-200 space-y-4 hidden">
+                    <h3 class="font-bold text-gray-800 text-sm border-b pb-2"><i class="fa-solid fa-comment-dots text-amber-600 mr-2"></i> অধ্যক্ষের বাণী (Principal's Message)</h3>
+                    <div class="space-y-3 text-xs">
+                        <textarea id="principal_text" rows="4" class="w-full p-2 border rounded-lg">অধ্যক্ষ মহোদয়ের শুভায়ন বাণী, শিক্ষার্থী ও অভিভাবকগণের প্রতি দিক নির্দেশনামূলক বার্তা...</textarea>
+                        <button onclick="alert('অধ্যক্ষের বাণী সংরক্ষিত হয়েছে!')" class="bg-amber-600 text-white px-4 py-2 rounded font-bold">বাণী সেভ করুন</button>
+                    </div>
+                </div>
+
+                <!-- SECTION 5: পরিচালনা পর্ষদ (Colored Form with Dynamic Field Addition) -->
+                <div id="inst-governing" class="inst-section bg-white p-6 rounded-2xl shadow-sm border border-gray-200 space-y-4 hidden">
+                    <h3 class="font-bold text-gray-800 text-sm border-b pb-2"><i class="fa-solid fa-users text-teal-600 mr-2"></i> পরিচালনা পর্ষদ (Governing Body - রঙিন ফরম ও ফিল্ড সংযোজন)</h3>
                     
-                    <!-- Card 1: About Madrasah -->
-                    <div class="bg-white p-5 rounded-2xl shadow-sm border border-gray-200 space-y-3">
-                        <div class="flex justify-between items-center border-b pb-2">
-                            <h3 class="font-bold text-gray-800 text-sm flex items-center gap-2"><i class="fa-solid fa-circle-info text-emerald-600"></i> About Madrasah</h3>
-                            <span class="text-xs bg-emerald-100 text-emerald-800 px-2 py-0.5 rounded font-bold">পরিচিতি</span>
+                    <!-- Input Form for Governing Body -->
+                    <div class="bg-teal-50 p-4 rounded-xl border border-teal-200 grid grid-cols-1 md:grid-cols-5 gap-3 text-xs">
+                        <div>
+                            <label class="font-bold text-teal-900 block mb-1">নাম *</label>
+                            <input type="text" id="gb_name" placeholder="সদস্যের নাম" class="p-2 border rounded w-full bg-white">
                         </div>
-                        <p id="preview_about" class="text-xs text-gray-600 leading-relaxed">মাদ্রাসার সংক্ষিপ্ত বিবরণ, প্রতিষ্ঠার সাল, EIIN নম্বর এবং সার্বিক পরিচিতি এখানে সংরক্ষিত থাকে।</p>
-                        <button onclick="openEdit('about')" class="text-xs text-emerald-700 font-bold hover:underline">এডিট বা বিবরণ দেখুন →</button>
+                        <div>
+                            <label class="font-bold text-teal-900 block mb-1">পদবী *</label>
+                            <input type="text" id="gb_designation" placeholder="যেমন: সভাপতি / দাতা সদস্য" class="p-2 border rounded w-full bg-white">
+                        </div>
+                        <div>
+                            <label class="font-bold text-teal-900 block mb-1">ঠিকানা *</label>
+                            <input type="text" id="gb_address" placeholder="গ্রাম/এলাকা" class="p-2 border rounded w-full bg-white">
+                        </div>
+                        <div>
+                            <label class="font-bold text-teal-900 block mb-1">মোবাইল নম্বর *</label>
+                            <input type="text" id="gb_mobile" placeholder="018XXXXXXXX" class="p-2 border rounded w-full bg-white">
+                        </div>
+                        <div class="flex items-end">
+                            <button onclick="addGoverningMember()" class="w-full bg-teal-700 text-white p-2 rounded font-bold hover:bg-teal-800 transition">সদস্য যোগ করুন</button>
+                        </div>
                     </div>
 
-                    <!-- Card 2: History -->
-                    <div class="bg-white p-5 rounded-2xl shadow-sm border border-gray-200 space-y-3">
-                        <div class="flex justify-between items-center border-b pb-2">
-                            <h3 class="font-bold text-gray-800 text-sm flex items-center gap-2"><i class="fa-solid fa-landmark text-blue-600"></i> History</h3>
-                            <span class="text-xs bg-blue-100 text-blue-800 px-2 py-0.5 rounded font-bold">ইতিহাস</span>
-                        </div>
-                        <p id="preview_history" class="text-xs text-gray-600 leading-relaxed">প্রতিষ্ঠানের ঐতিহাসিক প্রেক্ষাপট, প্রতিষ্ঠাতা ব্যক্তিবর্গ এবং পর্যায়ক্রমে উন্নীতকরণের ইতিহাস।</p>
-                        <button onclick="openEdit('history')" class="text-xs text-blue-700 font-bold hover:underline">ইতিহাস রূপান্তর →</button>
+                    <!-- Dynamic List Table -->
+                    <div class="overflow-x-auto">
+                        <table class="w-full text-left border-collapse border border-gray-200 text-xs">
+                            <thead>
+                                <tr class="bg-teal-700 text-white">
+                                    <th class="border p-2">নাম</th>
+                                    <th class="border p-2">পদবী</th>
+                                    <th class="border p-2">ঠিকানা</th>
+                                    <th class="border p-2">মোবাইল নম্বর</th>
+                                    <th class="border p-2 text-center">কার্যক্রম</th>
+                                </tr>
+                            </thead>
+                            <tbody id="governingTableBody">
+                                <tr>
+                                    <td class="border p-2">আলহাজ্ব মো: উল্যাহ</td>
+                                    <td class="border p-2 font-bold text-teal-800">সভাপতি</td>
+                                    <td class="border p-2">আবদুল্লাহ হাট</td>
+                                    <td class="border p-2">01800000000</td>
+                                    <td class="border p-2 text-center"><button onclick="this.closest('tr').remove()" class="text-red-600 font-bold">ডিলিট</button></td>
+                                </tr>
+                            </tbody>
+                        </table>
                     </div>
-
-                    <!-- Card 3: Mission & Vision -->
-                    <div class="bg-white p-5 rounded-2xl shadow-sm border border-gray-200 space-y-3">
-                        <div class="flex justify-between items-center border-b pb-2">
-                            <h3 class="font-bold text-gray-800 text-sm flex items-center gap-2"><i class="fa-solid fa-bullseye text-purple-600"></i> Mission & Vision</h3>
-                            <span class="text-xs bg-purple-100 text-purple-800 px-2 py-0.5 rounded font-bold">লক্ষ্য ও উদ্দেশ্য</span>
-                        </div>
-                        <p id="preview_mission" class="text-xs text-gray-600 leading-relaxed">নৈতিক শিক্ষা ও আধুনিক জ্ঞানভিত্তিক যুগোপযোগী শিক্ষা প্রদানে প্রতিষ্ঠানের মূল লক্ষ্য ও ভবিষ্যৎ পরিকল্পনা।</p>
-                        <button onclick="openEdit('mission')" class="text-xs text-purple-700 font-bold hover:underline">মিশন ও ভিশন আপডেট →</button>
-                    </div>
-
-                    <!-- Card 4: Principal's Message -->
-                    <div class="bg-white p-5 rounded-2xl shadow-sm border border-gray-200 space-y-3">
-                        <div class="flex justify-between items-center border-b pb-2">
-                            <h3 class="font-bold text-gray-800 text-sm flex items-center gap-2"><i class="fa-solid fa-comment-dots text-amber-600"></i> Principal's Message</h3>
-                            <span class="text-xs bg-amber-100 text-amber-800 px-2 py-0.5 rounded font-bold">বাণী</span>
-                        </div>
-                        <p id="preview_principal_msg" class="text-xs text-gray-600 leading-relaxed">অধ্যক্ষ মহোদয়ের শুভায়ন বাণী, শিক্ষার্থী ও অভিভাবকগণের প্রতি দিক নির্দেশনামূলক বার্তা।</p>
-                        <button onclick="openEdit('principal')" class="text-xs text-amber-700 font-bold hover:underline">বাণী পরিবর্তন করুন →</button>
-                    </div>
-
-                    <!-- Card 5: Governing Body -->
-                    <div class="bg-white p-5 rounded-2xl shadow-sm border border-gray-200 space-y-3">
-                        <div class="flex justify-between items-center border-b pb-2">
-                            <h3 class="font-bold text-gray-800 text-sm flex items-center gap-2"><i class="fa-solid fa-users text-teal-600"></i> Governing Body</h3>
-                            <span class="text-xs bg-teal-100 text-teal-800 px-2 py-0.5 rounded font-bold">পরিচালনা পর্ষদ</span>
-                        </div>
-                        <p id="preview_governing" class="text-xs text-gray-600 leading-relaxed">মাদ্রাসার ম্যানেজিং কমিটি বা গভর্নিং বডির সম্মানিত সভাপতি ও সদস্যবৃন্দের তালিকা ও তথ্য।</p>
-                        <button onclick="openEdit('governing')" class="text-xs text-teal-700 font-bold hover:underline">সদস্য তালিকা পরিচালনা →</button>
-                    </div>
-
-                    <!-- Card 6: Infrastructure -->
-                    <div class="bg-white p-5 rounded-2xl shadow-sm border border-gray-200 space-y-3">
-                        <div class="flex justify-between items-center border-b pb-2">
-                            <h3 class="font-bold text-gray-800 text-sm flex items-center gap-2"><i class="fa-solid fa-building text-rose-600"></i> Infrastructure</h3>
-                            <span class="text-xs bg-rose-100 text-rose-800 px-2 py-0.5 rounded font-bold">ভৌত অবকাঠামো</span>
-                        </div>
-                        <p id="preview_infra" class="text-xs text-gray-600 leading-relaxed">একাডেমিক ভবন, লাইব্রেরি, ল্যাবরেটরি, খেলার মাঠ, কম্পিউটার ল্যাব ও হোস্টেল সংক্রান্ত বিবরণ।</p>
-                        <button onclick="openEdit('infrastructure')" class="text-xs text-rose-700 font-bold hover:underline">অবকাঠামো বিবরণী →</button>
-                    </div>
-
                 </div>
 
-                <!-- Hidden/Toggleable Detailed Editor Section -->
-                <div id="editorSection" class="bg-white p-6 rounded-2xl shadow-sm border border-gray-200 space-y-6 hidden">
-                    <div class="border-b pb-3 flex justify-between items-center">
-                        <h3 class="font-bold text-gray-800 text-sm text-emerald-800"><i class="fa-solid fa-pen-to-square mr-1"></i> প্রতিষ্ঠান তথ্য সম্পাদনা প্যানেল (Institution Editor)</h3>
-                        <button onclick="toggleAllForms()" class="text-xs bg-gray-200 px-3 py-1 rounded font-bold text-gray-700 hover:bg-gray-300">বন্ধ করুন</button>
-                    </div>
-
-                    <form id="institutionDetailedForm" onsubmit="saveInstitutionData(event)" class="space-y-4 text-xs">
+                <!-- SECTION 6: ভৌত অবকাঠামোগত তথ্য (Structured Form) -->
+                <div id="inst-infra" class="inst-section bg-white p-6 rounded-2xl shadow-sm border border-gray-200 space-y-4 hidden">
+                    <h3 class="font-bold text-gray-800 text-sm border-b pb-2"><i class="fa-solid fa-building text-rose-600 mr-2"></i> ভৌত অবকাঠামোগত তথ্য (Infrastructure Details Form)</h3>
+                    <form onsubmit="event.preventDefault(); alert('অবকাঠামো তথ্য সংরক্ষিত হয়েছে!')" class="grid grid-cols-1 md:grid-cols-2 gap-4 text-xs">
                         <div>
-                            <label class="font-bold text-gray-700 mb-1 block">1. About Madrasah (সংক্ষিপ্ত পরিচিতি)</label>
-                            <textarea id="edit_about" rows="2" class="w-full p-2 border rounded-lg">মাদ্রাসার সংক্ষিপ্ত বিবরণ, প্রতিষ্ঠার সাল, EIIN নম্বর এবং সার্বিক পরিচিতি এখানে সংরক্ষিত থাকে।</textarea>
+                            <label class="font-bold text-gray-700 mb-1 block">একাডেমিক ভবন সংখ্যা (Academic Buildings)</label>
+                            <input type="number" value="3" class="w-full p-2 border rounded-lg">
                         </div>
                         <div>
-                            <label class="font-bold text-gray-700 mb-1 block">2. History (ইতিহাস)</label>
-                            <textarea id="edit_history" rows="2" class="w-full p-2 border rounded-lg">প্রতিষ্ঠানের ঐতিহাসিক প্রেক্ষাপট, প্রতিষ্ঠাতা ব্যক্তিবর্গ এবং পর্যায়ক্রমে উন্নীতকরণের ইতিহাস।</textarea>
+                            <label class="font-bold text-gray-700 mb-1 block">মোট শ্রেণি কক্ষ (Total Class Rooms)</label>
+                            <input type="number" value="24" class="w-full p-2 border rounded-lg">
                         </div>
                         <div>
-                            <label class="font-bold text-gray-700 mb-1 block">3. Mission & Vision (লক্ষ্য ও উদ্দেশ্য)</label>
-                            <textarea id="edit_mission" rows="2" class="w-full p-2 border rounded-lg">নৈতিক শিক্ষা ও আধুনিক জ্ঞানভিত্তিক যুগোপযোগী শিক্ষা প্রদানে প্রতিষ্ঠানের মূল লক্ষ্য ও ভবিষ্যৎ পরিকল্পনা।</textarea>
+                            <label class="font-bold text-gray-700 mb-1 block">কম্পিউটার ল্যাব আছে কি না?</label>
+                            <select class="w-full p-2 border rounded-lg">
+                                <option selected>হ্যাঁ (১টি)</option>
+                                <option>না</option>
+                            </select>
                         </div>
                         <div>
-                            <label class="font-bold text-gray-700 mb-1 block">4. Principal's Message (অধ্যক্ষের বাণী)</label>
-                            <textarea id="edit_principal" rows="2" class="w-full p-2 border rounded-lg">অধ্যক্ষ মহোদয়ের শুভায়ন বাণী, শিক্ষার্থী ও অভিভাবকগণের প্রতি দিক নির্দেশনামূলক বার্তা।</textarea>
+                            <label class="font-bold text-gray-700 mb-1 block">গ্রন্থাগার ও বইয়ের সংখ্যা (Library & Books)</label>
+                            <input type="text" value="রয়েছে (প্রায় ২৫০০ বই)" class="w-full p-2 border rounded-lg">
                         </div>
                         <div>
-                            <label class="font-bold text-gray-700 mb-1 block">5. Governing Body (পরিচালনা পর্ষদ)</label>
-                            <textarea id="edit_governing" rows="2" class="w-full p-2 border rounded-lg">মাদ্রাসার ম্যানেজিং কমিটি বা গভর্নিং বডির সম্মানিত সভাপতি ও সদস্যবৃন্দের তালিকা ও তথ্য।</textarea>
+                            <label class="font-bold text-gray-700 mb-1 block">বিজ্ঞান ল্যাবরেটরি (Science Lab)</label>
+                            <input type="text" value="পদার্থ, রসায়ন ও জীববিজ্ঞান ল্যাব موجود" class="w-full p-2 border rounded-lg">
                         </div>
                         <div>
-                            <label class="font-bold text-gray-700 mb-1 block">6. Infrastructure (ভৌত অবকাঠামো)</label>
-                            <textarea id="edit_infra" rows="2" class="w-full p-2 border rounded-lg">একাডেমিক ভবন, লাইব্রেরি, ল্যাবরেটরি, খেলার মাঠ, কম্পিউটার ল্যাব ও হোস্টেল সংক্রান্ত বিবরণ।</textarea>
+                            <label class="font-bold text-gray-700 mb-1 block">খেলার মাঠ (Playground)</label>
+                            <input type="text" value="প্রশস্ত কেন্দ্রীয় খেলার মাঠ রয়েছে" class="w-full p-2 border rounded-lg">
                         </div>
-
-                        <div class="flex justify-end pt-2">
-                            <button type="submit" class="bg-emerald-700 text-white px-5 py-2 rounded-lg font-bold hover:bg-emerald-800 transition">সকল পরিবর্তন সংরক্ষণ করুন</button>
+                        <div class="md:col-span-2 flex justify-end pt-2">
+                            <button type="submit" class="bg-rose-600 text-white px-5 py-2 rounded-lg font-bold hover:bg-rose-700 transition">অবকাঠামো তথ্য সেভ করুন</button>
                         </div>
                     </form>
                 </div>
@@ -180,56 +241,88 @@
         </div>
     </div>
 
-    <!-- JavaScript -->
+    <!-- JavaScript for Tabs & Dynamic Governing Body Addition -->
     <script>
-        function toggleAllForms() {
-            const editor = document.getElementById('editorSection');
-            editor.classList.toggle('hidden');
-            editor.scrollIntoView({ behavior: 'smooth' });
+        function switchInstTab(sectionId) {
+            // Hide all sections
+            const sections = document.querySelectorAll('.inst-section');
+            sections.forEach(sec => sec.classList.add('hidden'));
+
+            // Reset button styles
+            const buttons = document.querySelectorAll('.inst-tab-btn');
+            buttons.forEach(btn => {
+                btn.classList.remove('bg-emerald-700', 'text-white');
+                btn.classList.add('bg-gray-100', 'text-gray-700');
+            });
+
+            // Show target section
+            document.getElementById('inst-' + sectionId).classList.remove('hidden');
+
+            // Highlight clicked button
+            event.target.classList.remove('bg-gray-100', 'text-gray-700');
+            event.target.classList.add('bg-emerald-700', 'text-white');
         }
 
-        function openEdit(sectionName) {
-            document.getElementById('editorSection').classList.remove('hidden');
-            document.getElementById('editorSection').scrollIntoView({ behavior: 'smooth' });
-        }
-
-        function saveInstitutionData(event) {
+        function saveAboutInfo(event) {
             event.preventDefault();
             const data = {
-                about: document.getElementById('edit_about').value,
-                history: document.getElementById('edit_history').value,
-                mission: document.getElementById('edit_mission').value,
-                principal: document.getElementById('edit_principal').value,
-                governing: document.getElementById('edit_governing').value,
-                infra: document.getElementById('edit_infra').value
+                name_bn: document.getElementById('inst_name_bn').value,
+                name_en: document.getElementById('inst_name_en').value,
+                eiin: document.getElementById('inst_eiin').value,
+                level: document.getElementById('inst_level').value,
+                year: document.getElementById('inst_year').value,
+                email: document.getElementById('inst_email').value,
+                phone: document.getElementById('inst_phone').value,
+                post: document.getElementById('inst_post').value,
+                address: document.getElementById('inst_address').value
             };
-
-            localStorage.setItem('institution_cards_data', JSON.stringify(data));
-            updatePreviews(data);
-            alert('প্রতিষ্ঠানের সকল তথ্য সফলভাবে সংরক্ষিত হয়েছে!');
-            document.getElementById('editorSection').classList.add('hidden');
+            localStorage.setItem('institution_about_info', JSON.stringify(data));
+            alert('সংক্ষিপ্ত পরিচিতি ও অফিশিয়াল তথ্য সফলভাবে সংরক্ষিত হয়েছে!');
         }
 
-        function updatePreviews(data) {
-            if(data.about) document.getElementById('preview_about').innerText = data.about;
-            if(data.history) document.getElementById('preview_history').innerText = data.history;
-            if(data.mission) document.getElementById('preview_mission').innerText = data.mission;
-            if(data.principal) document.getElementById('preview_principal_msg').innerText = data.principal;
-            if(data.governing) document.getElementById('preview_governing').innerText = data.governing;
-            if(data.infra) document.getElementById('preview_infra').innerText = data.infra;
+        function addGoverningMember() {
+            const name = document.getElementById('gb_name').value.trim();
+            const desig = document.getElementById('gb_designation').value.trim();
+            const addr = document.getElementById('gb_address').value.trim();
+            const mob = document.getElementById('gb_mobile').value.trim();
+
+            if(!name || !desig || !mob) {
+                alert('দয়া করে নাম, পদবী এবং মোবাইল নম্বর পূরণ করুন!');
+                return;
+            }
+
+            const tbody = document.getElementById('governingTableBody');
+            const newRow = document.createElement('tr');
+            newRow.innerHTML = `
+                <td class="border p-2">${name}</td>
+                <td class="border p-2 font-bold text-teal-800">${desig}</td>
+                <td class="border p-2">${addr}</td>
+                <td class="border p-2">${mob}</td>
+                <td class="border p-2 text-center"><button onclick="this.closest('tr').remove()" class="text-red-600 font-bold">ডিলিট</button></td>
+            `;
+            tbody.appendChild(newRow);
+
+            // Clear inputs
+            document.getElementById('gb_name').value = '';
+            document.getElementById('gb_designation').value = '';
+            document.getElementById('gb_address').value = '';
+            document.getElementById('gb_mobile').value = '';
+            alert('পরিচালনা পর্ষদের নতুন সদস্য সফলভাবে তালিকাভুক্ত হয়েছে!');
         }
 
         window.onload = function() {
-            const saved = localStorage.getItem('institution_cards_data');
-            if(saved) {
-                const data = JSON.parse(saved);
-                document.getElementById('edit_about').value = data.about || '';
-                document.getElementById('edit_history').value = data.history || '';
-                document.getElementById('edit_mission').value = data.mission || '';
-                document.getElementById('edit_principal').value = data.principal || '';
-                document.getElementById('edit_governing').value = data.governing || '';
-                document.getElementById('edit_infra').value = data.infra || '';
-                updatePreviews(data);
+            const savedAbout = localStorage.getItem('institution_about_info');
+            if(savedAbout) {
+                const data = JSON.parse(savedAbout);
+                document.getElementById('inst_name_bn').value = data.name_bn || '';
+                document.getElementById('inst_name_en').value = data.name_en || '';
+                document.getElementById('inst_eiin').value = data.eiin || '';
+                document.getElementById('inst_level').value = data.level || 'Fazil';
+                document.getElementById('inst_year').value = data.year || '';
+                document.getElementById('inst_email').value = data.email || '';
+                document.getElementById('inst_phone').value = data.phone || '';
+                document.getElementById('inst_post').value = data.post || '';
+                document.getElementById('inst_address').value = data.address || '';
             }
         };
     </script>

@@ -134,16 +134,16 @@
                     <div class="space-y-3 text-xs">
                         <label class="font-bold text-gray-700 block">সিস্টেমের উপলব্ধ শ্রেণি তালিকা (ড্রপডাউন ড্রাইভ):</label>
                         <select class="p-2 border rounded w-full md:w-1/2 font-medium">
-                            <option>নূরানী প্রথম শ্রেণি</option>
-                            <option>নূরানী দ্বিতীয় শ্রেণি</option>
-                            <option>নূরানী তৃতীয় শ্রেণি</option>
+                            <option>নুরানী প্রথম শ্রেণি</option>
+                            <option>নুরানী দ্বিতীয় শ্রেণি</option>
+                            <option>নুরানী তৃতীয় শ্রেণি</option>
                             <option>ইবতেদায়ী চতুর্থ শ্রেণি</option>
                             <option>ইবতেদায়ী পঞ্চম শ্রেণি</option>
                             <option>দাখিল ষষ্ঠ শ্রেণি</option>
                             <option>দাখিল সপ্তম শ্রেণি</option>
                             <option>দাখিল অষ্টম শ্রেণি</option>
                             <option>দাখিল নবম শ্রেণি</option>
-                            <option>দাখিল দশম শ্রেণি</option>
+                            <option>দাখিল দশম শ্রেনি</option>
                             <option>আলিম প্রথম বর্ষ</option>
                             <option>আলিম দ্বিতীয় বর্ষ</option>
                             <option>ফাজিল প্রথম বর্ষ</option>
@@ -159,16 +159,16 @@
                     <div class="space-y-4 text-xs">
                         <div class="grid grid-cols-1 md:grid-cols-4 gap-3">
                             <select id="sub_class" class="p-2 border rounded font-medium">
-                                <option value="নূরানী প্রথম শ্রেণি">নূরানী প্রথম শ্রেণি</option>
-                                <option value="নূরানী দ্বিতীয় শ্রেণি">নূরানী দ্বিতীয় শ্রেণি</option>
-                                <option value="নূরানী তৃতীয় শ্রেণি">নূরানী তৃতীয় শ্রেণি</option>
+                                <option value="নুরানী প্রথম শ্রেণি">নুরানী প্রথম শ্রেণি</option>
+                                <option value="নুরানী দ্বিতীয় শ্রেণি">নুরানী দ্বিতীয় শ্রেণি</option>
+                                <option value="নুরানী তৃতীয় শ্রেণি">নুরানী তৃতীয় শ্রেণি</option>
                                 <option value="ইবতেদায়ী চতুর্থ শ্রেণি">ইবতেদায়ী চতুর্থ শ্রেণি</option>
                                 <option value="ইবতেদায়ী পঞ্চম শ্রেণি">ইবতেদায়ী পঞ্চম শ্রেণি</option>
                                 <option value="দাখিল ষষ্ঠ শ্রেণি">দাখিল ষষ্ঠ শ্রেণি</option>
                                 <option value="দাখিল সপ্তম শ্রেণি">দাখিল সপ্তম শ্রেণি</option>
                                 <option value="দাখিল অষ্টম শ্রেণি">দাখিল অষ্টম শ্রেণি</option>
                                 <option value="দাখিল নবম শ্রেণি">দাখিল নবম শ্রেণি</option>
-                                <option value="দাখিল দশম শ্রেণি">দাখিল দশম শ্রেণি</option>
+                                <option value="দাখিল দশম শ্রেনি">দাখিল দশম শ্রেনি</option>
                                 <option value="আলিম প্রথম বর্ষ">আলিম প্রথম বর্ষ</option>
                                 <option value="আলিম দ্বিতীয় বর্ষ">আলিম দ্বিতীয় বর্ষ</option>
                                 <option value="ফাজিল প্রথম বর্ষ">ফাজিল প্রথম বর্ষ</option>
@@ -196,15 +196,70 @@
                     </div>
                 </div>
 
-                <!-- TAB 7: Grading System -->
+                <!-- TAB 7: Grading & Marks System (Updated with Grading Scale) -->
                 <div id="tab-grading" class="setting-tab bg-white p-6 rounded-2xl shadow-sm border border-gray-200 space-y-4 hidden">
-                    <h3 class="font-bold text-gray-800 text-sm border-b pb-2"><i class="fa-solid fa-award text-indigo-600 mr-2"></i> Grading & Passing Percentage</h3>
+                    <h3 class="font-bold text-gray-800 text-sm border-b pb-2"><i class="fa-solid fa-award text-indigo-600 mr-2"></i> Grading System & Marks Range Setup</h3>
                     <div class="space-y-4 text-xs">
-                        <div>
-                            <label class="font-bold text-gray-700 mb-1 block">পাস মার্কস পার্সেন্টেজ (রাউন্ড ফিগার):</label>
-                            <input type="number" id="passMarksLimit" value="33" class="p-2 border rounded w-32" min="1" max="100"> %
+                        <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
+                            <div>
+                                <label class="font-bold text-gray-700 mb-1 block">পাস মার্কস পার্সেন্টেজ (যেমন: ৩৩%):</label>
+                                <input type="number" id="passMarksLimit" value="33" class="p-2 border rounded w-full" min="1" max="100">
+                            </div>
                         </div>
-                        <button onclick="alert('গ্রেডিং নিয়ম সংরক্ষিত হয়েছে!')" class="bg-indigo-600 text-white px-4 py-2 rounded font-bold">গ্রেডিং আপডেট</button>
+
+                        <div class="border-t pt-3">
+                            <label class="font-bold text-gray-700 mb-2 block">লেটার গ্রেড এবং নম্বর রেঞ্জ (Letter Grade & Marks Mapping):</label>
+                            <div class="overflow-x-auto">
+                                <table class="w-full text-left border-collapse border border-gray-300">
+                                    <thead>
+                                        <tr class="bg-gray-100">
+                                            <th class="border p-2">লেটার গ্রেড (Grade)</th>
+                                            <th class="border p-2">জিপিএ (GPA)</th>
+                                            <th class="border p-2">নম্বর রেঞ্জ (Marks Range)</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        <tr>
+                                            <td class="border p-2 font-bold text-emerald-700">A+</td>
+                                            <td class="border p-2">5.00</td>
+                                            <td class="border p-2"><input type="text" value="80 - 100" class="p-1 border rounded w-full"></td>
+                                        </tr>
+                                        <tr>
+                                            <td class="border p-2 font-bold text-blue-700">A</td>
+                                            <td class="border p-2">4.00</td>
+                                            <td class="border p-2"><input type="text" value="70 - 79" class="p-1 border rounded w-full"></td>
+                                        </tr>
+                                        <tr>
+                                            <td class="border p-2 font-bold text-indigo-700">A-</td>
+                                            <td class="border p-2">3.50</td>
+                                            <td class="border p-2"><input type="text" value="60 - 69" class="p-1 border rounded w-full"></td>
+                                        </tr>
+                                        <tr>
+                                            <td class="border p-2 font-bold text-yellow-600">B</td>
+                                            <td class="border p-2">3.00</td>
+                                            <td class="border p-2"><input type="text" value="50 - 59" class="p-1 border rounded w-full"></td>
+                                        </tr>
+                                        <tr>
+                                            <td class="border p-2 font-bold text-orange-600">C</td>
+                                            <td class="border p-2">2.00</td>
+                                            <td class="border p-2"><input type="text" value="40 - 49" class="p-1 border rounded w-full"></td>
+                                        </tr>
+                                        <tr>
+                                            <td class="border p-2 font-bold text-amber-700">D</td>
+                                            <td class="border p-2">1.00</td>
+                                            <td class="border p-2"><input type="text" value="33 - 39" class="p-1 border rounded w-full"></td>
+                                        </tr>
+                                        <tr>
+                                            <td class="border p-2 font-bold text-red-600">F</td>
+                                            <td class="border p-2">0.00</td>
+                                            <td class="border p-2"><input type="text" value="00 - 32" class="p-1 border rounded w-full"></td>
+                                        </tr>
+                                    </tbody>
+                                </table>
+                            </div>
+                        </div>
+
+                        <div><button onclick="alert('গ্রেডিং স্কেল ও পাস মার্কস সফলভাবে সংরক্ষিত হয়েছে!')" class="bg-indigo-600 text-white px-4 py-2 rounded font-bold">গ্রেডিং সিস্টেম সেভ করুন</button></div>
                     </div>
                 </div>
 
@@ -270,7 +325,6 @@
             }
             const select = document.getElementById('globalAcademicYear');
             
-            // Check if already exists
             let exists = false;
             for(let option of select.options) {
                 if(option.value === newYear) {
@@ -314,7 +368,7 @@
 
         function addSubject() {
             const cls = document.getElementById('sub_class').value;
-            const sub = document.getElementById('sub_name').value;
+            const sub = document.getElementById('sub_name_value') || document.getElementById('sub_name').value;
             const code = document.getElementById('sub_code').value;
             if(!sub || !code) {
                 alert('দয়া করে বিষয়ের নাম ও কোড দিন!');

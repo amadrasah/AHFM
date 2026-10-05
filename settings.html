@@ -6,7 +6,6 @@
     <title>Settings Management - Abdullah Hat Islamia Fazil Madrasah</title>
     <script src="https://cdn.tailwindcss.com"></script>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
-    <link rel="stylesheet" href="style.css">
 </head>
 <body class="bg-gray-100 font-sans">
 
@@ -54,100 +53,151 @@
                     <span class="font-bold text-emerald-800 text-lg">⚙️ 22. System Settings & Configurations</span>
                 </div>
                 <div class="flex items-center gap-4">
+                    <span id="display-global-year" class="text-xs bg-emerald-100 text-emerald-800 px-3 py-1 rounded-full font-bold">সেশন: 2026</span>
                     <span class="text-sm text-gray-600 font-medium"><i class="fa-solid fa-user-shield text-emerald-700 mr-1"></i> সুপার অ্যাডমিন</span>
-                    <a href="index.html" class="bg-red-600 text-white px-4 py-1.5 rounded text-xs font-medium hover:bg-red-700">লগআউট</a>
                 </div>
             </header>
 
             <!-- Page Content -->
             <main class="p-6 space-y-6">
                 
-                <!-- Quick Navigation Tabs for 9 Settings Features -->
+                <!-- Quick Navigation Tabs -->
                 <div class="bg-white p-3 rounded-xl shadow-sm flex flex-wrap gap-2 border border-gray-200">
                     <button onclick="switchTab('info')" class="tab-btn px-3 py-2 bg-emerald-700 text-white rounded-lg text-xs font-bold transition">1. Info</button>
-                    <button onclick="switchTab('logo')" class="tab-btn px-3 py-2 bg-gray-100 text-gray-700 rounded-lg text-xs font-bold hover:bg-emerald-50 transition">2. Logo</button>
-                    <button onclick="switchTab('year')" class="tab-btn px-3 py-2 bg-gray-100 text-gray-700 rounded-lg text-xs font-bold hover:bg-emerald-50 transition">3. Year</button>
-                    <button onclick="switchTab('class')" class="tab-btn px-3 py-2 bg-gray-100 text-gray-700 rounded-lg text-xs font-bold hover:bg-emerald-50 transition">4. Class</button>
-                    <button onclick="switchTab('subject')" class="tab-btn px-3 py-2 bg-gray-100 text-gray-700 rounded-lg text-xs font-bold hover:bg-emerald-50 transition">5. Subject</button>
-                    <button onclick="switchTab('exam')" class="tab-btn px-3 py-2 bg-gray-100 text-gray-700 rounded-lg text-xs font-bold hover:bg-emerald-50 transition">6. Exam</button>
+                    <button onclick="switchTab('logo')" class="tab-btn px-3 py-2 bg-gray-100 text-gray-700 rounded-lg text-xs font-bold hover:bg-emerald-50 transition">2. Logo & Watermark</button>
+                    <button onclick="switchTab('year')" class="tab-btn px-3 py-2 bg-gray-100 text-gray-700 rounded-lg text-xs font-bold hover:bg-emerald-50 transition">3. Academic Year</button>
+                    <button onclick="switchTab('class')" class="tab-btn px-3 py-2 bg-gray-100 text-gray-700 rounded-lg text-xs font-bold hover:bg-emerald-50 transition">4. Classes</button>
+                    <button onclick="switchTab('subject')" class="tab-btn px-3 py-2 bg-gray-100 text-gray-700 rounded-lg text-xs font-bold hover:bg-emerald-50 transition">5. Subjects</button>
+                    <button onclick="switchTab('exam')" class="tab-btn px-3 py-2 bg-gray-100 text-gray-700 rounded-lg text-xs font-bold hover:bg-emerald-50 transition">6. Exams</button>
                     <button onclick="switchTab('grading')" class="tab-btn px-3 py-2 bg-gray-100 text-gray-700 rounded-lg text-xs font-bold hover:bg-emerald-50 transition">7. Grading</button>
-                    <button onclick="switchTab('receipt')" class="tab-btn px-3 py-2 bg-gray-100 text-gray-700 rounded-lg text-xs font-bold hover:bg-emerald-50 transition">8. Receipt</button>
+                    <button onclick="switchTab('receipt')" class="tab-btn px-3 py-2 bg-gray-100 text-gray-700 rounded-lg text-xs font-bold hover:bg-emerald-50 transition">8. Receipt & Sign</button>
                     <button onclick="switchTab('backup')" class="tab-btn px-3 py-2 bg-gray-100 text-gray-700 rounded-lg text-xs font-bold hover:bg-emerald-50 transition">9. Backup</button>
                 </div>
 
                 <!-- TAB 1: Institution Information -->
                 <div id="tab-info" class="setting-tab bg-white p-6 rounded-2xl shadow-sm border border-gray-200 space-y-4">
                     <h3 class="font-bold text-gray-800 text-sm border-b pb-2"><i class="fa-solid fa-school text-emerald-600 mr-2"></i> Institution Information Setup</h3>
-                    <form class="grid grid-cols-1 md:grid-cols-2 gap-4 text-xs">
-                        <div><label class="font-bold text-gray-700 mb-1 block">প্রতিষ্ঠানের নাম (বাংলায়)</label><input type="text" value="আবদুল্লাহ হাট ইসলামিয়া ফাজিল মাদ্রাসা" class="w-full p-2 border rounded-lg"></div>
-                        <div><label class="font-bold text-gray-700 mb-1 block">প্রতিষ্ঠানের নাম (ইংরেজিতে)</label><input type="text" value="Abdullah Hat Islamia Fazil Madrasah" class="w-full p-2 border rounded-lg"></div>
-                        <div><label class="font-bold text-gray-700 mb-1 block">EIIN নম্বর</label><input type="text" value="123456" class="w-full p-2 border rounded-lg"></div>
-                        <div><label class="font-bold text-gray-700 mb-1 block">মোবাইল / হটলাইন</label><input type="text" value="01800000000" class="w-full p-2 border rounded-lg"></div>
-                        <div class="md:col-span-2"><label class="font-bold text-gray-700 mb-1 block">পূর্ণাঙ্গ ঠিকানা</label><textarea class="w-full p-2 border rounded-lg" rows="2">আবদুল্লাহ হাট, কোম্পানীগঞ্জ, নোয়াখালী - ৩৮২১</textarea></div>
-                        <div><button type="submit" class="bg-emerald-700 text-white px-4 py-2 rounded font-bold">সেভ করুন</button></div>
+                    <form id="institutionForm" onsubmit="saveInstitution(event)" class="grid grid-cols-1 md:grid-cols-2 gap-4 text-xs">
+                        <div><label class="font-bold text-gray-700 mb-1 block">প্রতিষ্ঠানের নাম (বাংলায়)</label><input type="text" id="inst_name_bn" value="আবদুল্লাহ হাট ইসলামিয়া ফাজিল মাদ্রাসা" class="w-full p-2 border rounded-lg" required></div>
+                        <div><label class="font-bold text-gray-700 mb-1 block">প্রতিষ্ঠানের নাম (ইংরেজিতে)</label><input type="text" id="inst_name_en" value="Abdullah Hat Islamia Fazil Madrasah" class="w-full p-2 border rounded-lg" required></div>
+                        <div><label class="font-bold text-gray-700 mb-1 block">EIIN নম্বর</label><input type="text" id="inst_eiin" value="123456" class="w-full p-2 border rounded-lg" required></div>
+                        <div><label class="font-bold text-gray-700 mb-1 block">মোবাইল / হটলাইন</label><input type="text" id="inst_phone" value="01800000000" class="w-full p-2 border rounded-lg" required></div>
+                        <div class="md:col-span-2"><label class="font-bold text-gray-700 mb-1 block">পূর্ণাঙ্গ ঠিকানা</label><textarea id="inst_address" class="w-full p-2 border rounded-lg" rows="2">আবদুল্লাহ হাট, কোম্পানীগঞ্জ, নোয়াখালী - ৩৮২১</textarea></div>
+                        <div><button type="submit" class="bg-emerald-700 text-white px-4 py-2 rounded font-bold hover:bg-emerald-800">তথ্য সংরক্ষণ করুন</button></div>
                     </form>
                 </div>
 
-                <!-- TAB 2: Logo -->
+                <!-- TAB 2: Logo & Watermark -->
                 <div id="tab-logo" class="setting-tab bg-white p-6 rounded-2xl shadow-sm border border-gray-200 space-y-4 hidden">
-                    <h3 class="font-bold text-gray-800 text-sm border-b pb-2"><i class="fa-solid fa-image text-blue-600 mr-2"></i> Logo & Watermark Setup</h3>
-                    <div class="space-y-4 text-xs">
-                        <div><label class="font-bold text-gray-700 mb-1 block">বর্তমান লোগো</label><div class="w-16 h-16 bg-gray-200 rounded flex items-center justify-center font-bold text-gray-500">Logo</div></div>
-                        <div><label class="font-bold text-gray-700 mb-1 block">নতুন লোগো আপলোড করুন</label><input type="file" class="p-2 border rounded w-full md:w-1/2"></div>
-                        <div><button class="bg-blue-600 text-white px-4 py-2 rounded font-bold">লোগো আপডেট করুন</button></div>
+                    <h3 class="font-bold text-gray-800 text-sm border-b pb-2"><i class="fa-solid fa-image text-blue-600 mr-2"></i> Logo & Watermark Setup (সকল ফর্মে ব্যবহৃত হবে)</h3>
+                    <div class="grid grid-cols-1 md:grid-cols-2 gap-6 text-xs">
+                        <div class="space-y-3">
+                            <label class="font-bold text-gray-700 block">মাদ্রাসার লোগো আপলোড</label>
+                            <input type="file" id="logoFile" class="p-2 border rounded w-full">
+                            <button onclick="alert('লোগো সফলভাবে আপলোড হয়েছে!')" class="bg-blue-600 text-white px-4 py-2 rounded font-bold">লোগো সেভ করুন</button>
+                        </div>
+                        <div class="space-y-3">
+                            <label class="font-bold text-gray-700 block">ওয়াটারমার্ক (Watermark) আপলোড - (সকল ফর্ম ও সার্টিফিকেটের ব্যাকগ্রাউন্ড)</label>
+                            <input type="file" id="watermarkFile" class="p-2 border rounded w-full">
+                            <button onclick="alert('ওয়াটারমার্ক সফলভাবে সেট হয়েছে!')" class="bg-indigo-600 text-white px-4 py-2 rounded font-bold">ওয়াটারমার্ক সেভ করুন</button>
+                        </div>
                     </div>
                 </div>
 
                 <!-- TAB 3: Academic Year -->
                 <div id="tab-year" class="setting-tab bg-white p-6 rounded-2xl shadow-sm border border-gray-200 space-y-4 hidden">
-                    <h3 class="font-bold text-gray-800 text-sm border-b pb-2"><i class="fa-solid fa-calendar-days text-purple-600 mr-2"></i> Academic Year Setup</h3>
+                    <h3 class="font-bold text-gray-800 text-sm border-b pb-2"><i class="fa-solid fa-calendar-days text-purple-600 mr-2"></i> Global Academic Year Setup (সব জায়গায় প্রযোজ্য)</h3>
                     <div class="space-y-4 text-xs">
-                        <div><label class="font-bold text-gray-700 mb-1 block">বর্তমান শিক্ষাবর্ষ নির্বাচন</label><select class="p-2 border rounded w-full md:w-1/2"><option>2026</option><option>2027</option></select></div>
-                        <div><button class="bg-purple-600 text-white px-4 py-2 rounded font-bold">সেশন পরিবর্তন করুন</button></div>
+                        <div><label class="font-bold text-gray-700 mb-1 block">বর্তমান শিক্ষাবর্ষ (Academic Year) নির্বাচন করুন</label>
+                            <select id="globalAcademicYear" class="p-2 border rounded w-full md:w-1/2">
+                                <option value="2025">2025</option>
+                                <option value="2026" selected>2026</option>
+                                <option value="2027">2027</option>
+                                <option value="2028">2028</option>
+                            </select>
+                        </div>
+                        <div><button onclick="saveGlobalYear()" class="bg-purple-600 text-white px-4 py-2 rounded font-bold">সেশন গ্লোবালি আপডেট করুন</button></div>
                     </div>
                 </div>
 
-                <!-- TAB 4: Class -->
+                <!-- TAB 4: Class Management -->
                 <div id="tab-class" class="setting-tab bg-white p-6 rounded-2xl shadow-sm border border-gray-200 space-y-4 hidden">
-                    <h3 class="font-bold text-gray-800 text-sm border-b pb-2"><i class="fa-solid fa-layer-group text-amber-600 mr-2"></i> Class Management</h3>
+                    <h3 class="font-bold text-gray-800 text-sm border-b pb-2"><i class="fa-solid fa-layer-group text-amber-600 mr-2"></i> Class Management (মাদ্রাসার নির্ধারিত শ্রেণিগুলো)</h3>
                     <div class="space-y-4 text-xs">
-                        <div class="flex gap-2"><input type="text" placeholder="নতুন শ্রেণি নাম (যেমন: Dakhil 6)" class="p-2 border rounded w-full md:w-1/3"><button class="bg-amber-600 text-white px-4 py-2 rounded font-bold">শ্রেণি যোগ করুন</button></div>
-                        <p class="text-gray-500">বিদ্যমান শ্রেণি তালিকা: Nursery, Ibtidaiyah, Dakhil, Alim, Fazil</p>
+                        <div class="p-4 bg-gray-50 rounded-lg border">
+                            <p class="font-bold text-gray-700 mb-2">নির্ধারিত শ্রেণি তালিকা (ড্রপডাউন ও সিস্টেমে স্বয়ংক্রিয় যুক্ত):</p>
+                            <ul class="list-disc pl-5 space-y-1 text-gray-600">
+                                <li>নূরানী প্রথম শ্রেণি</li>
+                                <li>নূরানী দ্বিতীয় শ্রেণি</li>
+                                <li>নূরানী তৃতীয় শ্রেণি</li>
+                                <li>ইবতেদায়ী চতুর্থ শ্রেণি</li>
+                                <li>ইবতেদায়ী পঞ্চম শ্রেণি</li>
+                                <li>দাখিল ষষ্ঠ থেকে দশম শ্রেণি (Dakhil 6th - 10th)</li>
+                                <li>আলিম প্রথম বর্ষ ও আলিম দ্বিতীয় বর্ষ</li>
+                                <li>ফাজিল প্রথম বর্ষ, ফাজিল দ্বিতীয় বর্ষ, ফাজিল তৃতীয় বর্ষ</li>
+                            </ul>
+                        </div>
                     </div>
                 </div>
 
-                <!-- TAB 5: Subject -->
+                <!-- TAB 5: Subject Management (Class Linked) -->
                 <div id="tab-subject" class="setting-tab bg-white p-6 rounded-2xl shadow-sm border border-gray-200 space-y-4 hidden">
-                    <h3 class="font-bold text-gray-800 text-sm border-b pb-2"><i class="fa-solid fa-book-open text-teal-600 mr-2"></i> Subject Setup</h3>
+                    <h3 class="font-bold text-gray-800 text-sm border-b pb-2"><i class="fa-solid fa-book-open text-teal-600 mr-2"></i> Subject Setup (শ্রেণি > বিষয়ের নাম > কোড নম্বর)</h3>
                     <div class="space-y-4 text-xs">
-                        <div class="flex gap-2"><input type="text" placeholder="বিষয়ের নাম (যেমন: Al-Quran)" class="p-2 border rounded w-full md:w-1/3"><button class="bg-teal-600 text-white px-4 py-2 rounded font-bold">বিষয় যোগ করুন</button></div>
+                        <div class="grid grid-cols-1 md:grid-cols-4 gap-3">
+                            <select id="sub_class" class="p-2 border rounded">
+                                <option>নূরানী প্রথম শ্রেণি</option>
+                                <option>இবতেদায়ী চতুর্থ শ্রেণি</option>
+                                <option>দাখিল ষষ্ঠ শ্রেণি</option>
+                                <option>আলিম প্রথম বর্ষ</option>
+                                <option>ফাজিল প্রথম বর্ষ</option>
+                            </select>
+                            <input type="text" id="sub_name" placeholder="বিষয়ের নাম (যেমন: Al-Quran)" class="p-2 border rounded">
+                            <input type="text" id="sub_code" placeholder="কোড নম্বর (যেমন: 101)" class="p-2 border rounded">
+                            <button onclick="addSubject()" class="bg-teal-600 text-white px-4 py-2 rounded font-bold">বিষয় যোগ করুন</button>
+                        </div>
+                        <div id="subjectList" class="border p-3 rounded bg-gray-50">
+                            <p class="text-gray-500">দাখিল ষষ্ঠ শ্রেণি > আল-কرآন ও হাদিস > কোড: ১০১</p>
+                        </div>
                     </div>
                 </div>
 
-                <!-- TAB 6: Exam -->
+                <!-- TAB 6: Exam Setup -->
                 <div id="tab-exam" class="setting-tab bg-white p-6 rounded-2xl shadow-sm border border-gray-200 space-y-4 hidden">
-                    <h3 class="font-bold text-gray-800 text-sm border-b pb-2"><i class="fa-solid fa-file-lines text-rose-600 mr-2"></i> Exam Setup</h3>
+                    <h3 class="font-bold text-gray-800 text-sm border-b pb-2"><i class="fa-solid fa-file-lines text-rose-600 mr-2"></i> Exam Setup (পরীক্ষার নাম যোগ)</h3>
                     <div class="space-y-4 text-xs">
-                        <div class="flex gap-2"><input type="text" placeholder="পরীক্ষার নাম (যেমন: Half Yearly 2026)" class="p-2 border rounded w-full md:w-1/3"><button class="bg-rose-600 text-white px-4 py-2 rounded font-bold">পরীক্ষা যোগ করুন</button></div>
+                        <div class="flex gap-2">
+                            <input type="text" id="examNameInput" placeholder="পরীক্ষার নাম (যেমন: অর্ধবার্ষিক পরীক্ষা ২০২৬)" class="p-2 border rounded w-full md:w-1/3">
+                            <button onclick="addExam()" class="bg-rose-600 text-white px-4 py-2 rounded font-bold">পরীক্ষা যোগ করুন</button>
+                        </div>
+                        <p class="text-gray-600">সংযুক্ত পরীক্ষা: ১ম টার্মিনাল, অর্ধ-বার্ষিক, বার্ষিক, প্রাক-নির্বাচনী, নির্বাচনী পরীক্ষা</p>
                     </div>
                 </div>
 
                 <!-- TAB 7: Grading System -->
                 <div id="tab-grading" class="setting-tab bg-white p-6 rounded-2xl shadow-sm border border-gray-200 space-y-4 hidden">
-                    <h3 class="font-bold text-gray-800 text-sm border-b pb-2"><i class="fa-solid fa-award text-indigo-600 mr-2"></i> Grading System</h3>
+                    <h3 class="font-bold text-gray-800 text-sm border-b pb-2"><i class="fa-solid fa-award text-indigo-600 mr-2"></i> Grading & Passing Percentage (রাউন্ড নম্বর)</h3>
                     <div class="space-y-4 text-xs">
-                        <p class="text-gray-600">পাস মার্কস লিমিট: <input type="number" value="33" class="p-1 border rounded w-20 ml-2"></p>
-                        <button class="bg-indigo-600 text-white px-4 py-2 rounded font-bold">গ্রেডিং আপডেট</button>
+                        <div>
+                            <label class="font-bold text-gray-700 mb-1 block">পাস মার্কস পার্সেন্টেজ (পাস নম্বর লিমিট - রাউন্ড ফিগার):</label>
+                            <input type="number" id="passMarksLimit" value="33" class="p-2 border rounded w-32" min="1" max="100"> %
+                        </div>
+                        <button onclick="alert('গ্রেডিং নিয়ম সংরক্ষিত হয়েছে!')" class="bg-indigo-600 text-white px-4 py-2 rounded font-bold">গ্রেডিং আপডেট</button>
                     </div>
                 </div>
 
-                <!-- TAB 8: Receipt Design -->
+                <!-- TAB 8: Receipt & Signature Design -->
                 <div id="tab-receipt" class="setting-tab bg-white p-6 rounded-2xl shadow-sm border border-gray-200 space-y-4 hidden">
-                    <h3 class="font-bold text-gray-800 text-sm border-b pb-2"><i class="fa-solid fa-receipt text-cyan-600 mr-2"></i> Receipt & Money Receipt Design</h3>
-                    <div class="space-y-4 text-xs">
-                        <label class="flex items-center gap-2"><input type="checkbox" checked> রিসিটে মাদ্রাসার লোগো প্রদর্শন করুন</label>
-                        <label class="flex items-center gap-2"><input type="checkbox" checked> ডিজিটাল স্বাক্ষর (Signature) যুক্ত করুন</label>
-                        <button class="bg-cyan-600 text-white px-4 py-2 rounded font-bold">রশিদ ডিজাইন সেভ</button>
+                    <h3 class="font-bold text-gray-800 text-sm border-b pb-2"><i class="fa-solid fa-receipt text-cyan-600 mr-2"></i> Receipt Design (লোগো, ওয়াটারমার্ক ও ডিজিটাল স্বাক্ষর)</h3>
+                    <div class="space-y-3 text-xs">
+                        <label class="flex items-center gap-2 font-medium"><input type="checkbox" checked class="w-4 h-4"> মানি রিসিটে মাদ্রাসার লোগো প্রদর্শন করুন</label>
+                        <label class="flex items-center gap-2 font-medium"><input type="checkbox" checked class="w-4 h-4"> ব্যাকগ্রাউন্ডে ওয়াটারমার্ক (Watermark) যুক্ত করুন</label>
+                        <label class="flex items-center gap-2 font-medium"><input type="checkbox" checked class="w-4 h-4"> প্রিন্টেড কপি বা রিসিটে ডিজিটাল স্বাক্ষর (Digital Signature) যুক্ত করুন</label>
+                        <div>
+                            <label class="font-bold text-gray-700 block mt-2">ডিজিটাল স্বাক্ষর ইমেজ আপলোড</label>
+                            <input type="file" class="p-2 border rounded mt-1">
+                        </div>
+                        <button onclick="alert('রিসিট ডিজাইন কনফিগারেশন সেভ হয়েছে!')" class="bg-cyan-600 text-white px-4 py-2 rounded font-bold mt-2">রশিদ ডিজাইন সেভ</button>
                     </div>
                 </div>
 
@@ -156,8 +206,8 @@
                     <h3 class="font-bold text-gray-800 text-sm border-b pb-2"><i class="fa-solid fa-database text-emerald-700 mr-2"></i> System Backup & Restore</h3>
                     <div class="space-y-4 text-xs">
                         <div class="flex gap-4">
-                            <button class="bg-emerald-700 text-white px-4 py-2 rounded font-bold">লোকাল ব্যাকআপ ডাউনলোড</button>
-                            <button class="bg-amber-600 text-white px-4 py-2 rounded font-bold">ডাটা রিস্টোর করুন</button>
+                            <button onclick="alert('ব্যাকআপ ফাইল ডাউনলোড শুরু হয়েছে!')" class="bg-emerald-700 text-white px-4 py-2 rounded font-bold">লোকাল ব্যাকআপ ডাউনলোড (.json)</button>
+                            <button onclick="alert('সফলভাবে ডাটা রিস্টোর হয়েছে!')" class="bg-amber-600 text-white px-4 py-2 rounded font-bold">ডাটা রিস্টোর করুন</button>
                         </div>
                     </div>
                 </div>
@@ -167,27 +217,91 @@
         </div>
     </div>
 
-    <!-- JavaScript for Tab Switching -->
+    <!-- JavaScript for Tab Switching & LocalStorage Saving -->
     <script>
+        // Tab Switcher
         function switchTab(tabName) {
-            // Hide all tabs
             const tabs = document.querySelectorAll('.setting-tab');
             tabs.forEach(tab => tab.classList.add('hidden'));
 
-            // Remove active style from all buttons
             const buttons = document.querySelectorAll('.tab-btn');
             buttons.forEach(btn => {
                 btn.classList.remove('bg-emerald-700', 'text-white');
                 btn.classList.add('bg-gray-100', 'text-gray-700');
             });
 
-            // Show target tab
             document.getElementById('tab-' + tabName).classList.remove('hidden');
-
-            // Highlight active button (approximate match)
             event.target.classList.remove('bg-gray-100', 'text-gray-700');
             event.target.classList.add('bg-emerald-700', 'text-white');
         }
+
+        // Save Institution Info to LocalStorage
+        function saveInstitution(event) {
+            event.preventDefault();
+            const data = {
+                name_bn: document.getElementById('inst_name_bn').value,
+                name_en: document.getElementById('inst_name_en').value,
+                eiin: document.getElementById('inst_eiin').value,
+                phone: document.getElementById('inst_phone').value,
+                address: document.getElementById('inst_address').value
+            };
+            localStorage.setItem('institution_info', JSON.stringify(data));
+            alert('প্রতিষ্ঠানের তথ্য সফলভাবে লোকাল স্টোরেজে সংরক্ষিত হয়েছে!');
+        }
+
+        // Global Academic Year Save
+        function saveGlobalYear() {
+            const year = document.getElementById('globalAcademicYear').value;
+            localStorage.setItem('global_academic_year', year);
+            document.getElementById('display-global-year').innerText = "সেশন: " + year;
+            alert('একাডেমিক ইয়ার গ্লোবালি ' + year + ' সেট করা হয়েছে!');
+        }
+
+        // Add Subject (Class Linked)
+        function addSubject() {
+            const cls = document.getElementById('sub_class').value;
+            const sub = document.getElementById('sub_name').value;
+            const code = document.getElementById('sub_code').value;
+            if(!sub || !code) {
+                alert('দয়া করে বিষয়ের নাম ও কোড দিন!');
+                return;
+            }
+            const listDiv = document.getElementById('subjectList');
+            listDiv.innerHTML += `<p class="text-gray-700 mt-1">✔ ${cls} > ${sub} > কোড: ${code}</p>`;
+            document.getElementById('sub_name').value = '';
+            document.getElementById('sub_code').value = '';
+            alert('বিষয় সফলভাবে যুক্ত হয়েছে!');
+        }
+
+        // Add Exam
+        function addExam() {
+            const exam = document.getElementById('examNameInput').value;
+            if(!exam) {
+                alert('পরীক্ষার নাম লিখুন!');
+                return;
+            }
+            alert('পরীক্ষা "' + exam + '" সফলভাবে তালিকাভুক্ত হয়েছে!');
+            document.getElementById('examNameInput').value = '';
+        }
+
+        // Load saved data on page load
+        window.onload = function() {
+            const savedInst = localStorage.getItem('institution_info');
+            if(savedInst) {
+                const data = JSON.parse(savedInst);
+                document.getElementById('inst_name_bn').value = data.name_bn || '';
+                document.getElementById('inst_name_en').value = data.name_en || '';
+                document.getElementById('inst_eiin').value = data.eiin || '';
+                document.getElementById('inst_phone').value = data.phone || '';
+                document.getElementById('inst_address').value = data.address || '';
+            }
+
+            const savedYear = localStorage.getItem('global_academic_year');
+            if(savedYear) {
+                document.getElementById('globalAcademicYear').value = savedYear;
+                document.getElementById('display-global-year').innerText = "সেশন: " + savedYear;
+            }
+        };
     </script>
 </body>
 </html>

@@ -3,58 +3,40 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Abdullah Hat Islamia Fazil Madrasah</title>
-    <!-- Tailwind CSS CDN for modern & clean design -->
+    <title>Home - AHIFM ERP Management System</title>
     <script src="https://cdn.tailwindcss.com"></script>
-    <!-- FontAwesome for Icons -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link rel="stylesheet" href="style.css">
 </head>
 <body class="bg-gray-100 font-sans">
 
     <div class="flex h-screen overflow-hidden">
         
-        <!-- Sidebar (বাম পাশের নেভিগেশন মেনু) -->
-        <aside class="w-64 bg-emerald-900 text-white flex flex-col shadow-lg hidden md:flex">
-            <!-- Madrasah Header in Sidebar -->
+        <!-- Sidebar -->
+        <aside class="w-64 bg-emerald-900 text-white flex flex-col shadow-lg hidden md:flex no-print">
             <div class="p-4 bg-emerald-950 text-center border-b border-emerald-800">
                 <h1 class="font-bold text-lg">AHIFM ERP</h1>
                 <p class="text-xs text-emerald-300">ম্যানেজমেন্ট সিস্টেম</p>
             </div>
 
-            <!-- Menu Links (আপনার দেওয়া স্ট্রাকচার অনুযায়ী) -->
             <nav class="flex-1 overflow-y-auto p-4 space-y-2 text-sm">
                 <a href="index.html" class="flex items-center gap-3 p-2.5 rounded bg-emerald-800 text-white font-medium">
                     <i class="fa-solid fa-house"></i> 01. Home
                 </a>
-                <a href="institution.html" class="flex items-center gap-3 p-2.5 rounded hover:bg-emerald-800 transition">
-                    <i class="fa-solid fa-school"></i> 02. Institution
-                </a>
-                <a href="students.html" class="flex items-center gap-3 p-2.5 rounded hover:bg-emerald-800 transition">
-                    <i class="fa-solid fa-user-graduate"></i> 03. Student Management
-                </a>
-                <a href="teachers.html" class="flex items-center gap-3 p-2.5 rounded hover:bg-emerald-800 transition">
-                    <i class="fa-solid fa-chalkboard-user"></i> 04. Teacher & Staff
-                </a>
-                <a href="academic.html" class="flex items-center gap-3 p-2.5 rounded hover:bg-emerald-800 transition">
-                    <i class="fa-solid fa-book-open"></i> 05. Academic
-                </a>
-                <a href="examination.html" class="flex items-center gap-3 p-2.5 rounded hover:bg-emerald-800 transition">
-                    <i class="fa-solid fa-file-pen"></i> 06. Examination
-                </a>
-                <a href="attendance.html" class="flex items-center gap-3 p-2.5 rounded hover:bg-emerald-800 transition">
-                    <i class="fa-solid fa-clock"></i> 07. Attendance
-                </a>
-                <a href="accounts.html" class="flex items-center gap-3 p-2.5 rounded hover:bg-emerald-800 transition">
-                    <i class="fa-solid fa-wallet"></i> 08. Accounts
-                </a>
-                <a href="fees.html" class="flex items-center gap-3 p-2.5 rounded hover:bg-emerald-800 transition">
-                    <i class="fa-solid fa-receipt"></i> 09. Fees Management
-                </a>
                 <a href="dashboard.html" class="flex items-center gap-3 p-2.5 rounded hover:bg-emerald-800 transition">
                     <i class="fa-solid fa-chart-pie"></i> 10. Dashboard
                 </a>
+                <a href="academic.html" class="flex items-center gap-3 p-2.5 rounded hover:bg-emerald-800 transition">
+                    <i class="fa-solid fa-book-open"></i> 27. Academic Management
+                </a>
                 <a href="notice.html" class="flex items-center gap-3 p-2.5 rounded hover:bg-emerald-800 transition">
-                    <i class="fa-solid fa-bullhorn"></i> 11. Notice Board
+                    <i class="fa-solid fa-bullhorn"></i> 26. Notice Management
+                </a>
+                <a href="communication.html" class="flex items-center gap-3 p-2.5 rounded hover:bg-emerald-800 transition">
+                    <i class="fa-solid fa-comments"></i> 25. Communication & SMS
+                </a>
+                <a href="cloud-backup.html" class="flex items-center gap-3 p-2.5 rounded hover:bg-emerald-800 transition">
+                    <i class="fa-solid fa-cloud-arrow-up"></i> 20. Cloud & Backup
                 </a>
                 <a href="settings.html" class="flex items-center gap-3 p-2.5 rounded hover:bg-emerald-800 transition">
                     <i class="fa-solid fa-gear"></i> 22. Settings
@@ -62,65 +44,131 @@
             </nav>
         </aside>
 
-        <!-- Main Content Area (ডান পাশের মূল অংশ) -->
+        <!-- Main Content Area -->
         <div class="flex-1 flex flex-col overflow-y-auto">
             
             <!-- Top Navbar -->
-            <header class="bg-white shadow-sm p-4 flex justify-between items-center">
+            <header class="bg-white shadow-sm p-4 flex justify-between items-center no-print">
                 <div class="flex items-center gap-3">
-                    <span class="font-bold text-emerald-800 text-xl">আবদুল্লাহ হাট ইসলামিয়া ফাজিল মাদ্রাসা</span>
+                    <span class="font-bold text-emerald-800 text-xl">হোম মডিউল (ল্যান্ডিং পেজ)</span>
                 </div>
                 <div class="flex items-center gap-4">
-                    <span class="text-sm text-gray-600">অ্যাডমিন প্যানেল</span>
-                    <a href="login.html" class="bg-emerald-600 text-white px-4 py-1.5 rounded text-sm font-medium hover:bg-emerald-700">লগআউট</a>
+                    <span class="text-sm text-gray-600 font-medium"><i class="fa-solid fa-user-shield text-emerald-700 mr-1"></i> সুপার অ্যাডমিন</span>
+                    <a href="index.html" class="bg-red-600 text-white px-4 py-1.5 rounded text-sm font-medium hover:bg-red-700">লগআউট</a>
                 </div>
             </header>
 
-            <!-- Dashboard Content (হোমপেজের মূল স্বাগতম ও সংক্ষেপ) -->
-            <main class="p-6">
-                <div class="bg-gradient-to-r from-emerald-700 to-teal-800 rounded-xl p-8 text-white shadow-md mb-6">
-                    <h2 class="text-2xl font-bold mb-2">আসসালামু আলাইকুম!</h2>
-                    <p class="text-emerald-100">আবদুল্লাহ হাট ইসলামিয়া ফাজিল মাদ্রাসার প্রাতিষ্ঠানিক ম্যানেজমেন্ট সিস্টেমে আপনাকে স্বাগতম। এখান থেকে আপনি পুরো প্রতিষ্ঠানের একাডেমিক ও প্রশাসনিক কার্যক্রম পরিচালনা করতে পারবেন।</p>
-                </div>
-
-                <!-- Quick Stats Grid -->
-                <div class="grid grid-cols-1 md:grid-cols-4 gap-6 mb-6">
-                    <div class="bg-white p-5 rounded-xl shadow-sm border-l-4 border-emerald-600">
-                        <p class="text-gray-500 text-sm">মোট শিক্ষার্থী</p>
-                        <h3 class="text-2xl font-bold text-gray-800">১,২৫০+</h3>
+            <!-- Page Content -->
+            <main class="p-6 space-y-6">
+                
+                <!-- 1. Welcome Section -->
+                <div class="bg-gradient-to-r from-emerald-800 to-emerald-950 text-white p-8 rounded-2xl shadow-sm flex flex-col md:flex-row justify-between items-center gap-6">
+                    <div class="space-y-2">
+                        <span class="bg-emerald-700 text-emerald-100 text-xs px-3 py-1 rounded-full font-semibold">স্বাগতম মডিউল (Welcome)</span>
+                        <h2 class="text-2xl md:text-3xl font-bold">আল-হাদিস ইনস্টিটিউট ফাজিল মাদরাসা</h2>
+                        <p class="text-emerald-200 text-sm max-w-xl">আমাদের অফিশিয়াল ডায়নামিক ইআরপি পোর্টালে আপনাকে স্বাগতম। এখান থেকে আপনি মাদ্রাসার সার্বিক কার্যক্রম নিয়ন্ত্রণ করতে পারবেন।</p>
                     </div>
-                    <div class="bg-white p-5 rounded-xl shadow-sm border-l-4 border-blue-600">
-                        <p class="text-gray-500 text-sm">মোট শিক্ষক ও স্টাফ</p>
-                        <h3 class="text-2xl font-bold text-gray-800">৪৫ জন</h3>
-                    </div>
-                    <div class="bg-white p-5 rounded-xl shadow-sm border-l-4 border-amber-600">
-                        <p class="text-gray-500 text-sm">আজকের উপস্থিতি</p>
-                        <h3 class="text-2xl font-bold text-gray-800">৯২%</h3>
-                    </div>
-                    <div class="bg-white p-5 rounded-xl shadow-sm border-l-4 border-purple-600">
-                        <p class="text-gray-500 text-sm">চলতি মাসের আয়</p>
-                        <h3 class="text-2xl font-bold text-gray-800">৳ ৪,৫০,০০০</h3>
+                    <div class="flex gap-3">
+                        <a href="dashboard.html" class="bg-white text-emerald-900 px-5 py-2.5 rounded-xl font-bold text-sm hover:bg-emerald-50 transition shadow-sm">ড্যাশবোর্ড</a>
+                        <a href="notice.html" class="bg-emerald-700 text-white px-5 py-2.5 rounded-xl font-bold text-sm hover:bg-emerald-600 transition border border-emerald-600">নোটিশ বোর্ড</a>
                     </div>
                 </div>
 
-                <!-- Notice & Recent Activities Section -->
-                <div class="bg-white p-6 rounded-xl shadow-sm">
-                    <h3 class="text-lg font-bold text-gray-800 mb-4 border-b pb-2">সর্বশেষ নোটিশ ও ঘোষণা</h3>
-                    <ul class="space-y-3 text-sm text-gray-700">
-                        <li class="flex justify-between items-center bg-gray-50 p-3 rounded">
-                            <span>📢 বার্ষিক পরীক্ষা ২০২৬ এর রুটিন প্রকাশিত হয়েছে।</span>
-                            <span class="text-xs text-gray-500">০৪ অক্টোবর, ২০২৬</span>
-                        </li>
-                        <li class="flex justify-between items-center bg-gray-50 p-3 rounded">
-                            <span>📢 টিউশন ফি জমাদানের শেষ তারিখ সংক্রান্ত জরুরি বিজ্ঞপ্তি।</span>
-                            <span class="text-xs text-gray-500">০১ অক্টোবর, ২০২৬</span>
-                        </li>
-                    </ul>
+                <!-- Main Grid Layout for Notice, News, Events & Links -->
+                <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
+                    
+                    <!-- 2. Notice Section -->
+                    <div class="bg-white p-6 rounded-xl shadow-sm space-y-4 border-t-4 border-blue-600">
+                        <div class="flex items-center justify-between border-b pb-3">
+                            <h3 class="font-bold text-gray-800 flex items-center gap-2">
+                                <i class="fa-solid fa-bullhorn text-blue-600"></i> Notice (জরুরি নোটিশ)
+                            </h3>
+                            <a href="notice.html" class="text-xs text-blue-600 hover:underline font-semibold">সকল দেখুন</a>
+                        </div>
+                        <div class="space-y-3 text-sm">
+                            <div class="p-3 bg-blue-50 rounded-lg border border-blue-100">
+                                <span class="text-xs text-blue-700 font-semibold block mb-1">০৫ অক্টোবর ২০২৬</span>
+                                <p class="text-gray-800 font-medium">অর্ধবার্ষিক পরীক্ষার রুটিন প্রকাশ সংক্রান্ত জরুরি বিজ্ঞপ্তি।</p>
+                            </div>
+                            <div class="p-3 bg-gray-50 rounded-lg border">
+                                <span class="text-xs text-gray-500 block mb-1">০১ অক্টোবর ২০২৬</span>
+                                <p class="text-gray-800 font-medium">আগামী ১২ রবিউল আউয়াল উপলক্ষে মাদ্রাসার শ্রেণি কার্যক্রম বন্ধ থাকবে।</p>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- 3. News Section -->
+                    <div class="bg-white p-6 rounded-xl shadow-sm space-y-4 border-t-4 border-emerald-600">
+                        <div class="flex items-center justify-between border-b pb-3">
+                            <h3 class="font-bold text-gray-800 flex items-center gap-2">
+                                <i class="fa-solid fa-newspaper text-emerald-600"></i> News (সাম্প্রতিক খবর)
+                            </h3>
+                            <span class="text-xs text-emerald-600 font-semibold">আপডেট</span>
+                        </div>
+                        <div class="space-y-3 text-sm">
+                            <div class="p-3 bg-emerald-50 rounded-lg border border-emerald-100">
+                                <span class="text-xs text-emerald-700 font-semibold block mb-1">০৪ অক্টোবর ২০২৬</span>
+                                <p class="text-gray-800 font-medium">মাদ্রাসার ডিবেটিং ক্লাবের আয়োজনে বার্ষিক বিতর্ক প্রতিযোগিতা সম্পন্ন।</p>
+                            </div>
+                            <div class="p-3 bg-gray-50 rounded-lg border">
+                                <span class="text-xs text-gray-500 block mb-1">২৮ সেপ্টেম্বর ২০২৬</span>
+                                <p class="text-gray-800 font-medium">সেরা ফলাফল অর্জনকারী শিক্ষার্থীদের সংবর্ধনা প্রদান করা হয়েছে।</p>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- 4. Events Section -->
+                    <div class="bg-white p-6 rounded-xl shadow-sm space-y-4 border-t-4 border-amber-600">
+                        <div class="flex items-center justify-between border-b pb-3">
+                            <h3 class="font-bold text-gray-800 flex items-center gap-2">
+                                <i class="fa-solid fa-calendar-days text-amber-600"></i> Events (আসন্ন ইভেন্ট)
+                            </h3>
+                            <span class="text-xs text-amber-600 font-semibold">ক্যালেন্ডার</span>
+                        </div>
+                        <div class="space-y-3 text-sm">
+                            <div class="p-3 bg-amber-50 rounded-lg border border-amber-100">
+                                <span class="text-xs text-amber-700 font-semibold block mb-1">১৫ মে ২০২৬</span>
+                                <p class="text-gray-800 font-medium">অর্ধবার্ষিক পরীক্ষা শুরু ও মূল্যায়ন কার্যক্রম।</p>
+                            </div>
+                            <div class="p-3 bg-gray-50 rounded-lg border">
+                                <span class="text-xs text-gray-500 block mb-1">২০ ডিসেম্বর ২০২৬</span>
+                                <p class="text-gray-800 font-medium">বার্ষিক ক্রীড়া প্রতিযোগিতা ও সাংস্কৃতিক অনুষ্ঠান।</p>
+                            </div>
+                        </div>
+                    </div>
+
                 </div>
+
+                <!-- 5. Important Links Section -->
+                <div class="bg-white p-6 rounded-xl shadow-sm space-y-4">
+                    <h3 class="font-bold text-gray-800 text-base border-b pb-3 flex items-center gap-2">
+                        <i class="fa-solid fa-link text-purple-600"></i> Important Links (গুরুত্বপূর্ণ লিংকসমূহ)
+                    </h3>
+                    <div class="grid grid-cols-2 md:grid-cols-4 gap-4 text-sm">
+                        <a href="https://madrasahboard.gov.bd" target="_blank" class="p-3 bg-gray-50 border rounded-lg hover:bg-purple-50 hover:border-purple-300 transition flex items-center justify-between">
+                            <span class="font-medium text-gray-700">মাদ্রাসা শিক্ষা বোর্ড</span>
+                            <i class="fa-solid fa-external-link-alt text-xs text-gray-400"></i>
+                        </a>
+                        <a href="https://banbeis.gov.bd" target="_blank" class="p-3 bg-gray-50 border rounded-lg hover:bg-purple-50 hover:border-purple-300 transition flex items-center justify-between">
+                            <span class="font-medium text-gray-700">ব্যানবেইস (BANBEIS)</span>
+                            <i class="fa-solid fa-external-link-alt text-xs text-gray-400"></i>
+                        </a>
+                        <a href="https://bteb.gov.bd" target="_blank" class="p-3 bg-gray-50 border rounded-lg hover:bg-purple-50 hover:border-purple-300 transition flex items-center justify-between">
+                            <span class="font-medium text-gray-750">কারিগরি শিক্ষা বোর্ড</span>
+                            <i class="fa-solid fa-external-link-alt text-xs text-gray-400"></i>
+                        </a>
+                        <a href="https://mefd.gov.bd" target="_blank" class="p-3 bg-gray-50 border rounded-lg hover:bg-purple-50 hover:border-purple-300 transition flex items-center justify-between">
+                            <span class="font-medium text-gray-700">শিক্ষা মন্ত্রণালয়</span>
+                            <i class="fa-solid fa-external-link-alt text-xs text-gray-400"></i>
+                        </a>
+                    </div>
+                </div>
+
             </main>
 
         </div>
     </div>
 
+    <script src="script.js"></script>
 </body>
 </html>

@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>User & Security Management - AHIFM ERP</title>
+    <title>User & Security - Abdullah Hat Islamia Fazil Madrasah</title>
     <script src="https://cdn.tailwindcss.com"></script>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     <link rel="stylesheet" href="style.css">
@@ -12,25 +12,79 @@
 
     <div class="flex h-screen overflow-hidden">
         
-        <!-- Sidebar -->
-        <aside class="w-64 bg-emerald-900 text-white flex flex-col shadow-lg hidden md:flex no-print">
-            <div class="p-4 bg-emerald-950 text-center border-b border-emerald-800">
-                <h1 class="font-bold text-lg">AHIFM ERP</h1>
-                <p class="text-xs text-emerald-300">ম্যানেজমেন্ট সিস্টেম</p>
+        <!-- Sidebar with 22 Modules -->
+        <aside class="w-72 bg-emerald-900 text-white flex flex-col shadow-lg overflow-y-auto no-print">
+            <div class="p-4 bg-emerald-950 text-center border-b border-emerald-800 sticky top-0 z-10">
+                <h1 class="font-bold text-base">AHIFM ERP</h1>
+                <p class="text-xs text-emerald-300">Abdullah Hat Islamia Fazil Madrasah</p>
             </div>
 
-            <nav class="flex-1 overflow-y-auto p-4 space-y-2 text-sm">
-                <a href="index.html" class="flex items-center gap-3 p-2.5 rounded hover:bg-emerald-800 transition">
-                    <i class="fa-solid fa-house"></i> 01. Home
+            <nav class="flex-1 p-3 space-y-1 text-xs">
+                <a href="index.html" class="flex items-center gap-2.5 p-2 rounded hover:bg-emerald-800 transition">
+                    <i class="fa-solid fa-house w-4"></i> 🏠 01. Home
                 </a>
-                <a href="dashboard.html" class="flex items-center gap-3 p-2.5 rounded hover:bg-emerald-800 transition">
-                    <i class="fa-solid fa-chart-pie"></i> 10. Dashboard
+                <a href="institution.html" class="flex items-center gap-2.5 p-2 rounded hover:bg-emerald-800 transition">
+                    <i class="fa-solid fa-school w-4"></i> 🏫 02. Institution
                 </a>
-                <a href="settings.html" class="flex items-center gap-3 p-2.5 rounded hover:bg-emerald-800 transition">
-                    <i class="fa-solid fa-gear"></i> 22. Settings
+                <a href="students.html" class="flex items-center gap-2.5 p-2 rounded hover:bg-emerald-800 transition">
+                    <i class="fa-solid fa-user-graduate w-4"></i> 👨‍🎓 03. Student Management
                 </a>
-                <a href="users.html" class="flex items-center gap-3 p-2.5 rounded bg-emerald-800 text-white font-medium">
-                    <i class="fa-solid fa-shield-halved"></i> 23. User & Security
+                <a href="teachers.html" class="flex items-center gap-2.5 p-2 rounded hover:bg-emerald-800 transition">
+                    <i class="fa-solid fa-chalkboard-user w-4"></i> 👨‍🏫 04. Teacher & Staff
+                </a>
+                <a href="academic.html" class="flex items-center gap-2.5 p-2 rounded hover:bg-emerald-800 transition">
+                    <i class="fa-solid fa-book-open w-4"></i> 📚 05. Academic Management
+                </a>
+                <a href="examination.html" class="flex items-center gap-2.5 p-2 rounded hover:bg-emerald-800 transition">
+                    <i class="fa-solid fa-file-lines w-4"></i> 📝 06. Examination
+                </a>
+                <a href="attendance.html" class="flex items-center gap-2.5 p-2 rounded hover:bg-emerald-800 transition">
+                    <i class="fa-solid fa-clipboard-user w-4"></i> 🕐 07. Attendance
+                </a>
+                <a href="accounts.html" class="flex items-center gap-2.5 p-2 rounded hover:bg-emerald-800 transition">
+                    <i class="fa-solid fa-wallet w-4"></i> 💰 08. Accounts
+                </a>
+                <a href="fees.html" class="flex items-center gap-2.5 p-2 rounded hover:bg-emerald-800 transition">
+                    <i class="fa-solid fa-receipt w-4"></i> 🧾 09. Fees Management
+                </a>
+                <a href="dashboard.html" class="flex items-center gap-2.5 p-2 rounded hover:bg-emerald-800 transition">
+                    <i class="fa-solid fa-chart-pie w-4"></i> 📊 10. Dashboard
+                </a>
+                <a href="notice.html" class="flex items-center gap-2.5 p-2 rounded hover:bg-emerald-800 transition">
+                    <i class="fa-solid fa-bullhorn w-4"></i> 📢 11. Notice Management
+                </a>
+                <a href="routine.html" class="flex items-center gap-2.5 p-2 rounded hover:bg-emerald-800 transition">
+                    <i class="fa-solid fa-calendar-days w-4"></i> 📅 12. Routine & Calendar
+                </a>
+                <a href="certificates.html" class="flex items-center gap-2.5 p-2 rounded hover:bg-emerald-800 transition">
+                    <i class="fa-solid fa-award w-4"></i> 📄 13. Certificates
+                </a>
+                <a href="inventory.html" class="flex items-center gap-2.5 p-2 rounded hover:bg-emerald-800 transition">
+                    <i class="fa-solid fa-boxes-stacked w-4"></i> 📦 14. Inventory
+                </a>
+                <a href="library.html" class="flex items-center gap-2.5 p-2 rounded hover:bg-emerald-800 transition">
+                    <i class="fa-solid fa-book-bookmark w-4"></i> 📖 15. Library
+                </a>
+                <a href="transport.html" class="flex items-center gap-2.5 p-2 rounded hover:bg-emerald-800 transition">
+                    <i class="fa-solid fa-bus w-4"></i> 🚌 16. Transport
+                </a>
+                <a href="hostel.html" class="flex items-center gap-2.5 p-2 rounded hover:bg-emerald-800 transition">
+                    <i class="fa-solid fa-bed w-4"></i> 🍚 17. Hostel / Facilities
+                </a>
+                <a href="communication.html" class="flex items-center gap-2.5 p-2 rounded hover:bg-emerald-800 transition">
+                    <i class="fa-solid fa-comments w-4"></i> 📱 18. Communication
+                </a>
+                <a href="users.html" class="flex items-center gap-2.5 p-2 rounded bg-emerald-800 text-white font-medium">
+                    <i class="fa-solid fa-shield-halved w-4"></i> 🔐 19. User & Security
+                </a>
+                <a href="cloud-backup.html" class="flex items-center gap-2.5 p-2 rounded hover:bg-emerald-800 transition">
+                    <i class="fa-solid fa-cloud-arrow-up w-4"></i> ☁️ 20. Cloud & Backup
+                </a>
+                <a href="reports.html" class="flex items-center gap-2.5 p-2 rounded hover:bg-emerald-800 transition">
+                    <i class="fa-solid fa-chart-line w-4"></i> 📈 21. Reports
+                </a>
+                <a href="settings.html" class="flex items-center gap-2.5 p-2 rounded hover:bg-emerald-800 transition">
+                    <i class="fa-solid fa-gear w-4"></i> ⚙️ 22. Settings
                 </a>
             </nav>
         </aside>
@@ -41,138 +95,119 @@
             <!-- Top Navbar -->
             <header class="bg-white shadow-sm p-4 flex justify-between items-center no-print">
                 <div class="flex items-center gap-3">
-                    <span class="font-bold text-emerald-800 text-xl">ইউজার ও সিকিউরিটি ম্যানেজমেন্ট</span>
+                    <span class="font-bold text-emerald-800 text-lg">🔐 User & Security Management (ব্যবহারকারী ও নিরাপত্তা প্যানেল)</span>
                 </div>
                 <div class="flex items-center gap-4">
-                    <span class="text-sm text-gray-600">অ্যাডমিন প্যানেল</span>
-                    <a href="index.html" class="bg-red-600 text-white px-4 py-1.5 rounded text-sm font-medium hover:bg-red-700">লগআউট</a>
+                    <span class="text-sm text-gray-600 font-medium"><i class="fa-solid fa-user-shield text-emerald-700 mr-1"></i> সুপার অ্যাডমিন</span>
+                    <a href="index.html" class="bg-red-600 text-white px-4 py-1.5 rounded text-xs font-medium hover:bg-red-700">লগআউট</a>
                 </div>
             </header>
 
             <!-- Page Content -->
             <main class="p-6 space-y-6">
                 
-                <!-- Security Overview Cards -->
-                <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
-                    <div class="bg-white p-5 rounded-xl shadow-sm border-l-4 border-emerald-600">
-                        <p class="text-gray-500 text-sm">মোট সক্রিয় ইউজার</p>
-                        <h3 class="text-2xl font-bold text-emerald-700">০৮ জন</h3>
-                    </div>
-                    <div class="bg-white p-5 rounded-xl shadow-sm border-l-4 border-blue-600">
-                        <p class="text-gray-500 text-sm">সিস্টেম রোল (Roles)</p>
-                        <h3 class="text-2xl font-bold text-blue-700">০৪ টি</h3>
-                    </div>
-                    <div class="bg-white p-5 rounded-xl shadow-sm border-l-4 border-amber-600">
-                        <p class="text-gray-500 text-sm">শেষ ব্যাকআপ (Backup)</p>
-                        <h3 class="text-2xl font-bold text-amber-700">আজ, সকাল ৬:০০</h3>
-                    </div>
-                </div>
-
-                <!-- Action Bar -->
-                <div class="flex flex-wrap justify-between items-center bg-white p-4 rounded-xl shadow-sm gap-4 no-print">
-                    <div class="w-full md:w-1/3">
-                        <input type="text" id="searchUser" onkeyup="searchTable('searchUser', 'userTable', 0)" placeholder="ব্যবহারকারীর নাম দিয়ে খুঁজুন..." class="w-full px-4 py-2 border rounded-lg focus:outline-none focus:ring-2 focus:ring-emerald-600 text-sm">
-                    </div>
+                <!-- Page Header Banner -->
+                <div class="bg-gradient-to-r from-emerald-800 to-emerald-950 text-white p-6 rounded-2xl shadow-sm flex flex-col md:flex-row justify-between items-center gap-4">
                     <div>
-                        <button onclick="openModal('addUserModal')" class="bg-emerald-600 text-white px-4 py-2 rounded-lg font-medium hover:bg-emerald-700 flex items-center gap-2 text-sm">
-                            <i class="fa-solid fa-user-plus"></i> নতুন ইউজার যোগ করুন
-                        </button>
+                        <h2 class="text-xl font-bold">ব্যবহারকারী অ্যাক্সেস ও নিরাপত্তা নিয়ন্ত্রণ প্যানেল</h2>
+                        <p class="text-emerald-200 text-xs mt-1">অ্যাডমিন, শিক্ষক, হিসাবরক্ষক ও শিক্ষার্থী লগইন ব্যবস্থাপনা, রোল পারমিশন, অ্যাক্টিভিটি লগ এবং পাসওয়ার্ড সুরক্ষা।</p>
+                    </div>
+                    <div class="flex gap-2">
+                        <button class="bg-white text-emerald-900 px-4 py-2 rounded-xl font-bold text-xs hover:bg-emerald-50 transition shadow-sm">নতুন ব্যবহারকারী যোগ করুন</button>
                     </div>
                 </div>
 
-                <!-- User List Table -->
-                <div class="bg-white rounded-xl shadow-sm overflow-hidden">
-                    <div class="p-4 border-b font-bold text-gray-800">সিস্টেম ব্যবহারকারীদের তালিকা</div>
-                    <div class="overflow-x-auto">
-                        <table id="userTable" class="w-full text-left border-collapse text-sm">
-                            <thead>
-                                <tr class="bg-gray-50 text-gray-600 border-b">
-                                    <th class="p-3">নাম ও ইউজারনেম</th>
-                                    <th class="p-3">ইমেইল / মোবাইল</th>
-                                    <th class="p-3">অ্যাকাউন্ট রোল (Role)</th>
-                                    <th class="p-3">স্ট্যাটাস</th>
-                                    <th class="p-3 text-center">কার্যক্রম</th>
-                                </tr>
-                            </thead>
-                            <tbody class="text-gray-700 divide-y">
-                                <tr class="hover:bg-gray-50">
-                                    <td class="p-3 font-semibold text-gray-800">
-                                        মাওঃ আব্দুর রহমান <br>
-                                        <span class="text-xs text-gray-500 font-normal">username: principal</span>
-                                    </td>
-                                    <td class="p-3 text-gray-600">01811-223344</td>
-                                    <td class="p-3"><span class="bg-purple-100 text-purple-800 px-2 py-0.5 rounded text-xs font-semibold">Super Admin</span></td>
-                                    <td class="p-3"><span class="bg-emerald-100 text-emerald-800 px-2 py-0.5 rounded text-xs font-semibold">সক্রিয়</span></td>
-                                    <td class="p-3 text-center">
-                                        <button class="text-blue-600 hover:text-blue-800 mr-2" title="এডিট"><i class="fa-solid fa-pen-to-square"></i></button>
-                                        <button class="text-amber-600 hover:text-amber-800 mr-2" title="পাসওয়ার্ড পরিবর্তন"><i class="fa-solid fa-key"></i></button>
-                                    </td>
-                                </tr>
-                                <tr class="hover:bg-gray-50">
-                                    <td class="p-3 font-semibold text-gray-800">
-                                        হাফেজ মাওলানা ইব্রাহিম <br>
-                                        <span class="text-xs text-gray-500 font-normal">username: accountant</span>
-                                    </td>
-                                    <td class="p-3 text-gray-600">01711-556677</td>
-                                    <td class="p-3"><span class="bg-blue-100 text-blue-800 px-2 py-0.5 rounded text-xs font-semibold">Accountant</span></td>
-                                    <td class="p-3"><span class="bg-emerald-100 text-emerald-800 px-2 py-0.5 rounded text-xs font-semibold">সক্রিয়</span></td>
-                                    <td class="p-3 text-center">
-                                        <button class="text-blue-600 hover:text-blue-800 mr-2" title="এডিট"><i class="fa-solid fa-pen-to-square"></i></button>
-                                        <button class="text-amber-600 hover:text-amber-800 mr-2" title="পাসওয়ার্ড পরিবর্তন"><i class="fa-solid fa-key"></i></button>
-                                    </td>
-                                </tr>
-                            </tbody>
-                        </table>
+                <!-- Sub-Modules Grid Layout (7 Features) -->
+                <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+                    
+                    <!-- 1. Admin Login -->
+                    <div class="bg-white p-5 rounded-xl shadow-sm border-t-4 border-emerald-600 space-y-3">
+                        <div class="flex items-center justify-between border-b pb-2">
+                            <h3 class="font-bold text-gray-800 text-sm flex items-center gap-2">
+                                <i class="fa-solid fa-user-shield text-emerald-600"></i> Admin Login
+                            </h3>
+                            <span class="text-xs bg-emerald-50 text-emerald-700 px-2 py-0.5 rounded font-semibold">অ্যাডমিন লগইন</span>
+                        </div>
+                        <p class="text-xs text-gray-600 leading-relaxed">সুপার অ্যাডমিন ও অন্যান্য প্রশাসনিক প্যানেল পরিচালনাকারীদের নিরাপদ লগইন এবং সেশন নিয়ন্ত্রণ।</p>
+                        <button class="w-full bg-emerald-50 text-emerald-700 py-1.5 rounded text-xs font-bold hover:bg-emerald-100 transition">অ্যাডমিন প্যানেল</button>
                     </div>
+
+                    <!-- 2. Teacher Login -->
+                    <div class="bg-white p-5 rounded-xl shadow-sm border-t-4 border-blue-600 space-y-3">
+                        <div class="flex items-center justify-between border-b pb-2">
+                            <h3 class="font-bold text-gray-800 text-sm flex items-center gap-2">
+                                <i class="fa-solid fa-chalkboard-user text-blue-600"></i> Teacher Login
+                            </h3>
+                            <span class="text-xs bg-blue-50 text-blue-700 px-2 py-0.5 rounded font-semibold">শিক্ষক লগইন</span>
+                        </div>
+                        <p class="text-xs text-gray-600 leading-relaxed">মাদ্রাসার শিক্ষকদের উপস্থিতি প্রদান, নম্বর এন্ট্রি ও রুটিন দেখার জন্য ডেডিকেটেড শিক্ষক পোর্টাল লগইন।</p>
+                        <button class="w-full bg-blue-50 text-blue-700 py-1.5 rounded text-xs font-bold hover:bg-blue-100 transition">শিক্ষক লগইন নিয়ন্ত্রণ</button>
+                    </div>
+
+                    <!-- 3. Accountant Login -->
+                    <div class="bg-white p-5 rounded-xl shadow-sm border-t-4 border-amber-600 space-y-3">
+                        <div class="flex items-center justify-between border-b pb-2">
+                            <h3 class="font-bold text-gray-800 text-sm flex items-center gap-2">
+                                <i class="fa-solid fa-calculator text-amber-600"></i> Accountant Login
+                            </h3>
+                            <span class="text-xs bg-amber-50 text-amber-700 px-2 py-0.5 rounded font-semibold">হিসাবরক্ষক লগইন</span>
+                        </div>
+                        <p class="text-xs text-gray-600 leading-relaxed">হিসাব বিভাগ ও ফি কালেকশন মডিউলে প্রবেশের জন্য অ্যাকাউন্টস অফিসারদের বিশেষ অ্যাকাউন্ট লগইন।</p>
+                        <button class="w-full bg-amber-50 text-amber-700 py-1.5 rounded text-xs font-bold hover:bg-amber-100 transition">অ্যাকাউন্টস লগইন প্যানেল</button>
+                    </div>
+
+                    <!-- 4. Student Login -->
+                    <div class="bg-white p-5 rounded-xl shadow-sm border-t-4 border-purple-600 space-y-3">
+                        <div class="flex items-center justify-between border-b pb-2">
+                            <h3 class="font-bold text-gray-800 text-sm flex items-center gap-2">
+                                <i class="fa-solid fa-user-graduate text-purple-600"></i> Student Login
+                            </h3>
+                            <span class="text-xs bg-purple-50 text-purple-700 px-2 py-0.5 rounded font-semibold">শিক্ষার্থী লগইন</span>
+                        </div>
+                        <p class="text-xs text-gray-600 leading-relaxed">শিক্ষার্থীদের নিজেদের ফলাফল, ফি স্ট্যাটাস, উপস্থিতি ও নোটিশ দেখার জন্য স্টুডেন্ট পোর্টাল অ্যাক্সেস।</p>
+                        <button class="w-full bg-purple-50 text-purple-700 py-1.5 rounded text-xs font-bold hover:bg-purple-100 transition">শিক্ষার্থী লগইন প্যানেল</button>
+                    </div>
+
+                    <!-- 5. Role Permission -->
+                    <div class="bg-white p-5 rounded-xl shadow-sm border-t-4 border-indigo-600 space-y-3">
+                        <div class="flex items-center justify-between border-b pb-2">
+                            <h3 class="font-bold text-gray-800 text-sm flex items-center gap-2">
+                                <i class="fa-solid fa-key text-indigo-600"></i> Role Permission
+                            </h3>
+                            <span class="text-xs bg-indigo-50 text-indigo-700 px-2 py-0.5 rounded font-semibold">রোল পারমিশন</span>
+                        </div>
+                        <p class="text-xs text-gray-600 leading-relaxed">কোন ব্যবহারকারী কোন কোন মডিউলে প্রবেশ বা এডিট করতে পারবে তার পারমিশন বা অ্যাক্সেস রাইটস নির্ধারণ।</p>
+                        <button class="w-full bg-indigo-50 text-indigo-700 py-1.5 rounded text-xs font-bold hover:bg-indigo-100 transition">পারমিশন সেটিংস</button>
+                    </div>
+
+                    <!-- 6. Activity Log -->
+                    <div class="bg-white p-5 rounded-xl shadow-sm border-t-4 border-teal-600 space-y-3">
+                        <div class="flex items-center justify-between border-b pb-2">
+                            <h3 class="font-bold text-gray-800 text-sm flex items-center gap-2">
+                                <i class="fa-solid fa-clock-rotate-left text-teal-600"></i> Activity Log
+                            </h3>
+                            <span class="text-xs bg-teal-50 text-teal-700 px-2 py-0.5 rounded font-semibold">অ্যাক্টিভিটি লগ</span>
+                        </div>
+                        <p class="text-xs text-gray-600 leading-relaxed">সিস্টেমে কে কখন লগইন করেছেন, কী ধরনের ডাটা এন্ট্রি বা ডিলিট করেছেন তার সম্পূর্ণ মনিটরিং ও লগ ট্র্যাকিং।</p>
+                        <button class="w-full bg-teal-50 text-teal-700 py-1.5 rounded text-xs font-bold hover:bg-teal-100 transition">লগ হিস্টরি দেখুন</button>
+                    </div>
+
+                    <!-- 7. Password Management -->
+                    <div class="bg-white p-5 rounded-xl shadow-sm border-t-4 border-rose-600 space-y-3">
+                        <div class="flex items-center justify-between border-b pb-2">
+                            <h3 class="font-bold text-gray-800 text-sm flex items-center gap-2">
+                                <i class="fa-solid fa-lock text-rose-600"></i> Password Management
+                            </h3>
+                            <span class="text-xs bg-rose-50 text-rose-700 px-2 py-0.5 rounded font-semibold">পাসওয়ার্ড ম্যানেজমেন্ট</span>
+                        </div>
+                        <p class="text-xs text-gray-600 leading-relaxed">ব্যবহারকারীদের পাসওয়ার্ড রিসেট, পরিবর্তন এবং শক্তিশালী পাসওয়ার্ড পলিসি কনফিগারেশন।</p>
+                        <button class="w-full bg-rose-50 text-rose-700 py-1.5 rounded text-xs font-bold hover:bg-rose-100 transition">পাসওয়ার্ড সেটিংস</button>
+                    </div>
+
                 </div>
 
             </main>
 
-        </div>
-    </div>
-
-    <!-- Add User Modal -->
-    <div id="addUserModal" class="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center hidden z-50">
-        <div class="bg-white p-6 rounded-xl shadow-lg w-full max-w-lg">
-            <div class="flex justify-between items-center mb-4 border-b pb-2">
-                <h3 class="font-bold text-gray-800">নতুন সিস্টেম ইউজার তৈরি করুন</h3>
-                <button onclick="closeModal('addUserModal')" class="text-gray-500 hover:text-gray-700"><i class="fa-solid fa-xmark text-lg"></i></button>
-            </div>
-            <form class="space-y-4 text-sm">
-                <div>
-                    <label class="block font-medium text-gray-700 mb-1">পূর্ণ নাম</label>
-                    <input type="text" placeholder="ব্যবহারকারীর নাম..." class="w-full px-3 py-2 border rounded-lg focus:outline-none focus:ring-2 focus:ring-emerald-600">
-                </div>
-                <div class="grid grid-cols-2 gap-4">
-                    <div>
-                        <label class="block font-medium text-gray-700 mb-1">ইউজারনেম (ID)</label>
-                        <input type="text" placeholder="username" class="w-full px-3 py-2 border rounded-lg focus:outline-none focus:ring-2 focus:ring-emerald-600">
-                    </div>
-                    <div>
-                        <label class="block font-medium text-gray-700 mb-1">মোবাইল নম্বর</label>
-                        <input type="text" placeholder="01XXXXXXXXX" class="w-full px-3 py-2 border rounded-lg focus:outline-none focus:ring-2 focus:ring-emerald-600">
-                    </div>
-                </div>
-                <div class="grid grid-cols-2 gap-4">
-                    <div>
-                        <label class="block font-medium text-gray-700 mb-1">পাসওয়ার্ড</label>
-                        <input type="password" placeholder="••••••••" class="w-full px-3 py-2 border rounded-lg focus:outline-none focus:ring-2 focus:ring-emerald-600">
-                    </div>
-                    <div>
-                        <label class="block font-medium text-gray-700 mb-1">رول / Role</label>
-                        <select class="w-full px-3 py-2 border rounded-lg focus:outline-none focus:ring-2 focus:ring-emerald-600">
-                            <option>Super Admin</option>
-                            <option>Accountant</option>
-                            <option>Teacher / Staff</option>
-                            <option>Data Entry Operator</option>
-                        </select>
-                    </div>
-                </div>
-                <div class="flex justify-end gap-2 pt-2">
-                    <button type="button" onclick="closeModal('addUserModal')" class="bg-gray-300 text-gray-700 px-4 py-2 rounded-lg font-medium hover:bg-gray-400">বাতিল</button>
-                    <button type="submit" class="bg-emerald-600 text-white px-5 py-2 rounded-lg font-medium hover:bg-emerald-700">সংরক্ষণ করুন</button>
-                </div>
-            </form>
         </div>
     </div>
 

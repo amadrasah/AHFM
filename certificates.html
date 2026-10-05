@@ -3,70 +3,88 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Certificates & Admit Card - AHIFM ERP</title>
+    <title>Certificates - Abdullah Hat Islamia Fazil Madrasah</title>
     <script src="https://cdn.tailwindcss.com"></script>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
-    <style>
-        @media print {
-            body * {
-                visibility: hidden;
-            }
-            .printable-area, .printable-area * {
-                visibility: visible;
-            }
-            .printable-area {
-                position: absolute;
-                left: 0;
-                top: 0;
-                width: 100%;
-            }
-            .no-print {
-                display: none !important;
-            }
-        }
-    </style>
+    <link rel="stylesheet" href="style.css">
 </head>
 <body class="bg-gray-100 font-sans">
 
     <div class="flex h-screen overflow-hidden">
         
-        <!-- Sidebar -->
-        <aside class="w-64 bg-emerald-900 text-white flex flex-col shadow-lg hidden md:flex no-print">
-            <div class="p-4 bg-emerald-950 text-center border-b border-emerald-800">
-                <h1 class="font-bold text-lg">AHIFM ERP</h1>
-                <p class="text-xs text-emerald-300">ম্যানেজমেন্ট সিস্টেম</p>
+        <!-- Sidebar with 22 Modules -->
+        <aside class="w-72 bg-emerald-900 text-white flex flex-col shadow-lg overflow-y-auto no-print">
+            <div class="p-4 bg-emerald-950 text-center border-b border-emerald-800 sticky top-0 z-10">
+                <h1 class="font-bold text-base">AHIFM ERP</h1>
+                <p class="text-xs text-emerald-300">Abdullah Hat Islamia Fazil Madrasah</p>
             </div>
 
-            <nav class="flex-1 overflow-y-auto p-4 space-y-2 text-sm">
-                <a href="index.html" class="flex items-center gap-3 p-2.5 rounded hover:bg-emerald-800 transition">
-                    <i class="fa-solid fa-house"></i> 01. Home
+            <nav class="flex-1 p-3 space-y-1 text-xs">
+                <a href="index.html" class="flex items-center gap-2.5 p-2 rounded hover:bg-emerald-800 transition">
+                    <i class="fa-solid fa-house w-4"></i> 🏠 01. Home
                 </a>
-                <a href="institution.html" class="flex items-center gap-3 p-2.5 rounded hover:bg-emerald-800 transition">
-                    <i class="fa-solid fa-school"></i> 02. Institution
+                <a href="institution.html" class="flex items-center gap-2.5 p-2 rounded hover:bg-emerald-800 transition">
+                    <i class="fa-solid fa-school w-4"></i> 🏫 02. Institution
                 </a>
-                <a href="students.html" class="flex items-center gap-3 p-2.5 rounded hover:bg-emerald-800 transition">
-                    <i class="fa-solid fa-user-graduate"></i> 03. Student Management
+                <a href="students.html" class="flex items-center gap-2.5 p-2 rounded hover:bg-emerald-800 transition">
+                    <i class="fa-solid fa-user-graduate w-4"></i> 👨‍🎓 03. Student Management
                 </a>
-                <a href="teachers.html" class="flex items-center gap-3 p-2.5 rounded hover:bg-emerald-800 transition">
-                    <i class="fa-solid fa-chalkboard-user"></i> 04. Teacher & Staff
+                <a href="teachers.html" class="flex items-center gap-2.5 p-2 rounded hover:bg-emerald-800 transition">
+                    <i class="fa-solid fa-chalkboard-user w-4"></i> 👨‍🏫 04. Teacher & Staff
                 </a>
-                <a href="academic.html" class="flex items-center gap-3 p-2.5 rounded hover:bg-emerald-800 transition">
-                    <i class="fa-solid fa-book-open"></i> 05. Academic
+                <a href="academic.html" class="flex items-center gap-2.5 p-2 rounded hover:bg-emerald-800 transition">
+                    <i class="fa-solid fa-book-open w-4"></i> 📚 05. Academic Management
                 </a>
-                <a href="examination.html" class="flex items-center gap-3 p-2.5 rounded hover:bg-emerald-800 transition">
-                    <i class="fa-solid fa-file-pen"></i> 06. Examination
+                <a href="examination.html" class="flex items-center gap-2.5 p-2 rounded hover:bg-emerald-800 transition">
+                    <i class="fa-solid fa-file-lines w-4"></i> 📝 06. Examination
                 </a>
-                <a href="certificates.html" class="flex items-center gap-3 p-2.5 rounded bg-emerald-800 text-white font-medium">
-                    <i class="fa-solid fa-certificate"></i> 12. Certificates & Admit
+                <a href="attendance.html" class="flex items-center gap-2.5 p-2 rounded hover:bg-emerald-800 transition">
+                    <i class="fa-solid fa-clipboard-user w-4"></i> 🕐 07. Attendance
                 </a>
-                <a href="dashboard.html" class="flex items-center gap-3 p-2.5 rounded hover:bg-emerald-800 transition">
-                    <i class="fa-solid fa-chart-pie"></i> 10. Dashboard
+                <a href="accounts.html" class="flex items-center gap-2.5 p-2 rounded hover:bg-emerald-800 transition">
+                    <i class="fa-solid fa-wallet w-4"></i> 💰 08. Accounts
                 </a>
-                <a href="notice.html" class="flex items-center gap-3 p-2.5 rounded hover:bg-emerald-800 transition">
-                    <i class="fa-solid fa-bullhorn"></i> 11. Notice Board
+                <a href="fees.html" class="flex items-center gap-2.5 p-2 rounded hover:bg-emerald-800 transition">
+                    <i class="fa-solid fa-receipt w-4"></i> 🧾 09. Fees Management
                 </a>
-                <a href="settings.html" class="flex items-center gap-3 p-2.5 rounded hover:bg-emerald-800 transition">
-                    <i class="fa-solid fa-gear"></i> 22. Settings
+                <a href="dashboard.html" class="flex items-center gap-2.5 p-2 rounded hover:bg-emerald-800 transition">
+                    <i class="fa-solid fa-chart-pie w-4"></i> 📊 10. Dashboard
+                </a>
+                <a href="notice.html" class="flex items-center gap-2.5 p-2 rounded hover:bg-emerald-800 transition">
+                    <i class="fa-solid fa-bullhorn w-4"></i> 📢 11. Notice Management
+                </a>
+                <a href="routine.html" class="flex items-center gap-2.5 p-2 rounded hover:bg-emerald-800 transition">
+                    <i class="fa-solid fa-calendar-days w-4"></i> 📅 12. Routine & Calendar
+                </a>
+                <a href="certificates.html" class="flex items-center gap-2.5 p-2 rounded bg-emerald-800 text-white font-medium">
+                    <i class="fa-solid fa-award w-4"></i> 📄 13. Certificates
+                </a>
+                <a href="inventory.html" class="flex items-center gap-2.5 p-2 rounded hover:bg-emerald-800 transition">
+                    <i class="fa-solid fa-boxes-stacked w-4"></i> 📦 14. Inventory
+                </a>
+                <a href="library.html" class="flex items-center gap-2.5 p-2 rounded hover:bg-emerald-800 transition">
+                    <i class="fa-solid fa-books w-4"></i> 📖 15. Library
+                </a>
+                <a href="transport.html" class="flex items-center gap-2.5 p-2 rounded hover:bg-emerald-800 transition">
+                    <i class="fa-solid fa-bus w-4"></i> 🚌 16. Transport
+                </a>
+                <a href="hostel.html" class="flex items-center gap-2.5 p-2 rounded hover:bg-emerald-800 transition">
+                    <i class="fa-solid fa-bed w-4"></i> 🍚 17. Hostel / Facilities
+                </a>
+                <a href="communication.html" class="flex items-center gap-2.5 p-2 rounded hover:bg-emerald-800 transition">
+                    <i class="fa-solid fa-comments w-4"></i> 📱 18. Communication
+                </a>
+                <a href="users.html" class="flex items-center gap-2.5 p-2 rounded hover:bg-emerald-800 transition">
+                    <i class="fa-solid fa-shield-halved w-4"></i> 🔐 19. User & Security
+                </a>
+                <a href="cloud-backup.html" class="flex items-center gap-2.5 p-2 rounded hover:bg-emerald-800 transition">
+                    <i class="fa-solid fa-cloud-arrow-up w-4"></i> ☁️ 20. Cloud & Backup
+                </a>
+                <a href="reports.html" class="flex items-center gap-2.5 p-2 rounded hover:bg-emerald-800 transition">
+                    <i class="fa-solid fa-chart-line w-4"></i> 📈 21. Reports
+                </a>
+                <a href="settings.html" class="flex items-center gap-2.5 p-2 rounded hover:bg-emerald-800 transition">
+                    <i class="fa-solid fa-gear w-4"></i> ⚙️ 22. Settings
                 </a>
             </nav>
         </aside>
@@ -77,59 +95,89 @@
             <!-- Top Navbar -->
             <header class="bg-white shadow-sm p-4 flex justify-between items-center no-print">
                 <div class="flex items-center gap-3">
-                    <span class="font-bold text-emerald-800 text-xl">সনদপত্র, মার্কসিট ও এডমিট কার্ড জেনারেটর</span>
+                    <span class="font-bold text-emerald-800 text-lg">📄 Certificates (সনদ ও প্রশংসাপত্র ব্যবস্থাপনা)</span>
                 </div>
                 <div class="flex items-center gap-4">
-                    <span class="text-sm text-gray-600">অ্যাডমিন প্যানেল</span>
-                    <a href="index.html" class="bg-red-600 text-white px-4 py-1.5 rounded text-sm font-medium hover:bg-red-700">লগআউট</a>
+                    <span class="text-sm text-gray-600 font-medium"><i class="fa-solid fa-user-shield text-emerald-700 mr-1"></i> সুপার অ্যাডমিন</span>
+                    <a href="index.html" class="bg-red-600 text-white px-4 py-1.5 rounded text-xs font-medium hover:bg-red-700">লগআউট</a>
                 </div>
             </header>
 
             <!-- Page Content -->
             <main class="p-6 space-y-6">
                 
-                <!-- Selector & Controls Bar -->
-                <div class="bg-white p-4 rounded-xl shadow-sm flex flex-wrap justify-between items-center gap-4 no-print">
-                    <div class="flex items-center gap-3">
-                        <select id="docType" class="px-3 py-2 border rounded-lg focus:outline-none focus:ring-2 focus:ring-emerald-600 text-sm">
-                            <option value="testimonial">প্রশংসাপত্র / টেস্টোমোনিয়াল</option>
-                            <option value="admit">এডমিট কার্ড (Admit Card)</option>
-                            <option value="marksheet">একাডেমিক মার্কসিট (Marksheet)</option>
-                        </select>
-                        <input type="text" placeholder="স্টুডেন্ট আইডি দিন..." class="px-3 py-2 border rounded-lg focus:outline-none focus:ring-2 focus:ring-emerald-600 text-sm">
-                    </div>
+                <!-- Page Header Banner -->
+                <div class="bg-gradient-to-r from-emerald-800 to-emerald-950 text-white p-6 rounded-2xl shadow-sm flex flex-col md:flex-row justify-between items-center gap-4">
                     <div>
-                        <button onclick="window.print()" class="bg-emerald-600 text-white px-5 py-2 rounded-lg font-medium hover:bg-emerald-700 flex items-center gap-2 text-sm">
-                            <i class="fa-solid fa-print"></i> প্রিন্ট করুন (Print)
-                        </button>
+                        <h2 class="text-xl font-bold">শিক্ষার্থী সনদ, প্রশংসাপত্র ও টিসি জেনারেটর প্যানেল</h2>
+                        <p class="text-emerald-200 text-xs mt-1">শিক্ষার্থী সনদ, টেস্টোনিয়াল, ছাড়পত্র (TC), চরিত্র সনদ এবং প্রিন্ট বা পিডিএফ ডাউনলোডের সুবিধা।</p>
+                    </div>
+                    <div class="flex gap-2">
+                        <button class="bg-white text-emerald-900 px-4 py-2 rounded-xl font-bold text-xs hover:bg-emerald-50 transition shadow-sm">নতুন সনদ তৈরি করুন</button>
                     </div>
                 </div>
 
-                <!-- Printable Preview Area -->
-                <div class="printable-area bg-white p-8 rounded-xl shadow-sm max-w-3xl mx-auto border border-emerald-200">
+                <!-- Sub-Modules Grid Layout (5 Features) -->
+                <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
                     
-                    <!-- Header -->
-                    <div class="text-center border-b-2 border-emerald-800 pb-4 mb-6">
-                        <h2 class="text-2xl font-bold text-emerald-900">আল-হেরা ইসলামিয়া ফাযিল মাদরাসা</h2>
-                        <p class="text-sm text-gray-600">প্রতিষ্ঠিত: ১৯৯৫ খ্রিঃ | নোয়াখালী সদর, নোয়াখালী</p>
-                        <h3 class="mt-3 text-lg font-semibold bg-emerald-100 text-emerald-900 inline-block px-4 py-1 rounded-full">প্রশংসাপত্র (Testimonial)</h3>
+                    <!-- 1. Student Certificate -->
+                    <div class="bg-white p-5 rounded-xl shadow-sm border-t-4 border-emerald-600 space-y-3">
+                        <div class="flex items-center justify-between border-b pb-2">
+                            <h3 class="font-bold text-gray-800 text-sm flex items-center gap-2">
+                                <i class="fa-solid fa-award text-emerald-600"></i> Student Certificate
+                            </h3>
+                            <span class="text-xs bg-emerald-50 text-emerald-700 px-2 py-0.5 rounded font-semibold">শিক্ষার্থী সনদ</span>
+                        </div>
+                        <p class="text-xs text-gray-600 leading-relaxed">শিক্ষার্থী অধ্যয়নরত থাকার অফিশিয়াল স্টুডেন্ট সার্টিফিকেট বা প্রত্যয়নপত্র তৈরি ও প্রদান।</p>
+                        <button class="w-full bg-emerald-50 text-emerald-700 py-1.5 rounded text-xs font-bold hover:bg-emerald-100 transition">সনদ জেনারেটর</button>
                     </div>
 
-                    <!-- Body Content -->
-                    <div class="space-y-4 text-gray-800 text-base leading-relaxed">
-                        <p class="text-right text-sm text-gray-500">তারিখ: ০৫ অক্টোবর ২০২৬</p>
-                        <p>এই মর্মে প্রত্যয়ন করা যাইতেছে যে, <strong>মুহাম্মদ আব্দুল্লাহ</strong>, পিতা: মাওলানা আব্দুর রহমান, মাতা: আমিনা খাতুন, অত্র মাদরাসা হইতে <strong>২০২৬</strong> সনে আলিম / দাখিল পরীক্ষায় অংশগ্রহণ করিয়া কৃতিত্বের সাথে উত্তীর্ণ হইয়াছেন।</p>
-                        <p>শিক্ষা জীবনে তাহার চরিত্র, আচরণ ও মাদরাসার নিয়মানুবর্তিতা অত্যন্ত সন্তোষজনক ছিল। আমি তাহার সর্বাঙ্গীন কল্যাণ ও উজ্জ্বল ভবিষ্যৎ কামনা করি।</p>
+                    <!-- 2. Testimonial -->
+                    <div class="bg-white p-5 rounded-xl shadow-sm border-t-4 border-blue-600 space-y-3">
+                        <div class="flex items-center justify-between border-b pb-2">
+                            <h3 class="font-bold text-gray-800 text-sm flex items-center gap-2">
+                                <i class="fa-solid fa-file-signature text-blue-600"></i> Testimonial
+                            </h3>
+                            <span class="text-xs bg-blue-50 text-blue-700 px-2 py-0.5 rounded font-semibold">টেস্টোনিয়াল</span>
+                        </div>
+                        <p class="text-xs text-gray-600 leading-relaxed">দাখিল, আলিম বা ফাজিল পাস করার পর কৃতি শিক্ষার্থীদের জন্য মানসম্মত টেস্টোনিয়াল বা প্রশংসাপত্র।</p>
+                        <button class="w-full bg-blue-50 text-blue-700 py-1.5 rounded text-xs font-bold hover:bg-blue-100 transition">টেস্টোনিয়াল প্যানেল</button>
                     </div>
 
-                    <!-- Signatures -->
-                    <div class="flex justify-between items-end mt-20 pt-8 border-t border-gray-200 text-sm">
-                        <div class="text-center">
-                            <p class="border-t border-gray-400 pt-1 px-6">শ্রেণি শিক্ষক</p>
+                    <!-- 3. Transfer Certificate -->
+                    <div class="bg-white p-5 rounded-xl shadow-sm border-t-4 border-purple-600 space-y-3">
+                        <div class="flex items-center justify-between border-b pb-2">
+                            <h3 class="font-bold text-gray-800 text-sm flex items-center gap-2">
+                                <i class="fa-solid fa-right-from-bracket text-purple-600"></i> Transfer Certificate (TC)
+                            </h3>
+                            <span class="text-xs bg-purple-50 text-purple-700 px-2 py-0.5 rounded font-semibold">ছাড়পত্র (টিসি)</span>
                         </div>
-                        <div class="text-center">
-                            <p class="border-t border-gray-400 pt-1 px-6 font-bold text-emerald-900">অধ্যক্ষ / প্রধান শিক্ষক</p>
+                        <p class="text-xs text-gray-600 leading-relaxed">অন্য প্রতিষ্ঠানে স্থানান্তরের জন্য শিক্ষার্থী স্থানান্তর ছাড়পত্র (Transfer Certificate / টিসি) প্রসেসিং।</p>
+                        <button class="w-full bg-purple-50 text-purple-700 py-1.5 rounded text-xs font-bold hover:bg-purple-100 transition">টিসি ম্যানেজমেন্ট</button>
+                    </div>
+
+                    <!-- 4. Character Certificate -->
+                    <div class="bg-white p-5 rounded-xl shadow-sm border-t-4 border-amber-600 space-y-3">
+                        <div class="flex items-center justify-between border-b pb-2">
+                            <h3 class="font-bold text-gray-800 text-sm flex items-center gap-2">
+                                <i class="fa-solid fa-id-card text-amber-600"></i> Character Certificate
+                            </h3>
+                            <span class="text-xs bg-amber-50 text-amber-700 px-2 py-0.5 rounded font-semibold">চরিত্র সনদ</span>
                         </div>
+                        <p class="text-xs text-gray-600 leading-relaxed">শিক্ষার্থীর নৈতিক চরিত্র, আচরণ ও মাদ্রাসায় তার সুসম্পর্ক প্রত্যয়ন করে চরিত্র সনদপত্র প্রদান।</p>
+                        <button class="w-full bg-amber-50 text-amber-700 py-1.5 rounded text-xs font-bold hover:bg-amber-100 transition">চরিত্র সনদ প্যানেল</button>
+                    </div>
+
+                    <!-- 5. Print / PDF -->
+                    <div class="bg-white p-5 rounded-xl shadow-sm border-t-4 border-indigo-600 space-y-3">
+                        <div class="flex items-center justify-between border-b pb-2">
+                            <h3 class="font-bold text-gray-800 text-sm flex items-center gap-2">
+                                <i class="fa-solid fa-print text-indigo-600"></i> Print & PDF Export
+                            </h3>
+                            <span class="text-xs bg-indigo-50 text-indigo-700 px-2 py-0.5 rounded font-semibold">প্রিন্ট / পিডিএফ</span>
+                        </div>
+                        <p class="text-xs text-gray-600 leading-relaxed">জেনারেটকৃত সনদপত্রসমূহ সুন্দর লেআউটে সরাসরি প্রিন্ট করা কিংবা পিডিএফ আকারে ডাউনলোড করার সুবিধা।</p>
+                        <button class="w-full bg-indigo-50 text-indigo-700 py-1.5 rounded text-xs font-bold hover:bg-indigo-100 transition">প্রিন্ট ও এক্সপোর্ট</button>
                     </div>
 
                 </div>
@@ -139,5 +187,6 @@
         </div>
     </div>
 
+    <script src="script.js"></script>
 </body>
 </html>

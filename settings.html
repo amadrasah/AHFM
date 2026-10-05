@@ -89,7 +89,7 @@
 
                 <!-- TAB 2: Logo & Watermark -->
                 <div id="tab-logo" class="setting-tab bg-white p-6 rounded-2xl shadow-sm border border-gray-200 space-y-4 hidden">
-                    <h3 class="font-bold text-gray-800 text-sm border-b pb-2"><i class="fa-solid fa-image text-blue-600 mr-2"></i> Logo & Watermark Setup (সকল ফর্মে ব্যবহৃত হবে)</h3>
+                    <h3 class="font-bold text-gray-800 text-sm border-b pb-2"><i class="fa-solid fa-image text-blue-600 mr-2"></i> Logo & Watermark Setup</h3>
                     <div class="grid grid-cols-1 md:grid-cols-2 gap-6 text-xs">
                         <div class="space-y-3">
                             <label class="font-bold text-gray-700 block">মাদ্রাসার লোগো আপলোড</label>
@@ -97,66 +97,89 @@
                             <button onclick="alert('লোগো সফলভাবে আপলোড হয়েছে!')" class="bg-blue-600 text-white px-4 py-2 rounded font-bold">লোগো সেভ করুন</button>
                         </div>
                         <div class="space-y-3">
-                            <label class="font-bold text-gray-700 block">ওয়াটারমার্ক (Watermark) আপলোড - (সকল ফর্ম ও সার্টিফিকেটের ব্যাকগ্রাউন্ড)</label>
+                            <label class="font-bold text-gray-700 block">ওয়াটারমার্ক (Watermark) আপলোড</label>
                             <input type="file" id="watermarkFile" class="p-2 border rounded w-full">
                             <button onclick="alert('ওয়াটারমার্ক সফলভাবে সেট হয়েছে!')" class="bg-indigo-600 text-white px-4 py-2 rounded font-bold">ওয়াটারমার্ক সেভ করুন</button>
                         </div>
                     </div>
                 </div>
 
-                <!-- TAB 3: Academic Year -->
+                <!-- TAB 3: Academic Year (Dynamic Addition) -->
                 <div id="tab-year" class="setting-tab bg-white p-6 rounded-2xl shadow-sm border border-gray-200 space-y-4 hidden">
-                    <h3 class="font-bold text-gray-800 text-sm border-b pb-2"><i class="fa-solid fa-calendar-days text-purple-600 mr-2"></i> Global Academic Year Setup (সব জায়গায় প্রযোজ্য)</h3>
+                    <h3 class="font-bold text-gray-800 text-sm border-b pb-2"><i class="fa-solid fa-calendar-days text-purple-600 mr-2"></i> Global Academic Year Setup</h3>
                     <div class="space-y-4 text-xs">
-                        <div><label class="font-bold text-gray-700 mb-1 block">বর্তমান শিক্ষাবর্ষ (Academic Year) নির্বাচন করুন</label>
-                            <select id="globalAcademicYear" class="p-2 border rounded w-full md:w-1/2">
+                        <div class="flex gap-3 items-end">
+                            <div class="flex-1">
+                                <label class="font-bold text-gray-700 mb-1 block">নতুন সাল যোগ করুন (যেমন: 2029)</label>
+                                <input type="number" id="newYearInput" placeholder="সাল লিখুন" class="p-2 border rounded w-full">
+                            </div>
+                            <button onclick="addNewYear()" class="bg-purple-600 text-white px-4 py-2 rounded font-bold h-9">সাল যোগ করুন</button>
+                        </div>
+                        <div>
+                            <label class="font-bold text-gray-700 mb-1 block">বর্তমান শিক্ষাবর্ষ নির্বাচন করুন</label>
+                            <select id="globalAcademicYear" class="p-2 border rounded w-full md:p-2">
                                 <option value="2025">2025</option>
                                 <option value="2026" selected>2026</option>
                                 <option value="2027">2027</option>
                                 <option value="2028">2028</option>
                             </select>
                         </div>
-                        <div><button onclick="saveGlobalYear()" class="bg-purple-600 text-white px-4 py-2 rounded font-bold">সেশন গ্লোবালি আপডেট করুন</button></div>
+                        <div><button onclick="saveGlobalYear()" class="bg-emerald-700 text-white px-4 py-2 rounded font-bold">সেশন গ্লোবালি আপডেট করুন</button></div>
                     </div>
                 </div>
 
-                <!-- TAB 4: Class Management -->
+                <!-- TAB 4: Class Management (Dropdown List) -->
                 <div id="tab-class" class="setting-tab bg-white p-6 rounded-2xl shadow-sm border border-gray-200 space-y-4 hidden">
                     <h3 class="font-bold text-gray-800 text-sm border-b pb-2"><i class="fa-solid fa-layer-group text-amber-600 mr-2"></i> Class Management (মাদ্রাসার নির্ধারিত শ্রেণিগুলো)</h3>
-                    <div class="space-y-4 text-xs">
-                        <div class="p-4 bg-gray-50 rounded-lg border">
-                            <p class="font-bold text-gray-700 mb-2">নির্ধারিত শ্রেণি তালিকা (ড্রপডাউন ও সিস্টেমে স্বয়ংক্রিয় যুক্ত):</p>
-                            <ul class="list-disc pl-5 space-y-1 text-gray-600">
-                                <li>নূরানী প্রথম শ্রেণি</li>
-                                <li>নূরানী দ্বিতীয় শ্রেণি</li>
-                                <li>নূরানী তৃতীয় শ্রেণি</li>
-                                <li>ইবতেদায়ী চতুর্থ শ্রেণি</li>
-                                <li>ইবতেদায়ী পঞ্চম শ্রেণি</li>
-                                <li>দাখিল ষষ্ঠ থেকে দশম শ্রেণি (Dakhil 6th - 10th)</li>
-                                <li>আলিম প্রথম বর্ষ ও আলিম দ্বিতীয় বর্ষ</li>
-                                <li>ফাজিল প্রথম বর্ষ, ফাজিল দ্বিতীয় বর্ষ, ফাজিল তৃতীয় বর্ষ</li>
-                            </ul>
-                        </div>
+                    <div class="space-y-3 text-xs">
+                        <label class="font-bold text-gray-700 block">সিস্টেমের উপলব্ধ শ্রেণি তালিকা (ড্রপডাউন ড্রাইভ):</label>
+                        <select class="p-2 border rounded w-full md:w-1/2 font-medium">
+                            <option>নূরানী প্রথম শ্রেণি</option>
+                            <option>নূরানী দ্বিতীয় শ্রেণি</option>
+                            <option>নূরানী তৃতীয় শ্রেণি</option>
+                            <option>ইবতেদায়ী চতুর্থ শ্রেণি</option>
+                            <option>ইবতেদায়ী পঞ্চম শ্রেণি</option>
+                            <option>দাখিল ষষ্ঠ শ্রেণি</option>
+                            <option>দাখিল সপ্তম শ্রেণি</option>
+                            <option>দাখিল অষ্টম শ্রেণি</option>
+                            <option>দাখিল নবম শ্রেণি</option>
+                            <option>দাখিল দশম শ্রেণি</option>
+                            <option>আলিম প্রথম বর্ষ</option>
+                            <option>আলিম দ্বিতীয় বর্ষ</option>
+                            <option>ফাজিল প্রথম বর্ষ</option>
+                            <option>ফাজিল দ্বিতীয় বর্ষ</option>
+                            <option>ফাজিল তৃতীয় বর্ষ</option>
+                        </select>
                     </div>
                 </div>
 
-                <!-- TAB 5: Subject Management (Class Linked) -->
+                <!-- TAB 5: Subject Management (Class Linked Dropdown) -->
                 <div id="tab-subject" class="setting-tab bg-white p-6 rounded-2xl shadow-sm border border-gray-200 space-y-4 hidden">
-                    <h3 class="font-bold text-gray-800 text-sm border-b pb-2"><i class="fa-solid fa-book-open text-teal-600 mr-2"></i> Subject Setup (শ্রেণি > বিষয়ের নাম > কোড নম্বর)</h3>
+                    <h3 class="font-bold text-gray-800 text-sm border-b pb-2"><i class="fa-solid fa-book-open text-teal-600 mr-2"></i> Subject Setup (শ্রেণি নির্বাচন করে বিষয় ও কোড দিন)</h3>
                     <div class="space-y-4 text-xs">
                         <div class="grid grid-cols-1 md:grid-cols-4 gap-3">
-                            <select id="sub_class" class="p-2 border rounded">
-                                <option>নূরানী প্রথম শ্রেণি</option>
-                                <option>இবতেদায়ী চতুর্থ শ্রেণি</option>
-                                <option>দাখিল ষষ্ঠ শ্রেণি</option>
-                                <option>আলিম প্রথম বর্ষ</option>
-                                <option>ফাজিল প্রথম বর্ষ</option>
+                            <select id="sub_class" class="p-2 border rounded font-medium">
+                                <option value="নূরানী প্রথম শ্রেণি">নূরানী প্রথম শ্রেণি</option>
+                                <option value="নূরানী দ্বিতীয় শ্রেণি">নূরানী দ্বিতীয় শ্রেণি</option>
+                                <option value="নূরানী তৃতীয় শ্রেণি">নূরানী তৃতীয় শ্রেণি</option>
+                                <option value="ইবতেদায়ী চতুর্থ শ্রেণি">ইবতেদায়ী চতুর্থ শ্রেণি</option>
+                                <option value="ইবতেদায়ী পঞ্চম শ্রেণি">ইবতেদায়ী পঞ্চম শ্রেণি</option>
+                                <option value="দাখিল ষষ্ঠ শ্রেণি">দাখিল ষষ্ঠ শ্রেণি</option>
+                                <option value="দাখিল সপ্তম শ্রেণি">দাখিল সপ্তম শ্রেণি</option>
+                                <option value="দাখিল অষ্টম শ্রেণি">দাখিল অষ্টম শ্রেণি</option>
+                                <option value="দাখিল নবম শ্রেণি">দাখিল নবম শ্রেণি</option>
+                                <option value="দাখিল দশম শ্রেণি">দাখিল দশম শ্রেণি</option>
+                                <option value="আলিম প্রথম বর্ষ">আলিম প্রথম বর্ষ</option>
+                                <option value="আলিম দ্বিতীয় বর্ষ">আলিম দ্বিতীয় বর্ষ</option>
+                                <option value="ফাজিল প্রথম বর্ষ">ফাজিল প্রথম বর্ষ</option>
+                                <option value="ফাজিল দ্বিতীয় বর্ষ">ফাজিল দ্বিতীয় বর্ষ</option>
+                                <option value="ফাজিল তৃতীয় বর্ষ">ফাজিল তৃতীয় বর্ষ</option>
                             </select>
-                            <input type="text" id="sub_name" placeholder="বিষয়ের নাম (যেমন: Al-Quran)" class="p-2 border rounded">
-                            <input type="text" id="sub_code" placeholder="কোড নম্বর (যেমন: 101)" class="p-2 border rounded">
+                            <input type="text" id="sub_name" placeholder="বিষয়ের নাম (যেমন: আল-কুরআন)" class="p-2 border rounded">
+                            <input type="text" id="sub_code" placeholder="কোড নম্বর (যেমন: ১০১)" class="p-2 border rounded">
                             <button onclick="addSubject()" class="bg-teal-600 text-white px-4 py-2 rounded font-bold">বিষয় যোগ করুন</button>
                         </div>
-                        <div id="subjectList" class="border p-3 rounded bg-gray-50">
+                        <div id="subjectList" class="border p-3 rounded bg-gray-50 space-y-1">
                             <p class="text-gray-500">দাখিল ষষ্ঠ শ্রেণি > আল-কرآন ও হাদিস > কোড: ১০১</p>
                         </div>
                     </div>
@@ -164,22 +187,21 @@
 
                 <!-- TAB 6: Exam Setup -->
                 <div id="tab-exam" class="setting-tab bg-white p-6 rounded-2xl shadow-sm border border-gray-200 space-y-4 hidden">
-                    <h3 class="font-bold text-gray-800 text-sm border-b pb-2"><i class="fa-solid fa-file-lines text-rose-600 mr-2"></i> Exam Setup (পরীক্ষার নাম যোগ)</h3>
+                    <h3 class="font-bold text-gray-800 text-sm border-b pb-2"><i class="fa-solid fa-file-lines text-rose-600 mr-2"></i> Exam Setup</h3>
                     <div class="space-y-4 text-xs">
                         <div class="flex gap-2">
                             <input type="text" id="examNameInput" placeholder="পরীক্ষার নাম (যেমন: অর্ধবার্ষিক পরীক্ষা ২০২৬)" class="p-2 border rounded w-full md:w-1/3">
                             <button onclick="addExam()" class="bg-rose-600 text-white px-4 py-2 rounded font-bold">পরীক্ষা যোগ করুন</button>
                         </div>
-                        <p class="text-gray-600">সংযুক্ত পরীক্ষা: ১ম টার্মিনাল, অর্ধ-বার্ষিক, বার্ষিক, প্রাক-নির্বাচনী, নির্বাচনী পরীক্ষা</p>
                     </div>
                 </div>
 
                 <!-- TAB 7: Grading System -->
                 <div id="tab-grading" class="setting-tab bg-white p-6 rounded-2xl shadow-sm border border-gray-200 space-y-4 hidden">
-                    <h3 class="font-bold text-gray-800 text-sm border-b pb-2"><i class="fa-solid fa-award text-indigo-600 mr-2"></i> Grading & Passing Percentage (রাউন্ড নম্বর)</h3>
+                    <h3 class="font-bold text-gray-800 text-sm border-b pb-2"><i class="fa-solid fa-award text-indigo-600 mr-2"></i> Grading & Passing Percentage</h3>
                     <div class="space-y-4 text-xs">
                         <div>
-                            <label class="font-bold text-gray-700 mb-1 block">পাস মার্কস পার্সেন্টেজ (পাস নম্বর লিমিট - রাউন্ড ফিগার):</label>
+                            <label class="font-bold text-gray-700 mb-1 block">পাস মার্কস পার্সেন্টেজ (রাউন্ড ফিগার):</label>
                             <input type="number" id="passMarksLimit" value="33" class="p-2 border rounded w-32" min="1" max="100"> %
                         </div>
                         <button onclick="alert('গ্রেডিং নিয়ম সংরক্ষিত হয়েছে!')" class="bg-indigo-600 text-white px-4 py-2 rounded font-bold">গ্রেডিং আপডেট</button>
@@ -188,15 +210,11 @@
 
                 <!-- TAB 8: Receipt & Signature Design -->
                 <div id="tab-receipt" class="setting-tab bg-white p-6 rounded-2xl shadow-sm border border-gray-200 space-y-4 hidden">
-                    <h3 class="font-bold text-gray-800 text-sm border-b pb-2"><i class="fa-solid fa-receipt text-cyan-600 mr-2"></i> Receipt Design (লোগো, ওয়াটারমার্ক ও ডিজিটাল স্বাক্ষর)</h3>
+                    <h3 class="font-bold text-gray-800 text-sm border-b pb-2"><i class="fa-solid fa-receipt text-cyan-600 mr-2"></i> Receipt Design</h3>
                     <div class="space-y-3 text-xs">
                         <label class="flex items-center gap-2 font-medium"><input type="checkbox" checked class="w-4 h-4"> মানি রিসিটে মাদ্রাসার লোগো প্রদর্শন করুন</label>
-                        <label class="flex items-center gap-2 font-medium"><input type="checkbox" checked class="w-4 h-4"> ব্যাকগ্রাউন্ডে ওয়াটারমার্ক (Watermark) যুক্ত করুন</label>
-                        <label class="flex items-center gap-2 font-medium"><input type="checkbox" checked class="w-4 h-4"> প্রিন্টেড কপি বা রিসিটে ডিজিটাল স্বাক্ষর (Digital Signature) যুক্ত করুন</label>
-                        <div>
-                            <label class="font-bold text-gray-700 block mt-2">ডিজিটাল স্বাক্ষর ইমেজ আপলোড</label>
-                            <input type="file" class="p-2 border rounded mt-1">
-                        </div>
+                        <label class="flex items-center gap-2 font-medium"><input type="checkbox" checked class="w-4 h-4"> ব্যাকগ্রাউন্ডে ওয়াটারমার্ক যুক্ত করুন</label>
+                        <label class="flex items-center gap-2 font-medium"><input type="checkbox" checked class="w-4 h-4"> ডিজিটাল স্বাক্ষর (Digital Signature) যুক্ত করুন</label>
                         <button onclick="alert('রিসিট ডিজাইন কনফিগারেশন সেভ হয়েছে!')" class="bg-cyan-600 text-white px-4 py-2 rounded font-bold mt-2">রশিদ ডিজাইন সেভ</button>
                     </div>
                 </div>
@@ -217,9 +235,8 @@
         </div>
     </div>
 
-    <!-- JavaScript for Tab Switching & LocalStorage Saving -->
+    <!-- JavaScript -->
     <script>
-        // Tab Switcher
         function switchTab(tabName) {
             const tabs = document.querySelectorAll('.setting-tab');
             tabs.forEach(tab => tab.classList.add('hidden'));
@@ -235,7 +252,37 @@
             event.target.classList.add('bg-emerald-700', 'text-white');
         }
 
-        // Save Institution Info to LocalStorage
+        // Add New Academic Year Dynamically
+        function addNewYear() {
+            const newYear = document.getElementById('newYearInput').value.trim();
+            if(!newYear) {
+                alert('দয়া করে একটি বৈধ সাল লিখুন!');
+                return;
+            }
+            const select = document.getElementById('globalAcademicYear');
+            
+            // Check if already exists
+            let exists = false;
+            for(let option of select.options) {
+                if(option.value === newYear) {
+                    exists = true;
+                    break;
+                }
+            }
+
+            if(!exists) {
+                let opt = document.createElement('option');
+                opt.value = newYear;
+                opt.text = newYear;
+                select.add(opt);
+                select.value = newYear;
+                alert('শিক্ষাবর্ষ ' + newYear + ' সফলভাবে যোগ করা হয়েছে!');
+            } else {
+                alert('এই সালটি ইতিমধ্যে তালিকায় রয়েছে!');
+            }
+            document.getElementById('newYearInput').value = '';
+        }
+
         function saveInstitution(event) {
             event.preventDefault();
             const data = {
@@ -246,10 +293,9 @@
                 address: document.getElementById('inst_address').value
             };
             localStorage.setItem('institution_info', JSON.stringify(data));
-            alert('প্রতিষ্ঠানের তথ্য সফলভাবে লোকাল স্টোরেজে সংরক্ষিত হয়েছে!');
+            alert('প্রতিষ্ঠানের তথ্য সফলভাবে সংরক্ষিত হয়েছে!');
         }
 
-        // Global Academic Year Save
         function saveGlobalYear() {
             const year = document.getElementById('globalAcademicYear').value;
             localStorage.setItem('global_academic_year', year);
@@ -257,7 +303,6 @@
             alert('একাডেমিক ইয়ার গ্লোবালি ' + year + ' সেট করা হয়েছে!');
         }
 
-        // Add Subject (Class Linked)
         function addSubject() {
             const cls = document.getElementById('sub_class').value;
             const sub = document.getElementById('sub_name').value;
@@ -273,7 +318,6 @@
             alert('বিষয় সফলভাবে যুক্ত হয়েছে!');
         }
 
-        // Add Exam
         function addExam() {
             const exam = document.getElementById('examNameInput').value;
             if(!exam) {
@@ -284,21 +328,21 @@
             document.getElementById('examNameInput').value = '';
         }
 
-        // Load saved data on page load
         window.onload = function() {
-            const savedInst = localStorage.getItem('institution_info');
-            if(savedInst) {
-                const data = JSON.parse(savedInst);
-                document.getElementById('inst_name_bn').value = data.name_bn || '';
-                document.getElementById('inst_name_en').value = data.name_en || '';
-                document.getElementById('inst_eiin').value = data.eiin || '';
-                document.getElementById('inst_phone').value = data.phone || '';
-                document.getElementById('inst_address').value = data.address || '';
-            }
-
             const savedYear = localStorage.getItem('global_academic_year');
             if(savedYear) {
-                document.getElementById('globalAcademicYear').value = savedYear;
+                const select = document.getElementById('globalAcademicYear');
+                let found = false;
+                for(let opt of select.options) {
+                    if(opt.value === savedYear) found = true;
+                }
+                if(!found) {
+                    let opt = document.createElement('option');
+                    opt.value = savedYear;
+                    opt.text = savedYear;
+                    select.add(opt);
+                }
+                select.value = savedYear;
                 document.getElementById('display-global-year').innerText = "সেশন: " + savedYear;
             }
         };

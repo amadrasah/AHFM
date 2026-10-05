@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Communication & SMS - AHIFM ERP</title>
+    <title>Communication - Abdullah Hat Islamia Fazil Madrasah</title>
     <script src="https://cdn.tailwindcss.com"></script>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     <link rel="stylesheet" href="style.css">
@@ -12,25 +12,79 @@
 
     <div class="flex h-screen overflow-hidden">
         
-        <!-- Sidebar -->
-        <aside class="w-64 bg-emerald-900 text-white flex flex-col shadow-lg hidden md:flex no-print">
-            <div class="p-4 bg-emerald-950 text-center border-b border-emerald-800">
-                <h1 class="font-bold text-lg">AHIFM ERP</h1>
-                <p class="text-xs text-emerald-300">ম্যানেজমেন্ট সিস্টেম</p>
+        <!-- Sidebar with 22 Modules -->
+        <aside class="w-72 bg-emerald-900 text-white flex flex-col shadow-lg overflow-y-auto no-print">
+            <div class="p-4 bg-emerald-950 text-center border-b border-emerald-800 sticky top-0 z-10">
+                <h1 class="font-bold text-base">AHIFM ERP</h1>
+                <p class="text-xs text-emerald-300">Abdullah Hat Islamia Fazil Madrasah</p>
             </div>
 
-            <nav class="flex-1 overflow-y-auto p-4 space-y-2 text-sm">
-                <a href="index.html" class="flex items-center gap-3 p-2.5 rounded hover:bg-emerald-800 transition">
-                    <i class="fa-solid fa-house"></i> 01. Home
+            <nav class="flex-1 p-3 space-y-1 text-xs">
+                <a href="index.html" class="flex items-center gap-2.5 p-2 rounded hover:bg-emerald-800 transition">
+                    <i class="fa-solid fa-house w-4"></i> 🏠 01. Home
                 </a>
-                <a href="dashboard.html" class="flex items-center gap-3 p-2.5 rounded hover:bg-emerald-800 transition">
-                    <i class="fa-solid fa-chart-pie"></i> 10. Dashboard
+                <a href="institution.html" class="flex items-center gap-2.5 p-2 rounded hover:bg-emerald-800 transition">
+                    <i class="fa-solid fa-school w-4"></i> 🏫 02. Institution
                 </a>
-                <a href="communication.html" class="flex items-center gap-3 p-2.5 rounded bg-emerald-800 text-white font-medium">
-                    <i class="fa-solid fa-comments"></i> 25. Communication & SMS
+                <a href="students.html" class="flex items-center gap-2.5 p-2 rounded hover:bg-emerald-800 transition">
+                    <i class="fa-solid fa-user-graduate w-4"></i> 👨‍🎓 03. Student Management
                 </a>
-                <a href="settings.html" class="flex items-center gap-3 p-2.5 rounded hover:bg-emerald-800 transition">
-                    <i class="fa-solid fa-gear"></i> 22. Settings
+                <a href="teachers.html" class="flex items-center gap-2.5 p-2 rounded hover:bg-emerald-800 transition">
+                    <i class="fa-solid fa-chalkboard-user w-4"></i> 👨‍🏫 04. Teacher & Staff
+                </a>
+                <a href="academic.html" class="flex items-center gap-2.5 p-2 rounded hover:bg-emerald-800 transition">
+                    <i class="fa-solid fa-book-open w-4"></i> 📚 05. Academic Management
+                </a>
+                <a href="examination.html" class="flex items-center gap-2.5 p-2 rounded hover:bg-emerald-800 transition">
+                    <i class="fa-solid fa-file-lines w-4"></i> 📝 06. Examination
+                </a>
+                <a href="attendance.html" class="flex items-center gap-2.5 p-2 rounded hover:bg-emerald-800 transition">
+                    <i class="fa-solid fa-clipboard-user w-4"></i> 🕐 07. Attendance
+                </a>
+                <a href="accounts.html" class="flex items-center gap-2.5 p-2 rounded hover:bg-emerald-800 transition">
+                    <i class="fa-solid fa-wallet w-4"></i> 💰 08. Accounts
+                </a>
+                <a href="fees.html" class="flex items-center gap-2.5 p-2 rounded hover:bg-emerald-800 transition">
+                    <i class="fa-solid fa-receipt w-4"></i> 🧾 09. Fees Management
+                </a>
+                <a href="dashboard.html" class="flex items-center gap-2.5 p-2 rounded hover:bg-emerald-800 transition">
+                    <i class="fa-solid fa-chart-pie w-4"></i> 📊 10. Dashboard
+                </a>
+                <a href="notice.html" class="flex items-center gap-2.5 p-2 rounded hover:bg-emerald-800 transition">
+                    <i class="fa-solid fa-bullhorn w-4"></i> 📢 11. Notice Management
+                </a>
+                <a href="routine.html" class="flex items-center gap-2.5 p-2 rounded hover:bg-emerald-800 transition">
+                    <i class="fa-solid fa-calendar-days w-4"></i> 📅 12. Routine & Calendar
+                </a>
+                <a href="certificates.html" class="flex items-center gap-2.5 p-2 rounded hover:bg-emerald-800 transition">
+                    <i class="fa-solid fa-award w-4"></i> 📄 13. Certificates
+                </a>
+                <a href="inventory.html" class="flex items-center gap-2.5 p-2 rounded hover:bg-emerald-800 transition">
+                    <i class="fa-solid fa-boxes-stacked w-4"></i> 📦 14. Inventory
+                </a>
+                <a href="library.html" class="flex items-center gap-2.5 p-2 rounded hover:bg-emerald-800 transition">
+                    <i class="fa-solid fa-book-bookmark w-4"></i> 📖 15. Library
+                </a>
+                <a href="transport.html" class="flex items-center gap-2.5 p-2 rounded hover:bg-emerald-800 transition">
+                    <i class="fa-solid fa-bus w-4"></i> 🚌 16. Transport
+                </a>
+                <a href="hostel.html" class="flex items-center gap-2.5 p-2 rounded hover:bg-emerald-800 transition">
+                    <i class="fa-solid fa-bed w-4"></i> 🍚 17. Hostel / Facilities
+                </a>
+                <a href="communication.html" class="flex items-center gap-2.5 p-2 rounded bg-emerald-800 text-white font-medium">
+                    <i class="fa-solid fa-comments w-4"></i> 📱 18. Communication
+                </a>
+                <a href="users.html" class="flex items-center gap-2.5 p-2 rounded hover:bg-emerald-800 transition">
+                    <i class="fa-solid fa-shield-halved w-4"></i> 🔐 19. User & Security
+                </a>
+                <a href="cloud-backup.html" class="flex items-center gap-2.5 p-2 rounded hover:bg-emerald-800 transition">
+                    <i class="fa-solid fa-cloud-arrow-up w-4"></i> ☁️ 20. Cloud & Backup
+                </a>
+                <a href="reports.html" class="flex items-center gap-2.5 p-2 rounded hover:bg-emerald-800 transition">
+                    <i class="fa-solid fa-chart-line w-4"></i> 📈 21. Reports
+                </a>
+                <a href="settings.html" class="flex items-center gap-2.5 p-2 rounded hover:bg-emerald-800 transition">
+                    <i class="fa-solid fa-gear w-4"></i> ⚙️ 22. Settings
                 </a>
             </nav>
         </aside>
@@ -41,145 +95,89 @@
             <!-- Top Navbar -->
             <header class="bg-white shadow-sm p-4 flex justify-between items-center no-print">
                 <div class="flex items-center gap-3">
-                    <span class="font-bold text-emerald-800 text-xl">কমিউনিকেশন ও এসএমএস মডিউল</span>
+                    <span class="font-bold text-emerald-800 text-lg">📱 Communication Management (যোগাযোগ ও বার্তা আদান-প্রদান)</span>
                 </div>
                 <div class="flex items-center gap-4">
-                    <span class="text-sm text-gray-600">অ্যাডমিন প্যানেল</span>
-                    <a href="index.html" class="bg-red-600 text-white px-4 py-1.5 rounded text-sm font-medium hover:bg-red-700">লগআউট</a>
+                    <span class="text-sm text-gray-600 font-medium"><i class="fa-solid fa-user-shield text-emerald-700 mr-1"></i> সুপার অ্যাডমিন</span>
+                    <a href="index.html" class="bg-red-600 text-white px-4 py-1.5 rounded text-xs font-medium hover:bg-red-700">লগআউট</a>
                 </div>
             </header>
 
             <!-- Page Content -->
             <main class="p-6 space-y-6">
                 
-                <!-- SMS Gateway Stats -->
-                <div class="grid grid-cols-1 md:grid-cols-4 gap-4">
-                    <div class="bg-white p-4 rounded-xl shadow-sm border-l-4 border-emerald-600">
-                        <p class="text-gray-500 text-xs">এসএমএস ব্যালেন্স</p>
-                        <h3 class="text-xl font-bold text-emerald-700 mt-1">৫,৪৫০ টি</h3>
+                <!-- Page Header Banner -->
+                <div class="bg-gradient-to-r from-emerald-800 to-emerald-950 text-white p-6 rounded-2xl shadow-sm flex flex-col md:flex-row justify-between items-center gap-4">
+                    <div>
+                        <h2 class="text-xl font-bold">যোগাযোগ ও নোটিফিকেশন ম্যানেজমেন্ট প্যানেল</h2>
+                        <p class="text-emerald-200 text-xs mt-1">এসএমএস গেটওয়ে, শিক্ষার্থী ও শিক্ষক নোটিফিকেশন, নোটিশ অ্যালার্ট এবং জরুরি বার্তা প্রেরণ সুবিধা।</p>
                     </div>
-                    <div class="bg-white p-4 rounded-xl shadow-sm border-l-4 border-blue-600">
-                        <p class="text-gray-500 text-xs">আজ প্রেরিত মোট এসএমএস</p>
-                        <h3 class="text-xl font-bold text-blue-700 mt-1">১২০ টি</h3>
-                    </div>
-                    <div class="bg-white p-4 rounded-xl shadow-sm border-l-4 border-purple-600">
-                        <p class="text-gray-500 text-xs">গেটওয়ে স্ট্যাটাস</p>
-                        <h3 class="text-xl font-bold text-purple-700 mt-1">সক্রিয় (Active)</h3>
-                    </div>
-                    <div class="bg-white p-4 rounded-xl shadow-sm border-l-4 border-amber-600">
-                        <p class="text-gray-500 text-xs">সফলতার হার</p>
-                        <h3 class="text-xl font-bold text-amber-700 mt-1">৯৯.৮%</h3>
+                    <div class="flex gap-2">
+                        <button class="bg-white text-emerald-900 px-4 py-2 rounded-xl font-bold text-xs hover:bg-emerald-50 transition shadow-sm">নতুন বার্তা পাঠান</button>
                     </div>
                 </div>
 
-                <!-- Communication Categories Section -->
-                <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+                <!-- Sub-Modules Grid Layout (5 Features) -->
+                <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
                     
-                    <!-- 1. Student Notification -->
-                    <div class="bg-white p-6 rounded-xl shadow-sm border border-gray-100 space-y-4">
-                        <div class="flex items-center gap-3 border-b pb-3">
-                            <div class="w-10 h-10 rounded-lg bg-emerald-100 text-emerald-800 flex items-center justify-center font-bold">
-                                <i class="fa-solid fa-user-graduate"></i>
-                            </div>
-                            <div>
-                                <h3 class="font-bold text-gray-800">Student Notification</h3>
-                                <p class="text-xs text-gray-500">শিক্ষার্থী ও অভিভাবকদের উপস্থিতি বা ফি বকেয়ার এসএমএস</p>
-                            </div>
+                    <!-- 1. SMS -->
+                    <div class="bg-white p-5 rounded-xl shadow-sm border-t-4 border-emerald-600 space-y-3">
+                        <div class="flex items-center justify-between border-b pb-2">
+                            <h3 class="font-bold text-gray-800 text-sm flex items-center gap-2">
+                                <i class="fa-solid fa-sms text-emerald-600"></i> SMS Gateway
+                            </h3>
+                            <span class="text-xs bg-emerald-50 text-emerald-700 px-2 py-0.5 rounded font-semibold">এসএমএস</span>
                         </div>
-                        <form class="space-y-3 text-sm">
-                            <div>
-                                <label class="block font-medium text-gray-700 mb-1">শ্রেণি নির্বাচন করুন</label>
-                                <select class="w-full px-3 py-2 border rounded-lg focus:outline-none focus:ring-2 focus:ring-emerald-600">
-                                    <option>সকল শ্রেণি (দাখিল ও আলিম)</option>
-                                    <option>আলিম প্রথম বর্ষ</option>
-                                    <option>দাখিল দশম শ্রেণি</option>
-                                </select>
-                            </div>
-                            <div>
-                                <label class="block font-medium text-gray-700 mb-1">মেসেজের বিষয়</label>
-                                <textarea rows="3" placeholder="যেমন: আপনার সন্তান অত্র মাদ্রাসায় অত্র তারিখে উপস্থিত/অনুপস্থিত ছিল..." class="w-full px-3 py-2 border rounded-lg focus:outline-none focus:ring-2 focus:ring-emerald-600"></textarea>
-                            </div>
-                            <button type="submit" class="w-full bg-emerald-600 text-white py-2 rounded-lg font-medium hover:bg-emerald-700 text-sm">শিক্ষার্থী নোটিশ পাঠান</button>
-                        </form>
+                        <p class="text-xs text-gray-600 leading-relaxed">বাল্ক এসএমএস (Bulk SMS) প্যানেলের মাধ্যমে অভিভাবক ও শিক্ষকদের মোবাইল নম্বরে টেক্সট মেসেজ পাঠানো।</p>
+                        <button class="w-full bg-emerald-50 text-emerald-700 py-1.5 rounded text-xs font-bold hover:bg-emerald-100 transition">এসএমএস প্যানেল</button>
                     </div>
 
-                    <!-- 2. Teacher Notification -->
-                    <div class="bg-white p-6 rounded-xl shadow-sm border border-gray-100 space-y-4">
-                        <div class="flex items-center gap-3 border-b pb-3">
-                            <div class="w-10 h-10 rounded-lg bg-blue-100 text-blue-800 flex items-center justify-center font-bold">
-                                <i class="fa-solid fa-chalkboard-user"></i>
-                            </div>
-                            <div>
-                                <h3 class="font-bold text-gray-800">Teacher Notification</h3>
-                                <p class="text-xs text-gray-500">শিক্ষক ও স্টাফবৃন্দের জরুরি মিটিং বা নির্দেশনা</p>
-                            </div>
+                    <!-- 2. Student Notification -->
+                    <div class="bg-white p-5 rounded-xl shadow-sm border-t-4 border-blue-600 space-y-3">
+                        <div class="flex items-center justify-between border-b pb-2">
+                            <h3 class="font-bold text-gray-800 text-sm flex items-center gap-2">
+                                <i class="fa-solid fa-user-graduate text-blue-600"></i> Student Notification
+                            </h3>
+                            <span class="text-xs bg-blue-50 text-blue-700 px-2 py-0.5 rounded font-semibold">শিক্ষার্থী নোটিফিকেশন</span>
                         </div>
-                        <form class="space-y-3 text-sm">
-                            <div>
-                                <label class="block font-medium text-gray-700 mb-1">প্রাপক শিক্ষক গ্রুপ</label>
-                                <select class="w-full px-3 py-2 border rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-600">
-                                    <option>সকল শিক্ষক ও স্টাফ</option>
-                                    <option>দাখিল বিভাগের শিক্ষকগণ</option>
-                                    <option>আলিম বিভাগের শিক্ষকগণ</option>
-                                </select>
-                            </div>
-                            <div>
-                                <label class="block font-medium text-gray-700 mb-1">মেসেজের বিষয়</label>
-                                <textarea rows="3" placeholder="যেমন: আগামীকালের জরুরি সভায় যথাসময়ে উপস্থিত থাকার অনুরোধ করা হলো..." class="w-full px-3 py-2 border rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-600"></textarea>
-                            </div>
-                            <button type="submit" class="w-full bg-blue-600 text-white py-2 rounded-lg font-medium hover:bg-blue-700 text-sm">শিক্ষকদের নোটিশ পাঠান</button>
-                        </form>
+                        <p class="text-xs text-gray-600 leading-relaxed">নির্দিষ্ট কোনো ক্লাস, শাখা বা সকল শিক্ষার্থীর ড্যাশবোর্ডে বা অ্যাপে জরুরি আপডেট বা বার্তা পাঠানো।</p>
+                        <button class="w-full bg-blue-50 text-blue-700 py-1.5 rounded text-xs font-bold hover:bg-blue-100 transition">শিক্ষার্থী বার্তা</button>
                     </div>
 
-                    <!-- 3. Notice Alert -->
-                    <div class="bg-white p-6 rounded-xl shadow-sm border border-gray-100 space-y-4">
-                        <div class="flex items-center gap-3 border-b pb-3">
-                            <div class="w-10 h-10 rounded-lg bg-amber-100 text-amber-800 flex items-center justify-center font-bold">
-                                <i class="fa-solid fa-bullhorn"></i>
-                            </div>
-                            <div>
-                                <h3 class="font-bold text-gray-800">Notice Alert</h3>
-                                <p class="text-xs text-gray-500">সাধারণ নোটিশ বা ছুটির ঘোষণা সংক্রান্ত এসএমএস অ্যালার্ট</p>
-                            </div>
+                    <!-- 3. Teacher Notification -->
+                    <div class="bg-white p-5 rounded-xl shadow-sm border-t-4 border-purple-600 space-y-3">
+                        <div class="flex items-center justify-between border-b pb-2">
+                            <h3 class="font-bold text-gray-800 text-sm flex items-center gap-2">
+                                <i class="fa-solid fa-chalkboard-user text-purple-600"></i> Teacher Notification
+                            </h3>
+                            <span class="text-xs bg-purple-50 text-purple-700 px-2 py-0.5 rounded font-semibold">শিক্ষক নোটিফিকেশন</span>
                         </div>
-                        <form class="space-y-3 text-sm">
-                            <div>
-                                <label class="block font-medium text-gray-700 mb-1">নোটিশের শিরোনাম / বিষয়</label>
-                                <input type="text" placeholder="যেমন: ঈদে মিলাদুন্নবী (সা:) উপলক্ষে ছুটি" class="w-full px-3 py-2 border rounded-lg focus:outline-none focus:ring-2 focus:ring-amber-600">
-                            </div>
-                            <div>
-                                <label class="block font-medium text-gray-700 mb-1">সংক্ষিপ্ত বিবরণ (SMS Text)</label>
-                                <textarea rows="3" placeholder="নোটিশের সংক্ষিপ্ত সারসংক্ষেপ লিখুন..." class="w-full px-3 py-2 border rounded-lg focus:outline-none focus:ring-2 focus:ring-amber-600"></textarea>
-                            </div>
-                            <button type="submit" class="w-full bg-amber-600 text-white py-2 rounded-lg font-medium hover:bg-amber-700 text-sm">নোটিশ অ্যালার্ট ব্রডকাস্ট করুন</button>
-                        </form>
+                        <p class="text-xs text-gray-600 leading-relaxed">মাদ্রাসার শিক্ষক ও স্টাফদের মিটিং, রুটিন পরিবর্তন বা অফিশিয়াল কাজের আপডেট নোটিফিকেশন পাঠানো।</p>
+                        <button class="w-full bg-purple-50 text-purple-700 py-1.5 rounded text-xs font-bold hover:bg-purple-100 transition">শিক্ষক বার্তা প্যানেল</button>
                     </div>
 
-                    <!-- 4. Emergency Message -->
-                    <div class="bg-white p-6 rounded-xl shadow-sm border border-gray-100 space-y-4">
-                        <div class="flex items-center gap-3 border-b pb-3">
-                            <div class="w-10 h-10 rounded-lg bg-red-100 text-red-800 flex items-center justify-center font-bold">
-                                <i class="fa-solid fa-triangle-exclamation"></i>
-                            </div>
-                            <div>
-                                <h3 class="font-bold text-gray-800">Emergency Message</h3>
-                                <p class="text-xs text-gray-500">জরুরি আবহাওয়া বা বিশেষ পরিস্থিতিতে তাৎক্ষণিক বার্তা</p>
-                            </div>
+                    <!-- 4. Notice Alert -->
+                    <div class="bg-white p-5 rounded-xl shadow-sm border-t-4 border-amber-600 space-y-3">
+                        <div class="flex items-center justify-between border-b pb-2">
+                            <h3 class="font-bold text-gray-800 text-sm flex items-center gap-2">
+                                <i class="fa-solid fa-bullhorn text-amber-600"></i> Notice Alert
+                            </h3>
+                            <span class="text-xs bg-amber-50 text-amber-700 px-2 py-0.5 rounded font-semibold">নোটিশ অ্যালার্ট</span>
                         </div>
-                        <form class="space-y-3 text-sm">
-                            <div>
-                                <label class="block font-medium text-gray-700 mb-1">জরুরি বার্তার ধরন</label>
-                                <select class="w-full px-3 py-2 border rounded-lg focus:outline-none focus:ring-2 focus:ring-red-600">
-                                    <option>তীব্র তাপপ্রবাহ / আবহাওয়া জনিত ছুটি</option>
-                                    <option>জরুরি ঘোষণা / রেড অ্যালার্ট</option>
-                                </select>
-                            </div>
-                            <div>
-                                <label class="block font-medium text-gray-700 mb-1">জরুরি নির্দেশনা</label>
-                                <textarea rows="3" placeholder="বিশেষ সতর্কতা বা জরুরি বার্তা এখানে লিখুন..." class="w-full px-3 py-2 border rounded-lg focus:outline-none focus:ring-2 focus:ring-red-600"></textarea>
-                            </div>
-                            <button type="submit" class="w-full bg-red-600 text-white py-2 rounded-lg font-medium hover:bg-red-700 text-sm">জরুরি বার্তা প্রেরণ করুন</button>
-                        </form>
+                        <p class="text-xs text-gray-600 leading-relaxed">নতুন প্রকাশিত কোনো নোটিশ বা সার্কুলারের তাৎক্ষণিক অ্যালার্ট বা পুশ নোটিফিকেশন সিস্টেম।</p>
+                        <button class="w-full bg-amber-50 text-amber-700 py-1.5 rounded text-xs font-bold hover:bg-amber-100 transition">নোটিশ অ্যালার্ট</button>
+                    </div>
+
+                    <!-- 5. Emergency Message -->
+                    <div class="bg-white p-5 rounded-xl shadow-sm border-t-4 border-rose-600 space-y-3">
+                        <div class="flex items-center justify-between border-b pb-2">
+                            <h3 class="font-bold text-gray-800 text-sm flex items-center gap-2">
+                                <i class="fa-solid fa-triangle-exclamation text-rose-600"></i> Emergency Message
+                            </h3>
+                            <span class="text-xs bg-rose-50 text-rose-700 px-2 py-0.5 rounded font-semibold">জরুরি বার্তা</span>
+                        </div>
+                        <p class="text-xs text-gray-600 leading-relaxed">প্রতিষ্ঠান বন্ধ ঘোষণা, প্রাকৃতিক দুর্যোগ বা জরুরি পরিস্থিতিতে দ্রুত সংশ্লিষ্ট সবার কাছে অ্যালার্ট মেসেজ পাঠানো।</p>
+                        <button class="w-full bg-rose-50 text-rose-700 py-1.5 rounded text-xs font-bold hover:bg-rose-100 transition">জরুরি বার্তা প্যানেল</button>
                     </div>
 
                 </div>

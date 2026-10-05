@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Cloud & Backup Management - AHIFM ERP</title>
+    <title>Cloud & Backup - Abdullah Hat Islamia Fazil Madrasah</title>
     <script src="https://cdn.tailwindcss.com"></script>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     <link rel="stylesheet" href="style.css">
@@ -12,25 +12,79 @@
 
     <div class="flex h-screen overflow-hidden">
         
-        <!-- Sidebar -->
-        <aside class="w-64 bg-emerald-900 text-white flex flex-col shadow-lg hidden md:flex no-print">
-            <div class="p-4 bg-emerald-950 text-center border-b border-emerald-800">
-                <h1 class="font-bold text-lg">AHIFM ERP</h1>
-                <p class="text-xs text-emerald-300">ম্যানেজমেন্ট সিস্টেম</p>
+        <!-- Sidebar with 22 Modules -->
+        <aside class="w-72 bg-emerald-900 text-white flex flex-col shadow-lg overflow-y-auto no-print">
+            <div class="p-4 bg-emerald-950 text-center border-b border-emerald-800 sticky top-0 z-10">
+                <h1 class="font-bold text-base">AHIFM ERP</h1>
+                <p class="text-xs text-emerald-300">Abdullah Hat Islamia Fazil Madrasah</p>
             </div>
 
-            <nav class="flex-1 overflow-y-auto p-4 space-y-2 text-sm">
-                <a href="index.html" class="flex items-center gap-3 p-2.5 rounded hover:bg-emerald-800 transition">
-                    <i class="fa-solid fa-house"></i> 01. Home
+            <nav class="flex-1 p-3 space-y-1 text-xs">
+                <a href="index.html" class="flex items-center gap-2.5 p-2 rounded hover:bg-emerald-800 transition">
+                    <i class="fa-solid fa-house w-4"></i> 🏠 01. Home
                 </a>
-                <a href="dashboard.html" class="flex items-center gap-3 p-2.5 rounded hover:bg-emerald-800 transition">
-                    <i class="fa-solid fa-chart-pie"></i> 10. Dashboard
+                <a href="institution.html" class="flex items-center gap-2.5 p-2 rounded hover:bg-emerald-800 transition">
+                    <i class="fa-solid fa-school w-4"></i> 🏫 02. Institution
                 </a>
-                <a href="cloud-backup.html" class="flex items-center gap-3 p-2.5 rounded bg-emerald-800 text-white font-medium">
-                    <i class="fa-solid fa-cloud-arrow-up"></i> 20. Cloud & Backup[span_2](start_span)[span_2](end_span)
+                <a href="students.html" class="flex items-center gap-2.5 p-2 rounded hover:bg-emerald-800 transition">
+                    <i class="fa-solid fa-user-graduate w-4"></i> 👨‍🎓 03. Student Management
                 </a>
-                <a href="settings.html" class="flex items-center gap-3 p-2.5 rounded hover:bg-emerald-800 transition">
-                    <i class="fa-solid fa-gear"></i> 22. Settings
+                <a href="teachers.html" class="flex items-center gap-2.5 p-2 rounded hover:bg-emerald-800 transition">
+                    <i class="fa-solid fa-chalkboard-user w-4"></i> 👨‍🏫 04. Teacher & Staff
+                </a>
+                <a href="academic.html" class="flex items-center gap-2.5 p-2 rounded hover:bg-emerald-800 transition">
+                    <i class="fa-solid fa-book-open w-4"></i> 📚 05. Academic Management
+                </a>
+                <a href="examination.html" class="flex items-center gap-2.5 p-2 rounded hover:bg-emerald-800 transition">
+                    <i class="fa-solid fa-file-lines w-4"></i> 📝 06. Examination
+                </a>
+                <a href="attendance.html" class="flex items-center gap-2.5 p-2 rounded hover:bg-emerald-800 transition">
+                    <i class="fa-solid fa-clipboard-user w-4"></i> 🕐 07. Attendance
+                </a>
+                <a href="accounts.html" class="flex items-center gap-2.5 p-2 rounded hover:bg-emerald-800 transition">
+                    <i class="fa-solid fa-wallet w-4"></i> 💰 08. Accounts
+                </a>
+                <a href="fees.html" class="flex items-center gap-2.5 p-2 rounded hover:bg-emerald-800 transition">
+                    <i class="fa-solid fa-receipt w-4"></i> 🧾 09. Fees Management
+                </a>
+                <a href="dashboard.html" class="flex items-center gap-2.5 p-2 rounded hover:bg-emerald-800 transition">
+                    <i class="fa-solid fa-chart-pie w-4"></i> 📊 10. Dashboard
+                </a>
+                <a href="notice.html" class="flex items-center gap-2.5 p-2 rounded hover:bg-emerald-800 transition">
+                    <i class="fa-solid fa-bullhorn w-4"></i> 📢 11. Notice Management
+                </a>
+                <a href="routine.html" class="flex items-center gap-2.5 p-2 rounded hover:bg-emerald-800 transition">
+                    <i class="fa-solid fa-calendar-days w-4"></i> 📅 12. Routine & Calendar
+                </a>
+                <a href="certificates.html" class="flex items-center gap-2.5 p-2 rounded hover:bg-emerald-800 transition">
+                    <i class="fa-solid fa-award w-4"></i> 📄 13. Certificates
+                </a>
+                <a href="inventory.html" class="flex items-center gap-2.5 p-2 rounded hover:bg-emerald-800 transition">
+                    <i class="fa-solid fa-boxes-stacked w-4"></i> 📦 14. Inventory
+                </a>
+                <a href="library.html" class="flex items-center gap-2.5 p-2 rounded hover:bg-emerald-800 transition">
+                    <i class="fa-solid fa-book-bookmark w-4"></i> 📖 15. Library
+                </a>
+                <a href="transport.html" class="flex items-center gap-2.5 p-2 rounded hover:bg-emerald-800 transition">
+                    <i class="fa-solid fa-bus w-4"></i> 🚌 16. Transport
+                </a>
+                <a href="hostel.html" class="flex items-center gap-2.5 p-2 rounded hover:bg-emerald-800 transition">
+                    <i class="fa-solid fa-bed w-4"></i> 🍚 17. Hostel / Facilities
+                </a>
+                <a href="communication.html" class="flex items-center gap-2.5 p-2 rounded hover:bg-emerald-800 transition">
+                    <i class="fa-solid fa-comments w-4"></i> 📱 18. Communication
+                </a>
+                <a href="users.html" class="flex items-center gap-2.5 p-2 rounded hover:bg-emerald-800 transition">
+                    <i class="fa-solid fa-shield-halved w-4"></i> 🔐 19. User & Security
+                </a>
+                <a href="cloud-backup.html" class="flex items-center gap-2.5 p-2 rounded bg-emerald-800 text-white font-medium">
+                    <i class="fa-solid fa-cloud-arrow-up w-4"></i> ☁️ 20. Cloud & Backup
+                </a>
+                <a href="reports.html" class="flex items-center gap-2.5 p-2 rounded hover:bg-emerald-800 transition">
+                    <i class="fa-solid fa-chart-line w-4"></i> 📈 21. Reports
+                </a>
+                <a href="settings.html" class="flex items-center gap-2.5 p-2 rounded hover:bg-emerald-800 transition">
+                    <i class="fa-solid fa-gear w-4"></i> ⚙️ 22. Settings
                 </a>
             </nav>
         </aside>
@@ -41,163 +95,101 @@
             <!-- Top Navbar -->
             <header class="bg-white shadow-sm p-4 flex justify-between items-center no-print">
                 <div class="flex items-center gap-3">
-                    <span class="font-bold text-emerald-800 text-xl">ক্লাউড ও ব্যাকআপ ম্যানেজমেন্ট মডিউল</span>
+                    <span class="font-bold text-emerald-800 text-lg">☁️ Cloud & Backup Management (ক্লাউড ডাটা ও ব্যাকআপ প্যানেল)</span>
                 </div>
                 <div class="flex items-center gap-4">
-                    <span class="text-sm text-gray-600">অ্যাডমিন প্যানেল</span>
-                    <a href="index.html" class="bg-red-600 text-white px-4 py-1.5 rounded text-sm font-medium hover:bg-red-700">লগআউট</a>
+                    <span class="text-sm text-gray-600 font-medium"><i class="fa-solid fa-user-shield text-emerald-700 mr-1"></i> সুপার অ্যাডমিন</span>
+                    <a href="index.html" class="bg-red-600 text-white px-4 py-1.5 rounded text-xs font-medium hover:bg-red-700">লগআউট</a>
                 </div>
             </header>
 
             <!-- Page Content -->
             <main class="p-6 space-y-6">
                 
-                <!-- Status Overview Cards -->
-                <div class="grid grid-cols-1 md:grid-cols-4 gap-4">
-                    <div class="bg-white p-4 rounded-xl shadow-sm border-l-4 border-sky-600">
-                        <p class="text-gray-500 text-xs">Cloud Database Status</p>
-                        <h3 class="text-lg font-bold text-sky-700 mt-1">কানেক্টেড (Online)[span_3](start_span)[span_3](end_span)</h3>
+                <!-- Page Header Banner -->
+                <div class="bg-gradient-to-r from-emerald-800 to-emerald-950 text-white p-6 rounded-2xl shadow-sm flex flex-col md:flex-row justify-between items-center gap-4">
+                    <div>
+                        <h2 class="text-xl font-bold">ক্লাউড ডাটাবেজ ও ব্যাকআপ কন্ট্রোল প্যানেল</h2>
+                        <p class="text-emerald-200 text-xs mt-1">ক্লাউড ডাটাবেজ সংযোগ, অটোমেটিক ব্যাকআপ, ডাটা রিস্টোর, মোবাইল ও কম্পিউটার ডিভাইস সিংক এবং ডাটা এক্সপোর্ট সুবিধা।</p>
                     </div>
-                    <div class="bg-white p-4 rounded-xl shadow-sm border-l-4 border-emerald-600">
-                        <p class="text-gray-500 text-xs">Automatic Backup</p>
-                        <h3 class="text-lg font-bold text-emerald-700 mt-1">সক্রিয় (প্রতিদিন রাত ১২টা)[span_4](start_span)[span_4](end_span)</h3>
-                    </div>
-                    <div class="bg-white p-4 rounded-xl shadow-sm border-l-4 border-purple-600">
-                        <p class="text-gray-500 text-xs">সর্বশেষ ব্যাকআপ সাইজ</p>
-                        <h3 class="text-lg font-bold text-purple-700 mt-1">৪৫.২ মেগাবাইট</h3>
-                    </div>
-                    <div class="bg-white p-4 rounded-xl shadow-sm border-l-4 border-amber-600">
-                        <p class="text-gray-500 text-xs">Sync Status</p>
-                        <h3 class="text-lg font-bold text-amber-700 mt-1">রিয়েল-টাইম সিঙ্কড[span_5](start_span)[span_5](end_span)</h3>
+                    <div class="flex gap-2">
+                        <button class="bg-white text-emerald-900 px-4 py-2 rounded-xl font-bold text-xs hover:bg-emerald-50 transition shadow-sm">তাত্ক্ষণিক ব্যাকআপ নিন</button>
                     </div>
                 </div>
 
-                <!-- Section 1: Cloud Database & Automatic Backup Settings -->
-                <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+                <!-- Sub-Modules Grid Layout (6 Features) -->
+                <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
                     
-                    <!-- Cloud Database Box -->
-                    <div class="bg-white p-6 rounded-xl shadow-sm space-y-4">
-                        <div class="flex items-center gap-3 border-b pb-3">
-                            <div class="w-10 h-10 rounded-lg bg-sky-100 text-sky-800 flex items-center justify-center font-bold">
-                                <i class="fa-solid fa-database"></i>
-                            </div>
-                            <div>
-                                <h3 class="font-bold text-gray-800">Cloud Database[span_6](start_span)[span_6](end_span)</h3>
-                                <p class="text-xs text-gray-500">অনলাইন ক্লাউড ডাটাবেস সংযোগ ও স্টোরেজ ম্যানেজমেন্ট</p>
-                            </div>
+                    <!-- 1. Cloud Database -->
+                    <div class="bg-white p-5 rounded-xl shadow-sm border-t-4 border-emerald-600 space-y-3">
+                        <div class="flex items-center justify-between border-b pb-2">
+                            <h3 class="font-bold text-gray-800 text-sm flex items-center gap-2">
+                                <i class="fa-solid fa-database text-emerald-600"></i> Cloud Database
+                            </h3>
+                            <span class="text-xs bg-emerald-50 text-emerald-700 px-2 py-0.5 rounded font-semibold">ক্লাউড ডাটাবেজ</span>
                         </div>
-                        <div class="space-y-3 text-sm">
-                            <div>
-                                <label class="block font-medium text-gray-700 mb-1">ক্লাউড হোস্ট ইউআরএল / এপিআই</label>
-                                <input type="text" value="https://db.ahifm-erp.cloud/v1/secure-connect" class="w-full px-3 py-2 border rounded-lg bg-gray-50 text-gray-600" readonly>
-                            </div>
-                            <div class="flex justify-between items-center bg-gray-50 p-3 rounded-lg border">
-                                <span class="font-medium text-gray-700">ডাটাবেস এনক্রিপশন</span>
-                                <span class="bg-emerald-100 text-emerald-800 px-2.5 py-0.5 rounded text-xs font-semibold">AES-256 Secured</span>
-                            </div>
-                            <button class="w-full bg-sky-600 text-white py-2 rounded-lg font-medium hover:bg-sky-700 text-sm">ক্লাউড কানেকশন টেস্ট করুন</button>
-                        </div>
+                        <p class="text-xs text-gray-600 leading-relaxed">অনলাইন ক্লাউড স্টোরেজে মাদ্রাসার সকল শিক্ষার্থীর রেকর্ড, ফলাফল ও অ্যাকাউন্টের ডাটা নিরাপদ সংরক্ষণ।</p>
+                        <button class="w-full bg-emerald-50 text-emerald-700 py-1.5 rounded text-xs font-bold hover:bg-emerald-100 transition">ডাটাবেজ কানেকশন</button>
                     </div>
 
-                    <!-- Automatic Backup Box -->
-                    <div class="bg-white p-6 rounded-xl shadow-sm space-y-4">
-                        <div class="flex items-center gap-3 border-b pb-3">
-                            <div class="w-10 h-10 rounded-lg bg-emerald-100 text-emerald-800 flex items-center justify-center font-bold">
-                                <i class="fa-solid fa-clock-rotate-left"></i>
-                            </div>
-                            <div>
-                                <h3 class="font-bold text-gray-800">Automatic Backup[span_7](start_span)[span_7](end_span)</h3>
-                                <p class="text-xs text-gray-500">স্বয়ংক্রিয় ব্যাকআপ শিডিউল ও ফ্রিকোয়েন্সি সেটআপ</p>
-                            </div>
+                    <!-- 2. Automatic Backup -->
+                    <div class="bg-white p-5 rounded-xl shadow-sm border-t-4 border-blue-600 space-y-3">
+                        <div class="flex items-center justify-between border-b pb-2">
+                            <h3 class="font-bold text-gray-800 text-sm flex items-center gap-2">
+                                <i class="fa-solid fa-clock-rotate-left text-blue-600"></i> Automatic Backup
+                            </h3>
+                            <span class="text-xs bg-blue-50 text-blue-700 px-2 py-0.5 rounded font-semibold">অটোমেটিক ব্যাকআপ</span>
                         </div>
-                        <div class="space-y-3 text-sm">
-                            <div>
-                                <label class="block font-medium text-gray-700 mb-1">ব্যাকআপ ফ্রিকোয়েন্সি</label>
-                                <select class="w-full px-3 py-2 border rounded-lg focus:outline-none focus:ring-2 focus:ring-emerald-600">
-                                    <option>প্রতিদিন একবার (Daily)</option>
-                                    <option>সপ্তাহে একবার (Weekly)</option>
-                                    <option>মাসে একবার (Monthly)</option>
-                                </select>
-                            </div>
-                            <div>
-                                <label class="block font-medium text-gray-700 mb-1">ব্যাকআপ ডেস্টিনেশন ফোল্ডার</label>
-                                <input type="text" value="/cloud-storage/backups/ahifm-2026" class="w-full px-3 py-2 border rounded-lg bg-gray-50 text-gray-600" readonly>
-                            </div>
-                            <button class="w-full bg-emerald-600 text-white py-2 rounded-lg font-medium hover:bg-emerald-700 text-sm">এখনই ইনস্ট্যান্ট ব্যাকআপ নিন</button>
-                        </div>
+                        <p class="text-xs text-gray-600 leading-relaxed">নির্দিষ্ট সময় পরপর (দৈনিক বা সাপ্তাহিক) সিস্টেমের ব্যাকআপ স্বয়ংক্রিয়ভাবে ক্লাউডে সংরক্ষণ করার সুবিধা।</p>
+                        <button class="w-full bg-blue-50 text-blue-700 py-1.5 rounded text-xs font-bold hover:bg-blue-100 transition">ব্যাকআপ শিডিউল</button>
                     </div>
 
-                </div>
-
-                <!-- Section 2: Data Restore, Mobile & Computer Sync, Export Data -->
-                <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
-                    
-                    <!-- Data Restore -->
-                    <div class="bg-white p-6 rounded-xl shadow-sm space-y-4">
-                        <div class="flex items-center gap-3 border-b pb-3">
-                            <div class="w-9 h-9 rounded-lg bg-amber-100 text-amber-800 flex items-center justify-center font-bold">
-                                <i class="fa-solid fa-rotate-left"></i>
-                            </div>
-                            <div>
-                                <h3 class="font-bold text-gray-800 text-base">Data Restore[span_8](start_span)[span_8](end_span)</h3>
-                                <p class="text-xs text-gray-500">ব্যাকআপ ফাইল থেকে ডাটা রিস্টোর</p>
-                            </div>
+                    <!-- 3. Data Restore -->
+                    <div class="bg-white p-5 rounded-xl shadow-sm border-t-4 border-amber-600 space-y-3">
+                        <div class="flex items-center justify-between border-b pb-2">
+                            <h3 class="font-bold text-gray-800 text-sm flex items-center gap-2">
+                                <i class="fa-solid fa-rotate-right text-amber-600"></i> Data Restore
+                            </h3>
+                            <span class="text-xs bg-amber-50 text-amber-700 px-2 py-0.5 rounded font-semibold">ডাটা রিস্টোর</span>
                         </div>
-                        <div class="space-y-3 text-sm">
-                            <div>
-                                <label class="block font-medium text-gray-700 mb-1">ব্যাকআপ ফাইল নির্বাচন (.sql / .zip)</label>
-                                <input type="file" class="w-full px-2 py-1.5 border rounded-lg text-xs file:mr-4 file:py-1 file:px-3 file:rounded file:border-0 file:text-xs file:font-semibold file:bg-amber-50 file:text-amber-700 hover:file:bg-amber-100">
-                            </div>
-                            <button class="w-full bg-amber-600 text-white py-2 rounded-lg font-medium hover:bg-amber-700 text-sm">ডাটা রিস্টোর শুরু করুন</button>
-                        </div>
+                        <p class="text-xs text-gray-600 leading-relaxed">সিস্টেম ক্র্যাশ বা কোনো ডাটা হারিয়ে গেলে পূর্বের সংরক্ষিত ব্যাকআপ ফাইল থেকে মুহূর্তেই ডাটা রিকভার করা।</p>
+                        <button class="w-full bg-amber-50 text-amber-700 py-1.5 rounded text-xs font-bold hover:bg-amber-100 transition">রিস্টোর প্যানেল</button>
                     </div>
 
-                    <!-- Mobile & Computer Sync -->
-                    <div class="bg-white p-6 rounded-xl shadow-sm space-y-4">
-                        <div class="flex items-center gap-3 border-b pb-3">
-                            <div class="w-9 h-9 rounded-lg bg-purple-100 text-purple-800 flex items-center justify-center font-bold">
-                                <i class="fa-solid fa-sync"></i>
-                            </div>
-                            <div>
-                                <h3 class="font-bold text-gray-800 text-base">Mobile & Computer Sync[span_9](start_span)[span_9](end_span)</h3>
-                                <p class="text-xs text-gray-500">লোকাল ডিভাইস ও ক্লাউড সিঙ্ক্রোনাইজেশন</p>
-                            </div>
+                    <!-- 4. Mobile Sync -->
+                    <div class="bg-white p-5 rounded-xl shadow-sm border-t-4 border-purple-600 space-y-3">
+                        <div class="flex items-center justify-between border-b pb-2">
+                            <h3 class="font-bold text-gray-800 text-sm flex items-center gap-2">
+                                <i class="fa-solid fa-mobile-screen text-purple-600"></i> Mobile Sync
+                            </h3>
+                            <span class="text-xs bg-purple-50 text-purple-700 px-2 py-0.5 rounded font-semibold">মোবাইল সিংক</span>
                         </div>
-                        <div class="space-y-2.5 text-sm">
-                            <div class="flex justify-between items-center p-2 bg-gray-50 rounded border">
-                                <span class="text-gray-700 flex items-center gap-2"><i class="fa-solid fa-mobile-screen text-purple-600"></i> Mobile Sync[span_10](start_span)[span_10](end_span)</span>
-                                <span class="text-xs text-emerald-600 font-bold">Active</span>
-                            </div>
-                            <div class="flex justify-between items-center p-2 bg-gray-50 rounded border">
-                                <span class="text-gray-700 flex items-center gap-2"><i class="fa-solid fa-desktop text-blue-600"></i> Computer Sync[span_11](start_span)[span_11](end_span)</span>
-                                <span class="text-xs text-emerald-600 font-bold">Active</span>
-                            </div>
-                            <button class="w-full bg-purple-600 text-white py-2 rounded-lg font-medium hover:bg-purple-700 text-sm">ম্যানুয়াল সিঙ্ক করুন</button>
-                        </div>
+                        <p class="text-xs text-gray-600 leading-relaxed">অ্যান্ড্রয়েড বা মোবাইল ডিভাইসের সাথে রিয়েল-টাইমে শিক্ষক ও শিক্ষার্থীদের ডাটা সিংক করার ব্যবস্থা।</p>
+                        <button class="w-full bg-purple-50 text-purple-700 py-1.5 rounded text-xs font-bold hover:bg-purple-100 transition">মোবাইল সিংক সেটিংস</button>
                     </div>
 
-                    <!-- Export Data -->
-                    <div class="bg-white p-6 rounded-xl shadow-sm space-y-4">
-                        <div class="flex items-center gap-3 border-b pb-3">
-                            <div class="w-9 h-9 rounded-lg bg-teal-100 text-teal-800 flex items-center justify-center font-bold">
-                                <i class="fa-solid fa-file-export"></i>
-                            </div>
-                            <div>
-                                <h3 class="font-bold text-gray-800 text-base">Export Data[span_12](start_span)[span_12](end_span)</h3>
-                                <p class="text-xs text-gray-500">বিভিন্ন ফরম্যাটে ডাটা এক্সপোর্ট</p>
-                            </div>
+                    <!-- 5. Computer Sync -->
+                    <div class="bg-white p-5 rounded-xl shadow-sm border-t-4 border-indigo-600 space-y-3">
+                        <div class="flex items-center justify-between border-b pb-2">
+                            <h3 class="font-bold text-gray-800 text-sm flex items-center gap-2">
+                                <i class="fa-solid fa-laptop text-indigo-600"></i> Computer Sync
+                            </h3>
+                            <span class="text-xs bg-indigo-50 text-indigo-700 px-2 py-0.5 rounded font-semibold">কম্পিউটার সিংক</span>
                         </div>
-                        <div class="space-y-3 text-sm">
-                            <div>
-                                <label class="block font-medium text-gray-700 mb-1">এক্সপোর্ট ফরম্যাট</label>
-                                <select class="w-full px-3 py-2 border rounded-lg focus:outline-none focus:ring-2 focus:ring-teal-600">
-                                    <option>এক্সেল ফাইল (.xlsx)</option>
-                                    <option>সিএসভি ফাইল (.csv)</option>
-                                    <option>পিডিএফ রিপোর্ট (.pdf)</option>
-                                </select>
-                            </div>
-                            <button class="w-full bg-teal-600 text-white py-2 rounded-lg font-medium hover:bg-teal-700 text-sm">এক্সপোর্ট বা ডাউনলোড করুন</button>
+                        <p class="text-xs text-gray-600 leading-relaxed">অফিসের ডেস্কটপ বা ল্যাপটপের লোকাল সার্ভারের সাথে ক্লাউড ডাটাবেজের সিঙ্ক্রোনাইজেশন মেইনটেইন করা।</p>
+                        <button class="w-full bg-indigo-50 text-indigo-700 py-1.5 rounded text-xs font-bold hover:bg-indigo-100 transition">কম্পিউটার সিংক প্যানেল</button>
+                    </div>
+
+                    <!-- 6. Export Data -->
+                    <div class="bg-white p-5 rounded-xl shadow-sm border-t-4 border-teal-600 space-y-3">
+                        <div class="flex items-center justify-between border-b pb-2">
+                            <h3 class="font-bold text-gray-800 text-sm flex items-center gap-2">
+                                <i class="fa-solid fa-file-export text-teal-600"></i> Export Data
+                            </h3>
+                            <span class="text-xs bg-teal-50 text-teal-700 px-2 py-0.5 rounded font-semibold">ডাটা এক্সপোর্ট</span>
                         </div>
+                        <p class="text-xs text-gray-600 leading-relaxed">প্রয়োজনীয় সকল রেকর্ড বা রিপোর্ট এক্সেলে (Excel), সিএসভি (CSV) বা পিডিএফ (PDF) ফরম্যাটে ডাউনলোড করা।</p>
+                        <button class="w-full bg-teal-50 text-teal-700 py-1.5 rounded text-xs font-bold hover:bg-teal-100 transition">এক্সপোর্ট অপশন</button>
                     </div>
 
                 </div>

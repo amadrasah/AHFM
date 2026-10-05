@@ -1,0 +1,192 @@
+<!DOCTYPE html>
+<html lang="bn">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Attendance Management - Abdullah Hat Islamia Fazil Madrasah</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link rel="stylesheet" href="style.css">
+</head>
+<body class="bg-gray-100 font-sans">
+
+    <div class="flex h-screen overflow-hidden">
+        
+        <!-- Sidebar with 22 Modules -->
+        <aside class="w-72 bg-emerald-900 text-white flex flex-col shadow-lg overflow-y-auto no-print">
+            <div class="p-4 bg-emerald-950 text-center border-b border-emerald-800 sticky top-0 z-10">
+                <h1 class="font-bold text-base">AHIFM ERP</h1>
+                <p class="text-xs text-emerald-300">Abdullah Hat Islamia Fazil Madrasah</p>
+            </div>
+
+            <nav class="flex-1 p-3 space-y-1 text-xs">
+                <a href="index.html" class="flex items-center gap-2.5 p-2 rounded hover:bg-emerald-800 transition">
+                    <i class="fa-solid fa-house w-4"></i> 🏠 01. Home
+                </a>
+                <a href="institution.html" class="flex items-center gap-2.5 p-2 rounded hover:bg-emerald-800 transition">
+                    <i class="fa-solid fa-school w-4"></i> 🏫 02. Institution
+                </a>
+                <a href="students.html" class="flex items-center gap-2.5 p-2 rounded hover:bg-emerald-800 transition">
+                    <i class="fa-solid fa-user-graduate w-4"></i> 👨‍🎓 03. Student Management
+                </a>
+                <a href="teachers.html" class="flex items-center gap-2.5 p-2 rounded hover:bg-emerald-800 transition">
+                    <i class="fa-solid fa-chalkboard-user w-4"></i> 👨‍🏫 04. Teacher & Staff
+                </a>
+                <a href="academic.html" class="flex items-center gap-2.5 p-2 rounded hover:bg-emerald-800 transition">
+                    <i class="fa-solid fa-book-open w-4"></i> 📚 05. Academic Management
+                </a>
+                <a href="examination.html" class="flex items-center gap-2.5 p-2 rounded hover:bg-emerald-800 transition">
+                    <i class="fa-solid fa-file-lines w-4"></i> 📝 06. Examination
+                </a>
+                <a href="attendance.html" class="flex items-center gap-2.5 p-2 rounded bg-emerald-800 text-white font-medium">
+                    <i class="fa-solid fa-clipboard-user w-4"></i> 🕐 07. Attendance
+                </a>
+                <a href="accounts.html" class="flex items-center gap-2.5 p-2 rounded hover:bg-emerald-800 transition">
+                    <i class="fa-solid fa-wallet w-4"></i> 💰 08. Accounts
+                </a>
+                <a href="fees.html" class="flex items-center gap-2.5 p-2 rounded hover:bg-emerald-800 transition">
+                    <i class="fa-solid fa-receipt w-4"></i> 🧾 09. Fees Management
+                </a>
+                <a href="dashboard.html" class="flex items-center gap-2.5 p-2 rounded hover:bg-emerald-800 transition">
+                    <i class="fa-solid fa-chart-pie w-4"></i> 📊 10. Dashboard
+                </a>
+                <a href="notice.html" class="flex items-center gap-2.5 p-2 rounded hover:bg-emerald-800 transition">
+                    <i class="fa-solid fa-bullhorn w-4"></i> 📢 11. Notice Management
+                </a>
+                <a href="routine.html" class="flex items-center gap-2.5 p-2 rounded hover:bg-emerald-800 transition">
+                    <i class="fa-solid fa-calendar-days w-4"></i> 📅 12. Routine & Calendar
+                </a>
+                <a href="certificates.html" class="flex items-center gap-2.5 p-2 rounded hover:bg-emerald-800 transition">
+                    <i class="fa-solid fa-award w-4"></i> 📄 13. Certificates
+                </a>
+                <a href="inventory.html" class="flex items-center gap-2.5 p-2 rounded hover:bg-emerald-800 transition">
+                    <i class="fa-solid fa-boxes-stacked w-4"></i> 📦 14. Inventory
+                </a>
+                <a href="library.html" class="flex items-center gap-2.5 p-2 rounded hover:bg-emerald-800 transition">
+                    <i class="fa-solid fa-books w-4"></i> 📖 15. Library
+                </a>
+                <a href="transport.html" class="flex items-center gap-2.5 p-2 rounded hover:bg-emerald-800 transition">
+                    <i class="fa-solid fa-bus w-4"></i> 🚌 16. Transport
+                </a>
+                <a href="hostel.html" class="flex items-center gap-2.5 p-2 rounded hover:bg-emerald-800 transition">
+                    <i class="fa-solid fa-bed w-4"></i> 🍚 17. Hostel / Facilities
+                </a>
+                <a href="communication.html" class="flex items-center gap-2.5 p-2 rounded hover:bg-emerald-800 transition">
+                    <i class="fa-solid fa-comments w-4"></i> 📱 18. Communication
+                </a>
+                <a href="users.html" class="flex items-center gap-2.5 p-2 rounded hover:bg-emerald-800 transition">
+                    <i class="fa-solid fa-shield-halved w-4"></i> 🔐 19. User & Security
+                </a>
+                <a href="cloud-backup.html" class="flex items-center gap-2.5 p-2 rounded hover:bg-emerald-800 transition">
+                    <i class="fa-solid fa-cloud-arrow-up w-4"></i> ☁️ 20. Cloud & Backup
+                </a>
+                <a href="reports.html" class="flex items-center gap-2.5 p-2 rounded hover:bg-emerald-800 transition">
+                    <i class="fa-solid fa-chart-line w-4"></i> 📈 21. Reports
+                </a>
+                <a href="settings.html" class="flex items-center gap-2.5 p-2 rounded hover:bg-emerald-800 transition">
+                    <i class="fa-solid fa-gear w-4"></i> ⚙️ 22. Settings
+                </a>
+            </nav>
+        </aside>
+
+        <!-- Main Content Area -->
+        <div class="flex-1 flex flex-col overflow-y-auto">
+            
+            <!-- Top Navbar -->
+            <header class="bg-white shadow-sm p-4 flex justify-between items-center no-print">
+                <div class="flex items-center gap-3">
+                    <span class="font-bold text-emerald-800 text-lg">🕐 Attendance Management (উপস্থিতি ব্যবস্থাপনা)</span>
+                </div>
+                <div class="flex items-center gap-4">
+                    <span class="text-sm text-gray-600 font-medium"><i class="fa-solid fa-user-shield text-emerald-700 mr-1"></i> সুপার অ্যাডমিন</span>
+                    <a href="index.html" class="bg-red-600 text-white px-4 py-1.5 rounded text-xs font-medium hover:bg-red-700">লগআউট</a>
+                </div>
+            </header>
+
+            <!-- Page Content -->
+            <main class="p-6 space-y-6">
+                
+                <!-- Page Header Banner -->
+                <div class="bg-gradient-to-r from-emerald-800 to-emerald-950 text-white p-6 rounded-2xl shadow-sm flex flex-col md:flex-row justify-between items-center gap-4">
+                    <div>
+                        <h2 class="text-xl font-bold">শিক্ষক ও শিক্ষার্থী উপস্থিতি মনিটরিং প্যানেল</h2>
+                        <p class="text-emerald-200 text-xs mt-1">দৈনিক হাজিরা এন্ট্রি, মাসিক রিপোর্ট জেনারেশন এবং উপস্থিতির হার (Percentage) ট্র্যাকিং।</p>
+                    </div>
+                    <div class="flex gap-2">
+                        <button class="bg-white text-emerald-900 px-4 py-2 rounded-xl font-bold text-xs hover:bg-emerald-50 transition shadow-sm">আজকের হাজিরা নিন</button>
+                    </div>
+                </div>
+
+                <!-- Sub-Modules Grid Layout (5 Features) -->
+                <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+                    
+                    <!-- 1. Student Attendance -->
+                    <div class="bg-white p-5 rounded-xl shadow-sm border-t-4 border-emerald-600 space-y-3">
+                        <div class="flex items-center justify-between border-b pb-2">
+                            <h3 class="font-bold text-gray-800 text-sm flex items-center gap-2">
+                                <i class="fa-solid fa-user-graduate text-emerald-600"></i> Student Attendance
+                            </h3>
+                            <span class="text-xs bg-emerald-50 text-emerald-700 px-2 py-0.5 rounded font-semibold">শিক্ষার্থী</span>
+                        </div>
+                        <p class="text-xs text-gray-600 leading-relaxed">শ্রেণি ও সেকশন ভিত্তিক শিক্ষার্থীদের প্রতিদিনের উপস্থিতি (Present/Absent) রেকর্ড করা।</p>
+                        <button class="w-full bg-emerald-50 text-emerald-700 py-1.5 rounded text-xs font-bold hover:bg-emerald-100 transition">শিক্ষার্থী হাজিরা প্যানেল</button>
+                    </div>
+
+                    <!-- 2. Teacher Attendance -->
+                    <div class="bg-white p-5 rounded-xl shadow-sm border-t-4 border-blue-600 space-y-3">
+                        <div class="flex items-center justify-between border-b pb-2">
+                            <h3 class="font-bold text-gray-800 text-sm flex items-center gap-2">
+                                <i class="fa-solid fa-chalkboard-user text-blue-600"></i> Teacher Attendance
+                            </h3>
+                            <span class="text-xs bg-blue-50 text-blue-700 px-2 py-0.5 rounded font-semibold">শিক্ষক</span>
+                        </div>
+                        <p class="text-xs text-gray-600 leading-relaxed">শিক্ষক ও স্টাফদের ইন-টাইম, আউট-টাইম এবং দৈনিক উপস্থিতির তথ্য সংরক্ষণ ও পর্যবেক্ষণ।</p>
+                        <button class="w-full bg-blue-50 text-blue-700 py-1.5 rounded text-xs font-bold hover:bg-blue-100 transition">শিক্ষক হাজিরা প্যানেল</button>
+                    </div>
+
+                    <!-- 3. Daily Attendance -->
+                    <div class="bg-white p-5 rounded-xl shadow-sm border-t-4 border-purple-600 space-y-3">
+                        <div class="flex items-center justify-between border-b pb-2">
+                            <h3 class="font-bold text-gray-800 text-sm flex items-center gap-2">
+                                <i class="fa-solid fa-calendar-day text-purple-600"></i> Daily Attendance
+                            </h3>
+                            <span class="text-xs bg-purple-50 text-purple-700 px-2 py-0.5 rounded font-semibold">দৈনিক সংক্ষিপ্তসার</span>
+                        </div>
+                        <p class="text-xs text-gray-600 leading-relaxed">আজকের দিনে মোট কতজন উপস্থিত ও অনুপস্থিত রয়েছে তার একটি কমপ্যাক্ট ড্যাশবোর্ড ওভারভিউ।</p>
+                        <button class="w-full bg-purple-50 text-purple-700 py-1.5 rounded text-xs font-bold hover:bg-purple-100 transition">দৈনিক রিপোর্ট দেখুন</button>
+                    </div>
+
+                    <!-- 4. Monthly Report -->
+                    <div class="bg-white p-5 rounded-xl shadow-sm border-t-4 border-amber-600 space-y-3">
+                        <div class="flex items-center justify-between border-b pb-2">
+                            <h3 class="font-bold text-gray-800 text-sm flex items-center gap-2">
+                                <i class="fa-solid fa-calendar-days text-amber-600"></i> Monthly Report
+                            </h3>
+                            <span class="text-xs bg-amber-50 text-amber-700 px-2 py-0.5 rounded font-semibold">মাসিক রিপোর্ট</span>
+                        </div>
+                        <p class="text-xs text-gray-600 leading-relaxed">নির্দিষ্ট মাসের পুরো দিনের হাজিরা শিট এবং কর্মদিবসের হিসাব একত্রে প্রিন্ট বা ডাউনলোড।</p>
+                        <button class="w-full bg-amber-50 text-amber-700 py-1.5 rounded text-xs font-bold hover:bg-amber-100 transition">মাসিক রিপোর্ট জেনারেট</button>
+                    </div>
+
+                    <!-- 5. Attendance Percentage -->
+                    <div class="bg-white p-5 rounded-xl shadow-sm border-t-4 border-indigo-600 space-y-3">
+                        <div class="flex items-center justify-between border-b pb-2">
+                            <h3 class="font-bold text-gray-800 text-sm flex items-center gap-2">
+                                <i class="fa-solid fa-chart-pie text-indigo-600"></i> Attendance Percentage
+                            </h3>
+                            <span class="text-xs bg-indigo-50 text-indigo-700 px-2 py-0.5 rounded font-semibold">শতাংশ</span>
+                        </div>
+                        <p class="text-xs text-gray-600 leading-relaxed">শিক্ষার্থীদের উপস্থিতির হার (%) স্বয়ংক্রিয় গণনা এবং পরীক্ষার যোগ্যতার জন্য উপস্থিতি ট্র্যাকিং।</p>
+                        <button class="w-full bg-indigo-50 text-indigo-700 py-1.5 rounded text-xs font-bold hover:bg-indigo-100 transition">শতাংশ বিশ্লেষণ</button>
+                    </div>
+
+                </div>
+
+            </main>
+
+        </div>
+    </div>
+
+    <script src="script.js"></script>
+</body>
+</html>

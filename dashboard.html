@@ -3,57 +3,88 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Dashboard - AHIFM ERP</title>
+    <title>Dashboard - Abdullah Hat Islamia Fazil Madrasah</title>
     <script src="https://cdn.tailwindcss.com"></script>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link rel="stylesheet" href="style.css">
 </head>
 <body class="bg-gray-100 font-sans">
 
     <div class="flex h-screen overflow-hidden">
         
-        <!-- Sidebar -->
-        <aside class="w-64 bg-emerald-900 text-white flex flex-col shadow-lg hidden md:flex">
-            <div class="p-4 bg-emerald-950 text-center border-b border-emerald-800">
-                <h1 class="font-bold text-lg">AHIFM ERP</h1>
-                <p class="text-xs text-emerald-300">ম্যানেজমেন্ট সিস্টেম</p>
+        <!-- Sidebar with 22 Modules -->
+        <aside class="w-72 bg-emerald-900 text-white flex flex-col shadow-lg overflow-y-auto no-print">
+            <div class="p-4 bg-emerald-950 text-center border-b border-emerald-800 sticky top-0 z-10">
+                <h1 class="font-bold text-base">AHIFM ERP</h1>
+                <p class="text-xs text-emerald-300">Abdullah Hat Islamia Fazil Madrasah</p>
             </div>
 
-            <nav class="flex-1 overflow-y-auto p-4 space-y-2 text-sm">
-                <a href="index.html" class="flex items-center gap-3 p-2.5 rounded hover:bg-emerald-800 transition">
-                    <i class="fa-solid fa-house"></i> 01. Home
+            <nav class="flex-1 p-3 space-y-1 text-xs">
+                <a href="index.html" class="flex items-center gap-2.5 p-2 rounded hover:bg-emerald-800 transition">
+                    <i class="fa-solid fa-house w-4"></i> 🏠 01. Home
                 </a>
-                <a href="institution.html" class="flex items-center gap-3 p-2.5 rounded hover:bg-emerald-800 transition">
-                    <i class="fa-solid fa-school"></i> 02. Institution
+                <a href="institution.html" class="flex items-center gap-2.5 p-2 rounded hover:bg-emerald-800 transition">
+                    <i class="fa-solid fa-school w-4"></i> 🏫 02. Institution
                 </a>
-                <a href="students.html" class="flex items-center gap-3 p-2.5 rounded hover:bg-emerald-800 transition">
-                    <i class="fa-solid fa-user-graduate"></i> 03. Student Management
+                <a href="students.html" class="flex items-center gap-2.5 p-2 rounded hover:bg-emerald-800 transition">
+                    <i class="fa-solid fa-user-graduate w-4"></i> 👨‍🎓 03. Student Management
                 </a>
-                <a href="teachers.html" class="flex items-center gap-3 p-2.5 rounded hover:bg-emerald-800 transition">
-                    <i class="fa-solid fa-chalkboard-user"></i> 04. Teacher & Staff
+                <a href="teachers.html" class="flex items-center gap-2.5 p-2 rounded hover:bg-emerald-800 transition">
+                    <i class="fa-solid fa-chalkboard-user w-4"></i> 👨‍🏫 04. Teacher & Staff
                 </a>
-                <a href="academic.html" class="flex items-center gap-3 p-2.5 rounded hover:bg-emerald-800 transition">
-                    <i class="fa-solid fa-book-open"></i> 05. Academic
+                <a href="academic.html" class="flex items-center gap-2.5 p-2 rounded hover:bg-emerald-800 transition">
+                    <i class="fa-solid fa-book-open w-4"></i> 📚 05. Academic Management
                 </a>
-                <a href="examination.html" class="flex items-center gap-3 p-2.5 rounded hover:bg-emerald-800 transition">
-                    <i class="fa-solid fa-file-pen"></i> 06. Examination
+                <a href="examination.html" class="flex items-center gap-2.5 p-2 rounded hover:bg-emerald-800 transition">
+                    <i class="fa-solid fa-file-lines w-4"></i> 📝 06. Examination
                 </a>
-                <a href="attendance.html" class="flex items-center gap-3 p-2.5 rounded hover:bg-emerald-800 transition">
-                    <i class="fa-solid fa-clock"></i> 07. Attendance
+                <a href="attendance.html" class="flex items-center gap-2.5 p-2 rounded hover:bg-emerald-800 transition">
+                    <i class="fa-solid fa-clipboard-user w-4"></i> 🕐 07. Attendance
                 </a>
-                <a href="accounts.html" class="flex items-center gap-3 p-2.5 rounded hover:bg-emerald-800 transition">
-                    <i class="fa-solid fa-wallet"></i> 08. Accounts
+                <a href="accounts.html" class="flex items-center gap-2.5 p-2 rounded hover:bg-emerald-800 transition">
+                    <i class="fa-solid fa-wallet w-4"></i> 💰 08. Accounts
                 </a>
-                <a href="fees.html" class="flex items-center gap-3 p-2.5 rounded hover:bg-emerald-800 transition">
-                    <i class="fa-solid fa-receipt"></i> 09. Fees Management
+                <a href="fees.html" class="flex items-center gap-2.5 p-2 rounded hover:bg-emerald-800 transition">
+                    <i class="fa-solid fa-receipt w-4"></i> 🧾 09. Fees Management
                 </a>
-                <a href="dashboard.html" class="flex items-center gap-3 p-2.5 rounded bg-emerald-800 text-white font-medium">
-                    <i class="fa-solid fa-chart-pie"></i> 10. Dashboard
+                <a href="dashboard.html" class="flex items-center gap-2.5 p-2 rounded bg-emerald-800 text-white font-medium">
+                    <i class="fa-solid fa-chart-pie w-4"></i> 📊 10. Dashboard
                 </a>
-                <a href="notice.html" class="flex items-center gap-3 p-2.5 rounded hover:bg-emerald-800 transition">
-                    <i class="fa-solid fa-bullhorn"></i> 11. Notice Board
+                <a href="notice.html" class="flex items-center gap-2.5 p-2 rounded hover:bg-emerald-800 transition">
+                    <i class="fa-solid fa-bullhorn w-4"></i> 📢 11. Notice Management
                 </a>
-                <a href="settings.html" class="flex items-center gap-3 p-2.5 rounded hover:bg-emerald-800 transition">
-                    <i class="fa-solid fa-gear"></i> 22. Settings
+                <a href="routine.html" class="flex items-center gap-2.5 p-2 rounded hover:bg-emerald-800 transition">
+                    <i class="fa-solid fa-calendar-days w-4"></i> 📅 12. Routine & Calendar
+                </a>
+                <a href="certificates.html" class="flex items-center gap-2.5 p-2 rounded hover:bg-emerald-800 transition">
+                    <i class="fa-solid fa-award w-4"></i> 📄 13. Certificates
+                </a>
+                <a href="inventory.html" class="flex items-center gap-2.5 p-2 rounded hover:bg-emerald-800 transition">
+                    <i class="fa-solid fa-boxes-stacked w-4"></i> 📦 14. Inventory
+                </a>
+                <a href="library.html" class="flex items-center gap-2.5 p-2 rounded hover:bg-emerald-800 transition">
+                    <i class="fa-solid fa-books w-4"></i> 📖 15. Library
+                </a>
+                <a href="transport.html" class="flex items-center gap-2.5 p-2 rounded hover:bg-emerald-800 transition">
+                    <i class="fa-solid fa-bus w-4"></i> 🚌 16. Transport
+                </a>
+                <a href="hostel.html" class="flex items-center gap-2.5 p-2 rounded hover:bg-emerald-800 transition">
+                    <i class="fa-solid fa-bed w-4"></i> 🍚 17. Hostel / Facilities
+                </a>
+                <a href="communication.html" class="flex items-center gap-2.5 p-2 rounded hover:bg-emerald-800 transition">
+                    <i class="fa-solid fa-comments w-4"></i> 📱 18. Communication
+                </a>
+                <a href="users.html" class="flex items-center gap-2.5 p-2 rounded hover:bg-emerald-800 transition">
+                    <i class="fa-solid fa-shield-halved w-4"></i> 🔐 19. User & Security
+                </a>
+                <a href="cloud-backup.html" class="flex items-center gap-2.5 p-2 rounded hover:bg-emerald-800 transition">
+                    <i class="fa-solid fa-cloud-arrow-up w-4"></i> ☁️ 20. Cloud & Backup
+                </a>
+                <a href="reports.html" class="flex items-center gap-2.5 p-2 rounded hover:bg-emerald-800 transition">
+                    <i class="fa-solid fa-chart-line w-4"></i> 📈 21. Reports
+                </a>
+                <a href="settings.html" class="flex items-center gap-2.5 p-2 rounded hover:bg-emerald-800 transition">
+                    <i class="fa-solid fa-gear w-4"></i> ⚙️ 22. Settings
                 </a>
             </nav>
         </aside>
@@ -62,111 +93,153 @@
         <div class="flex-1 flex flex-col overflow-y-auto">
             
             <!-- Top Navbar -->
-            <header class="bg-white shadow-sm p-4 flex justify-between items-center">
+            <header class="bg-white shadow-sm p-4 flex justify-between items-center no-print">
                 <div class="flex items-center gap-3">
-                    <span class="font-bold text-emerald-800 text-xl">অফিশিয়াল ড্যাশবোর্ড (Dashboard & Analytics)</span>
+                    <span class="font-bold text-emerald-800 text-lg">📊 Dashboard (সারাংশ ড্যাশবোর্ড)</span>
                 </div>
                 <div class="flex items-center gap-4">
-                    <span class="text-sm text-gray-600">অ্যাডমিন প্যানেল</span>
-                    <a href="index.html" class="bg-red-600 text-white px-4 py-1.5 rounded text-sm font-medium hover:bg-red-700">লগআউট</a>
+                    <span class="text-sm text-gray-600 font-medium"><i class="fa-solid fa-user-shield text-emerald-700 mr-1"></i> সুপার অ্যাডমিন</span>
+                    <a href="index.html" class="bg-red-600 text-white px-4 py-1.5 rounded text-xs font-medium hover:bg-red-700">লগআউট</a>
                 </div>
             </header>
 
             <!-- Page Content -->
             <main class="p-6 space-y-6">
                 
-                <!-- Detailed Statistics Grid -->
-                <div class="grid grid-cols-1 md:grid-cols-4 gap-6">
-                    <div class="bg-white p-5 rounded-xl shadow-sm border-l-4 border-emerald-600 flex items-center justify-between">
-                        <div>
-                            <p class="text-gray-500 text-sm">মোট শিক্ষার্থী</p>
-                            <h3 class="text-2xl font-bold text-gray-800">১,২৫০ জন</h3>
-                        </div>
-                        <div class="bg-emerald-100 p-3 rounded-full text-emerald-700 text-xl">
-                            <i class="fa-solid fa-user-graduate"></i>
-                        </div>
+                <!-- Page Header Banner -->
+                <div class="bg-gradient-to-r from-emerald-800 to-emerald-950 text-white p-6 rounded-2xl shadow-sm flex flex-col md:flex-row justify-between items-center gap-4">
+                    <div>
+                        <h2 class="text-xl font-bold">মাদ্রাসা ম্যানেজমেন্ট ওভারভিউ ড্যাশবোর্ড</h2>
+                        <p class="text-emerald-200 text-xs mt-1">শিক্ষার্থী, শিক্ষক, আর্থিক অবস্থা, উপস্থিতি এবং একাডেমিক পরিসংখ্যানের রিয়েল-টাইম সারাংশ।</p>
                     </div>
-                    <div class="bg-white p-5 rounded-xl shadow-sm border-l-4 border-blue-600 flex items-center justify-between">
-                        <div>
-                            <p class="text-gray-500 text-sm">মোট শিক্ষক ও স্টাফ</p>
-                            <h3 class="text-2xl font-bold text-gray-800">৪৫ জন</h3>
-                        </div>
-                        <div class="bg-blue-100 p-3 rounded-full text-blue-700 text-xl">
-                            <i class="fa-solid fa-chalkboard-user"></i>
-                        </div>
-                    </div>
-                    <div class="bg-white p-5 rounded-xl shadow-sm border-l-4 border-amber-600 flex items-center justify-between">
-                        <div>
-                            <p class="text-gray-500 text-sm">চলতি মাসের আয়</p>
-                            <h3 class="text-2xl font-bold text-gray-800">৳ ৩.৮৫ লক্ষ</h3>
-                        </div>
-                        <div class="bg-amber-100 p-3 rounded-full text-amber-700 text-xl">
-                            <i class="fa-solid fa-wallet"></i>
-                        </div>
-                    </div>
-                    <div class="bg-white p-5 rounded-xl shadow-sm border-l-4 border-purple-600 flex items-center justify-between">
-                        <div>
-                            <p class="text-gray-500 text-sm">হাজিরা হার (Attendance)</p>
-                            <h3 class="text-2xl font-bold text-gray-800">৯২.৫%</h3>
-                        </div>
-                        <div class="bg-purple-100 p-3 rounded-full text-purple-700 text-xl">
-                            <i class="fa-solid fa-clock"></i>
-                        </div>
+                    <div class="flex gap-2">
+                        <button class="bg-white text-emerald-900 px-4 py-2 rounded-xl font-bold text-xs hover:bg-emerald-50 transition shadow-sm">রিপোর্ট রিফ্রেশ করুন</button>
                     </div>
                 </div>
 
-                <!-- Charts & Quick Overview Section -->
-                <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
-                    <!-- Class-wise Student Distribution -->
-                    <div class="bg-white p-5 rounded-xl shadow-sm">
-                        <h3 class="font-bold text-gray-800 mb-4 border-b pb-2">শ্রেণিভিত্তিক শিক্ষার্থী সংখ্যা</h3>
-                        <div class="space-y-3 text-sm">
-                            <div>
-                                <div class="flex justify-between mb-1">
-                                    <span class="text-gray-700">আলিম শ্রেণি (প্রথম ও দ্বিতীয় বর্ষ)</span>
-                                    <span class="font-bold text-emerald-800">৩৫০ জন</span>
-                                </div>
-                                <div class="w-full bg-gray-200 h-2 rounded-full"><div class="bg-emerald-600 h-2 rounded-full" style="width: 70%"></div></div>
-                            </div>
-                            <div>
-                                <div class="flex justify-between mb-1">
-                                    <span class="text-gray-700">দাখিল শ্রেণি (ষষ্ঠ থেকে দশম)</span>
-                                    <span class="font-bold text-emerald-800">৬০০ জন</span>
-                                </div>
-                                <div class="w-full bg-gray-200 h-2 rounded-full"><div class="bg-emerald-600 h-2 rounded-full" style="width: 85%"></div></div>
-                            </div>
-                            <div>
-                                <div class="flex justify-between mb-1">
-                                    <span class="text-gray-700">ইবতেদায়ী বিভাগ</span>
-                                    <span class="font-bold text-emerald-800">৩০০ জন</span>
-                                </div>
-                                <div class="w-full bg-gray-200 h-2 rounded-full"><div class="bg-emerald-600 h-2 rounded-full" style="width: 50%"></div></div>
-                            </div>
+                <!-- Sub-Modules Grid Layout (8 Features) -->
+                <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+                    
+                    <!-- 1. Total Students -->
+                    <div class="bg-white p-5 rounded-xl shadow-sm border-t-4 border-emerald-600 space-y-3">
+                        <div class="flex items-center justify-between border-b pb-2">
+                            <h3 class="font-bold text-gray-800 text-sm flex items-center gap-2">
+                                <i class="fa-solid fa-user-graduate text-emerald-600"></i> Total Students
+                            </h3>
+                            <span class="text-xs bg-emerald-50 text-emerald-700 px-2 py-0.5 rounded font-semibold">শিক্ষার্থী</span>
+                        </div>
+                        <p class="text-xs text-gray-600 leading-relaxed">মাদ্রাসার ইবতেদায়ী থেকে ফাজিল স্তর পর্যন্ত মোট ছাত্র-ছাত্রীর সংখ্যা এবং লিঙ্গভিত্তিক পরিসংখ্যান।</p>
+                        <div class="pt-2 flex justify-between items-center">
+                            <span class="text-lg font-bold text-emerald-800">১,৪৫০ জন</span>
+                            <a href="students.html" class="text-xs bg-emerald-50 text-emerald-700 px-3 py-1 rounded font-bold hover:bg-emerald-100 transition">বিস্তারিত</a>
                         </div>
                     </div>
 
-                    <!-- Quick Links / Actions -->
-                    <div class="bg-white p-5 rounded-xl shadow-sm">
-                        <h3 class="font-bold text-gray-800 mb-4 border-b pb-2">দ্রুত কার্যনির্বাহী মেনু (Quick Shortcuts)</h3>
-                        <div class="grid grid-cols-2 gap-4">
-                            <a href="students.html" class="p-4 bg-emerald-50 hover:bg-emerald-100 rounded-xl border border-emerald-200 text-center transition">
-                                <i class="fa-solid fa-user-plus text-emerald-700 text-2xl mb-2"></i>
-                                <h4 class="font-bold text-sm text-gray-800">নতুন ভর্তি</h4>
-                            </a>
-                            <a href="examination.html" class="p-4 bg-blue-50 hover:bg-blue-100 rounded-xl border border-blue-200 text-center transition">
-                                <i class="fa-solid fa-file-pen text-blue-700 text-2xl mb-2"></i>
-                                <h4 class="font-bold text-sm text-gray-800">মার্কস এন্ট্রি</h4>
-                            </a>
-                            <a href="fees.html" class="p-4 bg-amber-50 hover:bg-amber-100 rounded-xl border border-amber-200 text-center transition">
-                                <i class="fa-solid fa-receipt text-amber-700 text-2xl mb-2"></i>
-                                <h4 class="font-bold text-sm text-gray-800">ফি কালেকশন</h4>
-                            </a>
-                            <a href="accounts.html" class="p-4 bg-purple-50 hover:bg-purple-100 rounded-xl border border-purple-200 text-center transition">
-                                <i class="fa-solid fa-wallet text-purple-700 text-2xl mb-2"></i>
-                                <h4 class="font-bold text-sm text-gray-800">আয়-ব্যয় হিসাব</h4>
-                            </a>
+                    <!-- 2. Total Teachers -->
+                    <div class="bg-white p-5 rounded-xl shadow-sm border-t-4 border-blue-600 space-y-3">
+                        <div class="flex items-center justify-between border-b pb-2">
+                            <h3 class="font-bold text-gray-800 text-sm flex items-center gap-2">
+                                <i class="fa-solid fa-chalkboard-user text-blue-600"></i> Total Teachers
+                            </h3>
+                            <span class="text-xs bg-blue-50 text-blue-700 px-2 py-0.5 rounded font-semibold">শিক্ষক ও স্টাফ</span>
+                        </div>
+                        <p class="text-xs text-gray-600 leading-relaxed">মাদ্রাসার কর্মরত এমপিওভুক্ত, অ-এমপিও শিক্ষক এবং অফিস স্টাফদের মোট সংখ্যা।</p>
+                        <div class="pt-2 flex justify-between items-center">
+                            <span class="text-lg font-bold text-blue-800">৬৫ জন</span>
+                            <a href="teachers.html" class="text-xs bg-blue-50 text-blue-700 px-3 py-1 rounded font-bold hover:bg-blue-100 transition">বিস্তারিত</a>
                         </div>
                     </div>
+
+                    <!-- 3. Income -->
+                    <div class="bg-white p-5 rounded-xl shadow-sm border-t-4 border-purple-600 space-y-3">
+                        <div class="flex items-center justify-between border-b pb-2">
+                            <h3 class="font-bold text-gray-800 text-sm flex items-center gap-2">
+                                <i class="fa-solid fa-circle-arrow-down text-purple-600"></i> Total Income
+                            </h3>
+                            <span class="text-xs bg-purple-50 text-purple-700 px-2 py-0.5 rounded font-semibold">মোট আয়</span>
+                        </div>
+                        <p class="text-xs text-gray-600 leading-relaxed">চলতি সেশনে ফি কালেকশন, অনুদান এবং অন্যান্য খাত থেকে মোট আয়ের হিসাব।</p>
+                        <div class="pt-2 flex justify-between items-center">
+                            <span class="text-lg font-bold text-purple-800">৳ ১২,৫০,০০০</span>
+                            <a href="accounts.html" class="text-xs bg-purple-50 text-purple-700 px-3 py-1 rounded font-bold hover:bg-purple-100 transition">বিস্তারিত</a>
+                        </div>
+                    </div>
+
+                    <!-- 4. Expense -->
+                    <div class="bg-white p-5 rounded-xl shadow-sm border-t-4 border-red-600 space-y-3">
+                        <div class="flex items-center justify-between border-b pb-2">
+                            <h3 class="font-bold text-gray-800 text-sm flex items-center gap-2">
+                                <i class="fa-solid fa-circle-arrow-up text-red-600"></i> Total Expense
+                            </h3>
+                            <span class="text-xs bg-red-50 text-red-700 px-2 py-0.5 rounded font-semibold">মোট ব্যয়</span>
+                        </div>
+                        <p class="text-xs text-gray-600 leading-relaxed">চলতি সেশনে শিক্ষক-স্টাফদের বেতন, প্রশাসনিক খরচ ও অন্যান্য খাতে মোট ব্যয়।</p>
+                        <div class="pt-2 flex justify-between items-center">
+                            <span class="text-lg font-bold text-red-800">৳ ৮,২০,০০০</span>
+                            <a href="accounts.html" class="text-xs bg-red-50 text-red-700 px-3 py-1 rounded font-bold hover:bg-red-100 transition">বিস্তারিত</a>
+                        </div>
+                    </div>
+
+                    <!-- 5. Balance -->
+                    <div class="bg-white p-5 rounded-xl shadow-sm border-t-4 border-amber-600 space-y-3">
+                        <div class="flex items-center justify-between border-b pb-2">
+                            <h3 class="font-bold text-gray-800 text-sm flex items-center gap-2">
+                                <i class="fa-solid fa-wallet text-amber-600"></i> Current Balance
+                            </h3>
+                            <span class="text-xs bg-amber-50 text-amber-700 px-2 py-0.5 rounded font-semibold">ব্যালেন্স</span>
+                        </div>
+                        <p class="text-xs text-gray-600 leading-relaxed">মোট আয় থেকে মোট ব্যয় বাদ দিয়ে মাদ্রাসার বর্তমান অবশিষ্ট ক্যাশ ও ব্যাংক ব্যালেন্স।</p>
+                        <div class="pt-2 flex justify-between items-center">
+                            <span class="text-lg font-bold text-amber-800">৳ ৪,৩০,০০০</span>
+                            <a href="accounts.html" class="text-xs bg-amber-50 text-amber-700 px-3 py-1 rounded font-bold hover:bg-amber-100 transition">বিস্তারিত</a>
+                        </div>
+                    </div>
+
+                    <!-- 6. Attendance -->
+                    <div class="bg-white p-5 rounded-xl shadow-sm border-t-4 border-indigo-600 space-y-3">
+                        <div class="flex items-center justify-between border-b pb-2">
+                            <h3 class="font-bold text-gray-800 text-sm flex items-center gap-2">
+                                <i class="fa-solid fa-clipboard-user text-indigo-600"></i> Today's Attendance
+                            </h3>
+                            <span class="text-xs bg-indigo-50 text-indigo-700 px-2 py-0.5 rounded font-semibold">উপস্থিতি</span>
+                        </div>
+                        <p class="text-xs text-gray-600 leading-relaxed">আজকের দিনে শিক্ষার্থীদের উপস্থিতির হার এবং উপস্থিত-অনুপস্থিত শিক্ষার্থীর সংখ্যা।</p>
+                        <div class="pt-2 flex justify-between items-center">
+                            <span class="text-lg font-bold text-indigo-800">৯২% উপস্থিত</span>
+                            <a href="attendance.html" class="text-xs bg-indigo-50 text-indigo-700 px-3 py-1 rounded font-bold hover:bg-indigo-100 transition">বিস্তারিত</a>
+                        </div>
+                    </div>
+
+                    <!-- 7. Exam Statistics -->
+                    <div class="bg-white p-5 rounded-xl shadow-sm border-t-4 border-teal-600 space-y-3">
+                        <div class="flex items-center justify-between border-b pb-2">
+                            <h3 class="font-bold text-gray-800 text-sm flex items-center gap-2">
+                                <i class="fa-solid fa-file-lines text-teal-600"></i> Exam Statistics
+                            </h3>
+                            <span class="text-xs bg-teal-50 text-teal-700 px-2 py-0.5 rounded font-semibold">পরীক্ষার পরিসংখ্যান</span>
+                        </div>
+                        <p class="text-xs text-gray-600 leading-relaxed">সর্বশেষ পরীক্ষার পাসের হার, এ প্লাস (A+) প্রাপ্ত শিক্ষার্থীর সংখ্যা ও সার্বিক ফলাফল মেট্রিক্স।</p>
+                        <div class="pt-2 flex justify-between items-center">
+                            <span class="text-lg font-bold text-teal-800">৯৫.৫% পাস হার</span>
+                            <a href="examination.html" class="text-xs bg-teal-50 text-teal-700 px-3 py-1 rounded font-bold hover:bg-teal-100 transition">বিস্তারিত</a>
+                        </div>
+                    </div>
+
+                    <!-- 8. Class Statistics -->
+                    <div class="bg-white p-5 rounded-xl shadow-sm border-t-4 border-cyan-600 space-y-3">
+                        <div class="flex items-center justify-between border-b pb-2">
+                            <h3 class="font-bold text-gray-800 text-sm flex items-center gap-2">
+                                <i class="fa-solid fa-school text-cyan-600"></i> Class Statistics
+                            </h3>
+                            <span class="text-xs bg-cyan-50 text-cyan-700 px-2 py-0.5 rounded font-semibold">শ্রেণি পরিসংখ্যান</span>
+                        </div>
+                        <p class="text-xs text-gray-600 leading-relaxed">ইবতেদায়ী থেকে ফাজিল পর্যন্ত প্রতি শ্রেণিতে শিক্ষার্থী ও সেকশন বিন্যাসের সার্বিক পরিসংখ্যান।</p>
+                        <div class="pt-2 flex justify-between items-center">
+                            <span class="text-lg font-bold text-cyan-800">১০টি শ্রেণি</span>
+                            <a href="academic.html" class="text-xs bg-cyan-50 text-cyan-700 px-3 py-1 rounded font-bold hover:bg-cyan-100 transition">বিস্তারিত</a>
+                        </div>
+                    </div>
+
                 </div>
 
             </main>
@@ -174,5 +247,6 @@
         </div>
     </div>
 
+    <script src="script.js"></script>
 </body>
 </html>

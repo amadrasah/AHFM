@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Home - AHIFM ERP Management System</title>
+    <title>Abdullah Hat Islamia Fazil Madrasah - ERP System</title>
     <script src="https://cdn.tailwindcss.com"></script>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     <link rel="stylesheet" href="style.css">
@@ -12,34 +12,101 @@
 
     <div class="flex h-screen overflow-hidden">
         
-        <!-- Sidebar -->
-        <aside class="w-64 bg-emerald-900 text-white flex flex-col shadow-lg hidden md:flex no-print">
-            <div class="p-4 bg-emerald-950 text-center border-b border-emerald-800">
-                <h1 class="font-bold text-lg">AHIFM ERP</h1>
-                <p class="text-xs text-emerald-300">ম্যানেজমেন্ট সিস্টেম</p>
+        <!-- Sidebar with 22 Modules -->
+        <aside class="w-72 bg-emerald-900 text-white flex flex-col shadow-lg overflow-y-auto no-print">
+            <div class="p-4 bg-emerald-950 text-center border-b border-emerald-800 sticky top-0 z-10">
+                <h1 class="font-bold text-base">AHIFM ERP</h1>
+                <p class="text-xs text-emerald-300">Abdullah Hat Islamia Fazil Madrasah</p>
             </div>
 
-            <nav class="flex-1 overflow-y-auto p-4 space-y-2 text-sm">
-                <a href="index.html" class="flex items-center gap-3 p-2.5 rounded bg-emerald-800 text-white font-medium">
-                    <i class="fa-solid fa-house"></i> 01. Home
+            <nav class="flex-1 p-3 space-y-1 text-xs">
+                <!-- 01. Home -->
+                <a href="index.html" class="flex items-center gap-2.5 p-2 rounded bg-emerald-800 text-white font-medium">
+                    <i class="fa-solid fa-house w-4"></i> 🏠 01. Home
                 </a>
-                <a href="dashboard.html" class="flex items-center gap-3 p-2.5 rounded hover:bg-emerald-800 transition">
-                    <i class="fa-solid fa-chart-pie"></i> 10. Dashboard
+                <!-- 02. Institution -->
+                <a href="institution.html" class="flex items-center gap-2.5 p-2 rounded hover:bg-emerald-800 transition">
+                    <i class="fa-solid fa-school w-4"></i> 🏫 02. Institution
                 </a>
-                <a href="academic.html" class="flex items-center gap-3 p-2.5 rounded hover:bg-emerald-800 transition">
-                    <i class="fa-solid fa-book-open"></i> 27. Academic Management
+                <!-- 03. Student Management -->
+                <a href="students.html" class="flex items-center gap-2.5 p-2 rounded hover:bg-emerald-800 transition">
+                    <i class="fa-solid fa-user-graduate w-4"></i> 👨‍🎓 03. Student Management
                 </a>
-                <a href="notice.html" class="flex items-center gap-3 p-2.5 rounded hover:bg-emerald-800 transition">
-                    <i class="fa-solid fa-bullhorn"></i> 26. Notice Management
+                <!-- 04. Teacher & Staff -->
+                <a href="teachers.html" class="flex items-center gap-2.5 p-2 rounded hover:bg-emerald-800 transition">
+                    <i class="fa-solid fa-chalkboard-user w-4"></i> 👨‍🏫 04. Teacher & Staff
                 </a>
-                <a href="communication.html" class="flex items-center gap-3 p-2.5 rounded hover:bg-emerald-800 transition">
-                    <i class="fa-solid fa-comments"></i> 25. Communication & SMS
+                <!-- 05. Academic Management -->
+                <a href="academic.html" class="flex items-center gap-2.5 p-2 rounded hover:bg-emerald-800 transition">
+                    <i class="fa-solid fa-book-open w-4"></i> 📚 05. Academic Management
                 </a>
-                <a href="cloud-backup.html" class="flex items-center gap-3 p-2.5 rounded hover:bg-emerald-800 transition">
-                    <i class="fa-solid fa-cloud-arrow-up"></i> 20. Cloud & Backup
+                <!-- 06. Examination -->
+                <a href="examination.html" class="flex items-center gap-2.5 p-2 rounded hover:bg-emerald-800 transition">
+                    <i class="fa-solid fa-file-lines w-4"></i> 📝 06. Examination
                 </a>
-                <a href="settings.html" class="flex items-center gap-3 p-2.5 rounded hover:bg-emerald-800 transition">
-                    <i class="fa-solid fa-gear"></i> 22. Settings
+                <!-- 07. Attendance -->
+                <a href="attendance.html" class="flex items-center gap-2.5 p-2 rounded hover:bg-emerald-800 transition">
+                    <i class="fa-solid fa-clipboard-user w-4"></i> 🕐 07. Attendance
+                </a>
+                <!-- 08. Accounts -->
+                <a href="accounts.html" class="flex items-center gap-2.5 p-2 rounded hover:bg-emerald-800 transition">
+                    <i class="fa-solid fa-wallet w-4"></i> 💰 08. Accounts
+                </a>
+                <!-- 09. Fees Management -->
+                <a href="fees.html" class="flex items-center gap-2.5 p-2 rounded hover:bg-emerald-800 transition">
+                    <i class="fa-solid fa-receipt w-4"></i> 🧾 09. Fees Management
+                </a>
+                <!-- 10. Dashboard -->
+                <a href="dashboard.html" class="flex items-center gap-2.5 p-2 rounded hover:bg-emerald-800 transition">
+                    <i class="fa-solid fa-chart-pie w-4"></i> 📊 10. Dashboard
+                </a>
+                <!-- 11. Notice Management -->
+                <a href="notice.html" class="flex items-center gap-2.5 p-2 rounded hover:bg-emerald-800 transition">
+                    <i class="fa-solid fa-bullhorn w-4"></i> 📢 11. Notice Management
+                </a>
+                <!-- 12. Routine & Calendar -->
+                <a href="routine.html" class="flex items-center gap-2.5 p-2 rounded hover:bg-emerald-800 transition">
+                    <i class="fa-solid fa-calendar-days w-4"></i> 📅 12. Routine & Calendar
+                </a>
+                <!-- 13. Certificates -->
+                <a href="certificates.html" class="flex items-center gap-2.5 p-2 rounded hover:bg-emerald-800 transition">
+                    <i class="fa-solid fa-award w-4"></i> 📄 13. Certificates
+                </a>
+                <!-- 14. Inventory -->
+                <a href="inventory.html" class="flex items-center gap-2.5 p-2 rounded hover:bg-emerald-800 transition">
+                    <i class="fa-solid fa-boxes-stacked w-4"></i> 📦 14. Inventory
+                </a>
+                <!-- 15. Library -->
+                <a href="library.html" class="flex items-center gap-2.5 p-2 rounded hover:bg-emerald-800 transition">
+                    <i class="fa-solid fa-books w-4"></i> 📖 15. Library
+                </a>
+                <!-- 16. Transport -->
+                <a href="transport.html" class="flex items-center gap-2.5 p-2 rounded hover:bg-emerald-800 transition">
+                    <i class="fa-solid fa-bus w-4"></i> 🚌 16. Transport
+                </a>
+                <!-- 17. Hostel / Facilities -->
+                <a href="hostel.html" class="flex items-center gap-2.5 p-2 rounded hover:bg-emerald-800 transition">
+                    <i class="fa-solid fa-bed w-4"></i> 🍚 17. Hostel / Facilities
+                </a>
+                <!-- 18. Communication -->
+                <a href="communication.html" class="flex items-center gap-2.5 p-2 rounded hover:bg-emerald-800 transition">
+                    <i class="fa-solid fa-comments w-4"></i> 📱 18. Communication
+                </a>
+                <!-- 19. User & Security -->
+                <a href="users.html" class="flex items-center gap-2.5 p-2 rounded hover:bg-emerald-800 transition">
+                    <i class="fa-solid fa-shield-halved w-4"></i> 🔐 19. User & Security
+                </a>
+                <!-- 20. Cloud & Backup -->
+                <a href="cloud-backup.html" class="flex items-center gap-2.5 p-2 rounded hover:bg-emerald-800 transition">
+                    <i class="fa-solid fa-cloud-arrow-up w-4"></i> ☁️ 20. Cloud & Backup
+                </a>
+                <!-- 21. Reports -->
+                <a href="reports.html" class="flex items-center gap-2.5 p-2 rounded hover:bg-emerald-800 transition">
+                    <i class="fa-solid fa-chart-line w-4"></i> 📈 21. Reports
+                </a>
+                <!-- 22. Settings -->
+                <a href="settings.html" class="flex items-center gap-2.5 p-2 rounded hover:bg-emerald-800 transition">
+                    <i class="fa-solid fa-gear w-4"></i> ⚙️ 22. Settings
                 </a>
             </nav>
         </aside>
@@ -50,23 +117,23 @@
             <!-- Top Navbar -->
             <header class="bg-white shadow-sm p-4 flex justify-between items-center no-print">
                 <div class="flex items-center gap-3">
-                    <span class="font-bold text-emerald-800 text-xl">হোম মডিউল (ল্যান্ডিং পেজ)</span>
+                    <span class="font-bold text-emerald-800 text-lg">ABDULLAH HAT ISLAMIA FAZIL MADRASAH</span>
                 </div>
                 <div class="flex items-center gap-4">
                     <span class="text-sm text-gray-600 font-medium"><i class="fa-solid fa-user-shield text-emerald-700 mr-1"></i> সুপার অ্যাডমিন</span>
-                    <a href="index.html" class="bg-red-600 text-white px-4 py-1.5 rounded text-sm font-medium hover:bg-red-700">লগআউট</a>
+                    <a href="index.html" class="bg-red-600 text-white px-4 py-1.5 rounded text-xs font-medium hover:bg-red-700">লগআউট</a>
                 </div>
             </header>
 
             <!-- Page Content -->
             <main class="p-6 space-y-6">
                 
-                <!-- 1. Welcome Section -->
+                <!-- Welcome Section -->
                 <div class="bg-gradient-to-r from-emerald-800 to-emerald-950 text-white p-8 rounded-2xl shadow-sm flex flex-col md:flex-row justify-between items-center gap-6">
                     <div class="space-y-2">
-                        <span class="bg-emerald-700 text-emerald-100 text-xs px-3 py-1 rounded-full font-semibold">স্বাগতম মডিউল (Welcome)</span>
-                        <h2 class="text-2xl md:text-3xl font-bold">আল-হাদিস ইনস্টিটিউট ফাজিল মাদরাসা</h2>
-                        <p class="text-emerald-200 text-sm max-w-xl">আমাদের অফিশিয়াল ডায়নামিক ইআরপি পোর্টালে আপনাকে স্বাগতম। এখান থেকে আপনি মাদ্রাসার সার্বিক কার্যক্রম নিয়ন্ত্রণ করতে পারবেন।</p>
+                        <span class="bg-emerald-700 text-emerald-100 text-xs px-3 py-1 rounded-full font-semibold">🏠 01. Home Module</span>
+                        <h2 class="text-2xl md:text-3xl font-bold">আব্দুল্লাহ হাট ইসলামিয়া ফাজিল মাদরাসা</h2>
+                        <p class="text-emerald-200 text-sm max-w-xl">প্রতিষ্ঠানের ২২টি সমন্বিত মডিউলের মাধ্যমে সম্পূর্ণ ডিজিটাল অ্যাকাডেমিক ও প্রশাসনিক কার্যক্রম পরিচালনা পোর্টাল।</p>
                     </div>
                     <div class="flex gap-3">
                         <a href="dashboard.html" class="bg-white text-emerald-900 px-5 py-2.5 rounded-xl font-bold text-sm hover:bg-emerald-50 transition shadow-sm">ড্যাশবোর্ড</a>
@@ -74,92 +141,92 @@
                     </div>
                 </div>
 
-                <!-- Main Grid Layout for Notice, News, Events & Links -->
+                <!-- Main Grid Layout: Notice, News, Events -->
                 <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
                     
-                    <!-- 2. Notice Section -->
+                    <!-- Notice Section -->
                     <div class="bg-white p-6 rounded-xl shadow-sm space-y-4 border-t-4 border-blue-600">
                         <div class="flex items-center justify-between border-b pb-3">
-                            <h3 class="font-bold text-gray-800 flex items-center gap-2">
+                            <h3 class="font-bold text-gray-800 flex items-center gap-2 text-sm">
                                 <i class="fa-solid fa-bullhorn text-blue-600"></i> Notice (জরুরি নোটিশ)
                             </h3>
-                            <a href="notice.html" class="text-xs text-blue-600 hover:underline font-semibold">সকল দেখুন</a>
+                            <a href="notice.html" class="text-xs text-blue-600 hover:underline font-semibold">সব দেখুন</a>
                         </div>
-                        <div class="space-y-3 text-sm">
+                        <div class="space-y-3 text-xs">
                             <div class="p-3 bg-blue-50 rounded-lg border border-blue-100">
-                                <span class="text-xs text-blue-700 font-semibold block mb-1">০৫ অক্টোবর ২০২৬</span>
-                                <p class="text-gray-800 font-medium">অর্ধবার্ষিক পরীক্ষার রুটিন প্রকাশ সংক্রান্ত জরুরি বিজ্ঞপ্তি।</p>
+                                <span class="text-blue-700 font-semibold block mb-1">০৫ অক্টোবর ২০২৬</span>
+                                <p class="text-gray-800 font-medium text-sm">বার্ষিক পরীক্ষা ২০২৬ এর রুটিন প্রকাশিত হয়েছে।</p>
                             </div>
                             <div class="p-3 bg-gray-50 rounded-lg border">
-                                <span class="text-xs text-gray-500 block mb-1">০১ অক্টোবর ২০২৬</span>
-                                <p class="text-gray-800 font-medium">আগামী ১২ রবিউল আউয়াল উপলক্ষে মাদ্রাসার শ্রেণি কার্যক্রম বন্ধ থাকবে।</p>
+                                <span class="text-gray-500 block mb-1">০১ অক্টোবর ২০২৬</span>
+                                <p class="text-gray-800 font-medium text-sm">উপবৃত্তির ফর্ম জমাদানের শেষ তারিখ সংক্রান্ত জরুরি বিজ্ঞপ্তি।</p>
                             </div>
                         </div>
                     </div>
 
-                    <!-- 3. News Section -->
+                    <!-- News Section -->
                     <div class="bg-white p-6 rounded-xl shadow-sm space-y-4 border-t-4 border-emerald-600">
                         <div class="flex items-center justify-between border-b pb-3">
-                            <h3 class="font-bold text-gray-800 flex items-center gap-2">
+                            <h3 class="font-bold text-gray-800 flex items-center gap-2 text-sm">
                                 <i class="fa-solid fa-newspaper text-emerald-600"></i> News (সাম্প্রতিক খবর)
                             </h3>
                             <span class="text-xs text-emerald-600 font-semibold">আপডেট</span>
                         </div>
-                        <div class="space-y-3 text-sm">
+                        <div class="space-y-3 text-xs">
                             <div class="p-3 bg-emerald-50 rounded-lg border border-emerald-100">
-                                <span class="text-xs text-emerald-700 font-semibold block mb-1">০৪ অক্টোবর ২০২৬</span>
-                                <p class="text-gray-800 font-medium">মাদ্রাসার ডিবেটিং ক্লাবের আয়োজনে বার্ষিক বিতর্ক প্রতিযোগিতা সম্পন্ন।</p>
+                                <span class="text-emerald-700 font-semibold block mb-1">০৪ অক্টোবর ২০২৬</span>
+                                <p class="text-gray-800 font-medium text-sm">মাদ্রাসার বার্ষিক বিতর্ক প্রতিযোগিতা সম্পন্ন হয়েছে।</p>
                             </div>
                             <div class="p-3 bg-gray-50 rounded-lg border">
-                                <span class="text-xs text-gray-500 block mb-1">২৮ সেপ্টেম্বর ২০২৬</span>
-                                <p class="text-gray-800 font-medium">সেরা ফলাফল অর্জনকারী শিক্ষার্থীদের সংবর্ধনা প্রদান করা হয়েছে।</p>
+                                <span class="text-gray-500 block mb-1">২৮ সেপ্টেম্বর ২০২৬</span>
+                                <p class="text-gray-800 font-medium text-sm">সেরা ফলাফল অর্জনকারী শিক্ষার্থীদের সংবর্ধনা প্রদান।</p>
                             </div>
                         </div>
                     </div>
 
-                    <!-- 4. Events Section -->
+                    <!-- Events Section -->
                     <div class="bg-white p-6 rounded-xl shadow-sm space-y-4 border-t-4 border-amber-600">
                         <div class="flex items-center justify-between border-b pb-3">
-                            <h3 class="font-bold text-gray-800 flex items-center gap-2">
+                            <h3 class="font-bold text-gray-800 flex items-center gap-2 text-sm">
                                 <i class="fa-solid fa-calendar-days text-amber-600"></i> Events (আসন্ন ইভেন্ট)
                             </h3>
                             <span class="text-xs text-amber-600 font-semibold">ক্যালেন্ডার</span>
                         </div>
-                        <div class="space-y-3 text-sm">
+                        <div class="space-y-3 text-xs">
                             <div class="p-3 bg-amber-50 rounded-lg border border-amber-100">
-                                <span class="text-xs text-amber-700 font-semibold block mb-1">১৫ মে ২০২৬</span>
-                                <p class="text-gray-800 font-medium">অর্ধবার্ষিক পরীক্ষা শুরু ও মূল্যায়ন কার্যক্রম।</p>
+                                <span class="text-amber-700 font-semibold block mb-1">১৫ মে ২০২৬</span>
+                                <p class="text-gray-800 font-medium text-sm">অর্ধবার্ষিক পরীক্ষা ও মূল্যায়ন কার্যক্রম শুরু।</p>
                             </div>
                             <div class="p-3 bg-gray-50 rounded-lg border">
-                                <span class="text-xs text-gray-500 block mb-1">২০ ডিসেম্বর ২০২৬</span>
-                                <p class="text-gray-800 font-medium">বার্ষিক ক্রীড়া প্রতিযোগিতা ও সাংস্কৃতিক অনুষ্ঠান।</p>
+                                <span class="text-gray-500 block mb-1">২০ ডিসেম্বর ২০২৬</span>
+                                <p class="text-gray-800 font-medium text-sm">বার্ষিক ক্রীড়া প্রতিযোগিতা ও সাংস্কৃতিক অনুষ্ঠান।</p>
                             </div>
                         </div>
                     </div>
 
                 </div>
 
-                <!-- 5. Important Links Section -->
+                <!-- Important Links Section -->
                 <div class="bg-white p-6 rounded-xl shadow-sm space-y-4">
-                    <h3 class="font-bold text-gray-800 text-base border-b pb-3 flex items-center gap-2">
+                    <h3 class="font-bold text-gray-800 text-sm border-b pb-3 flex items-center gap-2">
                         <i class="fa-solid fa-link text-purple-600"></i> Important Links (গুরুত্বপূর্ণ লিংকসমূহ)
                     </h3>
-                    <div class="grid grid-cols-2 md:grid-cols-4 gap-4 text-sm">
+                    <div class="grid grid-cols-2 md:grid-cols-4 gap-4 text-xs">
                         <a href="https://madrasahboard.gov.bd" target="_blank" class="p-3 bg-gray-50 border rounded-lg hover:bg-purple-50 hover:border-purple-300 transition flex items-center justify-between">
                             <span class="font-medium text-gray-700">মাদ্রাসা শিক্ষা বোর্ড</span>
-                            <i class="fa-solid fa-external-link-alt text-xs text-gray-400"></i>
+                            <i class="fa-solid fa-external-link-alt text-gray-400"></i>
                         </a>
                         <a href="https://banbeis.gov.bd" target="_blank" class="p-3 bg-gray-50 border rounded-lg hover:bg-purple-50 hover:border-purple-300 transition flex items-center justify-between">
                             <span class="font-medium text-gray-700">ব্যানবেইস (BANBEIS)</span>
-                            <i class="fa-solid fa-external-link-alt text-xs text-gray-400"></i>
+                            <i class="fa-solid fa-external-link-alt text-gray-400"></i>
                         </a>
                         <a href="https://bteb.gov.bd" target="_blank" class="p-3 bg-gray-50 border rounded-lg hover:bg-purple-50 hover:border-purple-300 transition flex items-center justify-between">
-                            <span class="font-medium text-gray-750">কারিগরি শিক্ষা বোর্ড</span>
-                            <i class="fa-solid fa-external-link-alt text-xs text-gray-400"></i>
+                            <span class="font-medium text-gray-700">কারিগরি শিক্ষা বোর্ড</span>
+                            <i class="fa-solid fa-external-link-alt text-gray-400"></i>
                         </a>
                         <a href="https://mefd.gov.bd" target="_blank" class="p-3 bg-gray-50 border rounded-lg hover:bg-purple-50 hover:border-purple-300 transition flex items-center justify-between">
                             <span class="font-medium text-gray-700">শিক্ষা মন্ত্রণালয়</span>
-                            <i class="fa-solid fa-external-link-alt text-xs text-gray-400"></i>
+                            <i class="fa-solid fa-external-link-alt text-gray-400"></i>
                         </a>
                     </div>
                 </div>

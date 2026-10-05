@@ -147,7 +147,7 @@
                     </div>
                 </div>
 
-                <!-- SECTION 5: পরিচালনা পর্ষদ (Governing Body with Term, Address & Status) -->
+                <!-- SECTION 5: পরিচালনা পর্ষদ (Governing Body with Header Term & Clean Table) -->
                 <div id="inst-governing" class="inst-section bg-white p-6 rounded-2xl shadow-sm border border-gray-200 space-y-4 hidden">
                     
                     <!-- Header Line with Title and Search/Filter -->
@@ -170,13 +170,17 @@
                     <!-- Form Container -->
                     <div class="bg-teal-50 p-4 rounded-xl border border-teal-200 space-y-3 text-xs">
                         
-                        <!-- Line 1: Term (Start Date/Year to End Date/Year) -->
+                        <!-- Line 1: Term (Start Date/Year to End Date/Year) linked with Calendar & Year Dropdown -->
                         <div class="grid grid-cols-1 md:grid-cols-2 gap-4 pb-2 border-b border-teal-200">
                             <div>
                                 <label class="font-bold text-teal-900 block mb-1">শুরুর তারিখ ও সাল (Start Date & Year) *</label>
                                 <div class="flex gap-2">
                                     <input type="date" id="gb_start_date" class="p-2 border rounded w-1/2 bg-white font-medium" value="2026-01-01">
                                     <select id="gb_start_year" class="p-2 border rounded w-1/2 bg-white font-bold">
+                                        <option>2024</option>
+                                        <option selected>2026</option>
+                                        <option>2028</option>
+                                        <option>2030</option>
                                     </select>
                                 </div>
                             </div>
@@ -185,6 +189,10 @@
                                 <div class="flex gap-2">
                                     <input type="date" id="gb_end_date" class="p-2 border rounded w-1/2 bg-white font-medium" value="2028-12-31">
                                     <select id="gb_end_year" class="p-2 border rounded w-1/2 bg-white font-bold">
+                                        <option>2026</option>
+                                        <option selected>2028</option>
+                                        <option>2030</option>
+                                        <option>2032</option>
                                     </select>
                                 </div>
                             </div>
@@ -223,12 +231,11 @@
 
                     </div>
 
-                    <!-- Dynamic List Table -->
+                    <!-- Dynamic List Table (Term column removed from individual rows as requested) -->
                     <div class="overflow-x-auto">
                         <table class="w-full text-left border-collapse border border-gray-200 text-xs">
                             <thead>
                                 <tr class="bg-teal-700 text-white">
-                                    <th class="border p-2">কার্যকাল (Term & Years)</th>
                                     <th class="border p-2">নাম</th>
                                     <th class="border p-2">পদবী</th>
                                     <th class="border p-2">ঠিকানা</th>
@@ -239,8 +246,7 @@
                             </thead>
                             <tbody id="governingTableBody">
                                 <tr data-term="2026-2028">
-                                    <td class="border p-2 font-bold text-purple-700">০২/০১/২০২৬ - ৩১/১২/২০২৮<br><span class="text-[10px] text-gray-500">(2026 - 2028)</span></td>
-                                    <td class="border p-2">আলহাজ্ব মো: উল্যাহ</td>
+                                    <td class="border p-2 font-bold">আলহাজ্ব মো: উল্যাহ</td>
                                     <td class="border p-2 font-bold text-teal-800">সভাপতি</td>
                                     <td class="border p-2">আবদুল্লাহ হাট</td>
                                     <td class="border p-2">01800000000</td>
@@ -248,8 +254,7 @@
                                     <td class="border p-2 text-center"><button onclick="this.closest('tr').remove()" class="text-red-600 font-bold">ডিলিট</button></td>
                                 </tr>
                                 <tr data-term="2024-2026">
-                                    <td class="border p-2 font-bold text-purple-700">০১/০১/২০২৪ - ৩১/১২/২০২৬<br><span class="text-[10px] text-gray-500">(2024 - 2026)</span></td>
-                                    <td class="border p-2">মাওলানা আব্দুল করিম</td>
+                                    <td class="border p-2 font-bold">মাওলানা আব্দুল করিম</td>
                                     <td class="border p-2 font-bold text-teal-800">সভাপতি (পূর্ববর্তী)</td>
                                     <td class="border p-2">সোনাইমুড়ী</td>
                                     <td class="border p-2">01811111111</td>
@@ -327,12 +332,8 @@
         }
 
         function addGoverningMember() {
-            const startDate = document.getElementById('gb_start_date').value;
             const startY = document.getElementById('gb_start_year').value;
-            const endDate = document.getElementById('gb_end_date').value;
             const endY = document.getElementById('gb_end_year').value;
-            
-            const termBadge = startDate + " থেকে " + endDate + "<br><span class='text-[10px] text-gray-500'>(" + startY + " - " + endY + ")</span>";
             const termFilterKey = startY + "-" + endY;
 
             const name = document.getElementById('gb_name').value.trim();
@@ -353,8 +354,7 @@
             const statusBadgeClass = status === 'Active' ? 'bg-green-100 text-green-800' : 'bg-gray-100 text-gray-600';
 
             newRow.innerHTML = `
-                <td class="border p-2 font-bold text-purple-700">${termBadge}</td>
-                <td class="border p-2">${name}</td>
+                <td class="border p-2 font-bold">${name}</td>
                 <td class="border p-2 font-bold text-teal-800">${desig}</td>
                 <td class="border p-2">${addr}</td>
                 <td class="border p-2">${mob}</td>

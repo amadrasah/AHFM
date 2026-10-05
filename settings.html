@@ -208,14 +208,23 @@
                     </div>
                 </div>
 
-                <!-- TAB 8: Receipt & Signature Design -->
+                <!-- TAB 8: Receipt & Digital Signature Design -->
                 <div id="tab-receipt" class="setting-tab bg-white p-6 rounded-2xl shadow-sm border border-gray-200 space-y-4 hidden">
-                    <h3 class="font-bold text-gray-800 text-sm border-b pb-2"><i class="fa-solid fa-receipt text-cyan-600 mr-2"></i> Receipt Design</h3>
-                    <div class="space-y-3 text-xs">
-                        <label class="flex items-center gap-2 font-medium"><input type="checkbox" checked class="w-4 h-4"> মানি রিসিটে মাদ্রাসার লোগো প্রদর্শন করুন</label>
-                        <label class="flex items-center gap-2 font-medium"><input type="checkbox" checked class="w-4 h-4"> ব্যাকগ্রাউন্ডে ওয়াটারমার্ক যুক্ত করুন</label>
-                        <label class="flex items-center gap-2 font-medium"><input type="checkbox" checked class="w-4 h-4"> ডিজিটাল স্বাক্ষর (Digital Signature) যুক্ত করুন</label>
-                        <button onclick="alert('রিসিট ডিজাইন কনফিগারেশন সেভ হয়েছে!')" class="bg-cyan-600 text-white px-4 py-2 rounded font-bold mt-2">রশিদ ডিজাইন সেভ</button>
+                    <h3 class="font-bold text-gray-800 text-sm border-b pb-2"><i class="fa-solid fa-receipt text-cyan-600 mr-2"></i> Receipt & Digital Signature Setup</h3>
+                    <div class="space-y-4 text-xs">
+                        <div class="space-y-2">
+                            <label class="flex items-center gap-2 font-medium"><input type="checkbox" checked class="w-4 h-4"> মানি রিসিটে মাদ্রাসার লোগো প্রদর্শন করুন</label>
+                            <label class="flex items-center gap-2 font-medium"><input type="checkbox" checked class="w-4 h-4"> ব্যাকগ্রাউন্ডে ওয়াটারমার্ক যুক্ত করুন</label>
+                            <label class="flex items-center gap-2 font-medium"><input type="checkbox" checked class="w-4 h-4"> ডিজিটাল স্বাক্ষর (Principal's Digital Signature) যুক্ত করুন</label>
+                        </div>
+                        
+                        <div class="border-t pt-3 space-y-2">
+                            <label class="font-bold text-gray-700 block">প্রধান শিক্ষক / অধ্যক্ষের স্বাক্ষর (Transparent PNG/JPG):</label>
+                            <input type="file" id="signatureFile" class="p-2 border rounded w-full md:w-1/2">
+                            <div>
+                                <button onclick="alert('ডিজিটাল স্বাক্ষর সফলভাবে সংরক্ষিত হয়েছে!')" class="bg-cyan-600 text-white px-4 py-2 rounded font-bold">স্বাক্ষর সেভ করুন</button>
+                            </div>
+                        </div>
                     </div>
                 </div>
 

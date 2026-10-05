@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Institutional Reports - AHIFM ERP</title>
+    <title>Reports - Abdullah Hat Islamia Fazil Madrasah</title>
     <script src="https://cdn.tailwindcss.com"></script>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     <link rel="stylesheet" href="style.css">
@@ -12,25 +12,79 @@
 
     <div class="flex h-screen overflow-hidden">
         
-        <!-- Sidebar -->
-        <aside class="w-64 bg-emerald-900 text-white flex flex-col shadow-lg hidden md:flex no-print">
-            <div class="p-4 bg-emerald-950 text-center border-b border-emerald-800">
-                <h1 class="font-bold text-lg">AHIFM ERP</h1>
-                <p class="text-xs text-emerald-300">ম্যানেজমেন্ট সিস্টেম</p>
+        <!-- Sidebar with 22 Modules -->
+        <aside class="w-72 bg-emerald-900 text-white flex flex-col shadow-lg overflow-y-auto no-print">
+            <div class="p-4 bg-emerald-950 text-center border-b border-emerald-800 sticky top-0 z-10">
+                <h1 class="font-bold text-base">AHIFM ERP</h1>
+                <p class="text-xs text-emerald-300">Abdullah Hat Islamia Fazil Madrasah</p>
             </div>
 
-            <nav class="flex-1 overflow-y-auto p-4 space-y-2 text-sm">
-                <a href="index.html" class="flex items-center gap-3 p-2.5 rounded hover:bg-emerald-800 transition">
-                    <i class="fa-solid fa-house"></i> 01. Home
+            <nav class="flex-1 p-3 space-y-1 text-xs">
+                <a href="index.html" class="flex items-center gap-2.5 p-2 rounded hover:bg-emerald-800 transition">
+                    <i class="fa-solid fa-house w-4"></i> 🏠 01. Home
                 </a>
-                <a href="dashboard.html" class="flex items-center gap-3 p-2.5 rounded hover:bg-emerald-800 transition">
-                    <i class="fa-solid fa-chart-pie"></i> 10. Dashboard
+                <a href="institution.html" class="flex items-center gap-2.5 p-2 rounded hover:bg-emerald-800 transition">
+                    <i class="fa-solid fa-school w-4"></i> 🏫 02. Institution
                 </a>
-                <a href="reports.html" class="flex items-center gap-3 p-2.5 rounded bg-emerald-800 text-white font-medium">
-                    <i class="fa-solid fa-file-lines"></i> 24. Official Reports
+                <a href="students.html" class="flex items-center gap-2.5 p-2 rounded hover:bg-emerald-800 transition">
+                    <i class="fa-solid fa-user-graduate w-4"></i> 👨‍🎓 03. Student Management
                 </a>
-                <a href="settings.html" class="flex items-center gap-3 p-2.5 rounded hover:bg-emerald-800 transition">
-                    <i class="fa-solid fa-gear"></i> 22. Settings
+                <a href="teachers.html" class="flex items-center gap-2.5 p-2 rounded hover:bg-emerald-800 transition">
+                    <i class="fa-solid fa-chalkboard-user w-4"></i> 👨‍🏫 04. Teacher & Staff
+                </a>
+                <a href="academic.html" class="flex items-center gap-2.5 p-2 rounded hover:bg-emerald-800 transition">
+                    <i class="fa-solid fa-book-open w-4"></i> 📚 05. Academic Management
+                </a>
+                <a href="examination.html" class="flex items-center gap-2.5 p-2 rounded hover:bg-emerald-800 transition">
+                    <i class="fa-solid fa-file-lines w-4"></i> 📝 06. Examination
+                </a>
+                <a href="attendance.html" class="flex items-center gap-2.5 p-2 rounded hover:bg-emerald-800 transition">
+                    <i class="fa-solid fa-clipboard-user w-4"></i> 🕐 07. Attendance
+                </a>
+                <a href="accounts.html" class="flex items-center gap-2.5 p-2 rounded hover:bg-emerald-800 transition">
+                    <i class="fa-solid fa-wallet w-4"></i> 💰 08. Accounts
+                </a>
+                <a href="fees.html" class="flex items-center gap-2.5 p-2 rounded hover:bg-emerald-800 transition">
+                    <i class="fa-solid fa-receipt w-4"></i> 🧾 09. Fees Management
+                </a>
+                <a href="dashboard.html" class="flex items-center gap-2.5 p-2 rounded hover:bg-emerald-800 transition">
+                    <i class="fa-solid fa-chart-pie w-4"></i> 📊 10. Dashboard
+                </a>
+                <a href="notice.html" class="flex items-center gap-2.5 p-2 rounded hover:bg-emerald-800 transition">
+                    <i class="fa-solid fa-bullhorn w-4"></i> 📢 11. Notice Management
+                </a>
+                <a href="routine.html" class="flex items-center gap-2.5 p-2 rounded hover:bg-emerald-800 transition">
+                    <i class="fa-solid fa-calendar-days w-4"></i> 📅 12. Routine & Calendar
+                </a>
+                <a href="certificates.html" class="flex items-center gap-2.5 p-2 rounded hover:bg-emerald-800 transition">
+                    <i class="fa-solid fa-award w-4"></i> 📄 13. Certificates
+                </a>
+                <a href="inventory.html" class="flex items-center gap-2.5 p-2 rounded hover:bg-emerald-800 transition">
+                    <i class="fa-solid fa-boxes-stacked w-4"></i> 📦 14. Inventory
+                </a>
+                <a href="library.html" class="flex items-center gap-2.5 p-2 rounded hover:bg-emerald-800 transition">
+                    <i class="fa-solid fa-book-bookmark w-4"></i> 📖 15. Library
+                </a>
+                <a href="transport.html" class="flex items-center gap-2.5 p-2 rounded hover:bg-emerald-800 transition">
+                    <i class="fa-solid fa-bus w-4"></i> 🚌 16. Transport
+                </a>
+                <a href="hostel.html" class="flex items-center gap-2.5 p-2 rounded hover:bg-emerald-800 transition">
+                    <i class="fa-solid fa-bed w-4"></i> 🍚 17. Hostel / Facilities
+                </a>
+                <a href="communication.html" class="flex items-center gap-2.5 p-2 rounded hover:bg-emerald-800 transition">
+                    <i class="fa-solid fa-comments w-4"></i> 📱 18. Communication
+                </a>
+                <a href="users.html" class="flex items-center gap-2.5 p-2 rounded hover:bg-emerald-800 transition">
+                    <i class="fa-solid fa-shield-halved w-4"></i> 🔐 19. User & Security
+                </a>
+                <a href="cloud-backup.html" class="flex items-center gap-2.5 p-2 rounded hover:bg-emerald-800 transition">
+                    <i class="fa-solid fa-cloud-arrow-up w-4"></i> ☁️ 20. Cloud & Backup
+                </a>
+                <a href="reports.html" class="flex items-center gap-2.5 p-2 rounded bg-emerald-800 text-white font-medium">
+                    <i class="fa-solid fa-chart-line w-4"></i> 📈 21. Reports
+                </a>
+                <a href="settings.html" class="flex items-center gap-2.5 p-2 rounded hover:bg-emerald-800 transition">
+                    <i class="fa-solid fa-gear w-4"></i> ⚙️ 22. Settings
                 </a>
             </nav>
         </aside>
@@ -41,106 +95,125 @@
             <!-- Top Navbar -->
             <header class="bg-white shadow-sm p-4 flex justify-between items-center no-print">
                 <div class="flex items-center gap-3">
-                    <span class="font-bold text-emerald-800 text-xl">প্রাতিষ্ঠানিক রিপোর্ট ও পরিসংখ্যান</span>
+                    <span class="font-bold text-emerald-800 text-lg">📈 Reports Management (প্রতিবেদন ও অ্যানালিটিক্স প্যানেল)</span>
                 </div>
                 <div class="flex items-center gap-4">
-                    <span class="text-sm text-gray-600">অ্যাডমিন প্যানেল</span>
-                    <a href="index.html" class="bg-red-600 text-white px-4 py-1.5 rounded text-sm font-medium hover:bg-red-700">লগআউট</a>
+                    <span class="text-sm text-gray-600 font-medium"><i class="fa-solid fa-user-shield text-emerald-700 mr-1"></i> সুপার অ্যাডমিন</span>
+                    <a href="index.html" class="bg-red-600 text-white px-4 py-1.5 rounded text-xs font-medium hover:bg-red-700">লগআউট</a>
                 </div>
             </header>
 
             <!-- Page Content -->
             <main class="p-6 space-y-6">
                 
-                <!-- Filter Bar -->
-                <div class="bg-white p-4 rounded-xl shadow-sm flex flex-wrap justify-between items-center gap-4 no-print">
-                    <div class="flex items-center gap-3">
-                        <select class="px-3 py-2 border rounded-lg focus:outline-none focus:ring-2 focus:ring-emerald-600 text-sm">
-                            <option>চলতি বছর (২০২৬)</option>
-                            <option>গত বছর (২০২৫)</option>
-                        </select>
-                        <select class="px-3 py-2 border rounded-lg focus:outline-none focus:ring-2 focus:ring-emerald-600 text-sm">
-                            <option>সকল বিভাগ (দাখিল ও আলিম)</option>
-                            <option>দাখিল বিভাগ</option>
-                            <option>আলিম বিভাগ</option>
-                        </select>
-                        <button class="bg-emerald-600 text-white px-4 py-2 rounded-lg font-medium hover:bg-emerald-700 text-sm">রিপোর্ট জেনারেট করুন</button>
-                    </div>
+                <!-- Page Header Banner -->
+                <div class="bg-gradient-to-r from-emerald-800 to-emerald-950 text-white p-6 rounded-2xl shadow-sm flex flex-col md:flex-row justify-between items-center gap-4">
                     <div>
-                        <button onclick="window.print()" class="bg-gray-800 text-white px-4 py-2 rounded-lg font-medium hover:bg-gray-900 flex items-center gap-2 text-sm">
-                            <i class="fa-solid fa-print"></i> রিপোর্ট প্রিন্ট করুন
-                        </button>
+                        <h2 class="text-xl font-bold">মাদ্রাসা রিপোর্ট ও পরিসংখ্যান জেনারেটর প্যানেল</h2>
+                        <p class="text-emerald-200 text-xs mt-1">শিক্ষার্থী, ফলাফল, হাজিরা, আয়-ব্যয়, ফি কালেকশন, শিক্ষক ও বার্ষিক সার্বিক রিপোর্ট তৈরি ও প্রিন্ট সুবিধা।</p>
+                    </div>
+                    <div class="flex gap-2">
+                        <button class="bg-white text-emerald-900 px-4 py-2 rounded-xl font-bold text-xs hover:bg-emerald-50 transition shadow-sm">সার্বিক মাস্টার রিপোর্ট</button>
                     </div>
                 </div>
 
-                <!-- Printable Report Box -->
-                <div class="bg-white p-8 rounded-xl shadow-sm printable-area space-y-6">
+                <!-- Sub-Modules Grid Layout (8 Features) -->
+                <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
                     
-                    <!-- Header -->
-                    <div class="text-center border-b-2 border-emerald-800 pb-4">
-                        <h2 class="text-2xl font-bold text-emerald-900">আল-হেরা ইসলামিয়া ফাযিল মাদরাসা</h2>
-                        <p class="text-xs text-gray-600">নোয়াখালী সদর, নোয়াখালী | বার্ষিক প্রাতিষ্ঠানিক ও আর্থিক সারসংক্ষেপ রিপোর্ট - ২০২৬</p>
+                    <!-- 1. Student Report -->
+                    <div class="bg-white p-5 rounded-xl shadow-sm border-t-4 border-emerald-600 space-y-3">
+                        <div class="flex items-center justify-between border-b pb-2">
+                            <h3 class="font-bold text-gray-800 text-sm flex items-center gap-2">
+                                <i class="fa-solid fa-user-graduate text-emerald-600"></i> Student Report
+                            </h3>
+                            <span class="text-xs bg-emerald-50 text-emerald-700 px-2 py-0.5 rounded font-semibold">শিক্ষার্থী রিপোর্ট</span>
+                        </div>
+                        <p class="text-xs text-gray-600 leading-relaxed">শ্রেণিভিত্তিক শিক্ষার্থী সংখ্যা, জেন্ডার অনুপাত, ভর্তি ও ড্রপআউটের বিস্তারিত পরিসংখ্যান রিপোর্ট।</p>
+                        <button class="w-full bg-emerald-50 text-emerald-700 py-1.5 rounded text-xs font-bold hover:bg-emerald-100 transition">রিপোর্ট দেখুন</button>
                     </div>
 
-                    <!-- Summary Cards Grid -->
-                    <div class="grid grid-cols-1 md:grid-cols-4 gap-4 text-center">
-                        <div class="p-4 bg-emerald-50 rounded-lg border border-emerald-200">
-                            <p class="text-xs text-gray-600">মোট ছাত্র-ছাত্রী</p>
-                            <h3 class="text-xl font-bold text-emerald-900 mt-1">৪৫০ জন</h3>
+                    <!-- 2. Result Report -->
+                    <div class="bg-white p-5 rounded-xl shadow-sm border-t-4 border-blue-600 space-y-3">
+                        <div class="flex items-center justify-between border-b pb-2">
+                            <h3 class="font-bold text-gray-800 text-sm flex items-center gap-2">
+                                <i class="fa-solid fa-file-lines text-blue-600"></i> Result Report
+                            </h3>
+                            <span class="text-xs bg-blue-50 text-blue-700 px-2 py-0.5 rounded font-semibold">ফলাফল রিপোর্ট</span>
                         </div>
-                        <div class="p-4 bg-blue-50 rounded-lg border border-blue-200">
-                            <p class="text-xs text-gray-600">মোট শিক্ষক ও স্টাফ</p>
-                            <h3 class="text-xl font-bold text-blue-900 mt-1">২৫ জন</h3>
-                        </div>
-                        <div class="p-4 bg-purple-50 rounded-lg border border-purple-200">
-                            <p class="text-xs text-gray-600">বার্ষিক মোট আয়</p>
-                            <h3 class="text-xl font-bold text-purple-900 mt-1">৳ ১২,৫০,০০০</h3>
-                        </div>
-                        <div class="p-4 bg-amber-50 rounded-lg border border-amber-200">
-                            <p class="text-xs text-gray-600">বার্ষিক মোট ব্যয়</p>
-                            <h3 class="text-xl font-bold text-amber-900 mt-1">৳ ৯,৮০,০০০</h3>
-                        </div>
+                        <p class="text-xs text-gray-600 leading-relaxed">বার্ষিক ও অর্ধবার্ষিক পরীক্ষার পাসের হার, জিপিএ-৫ প্রাপ্তি এবং গ্রেডওয়ার্ক সামারি রিপোর্ট।</p>
+                        <button class="w-full bg-blue-50 text-blue-700 py-1.5 rounded text-xs font-bold hover:bg-blue-100 transition">ফলাফল রিপোর্ট প্যানেল</button>
                     </div>
 
-                    <!-- Detailed Table Section -->
-                    <div class="space-y-3">
-                        <h3 class="font-bold text-gray-800 border-b pb-2">বিভাগভিত্তিক শিক্ষার্থী ও পাসের হার</h3>
-                        <div class="overflow-x-auto">
-                            <table class="w-full text-left border-collapse text-sm">
-                               <thead>
-                                    <tr class="bg-gray-100 text-gray-700 border-b">
-                                        <th class="p-3 border">মাদ্রাসার বিভাগ</th>
-                                        <th class="p-3 border">মোট শিক্ষার্থী</th>
-                                        <th class="p-3 border">উপস্থিতির হার (গড়)</th>
-                                        <th class="p-3 border">পরীক্ষায় পাসের হার</th>
-                                    </tr>
-                                </thead>
-                                <tbody class="text-gray-700 divide-y">
-                                    <tr>
-                                        <td class="p-3 border font-semibold">দাখিল বিভাগ (ষষ্ঠ - দশম)</td>
-                                        <td class="p-3 border">২৮০ জন</td>
-                                        <td class="p-3 border text-emerald-700 font-medium">৯২%</td>
-                                        <td class="p-3 border text-emerald-700 font-medium">৯৬%</td>
-                                    </tr>
-                                    <tr>
-                                        <td class="p-3 border font-semibold">আলিম বিভাগ (একাদশ - দ্বাদশ)</td>
-                                        <td class="p-3 border">১৭০ জন</td>
-                                        <td class="p-3 border text-emerald-700 font-medium">৮৮%</td>
-                                        <td class="p-3 border text-emerald-700 font-medium">৯৪%</td>
-                                    </tr>
-                                </tbody>
-                            </table>
+                    <!-- 3. Attendance Report -->
+                    <div class="bg-white p-5 rounded-xl shadow-sm border-t-4 border-purple-600 space-y-3">
+                        <div class="flex items-center justify-between border-b pb-2">
+                            <h3 class="font-bold text-gray-800 text-sm flex items-center gap-2">
+                                <i class="fa-solid fa-clipboard-user text-purple-600"></i> Attendance Report
+                            </h3>
+                            <span class="text-xs bg-purple-50 text-purple-700 px-2 py-0.5 rounded font-semibold">হাজিরা রিপোর্ট</span>
                         </div>
+                        <p class="text-xs text-gray-600 leading-relaxed">দৈনিক, সাপ্তাহিক ও মাসিক শিক্ষার্থী এবং শিক্ষকদের উপস্থিতির শতাংশ ও অনুপস্থিতির তালিকা।</p>
+                        <button class="w-full bg-purple-50 text-purple-700 py-1.5 rounded text-xs font-bold hover:bg-purple-100 transition">হাজিরা রিপোর্ট</button>
                     </div>
 
-                    <!-- Signatures -->
-                    <div class="flex justify-between items-end pt-16 text-sm">
-                        <div class="text-center">
-                            <div class="border-t border-gray-400 w-44 pt-1">হিসাবরক্ষক</div>
+                    <!-- 4. Income Report -->
+                    <div class="bg-white p-5 rounded-xl shadow-sm border-t-4 border-amber-600 space-y-3">
+                        <div class="flex items-center justify-between border-b pb-2">
+                            <h3 class="font-bold text-gray-800 text-sm flex items-center gap-2">
+                                <i class="fa-solid fa-arrow-trend-up text-amber-600"></i> Income Report
+                            </h3>
+                            <span class="text-xs bg-amber-50 text-amber-700 px-2 py-0.5 rounded font-semibold">আয় রিপোর্ট</span>
                         </div>
-                        <div class="text-center">
-                            <div class="border-t border-gray-400 w-44 pt-1 font-bold">অধ্যক্ষ / মুহতামিম</div>
+                        <p class="text-xs text-gray-600 leading-relaxed">বিভিন্ন খাত থেকে মাদ্রাসার মোট আয়, অনুদান, ফি কালেকশন ও ব্যাংক জমার হিসাব বিবরণী।</p>
+                        <button class="w-full bg-amber-50 text-amber-700 py-1.5 rounded text-xs font-bold hover:bg-amber-100 transition">আয় বিবরণী</button>
+                    </div>
+
+                    <!-- 5. Expense Report -->
+                    <div class="bg-white p-5 rounded-xl shadow-sm border-t-4 border-rose-600 space-y-3">
+                        <div class="flex items-center justify-between border-b pb-2">
+                            <h3 class="font-bold text-gray-800 text-sm flex items-center gap-2">
+                                <i class="fa-solid fa-arrow-trend-down text-rose-600"></i> Expense Report
+                            </h3>
+                            <span class="text-xs bg-rose-50 text-rose-700 px-2 py-0.5 rounded font-semibold">ব্যয় রিপোর্ট</span>
                         </div>
+                        <p class="text-xs text-gray-600 leading-relaxed">শিক্ষক-কর্মচারীদের বেতন, বিদ্যুৎ বিল, মেইনটেনেন্স এবং অন্যান্য প্রাতিষ্ঠানিক ব্যয়ের হিসাব।</p>
+                        <button class="w-full bg-rose-50 text-rose-700 py-1.5 rounded text-xs font-bold hover:bg-rose-100 transition">ব্যয় বিবরণী প্যানেল</button>
+                    </div>
+
+                    <!-- 6. Fee Report -->
+                    <div class="bg-white p-5 rounded-xl shadow-sm border-t-4 border-indigo-600 space-y-3">
+                        <div class="flex items-center justify-between border-b pb-2">
+                            <h3 class="font-bold text-gray-800 text-sm flex items-center gap-2">
+                                <i class="fa-solid fa-receipt text-indigo-600"></i> Fee Collection Report
+                            </h3>
+                            <span class="text-xs bg-indigo-50 text-indigo-700 px-2 py-0.5 rounded font-semibold">ফি রিপোর্ট</span>
+                        </div>
+                        <p class="text-xs text-gray-600 leading-relaxed">টিউশন ফি, সেশন ফি ও পরীক্ষার ফির আদায়কৃত অংক এবং বকেয়া (Due) ফি’র তালিকা রিপোর্ট।</p>
+                        <button class="w-full bg-indigo-50 text-indigo-700 py-1.5 rounded text-xs font-bold hover:bg-indigo-100 transition">ফি রিপোর্ট</button>
+                    </div>
+
+                    <!-- 7. Teacher Report -->
+                    <div class="bg-white p-5 rounded-xl shadow-sm border-t-4 border-teal-600 space-y-3">
+                        <div class="flex items-center justify-between border-b pb-2">
+                            <h3 class="font-bold text-gray-800 text-sm flex items-center gap-2">
+                                <i class="fa-solid fa-chalkboard-user text-teal-600"></i> Teacher Report
+                            </h3>
+                            <span class="text-xs bg-teal-50 text-teal-700 px-2 py-0.5 rounded font-semibold">শিক্ষক রিপোর্ট</span>
+                        </div>
+                        <p class="text-xs text-gray-600 leading-relaxed">শিক্ষকদের ক্লাস লোড, এমপিও বা নন-এমপিও তথ্য, হাজিরা ও কার্যবিবরণীর সামারি রিপোর্ট।</p>
+                        <button class="w-full bg-teal-50 text-teal-700 py-1.5 rounded text-xs font-bold hover:bg-teal-100 transition">শিক্ষক রিপোর্ট প্যানেল</button>
+                    </div>
+
+                    <!-- 8. Annual Report -->
+                    <div class="bg-white p-5 rounded-xl shadow-sm border-t-4 border-cyan-600 space-y-3">
+                        <div class="flex items-center justify-between border-b pb-2">
+                            <h3 class="font-bold text-gray-800 text-sm flex items-center gap-2">
+                                <i class="fa-solid fa-calendar-check text-cyan-600"></i> Annual Report
+                            </h3>
+                            <span class="text-xs bg-cyan-50 text-cyan-700 px-2 py-0.5 rounded font-semibold">বার্ষিক রিপোর্ট</span>
+                        </div>
+                        <p class="text-xs text-gray-600 leading-relaxed">মাদ্রাসার বার্ষিক আর্থিক হিসাব, সামগ্রিক অর্জন, প্রগতি ও বার্ষিক কমপ্রিহেনসিভ রিপোর্ট।</p>
+                        <button class="w-full bg-cyan-50 text-cyan-700 py-1.5 rounded text-xs font-bold hover:bg-cyan-100 transition">বার্ষিক রিপোর্ট জেনারেট</button>
                     </div>
 
                 </div>

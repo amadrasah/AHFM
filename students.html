@@ -3,57 +3,88 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Student Management - AHIFM ERP</title>
+    <title>Student Management - Abdullah Hat Islamia Fazil Madrasah</title>
     <script src="https://cdn.tailwindcss.com"></script>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link rel="stylesheet" href="style.css">
 </head>
 <body class="bg-gray-100 font-sans">
 
     <div class="flex h-screen overflow-hidden">
         
-        <!-- Sidebar -->
-        <aside class="w-64 bg-emerald-900 text-white flex flex-col shadow-lg hidden md:flex">
-            <div class="p-4 bg-emerald-950 text-center border-b border-emerald-800">
-                <h1 class="font-bold text-lg">AHIFM ERP</h1>
-                <p class="text-xs text-emerald-300">ম্যানেজমেন্ট সিস্টেম</p>
+        <!-- Sidebar with 22 Modules -->
+        <aside class="w-72 bg-emerald-900 text-white flex flex-col shadow-lg overflow-y-auto no-print">
+            <div class="p-4 bg-emerald-950 text-center border-b border-emerald-800 sticky top-0 z-10">
+                <h1 class="font-bold text-base">AHIFM ERP</h1>
+                <p class="text-xs text-emerald-300">Abdullah Hat Islamia Fazil Madrasah</p>
             </div>
 
-            <nav class="flex-1 overflow-y-auto p-4 space-y-2 text-sm">
-                <a href="index.html" class="flex items-center gap-3 p-2.5 rounded hover:bg-emerald-800 transition">
-                    <i class="fa-solid fa-house"></i> 01. Home
+            <nav class="flex-1 p-3 space-y-1 text-xs">
+                <a href="index.html" class="flex items-center gap-2.5 p-2 rounded hover:bg-emerald-800 transition">
+                    <i class="fa-solid fa-house w-4"></i> 🏠 01. Home
                 </a>
-                <a href="institution.html" class="flex items-center gap-3 p-2.5 rounded hover:bg-emerald-800 transition">
-                    <i class="fa-solid fa-school"></i> 02. Institution
+                <a href="institution.html" class="flex items-center gap-2.5 p-2 rounded hover:bg-emerald-800 transition">
+                    <i class="fa-solid fa-school w-4"></i> 🏫 02. Institution
                 </a>
-                <a href="students.html" class="flex items-center gap-3 p-2.5 rounded bg-emerald-800 text-white font-medium">
-                    <i class="fa-solid fa-user-graduate"></i> 03. Student Management
+                <a href="students.html" class="flex items-center gap-2.5 p-2 rounded bg-emerald-800 text-white font-medium">
+                    <i class="fa-solid fa-user-graduate w-4"></i> 👨‍🎓 03. Student Management
                 </a>
-                <a href="teachers.html" class="flex items-center gap-3 p-2.5 rounded hover:bg-emerald-800 transition">
-                    <i class="fa-solid fa-chalkboard-user"></i> 04. Teacher & Staff
+                <a href="teachers.html" class="flex items-center gap-2.5 p-2 rounded hover:bg-emerald-800 transition">
+                    <i class="fa-solid fa-chalkboard-user w-4"></i> 👨‍🏫 04. Teacher & Staff
                 </a>
-                <a href="academic.html" class="flex items-center gap-3 p-2.5 rounded hover:bg-emerald-800 transition">
-                    <i class="fa-solid fa-book-open"></i> 05. Academic
+                <a href="academic.html" class="flex items-center gap-2.5 p-2 rounded hover:bg-emerald-800 transition">
+                    <i class="fa-solid fa-book-open w-4"></i> 📚 05. Academic Management
                 </a>
-                <a href="examination.html" class="flex items-center gap-3 p-2.5 rounded hover:bg-emerald-800 transition">
-                    <i class="fa-solid fa-file-pen"></i> 06. Examination
+                <a href="examination.html" class="flex items-center gap-2.5 p-2 rounded hover:bg-emerald-800 transition">
+                    <i class="fa-solid fa-file-lines w-4"></i> 📝 06. Examination
                 </a>
-                <a href="attendance.html" class="flex items-center gap-3 p-2.5 rounded hover:bg-emerald-800 transition">
-                    <i class="fa-solid fa-clock"></i> 07. Attendance
+                <a href="attendance.html" class="flex items-center gap-2.5 p-2 rounded hover:bg-emerald-800 transition">
+                    <i class="fa-solid fa-clipboard-user w-4"></i> 🕐 07. Attendance
                 </a>
-                <a href="accounts.html" class="flex items-center gap-3 p-2.5 rounded hover:bg-emerald-800 transition">
-                    <i class="fa-solid fa-wallet"></i> 08. Accounts
+                <a href="accounts.html" class="flex items-center gap-2.5 p-2 rounded hover:bg-emerald-800 transition">
+                    <i class="fa-solid fa-wallet w-4"></i> 💰 08. Accounts
                 </a>
-                <a href="fees.html" class="flex items-center gap-3 p-2.5 rounded hover:bg-emerald-800 transition">
-                    <i class="fa-solid fa-receipt"></i> 09. Fees Management
+                <a href="fees.html" class="flex items-center gap-2.5 p-2 rounded hover:bg-emerald-800 transition">
+                    <i class="fa-solid fa-receipt w-4"></i> 🧾 09. Fees Management
                 </a>
-                <a href="dashboard.html" class="flex items-center gap-3 p-2.5 rounded hover:bg-emerald-800 transition">
-                    <i class="fa-solid fa-chart-pie"></i> 10. Dashboard
+                <a href="dashboard.html" class="flex items-center gap-2.5 p-2 rounded hover:bg-emerald-800 transition">
+                    <i class="fa-solid fa-chart-pie w-4"></i> 📊 10. Dashboard
                 </a>
-                <a href="notice.html" class="flex items-center gap-3 p-2.5 rounded hover:bg-emerald-800 transition">
-                    <i class="fa-solid fa-bullhorn"></i> 11. Notice Board
+                <a href="notice.html" class="flex items-center gap-2.5 p-2 rounded hover:bg-emerald-800 transition">
+                    <i class="fa-solid fa-bullhorn w-4"></i> 📢 11. Notice Management
                 </a>
-                <a href="settings.html" class="flex items-center gap-3 p-2.5 rounded hover:bg-emerald-800 transition">
-                    <i class="fa-solid fa-gear"></i> 22. Settings
+                <a href="routine.html" class="flex items-center gap-2.5 p-2 rounded hover:bg-emerald-800 transition">
+                    <i class="fa-solid fa-calendar-days w-4"></i> 📅 12. Routine & Calendar
+                </a>
+                <a href="certificates.html" class="flex items-center gap-2.5 p-2 rounded hover:bg-emerald-800 transition">
+                    <i class="fa-solid fa-award w-4"></i> 📄 13. Certificates
+                </a>
+                <a href="inventory.html" class="flex items-center gap-2.5 p-2 rounded hover:bg-emerald-800 transition">
+                    <i class="fa-solid fa-boxes-stacked w-4"></i> 📦 14. Inventory
+                </a>
+                <a href="library.html" class="flex items-center gap-2.5 p-2 rounded hover:bg-emerald-800 transition">
+                    <i class="fa-solid fa-books w-4"></i> 📖 15. Library
+                </a>
+                <a href="transport.html" class="flex items-center gap-2.5 p-2 rounded hover:bg-emerald-800 transition">
+                    <i class="fa-solid fa-bus w-4"></i> 🚌 16. Transport
+                </a>
+                <a href="hostel.html" class="flex items-center gap-2.5 p-2 rounded hover:bg-emerald-800 transition">
+                    <i class="fa-solid fa-bed w-4"></i> 🍚 17. Hostel / Facilities
+                </a>
+                <a href="communication.html" class="flex items-center gap-2.5 p-2 rounded hover:bg-emerald-800 transition">
+                    <i class="fa-solid fa-comments w-4"></i> 📱 18. Communication
+                </a>
+                <a href="users.html" class="flex items-center gap-2.5 p-2 rounded hover:bg-emerald-800 transition">
+                    <i class="fa-solid fa-shield-halved w-4"></i> 🔐 19. User & Security
+                </a>
+                <a href="cloud-backup.html" class="flex items-center gap-2.5 p-2 rounded hover:bg-emerald-800 transition">
+                    <i class="fa-solid fa-cloud-arrow-up w-4"></i> ☁️ 20. Cloud & Backup
+                </a>
+                <a href="reports.html" class="flex items-center gap-2.5 p-2 rounded hover:bg-emerald-800 transition">
+                    <i class="fa-solid fa-chart-line w-4"></i> 📈 21. Reports
+                </a>
+                <a href="settings.html" class="flex items-center gap-2.5 p-2 rounded hover:bg-emerald-800 transition">
+                    <i class="fa-solid fa-gear w-4"></i> ⚙️ 22. Settings
                 </a>
             </nav>
         </aside>
@@ -62,77 +93,142 @@
         <div class="flex-1 flex flex-col overflow-y-auto">
             
             <!-- Top Navbar -->
-            <header class="bg-white shadow-sm p-4 flex justify-between items-center">
+            <header class="bg-white shadow-sm p-4 flex justify-between items-center no-print">
                 <div class="flex items-center gap-3">
-                    <span class="font-bold text-emerald-800 text-xl">স্টুডেন্ট ম্যানেজমেন্ট (ছাত্র-ছাত্রী তথ্য)</span>
+                    <span class="font-bold text-emerald-800 text-lg">👨‍🎓 Student Management (শিক্ষার্থী ব্যবস্থাপনা)</span>
                 </div>
                 <div class="flex items-center gap-4">
-                    <span class="text-sm text-gray-600">অ্যাডমিন প্যানেল</span>
-                    <a href="index.html" class="bg-red-600 text-white px-4 py-1.5 rounded text-sm font-medium hover:bg-red-700">লগআউট</a>
+                    <span class="text-sm text-gray-600 font-medium"><i class="fa-solid fa-user-shield text-emerald-700 mr-1"></i> সুপার অ্যাডমিন</span>
+                    <a href="index.html" class="bg-red-600 text-white px-4 py-1.5 rounded text-xs font-medium hover:bg-red-700">লগআউট</a>
                 </div>
             </header>
 
             <!-- Page Content -->
             <main class="p-6 space-y-6">
                 
-                <!-- Action Bar & Search -->
-                <div class="flex flex-col md:flex-row justify-between items-center gap-4 bg-white p-4 rounded-xl shadow-sm">
-                    <div class="w-full md:w-1/3">
-                        <input type="text" placeholder="ছাত্রের নাম বা আইডি দিয়ে খুঁজুন..." class="w-full px-4 py-2 border rounded-lg focus:outline-none focus:ring-2 focus:ring-emerald-600">
-                    </div>
+                <!-- Page Header Banner -->
+                <div class="bg-gradient-to-r from-emerald-800 to-emerald-950 text-white p-6 rounded-2xl shadow-sm flex flex-col md:flex-row justify-between items-center gap-4">
                     <div>
-                        <button onclick="document.getElementById('admissionModal').classList.remove('hidden')" class="bg-emerald-600 text-white px-5 py-2 rounded-lg font-medium hover:bg-emerald-700 flex items-center gap-2">
-                            <i class="fa-solid fa-user-plus"></i> নতুন ভর্তি / স্টুডেন্ট যোগ করুন
-                        </button>
+                        <h2 class="text-xl font-bold">শিক্ষার্থী তথ্য ও কার্যক্রম মডিউল</h2>
+                        <p class="text-emerald-200 text-xs mt-1">নতুন ভর্তি, রেজিস্ট্রেশন, আইডি কার্ড জেনারেশন, প্রমোশন এবং শিক্ষার্থী সার্চ প্যানেল।</p>
+                    </div>
+                    <div class="flex gap-2">
+                        <a href="#admission" class="bg-white text-emerald-900 px-4 py-2 rounded-xl font-bold text-xs hover:bg-emerald-50 transition shadow-sm">নতুন ভর্তি</a>
+                        <a href="#search" class="bg-emerald-700 text-white px-4 py-2 rounded-xl font-bold text-xs hover:bg-emerald-600 transition border border-emerald-600">শিক্ষার্থী খুঁজুন</a>
                     </div>
                 </div>
 
-                <!-- Student List Table -->
-                <div class="bg-white rounded-xl shadow-sm overflow-hidden">
-                    <div class="p-4 border-b font-bold text-gray-800">সকল শিক্ষার্থীর তালিকা</div>
-                    <div class="overflow-x-auto">
-                        <table class="w-full text-left border-collapse">
-                            <thead>
-                                <tr class="bg-gray-50 text-gray-600 text-sm border-b">
-                                    <th class="p-3">আইডি / রোল</th>
-                                    <th class="p-3">নাম</th>
-                                    <th class="p-3">শ্রেণি</th>
-                                    <th class="p-3">বিভাগ / জামাত</th>
-                                    <th class="p-3">অভিভাবকের নাম</th>
-                                    <th class="p-3">মোবাইল নম্বর</th>
-                                    <th class="p-3 text-center">অ্যাকশন</th>
-                                </tr>
-                            </thead>
-                            <tbody class="text-sm text-gray-700 divide-y">
-                                <tr class="hover:bg-gray-50">
-                                    <td class="p-3 font-semibold text-emerald-800">2026101</td>
-                                    <td class="p-3">মুহাম্মদ আব্দুল্লাহ</td>
-                                    <td class="p-3">আলিম প্রথম বর্ষ</td>
-                                    <td class="p-3">বিজ্ঞান</td>
-                                    <td class="p-3">মাওলানা ইব্রাহিম</td>
-                                    <td class="p-3">০১৮১২-৩৪৫৬৭৮</td>
-                                    <td class="p-3 text-center space-x-2">
-                                        <button class="text-blue-600 hover:text-blue-800" title="প্রোফাইল দেখুন"><i class="fa-solid fa-eye"></i></button>
-                                        <button class="text-amber-600 hover:text-amber-800" title="এডিট করুন"><i class="fa-solid fa-pen-to-square"></i></button>
-                                        <button class="text-red-600 hover:text-red-800" title="ডিলিট"><i class="fa-solid fa-trash"></i></button>
-                                    </td>
-                                </tr>
-                                <tr class="hover:bg-gray-50">
-                                    <td class="p-3 font-semibold text-emerald-800">2026102</td>
-                                    <td class="p-3">ফাতিমা তুজ জোহরা</td>
-                                    <td class="p-3">দাখিল দশম শ্রেণি</td>
-                                    <td class="p-3">সাধারণ</td>
-                                    <td class="p-3">আব্দুল করিম</td>
-                                    <td class="p-3">০১৯১৯-৮৭৬৫০১</td>
-                                    <td class="p-3 text-center space-x-2">
-                                        <button class="text-blue-600 hover:text-blue-800" title="প্রোফাইল দেখুন"><i class="fa-solid fa-eye"></i></button>
-                                        <button class="text-amber-600 hover:text-amber-800" title="এডিট করুন"><i class="fa-solid fa-pen-to-square"></i></button>
-                                        <button class="text-red-600 hover:text-red-800" title="ডিলিট"><i class="fa-solid fa-trash"></i></button>
-                                    </td>
-                                </tr>
-                            </tbody>
-                        </table>
+                <!-- Sub-Modules Grid Layout (9 Features) -->
+                <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+                    
+                    <!-- 1. Admission -->
+                    <div class="bg-white p-5 rounded-xl shadow-sm border-t-4 border-emerald-600 space-y-3">
+                        <div class="flex items-center justify-between border-b pb-2">
+                            <h3 class="font-bold text-gray-800 text-sm flex items-center gap-2">
+                                <i class="fa-solid fa-user-plus text-emerald-600"></i> Admission
+                            </h3>
+                            <span class="text-xs bg-emerald-50 text-emerald-700 px-2 py-0.5 rounded font-semibold">ভর্তি</span>
+                        </div>
+                        <p class="text-xs text-gray-600 leading-relaxed">নতুন শিক্ষার্থীদের ভর্তি ফরম পূরণ, তথ্য এন্ট্রি এবং প্রাথমিক ফি গ্রহণ প্রক্রিয়া।</p>
+                        <button class="w-full bg-emerald-50 text-emerald-700 py-1.5 rounded text-xs font-bold hover:bg-emerald-100 transition">নতুন ভর্তি ফরম</button>
                     </div>
+
+                    <!-- 2. Student Registration -->
+                    <div class="bg-white p-5 rounded-xl shadow-sm border-t-4 border-blue-600 space-y-3">
+                        <div class="flex items-center justify-between border-b pb-2">
+                            <h3 class="font-bold text-gray-800 text-sm flex items-center gap-2">
+                                <i class="fa-solid fa-id-card text-blue-600"></i> Student Registration
+                            </h3>
+                            <span class="text-xs bg-blue-50 text-blue-700 px-2 py-0.5 rounded font-semibold">রেজিস্ট্রেশন</span>
+                        </div>
+                        <p class="text-xs text-gray-600 leading-relaxed">বোর্ড বা মাদ্রাসার রেজিস্টার্ড শিক্ষার্থীদের তথ্য, রেজিস্ট্রেশন নম্বর এবং সেশন এন্ট্রি।</p>
+                        <button class="w-full bg-blue-50 text-blue-700 py-1.5 rounded text-xs font-bold hover:bg-blue-100 transition">রেজিস্ট্রেশন তালিকা</button>
+                    </div>
+
+                    <!-- 3. Student ID -->
+                    <div class="bg-white p-5 rounded-xl shadow-sm border-t-4 border-purple-600 space-y-3">
+                        <div class="flex items-center justify-between border-b pb-2">
+                            <h3 class="font-bold text-gray-800 text-sm flex items-center gap-2">
+                                <i class="fa-solid fa-address-card text-purple-600"></i> Student ID Card
+                            </h3>
+                            <span class="text-xs bg-purple-50 text-purple-700 px-2 py-0.5 rounded font-semibold">আইডি কার্ড</span>
+                        </div>
+                        <p class="text-xs text-gray-600 leading-relaxed">শিক্ষার্থীদের ডিজিটাল আইডি কার্ড ডিজাইন, জেনারেট ও প্রিন্ট করার সুবিধা।</p>
+                        <button class="w-full bg-purple-50 text-purple-700 py-1.5 rounded text-xs font-bold hover:bg-purple-100 transition">আইডি কার্ড প্রিন্ট</button>
+                    </div>
+
+                    <!-- 4. Student Profile -->
+                    <div class="bg-white p-5 rounded-xl shadow-sm border-t-4 border-amber-600 space-y-3">
+                        <div class="flex items-center justify-between border-b pb-2">
+                            <h3 class="font-bold text-gray-800 text-sm flex items-center gap-2">
+                                <i class="fa-solid fa-user text-amber-600"></i> Student Profile
+                            </h3>
+                            <span class="text-xs bg-amber-50 text-amber-700 px-2 py-0.5 rounded font-semibold">প্রোফাইল</span>
+                        </div>
+                        <p class="text-xs text-gray-600 leading-relaxed">শিক্ষার্থীর ব্যক্তিগত তথ্য, অভিভাবকের নাম, ফলাফল, উপস্থিতি ও ফি এর বিবরণী।</p>
+                        <button class="w-full bg-amber-50 text-amber-700 py-1.5 rounded text-xs font-bold hover:bg-amber-100 transition">প্রোফাইল দেখুন</button>
+                    </div>
+
+                    <!-- 5. Class / Section -->
+                    <div class="bg-white p-5 rounded-xl shadow-sm border-t-4 border-indigo-600 space-y-3">
+                        <div class="flex items-center justify-between border-b pb-2">
+                            <h3 class="font-bold text-gray-800 text-sm flex items-center gap-2">
+                                <i class="fa-solid fa-people-roof text-indigo-600"></i> Class / Section
+                            </h3>
+                            <span class="text-xs bg-indigo-50 text-indigo-700 px-2 py-0.5 rounded font-semibold">শ্রেণি বিন্যাস</span>
+                        </div>
+                        <p class="text-xs text-gray-600 leading-relaxed">বিভিন্ন শ্রেণি ও সেকশন অনুযায়ী শিক্ষার্থী বিভাজন এবং রোল নম্বর অ্যাসাইনমেন্ট।</p>
+                        <button class="w-full bg-indigo-50 text-indigo-700 py-1.5 rounded text-xs font-bold hover:bg-indigo-100 transition">শ্রেণি ও সেকশন সেটআপ</button>
+                    </div>
+
+                    <!-- 6. Student Promotion -->
+                    <div class="bg-white p-5 rounded-xl shadow-sm border-t-4 border-teal-600 space-y-3">
+                        <div class="flex items-center justify-between border-b pb-2">
+                            <h3 class="font-bold text-gray-800 text-sm flex items-center gap-2">
+                                <i class="fa-solid fa-arrow-up-right-dots text-teal-600"></i> Student Promotion
+                            </h3>
+                            <span class="text-xs bg-teal-50 text-teal-700 px-2 py-0.5 rounded font-semibold">প্রমোশন</span>
+                        </div>
+                        <p class="text-xs text-gray-600 leading-relaxed">বার্ষিক পরীক্ষার ফলাফলের ভিত্তিতে পরবর্তী শ্রেণীতে শিক্ষার্থী উন্নীতকরণ (Promotion)।</p>
+                        <button class="w-full bg-teal-50 text-teal-700 py-1.5 rounded text-xs font-bold hover:bg-teal-100 transition">প্রমোশন প্যানেল</button>
+                    </div>
+
+                    <!-- 7. Transfer -->
+                    <div class="bg-white p-5 rounded-xl shadow-sm border-t-4 border-rose-600 space-y-3">
+                        <div class="flex items-center justify-between border-b pb-2">
+                            <h3 class="font-bold text-gray-800 text-sm flex items-center gap-2">
+                                <i class="fa-solid fa-right-left text-rose-600"></i> Transfer (টিসি)
+                            </h3>
+                            <span class="text-xs bg-rose-50 text-rose-700 px-2 py-0.5 rounded font-semibold">স্থানান্তর</span>
+                        </div>
+                        <p class="text-xs text-gray-600 leading-relaxed">অন্য প্রতিষ্ঠানে স্থানান্তর বা টিসি (Transfer Certificate) ইস্যু করার প্রক্রিয়া।</p>
+                        <button class="w-full bg-rose-50 text-rose-700 py-1.5 rounded text-xs font-bold hover:bg-rose-100 transition">টিসি ম্যানেজমেন্ট</button>
+                    </div>
+
+                    <!-- 8. Student Search -->
+                    <div class="bg-white p-5 rounded-xl shadow-sm border-t-4 border-cyan-600 space-y-3">
+                        <div class="flex items-center justify-between border-b pb-2">
+                            <h3 class="font-bold text-gray-800 text-sm flex items-center gap-2">
+                                <i class="fa-solid fa-magnifying-glass text-cyan-600"></i> Student Search
+                            </h3>
+                            <span class="text-xs bg-cyan-50 text-cyan-700 px-2 py-0.5 rounded font-semibold">অনুসন্ধান</span>
+                        </div>
+                        <p class="text-xs text-gray-600 leading-relaxed">নাম, রোল, রেজিস্ট্রেশন নম্বর বা মোবাইল নম্বর দিয়ে দ্রুত শিক্ষার্থী খুঁজে বের করার ফিল্টার।</p>
+                        <button class="w-full bg-cyan-50 text-cyan-700 py-1.5 rounded text-xs font-bold hover:bg-cyan-100 transition">সার্চ করুন</button>
+                    </div>
+
+                    <!-- 9. Student Documents -->
+                    <div class="bg-white p-5 rounded-xl shadow-sm border-t-4 border-violet-600 space-y-3">
+                        <div class="flex items-center justify-between border-b pb-2">
+                            <h3 class="font-bold text-gray-800 text-sm flex items-center gap-2">
+                                <i class="fa-solid fa-folder-open text-violet-600"></i> Student Documents
+                            </h3>
+                            <span class="text-xs bg-violet-50 text-violet-700 px-2 py-0.5 rounded font-semibold">ডকুমেন্টস</span>
+                        </div>
+                        <p class="text-xs text-gray-600 leading-relaxed">জন্ম নিবন্ধন, ছবি, প্রশংসাপত্র এবং বিভিন্ন প্রয়োজনীয় ডকুমেন্টস স্ক্যান করে সংরক্ষণ।</p>
+                        <button class="w-full bg-violet-50 text-violet-700 py-1.5 rounded text-xs font-bold hover:bg-violet-100 transition">ডকুমেন্টস আর্কাইভ</button>
+                    </div>
+
                 </div>
 
             </main>
@@ -140,53 +236,6 @@
         </div>
     </div>
 
-    <!-- Modal for New Admission (লুকানো পপআপ ফর্ম) -->
-    <div id="admissionModal" class="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center hidden z-50">
-        <div class="bg-white w-full max-w-2xl rounded-xl shadow-lg p-6 relative max-h-[90vh] overflow-y-auto">
-            <div class="flex justify-between items-center border-b pb-3 mb-4">
-                <h3 class="font-bold text-lg text-emerald-800">নতুন শিক্ষার্থী ভর্তি ফর্ম</h3>
-                <button onclick="document.getElementById('admissionModal').classList.add('hidden')" class="text-gray-500 hover:text-red-600 font-bold text-xl">&times;</button>
-            </div>
-            
-            <form class="space-y-4">
-                <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
-                    <div>
-                        <label class="block text-sm font-medium text-gray-700 mb-1">শিক্ষার্থীর পূর্ণ নাম</label>
-                        <input type="text" class="w-full px-3 py-2 border rounded-lg focus:outline-none focus:ring-2 focus:ring-emerald-600" placeholder="নাম লিখুন">
-                    </div>
-                    <div>
-                        <label class="block text-sm font-medium text-gray-700 mb-1">শ্রেণি</label>
-                        <select class="w-full px-3 py-2 border rounded-lg focus:outline-none focus:ring-2 focus:ring-emerald-600">
-                            <option>আলিম প্রথম বর্ষ</option>
-                            <option>আলিম দ্বিতীয় বর্ষ</option>
-                            <option>দাখিল দশম শ্রেণি</option>
-                            <option>দাখিল নবম শ্রেণি</option>
-                        </select>
-                    </div>
-                    <div>
-                        <label class="block text-sm font-medium text-gray-700 mb-1">পিতার নাম</label>
-                        <input type="text" class="w-full px-3 py-2 border rounded-lg focus:outline-none focus:ring-2 focus:ring-emerald-600" placeholder="পিতার নাম">
-                    </div>
-                    <div>
-                        <label class="block text-sm font-medium text-gray-700 mb-1">মাতার নাম</label>
-                        <input type="text" class="w-full px-3 py-2 border rounded-lg focus:outline-none focus:ring-2 focus:ring-emerald-600" placeholder="মাতার নাম">
-                    </div>
-                    <div>
-                        <label class="block text-sm font-medium text-gray-700 mb-1">মোবাইল নম্বর</label>
-                        <input type="text" class="w-full px-3 py-2 border rounded-lg focus:outline-none focus:ring-2 focus:ring-emerald-600" placeholder="০১XXXXXXXXX">
-                    </div>
-                    <div>
-                        <label class="block text-sm font-medium text-gray-700 mb-1">রোল / আইডি</label>
-                        <input type="text" class="w-full px-3 py-2 border rounded-lg focus:outline-none focus:ring-2 focus:ring-emerald-600" placeholder="যেমন: 2026101">
-                    </div>
-                </div>
-                <div class="flex justify-end gap-3 pt-4 border-t">
-                    <button type="button" onclick="document.getElementById('admissionModal').classList.add('hidden')" class="px-4 py-2 bg-gray-300 rounded-lg text-gray-700 hover:bg-gray-400">বাতিল</button>
-                    <button type="submit" class="px-5 py-2 bg-emerald-600 text-white rounded-lg hover:bg-emerald-700">সংরক্ষণ করুন</button>
-                </div>
-            </form>
-        </div>
-    </div>
-
+    <script src="script.js"></script>
 </body>
 </html>

@@ -1,0 +1,50 @@
+/* ==========================================
+   AHIFM ERP - Custom Stylesheet
+   ========================================== */
+
+/* বেসিক ফন্ট ও কালার সেটিংস */
+body {
+    font-family: 'SolaimanLipi', Arial, sans-serif;
+    background-color: #f3f4f6;
+}
+
+/* স্মুথ ট্রানজিশন বা অ্যানিমেশন */
+button, a, input, select {
+    transition: all 0.2s ease-in-out;
+}
+
+/* প্রিন্ট করার সময় যেসব অংশ প্রিন্ট হবে না (যেমন: সাইডবার, নেভবার, বাটন) */
+@media print {
+    .no-print, aside, header, button {
+        display: none !important;
+    }
+    .printable-area {
+        position: absolute;
+        left: 0;
+        top: 0;
+        width: 100%;
+        margin: 0;
+        padding: 20px;
+        box-shadow: none !important;
+        border: none !important;
+    }
+    body {
+        background-color: white !important;
+    }
+}
+
+/* কাস্টম স্ক্রলবার ডিজাইন */
+::-webkit-scrollbar {
+    width: 6px;
+    height: 6px;
+}
+::-webkit-scrollbar-track {
+    background: #f1f1f1;
+}
+::-webkit-scrollbar-thumb {
+    background: #065f46;
+    border-radius: 3px;
+}
+::-webkit-scrollbar-thumb:hover {
+    background: #047857;
+}

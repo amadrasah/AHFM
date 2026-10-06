@@ -6,6 +6,8 @@
     <title>Student Management - Abdullah Hat Islamia Fazil Madrasah</title>
     <script src="https://cdn.tailwindcss.com"></script>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <!-- QRCode Generator Library -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/qrcodejs/1.0.0/qrcode.min.js"></script>
 </head>
 <body class="bg-gray-100 font-sans">
 
@@ -68,88 +70,61 @@
                     </div>
                 </div>
 
-                <!-- 9 Cards Grid (Clean Menu Buttons) -->
+                <!-- 9 Cards Grid -->
                 <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
                     <div onclick="openStudentPanel('admission')" class="bg-white p-5 rounded-2xl shadow-sm border border-gray-200 hover:border-emerald-500 cursor-pointer transition space-y-3">
-                        <div class="flex justify-between items-center border-b pb-2">
-                            <h3 class="font-bold text-gray-800 text-sm flex items-center gap-2"><i class="fa-solid fa-user-plus text-emerald-600"></i> এডমিশন</h3>
-                            <span class="text-xs bg-emerald-100 text-emerald-800 px-2 py-0.5 rounded font-bold">ভর্তি ফরম</span>
-                        </div>
-                        <p class="text-xs text-gray-600">সকল তথ্যসহ নতুন শিক্ষার্থী ভর্তি করান।</p>
+                        <div class="flex justify-between items-center border-b pb-2"><h3 class="font-bold text-gray-800 text-sm"><i class="fa-solid fa-user-plus text-emerald-600 mr-2"></i> এডমিশন</h3><span class="text-xs bg-emerald-100 text-emerald-800 px-2 py-0.5 rounded font-bold">ভর্তি ফরম</span></div>
+                        <p class="text-xs text-gray-600">ছবি ও তথ্যসহ নতুন শিক্ষার্থী ভর্তি করান।</p>
                     </div>
 
                     <div onclick="openStudentPanel('registration')" class="bg-white p-5 rounded-2xl shadow-sm border border-gray-200 hover:border-blue-500 cursor-pointer transition space-y-3">
-                        <div class="flex justify-between items-center border-b pb-2">
-                            <h3 class="font-bold text-gray-800 text-sm flex items-center gap-2"><i class="fa-solid fa-id-card text-blue-600"></i> রেজিস্ট্রেশন</h3>
-                            <span class="text-xs bg-blue-100 text-blue-800 px-2 py-0.5 rounded font-bold">বোর্ড/মাদ্রাসা</span>
-                        </div>
+                        <div class="flex justify-between items-center border-b pb-2"><h3 class="font-bold text-gray-800 text-sm"><i class="fa-solid fa-id-card text-blue-600 mr-2"></i> রেজিস্ট্রেশন</h3><span class="text-xs bg-blue-100 text-blue-800 px-2 py-0.5 rounded font-bold">বোর্ড/মাদ্রাসা</span></div>
                         <p class="text-xs text-gray-600">রেজিস্ট্রেশন ও তালিকা অনুমোদন প্যানেল।</p>
                     </div>
 
                     <div onclick="openStudentPanel('idcard')" class="bg-white p-5 rounded-2xl shadow-sm border border-gray-200 hover:border-purple-500 cursor-pointer transition space-y-3">
-                        <div class="flex justify-between items-center border-b pb-2">
-                            <h3 class="font-bold text-gray-800 text-sm flex items-center gap-2"><i class="fa-solid fa-address-card text-purple-600"></i> আইডি কার্ড</h3>
-                            <span class="text-xs bg-purple-100 text-purple-800 px-2 py-0.5 rounded font-bold">ডিজিটাল প্রিন্ট</span>
-                        </div>
-                        <p class="text-xs text-gray-600">স্বয়ংক্রিয় আইডি কার্ড জেনারেট ও প্রিন্ট।</p>
+                        <div class="flex justify-between items-center border-b pb-2"><h3 class="font-bold text-gray-800 text-sm"><i class="fa-solid fa-address-card text-purple-600 mr-2"></i> আইডি কার্ড</h3><span class="text-xs bg-purple-100 text-purple-800 px-2 py-0.5 rounded font-bold">QR ও স্ক্যানার</span></div>
+                        <p class="text-xs text-gray-600">রিয়েল QR কোডযুক্ত আইডি কার্ড প্রিন্ট।</p>
                     </div>
 
                     <div onclick="openStudentPanel('profile')" class="bg-white p-5 rounded-2xl shadow-sm border border-gray-200 hover:border-amber-500 cursor-pointer transition space-y-3">
-                        <div class="flex justify-between items-center border-b pb-2">
-                            <h3 class="font-bold text-gray-800 text-sm flex items-center gap-2"><i class="fa-solid fa-id-badge text-amber-600"></i> স্টুডেন্টস প্রোফাইল</h3>
-                            <span class="text-xs bg-amber-100 text-amber-800 px-2 py-0.5 rounded font-bold">লাইফটাইম রেকর্ড</span>
-                        </div>
-                        <p class="text-xs text-gray-600">প্রতি বছরের তথ্য ও অর্জন ভিত্তিক প্রোফাইল।</p>
+                        <div class="flex justify-between items-center border-b pb-2"><h3 class="font-bold text-gray-800 text-sm"><i class="fa-solid fa-id-badge text-amber-600 mr-2"></i> স্টুডেন্টস প্রোফাইল</h3><span class="text-xs bg-amber-100 text-amber-800 px-2 py-0.5 rounded font-bold">অ্যাক্টিভ/ভিউ</span></div>
+                        <p class="text-xs text-gray-600">লাইফটাইম রেকর্ড ও বিস্তারিত প্রোফাইল ভিউ।</p>
                     </div>
 
                     <div onclick="openStudentPanel('class_section')" class="bg-white p-5 rounded-2xl shadow-sm border border-gray-200 hover:border-teal-500 cursor-pointer transition space-y-3">
-                        <div class="flex justify-between items-center border-b pb-2">
-                            <h3 class="font-bold text-gray-800 text-sm flex items-center gap-2"><i class="fa-solid fa-layer-group text-teal-600"></i> ক্লাস বা সেকশন</h3>
-                            <span class="text-xs bg-teal-100 text-teal-800 px-2 py-0.5 rounded font-bold">শাখা সেটআপ</span>
-                        </div>
+                        <div class="flex justify-between items-center border-b pb-2"><h3 class="font-bold text-gray-800 text-sm"><i class="fa-solid fa-layer-group text-teal-600 mr-2"></i> ক্লাস বা সেকশন</h3><span class="text-xs bg-teal-100 text-teal-800 px-2 py-0.5 rounded font-bold">শাখা সেটআপ</span></div>
                         <p class="text-xs text-gray-600">নতুন সেকশন বা শ্রেণি শাখা তৈরি ও ব্যবস্থাপনা।</p>
                     </div>
 
                     <div onclick="openStudentPanel('promotion')" class="bg-white p-5 rounded-2xl shadow-sm border border-gray-200 hover:border-indigo-500 cursor-pointer transition space-y-3">
-                        <div class="flex justify-between items-center border-b pb-2">
-                            <h3 class="font-bold text-gray-800 text-sm flex items-center gap-2"><i class="fa-solid fa-arrow-up-right-dots text-indigo-600"></i> স্টুডেন্টস প্রমোশন</h3>
-                            <span class="text-xs bg-indigo-100 text-indigo-800 px-2 py-0.5 rounded font-bold">বার্ষিক উন্নীতকরণ</span>
-                        </div>
-                        <p class="text-xs text-gray-600">ফলাফলের ভিত্তিতে পরবর্তী শ্রেণিতে প্রমোশন।</p>
+                        <div class="flex justify-between items-center border-b pb-2"><h3 class="font-bold text-gray-800 text-sm"><i class="fa-solid fa-arrow-up-right-dots text-indigo-600 mr-2"></i> স্টুডেন্টস প্রমোশন</h3><span class="text-xs bg-indigo-100 text-indigo-800 px-2 py-0.5 rounded font-bold">অটো প্রমোশন</span></div>
+                        <p class="text-xs text-gray-600">পরবর্তী শ্রেণিতে স্বয়ংক্রিয় প্রমোশন প্যানেল।</p>
                     </div>
 
                     <div onclick="openStudentPanel('transfer')" class="bg-white p-5 rounded-2xl shadow-sm border border-gray-200 hover:border-rose-500 cursor-pointer transition space-y-3">
-                        <div class="flex justify-between items-center border-b pb-2">
-                            <h3 class="font-bold text-gray-800 text-sm flex items-center gap-2"><i class="fa-solid fa-right-left text-rose-600"></i> টিসি (TC)</h3>
-                            <span class="text-xs bg-rose-100 text-rose-800 px-2 py-0.5 rounded font-bold">স্থানান্তর সার্টিফিকেট</span>
-                        </div>
+                        <div class="flex justify-between items-center border-b pb-2"><h3 class="font-bold text-gray-800 text-sm"><i class="fa-solid fa-right-left text-rose-600 mr-2"></i> টিসি (TC)</h3><span class="text-xs bg-rose-100 text-rose-800 px-2 py-0.5 rounded font-bold">টিসি সার্টিফিকেট</span></div>
                         <p class="text-xs text-gray-600">ফিল্টারিং করে টিসি ইস্যু ও স্ট্যাটাস আপডেট।</p>
                     </div>
 
                     <div onclick="openStudentPanel('search')" class="bg-white p-5 rounded-2xl shadow-sm border border-gray-200 hover:border-cyan-500 cursor-pointer transition space-y-3">
-                        <div class="flex justify-between items-center border-b pb-2">
-                            <h3 class="font-bold text-gray-800 text-sm flex items-center gap-2"><i class="fa-solid fa-magnifying-glass text-cyan-600"></i> সার্চ স্টুডেন্ট</h3>
-                            <span class="text-xs bg-cyan-100 text-cyan-800 px-2 py-0.5 rounded font-bold">নিখুঁত ফিল্টার</span>
-                        </div>
-                        <p class="text-xs text-gray-600">নাম, রোল, আইডি বা মোবাইল দিয়ে খুঁজুন।</p>
+                        <div class="flex justify-between items-center border-b pb-2"><h3 class="font-bold text-gray-800 text-sm"><i class="fa-solid fa-magnifying-glass text-cyan-600 mr-2"></i> সার্চ স্টুডেন্ট</h3><span class="text-xs bg-cyan-100 text-cyan-800 px-2 py-0.5 rounded font-bold">সার্চ বাটন</span></div>
+                        <p class="text-xs text-gray-600">নাম বা আইডি দিয়ে নিখুঁত সার্চ প্যানেল।</p>
                     </div>
 
                     <div onclick="openStudentPanel('documents')" class="bg-white p-5 rounded-2xl shadow-sm border border-gray-200 hover:border-sky-500 cursor-pointer transition space-y-3">
-                        <div class="flex justify-between items-center border-b pb-2">
-                            <h3 class="font-bold text-gray-800 text-sm flex items-center gap-2"><i class="fa-solid fa-folder-open text-sky-600"></i> স্টুডেন্ট ডকুমেন্ট</h3>
-                            <span class="text-xs bg-sky-100 text-sky-800 px-2 py-0.5 rounded font-bold">আর্কাইভ</span>
-                        </div>
-                        <p class="text-xs text-gray-600">জন্ম নিবন্ধন, ছবি ও ডকুমেন্টস সংরক্ষণ।</p>
+                        <div class="flex justify-between items-center border-b pb-2"><h3 class="font-bold text-gray-800 text-sm"><i class="fa-solid fa-folder-open text-sky-600 mr-2"></i> স্টুডেন্ট ডকুমেন্ট</h3><span class="text-xs bg-sky-100 text-sky-800 px-2 py-0.5 rounded font-bold">ডকুমেন্ট আর্কাইভ</span></div>
+                        <p class="text-xs text-gray-600">জন্ম নিবন্ধন ও সার্টিফিকেট আর্কাইভ।</p>
                     </div>
                 </div>
 
                 <!-- DYNAMIC PANELS CONTAINER -->
 
-                <!-- 1. ADMISSION PANEL -->
+                <!-- 1. ADMISSION PANEL WITH PHOTO -->
                 <div id="panel-admission" class="student-sub-panel bg-white p-6 rounded-2xl shadow-sm border border-gray-200 space-y-6 hidden">
                     <div class="flex justify-between items-center border-b pb-3">
-                        <h3 class="font-bold text-emerald-800 text-sm"><i class="fa-solid fa-user-plus mr-2"></i> ১. নতুন শিক্ষার্থী ভর্তি ফরম (09-Digit Auto ID System)</h3>
-                        <button onclick="closeAllPanels()" class="text-xs bg-gray-200 px-3 py-1 rounded font-bold text-gray-700 hover:bg-gray-300">বন্ধ করুন</button>
+                        <h3 class="font-bold text-emerald-800 text-sm"><i class="fa-solid fa-user-plus mr-2"></i> ১. নতুন শিক্ষার্থী ভর্তি ফরম (ছবির ব্যবস্থাসহ)</h3>
+                        <button onclick="closeAllPanels()" class="text-xs bg-gray-200 px-3 py-1 rounded font-bold text-gray-700">বন্ধ করুন</button>
                     </div>
 
                     <form id="admissionForm" onsubmit="saveNewAdmission(event)" class="grid grid-cols-1 md:grid-cols-4 gap-4 text-xs">
@@ -191,7 +166,7 @@
                         </div>
 
                         <div>
-                            <label class="font-bold text-gray-700 mb-1 block">৯ ডিজিট স্টুডেন্ট আইডি (09-Code ID)</label>
+                            <label class="font-bold text-gray-700 mb-1 block">৯ ডিজিট স্টুডেন্ট আইডি</label>
                             <input type="text" id="adm_id" value="202606001" class="w-full p-2 border rounded-lg bg-gray-100 font-bold text-blue-700" readonly>
                         </div>
 
@@ -202,7 +177,7 @@
 
                         <div>
                             <label class="font-bold text-gray-700 mb-1 block">শিক্ষার্থীর নাম (English) *</label>
-                            <input type="text" id="adm_name_en" placeholder="Full Name in English" class="w-full p-2 border rounded-lg" required>
+                            <input type="text" id="adm_name_en" placeholder="Full Name" class="w-full p-2 border rounded-lg" required>
                         </div>
 
                         <div>
@@ -216,17 +191,17 @@
                         </div>
 
                         <div>
-                            <label class="font-bold text-gray-700 mb-1 block">জন্ম তারিখ (DOB) *</label>
+                            <label class="font-bold text-gray-700 mb-1 block">জন্ম তারিখ *</label>
                             <input type="date" id="adm_dob" class="w-full p-2 border rounded-lg" required>
                         </div>
 
                         <div>
-                            <label class="font-bold text-gray-700 mb-1 block">ভর্তি তারিখ (Admission Date) *</label>
+                            <label class="font-bold text-gray-700 mb-1 block">ভর্তি তারিখ *</label>
                             <input type="date" id="adm_date" class="w-full p-2 border rounded-lg" required>
                         </div>
 
                         <div>
-                            <label class="font-bold text-gray-700 mb-1 block">লিঙ্গ (Gender) *</label>
+                            <label class="font-bold text-gray-700 mb-1 block">লিঙ্গ *</label>
                             <select id="adm_gender" class="w-full p-2 border rounded-lg">
                                 <option value="Male">Male</option>
                                 <option value="Female">Female</option>
@@ -234,7 +209,7 @@
                         </div>
 
                         <div>
-                            <label class="font-bold text-gray-700 mb-1 block">ব্লাড গ্রুপ (Blood Group)</label>
+                            <label class="font-bold text-gray-700 mb-1 block">ব্লাড গ্রুপ</label>
                             <select id="adm_blood" class="w-full p-2 border rounded-lg">
                                 <option>A+</option><option>A-</option><option>B+</option><option>B-</option><option>O+</option><option>O-</option><option>AB+</option><option>AB-</option>
                             </select>
@@ -246,41 +221,25 @@
                         </div>
 
                         <div>
-                            <label class="font-bold text-gray-700 mb-1 block">মাতার মোবাইল নম্বর</label>
-                            <input type="text" id="adm_m_mobile" placeholder="018XXXXXXXX" class="w-full p-2 border rounded-lg">
-                        </div>
-
-                        <div>
-                            <label class="font-bold text-gray-700 mb-1 block">জেলা (District) *</label>
-                            <select id="adm_district" class="w-full p-2 border rounded-lg">
-                                <option selected>Noakhali</option><option>Dhaka</option><option>Chattogram</option>
-                            </select>
-                        </div>
-
-                        <div>
-                            <label class="font-bold text-gray-700 mb-1 block">থানা / উপজেলা (Upazila) *</label>
-                            <select id="adm_upazila" class="w-full p-2 border rounded-lg">
-                                <option selected>Sonaimuri</option><option>Begumganj</option><option>Senbagh</option>
-                            </select>
-                        </div>
-
-                        <div>
-                            <label class="font-bold text-gray-700 mb-1 block">গ্রাম / মহল্লা (Village) *</label>
+                            <label class="font-bold text-gray-700 mb-1 block">গ্রাম / মহল্লা *</label>
                             <input type="text" id="adm_village" placeholder="Village" class="w-full p-2 border rounded-lg" required>
                         </div>
 
                         <div>
-                            <label class="font-bold text-gray-700 mb-1 block">বাড়ির নাম / হোল্ডিং</label>
-                            <input type="text" id="adm_house" placeholder="House Name" class="w-full p-2 border rounded-lg">
+                            <label class="font-bold text-gray-700 mb-1 block">শিক্ষার্থীর ছবি (Student Photo)</label>
+                            <input type="file" id="adm_photo_file" accept="image/*" class="w-full p-1 border rounded-lg bg-gray-50">
                         </div>
 
-                        <div class="md:col-span-2">
-                            <label class="font-bold text-gray-700 mb-1 block">পূর্বে অধ্যয়নকৃত প্রতিষ্ঠান</label>
-                            <input type="text" id="adm_prev_school" placeholder="Previous Institution" class="w-full p-2 border rounded-lg">
+                        <div>
+                            <label class="font-bold text-gray-700 mb-1 block">স্ট্যাটাস</label>
+                            <select id="adm_status" class="w-full p-2 border rounded-lg font-bold text-emerald-700">
+                                <option value="Active">Active (সক্রিয়)</option>
+                                <option value="Inactive">Inactive (ইনঅ্যাক্টিভ)</option>
+                            </select>
                         </div>
 
                         <div class="md:col-span-4 flex justify-end pt-3 border-t">
-                            <button type="submit" class="bg-emerald-700 text-white px-6 py-2.5 rounded-lg font-bold hover:bg-emerald-800 transition shadow-sm">
+                            <button type="submit" class="bg-emerald-700 text-white px-6 py-2.5 rounded-lg font-bold hover:bg-emerald-800 transition">
                                 <i class="fa-solid fa-floppy-disk mr-1"></i> তথ্য সংরক্ষণ করুন
                             </button>
                         </div>
@@ -293,59 +252,33 @@
                         <h3 class="font-bold text-blue-800 text-sm"><i class="fa-solid fa-id-card mr-2"></i> ২. স্টুডেন্ট রেজিস্ট্রেশন ম্যানেজমেন্ট</h3>
                         <button onclick="closeAllPanels()" class="text-xs bg-gray-200 px-3 py-1 rounded font-bold text-gray-700">বন্ধ করুন</button>
                     </div>
-
-                    <div class="flex gap-3 pb-2">
-                        <button onclick="switchRegSub('do_reg')" class="bg-blue-600 text-white px-4 py-2 rounded text-xs font-bold shadow-sm">ক. রেজিস্ট্রেশন করুন</button>
-                        <button onclick="switchRegSub('reg_list')" class="bg-gray-200 text-gray-700 px-4 py-2 rounded text-xs font-bold">খ. রেজিস্ট্রেশনকৃত তালিকা</button>
-                    </div>
-
-                    <div id="reg-sub-do" class="space-y-3">
-                        <div class="overflow-x-auto">
-                            <table class="w-full text-left border-collapse border border-gray-200 text-xs">
-                                <thead>
-                                    <tr class="bg-blue-700 text-white">
-                                        <th class="border p-2">আইডি</th>
-                                        <th class="border p-2">নাম</th>
-                                        <th class="border p-2">শ্রেণি</th>
-                                        <th class="border p-2 text-center">অনুমোদন</th>
-                                    </tr>
-                                </thead>
-                                <tbody id="admissionListForReg"></tbody>
-                            </table>
-                        </div>
-                    </div>
-
-                    <div id="reg-sub-list" class="space-y-3 hidden">
-                        <div class="overflow-x-auto">
-                            <table class="w-full text-left border-collapse border border-gray-200 text-xs">
-                                <thead>
-                                    <tr class="bg-emerald-700 text-white">
-                                        <th class="border p-2">আইডি</th>
-                                        <th class="border p-2">নাম</th>
-                                        <th class="border p-2">শ্রেণি</th>
-                                        <th class="border p-2">স্ট্যাটাস</th>
-                                    </tr>
-                                </thead>
-                                <tbody id="officialRegisteredTable"></tbody>
-                            </table>
-                        </div>
+                    <div class="overflow-x-auto">
+                        <table class="w-full text-left border-collapse border border-gray-200 text-xs">
+                            <thead>
+                                <tr class="bg-blue-700 text-white">
+                                    <th class="border p-2">আইডি</th>
+                                    <th class="border p-2">নাম</th>
+                                    <th class="border p-2">শ্রেণি</th>
+                                    <th class="border p-2 text-center">অনুমোদন</th>
+                                </tr>
+                            </thead>
+                            <tbody id="admissionListForReg"></tbody>
+                        </table>
                     </div>
                 </div>
 
-                <!-- 3. ID CARD PANEL WITH SEARCH -->
+                <!-- 3. ID CARD PANEL WITH REAL QR CODE -->
                 <div id="panel-idcard" class="student-sub-panel bg-white p-6 rounded-2xl shadow-sm border border-gray-200 space-y-4 hidden">
                     <div class="flex justify-between items-center border-b pb-3">
-                        <h3 class="font-bold text-purple-800 text-sm"><i class="fa-solid fa-address-card mr-2"></i> ৩. ডিজিটাল আইডি কার্ড জেনারেটর</h3>
+                        <h3 class="font-bold text-purple-800 text-sm"><i class="fa-solid fa-address-card mr-2"></i> ৩. রিয়েল QR কোডযুক্ত ডিজিটাল আইডি কার্ড জেনারেটর</h3>
                         <button onclick="closeAllPanels()" class="text-xs bg-gray-200 px-3 py-1 rounded font-bold text-gray-700">বন্ধ করুন</button>
                     </div>
                     
-                    <!-- Search Input for ID Card -->
                     <div class="flex gap-2 max-w-md mx-auto">
-                        <input type="text" id="idCardSearchInput" placeholder="শিক্ষার্থীর আইডি নম্বর লিখুন (যেমন: 202606001)..." class="p-2 border rounded-lg w-full text-xs font-bold">
-                        <button onclick="generateIdCard()" class="bg-purple-700 text-white px-4 py-2 rounded-lg text-xs font-bold hover:bg-purple-800">সার্চ ও জেনারেট</button>
+                        <input type="text" id="idCardSearchInput" placeholder="শিক্ষার্থীর আইডি বা রোল লিখুন..." class="p-2 border rounded-lg w-full text-xs font-bold">
+                        <button onclick="generateIdCard()" class="bg-purple-700 text-white px-4 py-2 rounded-lg text-xs font-bold hover:bg-purple-800">সার্চ করুন</button>
                     </div>
 
-                    <!-- ID Card Preview Box -->
                     <div id="idCardPreviewContainer" class="hidden max-w-sm mx-auto bg-gradient-to-b from-purple-900 to-emerald-900 text-white rounded-2xl p-4 shadow-xl space-y-3 border-2 border-purple-400">
                         <div class="flex justify-between items-center border-b border-purple-700 pb-2">
                             <div class="text-left">
@@ -356,7 +289,7 @@
                         </div>
 
                         <div class="flex gap-3 items-center">
-                            <div class="w-20 h-24 bg-white text-gray-700 rounded border flex items-center justify-center text-[10px] font-bold">শিক্ষার্থীর ছবি</div>
+                            <div id="card_photo_box" class="w-20 h-24 bg-white text-gray-700 rounded border flex items-center justify-center overflow-hidden font-bold text-[10px]">ছবি</div>
                             <div class="text-left space-y-0.5 text-xs">
                                 <p class="font-bold text-yellow-300" id="card_id_display">ID: 202606001</p>
                                 <p class="font-bold" id="card_name_bn">নাম: মো: আব্দুল্লাহ</p>
@@ -367,9 +300,7 @@
                         </div>
 
                         <div class="pt-2 border-t border-purple-700 flex justify-between items-center text-[10px]">
-                            <div class="bg-white p-1 rounded text-gray-900 text-center">
-                                <div class="w-10 h-10 bg-gray-300 mx-auto flex items-center justify-center text-[8px] font-bold">QR Code</div>
-                            </div>
+                            <div id="realQrCodeContainer" class="bg-white p-1 rounded"></div>
                             <div class="text-center">
                                 <div class="font-serif italic text-xs">Principal</div>
                                 <span class="border-t border-white inline-block px-2">অধ্যক্ষ</span>
@@ -384,13 +315,26 @@
                     </div>
                 </div>
 
-                <!-- 4. PROFILE PANEL -->
+                <!-- 4. PROFILE PANEL WITH ACTIVE/INACTIVE & VIEW MODAL -->
                 <div id="panel-profile" class="student-sub-panel bg-white p-6 rounded-2xl shadow-sm border border-gray-200 space-y-4 hidden">
                     <div class="flex justify-between items-center border-b pb-3">
-                        <h3 class="font-bold text-amber-800 text-sm"><i class="fa-solid fa-id-badge mr-2"></i> ৪. স্টুডেন্টস লাইফটাইম প্রোফাইল</h3>
+                        <h3 class="font-bold text-amber-800 text-sm"><i class="fa-solid fa-id-badge mr-2"></i> ৪. স্টুডেন্টস লাইফটাইম প্রোফাইল (Active / Inactive / View)</h3>
                         <button onclick="closeAllPanels()" class="text-xs bg-gray-200 px-3 py-1 rounded font-bold text-gray-700">বন্ধ করুন</button>
                     </div>
                     <div id="studentProfileContainer" class="space-y-3"></div>
+                </div>
+
+                <!-- VIEW PROFILE MODAL -->
+                <div id="profileViewModal" class="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center hidden z-50">
+                    <div class="bg-white p-6 rounded-2xl max-w-lg w-full space-y-4 shadow-xl text-xs">
+                        <div class="flex justify-between items-center border-b pb-2">
+                            <h4 class="font-bold text-sm text-emerald-800"><i class="fa-solid fa-user-graduate mr-1"></i> শিক্ষার্থীর বিস্তারিত প্রোফাইল ও অর্জন</h4>
+                            <button onclick="closeProfileModal()" class="text-red-600 font-bold">বন্ধ করুন X</button>
+                        </div>
+                        <div id="modalProfileContent" class="space-y-2 text-gray-700">
+                            <!-- Loaded Dynamically -->
+                        </div>
+                    </div>
                 </div>
 
                 <!-- 5. CLASS / SECTION PANEL -->
@@ -411,10 +355,10 @@
                     </div>
                 </div>
 
-                <!-- 6. PROMOTION PANEL -->
+                <!-- 6. PROMOTION PANEL WITH AUTO NEXT CLASS -->
                 <div id="panel-promotion" class="student-sub-panel bg-white p-6 rounded-2xl shadow-sm border border-gray-200 space-y-4 hidden">
                     <div class="flex justify-between items-center border-b pb-3">
-                        <h3 class="font-bold text-indigo-800 text-sm"><i class="fa-solid fa-arrow-up-right-dots mr-2"></i> ৬. স্টুডেন্টস প্রমোশন প্যানেল</h3>
+                        <h3 class="font-bold text-indigo-800 text-sm"><i class="fa-solid fa-arrow-up-right-dots mr-2"></i> ৬. স্টুডেন্টস অটো প্রমোশন প্যানেল</h3>
                         <button onclick="closeAllPanels()" class="text-xs bg-gray-200 px-3 py-1 rounded font-bold text-gray-700">বন্ধ করুন</button>
                     </div>
                     <div class="overflow-x-auto">
@@ -424,8 +368,8 @@
                                     <th class="border p-2">আইডি</th>
                                     <th class="border p-2">নাম</th>
                                     <th class="border p-2">বর্তমান শ্রেণি</th>
-                                    <th class="border p-2">পরবর্তী শ্রেণি</th>
-                                    <th class="border p-2 text-center">কার্যক্রম</th>
+                                    <th class="border p-2">পরবর্তী শ্রেণি নির্ধারণ</th>
+                                    <th class="border p-2 text-center">প্রমোশন দিন</th>
                                 </tr>
                             </thead>
                             <tbody id="promotionTableBody"></tbody>
@@ -455,14 +399,15 @@
                     </div>
                 </div>
 
-                <!-- 8. SEARCH STUDENT PANEL WITH EDIT & DELETE -->
+                <!-- 8. SEARCH STUDENT PANEL WITH DEDICATED SEARCH BUTTON -->
                 <div id="panel-search" class="student-sub-panel bg-white p-6 rounded-2xl shadow-sm border border-gray-200 space-y-4 hidden">
                     <div class="flex justify-between items-center border-b pb-3">
-                        <h3 class="font-bold text-cyan-800 text-sm"><i class="fa-solid fa-magnifying-glass mr-2"></i> ৮. শিক্ষার্থী অনুসন্ধান ও তালিকা (Edit & Delete)</h3>
+                        <h3 class="font-bold text-cyan-800 text-sm"><i class="fa-solid fa-magnifying-glass mr-2"></i> ৮. শিক্ষার্থী অনুসন্ধান ও তালিকা (Search Button Added)</h3>
                         <button onclick="closeAllPanels()" class="text-xs bg-gray-200 px-3 py-1 rounded font-bold text-gray-700">বন্ধ করুন</button>
                     </div>
-                    <div class="flex gap-3">
-                        <input type="text" id="liveSearchInput" onkeyup="liveSearchStudents()" placeholder="নাম, আইডি বা মোবাইল দিয়ে খুঁজুন..." class="p-2 border rounded-lg w-full text-xs font-bold">
+                    <div class="flex gap-2">
+                        <input type="text" id="liveSearchInput" placeholder="নাম, আইডি বা মোবাইল দিয়ে খুঁজুন..." class="p-2 border rounded-lg w-full text-xs font-bold">
+                        <button onclick="executeSearch()" class="bg-cyan-700 text-white px-5 py-2 rounded-lg text-xs font-bold hover:bg-cyan-800">সার্চ করুন</button>
                     </div>
                     <div class="overflow-x-auto">
                         <table class="w-full text-left border-collapse border border-gray-200 text-xs">
@@ -480,17 +425,37 @@
                     </div>
                 </div>
 
-                <!-- 9. DOCUMENTS ARCHIVE -->
+                <!-- 9. STUDENT DOCUMENTS ARCHIVE -->
                 <div id="panel-documents" class="student-sub-panel bg-white p-6 rounded-2xl shadow-sm border border-gray-200 space-y-4 hidden">
                     <div class="flex justify-between items-center border-b pb-3">
-                        <h3 class="font-bold text-sky-800 text-sm"><i class="fa-solid fa-folder-open mr-2"></i> ৯. স্টুডেন্ট ডকুমেন্টস আর্কাইভ</h3>
+                        <h3 class="font-bold text-sky-800 text-sm"><i class="fa-solid fa-folder-open mr-2"></i> ৯. স্টুডেন্ট ডকুমেন্টস আর্কাইভ (Document Storage)</h3>
                         <button onclick="closeAllPanels()" class="text-xs bg-gray-200 px-3 py-1 rounded font-bold text-gray-700">বন্ধ করুন</button>
                     </div>
-                    <div class="border p-4 rounded-xl bg-sky-50 text-xs space-y-2">
-                        <p class="font-bold text-sky-900">📁 জন্ম নিবন্ধন ও প্রত্যয়নপত্র আর্কাইভ:</p>
-                        <ul class="list-disc pl-5 space-y-1 text-gray-700">
-                            <li>모: আব্দুল্লাহ - জন্ম নিবন্ধন ও প্রশংসাপত্র স্ক্যান কপি (সংরক্ষিত)</li>
-                        </ul>
+                    
+                    <div class="bg-sky-50 p-4 rounded-xl border border-sky-200 space-y-3 text-xs">
+                        <h4 class="font-bold text-sky-900">নতুন ডকুমেন্ট আপলোড ও সংরক্ষণ করুন:</h4>
+                        <div class="grid grid-cols-1 md:grid-cols-3 gap-3">
+                            <input type="text" id="doc_student_id" placeholder="শিক্ষার্থীর আইডি (যেমন: 202606001)" class="p-2 border rounded bg-white">
+                            <input type="text" id="doc_title" placeholder="ডকুমেন্টের নাম (যেমন: জন্ম নিবন্ধন)" class="p-2 border rounded bg-white">
+                            <input type="file" id="doc_file" class="p-1 border rounded bg-white">
+                        </div>
+                        <div class="flex justify-end">
+                            <button onclick="saveStudentDocument()" class="bg-sky-700 text-white px-4 py-2 rounded font-bold hover:bg-sky-800">ডকুমেন্ট সংরক্ষণ করুন</button>
+                        </div>
+                    </div>
+
+                    <div class="overflow-x-auto pt-2">
+                        <table class="w-full text-left border-collapse border border-gray-200 text-xs">
+                            <thead>
+                                <tr class="bg-sky-700 text-white">
+                                    <th class="border p-2">স্টুডেন্ট আইডি</th>
+                                    <th class="border p-2">ডকুমেন্টের বিবরণ</th>
+                                    <th class="border p-2">সংরক্ষিত তারিখ</th>
+                                    <th class="border p-2 text-center">কার্যক্রম</th>
+                                </tr>
+                            </thead>
+                            <tbody id="documentArchiveTable"></tbody>
+                        </table>
                     </div>
                 </div>
 
@@ -498,7 +463,7 @@
         </div>
     </div>
 
-    <!-- JavaScript & Logic -->
+    <!-- JavaScript Engine -->
     <script>
         function openStudentPanel(panelName) {
             document.querySelectorAll('.student-sub-panel').forEach(p => p.classList.add('hidden'));
@@ -512,6 +477,7 @@
             if(panelName === 'promotion') loadPromotionTable();
             if(panelName === 'transfer') loadTcTable();
             if(panelName === 'profile') loadProfileSection();
+            if(panelName === 'documents') loadDocumentArchive();
         }
 
         function closeAllPanels() {
@@ -519,34 +485,20 @@
             window.scrollTo({ top: 0, behavior: 'smooth' });
         }
 
-        function switchRegSub(subName) {
-            if(subName === 'do_reg') {
-                document.getElementById('reg-sub-do').classList.remove('hidden');
-                document.getElementById('reg-sub-list').classList.add('hidden');
-            } else {
-                document.getElementById('reg-sub-do').classList.add('hidden');
-                document.getElementById('reg-sub-list').classList.remove('hidden');
-            }
-        }
-
-        // Generate 09-Digit ID (Year[4] + ClassCode[2] + Roll[3])
         function generateStudentId() {
             const year = document.getElementById('adm_year').value;
             const classCode = document.getElementById('adm_class').value;
-            let roll = document.getElementById('adm_roll').value.trim();
-            
-            // Pad roll to 3 digits (e.g. 1 -> 001)
-            roll = roll.padStart(3, '0');
-            const studentId = year + classCode + roll;
-            document.getElementById('adm_id').value = studentId;
+            let roll = document.getElementById('adm_roll').value.trim().padStart(3, '0');
+            document.getElementById('adm_id').value = year + classCode + roll;
         }
 
-        // Save or Update Student Admission
+        // Save Admission with Photo Base64
         function saveNewAdmission(event) {
             event.preventDefault();
             const editIndex = parseInt(document.getElementById('edit_index').value);
-            
-            const student = {
+            const photoInput = document.getElementById('adm_photo_file');
+
+            let studentData = {
                 year: document.getElementById('adm_year').value,
                 classCode: document.getElementById('adm_class').value,
                 cls: document.getElementById('adm_class').options[document.getElementById('adm_class').selectedIndex].text,
@@ -561,9 +513,9 @@
                 gender: document.getElementById('adm_gender').value,
                 blood: document.getElementById('adm_blood').value,
                 f_mobile: document.getElementById('adm_f_mobile').value,
-                district: document.getElementById('adm_district').value,
-                upazila: document.getElementById('adm_upazila').value,
                 village: document.getElementById('adm_village').value,
+                status: document.getElementById('adm_status').value,
+                history: [{ year: document.getElementById('adm_year').value, class: document.getElementById('adm_class').options[document.getElementById('adm_class').selectedIndex].text, achievement: "নিয়মিত উপস্থিতি ও সন্তোষজনক ফলাফল।" }],
                 registered: false,
                 tc: false,
                 tcDate: ""
@@ -571,40 +523,52 @@
 
             let students = JSON.parse(localStorage.getItem('madrasah_students_all')) || [];
 
-            if(editIndex >= 0) {
-                students[editIndex] = student;
-                document.getElementById('edit_index').value = "-1";
-                alert('শিক্ষার্থীর তথ্য সফলভাবে আপডেট করা হয়েছে!');
-            } else {
-                students.push(student);
-                alert('নতুন শিক্ষার্থীর ভর্তি সফলভাবে সম্পন্ন হয়েছে!');
+            function proceedSave(photoBase64) {
+                if(photoBase64) studentData.photo = photoBase64;
+                else if(editIndex >= 0 && students[editIndex].photo) studentData.photo = students[editIndex].photo;
+
+                if(editIndex >= 0) {
+                    students[editIndex] = studentData;
+                    document.getElementById('edit_index').value = "-1";
+                    alert('শিক্ষার্থীর তথ্য সফলভাবে আপডেট হয়েছে!');
+                } else {
+                    students.push(studentData);
+                    alert('নতুন শিক্ষার্থীর ভর্তি সফলভাবে সম্পন্ন হয়েছে!');
+                }
+                localStorage.setItem('madrasah_students_all', JSON.stringify(students));
+                document.getElementById('admissionForm').reset();
+                generateStudentId();
+                openStudentPanel('search');
             }
 
-            localStorage.setItem('madrasah_students_all', JSON.stringify(students));
-            document.getElementById('admissionForm').reset();
-            generateStudentId();
-            openStudentPanel('search');
+            if(photoInput.files && photoInput.files[0]) {
+                const reader = new FileReader();
+                reader.onload = function(e) { proceedSave(e.target.result); };
+                reader.readAsDataURL(photoInput.files[0]);
+            } else {
+                proceedSave(null);
+            }
         }
 
         function getStoredStudents() {
             let students = JSON.parse(localStorage.getItem('madrasah_students_all'));
             if(!students || students.length === 0) {
                 students = [
-                    { year: "2026", classCode: "06", cls: "দাখিল ষষ্ঠ শ্রেণি", roll: "001", id: "202606001", name_bn: "মো: আব্দুল্লাহ", name_en: "Md. Abdullah", father: "Md. Ibrahim", mother: "Amena Begum", dob: "2014-01-01", date: "2026-01-02", gender: "Male", blood: "A+", f_mobile: "01800000000", registered: true, tc: false, tcDate: "" }
+                    { year: "2026", classCode: "06", cls: "দাখিল ষষ্ঠ শ্রেণি", roll: "001", id: "202606001", name_bn: "মো: আব্দুল্লাহ", name_en: "Md. Abdullah", father: "Md. Ibrahim", mother: "Amena", dob: "2014-01-01", date: "2026-01-02", gender: "Male", blood: "A+", f_mobile: "01800000000", village: "Abdullah Hat", status: "Active", history: [{year: "2026", class: "দাখিল ষষ্ঠ শ্রেণি", achievement: "সেরা উপস্থিতি পুরস্কার"}], registered: true, tc: false, tcDate: "" }
                 ];
                 localStorage.setItem('madrasah_students_all', JSON.stringify(students));
             }
             return students;
         }
 
-        // Search & Generate ID Card
+        // Real QR Code Generator for ID Card
         function generateIdCard() {
             const query = document.getElementById('idCardSearchInput').value.trim();
             const students = getStoredStudents();
             const found = students.find(s => s.id === query || s.roll === query);
 
             if(!found) {
-                alert('এই আইডি বা রোল নম্বরের কোনো শিক্ষার্থী পাওয়া যায়নি!');
+                alert('শিক্ষার্থী পাওয়া যায়নি!');
                 document.getElementById('idCardPreviewContainer').classList.add('hidden');
                 return;
             }
@@ -614,16 +578,142 @@
             document.getElementById('card_name_en').innerText = "Name: " + found.name_en;
             document.getElementById('card_class_display').innerText = "শ্রেণি: " + found.cls;
             document.getElementById('card_roll_display').innerText = "রোল: " + found.roll + " | রক্ত: " + (found.blood || 'N/A');
-            
+
+            const photoBox = document.getElementById('card_photo_box');
+            if(found.photo) {
+                photoBox.innerHTML = `<img src="${found.photo}" class="w-full h-full object-cover rounded">`;
+            } else {
+                photoBox.innerHTML = "ছবি নেই";
+            }
+
+            // Render Real QR Code
+            const qrContainer = document.getElementById('realQrCodeContainer');
+            qrContainer.innerHTML = '';
+            new QRCode(qrContainer, {
+                text: `ID: ${found.id}, Name: ${found.name_en}, Class: ${found.cls}, Mobile: ${found.f_mobile}`,
+                width: 50,
+                height: 50
+            });
+
             document.getElementById('idCardPreviewContainer').classList.remove('hidden');
         }
 
-        // Load Search Table with Edit & Delete
+        // Profile Panel with Active/Inactive and View Modal
+        function loadProfileSection() {
+            const students = getStoredStudents();
+            const container = document.getElementById('studentProfileContainer');
+            container.innerHTML = '';
+
+            students.forEach((s, i) => {
+                let statusBadge = s.status === 'Inactive' ? `<span class="bg-gray-200 text-gray-700 px-2 py-0.5 rounded font-bold">Inactive</span>` : `<span class="bg-green-100 text-green-800 px-2 py-0.5 rounded font-bold">Active</span>`;
+                container.innerHTML += `
+                    <div class="border p-3 rounded-xl bg-amber-50 border-amber-200 text-xs flex justify-between items-center">
+                        <div>
+                            <h4 class="font-bold text-gray-800 text-sm">${s.name_bn} (${s.id})</h4>
+                            <p class="text-gray-600">শ্রেণি: ${s.cls} | রোল: ${s.roll} | স্ট্যাটাস: ${statusBadge}</p>
+                        </div>
+                        <div class="space-x-2">
+                            <button onclick="toggleStatus(${i})" class="bg-gray-700 text-white px-3 py-1 rounded font-bold">সুইচ স্ট্যাটাস</button>
+                            <button onclick="viewStudentProfile(${i})" class="bg-amber-700 text-white px-3 py-1 rounded font-bold">ভিউ (View)</button>
+                        </div>
+                    </div>
+                `;
+            });
+        }
+
+        function toggleStatus(i) {
+            let students = getStoredStudents();
+            students[i].status = students[i].status === 'Inactive' ? 'Active' : 'Inactive';
+            localStorage.setItem('madrasah_students_all', JSON.stringify(students));
+            loadProfileSection();
+        }
+
+        function viewStudentProfile(i) {
+            const s = getStoredStudents()[i];
+            let historyHtml = '';
+            if(s.history) {
+                s.history.forEach(h => {
+                    historyHtml += `<li><b>সাল:</b> ${h.year} | <b>শ্রেণি:</b> ${h.class} | <b>অর্জন:</b> ${h.achievement}</li>`;
+                });
+            }
+
+            document.getElementById('modalProfileContent').innerHTML = `
+                <p><b>আইডি:</b> ${s.id}</p>
+                <p><b>নাম (বাংলা):</b> ${s.name_bn}</p>
+                <p><b>নাম (English):</b> ${s.name_en}</p>
+                <p><b>ভর্তি সাল:</b> ${s.year}</p>
+                <p class="font-bold text-emerald-800 mt-2">অধ্যয়ন ও অর্জন রেকর্ড:</p>
+                <ul class="list-disc pl-5 space-y-1">${historyHtml}</ul>
+            `;
+            document.getElementById('profileViewModal').classList.remove('hidden');
+        }
+
+        function closeProfileModal() {
+            document.getElementById('profileViewModal').classList.add('hidden');
+        }
+
+        // Auto Promotion with Next Class Selection
+        function loadPromotionTable() {
+            const students = getStoredStudents();
+            const tbody = document.getElementById('promotionTableBody');
+            tbody.innerHTML = '';
+            
+            const classes = [
+                "নুরানী প্রথম শ্রেণি", "নুরানী দ্বিতীয় শ্রেণি", "নুরানী তৃতীয় শ্রেণি", 
+                "ইবতেদায়ী চতুর্থ শ্রেণি", "ইবতেদায়ী পঞ্চম শ্রেণি", "দাখিল ষষ্ঠ শ্রেণি", 
+                "দাখিল সপ্তম শ্রেণি", "দাখিল অষ্টম শ্রেণি", "দাখিল নবম শ্রেণি", "দাখিল দশম শ্রেণি",
+                "আলিম প্রথম বর্ষ", "আলিম দ্বিতীয় বর্ষ", "ফাজিল প্রথম বর্ষ", "ফাজিল দ্বিতীয় বর্ষ", "ফাজিল তৃতীয় বর্ষ"
+            ];
+
+            students.forEach((s, i) => {
+                if(!s.tc) {
+                    let nextClassOptions = '';
+                    let currentIndex = classes.indexOf(s.cls);
+                    classes.forEach((c, cIdx) => {
+                        let selected = (cIdx === currentIndex + 1) ? 'selected' : '';
+                        nextClassOptions += `<option value="${c}" ${selected}>${c}</option>`;
+                    });
+
+                    tbody.innerHTML += `
+                        <tr>
+                            <td class="border p-2 font-bold">${s.id}</td>
+                            <td class="border p-2 font-bold">${s.name_bn}</td>
+                            <td class="border p-2">${s.cls}</td>
+                            <td class="border p-2">
+                                <select id="promo_target_${i}" class="p-1 border rounded text-xs font-bold">${nextClassOptions}</select>
+                            </td>
+                            <td class="border p-2 text-center">
+                                <button onclick="executePromotion(${i})" class="bg-indigo-600 text-white px-3 py-1 rounded font-bold hover:bg-indigo-700">প্রমোশন দিন</button>
+                            </td>
+                        </tr>
+                    `;
+                }
+            });
+        }
+
+        function executePromotion(i) {
+            let students = getStoredStudents();
+            const targetCls = document.getElementById('promo_target_' + i).value;
+            const currentYear = new Date().getFullYear().toString();
+            
+            students[i].cls = targetCls;
+            if(!students[i].history) students[i].history = [];
+            students[i].history.push({ year: currentYear, class: targetCls, achievement: "বার্ষিক পরীক্ষায় উত্তীর্ণ হয়ে প্রমোশন প্রাপ্ত।" });
+
+            localStorage.setItem('madrasah_students_all', JSON.stringify(students));
+            loadPromotionTable();
+            alert('শিক্ষার্থী সফলভাবে পরবর্তী শ্রেণীতে উন্নীত হয়েছে!');
+        }
+
+        // Search Student with Search Button
         function loadSearchTable() {
             const students = getStoredStudents();
+            renderSearchRows(students);
+        }
+
+        function renderSearchRows(students) {
             const tbody = document.getElementById('searchTableBody');
             tbody.innerHTML = '';
-
             students.forEach((s, index) => {
                 tbody.innerHTML += `
                     <tr>
@@ -640,10 +730,24 @@
             });
         }
 
+        function executeSearch() {
+            const query = document.getElementById('liveSearchInput').value.toLowerCase().trim();
+            const students = getStoredStudents();
+            if(!query) {
+                renderSearchRows(students);
+                return;
+            }
+            const filtered = students.filter(s => 
+                s.name_bn.toLowerCase().includes(query) || 
+                s.id.toLowerCase().includes(query) || 
+                s.f_mobile.includes(query)
+            );
+            renderSearchRows(filtered);
+        }
+
         function editStudent(index) {
             const students = getStoredStudents();
             const s = students[index];
-
             document.getElementById('edit_index').value = index;
             document.getElementById('adm_year').value = s.year || "2026";
             document.getElementById('adm_class').value = s.classCode || "06";
@@ -659,40 +763,91 @@
             document.getElementById('adm_blood').value = s.blood;
             document.getElementById('adm_f_mobile').value = s.f_mobile;
             document.getElementById('adm_village').value = s.village || '';
-
+            document.getElementById('adm_status').value = s.status || 'Active';
             openStudentPanel('admission');
         }
 
         function deleteStudent(index) {
-            if(confirm('আপনি কি নিশ্চিতভাবে এই শিক্ষার্থীকে ডিলিট করতে চান?')) {
+            if(confirm('মুছে ফেলতে চান?')) {
                 let students = getStoredStudents();
                 students.splice(index, 1);
                 localStorage.setItem('madrasah_students_all', JSON.stringify(students));
                 loadSearchTable();
-                alert('শিক্ষার্থীর তথ্য সফলভাবে মুছে ফেলা হয়েছে!');
             }
         }
 
-        function liveSearchStudents() {
-            const input = document.getElementById('liveSearchInput').value.toLowerCase();
-            document.querySelectorAll('#searchTableBody tr').forEach(row => {
-                row.style.display = row.innerText.toLowerCase().includes(input) ? '' : 'none';
+        // Student Documents Archive
+        function saveStudentDocument() {
+            const studentId = document.getElementById('doc_student_id').value.trim();
+            const docTitle = document.getElementById('doc_title').value.trim();
+            const fileInput = document.getElementById('doc_file');
+
+            if(!studentId || !docTitle) {
+                alert('দয়া করে স্টুডেন্ট আইডি ও ডকুমেন্টের নাম লিখুন!');
+                return;
+            }
+
+            let docs = JSON.parse(localStorage.getItem('madrasah_student_docs')) || [];
+            let today = new Date().toLocaleDateString('bn-BD');
+
+            if(fileInput.files && fileInput.files[0]) {
+                const reader = new FileReader();
+                reader.onload = function(e) {
+                    docs.push({ studentId, docTitle, date: today, file: e.target.result });
+                    localStorage.setItem('madrasah_student_docs', JSON.stringify(docs));
+                    loadDocumentArchive();
+                    alert('ডকুমেন্ট সফলভাবে সংরক্ষিত হয়েছে!');
+                    document.getElementById('doc_student_id').value = '';
+                    document.getElementById('doc_title').value = '';
+                };
+                reader.readAsDataURL(fileInput.files[0]);
+            } else {
+                docs.push({ studentId, docTitle, date: today, file: null });
+                localStorage.setItem('madrasah_student_docs', JSON.stringify(docs));
+                loadDocumentArchive();
+                alert('ডকুমেন্ট তথ্য সংরক্ষিত হয়েছে!');
+            }
+        }
+
+        function loadDocumentArchive() {
+            let docs = JSON.parse(localStorage.getItem('madrasah_student_docs')) || [];
+            const tbody = document.getElementById('documentArchiveTable');
+            tbody.innerHTML = '';
+            if(docs.length === 0) {
+                tbody.innerHTML = `<tr><td colspan="4" class="border p-2 text-center text-gray-500">কোনো ডকুমেন্ট সংরক্ষিত নেই।</td></tr>`;
+                return;
+            }
+            docs.forEach((d, i) => {
+                let viewLink = d.file ? `<a href="${d.file}" target="_blank" class="text-blue-600 font-bold underline">দেখুন</a>` : 'ফাইল নেই';
+                tbody.innerHTML += `
+                    <tr>
+                        <td class="border p-2 font-bold">${d.studentId}</td>
+                        <td class="border p-2">${d.docTitle}</td>
+                        <td class="border p-2">${d.date}</td>
+                        <td class="border p-2 text-center space-x-2">
+                            ${viewLink}
+                            <button onclick="deleteDoc(${i})" class="text-red-600 font-bold">ডিলিট</button>
+                        </td>
+                    </tr>
+                `;
             });
         }
 
-        // Load Reg Tables
+        function deleteDoc(i) {
+            let docs = JSON.parse(localStorage.getItem('madrasah_student_docs')) || [];
+            docs.splice(i, 1);
+            localStorage.setItem('madrasah_student_docs', JSON.stringify(docs));
+            loadDocumentArchive();
+        }
+
+        // Standard Load Functions for Reg, TC
         function loadRegTables() {
             const students = getStoredStudents();
             const doRegBody = document.getElementById('admissionListForReg');
-            const officialRegBody = document.getElementById('officialRegisteredTable');
             doRegBody.innerHTML = '';
-            officialRegBody.innerHTML = '';
-
             students.forEach((s, index) => {
                 if(!s.registered) {
                     doRegBody.innerHTML += `<tr><td class="border p-2 font-bold">${s.id}</td><td class="border p-2">${s.name_bn}</td><td class="border p-2">${s.cls}</td><td class="border p-2 text-center"><button onclick="approveReg(${index})" class="bg-blue-600 text-white px-3 py-1 rounded font-bold">Yes</button></td></tr>`;
-                } else {
-                    officialRegBody.innerHTML += `<tr><td class="border p-2 font-bold">${s.id}</td><td class="border p-2">${s.name_bn}</td><td class="border p-2">${s.cls}</td><td class="border p-2 text-emerald-700 font-bold">Registered</td></tr>`;
                 }
             });
         }
@@ -714,52 +869,24 @@
             }
         }
 
-        function loadPromotionTable() {
-            const students = getStoredStudents();
-            const tbody = document.getElementById('promotionTableBody');
-            tbody.innerHTML = '';
-            students.forEach((s, i) => {
-                if(!s.tc) {
-                    tbody.innerHTML += `<tr><td class="border p-2">${s.id}</td><td class="border p-2">${s.name_bn}</td><td class="border p-2">${s.cls}</td><td class="border p-2"><select id="p_${i}" class="p-1 border rounded text-xs"><option>দাখিল সপ্তম শ্রেণি</option><option>দাখিল অষ্টম শ্রেণি</option></select></td><td class="border p-2 text-center"><button onclick="promote(${i})" class="bg-indigo-600 text-white px-2 py-1 rounded">প্রমোশন</button></td></tr>`;
-                }
-            });
-        }
-
-        function promote(i) {
-            let students = getStoredStudents();
-            students[i].cls = document.getElementById('p_' + i).value;
-            localStorage.setItem('madrasah_students_all', JSON.stringify(students));
-            loadPromotionTable();
-            alert('প্রমোশন সম্পন্ন!');
-        }
-
         function loadTcTable() {
             const students = getStoredStudents();
             const tbody = document.getElementById('tcTableBody');
             tbody.innerHTML = '';
             students.forEach((s, i) => {
                 let st = s.tc ? `<span class="text-rose-600 font-bold">TC Issued</span>` : `<span class="text-emerald-700 font-bold">Active</span>`;
-                let btn = s.tc ? `Issued` : `<button onclick="tc(${i})" class="bg-rose-600 text-white px-2 py-1 rounded">টিসি দিন</button>`;
+                let btn = s.tc ? `Issued` : `<button onclick="issueTc(${i})" class="bg-rose-600 text-white px-2 py-1 rounded">টিসি দিন</button>`;
                 tbody.innerHTML += `<tr><td class="border p-2">${s.id}</td><td class="border p-2">${s.name_bn}</td><td class="border p-2">${s.cls}</td><td class="border p-2">${st}</td><td class="border p-2 text-center">${btn}</td></tr>`;
             });
         }
 
-        function tc(i) {
+        function issueTc(i) {
             let students = getStoredStudents();
             students[i].tc = true;
             students[i].tcDate = new Date().toLocaleDateString('bn-BD');
             localStorage.setItem('madrasah_students_all', JSON.stringify(students));
             loadTcTable();
             alert('টিসি ইস্যু করা হয়েছে!');
-        }
-
-        function loadProfileSection() {
-            const students = getStoredStudents();
-            const container = document.getElementById('studentProfileContainer');
-            container.innerHTML = '';
-            students.forEach(s => {
-                container.innerHTML += `<div class="border p-3 rounded bg-amber-50 text-xs flex justify-between"><div><b>${s.name_bn}</b> (ID: ${s.id}) - শ্রেণি: ${s.cls}</div><span class="bg-amber-200 px-2 py-0.5 rounded font-bold">Active</span></div>`;
-            });
         }
 
         window.onload = function() {

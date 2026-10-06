@@ -147,33 +147,25 @@
                     </div>
                 </div>
 
-                <!-- SECTION 5: পরিচালনা পর্ষদ (Governing Body with "১ হতে" & "২ পর্যন্ত" Year Filter Dropdowns) -->
+                <!-- SECTION 5: পরিচালনা পর্ষদ -->
                 <div id="inst-governing" class="inst-section bg-white p-6 rounded-2xl shadow-sm border border-gray-200 space-y-4 hidden">
                     
-                    <!-- Header Line with Title and Search/Filter ("১ হতে" & "২ পর্যন্ত" Dropdowns) -->
+                    <!-- Header Line with Title and 'হতে' & 'পর্যন্ত' Filter Buttons -->
                     <div class="flex flex-col md:flex-row justify-between items-center border-b pb-3 gap-2">
                         <div class="flex items-center gap-3">
                             <h3 class="font-bold text-gray-800 text-sm"><i class="fa-solid fa-users text-teal-600 mr-2"></i> পরিচালনা পর্ষদ</h3>
                             <span id="headerTermDisplay" class="text-xs bg-purple-100 text-purple-800 px-3 py-1 rounded-full font-bold">কার্যকাল: 2026 - 2029</span>
                         </div>
                         
-                        <div class="flex items-center gap-2">
-                            <label class="text-xs font-bold text-gray-600">মেয়াদ ফিল্টার:</label>
-                            
-                            <!-- ১ হতে সাল ড্রপডাউন -->
-                            <select id="filterFromYear" onchange="filterGoverningByYear()" class="p-1.5 border rounded text-xs bg-gray-50 font-bold">
-                                <option value="all">১ হতে (সকল)</option>
-                                <option value="2024">2024</option>
-                                <option value="2026" selected>2026</option>
-                                <option value="2027">2027</option>
+                        <div class="flex items-center gap-2 text-xs">
+                            <span class="font-bold text-gray-600">মেয়াদ/সাল ফিল্টার:</span>
+                            <select id="filterFromYear" onchange="filterGoverningByYear()" class="p-1 border rounded bg-gray-50 font-bold">
+                                <option value="all">হতে (From)</option>
+                                <!-- JavaScript will generate years 2000 to 2050 -->
                             </select>
-
-                            <!-- ২ পর্যন্ত সাল ড্রপডাউন -->
-                            <select id="filterToYear" onchange="filterGoverningByYear()" class="p-1.5 border rounded text-xs bg-gray-50 font-bold">
-                                <option value="all">২ পর্যন্ত (সকল)</option>
-                                <option value="2027">2027</option>
-                                <option value="2029" selected>2029</option>
-                                <option value="2030">2030</option>
+                            <select id="filterToYear" onchange="filterGoverningByYear()" class="p-1 border rounded bg-gray-50 font-bold">
+                                <option value="all">পর্যন্ত (To)</option>
+                                <!-- JavaScript will generate years 2000 to 2050 -->
                             </select>
                         </div>
                     </div>
@@ -181,7 +173,6 @@
                     <!-- Form Container -->
                     <div class="bg-teal-50 p-4 rounded-xl border border-teal-200 space-y-3 text-xs">
                         
-                        <!-- Line 1: Calendar Term Inputs -->
                         <div class="grid grid-cols-1 md:grid-cols-2 gap-4 pb-2 border-b border-teal-200">
                             <div>
                                 <label class="font-bold text-teal-900 block mb-1">শুরুর তারিখ (Start Date) *</label>
@@ -189,11 +180,10 @@
                             </div>
                             <div>
                                 <label class="font-bold text-teal-900 block mb-1">উত্তীর্ণের তারিখ (End Date) *</label>
-                                <input type="date" id="gb_end_date" onchange="updateHeaderTerm()" class="p-2 border rounded w-full bg-white font-medium" value="2029-12-31">
+                                <input type="date" id="gb_end_date" onchange="updateHeaderTerm()" class="p-2 border rounded w-full bg-white font-medium" value="2028-12-31">
                             </div>
                         </div>
 
-                        <!-- Line 2: Member Details (Name, Designation, Address, Mobile, Status) -->
                         <div class="grid grid-cols-1 md:grid-cols-5 gap-3 items-end">
                             <div>
                                 <label class="font-bold text-teal-900 block mb-1">নাম (Name) *</label>
@@ -232,7 +222,7 @@
                             <thead>
                                 <tr class="bg-teal-700 text-white">
                                     <th class="border p-2">নাম</th>
-                                    <th class="border p-2">পদবী</th>
+                                    <th class="border p-2">পদবী (মেয়াদসহ)</th>
                                     <th class="border p-2">ঠিকানা</th>
                                     <th class="border p-2">মোবাইল নম্বর</th>
                                     <th class="border p-2">স্ট্যাটাস</th>
@@ -240,17 +230,17 @@
                                 </tr>
                             </thead>
                             <tbody id="governingTableBody">
-                                <tr data-start="2026" data-end="2029">
+                                <tr data-start="2026" data-end="2028">
                                     <td class="border p-2 font-bold">আলহাজ্ব মো: উল্যাহ</td>
-                                    <td class="border p-2 font-bold text-teal-800">সভাপতি</td>
+                                    <td class="border p-2 font-bold text-teal-800">সভাপতি <span class="text-[10px] text-gray-500 font-normal">(2026 - 2028)</span></td>
                                     <td class="border p-2">আবদুল্লাহ হাট</td>
                                     <td class="border p-2">01800000000</td>
                                     <td class="border p-2"><span class="bg-green-100 text-green-800 px-2 py-0.5 rounded font-bold text-[10px]">Active</span></td>
                                     <td class="border p-2 text-center"><button onclick="this.closest('tr').remove()" class="text-red-600 font-bold">ডিলিট</button></td>
                                 </tr>
-                                <tr data-start="2024" data-end="2027">
+                                <tr data-start="2024" data-end="2026">
                                     <td class="border p-2 font-bold">মাওলানা আব্দুল করিম</td>
-                                    <td class="border p-2 font-bold text-teal-800">সভাপতি (পূর্ববর্তী)</td>
+                                    <td class="border p-2 font-bold text-teal-800">সভাপতি (পূর্ববর্তী) <span class="text-[10px] text-gray-500 font-normal">(2024 - 2026)</span></td>
                                     <td class="border p-2">সোনাইমুড়ী</td>
                                     <td class="border p-2">01811111111</td>
                                     <td class="border p-2"><span class="bg-gray-100 text-gray-600 px-2 py-0.5 rounded font-bold text-[10px]">Inactive</span></td>
@@ -307,6 +297,24 @@
             document.getElementById('inst-' + sectionId).classList.remove('hidden');
             event.target.classList.remove('bg-gray-100', 'text-gray-700');
             event.target.classList.add('bg-emerald-700', 'text-white');
+        }
+
+        // Generate Years 2000 to 2050 for 'হতে' and 'পর্যন্ত' Dropdowns
+        function populateFilterYears() {
+            const fromSelect = document.getElementById('filterFromYear');
+            const toSelect = document.getElementById('filterToYear');
+            
+            for(let y = 2000; y <= 2050; y++) {
+                let opt1 = document.createElement('option');
+                opt1.value = y;
+                opt1.textContent = y;
+                fromSelect.appendChild(opt1);
+
+                let opt2 = document.createElement('option');
+                opt2.value = y;
+                opt2.textContent = y;
+                toSelect.appendChild(opt2);
+            }
         }
 
         // Real-time update of header term display based on calendar inputs
@@ -370,7 +378,7 @@
 
             newRow.innerHTML = `
                 <td class="border p-2 font-bold">${name}</td>
-                <td class="border p-2 font-bold text-teal-800">${desig}</td>
+                <td class="border p-2 font-bold text-teal-800">${desig} <span class="text-[10px] text-gray-500 font-normal">(${startYear} - ${endYear})</span></td>
                 <td class="border p-2">${addr}</td>
                 <td class="border p-2">${mob}</td>
                 <td class="border p-2"><span class="${statusBadgeClass} px-2 py-0.5 rounded font-bold text-[10px]">${status}</span></td>
@@ -385,18 +393,17 @@
             alert('পর্ষদ সদস্য সফলভাবে যুক্ত হয়েছে!');
         }
 
-        // Updated filter function for "১ হতে" and "২ পর্যন্ত" year dropdowns
         function filterGoverningByYear() {
-            const fromYear = document.getElementById('filterFromYear').value;
-            const toYear = document.getElementById('filterToYear').value;
+            const filterFrom = document.getElementById('filterFromYear').value;
+            const filterTo = document.getElementById('filterToYear').value;
             const rows = document.querySelectorAll('#governingTableBody tr');
 
             rows.forEach(row => {
-                const rowStart = row.getAttribute('data-start');
-                const rowEnd = row.getAttribute('data-end');
+                const rowStart = parseInt(row.getAttribute('data-start'));
+                const rowEnd = parseInt(row.getAttribute('data-end'));
 
-                let matchFrom = (fromYear === 'all' || rowStart === fromYear);
-                let matchTo = (toYear === 'all' || rowEnd === toYear);
+                let matchFrom = (filterFrom === 'all' || rowStart >= parseInt(filterFrom));
+                let matchTo = (filterTo === 'all' || rowEnd <= parseInt(filterTo));
 
                 if(matchFrom && matchTo) {
                     row.style.display = '';
@@ -405,6 +412,11 @@
                 }
             });
         }
+
+        // Initialize years on page load
+        window.onload = function() {
+            populateFilterYears();
+        };
     </script>
 </body>
 </html>

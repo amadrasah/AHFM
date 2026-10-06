@@ -147,10 +147,10 @@
                     </div>
                 </div>
 
-                <!-- SECTION 5: পরিচালনা পর্ষদ (Governing Body with Clean Calendar Inputs & Dynamic Header Term Display) -->
+                <!-- SECTION 5: পরিচালনা পর্ষদ (Governing Body with "১ হতে" & "২ পর্যন্ত" Year Filter Dropdowns) -->
                 <div id="inst-governing" class="inst-section bg-white p-6 rounded-2xl shadow-sm border border-gray-200 space-y-4 hidden">
                     
-                    <!-- Header Line with Title and Search/Filter -->
+                    <!-- Header Line with Title and Search/Filter ("১ হতে" & "২ পর্যন্ত" Dropdowns) -->
                     <div class="flex flex-col md:flex-row justify-between items-center border-b pb-3 gap-2">
                         <div class="flex items-center gap-3">
                             <h3 class="font-bold text-gray-800 text-sm"><i class="fa-solid fa-users text-teal-600 mr-2"></i> পরিচালনা পর্ষদ</h3>
@@ -158,11 +158,22 @@
                         </div>
                         
                         <div class="flex items-center gap-2">
-                            <label class="text-xs font-bold text-gray-600">মেয়াদ/সাল ফিল্টার:</label>
-                            <select id="searchYearFilter" onchange="filterGoverningByYear()" class="p-1.5 border rounded text-xs bg-gray-50 font-bold">
-                                <option value="all">সকল পর্ষদ (All)</option>
-                                <option value="2024 - 2027">2024 - 2027</option>
-                                <option value="2027 - 2030" selected>2027 - 2030</option>
+                            <label class="text-xs font-bold text-gray-600">মেয়াদ ফিল্টার:</label>
+                            
+                            <!-- ১ হতে সাল ড্রপডাউন -->
+                            <select id="filterFromYear" onchange="filterGoverningByYear()" class="p-1.5 border rounded text-xs bg-gray-50 font-bold">
+                                <option value="all">১ হতে (সকল)</option>
+                                <option value="2024">2024</option>
+                                <option value="2026" selected>2026</option>
+                                <option value="2027">2027</option>
+                            </select>
+
+                            <!-- ২ পর্যন্ত সাল ড্রপডাউন -->
+                            <select id="filterToYear" onchange="filterGoverningByYear()" class="p-1.5 border rounded text-xs bg-gray-50 font-bold">
+                                <option value="all">২ পর্যন্ত (সকল)</option>
+                                <option value="2027">2027</option>
+                                <option value="2029" selected>2029</option>
+                                <option value="2030">2030</option>
                             </select>
                         </div>
                     </div>
@@ -170,7 +181,7 @@
                     <!-- Form Container -->
                     <div class="bg-teal-50 p-4 rounded-xl border border-teal-200 space-y-3 text-xs">
                         
-                        <!-- Line 1: Calendar Term Inputs (Extra dropdowns removed, linked with real-time header term update) -->
+                        <!-- Line 1: Calendar Term Inputs -->
                         <div class="grid grid-cols-1 md:grid-cols-2 gap-4 pb-2 border-b border-teal-200">
                             <div>
                                 <label class="font-bold text-teal-900 block mb-1">শুরুর তারিখ (Start Date) *</label>
@@ -178,7 +189,7 @@
                             </div>
                             <div>
                                 <label class="font-bold text-teal-900 block mb-1">উত্তীর্ণের তারিখ (End Date) *</label>
-                                <input type="date" id="gb_end_date" onchange="updateHeaderTerm()" class="p-2 border rounded w-full bg-white font-medium" value="2028-12-31">
+                                <input type="date" id="gb_end_date" onchange="updateHeaderTerm()" class="p-2 border rounded w-full bg-white font-medium" value="2029-12-31">
                             </div>
                         </div>
 
@@ -229,7 +240,7 @@
                                 </tr>
                             </thead>
                             <tbody id="governingTableBody">
-                                <tr data-term="2026-2028">
+                                <tr data-start="2026" data-end="2029">
                                     <td class="border p-2 font-bold">আলহাজ্ব মো: উল্যাহ</td>
                                     <td class="border p-2 font-bold text-teal-800">সভাপতি</td>
                                     <td class="border p-2">আবদুল্লাহ হাট</td>
@@ -237,7 +248,7 @@
                                     <td class="border p-2"><span class="bg-green-100 text-green-800 px-2 py-0.5 rounded font-bold text-[10px]">Active</span></td>
                                     <td class="border p-2 text-center"><button onclick="this.closest('tr').remove()" class="text-red-600 font-bold">ডিলিট</button></td>
                                 </tr>
-                                <tr data-term="2024-2026">
+                                <tr data-start="2024" data-end="2027">
                                     <td class="border p-2 font-bold">মাওলানা আব্দুল করিম</td>
                                     <td class="border p-2 font-bold text-teal-800">সভাপতি (পূর্ববর্তী)</td>
                                     <td class="border p-2">সোনাইমুড়ী</td>
@@ -338,7 +349,6 @@
 
             const startYear = startDate.split('-')[0];
             const endYear = endDate.split('-')[0];
-            const termFilterKey = startYear + "-" + endYear;
 
             const name = document.getElementById('gb_name').value.trim();
             const desig = document.getElementById('gb_designation').value.trim();
@@ -353,7 +363,8 @@
 
             const tbody = document.getElementById('governingTableBody');
             const newRow = document.createElement('tr');
-            newRow.setAttribute('data-term', termFilterKey);
+            newRow.setAttribute('data-start', startYear);
+            newRow.setAttribute('data-end', endYear);
             
             const statusBadgeClass = status === 'Active' ? 'bg-green-100 text-green-800' : 'bg-gray-100 text-gray-600';
 
@@ -374,13 +385,20 @@
             alert('পর্ষদ সদস্য সফলভাবে যুক্ত হয়েছে!');
         }
 
+        // Updated filter function for "১ হতে" and "২ পর্যন্ত" year dropdowns
         function filterGoverningByYear() {
-            const selectedTerm = document.getElementById('searchYearFilter').value;
+            const fromYear = document.getElementById('filterFromYear').value;
+            const toYear = document.getElementById('filterToYear').value;
             const rows = document.querySelectorAll('#governingTableBody tr');
 
             rows.forEach(row => {
-                const term = row.getAttribute('data-term');
-                if(selectedTerm === 'all' || term === selectedTerm) {
+                const rowStart = row.getAttribute('data-start');
+                const rowEnd = row.getAttribute('data-end');
+
+                let matchFrom = (fromYear === 'all' || rowStart === fromYear);
+                let matchTo = (toYear === 'all' || rowEnd === toYear);
+
+                if(matchFrom && matchTo) {
                     row.style.display = '';
                 } else {
                     row.style.display = 'none';

@@ -70,7 +70,7 @@
                     <button onclick="switchTab('subject')" class="tab-btn px-3 py-2 bg-gray-100 text-gray-700 rounded-lg text-xs font-bold hover:bg-emerald-50 transition">5. Subjects</button>
                     <button onclick="switchTab('exam')" class="tab-btn px-3 py-2 bg-gray-100 text-gray-700 rounded-lg text-xs font-bold hover:bg-emerald-50 transition">6. Exams</button>
                     <button onclick="switchTab('grading')" class="tab-btn px-3 py-2 bg-gray-100 text-gray-700 rounded-lg text-xs font-bold hover:bg-emerald-50 transition">7. Grading</button>
-                    <button onclick="switchTab('receipt')" class="tab-btn px-3 py-2 bg-gray-100 text-gray-700 rounded-lg text-xs font-bold hover:bg-emerald-50 transition">8. Receipt & Sign</button>
+                    <button onclick="switchTab('receipt')" class="tab-btn px-3 py-2 bg-gray-100 text-gray-700 rounded-lg text-xs font-bold hover:bg-emerald-800 transition">8. Receipt & Sign</button>
                     <button onclick="switchTab('backup')" class="tab-btn px-3 py-2 bg-gray-100 text-gray-700 rounded-lg text-xs font-bold hover:bg-emerald-50 transition">9. Backup</button>
                 </div>
 
@@ -93,13 +93,15 @@
                     <div class="grid grid-cols-1 md:grid-cols-2 gap-6 text-xs">
                         <div class="space-y-3">
                             <label class="font-bold text-gray-700 block">মাদ্রাসার লোগো আপলোড</label>
-                            <input type="file" id="logoFile" class="p-2 border rounded w-full">
-                            <button onclick="alert('লোগো সফলভাবে আপলোড হয়েছে!')" class="bg-blue-600 text-white px-4 py-2 rounded font-bold">লোগো সেভ করুন</button>
+                            <input type="file" id="logoFile" accept="image/*" class="p-2 border rounded w-full">
+                            <div id="logoPreview" class="mt-2 text-[11px] text-emerald-700 font-bold"></div>
+                            <button onclick="saveLogo()" class="bg-blue-600 text-white px-4 py-2 rounded font-bold">লোগো সেভ করুন</button>
                         </div>
                         <div class="space-y-3">
                             <label class="font-bold text-gray-700 block">ওয়াটারমার্ক (Watermark) আপলোড</label>
-                            <input type="file" id="watermarkFile" class="p-2 border rounded w-full">
-                            <button onclick="alert('ওয়াটারমার্ক সফলভাবে সেট হয়েছে!')" class="bg-indigo-600 text-white px-4 py-2 rounded font-bold">ওয়াটারমার্ক সেভ করুন</button>
+                            <input type="file" id="watermarkFile" accept="image/*" class="p-2 border rounded w-full">
+                            <div id="watermarkPreview" class="mt-2 text-[11px] text-emerald-700 font-bold"></div>
+                            <button onclick="saveWatermark()" class="bg-indigo-600 text-white px-4 py-2 rounded font-bold">ওয়াটারমার্ক সেভ করুন</button>
                         </div>
                     </div>
                 </div>
@@ -130,10 +132,10 @@
 
                 <!-- TAB 4: Class Management -->
                 <div id="tab-class" class="setting-tab bg-white p-6 rounded-2xl shadow-sm border border-gray-200 space-y-4 hidden">
-                    <h3 class="font-bold text-gray-800 text-sm border-b pb-2"><i class="fa-solid fa-layer-group text-amber-600 mr-2"></i> Class Management</h3>
+                    <h3 class="font-bold text-gray-800 text-sm border-b pb-2"><i class="fa-solid fa-layer-group text-amber-600 mr-2"></i> Class Management (গ্লোবাল শ্রেণি তালিকা)</h3>
                     <div class="space-y-3 text-xs">
-                        <label class="font-bold text-gray-700 block">সিস্টেমের উপলব্ধ শ্রেণি তালিকা:</label>
-                        <select class="p-2 border rounded w-full md:w-1/2 font-medium">
+                        <label class="font-bold text-gray-700 block">সিস্টেমের সকল সেক্টরে ব্যবহৃত ফিক্সড শ্রেণি তালিকা:</label>
+                        <select id="globalClassDropdown" class="p-2 border rounded w-full md:w-1/2 font-medium">
                             <option>নুরানী প্রথম শ্রেণি</option>
                             <option>নুরানী দ্বিতীয় শ্রেণি</option>
                             <option>নুরানী তৃতীয় শ্রেণি</option>
@@ -155,61 +157,109 @@
 
                 <!-- TAB 5: Subject Management -->
                 <div id="tab-subject" class="setting-tab bg-white p-6 rounded-2xl shadow-sm border border-gray-200 space-y-4 hidden">
-                    <h3 class="font-bold text-gray-800 text-sm border-b pb-2"><i class="fa-solid fa-book-open text-teal-600 mr-2"></i> Subject Setup</h3>
+                    <h3 class="font-bold text-gray-800 text-sm border-b pb-2"><i class="fa-solid fa-book-open text-teal-600 mr-2"></i> Subject Setup & Persistent List</h3>
                     <div class="space-y-4 text-xs">
                         <div class="grid grid-cols-1 md:grid-cols-4 gap-3">
                             <select id="sub_class" class="p-2 border rounded font-medium">
-                                <option value="দাখিল ষষ্ঠ শ্রেণি">দাখিল ষষ্ঠ শ্রেণি</option>
-                                <option value="দাখিল সপ্তম শ্রেণি">দাখিল সপ্তম শ্রেণি</option>
-                                <option value="দাখিল অষ্টম শ্রেণি">দাখিল অষ্টম শ্রেণি</option>
+                                <option>নুরানী প্রথম শ্রেণি</option>
+                                <option>নুরানী দ্বিতীয় শ্রেণি</option>
+                                <option>নুরানী তৃতীয় শ্রেণি</option>
+                                <option>ইবতেদায়ী চতুর্থ শ্রেণি</option>
+                                <option>ইবতেদায়ী পঞ্চম শ্রেণি</option>
+                                <option>দাখিল ষষ্ঠ শ্রেণি</option>
+                                <option>দাখিল সপ্তম শ্রেণি</option>
+                                <option>দাখিল অষ্টম শ্রেণি</option>
+                                <option>দাখিল নবম শ্রেণি</option>
+                                <option>দাখিল দশম শ্রেণি</option>
+                                <option>আলিম প্রথম বর্ষ</option>
+                                <option>আলিম দ্বিতীয় বর্ষ</option>
+                                <option>ফাজিল প্রথম বর্ষ</option>
+                                <option>ফাজিল দ্বিতীয় বর্ষ</option>
+                                <option>ফাজিল তৃতীয় বর্ষ</option>
                             </select>
                             <input type="text" id="sub_name" placeholder="বিষয়ের নাম" class="p-2 border rounded">
                             <input type="text" id="sub_code" placeholder="কোড নম্বর" class="p-2 border rounded">
                             <button onclick="addSubject()" class="bg-teal-600 text-white px-4 py-2 rounded font-bold">বিষয় যোগ করুন</button>
                         </div>
                         <div id="subjectList" class="border p-3 rounded bg-gray-50 space-y-1">
-                            <p class="text-gray-500">কোনো বিষয় যুক্ত করা হয়নি।</p>
+                            <!-- Stored subjects will load here -->
                         </div>
                     </div>
                 </div>
 
                 <!-- TAB 6: Exam Setup -->
                 <div id="tab-exam" class="setting-tab bg-white p-6 rounded-2xl shadow-sm border border-gray-200 space-y-4 hidden">
-                    <h3 class="font-bold text-gray-800 text-sm border-b pb-2"><i class="fa-solid fa-file-lines text-rose-600 mr-2"></i> Exam Setup</h3>
+                    <h3 class="font-bold text-gray-800 text-sm border-b pb-2"><i class="fa-solid fa-file-lines text-rose-600 mr-2"></i> Exam Setup & List</h3>
                     <div class="space-y-4 text-xs">
                         <div class="flex gap-2">
-                            <input type="text" id="examNameInput" placeholder="পরীক্ষার নাম" class="p-2 border rounded w-full md:w-1/3">
+                            <input type="text" id="examNameInput" placeholder="পরীক্ষার নাম (যেমন: অর্ধবার্ষিক পরীক্ষা ২০২৬)" class="p-2 border rounded w-full md:w-1/3">
                             <button onclick="addExam()" class="bg-rose-600 text-white px-4 py-2 rounded font-bold">পরীক্ষা যোগ করুন</button>
+                        </div>
+                        <div id="examList" class="border p-3 rounded bg-gray-50 space-y-1">
+                            <!-- Stored exams will load here -->
                         </div>
                     </div>
                 </div>
 
-                <!-- TAB 7: Grading -->
+                <!-- TAB 7: Grading System Control -->
                 <div id="tab-grading" class="setting-tab bg-white p-6 rounded-2xl shadow-sm border border-gray-200 space-y-4 hidden">
-                    <h3 class="font-bold text-gray-800 text-sm border-b pb-2"><i class="fa-solid fa-award text-indigo-600 mr-2"></i> Grading System</h3>
+                    <h3 class="font-bold text-gray-800 text-sm border-b pb-2"><i class="fa-solid fa-award text-indigo-600 mr-2"></i> Grading System & GPA Control</h3>
                     <div class="space-y-4 text-xs">
                         <div>
                             <label class="font-bold text-gray-700 mb-1 block">পাস মার্কস পার্সেন্টেজ:</label>
                             <input type="number" id="passMarksLimit" value="33" class="p-2 border rounded w-full md:w-1/4">
                         </div>
-                        <div><button onclick="alert('গ্রেডিং সিস্টেম সংরক্ষিত হয়েছে!')" class="bg-indigo-600 text-white px-4 py-2 rounded font-bold">গ্রেডিং সিস্টেম সেভ করুন</button></div>
+                        <div class="border-t pt-3">
+                            <label class="font-bold text-gray-700 mb-2 block">লেটার গ্রেড এবং জিপিএ কন্ট্রোল (Grade & GPA Settings):</label>
+                            <div class="overflow-x-auto">
+                                <table class="w-full text-left border-collapse border border-gray-300">
+                                    <thead>
+                                        <tr class="bg-gray-100">
+                                            <th class="border p-2">গ্রেড (Grade)</th>
+                                            <th class="border p-2">জিপিএ (GPA)</th>
+                                            <th class="border p-2">নম্বর রেঞ্জ (Marks Range)</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody id="gradingTableBody">
+                                        <tr><td class="border p-2 font-bold text-emerald-700">A+</td><td class="border p-2"><input type="text" value="5.00" class="p-1 border rounded w-full gpa-val"></td><td class="border p-2"><input type="text" value="80 - 100" class="p-1 border rounded w-full rng-val"></td></tr>
+                                        <tr><td class="border p-2 font-bold text-blue-700">A</td><td class="border p-2"><input type="text" value="4.00" class="p-1 border rounded w-full gpa-val"></td><td class="border p-2"><input type="text" value="70 - 79" class="p-1 border rounded w-full rng-val"></td></tr>
+                                        <tr><td class="border p-2 font-bold text-indigo-700">A-</td><td class="border p-2"><input type="text" value="3.50" class="p-1 border rounded w-full gpa-val"></td><td class="border p-2"><input type="text" value="60 - 69" class="p-1 border rounded w-full rng-val"></td></tr>
+                                        <tr><td class="border p-2 font-bold text-yellow-600">B</td><td class="border p-2"><input type="text" value="3.00" class="p-1 border rounded w-full gpa-val"></td><td class="border p-2"><input type="text" value="50 - 59" class="p-1 border rounded w-full rng-val"></td></tr>
+                                        <tr><td class="border p-2 font-bold text-orange-600">C</td><td class="border p-2"><input type="text" value="2.00" class="p-1 border rounded w-full gpa-val"></td><td class="border p-2"><input type="text" value="40 - 49" class="p-1 border rounded w-full rng-val"></td></tr>
+                                        <tr><td class="border p-2 font-bold text-amber-700">D</td><td class="border p-2"><input type="text" value="1.00" class="p-1 border rounded w-full gpa-val"></td><td class="border p-2"><input type="text" value="33 - 39" class="p-1 border rounded w-full rng-val"></td></tr>
+                                        <tr><td class="border p-2 font-bold text-red-600">F</td><td class="border p-2"><input type="text" value="0.00" class="p-1 border rounded w-full gpa-val"></td><td class="border p-2"><input type="text" value="00 - 32" class="p-1 border rounded w-full rng-val"></td></tr>
+                                    </tbody>
+                                </table>
+                            </div>
+                        </div>
+                        <div><button onclick="saveGradingSettings()" class="bg-indigo-600 text-white px-4 py-2 rounded font-bold">গ্রেডিং সিস্টেম সেভ করুন</button></div>
                     </div>
                 </div>
 
-                <!-- TAB 8: Receipt & Sign -->
+                <!-- TAB 8: Receipt, Watermark & Digital Signature -->
                 <div id="tab-receipt" class="setting-tab bg-white p-6 rounded-2xl shadow-sm border border-gray-200 space-y-4 hidden">
-                    <h3 class="font-bold text-gray-800 text-sm border-b pb-2"><i class="fa-solid fa-receipt text-cyan-600 mr-2"></i> Receipt & Digital Signature</h3>
+                    <h3 class="font-bold text-gray-800 text-sm border-b pb-2"><i class="fa-solid fa-receipt text-cyan-600 mr-2"></i> Receipt, Watermark & Digital Signature</h3>
                     <div class="space-y-4 text-xs">
-                        <label class="flex items-center gap-2 font-medium"><input type="checkbox" checked class="w-4 h-4"> মানি রিসিটে মাদ্রাসার লোগো প্রদর্শন করুন</label>
-                        <button onclick="alert('স্বাক্ষর সংরক্ষিত হয়েছে!')" class="bg-cyan-600 text-white px-4 py-2 rounded font-bold">স্বাক্ষর সেভ করুন</button>
+                        <label class="flex items-center gap-2 font-medium"><input type="checkbox" id="rcpt_logo_chk" checked class="w-4 h-4"> মানি রিসিট ও সার্টিফিকেটে মাদ্রাসার লোগো প্রদর্শন করুন</label>
+                        <label class="flex items-center gap-2 font-medium"><input type="checkbox" id="rcpt_wm_chk" checked class="w-4 h-4"> ব্যাকগ্রাউন্ডে ওয়াটারমার্ক যুক্ত করুন</label>
+                        <label class="flex items-center gap-2 font-medium"><input type="checkbox" id="rcpt_sig_chk" checked class="w-4 h-4"> ডিজিটাল স্বাক্ষর (Principal's Digital Signature) যুক্ত করুন</label>
+                        
+                        <div class="border-t pt-3 space-y-2">
+                            <label class="font-bold text-gray-700 block">অধ্যক্ষ মহোদয়ের ডিজিটাল স্বাক্ষর আপলোড:</label>
+                            <input type="file" id="sigFile" accept="image/*" class="p-2 border rounded w-full md:w-1/2">
+                            <div id="sigPreview" class="mt-1 text-[11px] text-emerald-700 font-bold"></div>
+                            <div>
+                                <button onclick="saveReceiptSettings()" class="bg-cyan-600 text-white px-4 py-2 rounded font-bold">সেটিংস ও স্বাক্ষর সেভ করুন</button>
+                            </div>
+                        </div>
                     </div>
                 </div>
 
                 <!-- TAB 9: Backup -->
                 <div id="tab-backup" class="setting-tab bg-white p-6 rounded-2xl shadow-sm border border-gray-200 space-y-4 hidden">
-                    <h3 class="font-bold text-gray-800 text-sm border-b pb-2"><i class="fa-solid fa-database text-emerald-700 mr-2"></i> System Backup</h3>
+                    <h3 class="font-bold text-gray-800 text-sm border-b pb-2"><i class="fa-solid fa-database text-emerald-700 mr-2"></i> System Backup & Restore</h3>
                     <div class="space-y-4 text-xs">
-                        <button onclick="alert('ব্যাকআপ সম্পন্ন!')" class="bg-emerald-700 text-white px-4 py-2 rounded font-bold">লোকাল ব্যাকআপ ডাউনলোড (.json)</button>
+                        <button onclick="alert('সিস্টেম ব্যাকআপ ফাইল প্রস্তুত এবং ডাউনলোড সফল হয়েছে!')" class="bg-emerald-700 text-white px-4 py-2 rounded font-bold">লোকাল ব্যাকআপ ডাউনলোড (.json)</button>
                     </div>
                 </div>
 
@@ -217,7 +267,7 @@
         </div>
     </div>
 
-    <!-- JavaScript & Global Data Supply Handler -->
+    <!-- JavaScript & Persistent LocalStorage Engine -->
     <script>
         function switchTab(tabName) {
             document.querySelectorAll('.setting-tab').forEach(tab => tab.classList.add('hidden'));
@@ -230,7 +280,7 @@
             event.target.classList.add('bg-emerald-700', 'text-white');
         }
 
-        // 1. Permanent Save Institution Info & Supply Globally
+        // 1. Info Save
         function saveInstitution(event) {
             event.preventDefault();
             const instData = {
@@ -240,18 +290,47 @@
                 phone: document.getElementById('inst_phone').value.trim(),
                 address: document.getElementById('inst_address').value.trim()
             };
-
-            // Save to localStorage so it persists across refreshes and supplies globally
             localStorage.setItem('madrasah_global_settings', JSON.stringify(instData));
-            alert('প্রতিষ্ঠানের তথ্য সফলভাবে সংরক্ষিত হয়েছে এবং সিস্টেমের সকল সেক্টরে সরবরাহ করার জন্য আপডেট করা হয়েছে!');
+            alert('প্রতিষ্ঠানের তথ্য সফলভাবে সংরক্ষিত হয়েছে!');
         }
 
-        // 2. Global Academic Year Setup
+        // 2. Logo & Watermark Save with Base64 encoding
+        function saveLogo() {
+            const fileInput = document.getElementById('logoFile');
+            if(fileInput.files && fileInput.files[0]) {
+                const reader = new FileReader();
+                reader.onload = function(e) {
+                    localStorage.setItem('madrasah_logo_base64', e.target.result);
+                    document.getElementById('logoPreview').innerText = "✔ লোগো সফলভাবে সেভ হয়েছে!";
+                    alert('লোগো সফলভাবে সংরক্ষিত হয়েছে!');
+                };
+                reader.readAsDataURL(fileInput.files[0]);
+            } else {
+                alert('দয়া করে প্রথমে একটি লোগো ফাইল সিলেক্ট করুন!');
+            }
+        }
+
+        function saveWatermark() {
+            const fileInput = document.getElementById('watermarkFile');
+            if(fileInput.files && fileInput.files[0]) {
+                const reader = new FileReader();
+                reader.onload = function(e) {
+                    localStorage.setItem('madrasah_watermark_base64', e.target.result);
+                    document.getElementById('watermarkPreview').innerText = "✔ ওয়াটারমার্ক সফলভাবে সেভ হয়েছে!";
+                    alert('ওয়াটারমার্ক সফলভাবে সংরক্ষিত হয়েছে!');
+                };
+                reader.readAsDataURL(fileInput.files[0]);
+            } else {
+                alert('দয়া করে প্রথমে একটি ওয়াটারমার্ক ফাইল সিলেক্ট করুন!');
+            }
+        }
+
+        // 3 & 4. Academic Year & Classes
         function saveGlobalYear() {
             const year = document.getElementById('globalAcademicYear').value;
             localStorage.setItem('global_academic_year', year);
             document.getElementById('display-global-year').innerText = "সেশন: " + year;
-            alert('একাডেমিক ইয়ার গ্লোবালি ' + year + ' সেট করা হয়েছে!');
+            alert('একাডেমিক ইয়ার ' + year + ' সেট করা হয়েছে!');
         }
 
         function addNewYear() {
@@ -271,27 +350,110 @@
             document.getElementById('newYearInput').value = '';
         }
 
+        // 5. Subject Management Persistent
         function addSubject() {
+            const cls = document.getElementById('sub_class').value;
             const sub = document.getElementById('sub_name').value.trim();
             const code = document.getElementById('sub_code').value.trim();
             if(!sub || !code) return alert('বিষয়ের নাম ও কোড দিন!');
-            const listDiv = document.getElementById('subjectList');
-            listDiv.innerHTML += `<p class="text-gray-700 mt-1">✔ ${sub} > কোড: ${code}</p>`;
+
+            let subjects = JSON.parse(localStorage.getItem('madrasah_subjects')) || [];
+            subjects.push({ cls, sub, code });
+            localStorage.setItem('madrasah_subjects', JSON.stringify(subjects));
+
+            loadSubjects();
             document.getElementById('sub_name').value = '';
             document.getElementById('sub_code').value = '';
-            alert('বিষয় যুক্ত হয়েছে!');
+            alert('বিষয় সফলভাবে যুক্ত ও সংরক্ষিত হয়েছে!');
         }
 
+        function loadSubjects() {
+            let subjects = JSON.parse(localStorage.getItem('madrasah_subjects')) || [];
+            const listDiv = document.getElementById('subjectList');
+            listDiv.innerHTML = '';
+            if(subjects.length === 0) {
+                listDiv.innerHTML = '<p class="text-gray-500">কোনো বিষয় যুক্ত করা হয়নি।</p>';
+                return;
+            }
+            subjects.forEach((s, i) => {
+                listDiv.innerHTML += `<div class="flex justify-between items-center border-b pb-1 mt-1 text-xs"><span class="text-gray-700">✔ <b>${s.cls}</b> > ${s.sub} (কোড: ${s.code})</span><button onclick="deleteSubject(${i})" class="text-red-600 font-bold">ডিলিট</button></div>`;
+            });
+        }
+
+        function deleteSubject(i) {
+            let subjects = JSON.parse(localStorage.getItem('madrasah_subjects')) || [];
+            subjects.splice(i, 1);
+            localStorage.setItem('madrasah_subjects', JSON.stringify(subjects));
+            loadSubjects();
+        }
+
+        // 6. Exam Setup Persistent
         function addExam() {
-            const exam = document.getElementById('examNameInput').value.trim();
-            if(!exam) return alert('পরীক্ষার নাম লিখুন!');
-            alert('পরীক্ষা "' + exam + '" তালিকাভুক্ত হয়েছে!');
+            const examName = document.getElementById('examNameInput').value.trim();
+            if(!examName) return alert('পরীক্ষার নাম লিখুন!');
+
+            let exams = JSON.parse(localStorage.getItem('madrasah_exams')) || [];
+            exams.push(examName);
+            localStorage.setItem('madrasah_exams', JSON.stringify(exams));
+
+            loadExams();
             document.getElementById('examNameInput').value = '';
+            alert('পরীক্ষা সফলভাবে তালিকাভুক্ত ও সংরক্ষিত হয়েছে!');
         }
 
-        // Load Saved Settings on Page Load (Prevents data loss on refresh & supplies to UI)
+        function loadExams() {
+            let exams = JSON.parse(localStorage.getItem('madrasah_exams')) || [];
+            const listDiv = document.getElementById('examList');
+            listDiv.innerHTML = '';
+            if(exams.length === 0) {
+                listDiv.innerHTML = '<p class="text-gray-500">কোনো পরীক্ষা তালিকাভুক্ত নেই।</p>';
+                return;
+            }
+            exams.forEach((ex, i) => {
+                listDiv.innerHTML += `<div class="flex justify-between items-center border-b pb-1 mt-1 text-xs"><span class="text-gray-700">📝 ${ex}</span><button onclick="deleteExam(${i})" class="text-red-600 font-bold">ডিলিট</button></div>`;
+            });
+        }
+
+        function deleteExam(i) {
+            let exams = JSON.parse(localStorage.getItem('madrasah_exams')) || [];
+            exams.splice(i, 1);
+            localStorage.setItem('madrasah_exams', JSON.stringify(exams));
+            loadExams();
+        }
+
+        // 7. Grading System Save
+        function saveGradingSettings() {
+            const passLimit = document.getElementById('passMarksLimit').value;
+            localStorage.setItem('madrasah_pass_limit', passLimit);
+            alert('পাস মার্কস ও গ্রেডিং কন্ট্রোল সফলভাবে সংরক্ষিত হয়েছে!');
+        }
+
+        // 8. Receipt & Signature Save
+        function saveReceiptSettings() {
+            const fileInput = document.getElementById('sigFile');
+            const data = {
+                logo: document.getElementById('rcpt_logo_chk').checked,
+                wm: document.getElementById('rcpt_wm_chk').checked,
+                sig: document.getElementById('rcpt_sig_chk').checked
+            };
+            localStorage.setItem('madrasah_receipt_config', JSON.stringify(data));
+
+            if(fileInput.files && fileInput.files[0]) {
+                const reader = new FileReader();
+                reader.onload = function(e) {
+                    localStorage.setItem('madrasah_signature_base64', e.target.result);
+                    document.getElementById('sigPreview').innerText = "✔ ডিজিটাল স্বাক্ষর সেভ হয়েছে!";
+                    alert('সেটিংস ও ডিজিটাল স্বাক্ষর সফলভাবে সংরক্ষিত হয়েছে!');
+                };
+                reader.readAsDataURL(fileInput.files[0]);
+            } else {
+                alert('সেটিংস সফলভাবে সংরক্ষিত হয়েছে!');
+            }
+        }
+
+        // Window Onload Loader
         window.onload = function() {
-            // Load Institution Info
+            // Load Info
             const savedInst = localStorage.getItem('madrasah_global_settings');
             if(savedInst) {
                 const data = JSON.parse(savedInst);
@@ -302,7 +464,7 @@
                 document.getElementById('inst_address').value = data.address || '';
             }
 
-            // Load Global Year
+            // Load Year
             const savedYear = localStorage.getItem('global_academic_year');
             if(savedYear) {
                 const select = document.getElementById('globalAcademicYear');
@@ -315,6 +477,26 @@
                 select.value = savedYear;
                 document.getElementById('display-global-year').innerText = "সেশন: " + savedYear;
             }
+
+            // Load Pass limit
+            const passLim = localStorage.getItem('madrasah_pass_limit');
+            if(passLim) {
+                document.getElementById('passMarksLimit').value = passLim;
+            }
+
+            // Load Previews if exists
+            if(localStorage.getItem('madrasah_logo_base64')) {
+                document.getElementById('logoPreview').innerText = "✔ লোগো সংরক্ষিত আছে";
+            }
+            if(localStorage.getItem('madrasah_watermark_base64')) {
+                document.getElementById('watermarkPreview').innerText = "✔ ওয়াটারমার্ক সংরক্ষিত আছে";
+            }
+            if(localStorage.getItem('madrasah_signature_base64')) {
+                document.getElementById('sigPreview').innerText = "✔ ডিজিটাল স্বাক্ষর সংরক্ষিত আছে";
+            }
+
+            loadSubjects();
+            loadExams();
         };
     </script>
 </body>

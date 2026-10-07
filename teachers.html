@@ -126,7 +126,7 @@
                             <h3 class="font-bold text-gray-800 text-sm flex items-center gap-2"><i class="fa-solid fa-money-bill-wave text-rose-600"></i> Salary & Allowance</h3>
                             <span class="text-xs bg-rose-50 text-rose-700 px-2 py-0.5 rounded font-semibold">বেতন</span>
                         </div>
-                        <p class="text-xs text-gray-600 leading-relaxed">সরকার প্রদত্ত ও বেসরকারি বেতন শিট এবং ৫% ইনক্রিমেন্ট ক্যালکুলেটর।</p>
+                        <p class="text-xs text-gray-600 leading-relaxed">সরকার প্রদত্ত ও বেসরকারি বেতন শিট এবং ৫% ইনক্রিমেন্ট ক্যালকুলেটর।</p>
                         <span class="text-xs text-rose-700 font-bold block">বেতন শিট জেনারেট →</span>
                     </div>
 
@@ -134,7 +134,7 @@
 
                 <!-- DYNAMIC PANELS -->
 
-                <!-- 1. TEACHER FULL BIODATA FORM WITH PERMANENT SAVE FIX -->
+                <!-- 1. TEACHER FULL BIODATA FORM -->
                 <div id="panel-teacher_form" class="teacher-sub-panel bg-white p-6 rounded-2xl shadow-sm border border-gray-200 space-y-6 hidden">
                     <div class="flex justify-between items-center border-b pb-3">
                         <h3 class="font-bold text-emerald-800 text-sm"><i class="fa-solid fa-user-plus mr-2"></i> ১. শিক্ষকের পূর্ণাঙ্গ বায়োডাটা ও নিবন্ধন ফরম (স্থায়ী সংরক্ষণসহ)</h3>
@@ -402,7 +402,7 @@
                     </div>
 
                     <div id="pvtPercentageBox" class="hidden flex gap-3 items-center bg-amber-50 p-3 rounded-xl border border-amber-300 text-xs">
-                        <label class="font-bold text-amber-900">বেসরকারি বেতনের পার্সেন্টেজ লিখুন (%):</label>
+                        <label class="font-bold text-amber-900">বেসরকারি বে선의 পার্সেন্টেজ লিখুন (%):</label>
                         <input type="number" id="pvtPercentInput" value="30" class="p-1 border rounded w-20 text-center font-bold" onkeyup="loadSalaryTable()">
                         <span class="text-gray-600">(সরকার প্রদত্ত মূল বেতনের ওপর পার্সেন্টেজ হিসাব করে স্বয়ংক্রিয়ভাবে বেসরকারি বেতন জেনারেট হবে)</span>
                     </div>
@@ -473,7 +473,7 @@
             document.getElementById('tb_autoid').value = `${desigCode}-${subCode}-${yearCode}`;
         }
 
-        // Save Teacher Biodata with Permanent LocalStorage Fix
+        // Save Teacher Biodata with Fixed LocalStorage Logic
         function saveTeacherBiodata(event) {
             event.preventDefault();
             const photoInput = document.getElementById('tb_photo');
@@ -505,6 +505,7 @@
                 localStorage.setItem('madrasah_teachers_master', JSON.stringify(teachers));
                 alert('শিক্ষকের পূর্ণাঙ্গ বায়োডাটা ও তথ্য সফলভাবে সংরক্ষিত হয়েছে!');
                 document.getElementById('teacherBiodataForm').reset();
+                autoGenerateTeacherId();
                 openTeacherPanel('teacher_profile');
             }
 
@@ -792,6 +793,7 @@
 
         window.onload = function() {
             getStoredTeachers();
+            autoGenerateTeacherId();
         };
     </script>
 </body>

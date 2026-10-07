@@ -12,7 +12,7 @@
             .no-print { display: none !important; }
             body { background: white !important; }
             table { width: 100% !important; border-collapse: collapse !important; }
-            th, td { border: 1px solid #000 !important; padding: 5px !important; font-size: 11px !important; }
+            th, td { border: 1px solid #000 !important; padding: 4px !important; font-size: 10px !important; }
         }
     </style>
 </head>
@@ -69,7 +69,7 @@
             <!-- Page Content -->
             <main class="p-6 space-y-6">
                 
-                <!-- 2 Main Colored Action Buttons (ডেইলি এটেন্ডেন্স ও মাসিক রিপোর্ট) -->
+                <!-- 2 Main Colored Action Buttons -->
                 <div class="grid grid-cols-1 md:grid-cols-2 gap-4 no-print">
                     <button onclick="openMainModule('daily')" class="bg-gradient-to-r from-emerald-700 to-emerald-900 text-white p-5 rounded-2xl shadow-md hover:from-emerald-800 hover:to-emerald-950 transition flex items-center justify-between">
                         <div class="text-left">
@@ -82,15 +82,15 @@
                     <button onclick="openMainModule('monthly')" class="bg-gradient-to-r from-blue-700 to-indigo-900 text-white p-5 rounded-2xl shadow-md hover:from-blue-800 hover:to-indigo-950 transition flex items-center justify-between">
                         <div class="text-left">
                             <h2 class="text-lg font-bold"><i class="fa-solid fa-calendar-days mr-2"></i> মাসিক রিপোর্ট (Monthly Report)</h2>
-                            <p class="text-xs text-blue-200 mt-1">তারিখভিত্তিক মাসিক হাজিরা শিট, ক্লিক টাইম ও সারসংক্ষেপ রিপোর্ট।</p>
+                            <p class="text-xs text-blue-200 mt-1">গ্লোবাল ক্যালেন্ডার ও ছুটির দিন বাদ দিয়ে মাসিক উপস্থিতি শিট।</p>
                         </div>
                         <i class="fa-solid fa-arrow-right text-xl"></i>
                     </button>
                 </div>
 
-                <!-- SUB-CONTAINER FOR DAILY ATTENDANCE (3 Buttons: Student, Teacher, Staff) -->
+                <!-- SUB-CONTAINER FOR DAILY ATTENDANCE (3 Buttons) -->
                 <div id="daily_sub_buttons" class="bg-white p-4 rounded-xl shadow-sm border space-y-4 no-print">
-                    <h3 class="font-bold text-emerald-900 text-sm border-b pb-2"><i class="fa-solid fa-list-check mr-1"></i> ডেইলি এটেন্ডেন্স ক্যাটাগরি নির্বাচন করুন:</h3>
+                    <h3 class="font-bold text-emerald-900 text-sm border-b pb-2"><i class="fa-solid fa-list-check mr-1"></i> ডেইলি এটেন্ডেন্স ক্যাটাগরি:</h3>
                     <div class="flex flex-wrap gap-3">
                         <button onclick="loadDailyForm('student')" class="bg-emerald-100 text-emerald-900 hover:bg-emerald-200 px-4 py-2 rounded-lg font-bold text-xs transition border border-emerald-300">
                             <i class="fa-solid fa-user-graduate mr-1"></i> স্টুডেন্টস এটেন্ডেন্স
@@ -103,8 +103,8 @@
                         </button>
                     </div>
 
-                    <!-- Daily Inputs (Class & Global Calendar Date) -->
-                    <div id="daily_inputs_bar" class="flex flex-wrap gap-4 items-end pt-2 text-xs">
+                    <!-- Daily Inputs Bar -->
+                    <div class="flex flex-wrap gap-4 items-end pt-2 text-xs">
                         <div id="daily_class_box" class="hidden">
                             <label class="font-bold text-gray-700 block mb-1">শ্রেণি নির্বাচন:</label>
                             <select id="daily_class_select" class="p-2 border rounded bg-white font-bold" onchange="renderDailyTable()">
@@ -122,9 +122,9 @@
                     </div>
                 </div>
 
-                <!-- SUB-CONTAINER FOR MONTHLY REPORT (3 Buttons: Student, Teacher, Staff) -->
+                <!-- SUB-CONTAINER FOR MONTHLY REPORT (3 Buttons) -->
                 <div id="monthly_sub_buttons" class="bg-white p-4 rounded-xl shadow-sm border space-y-4 hidden no-print">
-                    <h3 class="font-bold text-blue-900 text-sm border-b pb-2"><i class="fa-solid fa-file-invoice mr-1"></i> মাসিক রিপোর্ট ক্যাটাগরি নির্বাচন করুন:</h3>
+                    <h3 class="font-bold text-blue-900 text-sm border-b pb-2"><i class="fa-solid fa-file-invoice mr-1"></i> মাসিক রিপোর্ট ক্যাটাগরি:</h3>
                     <div class="flex flex-wrap gap-3">
                         <button onclick="loadMonthlyReport('student')" class="bg-emerald-100 text-emerald-900 hover:bg-emerald-200 px-4 py-2 rounded-lg font-bold text-xs transition border border-emerald-300">
                             <i class="fa-solid fa-user-graduate mr-1"></i> স্টুডেন্টস মাসিক রিপোর্ট
@@ -137,7 +137,7 @@
                         </button>
                     </div>
 
-                    <!-- Monthly Inputs Bar -->
+                    <!-- Monthly Inputs Bar with Global Calendar Date (No Month/Year Dropdown) -->
                     <div class="flex flex-wrap gap-4 items-end pt-2 text-xs">
                         <div id="monthly_class_box">
                             <label class="font-bold text-gray-700 block mb-1">শ্রেণি নির্বাচন:</label>
@@ -146,19 +146,8 @@
                             </select>
                         </div>
                         <div>
-                            <label class="font-bold text-gray-700 block mb-1">মাস:</label>
-                            <select id="monthly_month_select" class="p-2 border rounded bg-white font-bold" onchange="renderMonthlyTable()">
-                                <option value="01">জানুয়ারি</option><option value="02">ফেব্রুয়ারি</option><option value="03">মার্চ</option>
-                                <option value="04">এপ্রিল</option><option value="05">মে</option><option value="06">জুন</option>
-                                <option value="07" selected>জুলাই</option><option value="08">আগস্ট</option><option value="09">সেপ্টেম্বর</option>
-                                <option value="10">অক্টোবর</option><option value="11">নভেম্বর</option><option value="12">ডিসেম্বর</option>
-                            </select>
-                        </div>
-                        <div>
-                            <label class="font-bold text-gray-700 block mb-1">বছর:</label>
-                            <select id="monthly_year_select" class="p-2 border rounded bg-white font-bold" onchange="renderMonthlyTable()">
-                                <option value="2026" selected>2026</option><option value="2027">2027</option>
-                            </select>
+                            <label class="font-bold text-gray-700 block mb-1">মাস নির্ধারণ (Global Calendar Date):</label>
+                            <input type="date" id="monthly_date_input" class="p-2 border rounded font-bold bg-white" onchange="renderMonthlyTable()">
                         </div>
                         <div class="flex-1">
                             <label class="font-bold text-gray-700 block mb-1">নাম বা আইডি/রোল সার্চ:</label>
@@ -197,11 +186,14 @@
 
     <!-- JavaScript & LocalStorage Engine -->
     <script>
-        let currentMode = 'daily'; // 'daily' or 'monthly'
-        let currentCategory = 'student'; // 'student', 'teacher', 'staff'
+        let currentMode = 'daily'; 
+        let currentCategory = 'student'; 
 
         window.onload = function() {
-            document.getElementById('daily_date_input').value = new Date().toISOString().split('T')[0];
+            let todayStr = new Date().toISOString().split('T')[0];
+            document.getElementById('daily_date_input').value = todayStr;
+            document.getElementById('monthly_date_input').value = todayStr;
+            
             loadDynamicClasses();
             loadDailyForm('student');
         };
@@ -219,6 +211,7 @@
             }
         }
 
+        // স্টুডেন্ট ম্যানেজমেন্ট ফাইল বা লোকাল স্টোরেজ থেকে ক্লাস ফেচ করা
         function loadDynamicClasses() {
             let classSelects = [document.getElementById('daily_class_select'), document.getElementById('monthly_class_select')];
             
@@ -256,7 +249,7 @@
             const classBox = document.getElementById('daily_class_box');
 
             if(cat === 'student') {
-                titleEl.innerHTML = `<i class="fa-solid fa-user-graduate mr-2"></i> স্টুডেন্ট ডেইলি এটেন্ডেন্স ফরম (প্রোফাইল থেকে অটো-লিঙ্কড)`;
+                titleEl.innerHTML = `<i class="fa-solid fa-user-graduate mr-2"></i> স্টুডেন্ট ডেইলি এটেন্ডেন্স ফরম (স্টুডেন্ট ম্যানেজমেন্ট থেকে অটো-লিঙ্কড)`;
                 classBox.style.display = 'block';
             } else if(cat === 'teacher') {
                 titleEl.innerHTML = `<i class="fa-solid fa-chalkboard-user mr-2"></i> শিক্ষক এটেন্ডেন্স ফরম (শিক্ষক প্রোফাইল থেকে অটো-লিঙ্কড)`;
@@ -278,6 +271,24 @@
             const filterClass = document.getElementById('daily_class_select').value;
             const searchKey = document.getElementById('daily_search_input').value.toLowerCase().trim();
 
+            // স্টুডেন্ট ম্যানেজমেন্ট ফাইল থেকে ডেটা ফেচ
+            let students = JSON.parse(localStorage.getItem('madrasah_students_all')) || 
+                           JSON.parse(localStorage.getItem('madrasah_students_master')) || 
+                           JSON.parse(localStorage.getItem('students')) || [
+                { roll: "101", name: "ফাতেমা তুজ জোহরা", class: "Nursery" },
+                { roll: "102", name: "আব্দুল্লাহ আল মামুন", class: "Class 1" }
+            ];
+
+            // শিক্ষক প্রোফাইল থেকে ডেটা ফেচ
+            let teachers = JSON.parse(localStorage.getItem('madrasah_teachers_master')) || [
+                { id: "PRN-ARB-2015", name_bn: "মাওলানা মো: ইব্রাহিম", designation: "অধ্যক্ষ (Principal)" }
+            ];
+
+            // স্টাফ প্রোফাইল থেকে ডেটা ফেচ
+            let staffList = JSON.parse(localStorage.getItem('madrasah_staff_master')) || [
+                { id: "STF-101", name: "সৈয়দ আহমদ", designation: "অফিস সহকারী" }
+            ];
+
             if(currentCategory === 'student') {
                 thead.innerHTML = `
                     <th class="border p-2">তারিখ</th>
@@ -286,13 +297,6 @@
                     <th class="border p-2">শ্রেণি</th>
                     <th class="border p-2 text-center">حاضر / উপস্থিতি ও ক্লিক টাইম</th>
                 `;
-
-                let students = JSON.parse(localStorage.getItem('madrasah_students_all')) || 
-                               JSON.parse(localStorage.getItem('madrasah_students_master')) || 
-                               JSON.parse(localStorage.getItem('students')) || [
-                    { roll: "101", name: "ফাতেমা তুজ জোহরা", class: "Nursery" },
-                    { roll: "102", name: "আব্দুল্লাহ আল মামুন", class: "Class 1" }
-                ];
 
                 students.forEach(s => {
                     let sClass = s.studentClass || s.class || s.grade || "Nursery";
@@ -329,10 +333,6 @@
                     <th class="border p-2 text-center">حاضر / উপস্থিতি ও ক্লিক টাইম</th>
                 `;
 
-                let teachers = JSON.parse(localStorage.getItem('madrasah_teachers_master')) || [
-                    { id: "PRN-ARB-2015", name_bn: "মাওলানা মো: ইব্রাহিম", designation: "অধ্যক্ষ (Principal)" }
-                ];
-
                 teachers.forEach(t => {
                     if(searchKey && !t.name_bn.toLowerCase().includes(searchKey) && !t.id.toLowerCase().includes(searchKey)) return;
 
@@ -362,10 +362,6 @@
                     <th class="border p-2">পদবি (Designation)</th>
                     <th class="border p-2 text-center">حاضر / উপস্থিতি ও ক্লিক টাইম</th>
                 `;
-
-                let staffList = JSON.parse(localStorage.getItem('madrasah_staff_master')) || [
-                    { id: "STF-101", name: "সৈয়দ আহমদ", designation: "অফিস সহকারী" }
-                ];
 
                 staffList.forEach(st => {
                     if(searchKey && !st.name.toLowerCase().includes(searchKey) && !st.id.toLowerCase().includes(searchKey)) return;
@@ -410,7 +406,7 @@
             const classBox = document.getElementById('monthly_class_box');
 
             if(cat === 'student') {
-                titleEl.innerHTML = `<i class="fa-solid fa-user-graduate mr-2"></i> স্টুডেন্টস মাসিক উপস্থিতি রিপোর্ট ও তারিখভিত্তিক ক্লিক টাইম`;
+                titleEl.innerHTML = `<i class="fa-solid fa-user-graduate mr-2"></i> স্টুডেন্টস মাসিক উপস্থিতি রিপোর্ট (গ্লোবাল ক্যালেন্ডার ও সাপ্তাহিক ছুটি বাদ দিয়ে)`;
                 classBox.style.display = 'block';
             } else if(cat === 'teacher') {
                 titleEl.innerHTML = `<i class="fa-solid fa-chalkboard-user mr-2"></i> শিক্ষক মাসিক উপস্থিতি রিপোর্ট`;
@@ -429,11 +425,14 @@
             tbody.innerHTML = '';
 
             const filterClass = document.getElementById('monthly_class_select').value;
-            const filterMonth = document.getElementById('monthly_month_select').value;
-            const filterYear = document.getElementById('monthly_year_select').value;
+            const dateInputVal = document.getElementById('monthly_date_input').value; // গ্লোবাল ক্যালেন্ডার ডেট
             const searchKey = document.getElementById('monthly_search_input').value.toLowerCase().trim();
 
-            let daysInMonth = new Date(filterYear, filterMonth, 0).getDate();
+            let [fYear, fMonth, fDay] = dateInputVal.split('-');
+            let yearNum = parseInt(fYear);
+            let monthNum = parseInt(fMonth);
+
+            let daysInMonth = new Date(yearNum, monthNum, 0).getDate();
 
             let students = JSON.parse(localStorage.getItem('madrasah_students_all')) || 
                            JSON.parse(localStorage.getItem('madrasah_students_master')) || 
@@ -442,11 +441,26 @@
             let teachers = JSON.parse(localStorage.getItem('madrasah_teachers_master')) || [];
             let staffList = JSON.parse(localStorage.getItem('madrasah_staff_master')) || [];
 
+            // সাপ্তাহিক ছুটির দিন বাদ দেওয়ার জন্য লজিক (যেমন শুক্রবার = 5)
+            // মাদ্রাসায় সাধারণত শুক্রবার সাপ্তাহিক ছুটি ধরা হয়
+            let workingDaysCount = 0;
+            let validDays = [];
+            for(let d=1; d<=daysInMonth; d++) {
+                let dayStr = d < 10 ? '0' + d : '' + d;
+                let fullDateStr = `${fYear}-${fMonth}-${dayStr}`;
+                let dayOfWeek = new Date(fullDateStr).getDay(); // 5 = Friday
+                
+                if(dayOfWeek !== 5) { // শুক্রবার বাদে বাকি দিনগুলো কার্যদিবস
+                    workingDaysCount++;
+                    validDays.push(dayStr);
+                }
+            }
+
             if(currentCategory === 'student') {
                 let headerHTML = `<th class="border p-2">রোল/আইডি</th><th class="border p-2">শিক্ষার্থীর নাম</th>`;
-                for(let d=1; d<=daysInMonth; d++) {
-                    headerHTML += `<th class="border p-1 text-center text-[10px]">${d}</th>`;
-                }
+                validDays.forEach(d => {
+                    headerHTML += `<th class="border p-1 text-center text-[10px]">${parseInt(d)}</th>`;
+                });
                 headerHTML += `<th class="border p-2 text-center">কার্যদিবস</th><th class="border p-2 text-center text-green-700">উপস্থিত</th><th class="border p-2 text-center text-red-700">অনুপস্থিত</th>`;
                 thead.innerHTML = headerHTML;
 
@@ -462,9 +476,8 @@
                     
                     let totalPresent = 0;
 
-                    for(let d=1; d<=daysInMonth; d++) {
-                        let dayStr = d < 10 ? '0' + d : '' + d;
-                        let dateKey = `${filterYear}-${filterMonth}-${dayStr}`;
+                    validDays.forEach(dayStr => {
+                        let dateKey = `${fYear}-${fMonth}-${dayStr}`;
                         let attKey = `att_s_${sRoll}_${dateKey}`;
                         let record = JSON.parse(localStorage.getItem(attKey));
 
@@ -479,22 +492,23 @@
                             colorClass = 'text-red-600 font-bold';
                         }
 
-                        rowHTML += `<td class="border p-1 text-center cursor-pointer ${colorClass}" onclick="toggleMonthlyCell('s', '${sRoll}', '${dateKey}', this)" title="${dateKey} (ক্লিক করে পরিবর্তন করুন)">${mark}</td>`;
-                    }
+                        rowHTML += `<td class="border p-1 text-center cursor-pointer ${colorClass}" onclick="toggleMonthlyCell('s', '${sRoll}', '${dateKey}', this)" title="${dateKey}">${mark}</td>`;
+                    });
 
-                    rowHTML += `<td class="border p-2 text-center font-bold">${daysInMonth}</td><td class="border p-2 text-center font-bold text-green-700">${totalPresent}</td><td class="border p-2 text-center font-bold text-red-700">${daysInMonth - totalPresent}</td></tr>`;
+                    let totalAbsent = workingDaysCount - totalPresent;
+                    rowHTML += `<td class="border p-2 text-center font-bold">${workingDaysCount}</td><td class="border p-2 text-center font-bold text-green-700">${totalPresent}</td><td class="border p-2 text-center font-bold text-red-700">${totalAbsent}</td></tr>`;
                     tbody.innerHTML += rowHTML;
                 });
             } else {
-                // শিক্ষক বা স্টাফ মাসিক রিপোর্ট
                 let list = (currentCategory === 'teacher') ? teachers : staffList;
-                let idKey = (currentCategory === 'teacher') ? 'id' : 'id';
+                let idKey = 'id';
                 let nameKey = (currentCategory === 'teacher') ? 'name_bn' : 'name';
+                let prefix = (currentCategory === 'teacher') ? 't' : 'st';
 
                 let headerHTML = `<th class="border p-2">আইডি</th><th class="border p-2">নাম</th>`;
-                for(let d=1; d<=daysInMonth; d++) {
-                    headerHTML += `<th class="border p-1 text-center text-[10px]">${d}</th>`;
-                }
+                validDays.forEach(d => {
+                    headerHTML += `<th class="border p-1 text-center text-[10px]">${parseInt(d)}</th>`;
+                });
                 headerHTML += `<th class="border p-2 text-center">কার্যদিবস</th><th class="border p-2 text-center text-green-700">উপস্থিত</th><th class="border p-2 text-center text-red-700">অনুপস্থিত</th>`;
                 thead.innerHTML = headerHTML;
 
@@ -504,14 +518,12 @@
 
                     if(searchKey && !itemName.toLowerCase().includes(searchKey) && !itemId.toLowerCase().includes(searchKey)) return;
 
-                    let prefix = (currentCategory === 'teacher') ? 't' : 'st';
                     let rowHTML = `<tr><td class="border p-2 font-bold text-emerald-700">${itemId}</td><td class="border p-2 font-bold">${itemName}</td>`;
                     
                     let totalPresent = 0;
 
-                    for(let d=1; d<=daysInMonth; d++) {
-                        let dayStr = d < 10 ? '0' + d : '' + d;
-                        let dateKey = `${filterYear}-${filterMonth}-${dayStr}`;
+                    validDays.forEach(dayStr => {
+                        let dateKey = `${fYear}-${fMonth}-${dayStr}`;
                         let attKey = `att_${prefix}_${itemId}_${dateKey}`;
                         let record = JSON.parse(localStorage.getItem(attKey));
 
@@ -527,9 +539,10 @@
                         }
 
                         rowHTML += `<td class="border p-1 text-center cursor-pointer ${colorClass}" onclick="toggleMonthlyCell('${prefix}', '${itemId}', '${dateKey}', this)" title="${dateKey}">${mark}</td>`;
-                    }
+                    });
 
-                    rowHTML += `<td class="border p-2 text-center font-bold">${daysInMonth}</td><td class="border p-2 text-center font-bold text-green-700">${totalPresent}</td><td class="border p-2 text-center font-bold text-red-700">${daysInMonth - totalPresent}</td></tr>`;
+                    let totalAbsent = workingDaysCount - totalPresent;
+                    rowHTML += `<td class="border p-2 text-center font-bold">${workingDaysCount}</td><td class="border p-2 text-center font-bold text-green-700">${totalPresent}</td><td class="border p-2 text-center font-bold text-red-700">${totalAbsent}</td></tr>`;
                     tbody.innerHTML += rowHTML;
                 });
             }

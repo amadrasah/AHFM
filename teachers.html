@@ -6,6 +6,12 @@
     <title>Teacher & Staff Management - Abdullah Hat Islamia Fazil Madrasah</title>
     <script src="https://cdn.tailwindcss.com"></script>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        @media print {
+            .no-print { display: none !important; }
+            body { background: white !important; }
+        }
+    </style>
 </head>
 <body class="bg-gray-100 font-sans">
 
@@ -61,10 +67,10 @@
             <main class="p-6 space-y-6">
 
                 <!-- Hero Banner -->
-                <div class="bg-gradient-to-r from-emerald-800 to-emerald-950 text-white p-6 rounded-2xl shadow-sm flex flex-col md:flex-row justify-between items-center gap-4">
+                <div class="bg-gradient-to-r from-emerald-800 to-emerald-950 text-white p-6 rounded-2xl shadow-sm flex flex-col md:flex-row justify-between items-center gap-4 no-print">
                     <div>
                         <h2 class="text-xl font-bold">শিক্ষক ও স্টাফ তথ্য ব্যবস্থাপনা প্যানেল</h2>
-                        <p class="text-emerald-200 text-xs mt-1">পূর্ণাঙ্গ বায়োডাটা ফরম, ইনডেক্স ও এমপিও তারিখ, হাজিরা, ছুটি এবং বেতন শিট ম্যানেজমেন্ট।</p>
+                        <p class="text-emerald-200 text-xs mt-1">পূর্ণাঙ্গ বায়োডাটা ফরম, ইনডেক্স ও এমপিও তারিখ, হাজিরা (ক্লিক টাইমসহ), ছুটি এবং বেতন শিট ম্যানেজমেন্ট।</p>
                     </div>
                     <div class="flex gap-2">
                         <button onclick="openTeacherPanel('teacher_form')" class="bg-white text-emerald-900 px-4 py-2 rounded-xl font-bold text-xs hover:bg-emerald-50 transition shadow-sm">
@@ -74,7 +80,7 @@
                 </div>
 
                 <!-- 7 Sub-Modules Grid Layout -->
-                <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+                <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 no-print">
                     
                     <div onclick="openTeacherPanel('teacher_form')" class="bg-white p-5 rounded-xl shadow-sm border-t-4 border-emerald-600 space-y-3 cursor-pointer hover:border-emerald-700 transition">
                         <div class="flex items-center justify-between border-b pb-2">
@@ -108,7 +114,7 @@
                             <h3 class="font-bold text-gray-800 text-sm flex items-center gap-2"><i class="fa-solid fa-clipboard-user text-indigo-600"></i> Attendance</h3>
                             <span class="text-xs bg-indigo-50 text-indigo-700 px-2 py-0.5 rounded font-semibold">হাজিরা</span>
                         </div>
-                        <p class="text-xs text-gray-600 leading-relaxed">রিয়েল-টাইম হাজিরা এবং দৈনিক, মাসিক ও বাৎসরিক ফিল্টার রিপোর্ট।</p>
+                        <p class="text-xs text-gray-600 leading-relaxed">ক্লিক টাইমসহ রিয়েল-টাইম হাজিরা এবং মাস/বছর ভিত্তিক প্রিন্ট রিপোর্ট।</p>
                         <span class="text-xs text-indigo-700 font-bold block">হাজিরা ম্যানেজমেন্ট →</span>
                     </div>
 
@@ -137,8 +143,8 @@
                 <!-- 1. TEACHER FULL BIODATA FORM -->
                 <div id="panel-teacher_form" class="teacher-sub-panel bg-white p-6 rounded-2xl shadow-sm border border-gray-200 space-y-6 hidden">
                     <div class="flex justify-between items-center border-b pb-3">
-                        <h3 class="font-bold text-emerald-800 text-sm"><i class="fa-solid fa-user-plus mr-2"></i> ১. শিক্ষকের পূর্ণাঙ্গ বায়োডাটা ও নিবন্ধন ফরম (স্থায়ী সংরক্ষণসহ)</h3>
-                        <button onclick="closeAllPanels()" class="text-xs bg-gray-200 px-3 py-1 rounded font-bold text-gray-700">বন্ধ করুন</button>
+                        <h3 class="font-bold text-emerald-800 text-sm"><i class="fa-solid fa-user-plus mr-2"></i> ১. শিক্ষকের পূর্ণাঙ্গ বায়োডাটা ও নিবন্ধন ফরম</h3>
+                        <button onclick="closeAllPanels()" class="text-xs bg-gray-200 px-3 py-1 rounded font-bold text-gray-700 no-print">বন্ধ করুন</button>
                     </div>
 
                     <form id="teacherBiodataForm" onsubmit="saveTeacherBiodata(event)" class="grid grid-cols-1 md:grid-cols-4 gap-4 text-xs">
@@ -232,8 +238,8 @@
                 <!-- 2. TEACHER PROFILE & JOINING INFO PANEL -->
                 <div id="panel-teacher_profile" class="teacher-sub-panel bg-white p-6 rounded-2xl shadow-sm border border-gray-200 space-y-4 hidden">
                     <div class="flex justify-between items-center border-b pb-3">
-                        <h3 class="font-bold text-blue-800 text-sm"><i class="fa-solid fa-chalkboard-user mr-2"></i> ২. শিক্ষক প্রোফাইল ও জেইনিং ইনফো (ইনডেক্স ও এমপিওসহ)</h3>
-                        <button onclick="closeAllPanels()" class="text-xs bg-gray-200 px-3 py-1 rounded font-bold text-gray-700">বন্ধ করুন</button>
+                        <h3 class="font-bold text-blue-800 text-sm"><i class="fa-solid fa-chalkboard-user mr-2"></i> ২. শিক্ষক প্রোফাইল ও জেইনিং ইনফো</h3>
+                        <button onclick="closeAllPanels()" class="text-xs bg-gray-200 px-3 py-1 rounded font-bold text-gray-700 no-print">বন্ধ করুন</button>
                     </div>
                     <div class="overflow-x-auto">
                         <table class="w-full text-left border-collapse border border-gray-200 text-xs">
@@ -245,7 +251,7 @@
                                     <th class="border p-2">পদবি</th>
                                     <th class="border p-2">যোগদান ও এমপিও তারিখ</th>
                                     <th class="border p-2 text-rose-700 bg-rose-50">অবসর তারিখ (৬০ বছর)</th>
-                                    <th class="border p-2 text-center">কার্যক্রম</th>
+                                    <th class="border p-2 text-center no-print">কার্যক্রম</th>
                                 </tr>
                             </thead>
                             <tbody id="teacherProfileTableBody"></tbody>
@@ -257,10 +263,10 @@
                 <div id="panel-staff_profile" class="teacher-sub-panel bg-white p-6 rounded-2xl shadow-sm border border-gray-200 space-y-4 hidden">
                     <div class="flex justify-between items-center border-b pb-3">
                         <h3 class="font-bold text-purple-800 text-sm"><i class="fa-solid fa-users mr-2"></i> ৩. স্টাফ প্রোফাইল ও বায়োডাটা ফরম</h3>
-                        <button onclick="closeAllPanels()" class="text-xs bg-gray-200 px-3 py-1 rounded font-bold text-gray-700">বন্ধ করুন</button>
+                        <button onclick="closeAllPanels()" class="text-xs bg-gray-200 px-3 py-1 rounded font-bold text-gray-700 no-print">বন্ধ করুন</button>
                     </div>
 
-                    <form id="staffForm" onsubmit="saveStaffRecord(event)" class="grid grid-cols-1 md:grid-cols-4 gap-3 text-xs bg-purple-50 p-4 rounded-xl border border-purple-200">
+                    <form id="staffForm" onsubmit="saveStaffRecord(event)" class="grid grid-cols-1 md:grid-cols-4 gap-3 text-xs bg-purple-50 p-4 rounded-xl border border-purple-200 no-print">
                         <div>
                             <label class="font-bold text-purple-900 mb-1 block">স্টাফ নাম *</label>
                             <input type="text" id="st_name" placeholder="নাম" class="p-2 border rounded w-full bg-white" required>
@@ -309,7 +315,7 @@
                                     <th class="border p-2">পদবি</th>
                                     <th class="border p-2">যোগদান</th>
                                     <th class="border p-2 text-rose-700 bg-rose-50">অবসর তারিখ</th>
-                                    <th class="border p-2 text-center">কার্যক্রম</th>
+                                    <th class="border p-2 text-center no-print">কার্যক্রম</th>
                                 </tr>
                             </thead>
                             <tbody id="staffTableBody"></tbody>
@@ -317,23 +323,40 @@
                     </div>
                 </div>
 
-                <!-- 4. ATTENDANCE PANEL -->
+                <!-- 4. ATTENDANCE PANEL WITH CLICK TIME & MONTH/YEAR FILTER & PRINT SYSTEM -->
                 <div id="panel-attendance" class="teacher-sub-panel bg-white p-6 rounded-2xl shadow-sm border border-gray-200 space-y-4 hidden">
                     <div class="flex justify-between items-center border-b pb-3">
-                        <h3 class="font-bold text-indigo-800 text-sm"><i class="fa-solid fa-clipboard-user mr-2"></i> ৪. শিক্ষক ও স্টাফ হাজিরা ম্যানেজমেন্ট</h3>
-                        <button onclick="closeAllPanels()" class="text-xs bg-gray-200 px-3 py-1 rounded font-bold text-gray-700">বন্ধ করুন</button>
+                        <h3 class="font-bold text-indigo-800 text-sm"><i class="fa-solid fa-clipboard-user mr-2"></i> ৪. শিক্ষক ও স্টাফ হাজিরা ম্যানেজমেন্ট (ক্লিক টাইম ও প্রিন্ট সিস্টেমসহ)</h3>
+                        <button onclick="closeAllPanels()" class="text-xs bg-gray-200 px-3 py-1 rounded font-bold text-gray-700 no-print">বন্ধ করুন</button>
                     </div>
 
-                    <div class="flex flex-wrap gap-3 bg-indigo-50 p-4 rounded-xl border border-indigo-200 text-xs items-end">
+                    <div class="flex flex-wrap gap-3 bg-indigo-50 p-4 rounded-xl border border-indigo-200 text-xs items-end no-print">
                         <div>
-                            <label class="font-bold text-indigo-900 block mb-1">তারিখ (Auto Date):</label>
+                            <label class="font-bold text-indigo-900 block mb-1">তারিখ:</label>
                             <input type="date" id="att_date" class="p-2 border rounded bg-white font-bold">
                         </div>
                         <div>
-                            <label class="font-bold text-indigo-900 block mb-1">ফিল্টার (নাম বা আইডি):</label>
-                            <input type="text" id="att_filter_key" placeholder="আইডি বা নাম দিয়ে খুঁজুন" class="p-2 border rounded bg-white">
+                            <label class="font-bold text-indigo-900 block mb-1">মাস নির্বাচন:</label>
+                            <select id="att_filter_month" class="p-2 border rounded bg-white font-bold">
+                                <option value="all">সকল মাস (All)</option>
+                                <option value="01">জানুয়ারি</option><option value="02">ফেব্রুয়ারি</option><option value="03">মার্চ</option>
+                                <option value="04">এপ্রিল</option><option value="05">মে</option><option value="06">জুন</option>
+                                <option value="07">জুলাই</option><option value="08">আগস্ট</option><option value="09">সেপ্টেম্বর</option>
+                                <option value="10">অক্টোবর</option><option value="11">নভেম্বর</option><option value="12">ডিসেম্বর</option>
+                            </select>
                         </div>
-                        <button onclick="filterAttendance()" class="bg-indigo-700 text-white px-4 py-2 rounded font-bold">ফিল্টার করুন</button>
+                        <div>
+                            <label class="font-bold text-indigo-900 block mb-1">বছর নির্বাচন:</label>
+                            <select id="att_filter_year" class="p-2 border rounded bg-white font-bold">
+                                <option value="2026" selected>2026</option><option value="2027">2027</option>
+                            </select>
+                        </div>
+                        <div>
+                            <label class="font-bold text-indigo-900 block mb-1">ফিল্টার (নাম বা আইডি):</label>
+                            <input type="text" id="att_filter_key" placeholder="আইডি বা নাম" class="p-2 border rounded bg-white">
+                        </div>
+                        <button onclick="renderAttendanceList()" class="bg-indigo-700 text-white px-4 py-2 rounded font-bold">ফিল্টার করুন</button>
+                        <button onclick="window.print()" class="bg-emerald-700 text-white px-4 py-2 rounded font-bold"><i class="fa-solid fa-print mr-1"></i> প্রিন্ট রিপোর্ট</button>
                     </div>
 
                     <div class="overflow-x-auto">
@@ -344,7 +367,7 @@
                                     <th class="border p-2">আইডি</th>
                                     <th class="border p-2">নাম</th>
                                     <th class="border p-2">পদবি</th>
-                                    <th class="border p-2 text-center">حاضر / উপস্থিত (ক্লিক করুন)</th>
+                                    <th class="border p-2 text-center">حاضر / উপস্থিতি ও ক্লিক টাইম</th>
                                 </tr>
                             </thead>
                             <tbody id="attendanceTableBody"></tbody>
@@ -356,7 +379,7 @@
                 <div id="panel-leave" class="teacher-sub-panel bg-white p-6 rounded-2xl shadow-sm border border-gray-200 space-y-4 hidden">
                     <div class="flex justify-between items-center border-b pb-3">
                         <h3 class="font-bold text-teal-800 text-sm"><i class="fa-solid fa-umbrella-beach mr-2"></i> ৫. জ্যেষ্ঠতা অনুযায়ী লিভ ম্যানেজমেন্ট</h3>
-                        <button onclick="closeAllPanels()" class="text-xs bg-gray-200 px-3 py-1 rounded font-bold text-gray-700">বন্ধ করুন</button>
+                        <button onclick="closeAllPanels()" class="text-xs bg-gray-200 px-3 py-1 rounded font-bold text-gray-700 no-print">বন্ধ করুন</button>
                     </div>
 
                     <div class="overflow-x-auto">
@@ -379,10 +402,10 @@
                 <div id="panel-salary" class="teacher-sub-panel bg-white p-6 rounded-2xl shadow-sm border border-gray-200 space-y-4 hidden">
                     <div class="flex justify-between items-center border-b pb-3">
                         <h3 class="font-bold text-rose-800 text-sm"><i class="fa-solid fa-money-bill-wave mr-2"></i> ৬. সরকার প্রদত্ত ও বেসরকারি বেতন শিট জেনারেটর</h3>
-                        <button onclick="closeAllPanels()" class="text-xs bg-gray-200 px-3 py-1 rounded font-bold text-gray-700">বন্ধ করুন</button>
+                        <button onclick="closeAllPanels()" class="text-xs bg-gray-200 px-3 py-1 rounded font-bold text-gray-700 no-print">বন্ধ করুন</button>
                     </div>
 
-                    <div class="flex flex-wrap gap-4 bg-rose-50 p-4 rounded-xl border border-rose-200 text-xs items-center justify-between">
+                    <div class="flex flex-wrap gap-4 bg-rose-50 p-4 rounded-xl border border-rose-200 text-xs items-center justify-between no-print">
                         <div class="flex gap-2 items-center">
                             <button onclick="switchSalaryType('gov')" id="btn_gov_sal" class="bg-rose-700 text-white px-4 py-2 rounded font-bold transition">সরকার প্রদত্ত বেতন (Govt)</button>
                             <button onclick="switchSalaryType('pvt')" id="btn_pvt_sal" class="bg-white text-rose-700 border border-rose-300 px-4 py-2 rounded font-bold transition">বেসরকারি বেতন (Private)</button>
@@ -401,10 +424,9 @@
                         </div>
                     </div>
 
-                    <div id="pvtPercentageBox" class="hidden flex gap-3 items-center bg-amber-50 p-3 rounded-xl border border-amber-300 text-xs">
-                        <label class="font-bold text-amber-900">বেসরকারি বে선의 পার্সেন্টেজ লিখুন (%):</label>
+                    <div id="pvtPercentageBox" class="hidden flex gap-3 items-center bg-amber-50 p-3 rounded-xl border border-amber-300 text-xs no-print">
+                        <label class="font-bold text-amber-900">বেসরকারি বেতনের পার্সেন্টেজ লিখুন (%):</label>
                         <input type="number" id="pvtPercentInput" value="30" class="p-1 border rounded w-20 text-center font-bold" onkeyup="loadSalaryTable()">
-                        <span class="text-gray-600">(সরকার প্রদত্ত মূল বেতনের ওপর পার্সেন্টেজ হিসাব করে স্বয়ংক্রিয়ভাবে বেসরকারি বেতন জেনারেট হবে)</span>
                     </div>
 
                     <div class="overflow-x-auto">
@@ -445,7 +467,6 @@
             window.scrollTo({ top: 0, behavior: 'smooth' });
         }
 
-        // Auto Calculate Retirement (60 Years from DOB)
         function calculateRetirement() {
             const dob = document.getElementById('tb_dob').value;
             if(dob) {
@@ -464,7 +485,6 @@
             }
         }
 
-        // Auto Generate Teacher ID: DesignationCode + SubjectCode + JoinYear
         function autoGenerateTeacherId() {
             const desigCode = document.getElementById('tb_designation').value;
             const subCode = document.getElementById('tb_subject').value;
@@ -473,7 +493,6 @@
             document.getElementById('tb_autoid').value = `${desigCode}-${subCode}-${yearCode}`;
         }
 
-        // Save Teacher Biodata with Fixed LocalStorage Logic
         function saveTeacherBiodata(event) {
             event.preventDefault();
             const photoInput = document.getElementById('tb_photo');
@@ -549,7 +568,7 @@
                             <span class="text-emerald-700 text-[10px]">এমপিও: ${t.mpoDate || 'N/A'}</span>
                         </td>
                         <td class="border p-2 font-bold text-rose-700 bg-rose-50">${t.retirement}</td>
-                        <td class="border p-2 text-center"><button onclick="deleteTeacherRecord(${i})" class="text-red-600 font-bold">ডিলিট</button></td>
+                        <td class="border p-2 text-center no-print"><button onclick="deleteTeacherRecord(${i})" class="text-red-600 font-bold">ডিলিট</button></td>
                     </tr>
                 `;
             });
@@ -562,7 +581,6 @@
             loadTeacherProfileTable();
         }
 
-        // Save Staff
         function saveStaffRecord(event) {
             event.preventDefault();
             const photoInput = document.getElementById('st_photo');
@@ -614,7 +632,7 @@
                         <td class="border p-2">${s.designation}</td>
                         <td class="border p-2">${s.joinDate}</td>
                         <td class="border p-2 font-bold text-rose-700 bg-rose-50">${s.retirement}</td>
-                        <td class="border p-2 text-center"><button onclick="deleteStaff(${i})" class="text-red-600 font-bold">ডিলিট</button></td>
+                        <td class="border p-2 text-center no-print"><button onclick="deleteStaff(${i})" class="text-red-600 font-bold">ডিলিট</button></td>
                     </tr>
                 `;
             });
@@ -627,21 +645,34 @@
             loadStaffTable();
         }
 
-        // Attendance Panel
+        // Attendance Panel with Click Time & Month/Year Filter
         function initAttendancePanel() {
             document.getElementById('att_date').value = new Date().toISOString().split('T')[0];
-            renderAttendanceList(getStoredTeachers());
+            renderAttendanceList();
         }
 
-        function renderAttendanceList(teachers) {
+        function renderAttendanceList() {
             const tbody = document.getElementById('attendanceTableBody');
             tbody.innerHTML = '';
             const today = document.getElementById('att_date').value;
+            const filterMonth = document.getElementById('att_filter_month').value;
+            const filterYear = document.getElementById('att_filter_year').value;
+            const key = document.getElementById('att_filter_key').value.toLowerCase().trim();
 
-            teachers.forEach((t, i) => {
+            let teachers = getStoredTeachers();
+
+            teachers.forEach((t) => {
                 let attKey = `att_${t.id}_${today}`;
-                let status = localStorage.getItem(attKey) || 'উপস্থিত';
-                let badgeClass = status === 'উপস্থিত' ? 'bg-green-100 text-green-800' : 'bg-red-100 text-red-800';
+                let record = JSON.parse(localStorage.getItem(attKey)) || { status: 'উপস্থিত', time: '-' };
+                
+                // Month/Year Filtering Check
+                let [recYear, recMonth, recDay] = today.split('-');
+                if(filterMonth !== 'all' && recMonth !== filterMonth) return;
+                if(filterYear !== 'all' && recYear !== filterYear) return;
+
+                if(key && !t.name_bn.toLowerCase().includes(key) && !t.id.toLowerCase().includes(key)) return;
+
+                let badgeClass = record.status === 'উপস্থিত' ? 'bg-green-100 text-green-800' : 'bg-red-100 text-red-800';
 
                 tbody.innerHTML += `
                     <tr>
@@ -650,7 +681,9 @@
                         <td class="border p-2 font-bold">${t.name_bn}</td>
                         <td class="border p-2">${t.designation}</td>
                         <td class="border p-2 text-center">
-                            <button onclick="toggleAttendance('${t.id}', '${today}', this)" class="${badgeClass} px-3 py-1 rounded font-bold text-xs">${status}</button>
+                            <button onclick="toggleAttendance('${t.id}', '${today}', this)" class="${badgeClass} px-3 py-1 rounded font-bold text-xs">
+                                ${record.status} <span class="text-[10px] text-gray-600 font-normal">(${record.time})</span>
+                            </button>
                         </td>
                     </tr>
                 `;
@@ -659,23 +692,15 @@
 
         function toggleAttendance(id, date, btn) {
             let attKey = `att_${id}_${date}`;
-            let current = localStorage.getItem(attKey) || 'উপস্থিত';
-            let next = current === 'উপস্থিত' ? 'অনুপস্থিত' : 'উপস্থিত';
-            localStorage.setItem(attKey, next);
+            let currentRecord = JSON.parse(localStorage.getItem(attKey)) || { status: 'উপস্থিত', time: '-' };
+            
+            let nextStatus = currentRecord.status === 'উপস্থিত' ? 'অনুপস্থিত' : 'উপস্থিত';
+            let clickTime = nextStatus === 'উপস্থিত' ? new Date().toLocaleTimeString('en-US', { hour: '2-digit', minute: '2-digit' }) : '-';
 
-            btn.innerText = next;
-            btn.className = next === 'উপস্থিত' ? 'bg-green-100 text-green-800 px-3 py-1 rounded font-bold text-xs' : 'bg-red-100 text-red-800 px-3 py-1 rounded font-bold text-xs';
-        }
+            let newRecord = { status: nextStatus, time: clickTime };
+            localStorage.setItem(attKey, JSON.stringify(newRecord));
 
-        function filterAttendance() {
-            const key = document.getElementById('att_filter_key').value.toLowerCase();
-            const teachers = getStoredTeachers();
-            if(!key) {
-                renderAttendanceList(teachers);
-                return;
-            }
-            const filtered = teachers.filter(t => t.name_bn.toLowerCase().includes(key) || t.id.toLowerCase().includes(key));
-            renderAttendanceList(filtered);
+            renderAttendanceList();
         }
 
         // Leave Management Panel

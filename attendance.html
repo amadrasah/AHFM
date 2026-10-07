@@ -12,7 +12,7 @@
             .no-print { display: none !important; }
             body { background: white !important; }
             table { width: 100% !important; border-collapse: collapse !important; }
-            th, td { border: 1px solid #000 !important; padding: 6px !important; font-size: 11px !important; }
+            th, td { border: 1px solid #000 !important; padding: 4px !important; font-size: 10px !important; }
         }
     </style>
 </head>
@@ -72,103 +72,73 @@
                 <!-- Page Header Banner -->
                 <div class="bg-gradient-to-r from-emerald-800 to-emerald-950 text-white p-6 rounded-2xl shadow-sm flex flex-col md:flex-row justify-between items-center gap-4 no-print">
                     <div>
-                        <h2 class="text-xl font-bold">শিক্ষক ও শিক্ষার্থী উপস্থিতি মনিটরিং প্যানেল</h2>
-                        <p class="text-emerald-200 text-xs mt-1">অটো লিঙ্কড শ্রেণি ড্রপডাউন, ক্লিক টাইম, পার্মানেন্ট সেভ এবং প্রিন্ট সিস্টেম।</p>
-                    </div>
-                    <div class="flex gap-2">
-                        <button onclick="switchTab('teacher')" class="bg-white text-emerald-900 px-4 py-2 rounded-xl font-bold text-xs hover:bg-emerald-50 transition shadow-sm">শিক্ষক হাজিরা</button>
-                        <button onclick="switchTab('student')" class="bg-emerald-700 text-white border border-emerald-600 px-4 py-2 rounded-xl font-bold text-xs hover:bg-emerald-600 transition shadow-sm">শিক্ষার্থী হাজিরা</button>
+                        <h2 class="text-xl font-bold">حاضر / উপস্থিতি মনিটরিং ও রিপোর্ট প্যানেল</h2>
+                        <p class="text-emerald-200 text-xs mt-1">শিক্ষক, স্টাফ ও শিক্ষার্থী প্রোফাইল থেকে অটো-লিঙ্ককৃত হাজিরা এবং মাসিক ডেট-ওয়াইজ রিপোর্ট সিস্টেম।</p>
                     </div>
                 </div>
 
-                <!-- Sub-Modules Grid Layout -->
-                <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 no-print">
-                    <div onclick="switchTab('student')" class="bg-white p-5 rounded-xl shadow-sm border-t-4 border-emerald-600 space-y-3 cursor-pointer hover:shadow-md transition">
-                        <div class="flex items-center justify-between border-b pb-2">
-                            <h3 class="font-bold text-gray-800 text-sm flex items-center gap-2"><i class="fa-solid fa-user-graduate text-emerald-600"></i> Student Attendance</h3>
-                            <span class="text-xs bg-emerald-50 text-emerald-700 px-2 py-0.5 rounded font-semibold">শিক্ষার্থী</span>
-                        </div>
-                        <p class="text-xs text-gray-600 leading-relaxed">ভর্তি ফরম থেকে অটো লিঙ্ককৃত শিক্ষার্থীদের উপস্থিতি ও ক্লিক টাইম।</p>
-                        <span class="text-xs text-emerald-700 font-bold block">প্যানেল ওপেন করুন →</span>
+                <!-- 4 Main Action Buttons Grid -->
+                <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-4 no-print">
+                    <div onclick="switchTab('student')" class="bg-white p-4 rounded-xl shadow-sm border-t-4 border-emerald-600 space-y-2 cursor-pointer hover:shadow-md transition">
+                        <h3 class="font-bold text-gray-800 text-sm flex items-center gap-2"><i class="fa-solid fa-user-graduate text-emerald-600"></i> Student Attendance</h3>
+                        <p class="text-xs text-gray-600">শিক্ষার্থী প্রোফাইল থেকে অটো লোড ও ক্লিক টাইম।</p>
+                        <span class="text-xs text-emerald-700 font-bold block">ওপেন করুন →</span>
                     </div>
 
-                    <div onclick="switchTab('teacher')" class="bg-white p-5 rounded-xl shadow-sm border-t-4 border-blue-600 space-y-3 cursor-pointer hover:shadow-md transition">
-                        <div class="flex items-center justify-between border-b pb-2">
-                            <h3 class="font-bold text-gray-800 text-sm flex items-center gap-2"><i class="fa-solid fa-chalkboard-user text-blue-600"></i> Teacher Attendance</h3>
-                            <span class="text-xs bg-blue-50 text-blue-700 px-2 py-0.5 rounded font-semibold">শিক্ষক</span>
-                        </div>
-                        <p class="text-xs text-gray-600 leading-relaxed">শিক্ষক ও স্টাফদের রিয়েল-টাইম উপস্থিতি ও ইন-টাইম সংরক্ষণ।</p>
-                        <span class="text-xs text-blue-700 font-bold block">প্যানেল ওপেন করুন →</span>
+                    <div onclick="switchTab('teacher')" class="bg-white p-4 rounded-xl shadow-sm border-t-4 border-blue-600 space-y-2 cursor-pointer hover:shadow-md transition">
+                        <h3 class="font-bold text-gray-800 text-sm flex items-center gap-2"><i class="fa-solid fa-chalkboard-user text-blue-600"></i> Teacher & Staff Attendance</h3>
+                        <p class="text-xs text-gray-600">শিক্ষক ও স্টাফ প্রোফাইল থেকে অটো লোড।</p>
+                        <span class="text-xs text-blue-700 font-bold block">ওপেন করুন →</span>
                     </div>
 
-                    <div onclick="switchTab('daily')" class="bg-white p-5 rounded-xl shadow-sm border-t-4 border-purple-600 space-y-3 cursor-pointer hover:shadow-md transition">
-                        <div class="flex items-center justify-between border-b pb-2">
-                            <h3 class="font-bold text-gray-800 text-sm flex items-center gap-2"><i class="fa-solid fa-calendar-day text-purple-600"></i> Daily Attendance</h3>
-                            <span class="text-xs bg-purple-50 text-purple-700 px-2 py-0.5 rounded font-semibold">দৈনিক সংক্ষিপ্তসার</span>
-                        </div>
-                        <p class="text-xs text-gray-600 leading-relaxed">আজকের দিনে উপস্থিত ও অনুপস্থিতির কমপ্যাক্ট ওভারভিউ।</p>
-                        <span class="text-xs text-purple-700 font-bold block">রিপোর্ট দেখুন →</span>
+                    <div onclick="switchTab('daily')" class="bg-white p-4 rounded-xl shadow-sm border-t-4 border-purple-600 space-y-2 cursor-pointer hover:shadow-md transition">
+                        <h3 class="font-bold text-gray-800 text-sm flex items-center gap-2"><i class="fa-solid fa-calendar-day text-purple-600"></i> Daily Attendance</h3>
+                        <p class="text-xs text-gray-600">সকলের দৈনিক হাজিরা ও ক্লিক টাইম রিপোর্ট।</p>
+                        <span class="text-xs text-purple-700 font-bold block">ওপেন করুন →</span>
                     </div>
 
-                    <div onclick="switchTab('monthly')" class="bg-white p-5 rounded-xl shadow-sm border-t-4 border-amber-600 space-y-3 cursor-pointer hover:shadow-md transition">
-                        <div class="flex items-center justify-between border-b pb-2">
-                            <h3 class="font-bold text-gray-800 text-sm flex items-center gap-2"><i class="fa-solid fa-calendar-days text-amber-600"></i> Monthly Report</h3>
-                            <span class="text-xs bg-amber-50 text-amber-700 px-2 py-0.5 rounded font-semibold">মাসিক রিপোর্ট</span>
-                        </div>
-                        <p class="text-xs text-gray-600 leading-relaxed">নির্দিষ্ট মাসের হাজিরা শিট প্রিন্ট ও ডাউনলোড সিস্টেম।</p>
-                        <span class="text-xs text-amber-700 font-bold block">রিপোর্ট জেনারেট →</span>
-                    </div>
-
-                    <div onclick="switchTab('percentage')" class="bg-white p-5 rounded-xl shadow-sm border-t-4 border-indigo-600 space-y-3 cursor-pointer hover:shadow-md transition">
-                        <div class="flex items-center justify-between border-b pb-2">
-                            <h3 class="font-bold text-gray-800 text-sm flex items-center gap-2"><i class="fa-solid fa-chart-pie text-indigo-600"></i> Attendance Percentage</h3>
-                            <span class="text-xs bg-indigo-50 text-indigo-700 px-2 py-0.5 rounded font-semibold">শতাংশ</span>
-                        </div>
-                        <p class="text-xs text-gray-600 leading-relaxed">উপস্থিতির হার (%) স্বয়ংক্রিয় গণনা এবং ট্র্যাকিং।</p>
-                        <span class="text-xs text-indigo-700 font-bold block">বিশ্লেষণ দেখুন →</span>
+                    <div onclick="switchTab('monthly')" class="bg-white p-4 rounded-xl shadow-sm border-t-4 border-amber-600 space-y-2 cursor-pointer hover:shadow-md transition">
+                        <h3 class="font-bold text-gray-800 text-sm flex items-center gap-2"><i class="fa-solid fa-calendar-days text-amber-600"></i> Monthly Report</h3>
+                        <p class="text-xs text-gray-600">তারিখভিত্তিক ফাঁকা কলাম ও মাসিক সারসংক্ষেপ।</p>
+                        <span class="text-xs text-amber-700 font-bold block">ওপেন করুন →</span>
                     </div>
                 </div>
 
-                <!-- MAIN ATTENDANCE WORKSPACE CONTAINER -->
+                <!-- MAIN WORKSPACE CONTAINER -->
                 <div id="attendance_workspace" class="bg-white p-6 rounded-2xl shadow-sm border border-gray-200 space-y-4">
                     <div class="flex flex-wrap justify-between items-center border-b pb-3 gap-3">
-                        <h3 id="workspace_title" class="font-bold text-emerald-800 text-sm"><i class="fa-solid fa-clipboard-user mr-2"></i> শিক্ষক উপস্থিতি ম্যানেজমেন্ট প্যানেল</h3>
+                        <h3 id="workspace_title" class="font-bold text-emerald-800 text-sm"><i class="fa-solid fa-clipboard-user mr-2"></i> শিক্ষার্থী উপস্থিতি প্যানেল</h3>
                         <div class="flex flex-wrap gap-2 items-center no-print">
                             <input type="date" id="att_master_date" class="p-1.5 border rounded text-xs font-bold bg-white" onchange="loadAttendanceData()">
                             <button onclick="window.print()" class="bg-emerald-700 text-white px-3 py-1.5 rounded text-xs font-bold"><i class="fa-solid fa-print mr-1"></i> প্রিন্ট রিপোর্ট</button>
                         </div>
                     </div>
 
-                    <!-- Filters & Dynamic Class Dropdown -->
-                    <div class="flex flex-wrap gap-3 bg-gray-50 p-3 rounded-xl border text-xs items-center no-print">
-                        <div>
-                            <label class="font-bold text-gray-700 block mb-1">শ্রেণি নির্বাচন (Class):</label>
+                    <!-- Filters Bar -->
+                    <div id="filters_bar" class="flex flex-wrap gap-3 bg-gray-50 p-3 rounded-xl border text-xs items-center no-print">
+                        <div id="class_filter_box">
+                            <label class="font-bold text-gray-700 block mb-1">শ্রেণি নির্বাচন:</label>
                             <select id="filter_class" class="p-1.5 border rounded bg-white font-bold" onchange="loadAttendanceData()">
-                                <option value="all">সকল শ্রেণি (All Classes)</option>
+                                <option value="all">সকল শ্রেণি</option>
                             </select>
                         </div>
                         <div>
                             <label class="font-bold text-gray-700 block mb-1">মাস নির্বাচন:</label>
                             <select id="filter_month" class="p-1.5 border rounded bg-white font-bold" onchange="loadAttendanceData()">
-                                <option value="all">সকল মাস</option>
                                 <option value="01">জানুয়ারি</option><option value="02">ফেব্রুয়ারি</option><option value="03">মার্চ</option>
                                 <option value="04">এপ্রিল</option><option value="05">মে</option><option value="06">জুন</option>
-                                <option value="07">জুলাই</option><option value="08">আগস্ট</option><option value="09">সেপ্টেম্বর</option>
+                                <option value="07" selected>জুলাই</option><option value="08">আগস্ট</option><option value="09">সেপ্টেম্বর</option>
                                 <option value="10">অক্টোবর</option><option value="11">নভেম্বর</option><option value="12">ডিসেম্বর</option>
                             </select>
                         </div>
                         <div>
                             <label class="font-bold text-gray-700 block mb-1">বছর:</label>
-                            <div class="flex gap-1">
-                                <select id="filter_year" class="p-1.5 border rounded bg-white font-bold" onchange="loadAttendanceData()">
-                                    <option value="2026" selected>2026</option>
-                                    <option value="2027">2027</option>
-                                </select>
-                                <button onclick="addNewYear()" class="bg-gray-200 px-2 rounded font-bold hover:bg-gray-300" title="নতুন বছর যোগ করুন">+</button>
-                            </div>
+                            <select id="filter_year" class="p-1.5 border rounded bg-white font-bold" onchange="loadAttendanceData()">
+                                <option value="2026" selected>2026</option><option value="2027">2027</option>
+                            </select>
                         </div>
                         <div class="flex-1">
-                            <label class="font-bold text-gray-700 block mb-1">অনুসন্ধান (নাম/আইডি/রোল):</label>
+                            <label class="font-bold text-gray-700 block mb-1">অনুসন্ধান (নাম বা আইডি/রোল):</label>
                             <input type="text" id="filter_search" placeholder="নাম বা আইডি দিয়ে খুঁজুন..." class="p-1.5 border rounded bg-white w-full" onkeyup="loadAttendanceData()">
                         </div>
                     </div>
@@ -179,9 +149,9 @@
                             <thead>
                                 <tr class="bg-emerald-800 text-white" id="att_table_header">
                                     <th class="border p-2">তারিখ</th>
-                                    <th class="border p-2">আইডি</th>
+                                    <th class="border p-2">আইডি/রোল</th>
                                     <th class="border p-2">নাম</th>
-                                    <th class="border p-2">পদবি / শ্রেণি</th>
+                                    <th class="border p-2">শ্রেণি / পদবি</th>
                                     <th class="border p-2 text-center">حاضر / উপস্থিতি ও ক্লিক টাইম</th>
                                 </tr>
                             </thead>
@@ -197,7 +167,7 @@
 
     <!-- JavaScript & LocalStorage Engine -->
     <script>
-        let currentTab = 'teacher';
+        let currentTab = 'student';
 
         window.onload = function() {
             document.getElementById('att_master_date').value = new Date().toISOString().split('T')[0];
@@ -205,16 +175,12 @@
             loadAttendanceData();
         };
 
-        // সেটিং বা স্টুডেন্ট মডিউল থেকে ক্লাস লোড করার ডাইনামিক ফাংশন
         function loadDynamicClasses() {
             let classSelect = document.getElementById('filter_class');
-            // বর্তমান সিলেক্টেড ভ্যালু সেভ রাখা
-            let currentVal = classSelect.value;
-            classSelect.innerHTML = `<option value="all">সকল শ্রেণি (All Classes)</option>`;
+            classSelect.innerHTML = `<option value="all">সকল শ্রেণি</option>`;
 
-            // লোকাল স্টোরেজ থেকে ক্লাস বা স্টুডেন্ট ডেটা চেক করা
-            let students = JSON.parse(localStorage.getItem('madrasah_students_master')) || 
-                           JSON.parse(localStorage.getItem('madrasah_students_all')) || 
+            let students = JSON.parse(localStorage.getItem('madrasah_students_all')) || 
+                           JSON.parse(localStorage.getItem('madrasah_students_master')) || 
                            JSON.parse(localStorage.getItem('students')) || [];
 
             let classSet = new Set();
@@ -223,7 +189,6 @@
                 if(cName) classSet.add(cName.trim());
             });
 
-            // যদি স্টুডেন্ট মডিউলে কোনো ক্লাস না থাকে, তবে ডিফল্ট মাদ্রাসার স্তরগুলো যুক্ত হবে
             if(classSet.size === 0) {
                 ["Nursery", "Class 1", "Class 2", "Class 3", "Class 4", "Class 5", "Class 6", "Class 7", "Class 8", "Class 9", "Class 10", "Dakhil", "Alim", "Fazil", "Kamil"].forEach(c => classSet.add(c));
             }
@@ -234,35 +199,26 @@
                 opt.text = cls;
                 classSelect.add(opt);
             });
-
-            if(currentVal) classSelect.value = currentVal;
-        }
-
-        function addNewYear() {
-            let newY = prompt("নতুন বছর লিখুন (যেমন: 2028):");
-            if(newY && newY.trim() !== "") {
-                let yearSelect = document.getElementById('filter_year');
-                let opt = document.createElement('option');
-                opt.value = newY.trim();
-                opt.text = newY.trim();
-                yearSelect.add(opt);
-                yearSelect.value = newY.trim();
-                alert(newY.trim() + " বছর সফলভাবে যুক্ত হয়েছে!");
-                loadAttendanceData();
-            }
         }
 
         function switchTab(tabName) {
             currentTab = tabName;
             const titleEl = document.getElementById('workspace_title');
-            if(tabName === 'teacher') titleEl.innerHTML = `<i class="fa-solid fa-chalkboard-user mr-2"></i> শিক্ষক উপস্থিতি ম্যানেজমেন্ট প্যানেল`;
-            else if(tabName === 'student') {
-                titleEl.innerHTML = `<i class="fa-solid fa-user-graduate mr-2"></i> শিক্ষার্থী উপস্থিতি ম্যানেজমেন্ট প্যানেল (অটো লিঙ্কড)`;
-                loadDynamicClasses();
+            const classBox = document.getElementById('class_filter_box');
+
+            if(tabName === 'student') {
+                titleEl.innerHTML = `<i class="fa-solid fa-user-graduate mr-2"></i> শিক্ষার্থী উপস্থিতি প্যানেল (অটো-লিঙ্কড)`;
+                classBox.style.display = 'block';
+            } else if(tabName === 'teacher') {
+                titleEl.innerHTML = `<i class="fa-solid fa-chalkboard-user mr-2"></i> শিক্ষক ও কর্মচারী উপস্থিতি প্যানেল (অটো-লিঙ্কড)`;
+                classBox.style.display = 'none';
+            } else if(tabName === 'daily') {
+                titleEl.innerHTML = `<i class="fa-solid fa-calendar-day mr-2"></i> দৈনিক উপস্থিতি সংক্ষিপ্তসার ও ক্লিক টাইম রিপোর্ট`;
+                classBox.style.display = 'none';
+            } else if(tabName === 'monthly') {
+                titleEl.innerHTML = `<i class="fa-solid fa-calendar-days mr-2"></i> মাসিক উপস্থিতি রিপোর্ট (তারিখভিত্তিক ক্লিক ও সারসংক্ষেপ)`;
+                classBox.style.display = 'block';
             }
-            else if(tabName === 'daily') titleEl.innerHTML = `<i class="fa-solid fa-calendar-day mr-2"></i> আজকের দৈনিক উপস্থিতি সংক্ষিপ্তসার (শিক্ষক ও শিক্ষার্থী)`;
-            else if(tabName === 'monthly') titleEl.innerHTML = `<i class="fa-solid fa-calendar-days mr-2"></i> মাসিক উপস্থিতি রিপোর্ট`;
-            else if(tabName === 'percentage') titleEl.innerHTML = `<i class="fa-solid fa-chart-pie mr-2"></i> উপস্থিতি শতকরা হার (%) বিশ্লেষণ`;
 
             loadAttendanceData();
         }
@@ -278,53 +234,23 @@
             const filterYear = document.getElementById('filter_year').value;
             const searchKey = document.getElementById('filter_search').value.toLowerCase().trim();
 
-            let [recYear, recMonth, recDay] = selectedDate.split('-');
-
-            if(filterMonth !== 'all' && recMonth !== filterMonth) return;
-            if(filterYear !== 'all' && recYear !== filterYear) return;
+            // স্টুডেন্ট ও শিক্ষক ডেটা ফেচ
+            let students = JSON.parse(localStorage.getItem('madrasah_students_all')) || 
+                           JSON.parse(localStorage.getItem('madrasah_students_master')) || 
+                           JSON.parse(localStorage.getItem('students')) || [
+                { roll: "101", name: "ফাতেমা তুজ জোহরা", class: "Nursery" },
+                { roll: "102", name: "আব্দুল্লাহ আল মামুন", class: "Class 1" }
+            ];
 
             let teachers = JSON.parse(localStorage.getItem('madrasah_teachers_master')) || [
-                { id: "PRN-ARB-2015", name_bn: "মাওলানা মো: ইব্রাহিম", designation: "অধ্যক্ষ (Principal)" }
+                { id: "PRN-ARB-2015", name_bn: "মাওলানা মো: ইব্রাহিম", designation: "অধ্যক্ষ" }
             ];
 
-            let students = JSON.parse(localStorage.getItem('madrasah_students_master')) || 
-                           JSON.parse(localStorage.getItem('madrasah_students_all')) || 
-                           JSON.parse(localStorage.getItem('students')) || [
-                { roll: "101", name: "ফাতেমা তুজ জোহরা", studentClass: "Nursery", class: "Nursery" },
-                { roll: "102", name: "আব্দুল্লাহ আল মামুন", studentClass: "Class 1", class: "Class 1" }
+            let staffList = JSON.parse(localStorage.getItem('madrasah_staff_master')) || [
+                { id: "STF-101", name: "সৈয়দ আহমদ", designation: "অফিস সহকারী" }
             ];
 
-            if(currentTab === 'teacher') {
-                thead.innerHTML = `
-                    <th class="border p-2">তারিখ</th>
-                    <th class="border p-2">আইডি</th>
-                    <th class="border p-2">নাম</th>
-                    <th class="border p-2">পদবি</th>
-                    <th class="border p-2 text-center">حاضر / উপস্থিতি ও ক্লিক টাইম</th>
-                `;
-
-                teachers.forEach(t => {
-                    if(searchKey && !t.name_bn.toLowerCase().includes(searchKey) && !t.id.toLowerCase().includes(searchKey)) return;
-
-                    let attKey = `att_t_${t.id}_${selectedDate}`;
-                    let record = JSON.parse(localStorage.getItem(attKey)) || { status: 'উপস্থিত', time: '-' };
-                    let badgeClass = record.status === 'উপস্থিত' ? 'bg-green-100 text-green-800' : 'bg-red-100 text-red-800';
-
-                    tbody.innerHTML += `
-                        <tr>
-                            <td class="border p-2">${selectedDate}</td>
-                            <td class="border p-2 font-bold text-emerald-700">${t.id}</td>
-                            <td class="border p-2 font-bold">${t.name_bn}</td>
-                            <td class="border p-2">${t.designation}</td>
-                            <td class="border p-2 text-center">
-                                <button onclick="toggleAttendance('t', '${t.id}', '${selectedDate}', this)" class="${badgeClass} px-3 py-1 rounded font-bold text-xs">
-                                    ${record.status} <span class="text-[10px] text-gray-600 font-normal">(${record.time})</span>
-                                </button>
-                            </td>
-                        </tr>
-                    `;
-                });
-            } else if(currentTab === 'student') {
+            if(currentTab === 'student') {
                 thead.innerHTML = `
                     <th class="border p-2">তারিখ</th>
                     <th class="border p-2">রোল / আইডি</th>
@@ -359,9 +285,43 @@
                         </tr>
                     `;
                 });
+            } else if(currentTab === 'teacher') {
+                thead.innerHTML = `
+                    <th class="border p-2">তারিখ</th>
+                    <th class="border p-2">আইডি</th>
+                    <th class="border p-2">নাম</th>
+                    <th class="border p-2">পদবি (শিক্ষক/স্টাফ)</th>
+                    <th class="border p-2 text-center">حاضر / উপস্থিতি ও ক্লিক টাইম</th>
+                `;
+
+                // শিক্ষক ও স্টাফ উভয়কে একসাথে লোড করা
+                let allStaff = [...teachers.map(t => ({id: t.id, name: t.name_bn, desig: t.designation})), 
+                                ...staffList.map(st => ({id: st.id, name: st.name, desig: st.designation}))];
+
+                allStaff.forEach(st => {
+                    if(searchKey && !st.name.toLowerCase().includes(searchKey) && !st.id.toLowerCase().includes(searchKey)) return;
+
+                    let attKey = `att_t_${st.id}_${selectedDate}`;
+                    let record = JSON.parse(localStorage.getItem(attKey)) || { status: 'উপস্থিত', time: '-' };
+                    let badgeClass = record.status === 'উপস্থিত' ? 'bg-green-100 text-green-800' : 'bg-red-100 text-red-800';
+
+                    tbody.innerHTML += `
+                        <tr>
+                            <td class="border p-2">${selectedDate}</td>
+                            <td class="border p-2 font-bold text-emerald-700">${st.id}</td>
+                            <td class="border p-2 font-bold">${st.name}</td>
+                            <td class="border p-2">${st.desig}</td>
+                            <td class="border p-2 text-center">
+                                <button onclick="toggleAttendance('t', '${st.id}', '${selectedDate}', this)" class="${badgeClass} px-3 py-1 rounded font-bold text-xs">
+                                    ${record.status} <span class="text-[10px] text-gray-600 font-normal">(${record.time})</span>
+                                </button>
+                            </td>
+                        </tr>
+                    `;
+                });
             } else if(currentTab === 'daily') {
                 thead.innerHTML = `
-                    <th class="border p-2">ধরণ</th>
+                    <th class="border p-2">বিভাগ</th>
                     <th class="border p-2">আইডি/রোল</th>
                     <th class="border p-2">নাম</th>
                     <th class="border p-2">পদবি / শ্রেণি</th>
@@ -371,6 +331,7 @@
                 teachers.forEach(t => {
                     let attKey = `att_t_${t.id}_${selectedDate}`;
                     let record = JSON.parse(localStorage.getItem(attKey)) || { status: 'উপস্থিত', time: '-' };
+                    if(searchKey && !t.name_bn.toLowerCase().includes(searchKey)) return;
                     tbody.innerHTML += `
                         <tr>
                             <td class="border p-2 font-bold text-blue-800">শিক্ষক</td>
@@ -386,6 +347,7 @@
                     let sClass = s.studentClass || s.class || "Nursery";
                     let sRoll = s.roll || s.id || "101";
                     let sName = s.name || s.name_bn || "শিক্ষার্থী";
+                    if(searchKey && !sName.toLowerCase().includes(searchKey)) return;
 
                     let attKey = `att_s_${sRoll}_${selectedDate}`;
                     let record = JSON.parse(localStorage.getItem(attKey)) || { status: 'উপস্থিত', time: '-' };
@@ -400,58 +362,47 @@
                     `;
                 });
             } else if(currentTab === 'monthly') {
-                thead.innerHTML = `
-                    <th class="border p-2">নাম ও পদবি/শ্রেণি</th>
-                    <th class="border p-2 text-center">মোট কার্যদিবস</th>
-                    <th class="border p-2 text-center text-green-700">মোট উপস্থিত</th>
-                    <th class="border p-2 text-center text-red-700">মোট অনুপস্থিত</th>
-                `;
-                teachers.forEach(t => {
-                    tbody.innerHTML += `
-                        <tr>
-                            <td class="border p-2 font-bold">${t.name_bn} <br><span class="text-[10px] text-gray-500">${t.designation}</span></td>
-                            <td class="border p-2 text-center">২৬ দিন</td>
-                            <td class="border p-2 text-center font-bold text-green-700">২৫ দিন</td>
-                            <td class="border p-2 text-center font-bold text-red-700">১ দিন</td>
-                        </tr>
-                    `;
-                });
+                // মাসিক রিপোর্টে প্রতিটি তারিখের কলাম তৈরি (যেমন ১ থেকে ৩০)
+                let daysInMonth = new Date(filterYear, filterMonth, 0).getDate();
+                
+                let headerHTML = `<th class="border p-2">রোল/আইডি</th><th class="border p-2">নাম</th>`;
+                for(let d=1; d<=daysInMonth; d++) {
+                    headerHTML += `<th class="border p-1 text-center text-[10px]">${d}</th>`;
+                }
+                headerHTML += `<th class="border p-2 text-center">কার্যদিবস</th><th class="border p-2 text-center text-green-700">উপস্থিত</th><th class="border p-2 text-center text-red-700">অনুপস্থিত</th>`;
+                thead.innerHTML = headerHTML;
+
                 students.forEach(s => {
-                    let sName = s.name || s.name_bn || "শিক্ষার্থী";
                     let sClass = s.studentClass || s.class || "Nursery";
-                    tbody.innerHTML += `
-                        <tr>
-                            <td class="border p-2 font-bold">${sName} <br><span class="text-[10px] text-gray-500">শ্রেণি: ${sClass}</span></td>
-                            <td class="border p-2 text-center">26 days</td>
-                            <td class="border p-2 text-center font-bold text-green-700">24 days</td>
-                            <td class="border p-2 text-center font-bold text-red-700">2 days</td>
-                        </tr>
-                    `;
-                });
-            } else if(currentTab === 'percentage') {
-                thead.innerHTML = `
-                    <th class="border p-2">নাম ও পরিচয়</th>
-                    <th class="border p-2 text-center">উপস্থিতির হার (%)</th>
-                    <th class="border p-2 text-center">স্ট্যাটাস</th>
-                `;
-                teachers.forEach(t => {
-                    tbody.innerHTML += `
-                        <tr>
-                            <td class="border p-2 font-bold">${t.name_bn} (শিক্ষক)</td>
-                            <td class="border p-2 text-center font-bold text-indigo-700">৯৬.১৫%</td>
-                            <td class="border p-2 text-center bg-green-50 text-green-800 font-bold">উত্তীর্ণ (Eligible)</td>
-                        </tr>
-                    `;
-                });
-                students.forEach(s => {
+                    let sRoll = s.roll || s.id || "101";
                     let sName = s.name || s.name_bn || "শিক্ষার্থী";
-                    tbody.innerHTML += `
-                        <tr>
-                            <td class="border p-2 font-bold">${sName} (শিক্ষার্থী)</td>
-                            <td class="border p-2 text-center font-bold text-indigo-700">৯২.৩০%</td>
-                            <td class="border p-2 text-center bg-green-50 text-green-800 font-bold">উত্তীর্ণ (Eligible)</td>
-                        </tr>
-                    `;
+
+                    if(filterClass !== 'all' && sClass !== filterClass) return;
+                    if(searchKey && !sName.toLowerCase().includes(searchKey) && !sRoll.toLowerCase().includes(searchKey)) return;
+
+                    let rowHTML = `<tr><td class="border p-2 font-bold text-blue-700">${sRoll}</td><td class="border p-2 font-bold">${sName}</td>`;
+                    
+                    let totalPresent = 0;
+                    let totalAbsent = 0;
+
+                    for(let d=1; d<=daysInMonth; d++) {
+                        let dayStr = d < 10 ? '0' + d : '' + d;
+                        let dateKey = `${filterYear}-${filterMonth}-${dayStr}`;
+                        let attKey = `att_s_${sRoll}_${dateKey}`;
+                        let record = JSON.parse(localStorage.getItem(attKey));
+
+                        let mark = '-';
+                        let colorClass = 'text-gray-400';
+                        if(record) {
+                            if(record.status === 'উপস্থিত') { mark = '✔'; colorClass = 'text-green-700 font-bold'; totalPresent++; }
+                            else { mark = '✖'; colorClass = 'text-red-600 font-bold'; totalAbsent++; }
+                        }
+
+                        rowHTML += `<td class="border p-1 text-center cursor-pointer ${colorClass}" onclick="toggleMonthlyCell('s', '${sRoll}', '${dateKey}', this)" title="${dateKey}">${mark}</td>`;
+                    }
+
+                    rowHTML += `<td class="border p-2 text-center font-bold">${daysInMonth}</td><td class="border p-2 text-center font-bold text-green-700">${totalPresent}</td><td class="border p-2 text-center font-bold text-red-700">${daysInMonth - totalPresent}</td></tr>`;
+                    tbody.innerHTML += rowHTML;
                 });
             }
         }
@@ -459,6 +410,19 @@
         function toggleAttendance(type, id, date, btn) {
             let attKey = `att_${type}_${id}_${date}`;
             let currentRecord = JSON.parse(localStorage.getItem(attKey)) || { status: 'উপস্থিত', time: '-' };
+            
+            let nextStatus = currentRecord.status === 'উপস্থিত' ? 'অনুপস্থিত' : 'উপস্থিত';
+            let clickTime = nextStatus === 'উপস্থিত' ? new Date().toLocaleTimeString('en-US', { hour: '2-digit', minute: '2-digit' }) : '-';
+
+            let newRecord = { status: nextStatus, time: clickTime };
+            localStorage.setItem(attKey, JSON.stringify(newRecord));
+
+            loadAttendanceData();
+        }
+
+        function toggleMonthlyCell(type, id, date, td) {
+            let attKey = `att_${type}_${id}_${date}`;
+            let currentRecord = JSON.parse(localStorage.getItem(attKey)) || { status: 'অনুপস্থিত', time: '-' };
             
             let nextStatus = currentRecord.status === 'উপস্থিত' ? 'অনুপস্থিত' : 'উপস্থিত';
             let clickTime = nextStatus === 'উপস্থিত' ? new Date().toLocaleTimeString('en-US', { hour: '2-digit', minute: '2-digit' }) : '-';

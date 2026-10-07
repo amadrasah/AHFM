@@ -72,7 +72,7 @@
                 <div class="bg-gradient-to-r from-emerald-800 to-emerald-950 text-white p-6 rounded-2xl shadow-sm flex flex-col md:flex-row justify-between items-center gap-4 no-print">
                     <div>
                         <h2 class="text-xl font-bold">শিক্ষক ও শিক্ষার্থী উপস্থিতি মনিটরিং প্যানেল</h2>
-                        <p class="text-emerald-200 text-xs mt-1">দৈনিক হাজিরা এন্ট্রি, ক্লিক টাইম রেকর্ড, মাসিক রিপোর্ট জেনারেশন এবং প্রিন্ট সিস্টেম।</p>
+                        <p class="text-emerald-200 text-xs mt-1">অটো স্টুডেন্ট লিঙ্ক, ক্লিক টাইম রেকর্ড, শ্রেণি ফিল্টারিং এবং প্রিন্ট সিস্টেম।</p>
                     </div>
                     <div class="flex gap-2">
                         <button onclick="switchTab('teacher')" class="bg-white text-emerald-900 px-4 py-2 rounded-xl font-bold text-xs hover:bg-emerald-50 transition shadow-sm">শিক্ষক হাজিরা নিন</button>
@@ -87,7 +87,7 @@
                             <h3 class="font-bold text-gray-800 text-sm flex items-center gap-2"><i class="fa-solid fa-user-graduate text-emerald-600"></i> Student Attendance</h3>
                             <span class="text-xs bg-emerald-50 text-emerald-700 px-2 py-0.5 rounded font-semibold">শিক্ষার্থী</span>
                         </div>
-                        <p class="text-xs text-gray-600 leading-relaxed">শ্রেণি ভিত্তিক শিক্ষার্থীদের প্রতিদিনের উপস্থিতি রেকর্ড ও ক্লিক টাইম।</p>
+                        <p class="text-xs text-gray-600 leading-relaxed">ভর্তি ফরম থেকে অটো লিঙ্ককৃত শিক্ষার্থীদের উপস্থিতি ও ক্লিক টাইম।</p>
                         <span class="text-xs text-emerald-700 font-bold block">প্যানেল ওপেন করুন →</span>
                     </div>
 
@@ -138,8 +138,22 @@
                         </div>
                     </div>
 
-                    <!-- Filters -->
+                    <!-- Filters & Class Filtering -->
                     <div class="flex flex-wrap gap-3 bg-gray-50 p-3 rounded-xl border text-xs items-center no-print">
+                        <div>
+                            <label class="font-bold text-gray-700 block mb-1">শ্রেণি নির্বাচন (Class):</label>
+                            <select id="filter_class" class="p-1.5 border rounded bg-white font-bold" onchange="loadAttendanceData()">
+                                <option value="all">সকল শ্রেণি (All Classes)</option>
+                                <option value="Nursery">Nursery</option>
+                                <option value="Class 1">Class 1</option>
+                                <option value="Class 2">Class 2</option>
+                                <option value="Class 3">Class 3</option>
+                                <option value="Class 4">Class 4</option>
+                                <option value="Class 5">Class 5</option>
+                                <option value="Dakhil">Dakhil</option>
+                                <option value="Alim">Alim</option>
+                            </select>
+                        </div>
                         <div>
                             <label class="font-bold text-gray-700 block mb-1">মাস নির্বাচন:</label>
                             <select id="filter_month" class="p-1.5 border rounded bg-white font-bold" onchange="loadAttendanceData()">
@@ -156,9 +170,9 @@
                                 <option value="2026" selected>2026</option><option value="2027">2027</option>
                             </select>
                         </div>
-                        <div>
-                            <label class="font-bold text-gray-700 block mb-1">অনুসন্ধান (নাম/আইডি):</label>
-                            <input type="text" id="filter_search" placeholder="নাম বা আইডি দিয়ে খুঁজুন..." class="p-1.5 border rounded bg-white" onkeyup="loadAttendanceData()">
+                        <div class="flex-1">
+                            <label class="font-bold text-gray-700 block mb-1">অনুসন্ধান (নাম/আইডি/রোল):</label>
+                            <input type="text" id="filter_search" placeholder="নাম বা আইডি দিয়ে খুঁজুন..." class="p-1.5 border rounded bg-white w-full" onkeyup="loadAttendanceData()">
                         </div>
                     </div>
 
@@ -197,7 +211,7 @@
             currentTab = tabName;
             const titleEl = document.getElementById('workspace_title');
             if(tabName === 'teacher') titleEl.innerHTML = `<i class="fa-solid fa-chalkboard-user mr-2"></i> শিক্ষক উপস্থিতি ম্যানেজমেন্ট প্যানেল`;
-            else if(tabName === 'student') titleEl.innerHTML = `<i class="fa-solid fa-user-graduate mr-2"></i> শিক্ষার্থী উপস্থিতি ম্যানেজমেন্ট প্যানেল`;
+            else if(tabName === 'student') titleEl.innerHTML = `<i class="fa-solid fa-user-graduate mr-2"></i> শিক্ষার্থী উপস্থিতি ম্যানেজমেন্ট প্যানেল (অটো লিঙ্কড)`;
             else if(tabName === 'daily') titleEl.innerHTML = `<i class="fa-solid fa-calendar-day mr-2"></i> আজকের দৈনিক উপস্থিতি সংক্ষিপ্তসার`;
             else if(tabName === 'monthly') titleEl.innerHTML = `<i class="fa-solid fa-calendar-days mr-2"></i> মাসিক উপস্থিতি রিপোর্ট`;
             else if(tabName === 'percentage') titleEl.innerHTML = `<i class="fa-solid fa-chart-pie mr-2"></i> উপস্থিতি শতকরা হার বিশ্লেষণ`;
@@ -211,6 +225,7 @@
             tbody.innerHTML = '';
 
             const selectedDate = document.getElementById('att_master_date').value;
+            const filterClass = document.getElementById('filter_class').value;
             const filterMonth = document.getElementById('filter_month').value;
             const filterYear = document.getElementById('filter_year').value;
             const searchKey = document.getElementById('filter_search').value.toLowerCase().trim();
@@ -257,33 +272,38 @@
             } else if(currentTab === 'student') {
                 thead.innerHTML = `
                     <th class="border p-2">তারিখ</th>
-                    <th class="border p-2">রোল</th>
+                    <th class="border p-2">রোল / আইডি</th>
                     <th class="border p-2">শিক্ষার্থীর নাম</th>
-                    <th class="border p-2">শ্রেণি / সেকশন</th>
+                    <th class="border p-2">শ্রেণি</th>
                     <th class="border p-2 text-center">حاضر / উপস্থিতি ও ক্লিক টাইম</th>
                 `;
 
-                // ডেমো বা লোকাল স্টোরেজ থেকে শিক্ষার্থী ডেটা নেওয়া
-                let students = [
-                    { roll: "101", name: "ফাতেমা তুজ জোহরা", class: "নursery" },
-                    { roll: "102", name: "আব্দুল্লাহ আল মামুন", class: "नursery" }
+                // স্টুডেন্ট ম্যানেজমেন্ট বা ভর্তি ফরম থেকে অটো লিঙ্কড ডেটা ফেচ করা
+                let students = JSON.parse(localStorage.getItem('madrasah_students_master')) || [
+                    { roll: "101", name: "ফাতেমা তুজ জোহরা", studentClass: "Nursery" },
+                    { roll: "102", name: "আব্দুল্লাহ আল মামুন", studentClass: "Class 1" }
                 ];
 
                 students.forEach(s => {
-                    if(searchKey && !s.name.toLowerCase().includes(searchKey) && !s.roll.includes(searchKey)) return;
+                    let sClass = s.studentClass || s.class || "Nursery";
+                    let sRoll = s.roll || s.id || "101";
+                    let sName = s.name || s.name_bn || "শিক্ষার্থী";
 
-                    let attKey = `att_s_${s.roll}_${selectedDate}`;
+                    if(filterClass !== 'all' && sClass !== filterClass) return;
+                    if(searchKey && !sName.toLowerCase().includes(searchKey) && !sRoll.toLowerCase().includes(searchKey)) return;
+
+                    let attKey = `att_s_${sRoll}_${selectedDate}`;
                     let record = JSON.parse(localStorage.getItem(attKey)) || { status: 'উপস্থিত', time: '-' };
                     let badgeClass = record.status === 'উপস্থিত' ? 'bg-green-100 text-green-800' : 'bg-red-100 text-red-800';
 
                     tbody.innerHTML += `
                         <tr>
                             <td class="border p-2">${selectedDate}</td>
-                            <td class="border p-2 font-bold text-blue-700">${s.roll}</td>
-                            <td class="border p-2 font-bold">${s.name}</td>
-                            <td class="border p-2">${s.class}</td>
+                            <td class="border p-2 font-bold text-blue-700">${sRoll}</td>
+                            <td class="border p-2 font-bold">${sName}</td>
+                            <td class="border p-2">${sClass}</td>
                             <td class="border p-2 text-center">
-                                <button onclick="toggleAttendance('s', '${s.roll}', '${selectedDate}', this)" class="${badgeClass} px-3 py-1 rounded font-bold text-xs">
+                                <button onclick="toggleAttendance('s', '${sRoll}', '${selectedDate}', this)" class="${badgeClass} px-3 py-1 rounded font-bold text-xs">
                                     ${record.status} <span class="text-[10px] text-gray-600 font-normal">(${record.time})</span>
                                 </button>
                             </td>

@@ -616,18 +616,22 @@
             if(passLimitEl) passLimitEl.innerText = passLim;
         }
 
+       
         function populateDropdowns() {
             let exams = JSON.parse(localStorage.getItem('madrasah_exams')) || ["Half Yearly Examination 2026", "Annual Examination 2026"];
             let students = JSON.parse(localStorage.getItem('madrasah_students_all')) || [];
 
+            // সেটিংস ও স্টুডেন্ট ম্যানেজমেন্ট থেকে সকল ক্লাসের একটি ইউনিক সেট তৈরি
             let classSet = new Set();
+            
+            // ১. সেটিংসের ফিক্সড শ্রেণিগুলো যোগ করা
+            ["নুরানী প্রথম শ্রেণি", "নুরানী দ্বিতীয় শ্রেণি", "নুরানী তৃতীয় শ্রেণি", "ইবতেদায়ী চতুর্থ শ্রেণি", "ইবতেদায়ী পঞ্চম শ্রেণি", "দাখিল ষষ্ঠ শ্রেণি", "দাখিল সপ্তম শ্রেণি", "দাখিল অষ্টম শ্রেণি", "দাখিল নবম শ্রেণি", "দাখিল দশম শ্রেণি", "আলিম প্রথম বর্ষ", "আলিম দ্বিতীয় বর্ষ", "ফাজিল প্রথম বর্ষ", "ফাজিল দ্বিতীয় বর্ষ", "ফাজিল তৃতীয় বর্ষ", "ALIM", "DAKHIL", "HIFZ"].forEach(c => classSet.add(c));
+
+            // ২. স্টুডেন্ট প্রোফাইল থেকে প্রাপ্ত শ্রেণিগুলো যোগ করা
             students.forEach(s => {
                 let c = s.cls || s.studentClass || s.class || s.grade;
                 if(c) classSet.add(c.trim());
             });
-            if(classSet.size === 0) {
-                ["ALIM", "DAKHIL", "HIFZ"].forEach(c => classSet.add(c));
-            }
 
             let dropdownIds = ['entry_exam_select', 'res_exam_select', 'merit_exam_select', 'tab_exam_select', 'sum_exam_select', 'rc_exam_select'];
             dropdownIds.forEach(id => {
@@ -657,7 +661,6 @@
 
             loadSubjectsForClass();
         }
-
         function loadSubjectsForClass() {
             const clsEl = document.getElementById('entry_class_select');
             if(!clsEl) return;

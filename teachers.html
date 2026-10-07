@@ -64,7 +64,7 @@
                 <div class="bg-gradient-to-r from-emerald-800 to-emerald-950 text-white p-6 rounded-2xl shadow-sm flex flex-col md:flex-row justify-between items-center gap-4">
                     <div>
                         <h2 class="text-xl font-bold">শিক্ষক ও স্টাফ তথ্য ব্যবস্থাপনা প্যানেল</h2>
-                        <p class="text-emerald-200 text-xs mt-1">পূর্ণাঙ্গ বায়োডাটা ফরম, অটো আইডি জেনারেটর, হাজিরা, ছুটি এবং সরকার/বেসরকারি বেতন শিট ম্যানেজমেন্ট।</p>
+                        <p class="text-emerald-200 text-xs mt-1">পূর্ণাঙ্গ বায়োডাটা ফরম, ইনডেক্স ও এমপিও তারিখ, হাজিরা, ছুটি এবং বেতন শিট ম্যানেজমেন্ট।</p>
                     </div>
                     <div class="flex gap-2">
                         <button onclick="openTeacherPanel('teacher_form')" class="bg-white text-emerald-900 px-4 py-2 rounded-xl font-bold text-xs hover:bg-emerald-50 transition shadow-sm">
@@ -81,7 +81,7 @@
                             <h3 class="font-bold text-gray-800 text-sm flex items-center gap-2"><i class="fa-solid fa-user-plus text-emerald-600"></i> শিক্ষক যোগ করুন ফরম</h3>
                             <span class="text-xs bg-emerald-50 text-emerald-700 px-2 py-0.5 rounded font-semibold">বায়োডাটা</span>
                         </div>
-                        <p class="text-xs text-gray-600 leading-relaxed">পূর্ণাঙ্গ বায়োডাটা, শিক্ষা ও পেশাগত তথ্যাদি এন্ট্রি ফরম।</p>
+                        <p class="text-xs text-gray-600 leading-relaxed">বর্তমান-স্থায়ী ঠিকানা, ইনডেক্স, এমপিও ও শিক্ষাগত তথ্যাদি এন্ট্রি ফরম।</p>
                         <span class="text-xs text-emerald-700 font-bold block">ফরম ওপেন করুন →</span>
                     </div>
 
@@ -90,7 +90,7 @@
                             <h3 class="font-bold text-gray-800 text-sm flex items-center gap-2"><i class="fa-solid fa-chalkboard-user text-blue-600"></i> Teacher Profile & Joining</h3>
                             <span class="text-xs bg-blue-50 text-blue-700 px-2 py-0.5 rounded font-semibold">শিক্ষক</span>
                         </div>
-                        <p class="text-xs text-gray-600 leading-relaxed">শিক্ষকদের তালিকা, অটো আইডি, পদবি ও রিটায়ার্ডমেন্ট তারিখ।</p>
+                        <p class="text-xs text-gray-600 leading-relaxed">শিক্ষকদের তালিকা, ইনডেক্স, এমপিও তারিখ ও রিটায়ার্ডমেন্ট হিসাব।</p>
                         <span class="text-xs text-blue-700 font-bold block">তালিকা দেখুন →</span>
                     </div>
 
@@ -126,7 +126,7 @@
                             <h3 class="font-bold text-gray-800 text-sm flex items-center gap-2"><i class="fa-solid fa-money-bill-wave text-rose-600"></i> Salary & Allowance</h3>
                             <span class="text-xs bg-rose-50 text-rose-700 px-2 py-0.5 rounded font-semibold">বেতন</span>
                         </div>
-                        <p class="text-xs text-gray-600 leading-relaxed">সরকার প্রদত্ত ও বেসরকারি বেতন শিট এবং ৫% ইনক্রিমেন্ট ক্যালকুলেটর।</p>
+                        <p class="text-xs text-gray-600 leading-relaxed">সরকার প্রদত্ত ও বেসরকারি বেতন শিট এবং ৫% ইনক্রিমেন্ট ক্যালکুলেটর।</p>
                         <span class="text-xs text-rose-700 font-bold block">বেতন শিট জেনারেট →</span>
                     </div>
 
@@ -134,10 +134,10 @@
 
                 <!-- DYNAMIC PANELS -->
 
-                <!-- 1. TEACHER FULL BIODATA FORM -->
+                <!-- 1. TEACHER FULL BIODATA FORM WITH PERMANENT SAVE FIX -->
                 <div id="panel-teacher_form" class="teacher-sub-panel bg-white p-6 rounded-2xl shadow-sm border border-gray-200 space-y-6 hidden">
                     <div class="flex justify-between items-center border-b pb-3">
-                        <h3 class="font-bold text-emerald-800 text-sm"><i class="fa-solid fa-user-plus mr-2"></i> ১. শিক্ষকের পূর্ণাঙ্গ বায়োডাটা ও নিবন্ধন ফরম</h3>
+                        <h3 class="font-bold text-emerald-800 text-sm"><i class="fa-solid fa-user-plus mr-2"></i> ১. শিক্ষকের পূর্ণাঙ্গ বায়োডাটা ও নিবন্ধন ফরম (স্থায়ী সংরক্ষণসহ)</h3>
                         <button onclick="closeAllPanels()" class="text-xs bg-gray-200 px-3 py-1 rounded font-bold text-gray-700">বন্ধ করুন</button>
                     </div>
 
@@ -173,11 +173,15 @@
                             </select>
                         </div>
                         <div>
+                            <label class="font-bold text-gray-700 mb-1 block">ইনডেক্স নম্বর (Index No) *</label>
+                            <input type="text" id="tb_index_no" placeholder="যেমন: 123456" class="w-full p-2 border rounded-lg font-bold text-blue-700" required>
+                        </div>
+                        <div>
                             <label class="font-bold text-gray-700 mb-1 block">জন্ম তারিখ (DOB) *</label>
                             <input type="date" id="tb_dob" onchange="calculateRetirement()" class="w-full p-2 border rounded-lg" required>
                         </div>
                         <div>
-                            <label class="font-bold text-gray-700 mb-1 block">অবসর গ্রহণের তারিখ (অটো) *</label>
+                            <label class="font-bold text-gray-700 mb-1 block">অবসর গ্রহণের তারিখ (অটো ৬০ বছর) *</label>
                             <input type="text" id="tb_retirement" class="w-full p-2 border rounded-lg bg-gray-100 font-bold text-rose-700" readonly>
                         </div>
                         <div>
@@ -185,28 +189,36 @@
                             <input type="date" id="tb_join" onchange="autoGenerateTeacherId()" class="w-full p-2 border rounded-lg" required>
                         </div>
                         <div>
+                            <label class="font-bold text-gray-700 mb-1 block">এমপিওভুক্তির তারিখ *</label>
+                            <input type="date" id="tb_mpo_date" class="w-full p-2 border rounded-lg" required>
+                        </div>
+                        <div>
                             <label class="font-bold text-gray-700 mb-1 block">অটো জেনারেটেড আইডি *</label>
                             <input type="text" id="tb_autoid" class="w-full p-2 border rounded-lg bg-gray-100 font-bold text-blue-700" readonly>
                         </div>
                         <div>
                             <label class="font-bold text-gray-700 mb-1 block">শিক্ষাগত যোগ্যতা *</label>
-                            <input type="text" id="tb_edu" placeholder="যেমন: M.A, Kamil (First Class)" class="w-full p-2 border rounded-lg" required>
+                            <input type="text" id="tb_edu" placeholder="যেমন: M.A, Kamil" class="w-full p-2 border rounded-lg" required>
                         </div>
                         <div>
                             <label class="font-bold text-gray-700 mb-1 block">মোবাইল নম্বর *</label>
                             <input type="text" id="tb_mobile" placeholder="018XXXXXXXX" class="w-full p-2 border rounded-lg" required>
                         </div>
                         <div>
-                            <label class="font-bold text-gray-700 mb-1 block">মুল বেতন (Basic Salary)</label>
+                            <label class="font-bold text-gray-700 mb-1 block">মূল বেতন (Basic Salary)</label>
                             <input type="number" id="tb_basic" value="35000" class="w-full p-2 border rounded-lg font-bold" required>
                         </div>
                         <div>
                             <label class="font-bold text-gray-700 mb-1 block">শিক্ষকের ছবি (Photo)</label>
                             <input type="file" id="tb_photo" accept="image/*" class="w-full p-1 border rounded-lg bg-gray-50">
                         </div>
-                        <div class="md:col-span-4">
-                            <label class="font-bold text-gray-700 mb-1 block">বর্তমান ঠিকানা ও বায়োডাটা সারসংক্ষেপ *</label>
-                            <textarea id="tb_address" rows="2" class="w-full p-2 border rounded-lg" required>গ্রাম, ডাকঘর, উপজেলা, নোয়াখালী</textarea>
+                        <div class="md:col-span-2">
+                            <label class="font-bold text-gray-700 mb-1 block">বর্তমান ঠিকানা *</label>
+                            <textarea id="tb_present_address" rows="2" class="w-full p-2 border rounded-lg" required>গ্রাম, ডাকঘর, উপজেলা, জেলা</textarea>
+                        </div>
+                        <div class="md:col-span-2">
+                            <label class="font-bold text-gray-700 mb-1 block">স্থায়ী ঠিকানা *</label>
+                            <textarea id="tb_permanent_address" rows="2" class="w-full p-2 border rounded-lg" required>গ্রাম, ডাকঘর, উপজেলা, জেলা</textarea>
                         </div>
 
                         <div class="md:col-span-4 flex justify-end pt-3 border-t">
@@ -220,7 +232,7 @@
                 <!-- 2. TEACHER PROFILE & JOINING INFO PANEL -->
                 <div id="panel-teacher_profile" class="teacher-sub-panel bg-white p-6 rounded-2xl shadow-sm border border-gray-200 space-y-4 hidden">
                     <div class="flex justify-between items-center border-b pb-3">
-                        <h3 class="font-bold text-blue-800 text-sm"><i class="fa-solid fa-chalkboard-user mr-2"></i> শিক্ষক প্রোফাইল ও জেইনিং ইনফো (অটো আইডি ও রিটায়ার্ডমেন্টসহ)</h3>
+                        <h3 class="font-bold text-blue-800 text-sm"><i class="fa-solid fa-chalkboard-user mr-2"></i> ২. শিক্ষক প্রোফাইল ও জেইনিং ইনফো (ইনডেক্স ও এমপিওসহ)</h3>
                         <button onclick="closeAllPanels()" class="text-xs bg-gray-200 px-3 py-1 rounded font-bold text-gray-700">বন্ধ করুন</button>
                     </div>
                     <div class="overflow-x-auto">
@@ -228,10 +240,10 @@
                             <thead>
                                 <tr class="bg-blue-700 text-white">
                                     <th class="border p-2">ছবি</th>
-                                    <th class="border p-2">আইডি নম্বর</th>
+                                    <th class="border p-2">ইনডেক্স ও আইডি</th>
                                     <th class="border p-2">নাম</th>
                                     <th class="border p-2">পদবি</th>
-                                    <th class="border p-2">যোগদান তারিখ</th>
+                                    <th class="border p-2">যোগদান ও এমপিও তারিখ</th>
                                     <th class="border p-2 text-rose-700 bg-rose-50">অবসর তারিখ (৬০ বছর)</th>
                                     <th class="border p-2 text-center">কার্যক্রম</th>
                                 </tr>
@@ -308,7 +320,7 @@
                 <!-- 4. ATTENDANCE PANEL -->
                 <div id="panel-attendance" class="teacher-sub-panel bg-white p-6 rounded-2xl shadow-sm border border-gray-200 space-y-4 hidden">
                     <div class="flex justify-between items-center border-b pb-3">
-                        <h3 class="font-bold text-indigo-800 text-sm"><i class="fa-solid fa-clipboard-user mr-2"></i> ৪. শিক্ষক ও স্টাফ হাজিরা ম্যানেজমেন্ট (রিয়েল-টাইম ও ফিল্টার)</h3>
+                        <h3 class="font-bold text-indigo-800 text-sm"><i class="fa-solid fa-clipboard-user mr-2"></i> ৪. শিক্ষক ও স্টাফ হাজিরা ম্যানেজমেন্ট</h3>
                         <button onclick="closeAllPanels()" class="text-xs bg-gray-200 px-3 py-1 rounded font-bold text-gray-700">বন্ধ করুন</button>
                     </div>
 
@@ -343,7 +355,7 @@
                 <!-- 5. LEAVE MANAGEMENT PANEL -->
                 <div id="panel-leave" class="teacher-sub-panel bg-white p-6 rounded-2xl shadow-sm border border-gray-200 space-y-4 hidden">
                     <div class="flex justify-between items-center border-b pb-3">
-                        <h3 class="font-bold text-teal-800 text-sm"><i class="fa-solid fa-umbrella-beach mr-2"></i> ৫. জ্যেষ্ঠতা অনুযায়ী লিভ ম্যানেজমেন্ট (ছুটির হিসাব)</h3>
+                        <h3 class="font-bold text-teal-800 text-sm"><i class="fa-solid fa-umbrella-beach mr-2"></i> ৫. জ্যেষ্ঠতা অনুযায়ী লিভ ম্যানেজমেন্ট</h3>
                         <button onclick="closeAllPanels()" class="text-xs bg-gray-200 px-3 py-1 rounded font-bold text-gray-700">বন্ধ করুন</button>
                     </div>
 
@@ -370,7 +382,6 @@
                         <button onclick="closeAllPanels()" class="text-xs bg-gray-200 px-3 py-1 rounded font-bold text-gray-700">বন্ধ করুন</button>
                     </div>
 
-                    <!-- Salary Type Toggle & Filters -->
                     <div class="flex flex-wrap gap-4 bg-rose-50 p-4 rounded-xl border border-rose-200 text-xs items-center justify-between">
                         <div class="flex gap-2 items-center">
                             <button onclick="switchSalaryType('gov')" id="btn_gov_sal" class="bg-rose-700 text-white px-4 py-2 rounded font-bold transition">সরকার প্রদত্ত বেতন (Govt)</button>
@@ -390,7 +401,6 @@
                         </div>
                     </div>
 
-                    <!-- Private Salary Percentage Input Box -->
                     <div id="pvtPercentageBox" class="hidden flex gap-3 items-center bg-amber-50 p-3 rounded-xl border border-amber-300 text-xs">
                         <label class="font-bold text-amber-900">বেসরকারি বেতনের পার্সেন্টেজ লিখুন (%):</label>
                         <input type="number" id="pvtPercentInput" value="30" class="p-1 border rounded w-20 text-center font-bold" onkeyup="loadSalaryTable()">
@@ -400,9 +410,7 @@
                     <div class="overflow-x-auto">
                         <table class="w-full text-left border-collapse border border-gray-200 text-xs">
                             <thead>
-                                <tr class="bg-rose-700 text-white" id="salaryTableHeader">
-                                    <!-- Dynamic Headers -->
-                                </tr>
+                                <tr class="bg-rose-700 text-white" id="salaryTableHeader"></tr>
                             </thead>
                             <tbody id="salaryTableBody"></tbody>
                         </table>
@@ -465,13 +473,14 @@
             document.getElementById('tb_autoid').value = `${desigCode}-${subCode}-${yearCode}`;
         }
 
-        // Save Teacher Biodata
+        // Save Teacher Biodata with Permanent LocalStorage Fix
         function saveTeacherBiodata(event) {
             event.preventDefault();
             const photoInput = document.getElementById('tb_photo');
 
             let teacherData = {
                 id: document.getElementById('tb_autoid').value || 'PRN-ARB-2026',
+                indexNo: document.getElementById('tb_index_no').value.trim(),
                 name_bn: document.getElementById('tb_name_bn').value.trim(),
                 name_en: document.getElementById('tb_name_en').value.trim(),
                 designation: document.getElementById('tb_designation').options[document.getElementById('tb_designation').selectedIndex].text,
@@ -479,10 +488,12 @@
                 dob: document.getElementById('tb_dob').value,
                 retirement: document.getElementById('tb_retirement').value,
                 joinDate: document.getElementById('tb_join').value,
+                mpoDate: document.getElementById('tb_mpo_date').value,
                 edu: document.getElementById('tb_edu').value.trim(),
                 mobile: document.getElementById('tb_mobile').value.trim(),
                 basic: parseFloat(document.getElementById('tb_basic').value) || 35000,
-                address: document.getElementById('tb_address').value.trim(),
+                presentAddress: document.getElementById('tb_present_address').value.trim(),
+                permanentAddress: document.getElementById('tb_permanent_address').value.trim(),
                 leaveTaken: 0
             };
 
@@ -492,7 +503,7 @@
                 if(photoBase64) teacherData.photo = photoBase64;
                 teachers.push(teacherData);
                 localStorage.setItem('madrasah_teachers_master', JSON.stringify(teachers));
-                alert('শিক্ষকের পূর্ণাঙ্গ বায়োডাটা সফলভাবে সংরক্ষিত হয়েছে!');
+                alert('শিক্ষকের পূর্ণাঙ্গ বায়োডাটা ও তথ্য সফলভাবে সংরক্ষিত হয়েছে!');
                 document.getElementById('teacherBiodataForm').reset();
                 openTeacherPanel('teacher_profile');
             }
@@ -510,7 +521,7 @@
             let teachers = JSON.parse(localStorage.getItem('madrasah_teachers_master'));
             if(!teachers || teachers.length === 0) {
                 teachers = [
-                    { id: "PRN-ARB-2015", name_bn: "মাওলানা মো: ইব্রাহিম", name_en: "Maulana Md. Ibrahim", designation: "অধ্যক্ষ (Principal)", subject: "আরবি (Arabic)", dob: "1966-01-01", retirement: "2026-01-01", joinDate: "2015-01-10", edu: "M.A, Kamil", mobile: "01814716405", basic: 45000, address: "সোনাইমুড়ী, নোয়াখালী", leaveTaken: 3 }
+                    { id: "PRN-ARB-2015", indexNo: "1020304", name_bn: "মাওলানা মো: ইব্রাহিম", name_en: "Maulana Md. Ibrahim", designation: "অধ্যক্ষ (Principal)", subject: "আরবি (Arabic)", dob: "1966-01-01", retirement: "2026-01-01", joinDate: "2015-01-10", mpoDate: "2017-05-12", edu: "M.A, Kamil", mobile: "01814716405", basic: 45000, presentAddress: "সোনাইমুড়ী", permanentAddress: "কোম্পানীগঞ্জ", leaveTaken: 3 }
                 ];
                 localStorage.setItem('madrasah_teachers_master', JSON.stringify(teachers));
             }
@@ -526,10 +537,16 @@
                 tbody.innerHTML += `
                     <tr>
                         <td class="border p-2">${photoImg}</td>
-                        <td class="border p-2 font-bold text-blue-700">${t.id}</td>
+                        <td class="border p-2">
+                            <span class="font-bold text-blue-700">ID: ${t.id}</span><br>
+                            <span class="text-gray-600 text-[10px]">Index: ${t.indexNo || 'N/A'}</span>
+                        </td>
                         <td class="border p-2 font-bold">${t.name_bn}</td>
                         <td class="border p-2">${t.designation}</td>
-                        <td class="border p-2">${t.joinDate}</td>
+                        <td class="border p-2">
+                            যোগদান: ${t.joinDate}<br>
+                            <span class="text-emerald-700 text-[10px]">এমপিও: ${t.mpoDate || 'N/A'}</span>
+                        </td>
                         <td class="border p-2 font-bold text-rose-700 bg-rose-50">${t.retirement}</td>
                         <td class="border p-2 text-center"><button onclick="deleteTeacherRecord(${i})" class="text-red-600 font-bold">ডিলিট</button></td>
                     </tr>
@@ -667,7 +684,7 @@
             tbody.innerHTML = '';
 
             teachers.forEach((t, i) => {
-                let totalAllowed = 20; // মোট প্রাপ্য ছুটি ২০ দিন
+                let totalAllowed = 20;
                 let taken = t.leaveTaken || 0;
                 let remaining = totalAllowed - taken;
 
@@ -730,7 +747,7 @@
 
                 teachers.forEach(t => {
                     let basic = t.basic;
-                    if(isJuly) basic = basic * 1.05; // ৫% ইনক্রিমেন্ট
+                    if(isJuly) basic = basic * 1.05;
 
                     let houseRent = basic * 0.15;
                     let medical = 500;

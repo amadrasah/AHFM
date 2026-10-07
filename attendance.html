@@ -73,7 +73,7 @@
                 <div class="bg-gradient-to-r from-emerald-800 to-emerald-950 text-white p-6 rounded-2xl shadow-sm flex flex-col md:flex-row justify-between items-center gap-4 no-print">
                     <div>
                         <h2 class="text-xl font-bold">শিক্ষক ও শিক্ষার্থী উপস্থিতি মনিটরিং প্যানেল</h2>
-                        <p class="text-emerald-200 text-xs mt-1">সঠিক ডেটা ফেচিং, ক্লিক টাইম, শ্রেণি ও বছর ফিল্টার এবং প্রিন্ট সিস্টেম।</p>
+                        <p class="text-emerald-200 text-xs mt-1">অটো লিঙ্কড শ্রেণি ড্রপডাউন, ক্লিক টাইম, পার্মানেন্ট সেভ এবং প্রিন্ট সিস্টেম।</p>
                     </div>
                     <div class="flex gap-2">
                         <button onclick="switchTab('teacher')" class="bg-white text-emerald-900 px-4 py-2 rounded-xl font-bold text-xs hover:bg-emerald-50 transition shadow-sm">শিক্ষক হাজিরা</button>
@@ -81,7 +81,7 @@
                     </div>
                 </div>
 
-                <!-- Sub-Modules Grid Layout (5 Features) -->
+                <!-- Sub-Modules Grid Layout -->
                 <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 no-print">
                     <div onclick="switchTab('student')" class="bg-white p-5 rounded-xl shadow-sm border-t-4 border-emerald-600 space-y-3 cursor-pointer hover:shadow-md transition">
                         <div class="flex items-center justify-between border-b pb-2">
@@ -139,27 +139,12 @@
                         </div>
                     </div>
 
-                    <!-- Filters & Class Filtering -->
+                    <!-- Filters & Dynamic Class Dropdown -->
                     <div class="flex flex-wrap gap-3 bg-gray-50 p-3 rounded-xl border text-xs items-center no-print">
                         <div>
                             <label class="font-bold text-gray-700 block mb-1">শ্রেণি নির্বাচন (Class):</label>
                             <select id="filter_class" class="p-1.5 border rounded bg-white font-bold" onchange="loadAttendanceData()">
                                 <option value="all">সকল শ্রেণি (All Classes)</option>
-                                <option value="Nursery">Nursery</option>
-                                <option value="Class 1">Class 1</option>
-                                <option value="Class 2">Class 2</option>
-                                <option value="Class 3">Class 3</option>
-                                <option value="Class 4">Class 4</option>
-                                <option value="Class 5">Class 5</option>
-                                <option value="Class 6">Class 6</option>
-                                <option value="Class 7">Class 7</option>
-                                <option value="Class 8">Class 8</option>
-                                <option value="Class 9">Class 9</option>
-                                <option value="Class 10">Class 10</option>
-                                <option value="Dakhil">Dakhil</option>
-                                <option value="Alim">Alim</option>
-                                <option value="Fazil">Fazil</option>
-                                <option value="Kamil">Kamil</option>
                             </select>
                         </div>
                         <div>
@@ -178,7 +163,6 @@
                                 <select id="filter_year" class="p-1.5 border rounded bg-white font-bold" onchange="loadAttendanceData()">
                                     <option value="2026" selected>2026</option>
                                     <option value="2027">2027</option>
-                                    <option value="2028">2028</option>
                                 </select>
                                 <button onclick="addNewYear()" class="bg-gray-200 px-2 rounded font-bold hover:bg-gray-300" title="নতুন বছর যোগ করুন">+</button>
                             </div>
@@ -217,11 +201,45 @@
 
         window.onload = function() {
             document.getElementById('att_master_date').value = new Date().toISOString().split('T')[0];
+            loadDynamicClasses();
             loadAttendanceData();
         };
 
+        // সেটিং বা স্টুডেন্ট মডিউল থেকে ক্লাস লোড করার ডাইনামিক ফাংশন
+        function loadDynamicClasses() {
+            let classSelect = document.getElementById('filter_class');
+            // বর্তমান সিলেক্টেড ভ্যালু সেভ রাখা
+            let currentVal = classSelect.value;
+            classSelect.innerHTML = `<option value="all">সকল শ্রেণি (All Classes)</option>`;
+
+            // লোকাল স্টোরেজ থেকে ক্লাস বা স্টুডেন্ট ডেটা চেক করা
+            let students = JSON.parse(localStorage.getItem('madrasah_students_master')) || 
+                           JSON.parse(localStorage.getItem('madrasah_students_all')) || 
+                           JSON.parse(localStorage.getItem('students')) || [];
+
+            let classSet = new Set();
+            students.forEach(s => {
+                let cName = s.studentClass || s.class || s.grade;
+                if(cName) classSet.add(cName.trim());
+            });
+
+            // যদি স্টুডেন্ট মডিউলে কোনো ক্লাস না থাকে, তবে ডিফল্ট মাদ্রাসার স্তরগুলো যুক্ত হবে
+            if(classSet.size === 0) {
+                ["Nursery", "Class 1", "Class 2", "Class 3", "Class 4", "Class 5", "Class 6", "Class 7", "Class 8", "Class 9", "Class 10", "Dakhil", "Alim", "Fazil", "Kamil"].forEach(c => classSet.add(c));
+            }
+
+            classSet.forEach(cls => {
+                let opt = document.createElement('option');
+                opt.value = cls;
+                opt.text = cls;
+                classSelect.add(opt);
+            });
+
+            if(currentVal) classSelect.value = currentVal;
+        }
+
         function addNewYear() {
-            let newY = prompt("নতুন বছর লিখুন (যেমন: 2029):");
+            let newY = prompt("নতুন বছর লিখুন (যেমন: 2028):");
             if(newY && newY.trim() !== "") {
                 let yearSelect = document.getElementById('filter_year');
                 let opt = document.createElement('option');
@@ -238,7 +256,10 @@
             currentTab = tabName;
             const titleEl = document.getElementById('workspace_title');
             if(tabName === 'teacher') titleEl.innerHTML = `<i class="fa-solid fa-chalkboard-user mr-2"></i> শিক্ষক উপস্থিতি ম্যানেজমেন্ট প্যানেল`;
-            else if(tabName === 'student') titleEl.innerHTML = `<i class="fa-solid fa-user-graduate mr-2"></i> শিক্ষার্থী উপস্থিতি ম্যানেজমেন্ট প্যানেল (অটো লিঙ্কড)`;
+            else if(tabName === 'student') {
+                titleEl.innerHTML = `<i class="fa-solid fa-user-graduate mr-2"></i> শিক্ষার্থী উপস্থিতি ম্যানেজমেন্ট প্যানেল (অটো লিঙ্কড)`;
+                loadDynamicClasses();
+            }
             else if(tabName === 'daily') titleEl.innerHTML = `<i class="fa-solid fa-calendar-day mr-2"></i> আজকের দৈনিক উপস্থিতি সংক্ষিপ্তসার (শিক্ষক ও শিক্ষার্থী)`;
             else if(tabName === 'monthly') titleEl.innerHTML = `<i class="fa-solid fa-calendar-days mr-2"></i> মাসিক উপস্থিতি রিপোর্ট`;
             else if(tabName === 'percentage') titleEl.innerHTML = `<i class="fa-solid fa-chart-pie mr-2"></i> উপস্থিতি শতকরা হার (%) বিশ্লেষণ`;
@@ -262,12 +283,10 @@
             if(filterMonth !== 'all' && recMonth !== filterMonth) return;
             if(filterYear !== 'all' && recYear !== filterYear) return;
 
-            // শিক্ষক ডেটা ফেচ
             let teachers = JSON.parse(localStorage.getItem('madrasah_teachers_master')) || [
                 { id: "PRN-ARB-2015", name_bn: "মাওলানা মো: ইব্রাহিম", designation: "অধ্যক্ষ (Principal)" }
             ];
 
-            // শিক্ষার্থী ডেটা ফেচ (একাধিক সম্ভাব্য কি-র সাথে ম্যাচিং)
             let students = JSON.parse(localStorage.getItem('madrasah_students_master')) || 
                            JSON.parse(localStorage.getItem('madrasah_students_all')) || 
                            JSON.parse(localStorage.getItem('students')) || [
@@ -349,7 +368,6 @@
                     <th class="border p-2 text-center">উপস্থিতি ও ক্লিক টাইম</th>
                 `;
 
-                // শিক্ষক ও শিক্ষার্থী উভয়কেই দৈনিক সংক্ষিপ্তসারে দেখাবে
                 teachers.forEach(t => {
                     let attKey = `att_t_${t.id}_${selectedDate}`;
                     let record = JSON.parse(localStorage.getItem(attKey)) || { status: 'উপস্থিত', time: '-' };
@@ -404,9 +422,9 @@
                     tbody.innerHTML += `
                         <tr>
                             <td class="border p-2 font-bold">${sName} <br><span class="text-[10px] text-gray-500">শ্রেণি: ${sClass}</span></td>
-                            <td class="border p-2 text-center">২৬ দিন</td>
-                            <td class="border p-2 text-center font-bold text-green-700">২৪ দিন</td>
-                            <td class="border p-2 text-center font-bold text-red-700">২ দিন</td>
+                            <td class="border p-2 text-center">26 days</td>
+                            <td class="border p-2 text-center font-bold text-green-700">24 days</td>
+                            <td class="border p-2 text-center font-bold text-red-700">2 days</td>
                         </tr>
                     `;
                 });

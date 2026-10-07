@@ -82,7 +82,7 @@
                     <button onclick="openMainModule('monthly')" class="bg-gradient-to-r from-blue-700 to-indigo-900 text-white p-5 rounded-2xl shadow-md hover:from-blue-800 hover:to-indigo-950 transition flex items-center justify-between">
                         <div class="text-left">
                             <h2 class="text-lg font-bold"><i class="fa-solid fa-calendar-days mr-2"></i> মাসিক রিপোর্ট (Monthly Report)</h2>
-                            <p class="text-xs text-blue-200 mt-1">গ্লোবাল ক্যালেন্ডার ও ছুটির দিন বাদ দিয়ে মাসিক উপস্থিতি শিট।</p>
+                            <p class="text-xs text-blue-200 mt-1">গ্লোবাল ক্যালেন্ডার ও সাপ্তাহিক ছুটি বাদ দিয়ে মাসিক উপস্থিতি শিট।</p>
                         </div>
                         <i class="fa-solid fa-arrow-right text-xl"></i>
                     </button>
@@ -151,7 +151,7 @@
                         </div>
                         <div class="flex-1">
                             <label class="font-bold text-gray-700 block mb-1">নাম বা আইডি/রোল সার্চ:</label>
-                            <input type="text" id="monthly_search_input" placeholder="নির্দিষ্ট শিক্ষার্থী বা শিক্ষক খুঁজুন..." class="p-2 border rounded bg-white w-full" onkeyup="renderMonthlyTable()">
+                            <input type="text" id="monthly_search_input" placeholder="নির্দিষ্ট শিক্ষার্থী, শিক্ষক বা স্টাফ খুঁজুন..." class="p-2 border rounded bg-white w-full" onkeyup="renderMonthlyTable()">
                         </div>
                     </div>
                 </div>
@@ -170,7 +170,7 @@
                                     <th class="border p-2">তারিখ</th>
                                     <th class="border p-2">রোল / আইডি</th>
                                     <th class="border p-2">নাম</th>
-                                    <th class="border p-2">শ্রেণি</th>
+                                    <th class="border p-2">শ্রেণি / পদবি</th>
                                     <th class="border p-2 text-center">حاضر / উপস্থিতি (ক্লিক করুন)</th>
                                 </tr>
                             </thead>
@@ -211,22 +211,20 @@
             }
         }
 
-        // স্টুডেন্ট ম্যানেজমেন্ট ফাইল বা লোকাল স্টোরেজ থেকে ক্লাস ফেচ করা
+        // স্টুডেন্ট ম্যানেজমেন্ট ফাইল থেকে ক্লাস ফেচ করা
         function loadDynamicClasses() {
             let classSelects = [document.getElementById('daily_class_select'), document.getElementById('monthly_class_select')];
             
-            let students = JSON.parse(localStorage.getItem('madrasah_students_all')) || 
-                           JSON.parse(localStorage.getItem('madrasah_students_master')) || 
-                           JSON.parse(localStorage.getItem('students')) || [];
+            let students = JSON.parse(localStorage.getItem('madrasah_students_all')) || [];
 
             let classSet = new Set();
             students.forEach(s => {
-                let cName = s.studentClass || s.class || s.grade;
+                let cName = s.cls || s.studentClass || s.class || s.grade;
                 if(cName) classSet.add(cName.trim());
             });
 
             if(classSet.size === 0) {
-                ["Nursery", "Class 1", "Class 2", "Class 3", "Class 4", "Class 5", "Class 6", "Class 7", "Class 8", "Class 9", "Class 10", "Dakhil", "Alim", "Fazil", "Kamil"].forEach(c => classSet.add(c));
+                ["নুরানী প্রথম শ্রেণি", "নুরানী দ্বিতীয় শ্রেণি", "নুরানী তৃতীয় শ্রেণি", "ইবতেদায়ী চতুর্থ শ্রেণি", "ইবতেদায়ী পঞ্চম শ্রেণি", "দাখিল ষষ্ঠ শ্রেণি", "দাখিল সপ্তম শ্রেণি", "দাখিল অষ্টম শ্রেণি", "দাখিল নবম শ্রেণি", "দাখিল দশম শ্রেণি", "আলিম প্রথম বর্ষ", "আলিম দ্বিতীয় বর্ষ", "ফাজিল প্রথম বর্ষ", "ফাজিল দ্বিতীয় বর্ষ", "ফাজিল তৃতীয় বর্ষ"].forEach(c => classSet.add(c));
             }
 
             classSelects.forEach(sel => {
@@ -249,7 +247,7 @@
             const classBox = document.getElementById('daily_class_box');
 
             if(cat === 'student') {
-                titleEl.innerHTML = `<i class="fa-solid fa-user-graduate mr-2"></i> স্টুডেন্ট ডেইলি এটেন্ডেন্স ফরম (স্টুডেন্ট ম্যানেজমেন্ট থেকে অটো-লিঙ্কড)`;
+                titleEl.innerHTML = `<i class="fa-solid fa-user-graduate mr-2"></i> স্টুডেন্ট ডেইলি এটেন্ডেন্স ফরম (স্টুডেন্ট ম্যানেজমেন্ট প্রোফাইল থেকে অটো-লিঙ্কড)`;
                 classBox.style.display = 'block';
             } else if(cat === 'teacher') {
                 titleEl.innerHTML = `<i class="fa-solid fa-chalkboard-user mr-2"></i> শিক্ষক এটেন্ডেন্স ফরম (শিক্ষক প্রোফাইল থেকে অটো-লিঙ্কড)`;
@@ -272,22 +270,13 @@
             const searchKey = document.getElementById('daily_search_input').value.toLowerCase().trim();
 
             // স্টুডেন্ট ম্যানেজমেন্ট ফাইল থেকে ডেটা ফেচ
-            let students = JSON.parse(localStorage.getItem('madrasah_students_all')) || 
-                           JSON.parse(localStorage.getItem('madrasah_students_master')) || 
-                           JSON.parse(localStorage.getItem('students')) || [
-                { roll: "101", name: "ফাতেমা তুজ জোহরা", class: "Nursery" },
-                { roll: "102", name: "আব্দুল্লাহ আল মামুন", class: "Class 1" }
-            ];
+            let students = JSON.parse(localStorage.getItem('madrasah_students_all')) || [];
 
             // শিক্ষক প্রোফাইল থেকে ডেটা ফেচ
-            let teachers = JSON.parse(localStorage.getItem('madrasah_teachers_master')) || [
-                { id: "PRN-ARB-2015", name_bn: "মাওলানা মো: ইব্রাহিম", designation: "অধ্যক্ষ (Principal)" }
-            ];
+            let teachers = JSON.parse(localStorage.getItem('madrasah_teachers_master')) || [];
 
             // স্টাফ প্রোফাইল থেকে ডেটা ফেচ
-            let staffList = JSON.parse(localStorage.getItem('madrasah_staff_master')) || [
-                { id: "STF-101", name: "সৈয়দ আহমদ", designation: "অফিস সহকারী" }
-            ];
+            let staffList = JSON.parse(localStorage.getItem('madrasah_staff_master')) || [];
 
             if(currentCategory === 'student') {
                 thead.innerHTML = `
@@ -299,9 +288,9 @@
                 `;
 
                 students.forEach(s => {
-                    let sClass = s.studentClass || s.class || s.grade || "Nursery";
-                    let sRoll = s.roll || s.id || s.studentId || "101";
-                    let sName = s.name || s.name_bn || s.studentName || "শিক্ষার্থী";
+                    let sClass = s.cls || s.studentClass || s.class || "নুরানী প্রথম শ্রেণি";
+                    let sRoll = s.roll || s.id || "001";
+                    let sName = s.name_bn || s.name || "শিক্ষার্থী";
 
                     if(filterClass !== 'all' && sClass !== filterClass) return;
                     if(searchKey && !sName.toLowerCase().includes(searchKey) && !sRoll.toLowerCase().includes(searchKey)) return;
@@ -334,20 +323,24 @@
                 `;
 
                 teachers.forEach(t => {
-                    if(searchKey && !t.name_bn.toLowerCase().includes(searchKey) && !t.id.toLowerCase().includes(searchKey)) return;
+                    let tId = t.id || t.indexNo || "ID";
+                    let tName = t.name_bn || "শিক্ষক";
+                    let tDesig = t.designation || "শিক্ষক";
 
-                    let attKey = `att_t_${t.id}_${selectedDate}`;
+                    if(searchKey && !tName.toLowerCase().includes(searchKey) && !tId.toLowerCase().includes(searchKey)) return;
+
+                    let attKey = `att_t_${tId}_${selectedDate}`;
                     let record = JSON.parse(localStorage.getItem(attKey)) || { status: 'উপস্থিত', time: '-' };
                     let badgeClass = record.status === 'উপস্থিত' ? 'bg-green-100 text-green-800' : 'bg-red-100 text-red-800';
 
                     tbody.innerHTML += `
                         <tr>
                             <td class="border p-2">${selectedDate}</td>
-                            <td class="border p-2 font-bold text-emerald-700">${t.id}</td>
-                            <td class="border p-2 font-bold">${t.name_bn}</td>
-                            <td class="border p-2">${t.designation}</td>
+                            <td class="border p-2 font-bold text-emerald-700">${tId}</td>
+                            <td class="border p-2 font-bold">${tName}</td>
+                            <td class="border p-2">${tDesig}</td>
                             <td class="border p-2 text-center">
-                                <button onclick="toggleDailyAttendance('t', '${t.id}', '${selectedDate}', this)" class="${badgeClass} px-3 py-1 rounded font-bold text-xs">
+                                <button onclick="toggleDailyAttendance('t', '${tId}', '${selectedDate}', this)" class="${badgeClass} px-3 py-1 rounded font-bold text-xs">
                                     ${record.status} <span class="text-[10px] text-gray-600 font-normal">(${record.time})</span>
                                 </button>
                             </td>
@@ -364,20 +357,24 @@
                 `;
 
                 staffList.forEach(st => {
-                    if(searchKey && !st.name.toLowerCase().includes(searchKey) && !st.id.toLowerCase().includes(searchKey)) return;
+                    let stId = st.id || "STF";
+                    let stName = st.name || "স্টাফ";
+                    let stDesig = st.designation || "স্টাফ";
 
-                    let attKey = `att_st_${st.id}_${selectedDate}`;
+                    if(searchKey && !stName.toLowerCase().includes(searchKey) && !stId.toLowerCase().includes(searchKey)) return;
+
+                    let attKey = `att_st_${stId}_${selectedDate}`;
                     let record = JSON.parse(localStorage.getItem(attKey)) || { status: 'উপস্থিত', time: '-' };
                     let badgeClass = record.status === 'উপস্থিত' ? 'bg-green-100 text-green-800' : 'bg-red-100 text-red-800';
 
                     tbody.innerHTML += `
                         <tr>
                             <td class="border p-2">${selectedDate}</td>
-                            <td class="border p-2 font-bold text-purple-700">${st.id}</td>
-                            <td class="border p-2 font-bold">${st.name}</td>
-                            <td class="border p-2">${st.designation}</td>
+                            <td class="border p-2 font-bold text-purple-700">${stId}</td>
+                            <td class="border p-2 font-bold">${stName}</td>
+                            <td class="border p-2">${stDesig}</td>
                             <td class="border p-2 text-center">
-                                <button onclick="toggleDailyAttendance('st', '${st.id}', '${selectedDate}', this)" class="${badgeClass} px-3 py-1 rounded font-bold text-xs">
+                                <button onclick="toggleDailyAttendance('st', '${stId}', '${selectedDate}', this)" class="${badgeClass} px-3 py-1 rounded font-bold text-xs">
                                     ${record.status} <span class="text-[10px] text-gray-600 font-normal">(${record.time})</span>
                                 </button>
                             </td>
@@ -409,10 +406,10 @@
                 titleEl.innerHTML = `<i class="fa-solid fa-user-graduate mr-2"></i> স্টুডেন্টস মাসিক উপস্থিতি রিপোর্ট (গ্লোবাল ক্যালেন্ডার ও সাপ্তাহিক ছুটি বাদ দিয়ে)`;
                 classBox.style.display = 'block';
             } else if(cat === 'teacher') {
-                titleEl.innerHTML = `<i class="fa-solid fa-chalkboard-user mr-2"></i> শিক্ষক মাসিক উপস্থিতি রিপোর্ট`;
+                titleEl.innerHTML = `<i class="fa-solid fa-chalkboard-user mr-2"></i> শিক্ষক মাসিক উপস্থিতি রিপোর্ট (শিক্ষক প্রোফাইল থেকে অটো-লিঙ্কড)`;
                 classBox.style.display = 'none';
             } else if(cat === 'staff') {
-                titleEl.innerHTML = `<i class="fa-solid fa-users mr-2"></i> স্টাফ মাসিক উপস্থিতি রিপোর্ট`;
+                titleEl.innerHTML = `<i class="fa-solid fa-users mr-2"></i> স্টাফ মাসিক উপস্থিতি রিপোর্ট (স্টাফ প্রোফাইল থেকে অটো-লিঙ্কড)`;
                 classBox.style.display = 'none';
             }
 
@@ -434,15 +431,11 @@
 
             let daysInMonth = new Date(yearNum, monthNum, 0).getDate();
 
-            let students = JSON.parse(localStorage.getItem('madrasah_students_all')) || 
-                           JSON.parse(localStorage.getItem('madrasah_students_master')) || 
-                           JSON.parse(localStorage.getItem('students')) || [];
-
+            let students = JSON.parse(localStorage.getItem('madrasah_students_all')) || [];
             let teachers = JSON.parse(localStorage.getItem('madrasah_teachers_master')) || [];
             let staffList = JSON.parse(localStorage.getItem('madrasah_staff_master')) || [];
 
-            // সাপ্তাহিক ছুটির দিন বাদ দেওয়ার জন্য লজিক (যেমন শুক্রবার = 5)
-            // মাদ্রাসায় সাধারণত শুক্রবার সাপ্তাহিক ছুটি ধরা হয়
+            // সাপ্তাহিক ছুটির দিন (যেমন শুক্রবার = 5) বাদ দেওয়ার লজিক
             let workingDaysCount = 0;
             let validDays = [];
             for(let d=1; d<=daysInMonth; d++) {
@@ -450,7 +443,7 @@
                 let fullDateStr = `${fYear}-${fMonth}-${dayStr}`;
                 let dayOfWeek = new Date(fullDateStr).getDay(); // 5 = Friday
                 
-                if(dayOfWeek !== 5) { // শুক্রবার বাদে বাকি দিনগুলো কার্যদিবস
+                if(dayOfWeek !== 5) { 
                     workingDaysCount++;
                     validDays.push(dayStr);
                 }
@@ -465,9 +458,9 @@
                 thead.innerHTML = headerHTML;
 
                 students.forEach(s => {
-                    let sClass = s.studentClass || s.class || s.grade || "Nursery";
-                    let sRoll = s.roll || s.id || s.studentId || "101";
-                    let sName = s.name || s.name_bn || s.studentName || "শিক্ষার্থী";
+                    let sClass = s.cls || s.studentClass || s.class || "নুরানী প্রথম শ্রেণি";
+                    let sRoll = s.roll || s.id || "001";
+                    let sName = s.name_bn || s.name || "শিক্ষার্থী";
 
                     if(filterClass !== 'all' && sClass !== filterClass) return;
                     if(searchKey && !sName.toLowerCase().includes(searchKey) && !sRoll.toLowerCase().includes(searchKey)) return;
@@ -501,11 +494,9 @@
                 });
             } else {
                 let list = (currentCategory === 'teacher') ? teachers : staffList;
-                let idKey = 'id';
-                let nameKey = (currentCategory === 'teacher') ? 'name_bn' : 'name';
                 let prefix = (currentCategory === 'teacher') ? 't' : 'st';
 
-                let headerHTML = `<th class="border p-2">আইডি</th><th class="border p-2">নাম</th>`;
+                let headerHTML = `<th class="border p-2">আইডি</th><th class="border p-2">নাম ও পদবি</th>`;
                 validDays.forEach(d => {
                     headerHTML += `<th class="border p-1 text-center text-[10px]">${parseInt(d)}</th>`;
                 });
@@ -513,12 +504,13 @@
                 thead.innerHTML = headerHTML;
 
                 list.forEach(item => {
-                    let itemId = item[idKey] || "ID";
-                    let itemName = item[nameKey] || "নাম";
+                    let itemId = item.id || item.indexNo || "ID";
+                    let itemName = item.name_bn || item.name || "নাম";
+                    let itemDesig = item.designation || "";
 
                     if(searchKey && !itemName.toLowerCase().includes(searchKey) && !itemId.toLowerCase().includes(searchKey)) return;
 
-                    let rowHTML = `<tr><td class="border p-2 font-bold text-emerald-700">${itemId}</td><td class="border p-2 font-bold">${itemName}</td>`;
+                    let rowHTML = `<tr><td class="border p-2 font-bold text-emerald-700">${itemId}</td><td class="border p-2 font-bold">${itemName} <br><span class="text-[10px] text-gray-500">${itemDesig}</span></td>`;
                     
                     let totalPresent = 0;
 

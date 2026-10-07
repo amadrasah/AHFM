@@ -7,6 +7,12 @@
     <script src="https://cdn.tailwindcss.com"></script>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     <link rel="stylesheet" href="style.css">
+    <style>
+        @media print {
+            .no-print { display: none !important; }
+            body { background: white !important; }
+        }
+    </style>
 </head>
 <body class="bg-gray-100 font-sans">
 
@@ -20,72 +26,28 @@
             </div>
 
             <nav class="flex-1 p-3 space-y-1 text-xs">
-                <a href="index.html" class="flex items-center gap-2.5 p-2 rounded hover:bg-emerald-800 transition">
-                    <i class="fa-solid fa-house w-4"></i> 🏠 01. Home
-                </a>
-                <a href="institution.html" class="flex items-center gap-2.5 p-2 rounded hover:bg-emerald-800 transition">
-                    <i class="fa-solid fa-school w-4"></i> 🏫 02. Institution
-                </a>
-                <a href="students.html" class="flex items-center gap-2.5 p-2 rounded hover:bg-emerald-800 transition">
-                    <i class="fa-solid fa-user-graduate w-4"></i> 👨‍🎓 03. Student Management
-                </a>
-                <a href="teachers.html" class="flex items-center gap-2.5 p-2 rounded hover:bg-emerald-800 transition">
-                    <i class="fa-solid fa-chalkboard-user w-4"></i> 👨‍🏫 04. Teacher & Staff
-                </a>
-                <a href="academic.html" class="flex items-center gap-2.5 p-2 rounded hover:bg-emerald-800 transition">
-                    <i class="fa-solid fa-book-open w-4"></i> 📚 05. Academic Management
-                </a>
-                <a href="examination.html" class="flex items-center gap-2.5 p-2 rounded hover:bg-emerald-800 transition">
-                    <i class="fa-solid fa-file-lines w-4"></i> 📝 06. Examination
-                </a>
-                <a href="attendance.html" class="flex items-center gap-2.5 p-2 rounded bg-emerald-800 text-white font-medium">
-                    <i class="fa-solid fa-clipboard-user w-4"></i> 🕐 07. Attendance
-                </a>
-                <a href="accounts.html" class="flex items-center gap-2.5 p-2 rounded hover:bg-emerald-800 transition">
-                    <i class="fa-solid fa-wallet w-4"></i> 💰 08. Accounts
-                </a>
-                <a href="fees.html" class="flex items-center gap-2.5 p-2 rounded hover:bg-emerald-800 transition">
-                    <i class="fa-solid fa-receipt w-4"></i> 🧾 09. Fees Management
-                </a>
-                <a href="dashboard.html" class="flex items-center gap-2.5 p-2 rounded hover:bg-emerald-800 transition">
-                    <i class="fa-solid fa-chart-pie w-4"></i> 📊 10. Dashboard
-                </a>
-                <a href="notice.html" class="flex items-center gap-2.5 p-2 rounded hover:bg-emerald-800 transition">
-                    <i class="fa-solid fa-bullhorn w-4"></i> 📢 11. Notice Management
-                </a>
-                <a href="routine.html" class="flex items-center gap-2.5 p-2 rounded hover:bg-emerald-800 transition">
-                    <i class="fa-solid fa-calendar-days w-4"></i> 📅 12. Routine & Calendar
-                </a>
-                <a href="certificates.html" class="flex items-center gap-2.5 p-2 rounded hover:bg-emerald-800 transition">
-                    <i class="fa-solid fa-award w-4"></i> 📄 13. Certificates
-                </a>
-                <a href="inventory.html" class="flex items-center gap-2.5 p-2 rounded hover:bg-emerald-800 transition">
-                    <i class="fa-solid fa-boxes-stacked w-4"></i> 📦 14. Inventory
-                </a>
-                <a href="library.html" class="flex items-center gap-2.5 p-2 rounded hover:bg-emerald-800 transition">
-                    <i class="fa-solid fa-books w-4"></i> 📖 15. Library
-                </a>
-                <a href="transport.html" class="flex items-center gap-2.5 p-2 rounded hover:bg-emerald-800 transition">
-                    <i class="fa-solid fa-bus w-4"></i> 🚌 16. Transport
-                </a>
-                <a href="hostel.html" class="flex items-center gap-2.5 p-2 rounded hover:bg-emerald-800 transition">
-                    <i class="fa-solid fa-bed w-4"></i> 🍚 17. Hostel / Facilities
-                </a>
-                <a href="communication.html" class="flex items-center gap-2.5 p-2 rounded hover:bg-emerald-800 transition">
-                    <i class="fa-solid fa-comments w-4"></i> 📱 18. Communication
-                </a>
-                <a href="users.html" class="flex items-center gap-2.5 p-2 rounded hover:bg-emerald-800 transition">
-                    <i class="fa-solid fa-shield-halved w-4"></i> 🔐 19. User & Security
-                </a>
-                <a href="cloud-backup.html" class="flex items-center gap-2.5 p-2 rounded hover:bg-emerald-800 transition">
-                    <i class="fa-solid fa-cloud-arrow-up w-4"></i> ☁️ 20. Cloud & Backup
-                </a>
-                <a href="reports.html" class="flex items-center gap-2.5 p-2 rounded hover:bg-emerald-800 transition">
-                    <i class="fa-solid fa-chart-line w-4"></i> 📈 21. Reports
-                </a>
-                <a href="settings.html" class="flex items-center gap-2.5 p-2 rounded hover:bg-emerald-800 transition">
-                    <i class="fa-solid fa-gear w-4"></i> ⚙️ 22. Settings
-                </a>
+                <a href="index.html" class="flex items-center gap-2.5 p-2 rounded hover:bg-emerald-800 transition"><i class="fa-solid fa-house w-4"></i> 🏠 01. Home</a>
+                <a href="institution.html" class="flex items-center gap-2.5 p-2 rounded hover:bg-emerald-800 transition"><i class="fa-solid fa-school w-4"></i> 🏫 02. Institution</a>
+                <a href="students.html" class="flex items-center gap-2.5 p-2 rounded hover:bg-emerald-800 transition"><i class="fa-solid fa-user-graduate w-4"></i> 👨‍🎓 03. Student Management</a>
+                <a href="teachers.html" class="flex items-center gap-2.5 p-2 rounded hover:bg-emerald-800 transition"><i class="fa-solid fa-chalkboard-user w-4"></i> 👨‍🏫 04. Teacher & Staff</a>
+                <a href="academic.html" class="flex items-center gap-2.5 p-2 rounded hover:bg-emerald-800 transition"><i class="fa-solid fa-book-open w-4"></i> 📚 05. Academic Management</a>
+                <a href="examination.html" class="flex items-center gap-2.5 p-2 rounded hover:bg-emerald-800 transition"><i class="fa-solid fa-file-lines w-4"></i> 📝 06. Examination</a>
+                <a href="attendance.html" class="flex items-center gap-2.5 p-2 rounded bg-emerald-800 text-white font-medium"><i class="fa-solid fa-clipboard-user w-4"></i> 🕐 07. Attendance</a>
+                <a href="accounts.html" class="flex items-center gap-2.5 p-2 rounded hover:bg-emerald-800 transition"><i class="fa-solid fa-wallet w-4"></i> 💰 08. Accounts</a>
+                <a href="fees.html" class="flex items-center gap-2.5 p-2 rounded hover:bg-emerald-800 transition"><i class="fa-solid fa-receipt w-4"></i> 🧾 09. Fees Management</a>
+                <a href="dashboard.html" class="flex items-center gap-2.5 p-2 rounded hover:bg-emerald-800 transition"><i class="fa-solid fa-chart-pie w-4"></i> 📊 10. Dashboard</a>
+                <a href="notice.html" class="flex items-center gap-2.5 p-2 rounded hover:bg-emerald-800 transition"><i class="fa-solid fa-bullhorn w-4"></i> 📢 11. Notice Management</a>
+                <a href="routine.html" class="flex items-center gap-2.5 p-2 rounded hover:bg-emerald-800 transition"><i class="fa-solid fa-calendar-days w-4"></i> 📅 12. Routine & Calendar</a>
+                <a href="certificates.html" class="flex items-center gap-2.5 p-2 rounded hover:bg-emerald-800 transition"><i class="fa-solid fa-award w-4"></i> 📄 13. Certificates</a>
+                <a href="inventory.html" class="flex items-center gap-2.5 p-2 rounded hover:bg-emerald-800 transition"><i class="fa-solid fa-boxes-stacked w-4"></i> 📦 14. Inventory</a>
+                <a href="library.html" class="flex items-center gap-2.5 p-2 rounded hover:bg-emerald-800 transition"><i class="fa-solid fa-books w-4"></i> 📖 15. Library</a>
+                <a href="transport.html" class="flex items-center gap-2.5 p-2 rounded hover:bg-emerald-800 transition"><i class="fa-solid fa-bus w-4"></i> 🚌 16. Transport</a>
+                <a href="hostel.html" class="flex items-center gap-2.5 p-2 rounded hover:bg-emerald-800 transition"><i class="fa-solid fa-bed w-4"></i> 🍚 17. Hostel / Facilities</a>
+                <a href="communication.html" class="flex items-center gap-2.5 p-2 rounded hover:bg-emerald-800 transition"><i class="fa-solid fa-comments w-4"></i> 📱 18. Communication</a>
+                <a href="users.html" class="flex items-center gap-2.5 p-2 rounded hover:bg-emerald-800 transition"><i class="fa-solid fa-shield-halved w-4"></i> 🔐 19. User & Security</a>
+                <a href="cloud-backup.html" class="flex items-center gap-2.5 p-2 rounded hover:bg-emerald-800 transition"><i class="fa-solid fa-cloud-arrow-up w-4"></i> ☁️ 20. Cloud & Backup</a>
+                <a href="reports.html" class="flex items-center gap-2.5 p-2 rounded hover:bg-emerald-800 transition"><i class="fa-solid fa-chart-line w-4"></i> 📈 21. Reports</a>
+                <a href="settings.html" class="flex items-center gap-2.5 p-2 rounded hover:bg-emerald-800 transition"><i class="fa-solid fa-gear w-4"></i> ⚙️ 22. Settings</a>
             </nav>
         </aside>
 
@@ -107,79 +69,114 @@
             <main class="p-6 space-y-6">
                 
                 <!-- Page Header Banner -->
-                <div class="bg-gradient-to-r from-emerald-800 to-emerald-950 text-white p-6 rounded-2xl shadow-sm flex flex-col md:flex-row justify-between items-center gap-4">
+                <div class="bg-gradient-to-r from-emerald-800 to-emerald-950 text-white p-6 rounded-2xl shadow-sm flex flex-col md:flex-row justify-between items-center gap-4 no-print">
                     <div>
                         <h2 class="text-xl font-bold">শিক্ষক ও শিক্ষার্থী উপস্থিতি মনিটরিং প্যানেল</h2>
-                        <p class="text-emerald-200 text-xs mt-1">দৈনিক হাজিরা এন্ট্রি, মাসিক রিপোর্ট জেনারেশন এবং উপস্থিতির হার (Percentage) ট্র্যাকিং।</p>
+                        <p class="text-emerald-200 text-xs mt-1">দৈনিক হাজিরা এন্ট্রি, ক্লিক টাইম রেকর্ড, মাসিক রিপোর্ট জেনারেশন এবং প্রিন্ট সিস্টেম।</p>
                     </div>
                     <div class="flex gap-2">
-                        <button class="bg-white text-emerald-900 px-4 py-2 rounded-xl font-bold text-xs hover:bg-emerald-50 transition shadow-sm">আজকের হাজিরা নিন</button>
+                        <button onclick="switchTab('teacher')" class="bg-white text-emerald-900 px-4 py-2 rounded-xl font-bold text-xs hover:bg-emerald-50 transition shadow-sm">শিক্ষক হাজিরা নিন</button>
+                        <button onclick="switchTab('student')" class="bg-emerald-700 text-white border border-emerald-600 px-4 py-2 rounded-xl font-bold text-xs hover:bg-emerald-600 transition shadow-sm">শিক্ষার্থী হাজিরা নিন</button>
                     </div>
                 </div>
 
                 <!-- Sub-Modules Grid Layout (5 Features) -->
-                <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
-                    
-                    <!-- 1. Student Attendance -->
-                    <div class="bg-white p-5 rounded-xl shadow-sm border-t-4 border-emerald-600 space-y-3">
+                <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 no-print">
+                    <div onclick="switchTab('student')" class="bg-white p-5 rounded-xl shadow-sm border-t-4 border-emerald-600 space-y-3 cursor-pointer hover:shadow-md transition">
                         <div class="flex items-center justify-between border-b pb-2">
-                            <h3 class="font-bold text-gray-800 text-sm flex items-center gap-2">
-                                <i class="fa-solid fa-user-graduate text-emerald-600"></i> Student Attendance
-                            </h3>
+                            <h3 class="font-bold text-gray-800 text-sm flex items-center gap-2"><i class="fa-solid fa-user-graduate text-emerald-600"></i> Student Attendance</h3>
                             <span class="text-xs bg-emerald-50 text-emerald-700 px-2 py-0.5 rounded font-semibold">শিক্ষার্থী</span>
                         </div>
-                        <p class="text-xs text-gray-600 leading-relaxed">শ্রেণি ও সেকশন ভিত্তিক শিক্ষার্থীদের প্রতিদিনের উপস্থিতি (Present/Absent) রেকর্ড করা।</p>
-                        <button class="w-full bg-emerald-50 text-emerald-700 py-1.5 rounded text-xs font-bold hover:bg-emerald-100 transition">শিক্ষার্থী হাজিরা প্যানেল</button>
+                        <p class="text-xs text-gray-600 leading-relaxed">শ্রেণি ভিত্তিক শিক্ষার্থীদের প্রতিদিনের উপস্থিতি রেকর্ড ও ক্লিক টাইম।</p>
+                        <span class="text-xs text-emerald-700 font-bold block">প্যানেল ওপেন করুন →</span>
                     </div>
 
-                    <!-- 2. Teacher Attendance -->
-                    <div class="bg-white p-5 rounded-xl shadow-sm border-t-4 border-blue-600 space-y-3">
+                    <div onclick="switchTab('teacher')" class="bg-white p-5 rounded-xl shadow-sm border-t-4 border-blue-600 space-y-3 cursor-pointer hover:shadow-md transition">
                         <div class="flex items-center justify-between border-b pb-2">
-                            <h3 class="font-bold text-gray-800 text-sm flex items-center gap-2">
-                                <i class="fa-solid fa-chalkboard-user text-blue-600"></i> Teacher Attendance
-                            </h3>
+                            <h3 class="font-bold text-gray-800 text-sm flex items-center gap-2"><i class="fa-solid fa-chalkboard-user text-blue-600"></i> Teacher Attendance</h3>
                             <span class="text-xs bg-blue-50 text-blue-700 px-2 py-0.5 rounded font-semibold">শিক্ষক</span>
                         </div>
-                        <p class="text-xs text-gray-600 leading-relaxed">শিক্ষক ও স্টাফদের ইন-টাইম, আউট-টাইম এবং দৈনিক উপস্থিতির তথ্য সংরক্ষণ ও পর্যবেক্ষণ।</p>
-                        <button class="w-full bg-blue-50 text-blue-700 py-1.5 rounded text-xs font-bold hover:bg-blue-100 transition">শিক্ষক হাজিরা প্যানেল</button>
+                        <p class="text-xs text-gray-600 leading-relaxed">শিক্ষক ও স্টাফদের রিয়েল-টাইম উপস্থিতি ও ইন-টাইম সংরক্ষণ।</p>
+                        <span class="text-xs text-blue-700 font-bold block">প্যানেল ওপেন করুন →</span>
                     </div>
 
-                    <!-- 3. Daily Attendance -->
-                    <div class="bg-white p-5 rounded-xl shadow-sm border-t-4 border-purple-600 space-y-3">
+                    <div onclick="switchTab('daily')" class="bg-white p-5 rounded-xl shadow-sm border-t-4 border-purple-600 space-y-3 cursor-pointer hover:shadow-md transition">
                         <div class="flex items-center justify-between border-b pb-2">
-                            <h3 class="font-bold text-gray-800 text-sm flex items-center gap-2">
-                                <i class="fa-solid fa-calendar-day text-purple-600"></i> Daily Attendance
-                            </h3>
+                            <h3 class="font-bold text-gray-800 text-sm flex items-center gap-2"><i class="fa-solid fa-calendar-day text-purple-600"></i> Daily Attendance</h3>
                             <span class="text-xs bg-purple-50 text-purple-700 px-2 py-0.5 rounded font-semibold">দৈনিক সংক্ষিপ্তসার</span>
                         </div>
-                        <p class="text-xs text-gray-600 leading-relaxed">আজকের দিনে মোট কতজন উপস্থিত ও অনুপস্থিত রয়েছে তার একটি কমপ্যাক্ট ড্যাশবোর্ড ওভারভিউ।</p>
-                        <button class="w-full bg-purple-50 text-purple-700 py-1.5 rounded text-xs font-bold hover:bg-purple-100 transition">দৈনিক রিপোর্ট দেখুন</button>
+                        <p class="text-xs text-gray-600 leading-relaxed">আজকের দিনে উপস্থিত ও অনুপস্থিতির কমপ্যাক্ট ওভারভিউ।</p>
+                        <span class="text-xs text-purple-700 font-bold block">রিপোর্ট দেখুন →</span>
                     </div>
 
-                    <!-- 4. Monthly Report -->
-                    <div class="bg-white p-5 rounded-xl shadow-sm border-t-4 border-amber-600 space-y-3">
+                    <div onclick="switchTab('monthly')" class="bg-white p-5 rounded-xl shadow-sm border-t-4 border-amber-600 space-y-3 cursor-pointer hover:shadow-md transition">
                         <div class="flex items-center justify-between border-b pb-2">
-                            <h3 class="font-bold text-gray-800 text-sm flex items-center gap-2">
-                                <i class="fa-solid fa-calendar-days text-amber-600"></i> Monthly Report
-                            </h3>
+                            <h3 class="font-bold text-gray-800 text-sm flex items-center gap-2"><i class="fa-solid fa-calendar-days text-amber-600"></i> Monthly Report</h3>
                             <span class="text-xs bg-amber-50 text-amber-700 px-2 py-0.5 rounded font-semibold">মাসিক রিপোর্ট</span>
                         </div>
-                        <p class="text-xs text-gray-600 leading-relaxed">নির্দিষ্ট মাসের পুরো দিনের হাজিরা শিট এবং কর্মদিবসের হিসাব একত্রে প্রিন্ট বা ডাউনলোড।</p>
-                        <button class="w-full bg-amber-50 text-amber-700 py-1.5 rounded text-xs font-bold hover:bg-amber-100 transition">মাসিক রিপোর্ট জেনারেট</button>
+                        <p class="text-xs text-gray-600 leading-relaxed">নির্দিষ্ট মাসের হাজিরা শিট প্রিন্ট ও ডাউনলোড সিস্টেম।</p>
+                        <span class="text-xs text-amber-700 font-bold block">রিপোর্ট জেনারেট →</span>
                     </div>
 
-                    <!-- 5. Attendance Percentage -->
-                    <div class="bg-white p-5 rounded-xl shadow-sm border-t-4 border-indigo-600 space-y-3">
+                    <div onclick="switchTab('percentage')" class="bg-white p-5 rounded-xl shadow-sm border-t-4 border-indigo-600 space-y-3 cursor-pointer hover:shadow-md transition">
                         <div class="flex items-center justify-between border-b pb-2">
-                            <h3 class="font-bold text-gray-800 text-sm flex items-center gap-2">
-                                <i class="fa-solid fa-chart-pie text-indigo-600"></i> Attendance Percentage
-                            </h3>
+                            <h3 class="font-bold text-gray-800 text-sm flex items-center gap-2"><i class="fa-solid fa-chart-pie text-indigo-600"></i> Attendance Percentage</h3>
                             <span class="text-xs bg-indigo-50 text-indigo-700 px-2 py-0.5 rounded font-semibold">শতাংশ</span>
                         </div>
-                        <p class="text-xs text-gray-600 leading-relaxed">শিক্ষার্থীদের উপস্থিতির হার (%) স্বয়ংক্রিয় গণনা এবং পরীক্ষার যোগ্যতার জন্য উপস্থিতি ট্র্যাকিং।</p>
-                        <button class="w-full bg-indigo-50 text-indigo-700 py-1.5 rounded text-xs font-bold hover:bg-indigo-100 transition">শতাংশ বিশ্লেষণ</button>
+                        <p class="text-xs text-gray-600 leading-relaxed">উপস্থিতির হার (%) স্বয়ংক্রিয় গণনা এবং ট্র্যাকিং।</p>
+                        <span class="text-xs text-indigo-700 font-bold block">বিশ্লেষণ দেখুন →</span>
+                    </div>
+                </div>
+
+                <!-- MAIN ATTENDANCE WORKSPACE CONTAINER -->
+                <div id="attendance_workspace" class="bg-white p-6 rounded-2xl shadow-sm border border-gray-200 space-y-4">
+                    <div class="flex flex-wrap justify-between items-center border-b pb-3 gap-3">
+                        <h3 id="workspace_title" class="font-bold text-emerald-800 text-sm"><i class="fa-solid fa-clipboard-user mr-2"></i> শিক্ষক উপস্থিতি ম্যানেজমেন্ট প্যানেল</h3>
+                        <div class="flex flex-wrap gap-2 items-center no-print">
+                            <input type="date" id="att_master_date" class="p-1.5 border rounded text-xs font-bold bg-white" onchange="loadAttendanceData()">
+                            <button onclick="window.print()" class="bg-emerald-700 text-white px-3 py-1.5 rounded text-xs font-bold"><i class="fa-solid fa-print mr-1"></i> প্রিন্ট রিপোর্ট</button>
+                        </div>
                     </div>
 
+                    <!-- Filters -->
+                    <div class="flex flex-wrap gap-3 bg-gray-50 p-3 rounded-xl border text-xs items-center no-print">
+                        <div>
+                            <label class="font-bold text-gray-700 block mb-1">মাস নির্বাচন:</label>
+                            <select id="filter_month" class="p-1.5 border rounded bg-white font-bold" onchange="loadAttendanceData()">
+                                <option value="all">সকল মাস</option>
+                                <option value="01">জানুয়ারি</option><option value="02">ফেব্রুয়ারি</option><option value="03">মার্চ</option>
+                                <option value="04">এপ্রিল</option><option value="05">মে</option><option value="06">জুন</option>
+                                <option value="07">জুলাই</option><option value="08">আগস্ট</option><option value="09">সেপ্টেম্বর</option>
+                                <option value="10">অক্টোবর</option><option value="11">নভেম্বর</option><option value="12">ডিসেম্বর</option>
+                            </select>
+                        </div>
+                        <div>
+                            <label class="font-bold text-gray-700 block mb-1">বছর:</label>
+                            <select id="filter_year" class="p-1.5 border rounded bg-white font-bold" onchange="loadAttendanceData()">
+                                <option value="2026" selected>2026</option><option value="2027">2027</option>
+                            </select>
+                        </div>
+                        <div>
+                            <label class="font-bold text-gray-700 block mb-1">অনুসন্ধান (নাম/আইডি):</label>
+                            <input type="text" id="filter_search" placeholder="নাম বা আইডি দিয়ে খুঁজুন..." class="p-1.5 border rounded bg-white" onkeyup="loadAttendanceData()">
+                        </div>
+                    </div>
+
+                    <!-- Dynamic Table -->
+                    <div class="overflow-x-auto">
+                        <table class="w-full text-left border-collapse border border-gray-200 text-xs">
+                            <thead>
+                                <tr class="bg-emerald-800 text-white" id="att_table_header">
+                                    <th class="border p-2">তারিখ</th>
+                                    <th class="border p-2">আইডি</th>
+                                    <th class="border p-2">নাম</th>
+                                    <th class="border p-2">পদবি / শ্রেণি</th>
+                                    <th class="border p-2 text-center">حاضر / উপস্থিতি ও ক্লিক টাইম</th>
+                                </tr>
+                            </thead>
+                            <tbody id="att_table_body"></tbody>
+                        </table>
+                    </div>
                 </div>
 
             </main>
@@ -187,6 +184,157 @@
         </div>
     </div>
 
-    <script src="script.js"></script>
+    <!-- JavaScript & LocalStorage Engine -->
+    <script>
+        let currentTab = 'teacher';
+
+        window.onload = function() {
+            document.getElementById('att_master_date').value = new Date().toISOString().split('T')[0];
+            loadAttendanceData();
+        };
+
+        function switchTab(tabName) {
+            currentTab = tabName;
+            const titleEl = document.getElementById('workspace_title');
+            if(tabName === 'teacher') titleEl.innerHTML = `<i class="fa-solid fa-chalkboard-user mr-2"></i> শিক্ষক উপস্থিতি ম্যানেজমেন্ট প্যানেল`;
+            else if(tabName === 'student') titleEl.innerHTML = `<i class="fa-solid fa-user-graduate mr-2"></i> শিক্ষার্থী উপস্থিতি ম্যানেজমেন্ট প্যানেল`;
+            else if(tabName === 'daily') titleEl.innerHTML = `<i class="fa-solid fa-calendar-day mr-2"></i> আজকের দৈনিক উপস্থিতি সংক্ষিপ্তসার`;
+            else if(tabName === 'monthly') titleEl.innerHTML = `<i class="fa-solid fa-calendar-days mr-2"></i> মাসিক উপস্থিতি রিপোর্ট`;
+            else if(tabName === 'percentage') titleEl.innerHTML = `<i class="fa-solid fa-chart-pie mr-2"></i> উপস্থিতি শতকরা হার বিশ্লেষণ`;
+
+            loadAttendanceData();
+        }
+
+        function loadAttendanceData() {
+            const tbody = document.getElementById('att_table_body');
+            const thead = document.getElementById('att_table_header');
+            tbody.innerHTML = '';
+
+            const selectedDate = document.getElementById('att_master_date').value;
+            const filterMonth = document.getElementById('filter_month').value;
+            const filterYear = document.getElementById('filter_year').value;
+            const searchKey = document.getElementById('filter_search').value.toLowerCase().trim();
+
+            let [recYear, recMonth, recDay] = selectedDate.split('-');
+
+            if(filterMonth !== 'all' && recMonth !== filterMonth) return;
+            if(filterYear !== 'all' && recYear !== filterYear) return;
+
+            if(currentTab === 'teacher' || currentTab === 'daily') {
+                thead.innerHTML = `
+                    <th class="border p-2">তারিখ</th>
+                    <th class="border p-2">আইডি</th>
+                    <th class="border p-2">নাম</th>
+                    <th class="border p-2">পদবি</th>
+                    <th class="border p-2 text-center">حاضر / উপস্থিতি ও ক্লিক টাইম</th>
+                `;
+
+                let teachers = JSON.parse(localStorage.getItem('madrasah_teachers_master')) || [
+                    { id: "PRN-ARB-2015", name_bn: "মাওলানা মো: ইব্রাহিম", designation: "অধ্যক্ষ (Principal)" }
+                ];
+
+                teachers.forEach(t => {
+                    if(searchKey && !t.name_bn.toLowerCase().includes(searchKey) && !t.id.toLowerCase().includes(searchKey)) return;
+
+                    let attKey = `att_t_${t.id}_${selectedDate}`;
+                    let record = JSON.parse(localStorage.getItem(attKey)) || { status: 'উপস্থিত', time: '-' };
+                    let badgeClass = record.status === 'উপস্থিত' ? 'bg-green-100 text-green-800' : 'bg-red-100 text-red-800';
+
+                    tbody.innerHTML += `
+                        <tr>
+                            <td class="border p-2">${selectedDate}</td>
+                            <td class="border p-2 font-bold text-emerald-700">${t.id}</td>
+                            <td class="border p-2 font-bold">${t.name_bn}</td>
+                            <td class="border p-2">${t.designation}</td>
+                            <td class="border p-2 text-center">
+                                <button onclick="toggleAttendance('t', '${t.id}', '${selectedDate}', this)" class="${badgeClass} px-3 py-1 rounded font-bold text-xs">
+                                    ${record.status} <span class="text-[10px] text-gray-600 font-normal">(${record.time})</span>
+                                </button>
+                            </td>
+                        </tr>
+                    `;
+                });
+            } else if(currentTab === 'student') {
+                thead.innerHTML = `
+                    <th class="border p-2">তারিখ</th>
+                    <th class="border p-2">রোল</th>
+                    <th class="border p-2">শিক্ষার্থীর নাম</th>
+                    <th class="border p-2">শ্রেণি / সেকশন</th>
+                    <th class="border p-2 text-center">حاضر / উপস্থিতি ও ক্লিক টাইম</th>
+                `;
+
+                // ডেমো বা লোকাল স্টোরেজ থেকে শিক্ষার্থী ডেটা নেওয়া
+                let students = [
+                    { roll: "101", name: "ফাতেমা তুজ জোহরা", class: "নursery" },
+                    { roll: "102", name: "আব্দুল্লাহ আল মামুন", class: "नursery" }
+                ];
+
+                students.forEach(s => {
+                    if(searchKey && !s.name.toLowerCase().includes(searchKey) && !s.roll.includes(searchKey)) return;
+
+                    let attKey = `att_s_${s.roll}_${selectedDate}`;
+                    let record = JSON.parse(localStorage.getItem(attKey)) || { status: 'উপস্থিত', time: '-' };
+                    let badgeClass = record.status === 'উপস্থিত' ? 'bg-green-100 text-green-800' : 'bg-red-100 text-red-800';
+
+                    tbody.innerHTML += `
+                        <tr>
+                            <td class="border p-2">${selectedDate}</td>
+                            <td class="border p-2 font-bold text-blue-700">${s.roll}</td>
+                            <td class="border p-2 font-bold">${s.name}</td>
+                            <td class="border p-2">${s.class}</td>
+                            <td class="border p-2 text-center">
+                                <button onclick="toggleAttendance('s', '${s.roll}', '${selectedDate}', this)" class="${badgeClass} px-3 py-1 rounded font-bold text-xs">
+                                    ${record.status} <span class="text-[10px] text-gray-600 font-normal">(${record.time})</span>
+                                </button>
+                            </td>
+                        </tr>
+                    `;
+                });
+            } else if(currentTab === 'monthly') {
+                thead.innerHTML = `
+                    <th class="border p-2">আইডি/রোল</th>
+                    <th class="border p-2">নাম</th>
+                    <th class="border p-2 text-center">মোট কার্যদিবস</th>
+                    <th class="border p-2 text-center text-green-700">মোট উপস্থিত</th>
+                    <th class="border p-2 text-center text-red-700">মোট অনুপস্থিত</th>
+                `;
+                tbody.innerHTML = `
+                    <tr>
+                        <td class="border p-2 font-bold">PRN-ARB-2015</td>
+                        <td class="border p-2 font-bold">মাওলানা মো: ইব্রাহিম</td>
+                        <td class="border p-2 text-center">২৬ দিন</td>
+                        <td class="border p-2 text-center font-bold text-green-700">২৫ দিন</td>
+                        <td class="border p-2 text-center font-bold text-red-700">১ দিন</td>
+                    </tr>
+                `;
+            } else if(currentTab === 'percentage') {
+                thead.innerHTML = `
+                    <th class="border p-2">নাম</th>
+                    <th class="border p-2 text-center">উপস্থিতির হার (%)</th>
+                    <th class="border p-2 text-center">স্ট্যাটাস</th>
+                `;
+                tbody.innerHTML = `
+                    <tr>
+                        <td class="border p-2 font-bold">মাওলানা মো: ইব্রাহিম</td>
+                        <td class="border p-2 text-center font-bold text-indigo-700">৯৬.১৫%</td>
+                        <td class="border p-2 text-center bg-green-50 text-green-800 font-bold">উত্তীর্ণ (Eligible)</td>
+                    </tr>
+                `;
+            }
+        }
+
+        function toggleAttendance(type, id, date, btn) {
+            let attKey = `att_${type}_${id}_${date}`;
+            let currentRecord = JSON.parse(localStorage.getItem(attKey)) || { status: 'উপস্থিত', time: '-' };
+            
+            let nextStatus = currentRecord.status === 'উপস্থিত' ? 'অনুপস্থিত' : 'উপস্থিত';
+            let clickTime = nextStatus === 'উপস্থিত' ? new Date().toLocaleTimeString('en-US', { hour: '2-digit', minute: '2-digit' }) : '-';
+
+            let newRecord = { status: nextStatus, time: clickTime };
+            localStorage.setItem(attKey, JSON.stringify(newRecord));
+
+            loadAttendanceData();
+        }
+    </script>
 </body>
 </html>

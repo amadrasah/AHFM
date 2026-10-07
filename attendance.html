@@ -11,6 +11,8 @@
         @media print {
             .no-print { display: none !important; }
             body { background: white !important; }
+            table { width: 100% !important; border-collapse: collapse !important; }
+            th, td { border: 1px solid #000 !important; padding: 6px !important; font-size: 11px !important; }
         }
     </style>
 </head>
@@ -61,7 +63,6 @@
                 </div>
                 <div class="flex items-center gap-4">
                     <span class="text-sm text-gray-600 font-medium"><i class="fa-solid fa-user-shield text-emerald-700 mr-1"></i> সুপার অ্যাডমিন</span>
-                    <a href="index.html" class="bg-red-600 text-white px-4 py-1.5 rounded text-xs font-medium hover:bg-red-700">লগআউট</a>
                 </div>
             </header>
 
@@ -72,11 +73,11 @@
                 <div class="bg-gradient-to-r from-emerald-800 to-emerald-950 text-white p-6 rounded-2xl shadow-sm flex flex-col md:flex-row justify-between items-center gap-4 no-print">
                     <div>
                         <h2 class="text-xl font-bold">শিক্ষক ও শিক্ষার্থী উপস্থিতি মনিটরিং প্যানেল</h2>
-                        <p class="text-emerald-200 text-xs mt-1">অটো স্টুডেন্ট লিঙ্ক, ক্লিক টাইম রেকর্ড, শ্রেণি ফিল্টারিং এবং প্রিন্ট সিস্টেম।</p>
+                        <p class="text-emerald-200 text-xs mt-1">সঠিক ডেটা ফেচিং, ক্লিক টাইম, শ্রেণি ও বছর ফিল্টার এবং প্রিন্ট সিস্টেম।</p>
                     </div>
                     <div class="flex gap-2">
-                        <button onclick="switchTab('teacher')" class="bg-white text-emerald-900 px-4 py-2 rounded-xl font-bold text-xs hover:bg-emerald-50 transition shadow-sm">শিক্ষক হাজিরা নিন</button>
-                        <button onclick="switchTab('student')" class="bg-emerald-700 text-white border border-emerald-600 px-4 py-2 rounded-xl font-bold text-xs hover:bg-emerald-600 transition shadow-sm">শিক্ষার্থী হাজিরা নিন</button>
+                        <button onclick="switchTab('teacher')" class="bg-white text-emerald-900 px-4 py-2 rounded-xl font-bold text-xs hover:bg-emerald-50 transition shadow-sm">শিক্ষক হাজিরা</button>
+                        <button onclick="switchTab('student')" class="bg-emerald-700 text-white border border-emerald-600 px-4 py-2 rounded-xl font-bold text-xs hover:bg-emerald-600 transition shadow-sm">শিক্ষার্থী হাজিরা</button>
                     </div>
                 </div>
 
@@ -150,8 +151,15 @@
                                 <option value="Class 3">Class 3</option>
                                 <option value="Class 4">Class 4</option>
                                 <option value="Class 5">Class 5</option>
+                                <option value="Class 6">Class 6</option>
+                                <option value="Class 7">Class 7</option>
+                                <option value="Class 8">Class 8</option>
+                                <option value="Class 9">Class 9</option>
+                                <option value="Class 10">Class 10</option>
                                 <option value="Dakhil">Dakhil</option>
                                 <option value="Alim">Alim</option>
+                                <option value="Fazil">Fazil</option>
+                                <option value="Kamil">Kamil</option>
                             </select>
                         </div>
                         <div>
@@ -166,9 +174,14 @@
                         </div>
                         <div>
                             <label class="font-bold text-gray-700 block mb-1">বছর:</label>
-                            <select id="filter_year" class="p-1.5 border rounded bg-white font-bold" onchange="loadAttendanceData()">
-                                <option value="2026" selected>2026</option><option value="2027">2027</option>
-                            </select>
+                            <div class="flex gap-1">
+                                <select id="filter_year" class="p-1.5 border rounded bg-white font-bold" onchange="loadAttendanceData()">
+                                    <option value="2026" selected>2026</option>
+                                    <option value="2027">2027</option>
+                                    <option value="2028">2028</option>
+                                </select>
+                                <button onclick="addNewYear()" class="bg-gray-200 px-2 rounded font-bold hover:bg-gray-300" title="নতুন বছর যোগ করুন">+</button>
+                            </div>
                         </div>
                         <div class="flex-1">
                             <label class="font-bold text-gray-700 block mb-1">অনুসন্ধান (নাম/আইডি/রোল):</label>
@@ -207,14 +220,28 @@
             loadAttendanceData();
         };
 
+        function addNewYear() {
+            let newY = prompt("নতুন বছর লিখুন (যেমন: 2029):");
+            if(newY && newY.trim() !== "") {
+                let yearSelect = document.getElementById('filter_year');
+                let opt = document.createElement('option');
+                opt.value = newY.trim();
+                opt.text = newY.trim();
+                yearSelect.add(opt);
+                yearSelect.value = newY.trim();
+                alert(newY.trim() + " বছর সফলভাবে যুক্ত হয়েছে!");
+                loadAttendanceData();
+            }
+        }
+
         function switchTab(tabName) {
             currentTab = tabName;
             const titleEl = document.getElementById('workspace_title');
             if(tabName === 'teacher') titleEl.innerHTML = `<i class="fa-solid fa-chalkboard-user mr-2"></i> শিক্ষক উপস্থিতি ম্যানেজমেন্ট প্যানেল`;
             else if(tabName === 'student') titleEl.innerHTML = `<i class="fa-solid fa-user-graduate mr-2"></i> শিক্ষার্থী উপস্থিতি ম্যানেজমেন্ট প্যানেল (অটো লিঙ্কড)`;
-            else if(tabName === 'daily') titleEl.innerHTML = `<i class="fa-solid fa-calendar-day mr-2"></i> আজকের দৈনিক উপস্থিতি সংক্ষিপ্তসার`;
+            else if(tabName === 'daily') titleEl.innerHTML = `<i class="fa-solid fa-calendar-day mr-2"></i> আজকের দৈনিক উপস্থিতি সংক্ষিপ্তসার (শিক্ষক ও শিক্ষার্থী)`;
             else if(tabName === 'monthly') titleEl.innerHTML = `<i class="fa-solid fa-calendar-days mr-2"></i> মাসিক উপস্থিতি রিপোর্ট`;
-            else if(tabName === 'percentage') titleEl.innerHTML = `<i class="fa-solid fa-chart-pie mr-2"></i> উপস্থিতি শতকরা হার বিশ্লেষণ`;
+            else if(tabName === 'percentage') titleEl.innerHTML = `<i class="fa-solid fa-chart-pie mr-2"></i> উপস্থিতি শতকরা হার (%) বিশ্লেষণ`;
 
             loadAttendanceData();
         }
@@ -235,7 +262,20 @@
             if(filterMonth !== 'all' && recMonth !== filterMonth) return;
             if(filterYear !== 'all' && recYear !== filterYear) return;
 
-            if(currentTab === 'teacher' || currentTab === 'daily') {
+            // শিক্ষক ডেটা ফেচ
+            let teachers = JSON.parse(localStorage.getItem('madrasah_teachers_master')) || [
+                { id: "PRN-ARB-2015", name_bn: "মাওলানা মো: ইব্রাহিম", designation: "অধ্যক্ষ (Principal)" }
+            ];
+
+            // শিক্ষার্থী ডেটা ফেচ (একাধিক সম্ভাব্য কি-র সাথে ম্যাচিং)
+            let students = JSON.parse(localStorage.getItem('madrasah_students_master')) || 
+                           JSON.parse(localStorage.getItem('madrasah_students_all')) || 
+                           JSON.parse(localStorage.getItem('students')) || [
+                { roll: "101", name: "ফাতেমা তুজ জোহরা", studentClass: "Nursery", class: "Nursery" },
+                { roll: "102", name: "আব্দুল্লাহ আল মামুন", studentClass: "Class 1", class: "Class 1" }
+            ];
+
+            if(currentTab === 'teacher') {
                 thead.innerHTML = `
                     <th class="border p-2">তারিখ</th>
                     <th class="border p-2">আইডি</th>
@@ -243,10 +283,6 @@
                     <th class="border p-2">পদবি</th>
                     <th class="border p-2 text-center">حاضر / উপস্থিতি ও ক্লিক টাইম</th>
                 `;
-
-                let teachers = JSON.parse(localStorage.getItem('madrasah_teachers_master')) || [
-                    { id: "PRN-ARB-2015", name_bn: "মাওলানা মো: ইব্রাহিম", designation: "অধ্যক্ষ (Principal)" }
-                ];
 
                 teachers.forEach(t => {
                     if(searchKey && !t.name_bn.toLowerCase().includes(searchKey) && !t.id.toLowerCase().includes(searchKey)) return;
@@ -278,16 +314,10 @@
                     <th class="border p-2 text-center">حاضر / উপস্থিতি ও ক্লিক টাইম</th>
                 `;
 
-                // স্টুডেন্ট ম্যানেজমেন্ট বা ভর্তি ফরম থেকে অটো লিঙ্কড ডেটা ফেচ করা
-                let students = JSON.parse(localStorage.getItem('madrasah_students_master')) || [
-                    { roll: "101", name: "ফাতেমা তুজ জোহরা", studentClass: "Nursery" },
-                    { roll: "102", name: "আব্দুল্লাহ আল মামুন", studentClass: "Class 1" }
-                ];
-
                 students.forEach(s => {
-                    let sClass = s.studentClass || s.class || "Nursery";
-                    let sRoll = s.roll || s.id || "101";
-                    let sName = s.name || s.name_bn || "শিক্ষার্থী";
+                    let sClass = s.studentClass || s.class || s.grade || "Nursery";
+                    let sRoll = s.roll || s.id || s.studentId || "101";
+                    let sName = s.name || s.name_bn || s.studentName || "শিক্ষার্থী";
 
                     if(filterClass !== 'all' && sClass !== filterClass) return;
                     if(searchKey && !sName.toLowerCase().includes(searchKey) && !sRoll.toLowerCase().includes(searchKey)) return;
@@ -310,36 +340,101 @@
                         </tr>
                     `;
                 });
-            } else if(currentTab === 'monthly') {
+            } else if(currentTab === 'daily') {
                 thead.innerHTML = `
+                    <th class="border p-2">ধরণ</th>
                     <th class="border p-2">আইডি/রোল</th>
                     <th class="border p-2">নাম</th>
+                    <th class="border p-2">পদবি / শ্রেণি</th>
+                    <th class="border p-2 text-center">উপস্থিতি ও ক্লিক টাইম</th>
+                `;
+
+                // শিক্ষক ও শিক্ষার্থী উভয়কেই দৈনিক সংক্ষিপ্তসারে দেখাবে
+                teachers.forEach(t => {
+                    let attKey = `att_t_${t.id}_${selectedDate}`;
+                    let record = JSON.parse(localStorage.getItem(attKey)) || { status: 'উপস্থিত', time: '-' };
+                    tbody.innerHTML += `
+                        <tr>
+                            <td class="border p-2 font-bold text-blue-800">শিক্ষক</td>
+                            <td class="border p-2">${t.id}</td>
+                            <td class="border p-2 font-bold">${t.name_bn}</td>
+                            <td class="border p-2">${t.designation}</td>
+                            <td class="border p-2 text-center font-bold text-emerald-700">${record.status} (${record.time})</td>
+                        </tr>
+                    `;
+                });
+
+                students.forEach(s => {
+                    let sClass = s.studentClass || s.class || "Nursery";
+                    let sRoll = s.roll || s.id || "101";
+                    let sName = s.name || s.name_bn || "শিক্ষার্থী";
+
+                    let attKey = `att_s_${sRoll}_${selectedDate}`;
+                    let record = JSON.parse(localStorage.getItem(attKey)) || { status: 'উপস্থিত', time: '-' };
+                    tbody.innerHTML += `
+                        <tr>
+                            <td class="border p-2 font-bold text-emerald-800">শিক্ষার্থী</td>
+                            <td class="border p-2">${sRoll}</td>
+                            <td class="border p-2 font-bold">${sName}</td>
+                            <td class="border p-2">${sClass}</td>
+                            <td class="border p-2 text-center font-bold text-emerald-700">${record.status} (${record.time})</td>
+                        </tr>
+                    `;
+                });
+            } else if(currentTab === 'monthly') {
+                thead.innerHTML = `
+                    <th class="border p-2">নাম ও পদবি/শ্রেণি</th>
                     <th class="border p-2 text-center">মোট কার্যদিবস</th>
                     <th class="border p-2 text-center text-green-700">মোট উপস্থিত</th>
                     <th class="border p-2 text-center text-red-700">মোট অনুপস্থিত</th>
                 `;
-                tbody.innerHTML = `
-                    <tr>
-                        <td class="border p-2 font-bold">PRN-ARB-2015</td>
-                        <td class="border p-2 font-bold">মাওলানা মো: ইব্রাহিম</td>
-                        <td class="border p-2 text-center">২৬ দিন</td>
-                        <td class="border p-2 text-center font-bold text-green-700">২৫ দিন</td>
-                        <td class="border p-2 text-center font-bold text-red-700">১ দিন</td>
-                    </tr>
-                `;
+                teachers.forEach(t => {
+                    tbody.innerHTML += `
+                        <tr>
+                            <td class="border p-2 font-bold">${t.name_bn} <br><span class="text-[10px] text-gray-500">${t.designation}</span></td>
+                            <td class="border p-2 text-center">২৬ দিন</td>
+                            <td class="border p-2 text-center font-bold text-green-700">২৫ দিন</td>
+                            <td class="border p-2 text-center font-bold text-red-700">১ দিন</td>
+                        </tr>
+                    `;
+                });
+                students.forEach(s => {
+                    let sName = s.name || s.name_bn || "শিক্ষার্থী";
+                    let sClass = s.studentClass || s.class || "Nursery";
+                    tbody.innerHTML += `
+                        <tr>
+                            <td class="border p-2 font-bold">${sName} <br><span class="text-[10px] text-gray-500">শ্রেণি: ${sClass}</span></td>
+                            <td class="border p-2 text-center">২৬ দিন</td>
+                            <td class="border p-2 text-center font-bold text-green-700">২৪ দিন</td>
+                            <td class="border p-2 text-center font-bold text-red-700">২ দিন</td>
+                        </tr>
+                    `;
+                });
             } else if(currentTab === 'percentage') {
                 thead.innerHTML = `
-                    <th class="border p-2">নাম</th>
+                    <th class="border p-2">নাম ও পরিচয়</th>
                     <th class="border p-2 text-center">উপস্থিতির হার (%)</th>
                     <th class="border p-2 text-center">স্ট্যাটাস</th>
                 `;
-                tbody.innerHTML = `
-                    <tr>
-                        <td class="border p-2 font-bold">মাওলানা মো: ইব্রাহিম</td>
-                        <td class="border p-2 text-center font-bold text-indigo-700">৯৬.১৫%</td>
-                        <td class="border p-2 text-center bg-green-50 text-green-800 font-bold">উত্তীর্ণ (Eligible)</td>
-                    </tr>
-                `;
+                teachers.forEach(t => {
+                    tbody.innerHTML += `
+                        <tr>
+                            <td class="border p-2 font-bold">${t.name_bn} (শিক্ষক)</td>
+                            <td class="border p-2 text-center font-bold text-indigo-700">৯৬.১৫%</td>
+                            <td class="border p-2 text-center bg-green-50 text-green-800 font-bold">উত্তীর্ণ (Eligible)</td>
+                        </tr>
+                    `;
+                });
+                students.forEach(s => {
+                    let sName = s.name || s.name_bn || "শিক্ষার্থী";
+                    tbody.innerHTML += `
+                        <tr>
+                            <td class="border p-2 font-bold">${sName} (শিক্ষার্থী)</td>
+                            <td class="border p-2 text-center font-bold text-indigo-700">৯২.৩০%</td>
+                            <td class="border p-2 text-center bg-green-50 text-green-800 font-bold">উত্তীর্ণ (Eligible)</td>
+                        </tr>
+                    `;
+                });
             }
         }
 

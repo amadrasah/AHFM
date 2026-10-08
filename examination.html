@@ -16,8 +16,8 @@
             .no-print { display: none !important; }
             body { background: white !important; padding: 0 !important; margin: 0 !important; }
             .report-card-container {
-                border: 5px double #b45309 !important;
-                padding: 6px !important;
+                border: 4px double #b45309 !important;
+                padding: 4px !important;
                 background: white !important;
                 width: 100% !important;
                 max-width: 210mm !important;
@@ -28,23 +28,24 @@
                 page-break-inside: avoid;
             }
             .admit-half {
-                height: 136mm !important;
-                max-height: 136mm !important;
+                height: 138mm !important;
+                max-height: 138mm !important;
                 overflow: hidden !important;
                 box-sizing: border-box !important;
             }
             .cut-divider {
                 border-top: 1px dashed #000 !important;
-                margin: 3mm 0 !important;
+                margin: 2mm 0 !important;
             }
+            table { width: 100% !important; border-collapse: collapse !important; }
+            th, td { border: 1px solid #000 !important; padding: 2px 3px !important; font-size: 8px !important; }
         }
-        /* Classic Excel Vintage Double Border Simulator */
         .vintage-border {
-            border: 8px double #b45309;
+            border: 6px double #b45309;
             box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1);
         }
         .admit-half {
-            height: 135mm;
+            height: 136mm;
             display: flex;
             flex-direction: column;
             justify-content: space-between;
@@ -109,12 +110,7 @@
                 <div class="bg-gradient-to-r from-emerald-800 to-emerald-950 text-white p-6 rounded-2xl shadow-sm flex flex-col md:flex-row justify-between items-center gap-4 no-print">
                     <div>
                         <h2 class="text-xl font-bold">পরীক্ষা ও ফলাফল ব্যবস্থাপনা প্যানেল</h2>
-                        <p class="text-emerald-200 text-xs mt-1">নম্বর এন্ট্রি, জিপিএ ক্যালকুলেশন, প্রোগ্রেস রিপোর্ট কার্ড এবং এক পেজে দুটি এডমিট কার্ড প্রিন্ট জেনারেটর।</p>
-                    </div>
-                    <div class="flex gap-2">
-                        <button onclick="openExamModule('marks_entry')" class="bg-white text-emerald-900 px-4 py-2 rounded-xl font-bold text-xs hover:bg-emerald-50 transition shadow-sm">
-                            <i class="fa-solid fa-pen-to-square mr-1"></i> নম্বর এন্ট্রি শুরু করুন
-                        </button>
+                        <p class="text-emerald-200 text-xs mt-1">নম্বর এন্ট্রি, জিপিএ ক্যালকুলেশন, প্রোগ্রেস রিপোর্ট কার্ড এবং ডুয়াল এডমিট কার্ড জেনারেটর।</p>
                     </div>
                 </div>
 
@@ -546,7 +542,7 @@
                     <div class="text-right pr-4 text-[10px] italic text-gray-500 font-serif no-print">Mazad's Creation</div>
                 </div>
 
-                <!-- 8. DUAL ADMIT CARD PANEL (ONE A4 PAGE, TWO STUDENTS) -->
+                <!-- 8. DUAL ADMIT CARD PANEL (ONE A4 PAGE, TWO STUDENTS WITH INSTRUCTIONS) -->
                 <div id="panel-admit_card" class="exam-sub-panel bg-white p-6 rounded-2xl shadow-sm border border-gray-200 space-y-4 hidden">
                     <div class="flex justify-between items-center border-b pb-3 no-print">
                         <h3 class="font-bold text-indigo-800 text-sm"><i class="fa-solid fa-id-card mr-2"></i> ৮. এক পেজে দুটি এডমিট কার্ড জেনারেটর</h3>
@@ -579,29 +575,29 @@
 
                     <!-- DUAL ADMIT CARD A4 CONTAINER -->
                     <div class="flex justify-center">
-                        <div id="admitCardPreviewArea" class="report-card-container vintage-border p-4 bg-white w-full max-w-[210mm] relative overflow-hidden text-[10px] text-black">
+                        <div id="admitCardPreviewArea" class="report-card-container vintage-border p-3 bg-white w-full max-w-[210mm] relative overflow-hidden text-[9px] text-black">
                             
                             <!-- 1ST STUDENT (TOP HALF) -->
-                            <div class="admit-half relative space-y-2">
+                            <div class="admit-half relative space-y-1.5">
                                 <div id="watermark_1" class="absolute inset-0 flex items-center justify-center opacity-15 pointer-events-none z-0"></div>
 
                                 <div class="text-center space-y-0.5 relative z-10 border-b border-amber-800 pb-1">
-                                    <div class="absolute left-1 top-0 w-9 h-9 border flex items-center justify-center bg-gray-50" id="logo_1"><span class="text-[7px]">LOGO</span></div>
-                                    <h1 class="text-sm font-bold" style="font-family: serif;">Abdullah Hat Islamia Fazil Madrasah</h1>
-                                    <p class="text-[9px] text-gray-700">Nateshwar, Sonaimury, Noakhali</p>
-                                    <div class="bg-indigo-900 text-white font-bold text-[10px] py-0.5 px-6 inline-block mt-0.5 uppercase rounded">ADMIT CARD</div>
-                                    <p class="text-[10px] font-bold text-gray-800" id="exam_title_1">Half Yearly Examination-2026</p>
+                                    <div class="absolute left-1 top-0 w-8 h-8 border flex items-center justify-center bg-gray-50" id="logo_1"><span class="text-[6px]">LOGO</span></div>
+                                    <h1 class="text-xs font-bold" style="font-family: serif;">Abdullah Hat Islamia Fazil Madrasah</h1>
+                                    <p class="text-[8.5px] text-gray-700">Nateshwar, Sonaimury, Noakhali</p>
+                                    <div class="bg-indigo-900 text-white font-bold text-[9px] py-0.5 px-5 inline-block mt-0.5 uppercase rounded">ADMIT CARD</div>
+                                    <p class="text-[9px] font-bold text-gray-800" id="exam_title_1">Half Yearly Examination-2026</p>
                                 </div>
 
-                                <div class="border border-indigo-900 p-2.5 space-y-1 relative z-10 bg-white/95 rounded">
-                                    <div class="grid grid-cols-2 gap-2 text-[9.5px]">
-                                        <div class="space-y-1">
+                                <div class="border border-indigo-900 p-2 space-y-1 relative z-10 bg-white/95 rounded">
+                                    <div class="grid grid-cols-2 gap-2 text-[9px]">
+                                        <div class="space-y-0.5">
                                             <div class="flex"><span class="font-bold w-24">Student's Name</span>: <b id="name_1" class="ml-1">---</b></div>
                                             <div class="flex"><span class="font-bold w-24">Father's Name</span>: <span id="father_1" class="ml-1">---</span></div>
                                             <div class="flex"><span class="font-bold w-24">Mother's Name</span>: <span id="mother_1" class="ml-1">---</span></div>
                                             <div class="flex"><span class="font-bold w-24">Class</span>: <span id="class_1" class="ml-1">---</span></div>
                                         </div>
-                                        <div class="space-y-1">
+                                        <div class="space-y-0.5">
                                             <div class="flex"><span class="font-bold w-24">Roll No / ID</span>: <b id="roll_1" class="ml-1 text-indigo-900 text-xs">---</b></div>
                                             <div class="flex"><span class="font-bold w-24">Reg. No</span>: <span class="ml-1">2026-AHIFM-001</span></div>
                                             <div class="flex"><span class="font-bold w-24">Session</span>: <span class="ml-1">2026-2027</span></div>
@@ -610,42 +606,47 @@
                                     </div>
                                 </div>
 
-                                <div class="flex justify-between items-end pt-4 relative z-10 text-[10px] font-bold">
+                                <!-- Instructions Box 1 -->
+                                <div class="border border-gray-300 p-1.5 rounded bg-gray-50/90 relative z-10 text-[8.5px] space-y-0.5">
+                                    <p class="font-bold text-indigo-900">নির্দেশনা: ১. প্রবেশপত্র সাথে আনতে হবে। ২. পরীক্ষা শুরুর ১৫ মিনিট পূর্বে আসন গ্রহণ করতে হবে। ৩. মোবাইল বা ইলেকট্রনিক ডিভাইস নিষিদ্ধ।</p>
+                                </div>
+
+                                <div class="flex justify-between items-end pt-2 relative z-10 text-[9px] font-bold">
                                     <div>Controller of Examinations</div>
                                     <div class="text-center">
-                                        <div id="sig_1" class="h-6 flex items-center justify-center"></div>
-                                        <div class="border-t border-black w-36 pt-0.5">Principal's Signature</div>
+                                        <div id="sig_1" class="h-5 flex items-center justify-center"></div>
+                                        <div class="border-t border-black w-32 pt-0.5">Principal's Signature</div>
                                     </div>
                                 </div>
                             </div>
 
                             <!-- CUT / DOTTED DIVIDER LINE -->
-                            <div class="cut-divider border-t border-dashed border-gray-500 my-2 flex items-center justify-between text-[9px] text-gray-500">
+                            <div class="cut-divider border-t border-dashed border-gray-500 my-2 flex items-center justify-between text-[8px] text-gray-500">
                                 <span>-------------------------------------------------- কাটার জন্য রেখা --------------------------------------------------</span>
                                 <i class="fa-solid fa-scissors"></i>
                             </div>
 
                             <!-- 2ND STUDENT (BOTTOM HALF) -->
-                            <div class="admit-half relative space-y-2 pt-1">
+                            <div class="admit-half relative space-y-1.5 pt-0.5">
                                 <div id="watermark_2" class="absolute inset-0 flex items-center justify-center opacity-15 pointer-events-none z-0"></div>
 
                                 <div class="text-center space-y-0.5 relative z-10 border-b border-amber-800 pb-1">
-                                    <div class="absolute left-1 top-0 w-9 h-9 border flex items-center justify-center bg-gray-50" id="logo_2"><span class="text-[7px]">LOGO</span></div>
-                                    <h1 class="text-sm font-bold" style="font-family: serif;">Abdullah Hat Islamia Fazil Madrasah</h1>
-                                    <p class="text-[9px] text-gray-700">Nateshwar, Sonaimury, Noakhali</p>
-                                    <div class="bg-indigo-900 text-white font-bold text-[10px] py-0.5 px-6 inline-block mt-0.5 uppercase rounded">ADMIT CARD</div>
-                                    <p class="text-[10px] font-bold text-gray-800" id="exam_title_2">Half Yearly Examination-2026</p>
+                                    <div class="absolute left-1 top-0 w-8 h-8 border flex items-center justify-center bg-gray-50" id="logo_2"><span class="text-[6px]">LOGO</span></div>
+                                    <h1 class="text-xs font-bold" style="font-family: serif;">Abdullah Hat Islamia Fazil Madrasah</h1>
+                                    <p class="text-[8.5px] text-gray-700">Nateshwar, Sonaimury, Noakhali</p>
+                                    <div class="bg-indigo-900 text-white font-bold text-[9px] py-0.5 px-5 inline-block mt-0.5 uppercase rounded">ADMIT CARD</div>
+                                    <p class="text-[9px] font-bold text-gray-800" id="exam_title_2">Half Yearly Examination-2026</p>
                                 </div>
 
-                                <div class="border border-indigo-900 p-2.5 space-y-1 relative z-10 bg-white/95 rounded">
-                                    <div class="grid grid-cols-2 gap-2 text-[9.5px]">
-                                        <div class="space-y-1">
+                                <div class="border border-indigo-900 p-2 space-y-1 relative z-10 bg-white/95 rounded">
+                                    <div class="grid grid-cols-2 gap-2 text-[9px]">
+                                        <div class="space-y-0.5">
                                             <div class="flex"><span class="font-bold w-24">Student's Name</span>: <b id="name_2" class="ml-1">---</b></div>
                                             <div class="flex"><span class="font-bold w-24">Father's Name</span>: <span id="father_2" class="ml-1">---</span></div>
                                             <div class="flex"><span class="font-bold w-24">Mother's Name</span>: <span id="mother_2" class="ml-1">---</span></div>
                                             <div class="flex"><span class="font-bold w-24">Class</span>: <span id="class_2" class="ml-1">---</span></div>
                                         </div>
-                                        <div class="space-y-1">
+                                        <div class="space-y-0.5">
                                             <div class="flex"><span class="font-bold w-24">Roll No / ID</span>: <b id="roll_2" class="ml-1 text-indigo-900 text-xs">---</b></div>
                                             <div class="flex"><span class="font-bold w-24">Reg. No</span>: <span class="ml-1">2026-AHIFM-002</span></div>
                                             <div class="flex"><span class="font-bold w-24">Session</span>: <span class="ml-1">2026-2027</span></div>
@@ -654,11 +655,16 @@
                                     </div>
                                 </div>
 
-                                <div class="flex justify-between items-end pt-4 relative z-10 text-[10px] font-bold">
+                                <!-- Instructions Box 2 -->
+                                <div class="border border-gray-300 p-1.5 rounded bg-gray-50/90 relative z-10 text-[8.5px] space-y-0.5">
+                                    <p class="font-bold text-indigo-900">নির্দেশনা: ১. প্রবেশপত্র সাথে আনতে হবে। ২. পরীক্ষা শুরুর ১৫ মিনিট পূর্বে আসন গ্রহণ করতে হবে। ৩. মোবাইল বা ইলেকট্রনিক ডিভাইস নিষিদ্ধ।</p>
+                                </div>
+
+                                <div class="flex justify-between items-end pt-2 relative z-10 text-[9px] font-bold">
                                     <div>Controller of Examinations</div>
                                     <div class="text-center">
-                                        <div id="sig_2" class="h-6 flex items-center justify-center"></div>
-                                        <div class="border-t border-black w-36 pt-0.5">Principal's Signature</div>
+                                        <div id="sig_2" class="h-5 flex items-center justify-center"></div>
+                                        <div class="border-t border-black w-32 pt-0.5">Principal's Signature</div>
                                     </div>
                                 </div>
                             </div>
@@ -1019,13 +1025,13 @@
 
             ['1', '2'].forEach(i => {
                 let wmLayer = document.getElementById('watermark_' + i);
-                if(wmBase64 && wmLayer) wmLayer.innerHTML = `<img src="${wmBase64}" class="w-64 h-64 object-contain">`;
+                if(wmBase64 && wmLayer) wmLayer.innerHTML = `<img src="${wmBase64}" class="w-56 h-56 object-contain">`;
 
                 let logoBox = document.getElementById('logo_' + i);
                 if(logoBase64 && logoBox) logoBox.innerHTML = `<img src="${logoBase64}" class="w-full h-full object-contain">`;
 
                 let sigBox = document.getElementById('sig_' + i);
-                if(sigBase64 && sigBox) sigBox.innerHTML = `<img src="${sigBase64}" class="h-5 object-contain">`;
+                if(sigBase64 && sigBox) sigBox.innerHTML = `<img src="${sigBase64}" class="h-4 object-contain">`;
             });
         }
     </script>

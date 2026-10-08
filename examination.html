@@ -95,7 +95,7 @@
                 <div class="bg-gradient-to-r from-emerald-800 to-emerald-950 text-white p-6 rounded-2xl shadow-sm flex flex-col md:flex-row justify-between items-center gap-4 no-print">
                     <div>
                         <h2 class="text-xl font-bold">পরীক্ষা ও ফলাফল ব্যবস্থাপনা প্যানেল</h2>
-                        <p class="text-emerald-200 text-xs mt-1">নম্বর এন্ট্রি, জিপিএ ক্যালকুলেশন এবং আপনার এক্সেলের আদলে তৈরি নিখুঁত প্রোগ্রেস রিপোর্ট কার্ড জেনারেটর।</p>
+                        <p class="text-emerald-200 text-xs mt-1">নম্বর এন্ট্রি, জিপিএ ক্যালকুলেশন, প্রোগ্রেস রিপোর্ট কার্ড এবং বোর্ড স্টাইল এডমিট কার্ড জেনারেটর।</p>
                     </div>
                     <div class="flex gap-2">
                         <button onclick="openExamModule('marks_entry')" class="bg-white text-emerald-900 px-4 py-2 rounded-xl font-bold text-xs hover:bg-emerald-50 transition shadow-sm">
@@ -104,7 +104,7 @@
                     </div>
                 </div>
 
-                <!-- 11 Sub-Modules Grid Layout -->
+                <!-- Sub-Modules Grid Layout -->
                 <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 no-print">
                     
                     <div onclick="openExamModule('setup')" class="bg-white p-5 rounded-xl shadow-sm border-t-4 border-emerald-600 space-y-3 cursor-pointer hover:border-emerald-700 transition">
@@ -161,13 +161,22 @@
                         <span class="text-xs text-amber-700 font-bold block">সামারি শিট দেখুন →</span>
                     </div>
 
-                    <div onclick="openExamModule('report_card')" class="bg-white p-5 rounded-xl shadow-sm border-t-4 border-blue-700 space-y-3 cursor-pointer hover:border-blue-800 transition md:col-span-2 lg:col-span-3">
+                    <div onclick="openExamModule('report_card')" class="bg-white p-5 rounded-xl shadow-sm border-t-4 border-blue-700 space-y-3 cursor-pointer hover:border-blue-800 transition">
                         <div class="flex items-center justify-between border-b pb-2">
-                            <h3 class="font-bold text-gray-800 text-sm flex items-center gap-2"><i class="fa-solid fa-award text-blue-700"></i> Academic Progress Report Card (A4 Size & Clear Watermark)</h3>
-                            <span class="text-xs bg-blue-50 text-blue-800 px-2 py-0.5 rounded font-semibold">রিপোর্ট কার্ড</span>
+                            <h3 class="font-bold text-gray-800 text-sm flex items-center gap-2"><i class="fa-solid fa-award text-blue-700"></i> Progress Report Card</h3>
+                            <span class="text-xs bg-blue-50 text-blue-800 px-2 py-0.5 rounded font-semibold">মার্কশিট</span>
                         </div>
-                        <p class="text-xs text-gray-600 leading-relaxed">অ্যাডিশনাল সাবজেক্ট, কন্টিনিউয়াস অ্যাসেসমেন্ট এবং স্পষ্ট ওয়াটারমার্কসহ সম্পূর্ণ এক্সেল লেআউট।</p>
-                        <span class="text-xs text-blue-800 font-bold block">রিপোর্ট কার্ড জেনারেটর →</span>
+                        <p class="text-xs text-gray-600 leading-relaxed">এক্সেল ফরম্যাটের আদলে প্রোগ্রেস রিপোর্ট কার্ড জেনারেটর।</p>
+                        <span class="text-xs text-blue-800 font-bold block">রিপোর্ট কার্ড →</span>
+                    </div>
+
+                    <div onclick="openExamModule('admit_card')" class="bg-white p-5 rounded-xl shadow-sm border-t-4 border-indigo-600 space-y-3 cursor-pointer hover:border-indigo-700 transition md:col-span-2 lg:col-span-2">
+                        <div class="flex items-center justify-between border-b pb-2">
+                            <h3 class="font-bold text-gray-800 text-sm flex items-center gap-2"><i class="fa-solid fa-id-card text-indigo-600"></i> Admit Card (বোর্ড স্টাইল প্রবেশপত্র)</h3>
+                            <span class="text-xs bg-indigo-50 text-indigo-700 px-2 py-0.5 rounded font-semibold">এডমিট কার্ড</span>
+                        </div>
+                        <p class="text-xs text-gray-600 leading-relaxed">বোর্ডের স্ট্যান্ডার্ড ফরম্যাটে পরীক্ষার্থীর বিস্তারিত তথ্য, লোগো, ওয়াটারমার্কসহ অফিসিয়াল এডমিট কার্ড প্রিন্ট।</p>
+                        <span class="text-xs text-indigo-700 font-bold block">এডমিট কার্ড জেনারেটর →</span>
                     </div>
 
                 </div>
@@ -352,10 +361,10 @@
                     </div>
                 </div>
 
-                <!-- 7. EXACT EXCEL DESIGN REPORT CARD PANEL (WITH ADDITIONAL & CONTINUOUS ASSESSMENT) -->
+                <!-- 7. EXACT EXCEL DESIGN REPORT CARD PANEL -->
                 <div id="panel-report_card" class="exam-sub-panel bg-white p-6 rounded-2xl shadow-sm border border-gray-200 space-y-4 hidden">
                     <div class="flex justify-between items-center border-b pb-3 no-print">
-                        <h3 class="font-bold text-blue-800 text-sm"><i class="fa-solid fa-award mr-2"></i> ৭. প্রোগ্রেস রিপোর্ট কার্ড (এক্সেল ডিজাইন অনুযায়ী - সম্পূর্ণ ফরম্যাট)</h3>
+                        <h3 class="font-bold text-blue-800 text-sm"><i class="fa-solid fa-award mr-2"></i> ৭. প্রোগ্রেস রিপোর্ট কার্ড (এক্সেল ডিজাইন অনুযায়ী)</h3>
                         <div class="flex gap-2">
                             <button onclick="generateReportCard()" class="bg-blue-600 text-white px-3 py-1.5 rounded text-xs font-bold">রিপোর্ট লোড করুন</button>
                             <button onclick="window.print()" class="bg-emerald-700 text-white px-3 py-1.5 rounded text-xs font-bold"><i class="fa-solid fa-print mr-1"></i> প্রিন্ট মার্কশিট</button>
@@ -379,11 +388,10 @@
                         <button onclick="generateReportCard()" class="bg-blue-700 text-white px-4 py-2 rounded font-bold">প্রিভিউ দেখুন</button>
                     </div>
 
-                    <!-- EXCEL EXACT DESIGN WITH WATERMARK, ADDITIONAL SUBJECT & CONTINUOUS ASSESSMENT -->
+                    <!-- REPORT CARD CONTAINER -->
                     <div class="flex justify-center">
                         <div id="reportCardPreviewArea" class="report-card-container vintage-border p-4 bg-white w-full max-w-[210mm] space-y-1.5 relative overflow-hidden text-[9px] text-black">
                             
-                            <!-- CLEAR WATERMARK LAYER -->
                             <div id="rcWatermarkLayer" class="absolute inset-0 flex items-center justify-center opacity-20 pointer-events-none z-0"></div>
 
                             <!-- HEADER SECTION -->
@@ -400,9 +408,8 @@
                                 <p class="text-[10px] font-bold text-gray-800 pt-0.5" id="rcExamTitleDisplay">Half Yearly Examination-2026</p>
                             </div>
 
-                            <!-- STUDENT BIO & GRADING SCALE TABLE (SIDE BY SIDE) -->
+                            <!-- STUDENT BIO & GRADING SCALE -->
                             <div class="grid grid-cols-1 md:grid-cols-3 gap-1.5 relative z-10">
-                                <!-- Student Bio Info (Left 2 cols) -->
                                 <div class="md:col-span-2 border border-black p-1.5 space-y-0.5 bg-white/95 shadow-sm text-[9px]">
                                     <div class="grid grid-cols-4"><span class="font-bold col-span-1">Student's Name</span><span class="col-span-3">: <b id="rcName">Sumaiya Akhter</b></span></div>
                                     <div class="grid grid-cols-4"><span class="font-bold col-span-1">Father's Name</span><span class="col-span-3">: <span id="rcFather">---</span></span></div>
@@ -414,30 +421,15 @@
                                     <div class="grid grid-cols-4"><span class="font-bold col-span-1 text-emerald-900 font-bold">Merit Position</span><span class="col-span-3">: <b id="rcMeritRank" class="text-emerald-800 text-[10px]">3</b></span> &nbsp;&nbsp;&nbsp;&nbsp; <b>Letter Grade :</b> <b id="rcOverallGrade" class="text-blue-800">A</b></div>
                                 </div>
 
-                                <!-- Grading Scale Table (Right 1 col) -->
                                 <div class="border border-black bg-white/95 shadow-sm">
                                     <table class="w-full text-center text-[8.5px] border-collapse">
-                                        <tr class="bg-gray-200 border-b border-black">
-                                            <th class="border-r border-black p-0.5">A+</th><th class="border-r border-black p-0.5">80-100</th><th class="p-0.5">5</th>
-                                        </tr>
-                                        <tr class="border-b border-black">
-                                            <th class="border-r border-black p-0.5">A</th><th class="border-r border-black p-0.5">70-79</th><th class="p-0.5">4</th>
-                                        </tr>
-                                        <tr class="border-b border-black">
-                                            <th class="border-r border-black p-0.5">A-</th><th class="border-r border-black p-0.5">60-69</th><th class="p-0.5">3.5</th>
-                                        </tr>
-                                        <tr class="border-b border-black">
-                                            <th class="border-r border-black p-0.5">B</th><th class="border-r border-black p-0.5">50-59</th><th class="p-0.5">3</th>
-                                        </tr>
-                                        <tr class="border-b border-black">
-                                            <th class="border-r border-black p-0.5">C</th><th class="border-r border-black p-0.5">40-49</th><th class="p-0.5">2</th>
-                                        </tr>
-                                        <tr class="border-b border-black">
-                                            <th class="border-r border-black p-0.5">D</th><th class="border-r border-black p-0.5">33-39</th><th class="p-0.5">1</th>
-                                        </tr>
-                                        <tr>
-                                            <th class="border-r border-black p-0.5 text-red-600">F</th><th class="border-r border-black p-0.5 text-red-600">0-32</th><th class="p-0.5 text-red-600">0</th>
-                                        </tr>
+                                        <tr class="bg-gray-200 border-b border-black"><th class="border-r border-black p-0.5">A+</th><th class="border-r border-black p-0.5">80-100</th><th class="p-0.5">5</th></tr>
+                                        <tr class="border-b border-black"><th class="border-r border-black p-0.5">A</th><th class="border-r border-black p-0.5">70-79</th><th class="p-0.5">4</th></tr>
+                                        <tr class="border-b border-black"><th class="border-r border-black p-0.5">A-</th><th class="border-r border-black p-0.5">60-69</th><th class="p-0.5">3.5</th></tr>
+                                        <tr class="border-b border-black"><th class="border-r border-black p-0.5">B</th><th class="border-r border-black p-0.5">50-59</th><th class="p-0.5">3</th></tr>
+                                        <tr class="border-b border-black"><th class="border-r border-black p-0.5">C</th><th class="border-r border-black p-0.5">40-49</th><th class="p-0.5">2</th></tr>
+                                        <tr class="border-b border-black"><th class="border-r border-black p-0.5">D</th><th class="border-r border-black p-0.5">33-39</th><th class="p-0.5">1</th></tr>
+                                        <tr><th class="border-r border-black p-0.5 text-red-600">F</th><th class="border-r border-black p-0.5 text-red-600">0-32</th><th class="p-0.5 text-red-600">0</th></tr>
                                     </table>
                                 </div>
                             </div>
@@ -468,13 +460,11 @@
                                 </table>
                             </div>
 
-                            <!-- ADDITIONAL SUBJECT TABLE -->
+                            <!-- ADDITIONAL SUBJECT -->
                             <div class="relative z-10">
                                 <table class="w-full text-left border-collapse border border-black text-[9px]">
-                                    <tr class="bg-gray-200 font-bold text-center">
-                                        <td colspan="7" class="border border-black p-0.5 text-left">Additional Subject</td>
-                                    </tr>
-                                    <tbody id="rcAdditionalSubjectTableBody">
+                                    <tr class="bg-gray-200 font-bold text-center"><td colspan="7" class="border border-black p-0.5 text-left">Additional Subject</td></tr>
+                                    <tbody>
                                         <tr class="border-b border-black">
                                             <td class="border-r border-black p-0.5">Agriculture</td>
                                             <td class="border-r border-black p-0.5 text-center w-12">75</td>
@@ -496,15 +486,11 @@
                                 </table>
                             </div>
 
-                            <!-- CONTINUOUS ASSESSMENT TABLE -->
+                            <!-- CONTINUOUS ASSESSMENT -->
                             <div class="relative z-10">
                                 <table class="w-full text-left border-collapse border border-black text-[9px]">
-                                    <thead>
-                                        <tr class="bg-gray-200 font-bold">
-                                            <th colspan="7" class="border border-black p-0.5">Continuous Assessment</th>
-                                        </tr>
-                                    </thead>
-                                    <tbody id="rcContinuousTableBody">
+                                    <thead><tr class="bg-gray-200 font-bold"><th colspan="7" class="border border-black p-0.5">Continuous Assessment</th></tr></thead>
+                                    <tbody>
                                         <tr class="border-b border-black">
                                             <td class="border-r border-black p-0.5">Career Education</td>
                                             <td class="border-r border-black p-0.5 text-center w-12">50</td>
@@ -528,10 +514,8 @@
                             <!-- REMARK & SIGNATURE -->
                             <div class="space-y-1 relative z-10 pt-0.5">
                                 <div class="border border-black p-1 bg-gray-50 flex justify-between items-center text-[9.5px] font-bold">
-                                    <span>Remark : <span id="rcRemarkText" class="text-emerald-800 font-normal">EXCELLENT</span></span>
+                                    <span>Remark : <span class="text-emerald-800 font-normal">EXCELLENT</span></span>
                                 </div>
-
-                                <!-- Signatures -->
                                 <div class="flex justify-between items-end pt-4 text-[9.5px] font-bold">
                                     <div class="text-center"><div class="border-t border-black w-32 pt-1">Class Teacher's Signature</div></div>
                                     <div class="text-center"><div class="border-t border-black w-32 pt-1">Guardian'S Signature</div></div>
@@ -545,10 +529,96 @@
                         </div>
                     </div>
 
-                    <!-- MAZAD'S CREATION CREDIT (Outside lower border as requested) -->
-                    <div class="text-right pr-4 text-[10px] italic text-gray-500 font-serif no-print">
-                        Mazad's Creation
+                    <div class="text-right pr-4 text-[10px] italic text-gray-500 font-serif no-print">Mazad's Creation</div>
+                </div>
+
+                <!-- 8. BOARD STYLE ADMIT CARD PANEL -->
+                <div id="panel-admit_card" class="exam-sub-panel bg-white p-6 rounded-2xl shadow-sm border border-gray-200 space-y-4 hidden">
+                    <div class="flex justify-between items-center border-b pb-3 no-print">
+                        <h3 class="font-bold text-indigo-800 text-sm"><i class="fa-solid fa-id-card mr-2"></i> ৮. বোর্ড স্টাইল এডমিট কার্ড জেনারেটর</h3>
+                        <div class="flex gap-2">
+                            <button onclick="generateAdmitCard()" class="bg-indigo-600 text-white px-3 py-1.5 rounded text-xs font-bold">এডমিট লোড করুন</button>
+                            <button onclick="window.print()" class="bg-emerald-700 text-white px-3 py-1.5 rounded text-xs font-bold"><i class="fa-solid fa-print mr-1"></i> প্রিন্ট এডমিট</button>
+                            <button onclick="closeAllPanels()" class="bg-gray-200 px-3 py-1.5 rounded text-xs font-bold text-gray-700">বন্ধ</button>
+                        </div>
                     </div>
+
+                    <div class="flex gap-3 bg-indigo-50 p-4 rounded-xl border border-indigo-200 text-xs items-end no-print">
+                        <div>
+                            <label class="font-bold text-indigo-900 block mb-1">পরীক্ষা:</label>
+                            <select id="admit_exam_select" class="p-2 border rounded bg-white font-bold"></select>
+                        </div>
+                        <div>
+                            <label class="font-bold text-indigo-900 block mb-1">শ্রেণি:</label>
+                            <select id="admit_class_select" class="p-2 border rounded bg-white font-bold" onchange="loadStudentsForAdmitCard()"></select>
+                        </div>
+                        <div>
+                            <label class="font-bold text-indigo-900 block mb-1">শিক্ষার্থী নির্বাচন:</label>
+                            <select id="admit_student_select" class="p-2 border rounded bg-white font-bold"></select>
+                        </div>
+                        <button onclick="generateAdmitCard()" class="bg-indigo-700 text-white px-4 py-2 rounded font-bold">প্রিভিউ দেখুন</button>
+                    </div>
+
+                    <!-- ADMIT CARD CONTAINER -->
+                    <div class="flex justify-center">
+                        <div id="admitCardPreviewArea" class="report-card-container vintage-border p-6 bg-white w-full max-w-[210mm] space-y-4 relative overflow-hidden text-[11px] text-black">
+                            
+                            <div id="admitWatermarkLayer" class="absolute inset-0 flex items-center justify-center opacity-20 pointer-events-none z-0"></div>
+
+                            <!-- HEADER SECTION -->
+                            <div class="text-center space-y-1 relative z-10 border-b-2 border-amber-800 pb-3">
+                                <div class="absolute left-2 top-0 w-12 h-12 border border-gray-400 flex items-center justify-center bg-gray-50 shadow-sm" id="admitLogoBox">
+                                    <span class="text-[9px] text-gray-500 font-bold">LOGO</span>
+                                </div>
+                                <h1 class="text-base font-bold tracking-wide" style="font-family: serif;">Abdullah Hat Islamia Fazil Madrasah</h1>
+                                <p class="text-[11px] text-gray-800 font-medium">Nateshwar, Sonaimury, Noakhali</p>
+                                <div class="bg-indigo-900 text-white font-bold text-xs py-1 px-8 inline-block mt-1 uppercase tracking-widest rounded shadow-sm">
+                                    ADMIT CARD
+                                </div>
+                                <p class="text-xs font-bold text-gray-800 pt-1" id="admitExamTitleDisplay">Half Yearly Examination-2026</p>
+                            </div>
+
+                            <!-- STUDENT DETAILS BOX (BOARD STYLE) -->
+                            <div class="border-2 border-indigo-900 p-4 space-y-2 relative z-10 bg-white/95 shadow-sm rounded-lg">
+                                <div class="grid grid-cols-2 gap-4">
+                                    <div class="space-y-1.5">
+                                        <div class="flex"><span class="font-bold w-28">Student's Name</span>: <b id="admitName" class="ml-1 text-gray-900">---</b></div>
+                                        <div class="flex"><span class="font-bold w-28">Father's Name</span>: <span id="admitFather" class="ml-1">---</span></div>
+                                        <div class="flex"><span class="font-bold w-28">Mother's Name</span>: <span id="admitMother" class="ml-1">---</span></div>
+                                        <div class="flex"><span class="font-bold w-28">Class</span>: <span id="admitClass" class="ml-1">---</span></div>
+                                    </div>
+                                    <div class="space-y-1.5">
+                                        <div class="flex"><span class="font-bold w-28">Roll No / ID</span>: <b id="admitRoll" class="ml-1 text-indigo-900 text-sm">---</b></div>
+                                        <div class="flex"><span class="font-bold w-28">Registration No</span>: <span class="ml-1">2026-AHIFM-001</span></div>
+                                        <div class="flex"><span class="font-bold w-28">Session</span>: <span class="ml-1">2026-2027</span></div>
+                                        <div class="flex"><span class="font-bold w-28">Group</span>: <span class="ml-1">General</span></div>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <!-- INSTRUCTIONS -->
+                            <div class="border border-gray-400 p-3 rounded bg-gray-50/80 relative z-10 text-[10px] space-y-1">
+                                <p class="font-bold text-indigo-900 underline">Important Instructions for Examinee:</p>
+                                <ul class="list-disc pl-4 space-y-0.5 text-gray-700">
+                                    <li>পরীক্ষার্থীকে অবশ্যই প্রবেশপত্র সঙ্গে আনতে হবে এবং পরীক্ষার হলে পরিদর্শকের চাহিদা অনুযায়ী তা দেখাতে হবে।</li>
+                                    <li>পরীক্ষা শুরুর কমপক্ষে ১৫ মিনিট পূর্বে নির্দিষ্ট আসনে গিয়ে বসতে হবে।</li>
+                                    <li>পরীক্ষায় মোবাইল ফোন বা কোনো ইলেকট্রনিক ডিভাইস আনা সম্পূর্ণ নিষিদ্ধ।</li>
+                                </ul>
+                            </div>
+
+                            <!-- SIGNATURES -->
+                            <div class="flex justify-between items-end pt-12 relative z-10 text-xs font-bold">
+                                <div class="text-center"><div class="border-t border-black w-40 pt-1">Controller of Examinations</div></div>
+                                <div class="text-center space-y-1">
+                                    <div id="admitSigContainer" class="h-8 flex items-center justify-center"></div>
+                                    <div class="border-t border-black w-44 pt-1">Principal's Signature</div>
+                                </div>
+                            </div>
+
+                        </div>
+                    </div>
+
+                    <div class="text-right pr-4 text-[10px] italic text-gray-500 font-serif no-print">Mazad's Creation</div>
                 </div>
 
             </main>
@@ -577,6 +647,20 @@
             if(panelName === 'tabulation') populateDropdowns();
             if(panelName === 'result_summary') { populateDropdowns(); generateResultSummary(); }
             if(panelName === 'report_card') { populateDropdowns(); loadStudentsForReportCard(); }
+            if(panelName === 'admit_card') { 
+                populateDropdowns(); 
+                let exams = JSON.parse(localStorage.getItem('madrasah_exams')) || ["Half Yearly Examination-2026", "Annual Examination-2026"];
+                let admitExamSel = document.getElementById('admit_exam_select');
+                if(admitExamSel) {
+                    admitExamSel.innerHTML = '';
+                    exams.forEach(ex => { let opt = document.createElement('option'); opt.value = ex; opt.text = ex; admitExamSel.add(opt); });
+                }
+                let admitClassSel = document.getElementById('admit_class_select');
+                if(admitClassSel) {
+                    admitClassSel.innerHTML = document.getElementById('rc_class_select').innerHTML;
+                }
+                loadStudentsForAdmitCard(); 
+            }
         }
 
         function closeAllPanels() {
@@ -810,6 +894,62 @@
             document.getElementById('rcGPAWithoutAdd').innerText = calculatedGPA;
             document.getElementById('rcOverallGrade').innerText = isFailed ? "F" : (calculatedGPA >= 5 ? "A+" : "A");
             document.getElementById('rcMeritRank').innerText = "3";
+        }
+
+        function loadStudentsForAdmitCard() {
+            const clsEl = document.getElementById('admit_class_select');
+            if(!clsEl) return;
+            const cls = clsEl.value;
+            const sel = document.getElementById('admit_student_select');
+            if(!sel) return;
+            sel.innerHTML = '';
+            let students = JSON.parse(localStorage.getItem('madrasah_students_all')) || [];
+            let filteredStudents = students.filter(s => (s.cls || s.studentClass || s.class || s.grade) === cls);
+            filteredStudents.forEach(st => {
+                let sId = st.id || st.roll || "001";
+                let sName = st.name_bn || st.name || "শিক্ষার্থী";
+                let opt = document.createElement('option');
+                opt.value = sId;
+                opt.text = `${sName} (রোল/আইডি: ${sId})`;
+                sel.add(opt);
+            });
+        }
+
+        function generateAdmitCard() {
+            const exam = document.getElementById('admit_exam_select').value;
+            const cls = document.getElementById('admit_class_select').value;
+            const sId = document.getElementById('admit_student_select').value;
+
+            let students = JSON.parse(localStorage.getItem('madrasah_students_all')) || [];
+            let st = students.find(s => (s.id || s.roll) === sId);
+            if(!st) {
+                alert('দয়া করে প্রথমে সঠিক শিক্ষার্থী নির্বাচন করুন!');
+                return;
+            }
+
+            document.getElementById('admitName').innerText = st.name_bn || st.name || "শিক্ষার্থী";
+            document.getElementById('admitFather').innerText = st.fatherName || "মীর হোসেন";
+            document.getElementById('admitMother').innerText = st.motherName || "ফাতেমা বেগম";
+            document.getElementById('admitRoll').innerText = sId;
+            document.getElementById('admitClass').innerText = cls;
+            document.getElementById('admitExamTitleDisplay').innerText = exam;
+
+            let wmBase64 = localStorage.getItem('madrasah_watermark_base64');
+            let logoBase64 = localStorage.getItem('madrasah_logo_base64');
+            let wmLayer = document.getElementById('admitWatermarkLayer');
+            if(wmBase64 && wmLayer) {
+                wmLayer.innerHTML = `<img src="${wmBase64}" class="w-96 h-96 object-contain">`;
+            }
+            let logoBox = document.getElementById('admitLogoBox');
+            if(logoBase64 && logoBox) {
+                logoBox.innerHTML = `<img src="${logoBase64}" class="w-full h-full object-contain">`;
+            }
+
+            let sigBase64 = localStorage.getItem('madrasah_signature_base64');
+            let sigContainer = document.getElementById('admitSigContainer');
+            if(sigBase64 && sigContainer) {
+                sigContainer.innerHTML = `<img src="${sigBase64}" class="h-8 object-contain">`;
+            }
         }
     </script>
 </body>

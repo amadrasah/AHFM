@@ -6,260 +6,366 @@
     <title>Settings Management - Abdullah Hat Islamia Fazil Madrasah</title>
     <script src="https://cdn.tailwindcss.com"></script>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        @media print {
+            .no-print { display: none !important; }
+            body { background: white !important; font-size: 11pt !important; }
+            .print-container { width: 100% !important; margin: 0 !important; padding: 0 !important; box-shadow: none !important; border: none !important; }
+            @page { size: A4 portrait; margin: 10mm; }
+        }
+        /* Custom Spinner Animation */
+        .spinner {
+            border: 3px solid rgba(0, 0, 0, 0.1);
+            width: 36px;
+            height: 36px;
+            border-radius: 50%;
+            border-left-color: #047857;
+            animation: spin 1s linear infinite;
+        }
+        @keyframes spin {
+            0% { transform: rotate(0deg); }
+            100% { transform: rotate(360deg); }
+        }
+        /* Watermark Utility */
+        .watermark-bg {
+            position: relative;
+        }
+        .watermark-bg::before {
+            content: "";
+            position: absolute;
+            top: 0; left: 0; right: 0; bottom: 0;
+            background-image: var(--watermark-img, none);
+            background-repeat: no-repeat;
+            background-position: center;
+            background-size: 300px;
+            opacity: 0.05;
+            pointer-events: none;
+            z-index: 0;
+        }
+    </style>
 </head>
-<body class="bg-gray-100 font-sans">
+<body class="bg-slate-100 font-sans antialiased text-gray-800">
 
     <div class="flex h-screen overflow-hidden">
         
-        <!-- Sidebar with 22 Modules -->
-        <aside class="w-72 bg-emerald-900 text-white flex flex-col shadow-lg overflow-y-auto no-print">
+        <aside class="w-64 lg:w-72 bg-emerald-900 text-white flex flex-col shadow-xl overflow-y-auto no-print hidden md:flex">
             <div class="p-4 bg-emerald-950 text-center border-b border-emerald-800 sticky top-0 z-10">
-                <h1 class="font-bold text-base">AHIFM ERP</h1>
-                <p class="text-xs text-emerald-300">Abdullah Hat Islamia Fazil Madrasah</p>
+                <h1 class="font-bold text-sm lg:text-base">AHIFM ERP</h1>
+                <p class="text-[11px] text-emerald-300">Abdullah Hat Islamia Fazil Madrasah</p>
             </div>
 
-            <nav class="flex-1 p-3 space-y-1 text-xs">
-                <a href="index.html" class="flex items-center gap-2.5 p-2 rounded hover:bg-emerald-800 transition"><i class="fa-solid fa-house w-4"></i> 🏠 01. Home</a>
-                <a href="institution.html" class="flex items-center gap-2.5 p-2 rounded hover:bg-emerald-800 transition"><i class="fa-solid fa-school w-4"></i> 🏫 02. Institution</a>
-                <a href="students.html" class="flex items-center gap-2.5 p-2 rounded hover:bg-emerald-800 transition"><i class="fa-solid fa-user-graduate w-4"></i> 👨‍🎓 03. Student Management</a>
-                <a href="teachers.html" class="flex items-center gap-2.5 p-2 rounded hover:bg-emerald-800 transition"><i class="fa-solid fa-chalkboard-user w-4"></i> 👨‍🏫 04. Teacher & Staff</a>
-                <a href="academic.html" class="flex items-center gap-2.5 p-2 rounded hover:bg-emerald-800 transition"><i class="fa-solid fa-book-open w-4"></i> 📚 05. Academic Management</a>
-                <a href="examination.html" class="flex items-center gap-2.5 p-2 rounded hover:bg-emerald-800 transition"><i class="fa-solid fa-file-lines w-4"></i> 📝 06. Examination</a>
-                <a href="attendance.html" class="flex items-center gap-2.5 p-2 rounded hover:bg-emerald-800 transition"><i class="fa-solid fa-clipboard-user w-4"></i> 🕐 07. Attendance</a>
-                <a href="accounts.html" class="flex items-center gap-2.5 p-2 rounded hover:bg-emerald-800 transition"><i class="fa-solid fa-wallet w-4"></i> 💰 08. Accounts</a>
-                <a href="fees.html" class="flex items-center gap-2.5 p-2 rounded hover:bg-emerald-800 transition"><i class="fa-solid fa-receipt w-4"></i> 🧾 09. Fees Management</a>
-                <a href="dashboard.html" class="flex items-center gap-2.5 p-2 rounded hover:bg-emerald-800 transition"><i class="fa-solid fa-chart-pie w-4"></i> 📊 10. Dashboard</a>
-                <a href="notice.html" class="flex items-center gap-2.5 p-2 rounded hover:bg-emerald-800 transition"><i class="fa-solid fa-bullhorn w-4"></i> 📢 11. Notice Management</a>
-                <a href="routine.html" class="flex items-center gap-2.5 p-2 rounded hover:bg-emerald-800 transition"><i class="fa-solid fa-calendar-days w-4"></i> 📅 12. Routine & Calendar</a>
-                <a href="certificates.html" class="flex items-center gap-2.5 p-2 rounded hover:bg-emerald-800 transition"><i class="fa-solid fa-award w-4"></i> 📄 13. Certificates</a>
-                <a href="inventory.html" class="flex items-center gap-2.5 p-2 rounded hover:bg-emerald-800 transition"><i class="fa-solid fa-boxes-stacked w-4"></i> 📦 14. Inventory</a>
-                <a href="library.html" class="flex items-center gap-2.5 p-2 rounded hover:bg-emerald-800 transition"><i class="fa-solid fa-book-bookmark w-4"></i> 📖 15. Library</a>
-                <a href="transport.html" class="flex items-center gap-2.5 p-2 rounded hover:bg-emerald-800 transition"><i class="fa-solid fa-bus w-4"></i> 🚌 16. Transport</a>
-                <a href="hostel.html" class="flex items-center gap-2.5 p-2 rounded hover:bg-emerald-800 transition"><i class="fa-solid fa-bed w-4"></i> 🍚 17. Hostel / Facilities</a>
-                <a href="communication.html" class="flex items-center gap-2.5 p-2 rounded hover:bg-emerald-800 transition"><i class="fa-solid fa-comments w-4"></i> 📱 18. Communication</a>
-                <a href="users.html" class="flex items-center gap-2.5 p-2 rounded hover:bg-emerald-800 transition"><i class="fa-solid fa-shield-halved w-4"></i> 🔐 19. User & Security</a>
-                <a href="cloud-backup.html" class="flex items-center gap-2.5 p-2 rounded hover:bg-emerald-800 transition"><i class="fa-solid fa-cloud-arrow-up w-4"></i> ☁️ 20. Cloud & Backup</a>
-                <a href="reports.html" class="flex items-center gap-2.5 p-2 rounded hover:bg-emerald-800 transition"><i class="fa-solid fa-chart-line w-4"></i> 📈 21. Reports</a>
-                <a href="settings.html" class="flex items-center gap-2.5 p-2 rounded bg-emerald-800 text-white font-medium"><i class="fa-solid fa-gear w-4"></i> ⚙️ 22. Settings</a>
+            <nav class="flex-1 p-2 space-y-1 text-xs">
+                <a href="index.html" class="flex items-center gap-2.5 p-2 rounded hover:bg-emerald-800 transition"><i class="fa-solid fa-house w-4"></i> 01. Home</a>
+                <a href="institution.html" class="flex items-center gap-2.5 p-2 rounded hover:bg-emerald-800 transition"><i class="fa-solid fa-school w-4"></i> 02. Institution</a>
+                <a href="students.html" class="flex items-center gap-2.5 p-2 rounded hover:bg-emerald-800 transition"><i class="fa-solid fa-user-graduate w-4"></i> 03. Student Management</a>
+                <a href="teachers.html" class="flex items-center gap-2.5 p-2 rounded hover:bg-emerald-800 transition"><i class="fa-solid fa-chalkboard-user w-4"></i> 04. Teacher & Staff</a>
+                <a href="academic.html" class="flex items-center gap-2.5 p-2 rounded hover:bg-emerald-800 transition"><i class="fa-solid fa-book-open w-4"></i> 05. Academic Management</a>
+                <a href="examination.html" class="flex items-center gap-2.5 p-2 rounded hover:bg-emerald-800 transition"><i class="fa-solid fa-file-lines w-4"></i> 06. Examination</a>
+                <a href="attendance.html" class="flex items-center gap-2.5 p-2 rounded hover:bg-emerald-800 transition"><i class="fa-solid fa-clipboard-user w-4"></i> 07. Attendance</a>
+                <a href="accounts.html" class="flex items-center gap-2.5 p-2 rounded hover:bg-emerald-800 transition"><i class="fa-solid fa-wallet w-4"></i> 08. Accounts</a>
+                <a href="fees.html" class="flex items-center gap-2.5 p-2 rounded hover:bg-emerald-800 transition"><i class="fa-solid fa-receipt w-4"></i> 09. Fees Management</a>
+                <a href="dashboard.html" class="flex items-center gap-2.5 p-2 rounded hover:bg-emerald-800 transition"><i class="fa-solid fa-chart-pie w-4"></i> 10. Dashboard</a>
+                <a href="notice.html" class="flex items-center gap-2.5 p-2 rounded hover:bg-emerald-800 transition"><i class="fa-solid fa-bullhorn w-4"></i> 11. Notice Management</a>
+                <a href="routine.html" class="flex items-center gap-2.5 p-2 rounded hover:bg-emerald-800 transition"><i class="fa-solid fa-calendar-days w-4"></i> 12. Routine & Calendar</a>
+                <a href="certificates.html" class="flex items-center gap-2.5 p-2 rounded hover:bg-emerald-800 transition"><i class="fa-solid fa-award w-4"></i> 13. Certificates</a>
+                <a href="inventory.html" class="flex items-center gap-2.5 p-2 rounded hover:bg-emerald-800 transition"><i class="fa-solid fa-boxes-stacked w-4"></i> 14. Inventory</a>
+                <a href="library.html" class="flex items-center gap-2.5 p-2 rounded hover:bg-emerald-800 transition"><i class="fa-solid fa-book-bookmark w-4"></i> 15. Library</a>
+                <a href="transport.html" class="flex items-center gap-2.5 p-2 rounded hover:bg-emerald-800 transition"><i class="fa-solid fa-bus w-4"></i> 16. Transport</a>
+                <a href="hostel.html" class="flex items-center gap-2.5 p-2 rounded hover:bg-emerald-800 transition"><i class="fa-solid fa-bed w-4"></i> 17. Hostel / Facilities</a>
+                <a href="communication.html" class="flex items-center gap-2.5 p-2 rounded hover:bg-emerald-800 transition"><i class="fa-solid fa-comments w-4"></i> 18. Communication</a>
+                <a href="users.html" class="flex items-center gap-2.5 p-2 rounded hover:bg-emerald-800 transition"><i class="fa-solid fa-shield-halved w-4"></i> 19. User & Security</a>
+                <a href="cloud-backup.html" class="flex items-center gap-2.5 p-2 rounded hover:bg-emerald-800 transition"><i class="fa-solid fa-cloud-arrow-up w-4"></i> 20. Cloud & Backup</a>
+                <a href="reports.html" class="flex items-center gap-2.5 p-2 rounded hover:bg-emerald-800 transition"><i class="fa-solid fa-chart-line w-4"></i> 21. Reports</a>
+                <a href="settings.html" class="flex items-center gap-2.5 p-2 rounded bg-emerald-800 text-white font-semibold shadow-inner"><i class="fa-solid fa-gear w-4"></i> 22. Settings Management</a>
             </nav>
         </aside>
 
-        <!-- Main Content Area -->
         <div class="flex-1 flex flex-col overflow-y-auto">
             
-            <!-- Top Navbar -->
-            <header class="bg-white shadow-sm p-4 flex justify-between items-center no-print">
+            <header class="bg-white shadow-sm px-4 py-3 flex justify-between items-center no-print sticky top-0 z-20">
                 <div class="flex items-center gap-3">
-                    <span class="font-bold text-emerald-800 text-lg">⚙️ 22. System Settings & Configurations</span>
+                    <span class="font-bold text-emerald-900 text-sm md:text-base">⚙️ 22. Settings Management</span>
                 </div>
-                <div class="flex items-center gap-4">
-                    <span id="display-global-year" class="text-xs bg-emerald-100 text-emerald-800 px-3 py-1 rounded-full font-bold">সেশন: 2026</span>
-                    <span class="text-sm text-gray-600 font-medium"><i class="fa-solid fa-user-shield text-emerald-700 mr-1"></i> সুপার অ্যাডমিন</span>
+                <div class="flex items-center gap-3">
+                    <span class="text-xs md:text-sm text-gray-700 font-semibold bg-emerald-50 px-3 py-1 rounded-full border border-emerald-200">
+                        <i class="fa-solid fa-user-shield text-emerald-700 mr-1"></i> সুপার অ্যাডমিন
+                    </span>
                 </div>
             </header>
 
-            <!-- Page Content -->
-            <main class="p-6 space-y-6">
-                
-                <!-- Quick Navigation Tabs -->
-                <div class="bg-white p-3 rounded-xl shadow-sm flex flex-wrap gap-2 border border-gray-200">
-                    <button onclick="switchTab('info')" class="tab-btn px-3 py-2 bg-emerald-700 text-white rounded-lg text-xs font-bold transition">1. Info</button>
-                    <button onclick="switchTab('logo')" class="tab-btn px-3 py-2 bg-gray-100 text-gray-700 rounded-lg text-xs font-bold hover:bg-emerald-50 transition">2. Logo & Watermark</button>
-                    <button onclick="switchTab('year')" class="tab-btn px-3 py-2 bg-gray-100 text-gray-700 rounded-lg text-xs font-bold hover:bg-emerald-50 transition">3. Academic Year</button>
-                    <button onclick="switchTab('class')" class="tab-btn px-3 py-2 bg-gray-100 text-gray-700 rounded-lg text-xs font-bold hover:bg-emerald-50 transition">4. Classes</button>
-                    <button onclick="switchTab('subject')" class="tab-btn px-3 py-2 bg-gray-100 text-gray-700 rounded-lg text-xs font-bold hover:bg-emerald-50 transition">5. Subjects</button>
-                    <button onclick="switchTab('exam')" class="tab-btn px-3 py-2 bg-gray-100 text-gray-700 rounded-lg text-xs font-bold hover:bg-emerald-50 transition">6. Exams</button>
-                    <button onclick="switchTab('grading')" class="tab-btn px-3 py-2 bg-gray-100 text-gray-700 rounded-lg text-xs font-bold hover:bg-emerald-50 transition">7. Grading</button>
-                    <button onclick="switchTab('receipt')" class="tab-btn px-3 py-2 bg-gray-100 text-gray-700 rounded-lg text-xs font-bold hover:bg-emerald-800 transition">8. Receipt & Sign</button>
-                    <button onclick="switchTab('backup')" class="tab-btn px-3 py-2 bg-gray-100 text-gray-700 rounded-lg text-xs font-bold hover:bg-emerald-50 transition">9. Backup</button>
+            <main class="p-4 md:p-6 space-y-6">
+
+                <div class="bg-gradient-to-r from-emerald-900 to-emerald-800 text-white p-5 md:p-6 rounded-2xl shadow-md flex flex-col md:flex-row justify-between items-center gap-4 no-print">
+                    <div>
+                        <h2 class="text-lg md:text-xl font-bold">মাদ্রাসা সেটিংস ও ম্যানেজমেন্ট প্যানেল</h2>
+                        <p class="text-xs text-emerald-200 mt-1">লোগো, ওয়াটারমার্ক, বিষয় কোড, ফি এবং মানি রিসিট সেটিং কনফিগার করুন।</p>
+                    </div>
                 </div>
 
-                <!-- TAB 1: Institution Information -->
-                <div id="tab-info" class="setting-tab bg-white p-6 rounded-2xl shadow-sm border border-gray-200 space-y-4">
-                    <h3 class="font-bold text-gray-800 text-sm border-b pb-2"><i class="fa-solid fa-school text-emerald-600 mr-2"></i> Institution Information Setup</h3>
-                    <form id="institutionForm" onsubmit="saveInstitution(event)" class="grid grid-cols-1 md:grid-cols-2 gap-4 text-xs">
-                        <div><label class="font-bold text-gray-700 mb-1 block">প্রতিষ্ঠানের নাম (বাংলায়)</label><input type="text" id="inst_name_bn" value="আবদুল্লাহ হাট ইসলামিয়া ফাজিল মাদ্রাসা" class="w-full p-2 border rounded-lg" required></div>
-                        <div><label class="font-bold text-gray-700 mb-1 block">প্রতিষ্ঠানের নাম (ইংরেজিতে)</label><input type="text" id="inst_name_en" value="Abdullah Hat Islamia Fazil Madrasah" class="w-full p-2 border rounded-lg" required></div>
-                        <div><label class="font-bold text-gray-700 mb-1 block">EIIN নম্বর</label><input type="text" id="inst_eiin" value="123456" class="w-full p-2 border rounded-lg" required></div>
-                        <div><label class="font-bold text-gray-700 mb-1 block">মোবাইল / হটলাইন</label><input type="text" id="inst_phone" value="01800000000" class="w-full p-2 border rounded-lg" required></div>
-                        <div class="md:col-span-2"><label class="font-bold text-gray-700 mb-1 block">পূর্ণাঙ্গ ঠিকানা</label><textarea id="inst_address" class="w-full p-2 border rounded-lg" rows="2">আবদুল্লাহ হাট, কোম্পানীগঞ্জ, নোয়াখালী - ৩৮২১</textarea></div>
-                        <div><button type="submit" class="bg-emerald-700 text-white px-4 py-2 rounded font-bold hover:bg-emerald-800">তথ্য সংরক্ষণ করুন</button></div>
-                    </form>
+                <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4 md:gap-6 no-print">
+                    <div onclick="openSettingsPanel('general')" class="bg-white p-5 rounded-2xl shadow-sm border border-gray-200 hover:border-emerald-500 hover:shadow-md cursor-pointer transition space-y-3">
+                        <div class="flex justify-between items-center border-b pb-2"><h3 class="font-bold text-gray-800 text-sm"><i class="fa-solid fa-building text-emerald-600 mr-2"></i> ১. জেনারেল ইনফো</h3><span class="text-[10px] bg-emerald-100 text-emerald-800 px-2 py-0.5 rounded font-bold">মাদ্রাসার তথ্য</span></div>
+                        <p class="text-xs text-gray-600">মাদ্রাসার নাম, ইআইআইএন, ঠিকানা ও যোগাযোগ নম্বর সেটআপ।</p>
+                    </div>
+
+                    <div onclick="openSettingsPanel('logo')" class="bg-white p-5 rounded-2xl shadow-sm border border-gray-200 hover:border-blue-500 hover:shadow-md cursor-pointer transition space-y-3">
+                        <div class="flex justify-between items-center border-b pb-2"><h3 class="font-bold text-gray-800 text-sm"><i class="fa-solid fa-image text-blue-600 mr-2"></i> ২. লোগো ও ওয়াটারমার্ক</h3><span class="text-[10px] bg-blue-100 text-blue-800 px-2 py-0.5 rounded font-bold">লাইভ প্রিভিউ</span></div>
+                        <p class="text-xs text-gray-600">লোগো আপলোড এবং ওয়াটারমার্ক লাইভ প্রিভিউ সেটআপ।</p>
+                    </div>
+
+                    <div onclick="openSettingsPanel('session')" class="bg-white p-5 rounded-2xl shadow-sm border border-gray-200 hover:border-purple-500 hover:shadow-md cursor-pointer transition space-y-3">
+                        <div class="flex justify-between items-center border-b pb-2"><h3 class="font-bold text-gray-800 text-sm"><i class="fa-solid fa-calendar text-purple-600 mr-2"></i> ৩. সেশন ও সাল</h3><span class="text-[10px] bg-purple-100 text-purple-800 px-2 py-0.5 rounded font-bold">একাডেমিক ইয়ার</span></div>
+                        <p class="text-xs text-gray-600">একাডেমিক সাল এবং পরীক্ষা সেশন ম্যানেজমেন্ট।</p>
+                    </div>
+
+                    <div onclick="openSettingsPanel('classes')" class="bg-white p-5 rounded-2xl shadow-sm border border-gray-200 hover:border-amber-500 hover:shadow-md cursor-pointer transition space-y-3">
+                        <div class="flex justify-between items-center border-b pb-2"><h3 class="font-bold text-gray-800 text-sm"><i class="fa-solid fa-school text-amber-600 mr-2"></i> ৪. শ্রেণি সেটআপ</h3><span class="text-[10px] bg-amber-100 text-amber-800 px-2 py-0.5 rounded font-bold">ক্লাস লিস্ট</span></div>
+                        <p class="text-xs text-gray-600">ইবতেদায়ী থেকে ফাজিল পর্যন্ত শ্রেণি বিন্যাস।</p>
+                    </div>
+
+                    <div onclick="openSettingsPanel('subjects')" class="bg-white p-5 rounded-2xl shadow-sm border border-gray-200 hover:border-teal-500 hover:shadow-md cursor-pointer transition space-y-3">
+                        <div class="flex justify-between items-center border-b pb-2"><h3 class="font-bold text-gray-800 text-sm"><i class="fa-solid fa-book text-teal-600 mr-2"></i> ৫. বিষয় ও কোড ম্যানেজমেন্ট</h3><span class="text-[10px] bg-teal-100 text-teal-800 px-2 py-0.5 rounded font-bold">নতুন বিষয় যুক্ত করুন</span></div>
+                        <p class="text-xs text-gray-600">কুরআন, হাদীস, আরবী, বাংলা, ইংলিশ ও কোড সেটআপ।</p>
+                    </div>
+
+                    <div onclick="openSettingsPanel('grading')" class="bg-white p-5 rounded-2xl shadow-sm border border-gray-200 hover:border-indigo-500 hover:shadow-md cursor-pointer transition space-y-3">
+                        <div class="flex justify-between items-center border-b pb-2"><h3 class="font-bold text-gray-800 text-sm"><i class="fa-solid fa-award text-indigo-600 mr-2"></i> ৬. গ্রেডিং সিস্টেম</h3><span class="text-[10px] bg-indigo-100 text-indigo-800 px-2 py-0.5 rounded font-bold">GPA স্কেল</span></div>
+                        <p class="text-xs text-gray-600">মাদ্রাসা বোর্ড গ্রেডিং ও জিপিএ স্কেল নির্ধারণ।</p>
+                    </div>
+
+                    <div onclick="openSettingsPanel('sms')" class="bg-white p-5 rounded-2xl shadow-sm border border-gray-200 hover:border-rose-500 hover:shadow-md cursor-pointer transition space-y-3">
+                        <div class="flex justify-between items-center border-b pb-2"><h3 class="font-bold text-gray-800 text-sm"><i class="fa-solid fa-comment-sms text-rose-600 mr-2"></i> ৭. এসএমএস গেটওয়ে</h3><span class="text-[10px] bg-rose-100 text-rose-800 px-2 py-0.5 rounded font-bold">API কনফিগার</span></div>
+                        <p class="text-xs text-gray-600">অভিভাবকদের ফলাফল ও নোটিশ পাঠানোর SMS API।</p>
+                    </div>
+
+                    <div onclick="openSettingsPanel('receipt')" class="bg-white p-5 rounded-2xl shadow-sm border border-gray-200 hover:border-cyan-500 hover:shadow-md cursor-pointer transition space-y-3">
+                        <div class="flex justify-between items-center border-b pb-2"><h3 class="font-bold text-gray-800 text-sm"><i class="fa-solid fa-receipt text-cyan-600 mr-2"></i> ৮. মানি রিসিট ও সিল-স্বাক্ষর</h3><span class="text-[10px] bg-cyan-100 text-cyan-800 px-2 py-0.5 rounded font-bold">ওয়াটারমার্ক ব্যাকগ্রাউন্ড</span></div>
+                        <p class="text-xs text-gray-600">মানি রিসিট ফরম্যাট, লোগো এবং সিল-স্বাক্ষর কনফিগার।</p>
+                    </div>
+
+                    <div onclick="openSettingsPanel('backup')" class="bg-white p-5 rounded-2xl shadow-sm border border-gray-200 hover:border-sky-500 hover:shadow-md cursor-pointer transition space-y-3">
+                        <div class="flex justify-between items-center border-b pb-2"><h3 class="font-bold text-gray-800 text-sm"><i class="fa-solid fa-database text-sky-600 mr-2"></i> ৯. ডাটা ব্যাকআপ ও রিসেট</h3><span class="text-[10px] bg-sky-100 text-sky-800 px-2 py-0.5 rounded font-bold">সিকিউরিটি</span></div>
+                        <p class="text-xs text-gray-600">লোকালস্টোরেজ ব্যাকআপ, রিস্টোর ও ফ্যাক্টরি রিসেট।</p>
+                    </div>
                 </div>
 
-                <!-- TAB 2: Logo & Watermark -->
-                <div id="tab-logo" class="setting-tab bg-white p-6 rounded-2xl shadow-sm border border-gray-200 space-y-4 hidden">
-                    <h3 class="font-bold text-gray-800 text-sm border-b pb-2"><i class="fa-solid fa-image text-blue-600 mr-2"></i> Logo & Watermark Setup</h3>
+                <div id="panel-general" class="settings-sub-panel bg-white p-5 md:p-6 rounded-2xl shadow-sm border border-gray-200 space-y-4 hidden">
+                    <div class="flex justify-between items-center border-b pb-3 no-print">
+                        <h3 class="font-bold text-emerald-800 text-sm"><i class="fa-solid fa-building mr-2"></i> ১. জেনারেল ইনফরমেশন ম্যানেজমেন্ট</h3>
+                        <button onclick="closeAllSettingsPanels()" class="text-xs bg-gray-200 px-3 py-1 rounded font-bold text-gray-700 hover:bg-gray-300">বন্ধ করুন</button>
+                    </div>
+                    <div class="grid grid-cols-1 sm:grid-cols-2 gap-4 text-xs">
+                        <div>
+                            <label class="font-bold block mb-1">মাদ্রাসার নাম (বাংলা):</label>
+                            <input type="text" id="inst_name_bn" value="আবদুল্লাহ হাট ইসলামিয়া ফাজিল মাদ্রাসা" class="w-full p-2 border rounded font-bold">
+                        </div>
+                        <div>
+                            <label class="font-bold block mb-1">EIIN Number:</label>
+                            <input type="text" id="inst_eiin" value="135678" class="w-full p-2 border rounded font-bold">
+                        </div>
+                        <div>
+                            <label class="font-bold block mb-1">ঠিকানা:</label>
+                            <input type="text" id="inst_address" value="কোম্পানীগঞ্জ, নোয়াখালী" class="w-full p-2 border rounded font-bold">
+                        </div>
+                        <div>
+                            <label class="font-bold block mb-1">হটলাইন / মোবাইল:</label>
+                            <input type="text" id="inst_phone" value="01814716405" class="w-full p-2 border rounded font-bold">
+                        </div>
+                    </div>
+                    <div class="flex justify-end no-print">
+                        <button onclick="saveGeneralSettings()" class="bg-emerald-700 text-white px-5 py-2 rounded-lg font-bold text-xs hover:bg-emerald-800 shadow">তথ্য সংরক্ষণ করুন</button>
+                    </div>
+                </div>
+
+                <div id="panel-logo" class="settings-sub-panel bg-white p-5 md:p-6 rounded-2xl shadow-sm border border-gray-200 space-y-4 hidden">
+                    <div class="flex justify-between items-center border-b pb-3 no-print">
+                        <h3 class="font-bold text-blue-800 text-sm"><i class="fa-solid fa-image mr-2"></i> ২. লোগো ও ওয়াটারমার্ক লাইভ প্রিভিউ</h3>
+                        <button onclick="closeAllSettingsPanels()" class="text-xs bg-gray-200 px-3 py-1 rounded font-bold text-gray-700 hover:bg-gray-300">বন্ধ করুন</button>
+                    </div>
+
                     <div class="grid grid-cols-1 md:grid-cols-2 gap-6 text-xs">
-                        <div class="space-y-3">
-                            <label class="font-bold text-gray-700 block">মাদ্রাসার লোগো আপলোড</label>
-                            <input type="file" id="logoFile" accept="image/*" class="p-2 border rounded w-full">
-                            <div id="logoPreview" class="mt-2 text-[11px] text-emerald-700 font-bold"></div>
-                            <button onclick="saveLogo()" class="bg-blue-600 text-white px-4 py-2 rounded font-bold">লোগো সেভ করুন</button>
-                        </div>
-                        <div class="space-y-3">
-                            <label class="font-bold text-gray-700 block">ওয়াটারমার্ক (Watermark) আপলোড</label>
-                            <input type="file" id="watermarkFile" accept="image/*" class="p-2 border rounded w-full">
-                            <div id="watermarkPreview" class="mt-2 text-[11px] text-emerald-700 font-bold"></div>
-                            <button onclick="saveWatermark()" class="bg-indigo-600 text-white px-4 py-2 rounded font-bold">ওয়াটারমার্ক সেভ করুন</button>
-                        </div>
-                    </div>
-                </div>
-
-                <!-- TAB 3: Academic Year -->
-                <div id="tab-year" class="setting-tab bg-white p-6 rounded-2xl shadow-sm border border-gray-200 space-y-4 hidden">
-                    <h3 class="font-bold text-gray-800 text-sm border-b pb-2"><i class="fa-solid fa-calendar-days text-purple-600 mr-2"></i> Global Academic Year Setup</h3>
-                    <div class="space-y-4 text-xs">
-                        <div class="flex gap-3 items-end">
-                            <div class="flex-1">
-                                <label class="font-bold text-gray-700 mb-1 block">নতুন সাল যোগ করুন (যেমন: 2029)</label>
-                                <input type="number" id="newYearInput" placeholder="সাল লিখুন" class="p-2 border rounded w-full">
-                            </div>
-                            <button onclick="addNewYear()" class="bg-purple-600 text-white px-4 py-2 rounded font-bold h-9">সাল যোগ করুন</button>
-                        </div>
-                        <div>
-                            <label class="font-bold text-gray-700 mb-1 block">বর্তমান শিক্ষাবর্ষ নির্বাচন করুন</label>
-                            <select id="globalAcademicYear" class="p-2 border rounded w-full">
-                                <option value="2025">2025</option>
-                                <option value="2026" selected>2026</option>
-                                <option value="2027">2027</option>
-                                <option value="2028">2028</option>
-                            </select>
-                        </div>
-                        <div><button onclick="saveGlobalYear()" class="bg-emerald-700 text-white px-4 py-2 rounded font-bold">সেশন গ্লোবালি আপডেট করুন</button></div>
-                    </div>
-                </div>
-
-                <!-- TAB 4: Class Management -->
-                <div id="tab-class" class="setting-tab bg-white p-6 rounded-2xl shadow-sm border border-gray-200 space-y-4 hidden">
-                    <h3 class="font-bold text-gray-800 text-sm border-b pb-2"><i class="fa-solid fa-layer-group text-amber-600 mr-2"></i> Class Management (গ্লোবাল শ্রেণি তালিকা)</h3>
-                    <div class="space-y-3 text-xs">
-                        <label class="font-bold text-gray-700 block">সিস্টেমের সকল সেক্টরে ব্যবহৃত ফিক্সড শ্রেণি তালিকা:</label>
-                        <select id="globalClassDropdown" class="p-2 border rounded w-full md:w-1/2 font-medium">
-                            <option>নুরানী প্রথম শ্রেণি</option>
-                            <option>নুরানী দ্বিতীয় শ্রেণি</option>
-                            <option>নুরানী তৃতীয় শ্রেণি</option>
-                            <option>ইবতেদায়ী চতুর্থ শ্রেণি</option>
-                            <option>ইবতেদায়ী পঞ্চম শ্রেণি</option>
-                            <option>দাখিল ষষ্ঠ শ্রেণি</option>
-                            <option>দাখিল সপ্তম শ্রেণি</option>
-                            <option>দাখিল অষ্টম শ্রেণি</option>
-                            <option>দাখিল নবম শ্রেণি</option>
-                            <option>দাখিল দশম শ্রেণি</option>
-                            <option>আলিম প্রথম বর্ষ</option>
-                            <option>আলিম দ্বিতীয় বর্ষ</option>
-                            <option>ফাজিল প্রথম বর্ষ</option>
-                            <option>ফাজিল দ্বিতীয় বর্ষ</option>
-                            <option>ফাজিল তৃতীয় বর্ষ</option>
-                        </select>
-                    </div>
-                </div>
-
-                <!-- TAB 5: Subject Management -->
-                <div id="tab-subject" class="setting-tab bg-white p-6 rounded-2xl shadow-sm border border-gray-200 space-y-4 hidden">
-                    <h3 class="font-bold text-gray-800 text-sm border-b pb-2"><i class="fa-solid fa-book-open text-teal-600 mr-2"></i> Subject Setup & Persistent List</h3>
-                    <div class="space-y-4 text-xs">
-                        <div class="grid grid-cols-1 md:grid-cols-4 gap-3">
-                            <select id="sub_class" class="p-2 border rounded font-medium">
-                                <option>নুরানী প্রথম শ্রেণি</option>
-                                <option>নুরানী দ্বিতীয় শ্রেণি</option>
-                                <option>নুরানী তৃতীয় শ্রেণি</option>
-                                <option>ইবতেদায়ী চতুর্থ শ্রেণি</option>
-                                <option>ইবতেদায়ী পঞ্চম শ্রেণি</option>
-                                <option>দাখিল ষষ্ঠ শ্রেণি</option>
-                                <option>দাখিল সপ্তম শ্রেণি</option>
-                                <option>দাখিল অষ্টম শ্রেণি</option>
-                                <option>দাখিল নবম শ্রেণি</option>
-                                <option>দাখিল দশম শ্রেণি</option>
-                                <option>আলিম প্রথম বর্ষ</option>
-                                <option>আলিম দ্বিতীয় বর্ষ</option>
-                                <option>ফাজিল প্রথম বর্ষ</option>
-                                <option>ফাজিল দ্বিতীয় বর্ষ</option>
-                                <option>ফাজিল তৃতীয় বর্ষ</option>
-                            </select>
-                            <input type="text" id="sub_name" placeholder="বিষয়ের নাম" class="p-2 border rounded">
-                            <input type="text" id="sub_code" placeholder="কোড নম্বর" class="p-2 border rounded">
-                            <button onclick="addSubject()" class="bg-teal-600 text-white px-4 py-2 rounded font-bold">বিষয় যোগ করুন</button>
-                        </div>
-                        <div id="subjectList" class="border p-3 rounded bg-gray-50 space-y-1">
-                            <!-- Stored subjects will load here -->
-                        </div>
-                    </div>
-                </div>
-
-                <!-- TAB 6: Exam Setup -->
-                <div id="tab-exam" class="setting-tab bg-white p-6 rounded-2xl shadow-sm border border-gray-200 space-y-4 hidden">
-                    <h3 class="font-bold text-gray-800 text-sm border-b pb-2"><i class="fa-solid fa-file-lines text-rose-600 mr-2"></i> Exam Setup & List</h3>
-                    <div class="space-y-4 text-xs">
-                        <div class="flex gap-2">
-                            <input type="text" id="examNameInput" placeholder="পরীক্ষার নাম (যেমন: অর্ধবার্ষিক পরীক্ষা ২০২৬)" class="p-2 border rounded w-full md:w-1/3">
-                            <button onclick="addExam()" class="bg-rose-600 text-white px-4 py-2 rounded font-bold">পরীক্ষা যোগ করুন</button>
-                        </div>
-                        <div id="examList" class="border p-3 rounded bg-gray-50 space-y-1">
-                            <!-- Stored exams will load here -->
-                        </div>
-                    </div>
-                </div>
-
-                <!-- TAB 7: Grading System Control -->
-                <div id="tab-grading" class="setting-tab bg-white p-6 rounded-2xl shadow-sm border border-gray-200 space-y-4 hidden">
-                    <h3 class="font-bold text-gray-800 text-sm border-b pb-2"><i class="fa-solid fa-award text-indigo-600 mr-2"></i> Grading System & GPA Control</h3>
-                    <div class="space-y-4 text-xs">
-                        <div>
-                            <label class="font-bold text-gray-700 mb-1 block">পাস মার্কস পার্সেন্টেজ:</label>
-                            <input type="number" id="passMarksLimit" value="33" class="p-2 border rounded w-full md:w-1/4">
-                        </div>
-                        <div class="border-t pt-3">
-                            <label class="font-bold text-gray-700 mb-2 block">লেটার গ্রেড এবং জিপিএ কন্ট্রোল (Grade & GPA Settings):</label>
-                            <div class="overflow-x-auto">
-                                <table class="w-full text-left border-collapse border border-gray-300">
-                                    <thead>
-                                        <tr class="bg-gray-100">
-                                            <th class="border p-2">গ্রেড (Grade)</th>
-                                            <th class="border p-2">জিপিএ (GPA)</th>
-                                            <th class="border p-2">নম্বর রেঞ্জ (Marks Range)</th>
-                                        </tr>
-                                    </thead>
-                                    <tbody id="gradingTableBody">
-                                        <tr><td class="border p-2 font-bold text-emerald-700">A+</td><td class="border p-2"><input type="text" value="5.00" class="p-1 border rounded w-full gpa-val"></td><td class="border p-2"><input type="text" value="80 - 100" class="p-1 border rounded w-full rng-val"></td></tr>
-                                        <tr><td class="border p-2 font-bold text-blue-700">A</td><td class="border p-2"><input type="text" value="4.00" class="p-1 border rounded w-full gpa-val"></td><td class="border p-2"><input type="text" value="70 - 79" class="p-1 border rounded w-full rng-val"></td></tr>
-                                        <tr><td class="border p-2 font-bold text-indigo-700">A-</td><td class="border p-2"><input type="text" value="3.50" class="p-1 border rounded w-full gpa-val"></td><td class="border p-2"><input type="text" value="60 - 69" class="p-1 border rounded w-full rng-val"></td></tr>
-                                        <tr><td class="border p-2 font-bold text-yellow-600">B</td><td class="border p-2"><input type="text" value="3.00" class="p-1 border rounded w-full gpa-val"></td><td class="border p-2"><input type="text" value="50 - 59" class="p-1 border rounded w-full rng-val"></td></tr>
-                                        <tr><td class="border p-2 font-bold text-orange-600">C</td><td class="border p-2"><input type="text" value="2.00" class="p-1 border rounded w-full gpa-val"></td><td class="border p-2"><input type="text" value="40 - 49" class="p-1 border rounded w-full rng-val"></td></tr>
-                                        <tr><td class="border p-2 font-bold text-amber-700">D</td><td class="border p-2"><input type="text" value="1.00" class="p-1 border rounded w-full gpa-val"></td><td class="border p-2"><input type="text" value="33 - 39" class="p-1 border rounded w-full rng-val"></td></tr>
-                                        <tr><td class="border p-2 font-bold text-red-600">F</td><td class="border p-2"><input type="text" value="0.00" class="p-1 border rounded w-full gpa-val"></td><td class="border p-2"><input type="text" value="00 - 32" class="p-1 border rounded w-full rng-val"></td></tr>
-                                    </tbody>
-                                </table>
-                            </div>
-                        </div>
-                        <div><button onclick="saveGradingSettings()" class="bg-indigo-600 text-white px-4 py-2 rounded font-bold">গ্রেডিং সিস্টেম সেভ করুন</button></div>
-                    </div>
-                </div>
-
-                <!-- TAB 8: Receipt, Watermark & Digital Signature -->
-                <div id="tab-receipt" class="setting-tab bg-white p-6 rounded-2xl shadow-sm border border-gray-200 space-y-4 hidden">
-                    <h3 class="font-bold text-gray-800 text-sm border-b pb-2"><i class="fa-solid fa-receipt text-cyan-600 mr-2"></i> Receipt, Watermark & Digital Signature</h3>
-                    <div class="space-y-4 text-xs">
-                        <label class="flex items-center gap-2 font-medium"><input type="checkbox" id="rcpt_logo_chk" checked class="w-4 h-4"> মানি রিসিট ও সার্টিফিকেটে মাদ্রাসার লোগো প্রদর্শন করুন</label>
-                        <label class="flex items-center gap-2 font-medium"><input type="checkbox" id="rcpt_wm_chk" checked class="w-4 h-4"> ব্যাকগ্রাউন্ডে ওয়াটারমার্ক যুক্ত করুন</label>
-                        <label class="flex items-center gap-2 font-medium"><input type="checkbox" id="rcpt_sig_chk" checked class="w-4 h-4"> ডিজিটাল স্বাক্ষর (Principal's Digital Signature) যুক্ত করুন</label>
-                        
-                        <div class="border-t pt-3 space-y-2">
-                            <label class="font-bold text-gray-700 block">অধ্যক্ষ মহোদয়ের ডিজিটাল স্বাক্ষর আপলোড:</label>
-                            <input type="file" id="sigFile" accept="image/*" class="p-2 border rounded w-full md:w-1/2">
-                            <div id="sigPreview" class="mt-1 text-[11px] text-emerald-700 font-bold"></div>
+                        <div class="space-y-4 bg-blue-50 p-4 rounded-xl border border-blue-200">
+                            <h4 class="font-bold text-blue-900">লোগো আপলোড ও লিংক:</h4>
                             <div>
-                                <button onclick="saveReceiptSettings()" class="bg-cyan-600 text-white px-4 py-2 rounded font-bold">সেটিংস ও স্বাক্ষর সেভ করুন</button>
+                                <label class="font-bold block mb-1">লোগো ইমেজ URL বা ফাইল সিলেক্ট করুন:</label>
+                                <input type="text" id="logo_url_input" placeholder="https://example.com/logo.png" class="w-full p-2 border rounded bg-white font-bold mb-2">
+                                <input type="file" id="logo_file_input" onchange="previewLogoFile(this)" class="w-full p-2 border rounded bg-white text-xs">
+                            </div>
+                            <div>
+                                <label class="font-bold block mb-1">ওয়াটারমার্ক অপাসিটি (স্বচ্ছতা):</label>
+                                <input type="range" id="watermark_opacity" min="0.02" max="0.2" step="0.01" value="0.05" class="w-full" oninput="updateWatermarkLivePreview()">
+                            </div>
+                            <button onclick="applyLogoAndWatermark()" class="bg-blue-700 text-white px-4 py-2 rounded font-bold hover:bg-blue-800 shadow">লোগো ও ওয়াটারমার্ক সেট করুন</button>
+                        </div>
+
+                        <div class="border-2 border-dashed border-blue-300 p-6 rounded-xl relative flex flex-col items-center justify-center bg-white shadow-inner watermark-bg min-h-[220px]" id="previewBoxContainer">
+                            <div class="absolute inset-0 flex items-center justify-center opacity-10 pointer-events-none select-none">
+                                <img id="watermark_live_img" src="https://via.placeholder.com/150" class="w-36 h-36 object-contain">
+                            </div>
+                            <div class="z-10 text-center space-y-2">
+                                <img id="logo_live_img" src="https://via.placeholder.com/60" class="w-16 h-16 mx-auto object-contain border rounded-full shadow">
+                                <h4 class="font-bold text-sm text-emerald-900">লাইভ লোগো ও ওয়াটারমার্ক প্রিভিউ</h4>
+                                <p class="text-[11px] text-gray-600">সকল ফরম, সার্টিফিকেট ও মানি রিসিটে এই প্রিভিউ প্রযোজ্য হবে।</p>
                             </div>
                         </div>
                     </div>
                 </div>
 
-                <!-- TAB 9: Backup -->
-                <div id="tab-backup" class="setting-tab bg-white p-6 rounded-2xl shadow-sm border border-gray-200 space-y-4 hidden">
-                    <h3 class="font-bold text-gray-800 text-sm border-b pb-2"><i class="fa-solid fa-database text-emerald-700 mr-2"></i> System Backup & Restore</h3>
-                    <div class="space-y-4 text-xs">
-                        <button onclick="alert('সিস্টেম ব্যাকআপ ফাইল প্রস্তুত এবং ডাউনলোড সফল হয়েছে!')" class="bg-emerald-700 text-white px-4 py-2 rounded font-bold">লোকাল ব্যাকআপ ডাউনলোড (.json)</button>
+                <div id="panel-session" class="settings-sub-panel bg-white p-5 md:p-6 rounded-2xl shadow-sm border border-gray-200 space-y-4 hidden">
+                    <div class="flex justify-between items-center border-b pb-3 no-print">
+                        <h3 class="font-bold text-purple-800 text-sm"><i class="fa-solid fa-calendar mr-2"></i> ৩. সেশন ও সাল ম্যানেজমেন্ট</h3>
+                        <button onclick="closeAllSettingsPanels()" class="text-xs bg-gray-200 px-3 py-1 rounded font-bold text-gray-700 hover:bg-gray-300">বন্ধ করুন</button>
+                    </div>
+                    <div class="bg-purple-50 p-4 rounded-xl border border-purple-200 text-xs space-y-3">
+                        <div class="flex gap-2">
+                            <input type="text" id="new_year_input" placeholder="নতুন সাল (যেমন: ২০২৮)" class="p-2 border rounded bg-white font-bold flex-1">
+                            <button onclick="addNewYear()" class="bg-purple-700 text-white px-4 py-2 rounded font-bold">সাল যোগ করুন</button>
+                        </div>
+                        <div id="yearListDisplay" class="flex flex-wrap gap-2 pt-2"></div>
+                    </div>
+                </div>
+
+                <div id="panel-classes" class="settings-sub-panel bg-white p-5 md:p-6 rounded-2xl shadow-sm border border-gray-200 space-y-4 hidden">
+                    <div class="flex justify-between items-center border-b pb-3 no-print">
+                        <h3 class="font-bold text-amber-800 text-sm"><i class="fa-solid fa-school mr-2"></i> ৪. শ্রেণি সেটআপ</h3>
+                        <button onclick="closeAllSettingsPanels()" class="text-xs bg-gray-200 px-3 py-1 rounded font-bold text-gray-700 hover:bg-gray-300">বন্ধ করুন</button>
+                    </div>
+                    <div class="bg-amber-50 p-4 rounded-xl border border-amber-200 text-xs space-y-3">
+                        <div class="flex gap-2">
+                            <input type="text" id="new_class_input" placeholder="নতুন শ্রেণি (যেমন: দাখিল নবম শ্রেণি)" class="p-2 border rounded bg-white font-bold flex-1">
+                            <button onclick="addNewClass()" class="bg-amber-700 text-white px-4 py-2 rounded font-bold">শ্রেণি যোগ করুন</button>
+                        </div>
+                        <div id="classListDisplay" class="flex flex-wrap gap-2 pt-2"></div>
+                    </div>
+                </div>
+
+                <div id="panel-subjects" class="settings-sub-panel bg-white p-5 md:p-6 rounded-2xl shadow-sm border border-gray-200 space-y-4 hidden">
+                    <div class="flex justify-between items-center border-b pb-3 no-print">
+                        <h3 class="font-bold text-teal-800 text-sm"><i class="fa-solid fa-book mr-2"></i> ৫. বিষয় ও কোড ম্যানেজমেন্ট (ড্রপডাউন ও নতুন বিষয় সংযুক্তি)</h3>
+                        <button onclick="closeAllSettingsPanels()" class="text-xs bg-gray-200 px-3 py-1 rounded font-bold text-gray-700 hover:bg-gray-300">বন্ধ করুন</button>
+                    </div>
+
+                    <div class="bg-teal-50 p-4 rounded-xl border border-teal-200 text-xs grid grid-cols-1 sm:grid-cols-3 gap-3 items-end no-print">
+                        <div>
+                            <label class="font-bold block mb-1">বিষয়ের নাম:</label>
+                            <input type="text" id="new_subj_name" placeholder="বিষয়ের নাম লিখুন..." class="p-2 border rounded bg-white font-bold w-full">
+                        </div>
+                        <div>
+                            <label class="font-bold block mb-1">বিষয় কোড (Subject Code):</label>
+                            <input type="text" id="new_subj_code" placeholder="কোড লিখুন..." class="p-2 border rounded bg-white font-bold w-full">
+                        </div>
+                        <div>
+                            <button onclick="addNewSubject()" class="w-full bg-teal-700 text-white px-4 py-2 rounded font-bold hover:bg-teal-800 shadow">নতুন বিষয় যোগ করুন</button>
+                        </div>
+                    </div>
+
+                    <div class="bg-white border p-4 rounded-xl space-y-2 text-xs">
+                        <label class="font-bold text-teal-900 block"><i class="fa-solid fa-list-ul mr-1"></i> সিলেক্টেড বিষয়সমূহ ড্রপডাউন (Select Dropdown):</label>
+                        <select id="subjects_dropdown_view" class="p-2 border rounded bg-emerald-50 font-bold w-full sm:w-80"></select>
+                    </div>
+
+                    <div class="overflow-x-auto">
+                        <table class="w-full text-left border-collapse border border-gray-200 text-xs whitespace-nowrap">
+                            <thead>
+                                <tr class="bg-teal-700 text-white">
+                                    <th class="border p-2">ক্র.নং</th>
+                                    <th class="border p-2">বিষয়ের নাম</th>
+                                    <th class="border p-2">বিষয় কোড (Subject Code)</th>
+                                    <th class="border p-2 text-center">স্ট্যাটাস</th>
+                                </tr>
+                            </thead>
+                            <tbody id="subjectsTableBody"></tbody>
+                        </table>
+                    </div>
+                </div>
+
+                <div id="panel-grading" class="settings-sub-panel bg-white p-5 md:p-6 rounded-2xl shadow-sm border border-gray-200 space-y-4 hidden">
+                    <div class="flex justify-between items-center border-b pb-3 no-print">
+                        <h3 class="font-bold text-indigo-800 text-sm"><i class="fa-solid fa-award mr-2"></i> ৬. গ্রেডিং সিস্টেম ও জিপিএ স্কেল</h3>
+                        <button onclick="closeAllSettingsPanels()" class="text-xs bg-gray-200 px-3 py-1 rounded font-bold text-gray-700 hover:bg-gray-300">বন্ধ করুন</button>
+                    </div>
+                    <div class="bg-indigo-50 p-4 rounded-xl border border-indigo-200 text-xs space-y-2">
+                        <p class="font-bold text-indigo-900">বর্তমানে সক্রিয় গ্রেডিং স্কিম: <b>General & Madrasah Board GPA 5.00 Scale</b></p>
+                        <p class="text-gray-600">নম্বর ৮০-১০০ (A+ = 5.00), ৭০-৭৯ (A = 4.00), ৬০-৬৯ (A- = 3.50), ৫০-৫৯ (B = 3.00), ৪০-৪৯ (C = 2.00), ৩৩-৩৯ (D = 1.00), ০-৩২ (F = 0.00)।</p>
+                    </div>
+                </div>
+
+                <div id="panel-sms" class="settings-sub-panel bg-white p-5 md:p-6 rounded-2xl shadow-sm border border-gray-200 space-y-4 hidden">
+                    <div class="flex justify-between items-center border-b pb-3 no-print">
+                        <h3 class="font-bold text-rose-800 text-sm"><i class="fa-solid fa-comment-sms mr-2"></i> ৭. এসএমএস গেটওয়ে API কনফিগারেশন</h3>
+                        <button onclick="closeAllSettingsPanels()" class="text-xs bg-gray-200 px-3 py-1 rounded font-bold text-gray-700 hover:bg-gray-300">বন্ধ করুন</button>
+                    </div>
+                    <div class="grid grid-cols-1 sm:grid-cols-2 gap-4 text-xs bg-rose-50 p-4 rounded-xl border border-rose-200">
+                        <div>
+                            <label class="font-bold block mb-1">API Provider (যেমন: BulksmsBD / Greenweb):</label>
+                            <input type="text" value="BulksmsBD API" class="w-full p-2 border rounded font-bold bg-white">
+                        </div>
+                        <div>
+                            <label class="font-bold block mb-1">API Key / Token:</label>
+                            <input type="password" value="************************" class="w-full p-2 border rounded font-bold bg-white">
+                        </div>
+                    </div>
+                </div>
+
+                <div id="panel-receipt" class="settings-sub-panel bg-white p-5 md:p-6 rounded-2xl shadow-sm border border-gray-200 space-y-4 hidden">
+                    <div class="flex justify-between items-center border-b pb-3 no-print">
+                        <h3 class="font-bold text-cyan-800 text-sm"><i class="fa-solid fa-receipt mr-2"></i> ৮. মানি রিসিট ও সিল-স্বাক্ষর (ওয়াটারমার্ক ব্যাকগ্রাউন্ড সহ)</h3>
+                        <button onclick="closeAllSettingsPanels()" class="text-xs bg-gray-200 px-3 py-1 rounded font-bold text-gray-700 hover:bg-gray-300">বন্ধ করুন</button>
+                    </div>
+
+                    <div class="flex justify-end no-print">
+                        <button onclick="window.print()" class="bg-cyan-700 text-white px-5 py-2 rounded text-xs font-bold hover:bg-cyan-800 shadow"><i class="fa-solid fa-print mr-1"></i> মানি রিসিট প্রিন্ট করুন</button>
+                    </div>
+
+                    <div class="print-container max-w-xl mx-auto bg-white border-2 border-emerald-800 p-6 rounded-xl shadow-lg relative watermark-bg space-y-4 text-xs">
+                        <div class="text-center border-b-2 border-emerald-800 pb-3 relative z-10">
+                            <img id="receipt_logo_display" src="https://via.placeholder.com/50" class="w-12 h-12 mx-auto object-contain mb-1">
+                            <h2 class="font-bold text-sm text-emerald-900">আবদুল্লাহ হাট ইসলামিয়া ফাজিল মাদ্রাসা</h2>
+                            <p class="text-[10px] text-gray-600">কোম্পানীগঞ্জ, নোয়াখালী - মানি রিসিট (Fees Money Receipt)</p>
+                        </div>
+
+                        <div class="flex justify-between items-center relative z-10 border p-3 rounded-lg bg-emerald-50/50">
+                            <div>
+                                <p><b>রিসিট নং:</b> #MR-2026-001</p>
+                                <p><b>শিক্ষার্থীর নাম:</b> মো: আব্দুল্লাহ</p>
+                                <p><b>আইডি:</b> 202606001 | <b>শ্রেণি:</b> দাখিল ষষ্ঠ</p>
+                            </div>
+                            <div class="text-right">
+                                <p><b>তারিখ:</b> 09/06/2026</p>
+                                <p><b>একাডেমিক ইয়ার:</b> ২০২৬</p>
+                            </div>
+                        </div>
+
+                        <table class="w-full text-left border-collapse border border-gray-300 text-xs relative z-10">
+                            <thead>
+                                <tr class="bg-emerald-800 text-white">
+                                    <th class="border p-2">ফি এর বিবরণ (Description)</th>
+                                    <th class="border p-2 text-center">টাকা (BDT)</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr><td class="border p-2">মাসিক টিউশন ফি (জানুয়ারি - জুন)</td><td class="border p-2 text-center">৩,০০০/-</td></tr>
+                                <tr><td class="border p-2">পরীক্ষার ফি (অর্ধবার্ষিক পরীক্ষা)</td><td class="border p-2 text-center">৫০০/-</td></tr>
+                                <tr class="bg-gray-50 font-bold"><td class="border p-2 text-right">মোট জমা:</td><td class="border p-2 text-center text-emerald-800">৩,৫০০/-</td></tr>
+                            </tbody>
+                        </table>
+
+                        <div class="pt-10 flex justify-between items-center text-center relative z-10">
+                            <div><span class="border-t border-gray-800 inline-block px-4 pt-1 font-bold">একাউন্ট্যান্ট</span></div>
+                            <div><span class="border-t border-gray-800 inline-block px-4 pt-1 font-bold">প্রধান ক্যাশিয়ার</span></div>
+                            <div><span class="border-t border-gray-800 inline-block px-4 pt-1 font-bold">অধ্যক্ষ</span></div>
+                        </div>
+                    </div>
+                </div>
+
+                <div id="panel-backup" class="settings-sub-panel bg-white p-5 md:p-6 rounded-2xl shadow-sm border border-gray-200 space-y-4 hidden">
+                    <div class="flex justify-between items-center border-b pb-3 no-print">
+                        <h3 class="font-bold text-sky-800 text-sm"><i class="fa-solid fa-database mr-2"></i> ৯. ডাটা ব্যাকআপ ও রিসেট</h3>
+                        <button onclick="closeAllSettingsPanels()" class="text-xs bg-gray-200 px-3 py-1 rounded font-bold text-gray-700 hover:bg-gray-300">বন্ধ করুন</button>
+                    </div>
+                    <div class="bg-sky-50 p-4 rounded-xl border border-sky-200 text-xs space-y-3">
+                        <p class="font-bold text-sky-900">আপনার সকল সেটিংস ব্রাউজারের LocalStorage এ নিরাপদে সংরক্ষিত আছে।</p>
+                        <button onclick="factoryResetSettings()" class="bg-rose-600 text-white px-4 py-2 rounded font-bold hover:bg-rose-700 shadow">ফ্যাক্টরি রিসেট (সকল ডেটা মুছুন)</button>
                     </div>
                 </div>
 
@@ -267,232 +373,206 @@
         </div>
     </div>
 
-    <!-- JavaScript & Persistent LocalStorage Engine -->
     <script>
-        function switchTab(tabName) {
-            document.querySelectorAll('.setting-tab').forEach(tab => tab.classList.add('hidden'));
-            document.querySelectorAll('.tab-btn').forEach(btn => {
-                btn.classList.remove('bg-emerald-700', 'text-white');
-                btn.classList.add('bg-gray-100', 'text-gray-700');
-            });
-            document.getElementById('tab-' + tabName).classList.remove('hidden');
-            event.target.classList.remove('bg-gray-100', 'text-gray-700');
-            event.target.classList.add('bg-emerald-700', 'text-white');
+        // Initializer for Subjects with requested codes
+        function getSubjectsData() {
+            let subjects = JSON.parse(localStorage.getItem('madrasah_subjects_detailed'));
+            if(!subjects || subjects.length === 0) {
+                subjects = [
+                    { name: "কুরআন মাজিদ", code: "100" },
+                    { name: "হাদীস শরীফ", code: "170" },
+                    { name: "আরবী প্রথম পত্র", code: "171" },
+                    { name: "আরবী দ্বিতীয় পত্র", code: "172" },
+                    { name: "আরবী", code: "173" },
+                    { name: "আকাঈদ ও ফিকহ্", code: "175" },
+                    { name: "বাংলা প্রথম পত্র", code: "101" },
+                    { name: "বাংলা দ্বিতীয় পত্র", code: "102" },
+                    { name: "বাংলা", code: "103" },
+                    { name: "ইং‌রে‌জি প্রথম পত্র", code: "107" },
+                    { name: "ইং‌রে‌জি দ্বিতীয় পত্র", code: "108" },
+                    { name: "ইং‌রে‌জি", code: "109" },
+                    { name: "গণিত", code: "125" },
+                    { name: "ইস্লামের ইতিহাস", code: "140" },
+                    { name: "কৃষি শিক্ষা", code: "134" }
+                ];
+                localStorage.setItem('madrasah_subjects_detailed', JSON.stringify(subjects));
+            }
+            return subjects;
         }
 
-        // 1. Info Save
-        function saveInstitution(event) {
-            event.preventDefault();
-            const instData = {
-                name_bn: document.getElementById('inst_name_bn').value.trim(),
-                name_en: document.getElementById('inst_name_en').value.trim(),
-                eiin: document.getElementById('inst_eiin').value.trim(),
-                phone: document.getElementById('inst_phone').value.trim(),
-                address: document.getElementById('inst_address').value.trim()
-            };
-            localStorage.setItem('madrasah_global_settings', JSON.stringify(instData));
-            alert('প্রতিষ্ঠানের তথ্য সফলভাবে সংরক্ষিত হয়েছে!');
+        function getYearsData() {
+            let years = JSON.parse(localStorage.getItem('madrasah_years')) || ["2026", "2027"];
+            return years;
         }
 
-        // 2. Logo & Watermark Save with Base64 encoding
-        function saveLogo() {
-            const fileInput = document.getElementById('logoFile');
-            if(fileInput.files && fileInput.files[0]) {
+        function getClassesData() {
+            let classes = JSON.parse(localStorage.getItem('madrasah_classes')) || ["দাখিল ষষ্ঠ শ্রেণি", "দাখিল সপ্তম শ্রেণি", "দাখিল অষ্টম শ্রেণি", "দাখিল নবম শ্রেণি", "দাখিল দশম শ্রেণি"];
+            return classes;
+        }
+
+        function openSettingsPanel(panelName) {
+            document.querySelectorAll('.settings-sub-panel').forEach(p => p.classList.add('hidden'));
+            const target = document.getElementById('panel-' + panelName);
+            if(target) {
+                target.classList.remove('hidden');
+                target.scrollIntoView({ behavior: 'smooth' });
+            }
+            if(panelName === 'subjects') loadSubjectsTable();
+            if(panelName === 'session') loadYearsList();
+            if(panelName === 'classes') loadClassesList();
+        }
+
+        function closeAllSettingsPanels() {
+            document.querySelectorAll('.settings-sub-panel').forEach(p => p.classList.add('hidden'));
+            window.scrollTo({ top: 0, behavior: 'smooth' });
+        }
+
+        function saveGeneralSettings() {
+            alert('জেনারেল ইনফরমেশন সফলভাবে সংরক্ষিত হয়েছে!');
+        }
+
+        // --- 2. LOGO & WATERMARK PREVIEW LOGIC ---
+        function previewLogoFile(input) {
+            if (input.files && input.files[0]) {
                 const reader = new FileReader();
                 reader.onload = function(e) {
-                    localStorage.setItem('madrasah_logo_base64', e.target.result);
-                    document.getElementById('logoPreview').innerText = "✔ লোগো সফলভাবে সেভ হয়েছে!";
-                    alert('লোগো সফলভাবে সংরক্ষিত হয়েছে!');
-                };
-                reader.readAsDataURL(fileInput.files[0]);
-            } else {
-                alert('দয়া করে প্রথমে একটি লোগো ফাইল সিলেক্ট করুন!');
-            }
-        }
-
-        function saveWatermark() {
-            const fileInput = document.getElementById('watermarkFile');
-            if(fileInput.files && fileInput.files[0]) {
-                const reader = new FileReader();
-                reader.onload = function(e) {
-                    localStorage.setItem('madrasah_watermark_base64', e.target.result);
-                    document.getElementById('watermarkPreview').innerText = "✔ ওয়াটারমার্ক সফলভাবে সেভ হয়েছে!";
-                    alert('ওয়াটারমার্ক সফলভাবে সংরক্ষিত হয়েছে!');
-                };
-                reader.readAsDataURL(fileInput.files[0]);
-            } else {
-                alert('দয়া করে প্রথমে একটি ওয়াটারমার্ক ফাইল সিলেক্ট করুন!');
-            }
-        }
-
-        // 3 & 4. Academic Year & Classes
-        function saveGlobalYear() {
-            const year = document.getElementById('globalAcademicYear').value;
-            localStorage.setItem('global_academic_year', year);
-            document.getElementById('display-global-year').innerText = "সেশন: " + year;
-            alert('একাডেমিক ইয়ার ' + year + ' সেট করা হয়েছে!');
-        }
-
-        function addNewYear() {
-            const newYear = document.getElementById('newYearInput').value.trim();
-            if(!newYear) return alert('সাল লিখুন!');
-            const select = document.getElementById('globalAcademicYear');
-            let exists = Array.from(select.options).some(opt => opt.value === newYear);
-            if(!exists) {
-                let opt = document.createElement('option');
-                opt.value = newYear; opt.text = newYear;
-                select.add(opt);
-                select.value = newYear;
-                alert('সাল ' + newYear + ' যুক্ত হয়েছে!');
-            } else {
-                alert('এই সালটি ইতিমধ্যে আছে!');
-            }
-            document.getElementById('newYearInput').value = '';
-        }
-
-        // 5. Subject Management Persistent
-        function addSubject() {
-            const cls = document.getElementById('sub_class').value;
-            const sub = document.getElementById('sub_name').value.trim();
-            const code = document.getElementById('sub_code').value.trim();
-            if(!sub || !code) return alert('বিষয়ের নাম ও কোড দিন!');
-
-            let subjects = JSON.parse(localStorage.getItem('madrasah_subjects')) || [];
-            subjects.push({ cls, sub, code });
-            localStorage.setItem('madrasah_subjects', JSON.stringify(subjects));
-
-            loadSubjects();
-            document.getElementById('sub_name').value = '';
-            document.getElementById('sub_code').value = '';
-            alert('বিষয় সফলভাবে যুক্ত ও সংরক্ষিত হয়েছে!');
-        }
-
-        function loadSubjects() {
-            let subjects = JSON.parse(localStorage.getItem('madrasah_subjects')) || [];
-            const listDiv = document.getElementById('subjectList');
-            listDiv.innerHTML = '';
-            if(subjects.length === 0) {
-                listDiv.innerHTML = '<p class="text-gray-500">কোনো বিষয় যুক্ত করা হয়নি।</p>';
-                return;
-            }
-            subjects.forEach((s, i) => {
-                listDiv.innerHTML += `<div class="flex justify-between items-center border-b pb-1 mt-1 text-xs"><span class="text-gray-700">✔ <b>${s.cls}</b> > ${s.sub} (কোড: ${s.code})</span><button onclick="deleteSubject(${i})" class="text-red-600 font-bold">ডিলিট</button></div>`;
-            });
-        }
-
-        function deleteSubject(i) {
-            let subjects = JSON.parse(localStorage.getItem('madrasah_subjects')) || [];
-            subjects.splice(i, 1);
-            localStorage.setItem('madrasah_subjects', JSON.stringify(subjects));
-            loadSubjects();
-        }
-
-        // 6. Exam Setup Persistent
-        function addExam() {
-            const examName = document.getElementById('examNameInput').value.trim();
-            if(!examName) return alert('পরীক্ষার নাম লিখুন!');
-
-            let exams = JSON.parse(localStorage.getItem('madrasah_exams')) || [];
-            exams.push(examName);
-            localStorage.setItem('madrasah_exams', JSON.stringify(exams));
-
-            loadExams();
-            document.getElementById('examNameInput').value = '';
-            alert('পরীক্ষা সফলভাবে তালিকাভুক্ত ও সংরক্ষিত হয়েছে!');
-        }
-
-        function loadExams() {
-            let exams = JSON.parse(localStorage.getItem('madrasah_exams')) || [];
-            const listDiv = document.getElementById('examList');
-            listDiv.innerHTML = '';
-            if(exams.length === 0) {
-                listDiv.innerHTML = '<p class="text-gray-500">কোনো পরীক্ষা তালিকাভুক্ত নেই।</p>';
-                return;
-            }
-            exams.forEach((ex, i) => {
-                listDiv.innerHTML += `<div class="flex justify-between items-center border-b pb-1 mt-1 text-xs"><span class="text-gray-700">📝 ${ex}</span><button onclick="deleteExam(${i})" class="text-red-600 font-bold">ডিলিট</button></div>`;
-            });
-        }
-
-        function deleteExam(i) {
-            let exams = JSON.parse(localStorage.getItem('madrasah_exams')) || [];
-            exams.splice(i, 1);
-            localStorage.setItem('madrasah_exams', JSON.stringify(exams));
-            loadExams();
-        }
-
-        // 7. Grading System Save
-        function saveGradingSettings() {
-            const passLimit = document.getElementById('passMarksLimit').value;
-            localStorage.setItem('madrasah_pass_limit', passLimit);
-            alert('পাস মার্কস ও গ্রেডিং কন্ট্রোল সফলভাবে সংরক্ষিত হয়েছে!');
-        }
-
-        // 8. Receipt & Signature Save
-        function saveReceiptSettings() {
-            const fileInput = document.getElementById('sigFile');
-            const data = {
-                logo: document.getElementById('rcpt_logo_chk').checked,
-                wm: document.getElementById('rcpt_wm_chk').checked,
-                sig: document.getElementById('rcpt_sig_chk').checked
-            };
-            localStorage.setItem('madrasah_receipt_config', JSON.stringify(data));
-
-            if(fileInput.files && fileInput.files[0]) {
-                const reader = new FileReader();
-                reader.onload = function(e) {
-                    localStorage.setItem('madrasah_signature_base64', e.target.result);
-                    document.getElementById('sigPreview').innerText = "✔ ডিজিটাল স্বাক্ষর সেভ হয়েছে!";
-                    alert('সেটিংস ও ডিজিটাল স্বাক্ষর সফলভাবে সংরক্ষিত হয়েছে!');
-                };
-                reader.readAsDataURL(fileInput.files[0]);
-            } else {
-                alert('সেটিংস সফলভাবে সংরক্ষিত হয়েছে!');
-            }
-        }
-
-        // Window Onload Loader
-        window.onload = function() {
-            const savedInst = localStorage.getItem('madrasah_global_settings');
-            if(savedInst) {
-                const data = JSON.parse(savedInst);
-                document.getElementById('inst_name_bn').value = data.name_bn || '';
-                document.getElementById('inst_name_en').value = data.name_en || '';
-                document.getElementById('inst_eiin').value = data.eiin || '';
-                document.getElementById('inst_phone').value = data.phone || '';
-                document.getElementById('inst_address').value = data.address || '';
-            }
-
-            const savedYear = localStorage.getItem('global_academic_year');
-            if(savedYear) {
-                const select = document.getElementById('globalAcademicYear');
-                let found = Array.from(select.options).some(opt => opt.value === savedYear);
-                if(!found) {
-                    let opt = document.createElement('option');
-                    opt.value = savedYear; opt.text = savedYear;
-                    select.add(opt);
+                    const imgUrl = e.target.result;
+                    document.getElementById('logo_url_input').value = imgUrl;
+                    applyLogoAndWatermarkToUI(imgUrl);
                 }
-                select.value = savedYear;
-                document.getElementById('display-global-year').innerText = "সেশন: " + savedYear;
+                reader.readAsDataURL(input.files[0]);
             }
+        }
 
-            const passLim = localStorage.getItem('madrasah_pass_limit');
-            if(passLim) {
-                document.getElementById('passMarksLimit').value = passLim;
-            }
+        function updateWatermarkLivePreview() {
+            const opacity = document.getElementById('watermark_opacity').value;
+            const containers = document.querySelectorAll('.watermark-bg');
+            containers.forEach(c => {
+                c.style.setProperty('--watermark-opacity', opacity);
+            });
+        }
 
-            if(localStorage.getItem('madrasah_logo_base64')) {
-                document.getElementById('logoPreview').innerText = "✔ লোগো সংরক্ষিত আছে";
-            }
-            if(localStorage.getItem('madrasah_watermark_base64')) {
-                document.getElementById('watermarkPreview').innerText = "✔ ওয়াটারমার্ক সংরক্ষিত আছে";
-            }
-            if(localStorage.getItem('madrasah_signature_base64')) {
-                document.getElementById('sigPreview').innerText = "✔ ডিজিটাল স্বাক্ষর সংরক্ষিত আছে";
-            }
+        function applyLogoAndWatermark() {
+            const url = document.getElementById('logo_url_input').value.trim() || "https://via.placeholder.com/150";
+            localStorage.setItem('madrasah_logo_url', url);
+            applyLogoAndWatermarkToUI(url);
+            alert('লোগো এবং ওয়াটারমার্ক সফলভাবে সেট ও আপডেট করা হয়েছে!');
+        }
 
-            loadSubjects();
-            loadExams();
+        function applyLogoAndWatermarkToUI(url) {
+            document.getElementById('logo_live_img').src = url;
+            document.getElementById('watermark_live_img').src = url;
+            document.getElementById('receipt_logo_display').src = url;
+            
+            // Set CSS Variable for Watermark Background across forms
+            const cssVarUrl = `url('${url}')`;
+            document.documentElement.style.setProperty('--watermark-img', cssVarUrl);
+        }
+
+        // --- 3. SESSION / YEARS MANAGEMENT ---
+        function addNewYear() {
+            const val = document.getElementById('new_year_input').value.trim();
+            if(!val) return;
+            let years = getYearsData();
+            if(!years.includes(val)) {
+                years.push(val);
+                localStorage.setItem('madrasah_years', JSON.stringify(years));
+                document.getElementById('new_year_input').value = '';
+                loadYearsList();
+                alert('সাল সফলভাবে যোগ করা হয়েছে!');
+            }
+        }
+
+        function loadYearsList() {
+            const display = document.getElementById('yearListDisplay');
+            const years = getYearsData();
+            display.innerHTML = '';
+            years.forEach(y => {
+                display.innerHTML += `<span class="bg-purple-100 text-purple-900 px-3 py-1 rounded-full font-bold border border-purple-300 text-xs">${y}</span>`;
+            });
+        }
+
+        // --- 4. CLASSES MANAGEMENT ---
+        function addNewClass() {
+            const val = document.getElementById('new_class_input').value.trim();
+            if(!val) return;
+            let classes = getClassesData();
+            if(!classes.includes(val)) {
+                classes.push(val);
+                localStorage.setItem('madrasah_classes', JSON.stringify(classes));
+                document.getElementById('new_class_input').value = '';
+                loadClassesList();
+                alert('শ্রেণি সফলভাবে যোগ করা হয়েছে!');
+            }
+        }
+
+        function loadClassesList() {
+            const display = document.getElementById('classListDisplay');
+            const classes = getClassesData();
+            display.innerHTML = '';
+            classes.forEach(c => {
+                display.innerHTML += `<span class="bg-amber-100 text-amber-900 px-3 py-1 rounded-full font-bold border border-amber-300 text-xs">${c}</span>`;
+            });
+        }
+
+        // --- 5. SUBJECTS MANAGEMENT WITH DROPDOWN & CODES ---
+        function addNewSubject() {
+            const name = document.getElementById('new_subj_name').value.trim();
+            const code = document.getElementById('new_subj_code').value.trim();
+            if(!name) {
+                alert('দয়া করে বিষয়ের নাম লিখুন!');
+                return;
+            }
+            let subjects = getSubjectsData();
+            subjects.push({ name: name, code: code || '---' });
+            localStorage.setItem('madrasah_subjects_detailed', JSON.stringify(subjects));
+            document.getElementById('new_subj_name').value = '';
+            document.getElementById('new_subj_code').value = '';
+            loadSubjectsTable();
+            alert('নতুন বিষয় সফলভাবে যুক্ত করা হয়েছে!');
+        }
+
+        function loadSubjectsTable() {
+            const tbody = document.getElementById('subjectsTableBody');
+            const dropdown = document.getElementById('subjects_dropdown_view');
+            const subjects = getSubjectsData();
+            
+            tbody.innerHTML = '';
+            dropdown.innerHTML = '';
+
+            subjects.forEach((s, i) => {
+                tbody.innerHTML += `
+                    <tr>
+                        <td class="border p-2 font-bold">${i + 1}</td>
+                        <td class="border p-2 font-bold">${s.name}</td>
+                        <td class="border p-2 font-bold text-teal-800">${s.code}</td>
+                        <td class="border p-2 text-center"><span class="bg-green-100 text-green-800 px-2 py-0.5 rounded font-bold">সক্রিয়</span></td>
+                    </tr>
+                `;
+                dropdown.innerHTML += `<option value="${s.code}">${s.name} (কোড: ${s.code})</option>`;
+            });
+        }
+
+        function factoryResetSettings() {
+            if(confirm('সতর্কতা! সকল সেটিংস ও ডেটা মুছে ফ্যাক্টরি রিসেট করতে চান?')) {
+                localStorage.clear();
+                alert('ফ্যাক্টরি রিসেট সম্পন্ন হয়েছে!');
+                location.reload();
+            }
+        }
+
+        window.onload = function() {
+            getSubjectsData();
+            loadSubjectsTable();
+            loadYearsList();
+            loadClassesList();
+            
+            // Apply saved logo/watermark if any
+            let savedLogo = localStorage.getItem('madrasah_logo_url');
+            if(savedLogo) {
+                document.getElementById('logo_url_input').value = savedLogo;
+                applyLogoAndWatermarkToUI(savedLogo);
+            }
         };
     </script>
 </body>

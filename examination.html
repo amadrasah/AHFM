@@ -10,14 +10,14 @@
     <style>
         @page {
             size: A4 portrait;
-            margin: 6mm;
+            margin: 5mm;
         }
         @media print {
             .no-print { display: none !important; }
             body { background: white !important; padding: 0 !important; margin: 0 !important; }
             .report-card-container {
                 border: 5px double #b45309 !important;
-                padding: 8px !important;
+                padding: 6px !important;
                 background: white !important;
                 width: 100% !important;
                 max-width: 210mm !important;
@@ -27,13 +27,27 @@
                 page-break-after: avoid;
                 page-break-inside: avoid;
             }
-            table { width: 100% !important; border-collapse: collapse !important; }
-            th, td { border: 1px solid #000 !important; padding: 2px 3px !important; font-size: 8px !important; }
+            .admit-half {
+                height: 136mm !important;
+                max-height: 136mm !important;
+                overflow: hidden !important;
+                box-sizing: border-box !important;
+            }
+            .cut-divider {
+                border-top: 1px dashed #000 !important;
+                margin: 3mm 0 !important;
+            }
         }
         /* Classic Excel Vintage Double Border Simulator */
         .vintage-border {
             border: 8px double #b45309;
             box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1);
+        }
+        .admit-half {
+            height: 135mm;
+            display: flex;
+            flex-direction: column;
+            justify-content: space-between;
         }
     </style>
 </head>
@@ -95,7 +109,7 @@
                 <div class="bg-gradient-to-r from-emerald-800 to-emerald-950 text-white p-6 rounded-2xl shadow-sm flex flex-col md:flex-row justify-between items-center gap-4 no-print">
                     <div>
                         <h2 class="text-xl font-bold">পরীক্ষা ও ফলাফল ব্যবস্থাপনা প্যানেল</h2>
-                        <p class="text-emerald-200 text-xs mt-1">নম্বর এন্ট্রি, জিপিএ ক্যালকুলেশন, প্রোগ্রেস রিপোর্ট কার্ড এবং বোর্ড স্টাইল এডমিট কার্ড জেনারেটর।</p>
+                        <p class="text-emerald-200 text-xs mt-1">নম্বর এন্ট্রি, জিপিএ ক্যালকুলেশন, প্রোগ্রেস রিপোর্ট কার্ড এবং এক পেজে দুটি এডমিট কার্ড প্রিন্ট জেনারেটর।</p>
                     </div>
                     <div class="flex gap-2">
                         <button onclick="openExamModule('marks_entry')" class="bg-white text-emerald-900 px-4 py-2 rounded-xl font-bold text-xs hover:bg-emerald-50 transition shadow-sm">
@@ -172,10 +186,10 @@
 
                     <div onclick="openExamModule('admit_card')" class="bg-white p-5 rounded-xl shadow-sm border-t-4 border-indigo-600 space-y-3 cursor-pointer hover:border-indigo-700 transition md:col-span-2 lg:col-span-2">
                         <div class="flex items-center justify-between border-b pb-2">
-                            <h3 class="font-bold text-gray-800 text-sm flex items-center gap-2"><i class="fa-solid fa-id-card text-indigo-600"></i> Admit Card (বোর্ড স্টাইল প্রবেশপত্র)</h3>
-                            <span class="text-xs bg-indigo-50 text-indigo-700 px-2 py-0.5 rounded font-semibold">এডমিট কার্ড</span>
+                            <h3 class="font-bold text-gray-800 text-sm flex items-center gap-2"><i class="fa-solid fa-id-card text-indigo-600"></i> Admit Card (এক পেজে দুটি ভিন্ন শিক্ষার্থী)</h3>
+                            <span class="text-xs bg-indigo-50 text-indigo-700 px-2 py-0.5 rounded font-semibold">ডুয়াল এডমিট</span>
                         </div>
-                        <p class="text-xs text-gray-600 leading-relaxed">বোর্ডের স্ট্যান্ডার্ড ফরম্যাটে পরীক্ষার্থীর বিস্তারিত তথ্য, লোগো, ওয়াটারমার্কসহ অফিসিয়াল এডমিট কার্ড প্রিন্ট।</p>
+                        <p class="text-xs text-gray-600 leading-relaxed">A4 সাইজের এক পৃষ্ঠায় একই ক্লাসের দুজন শিক্ষার্থীর এডমিট কার্ড একসাথে প্রিন্ট করার জেনারেটর।</p>
                         <span class="text-xs text-indigo-700 font-bold block">এডমিট কার্ড জেনারেটর →</span>
                     </div>
 
@@ -532,86 +546,120 @@
                     <div class="text-right pr-4 text-[10px] italic text-gray-500 font-serif no-print">Mazad's Creation</div>
                 </div>
 
-                <!-- 8. BOARD STYLE ADMIT CARD PANEL -->
+                <!-- 8. DUAL ADMIT CARD PANEL (ONE A4 PAGE, TWO STUDENTS) -->
                 <div id="panel-admit_card" class="exam-sub-panel bg-white p-6 rounded-2xl shadow-sm border border-gray-200 space-y-4 hidden">
                     <div class="flex justify-between items-center border-b pb-3 no-print">
-                        <h3 class="font-bold text-indigo-800 text-sm"><i class="fa-solid fa-id-card mr-2"></i> ৮. বোর্ড স্টাইল এডমিট কার্ড জেনারেটর</h3>
+                        <h3 class="font-bold text-indigo-800 text-sm"><i class="fa-solid fa-id-card mr-2"></i> ৮. এক পেজে দুটি এডমিট কার্ড জেনারেটর</h3>
                         <div class="flex gap-2">
-                            <button onclick="generateAdmitCard()" class="bg-indigo-600 text-white px-3 py-1.5 rounded text-xs font-bold">এডমিট লোড করুন</button>
+                            <button onclick="generateDualAdmitCard()" class="bg-indigo-600 text-white px-3 py-1.5 rounded text-xs font-bold">কার্ড লোড করুন</button>
                             <button onclick="window.print()" class="bg-emerald-700 text-white px-3 py-1.5 rounded text-xs font-bold"><i class="fa-solid fa-print mr-1"></i> প্রিন্ট এডমিট</button>
                             <button onclick="closeAllPanels()" class="bg-gray-200 px-3 py-1.5 rounded text-xs font-bold text-gray-700">বন্ধ</button>
                         </div>
                     </div>
 
-                    <div class="flex gap-3 bg-indigo-50 p-4 rounded-xl border border-indigo-200 text-xs items-end no-print">
+                    <div class="flex flex-wrap gap-3 bg-indigo-50 p-4 rounded-xl border border-indigo-200 text-xs items-end no-print">
                         <div>
                             <label class="font-bold text-indigo-900 block mb-1">পরীক্ষা:</label>
                             <select id="admit_exam_select" class="p-2 border rounded bg-white font-bold"></select>
                         </div>
                         <div>
                             <label class="font-bold text-indigo-900 block mb-1">শ্রেণি:</label>
-                            <select id="admit_class_select" class="p-2 border rounded bg-white font-bold" onchange="loadStudentsForAdmitCard()"></select>
+                            <select id="admit_class_select" class="p-2 border rounded bg-white font-bold" onchange="loadStudentsForDualAdmit()"></select>
                         </div>
                         <div>
-                            <label class="font-bold text-indigo-900 block mb-1">শিক্ষার্থী নির্বাচন:</label>
-                            <select id="admit_student_select" class="p-2 border rounded bg-white font-bold"></select>
+                            <label class="font-bold text-indigo-900 block mb-1">১ম শিক্ষার্থী (উপরের অংশ):</label>
+                            <select id="admit_student_1" class="p-2 border rounded bg-white font-bold"></select>
                         </div>
-                        <button onclick="generateAdmitCard()" class="bg-indigo-700 text-white px-4 py-2 rounded font-bold">প্রিভিউ দেখুন</button>
+                        <div>
+                            <label class="font-bold text-indigo-900 block mb-1">২য় শিক্ষার্থী (নিচের অংশ):</label>
+                            <select id="admit_student_2" class="p-2 border rounded bg-white font-bold"></select>
+                        </div>
+                        <button onclick="generateDualAdmitCard()" class="bg-indigo-700 text-white px-4 py-2 rounded font-bold">প্রিভিউ দেখুন</button>
                     </div>
 
-                    <!-- ADMIT CARD CONTAINER -->
+                    <!-- DUAL ADMIT CARD A4 CONTAINER -->
                     <div class="flex justify-center">
-                        <div id="admitCardPreviewArea" class="report-card-container vintage-border p-6 bg-white w-full max-w-[210mm] space-y-4 relative overflow-hidden text-[11px] text-black">
+                        <div id="admitCardPreviewArea" class="report-card-container vintage-border p-4 bg-white w-full max-w-[210mm] relative overflow-hidden text-[10px] text-black">
                             
-                            <div id="admitWatermarkLayer" class="absolute inset-0 flex items-center justify-center opacity-20 pointer-events-none z-0"></div>
+                            <!-- 1ST STUDENT (TOP HALF) -->
+                            <div class="admit-half relative space-y-2">
+                                <div id="watermark_1" class="absolute inset-0 flex items-center justify-center opacity-15 pointer-events-none z-0"></div>
 
-                            <!-- HEADER SECTION -->
-                            <div class="text-center space-y-1 relative z-10 border-b-2 border-amber-800 pb-3">
-                                <div class="absolute left-2 top-0 w-12 h-12 border border-gray-400 flex items-center justify-center bg-gray-50 shadow-sm" id="admitLogoBox">
-                                    <span class="text-[9px] text-gray-500 font-bold">LOGO</span>
+                                <div class="text-center space-y-0.5 relative z-10 border-b border-amber-800 pb-1">
+                                    <div class="absolute left-1 top-0 w-9 h-9 border flex items-center justify-center bg-gray-50" id="logo_1"><span class="text-[7px]">LOGO</span></div>
+                                    <h1 class="text-sm font-bold" style="font-family: serif;">Abdullah Hat Islamia Fazil Madrasah</h1>
+                                    <p class="text-[9px] text-gray-700">Nateshwar, Sonaimury, Noakhali</p>
+                                    <div class="bg-indigo-900 text-white font-bold text-[10px] py-0.5 px-6 inline-block mt-0.5 uppercase rounded">ADMIT CARD</div>
+                                    <p class="text-[10px] font-bold text-gray-800" id="exam_title_1">Half Yearly Examination-2026</p>
                                 </div>
-                                <h1 class="text-base font-bold tracking-wide" style="font-family: serif;">Abdullah Hat Islamia Fazil Madrasah</h1>
-                                <p class="text-[11px] text-gray-800 font-medium">Nateshwar, Sonaimury, Noakhali</p>
-                                <div class="bg-indigo-900 text-white font-bold text-xs py-1 px-8 inline-block mt-1 uppercase tracking-widest rounded shadow-sm">
-                                    ADMIT CARD
-                                </div>
-                                <p class="text-xs font-bold text-gray-800 pt-1" id="admitExamTitleDisplay">Half Yearly Examination-2026</p>
-                            </div>
 
-                            <!-- STUDENT DETAILS BOX (BOARD STYLE) -->
-                            <div class="border-2 border-indigo-900 p-4 space-y-2 relative z-10 bg-white/95 shadow-sm rounded-lg">
-                                <div class="grid grid-cols-2 gap-4">
-                                    <div class="space-y-1.5">
-                                        <div class="flex"><span class="font-bold w-28">Student's Name</span>: <b id="admitName" class="ml-1 text-gray-900">---</b></div>
-                                        <div class="flex"><span class="font-bold w-28">Father's Name</span>: <span id="admitFather" class="ml-1">---</span></div>
-                                        <div class="flex"><span class="font-bold w-28">Mother's Name</span>: <span id="admitMother" class="ml-1">---</span></div>
-                                        <div class="flex"><span class="font-bold w-28">Class</span>: <span id="admitClass" class="ml-1">---</span></div>
-                                    </div>
-                                    <div class="space-y-1.5">
-                                        <div class="flex"><span class="font-bold w-28">Roll No / ID</span>: <b id="admitRoll" class="ml-1 text-indigo-900 text-sm">---</b></div>
-                                        <div class="flex"><span class="font-bold w-28">Registration No</span>: <span class="ml-1">2026-AHIFM-001</span></div>
-                                        <div class="flex"><span class="font-bold w-28">Session</span>: <span class="ml-1">2026-2027</span></div>
-                                        <div class="flex"><span class="font-bold w-28">Group</span>: <span class="ml-1">General</span></div>
+                                <div class="border border-indigo-900 p-2.5 space-y-1 relative z-10 bg-white/95 rounded">
+                                    <div class="grid grid-cols-2 gap-2 text-[9.5px]">
+                                        <div class="space-y-1">
+                                            <div class="flex"><span class="font-bold w-24">Student's Name</span>: <b id="name_1" class="ml-1">---</b></div>
+                                            <div class="flex"><span class="font-bold w-24">Father's Name</span>: <span id="father_1" class="ml-1">---</span></div>
+                                            <div class="flex"><span class="font-bold w-24">Mother's Name</span>: <span id="mother_1" class="ml-1">---</span></div>
+                                            <div class="flex"><span class="font-bold w-24">Class</span>: <span id="class_1" class="ml-1">---</span></div>
+                                        </div>
+                                        <div class="space-y-1">
+                                            <div class="flex"><span class="font-bold w-24">Roll No / ID</span>: <b id="roll_1" class="ml-1 text-indigo-900 text-xs">---</b></div>
+                                            <div class="flex"><span class="font-bold w-24">Reg. No</span>: <span class="ml-1">2026-AHIFM-001</span></div>
+                                            <div class="flex"><span class="font-bold w-24">Session</span>: <span class="ml-1">2026-2027</span></div>
+                                            <div class="flex"><span class="font-bold w-24">Group</span>: <span class="ml-1">General</span></div>
+                                        </div>
                                     </div>
                                 </div>
+
+                                <div class="flex justify-between items-end pt-4 relative z-10 text-[10px] font-bold">
+                                    <div>Controller of Examinations</div>
+                                    <div class="text-center">
+                                        <div id="sig_1" class="h-6 flex items-center justify-center"></div>
+                                        <div class="border-t border-black w-36 pt-0.5">Principal's Signature</div>
+                                    </div>
+                                </div>
                             </div>
 
-                            <!-- INSTRUCTIONS -->
-                            <div class="border border-gray-400 p-3 rounded bg-gray-50/80 relative z-10 text-[10px] space-y-1">
-                                <p class="font-bold text-indigo-900 underline">Important Instructions for Examinee:</p>
-                                <ul class="list-disc pl-4 space-y-0.5 text-gray-700">
-                                    <li>পরীক্ষার্থীকে অবশ্যই প্রবেশপত্র সঙ্গে আনতে হবে এবং পরীক্ষার হলে পরিদর্শকের চাহিদা অনুযায়ী তা দেখাতে হবে।</li>
-                                    <li>পরীক্ষা শুরুর কমপক্ষে ১৫ মিনিট পূর্বে নির্দিষ্ট আসনে গিয়ে বসতে হবে।</li>
-                                    <li>পরীক্ষায় মোবাইল ফোন বা কোনো ইলেকট্রনিক ডিভাইস আনা সম্পূর্ণ নিষিদ্ধ।</li>
-                                </ul>
+                            <!-- CUT / DOTTED DIVIDER LINE -->
+                            <div class="cut-divider border-t border-dashed border-gray-500 my-2 flex items-center justify-between text-[9px] text-gray-500">
+                                <span>-------------------------------------------------- কাটার জন্য রেখা --------------------------------------------------</span>
+                                <i class="fa-solid fa-scissors"></i>
                             </div>
 
-                            <!-- SIGNATURES -->
-                            <div class="flex justify-between items-end pt-12 relative z-10 text-xs font-bold">
-                                <div class="text-center"><div class="border-t border-black w-40 pt-1">Controller of Examinations</div></div>
-                                <div class="text-center space-y-1">
-                                    <div id="admitSigContainer" class="h-8 flex items-center justify-center"></div>
-                                    <div class="border-t border-black w-44 pt-1">Principal's Signature</div>
+                            <!-- 2ND STUDENT (BOTTOM HALF) -->
+                            <div class="admit-half relative space-y-2 pt-1">
+                                <div id="watermark_2" class="absolute inset-0 flex items-center justify-center opacity-15 pointer-events-none z-0"></div>
+
+                                <div class="text-center space-y-0.5 relative z-10 border-b border-amber-800 pb-1">
+                                    <div class="absolute left-1 top-0 w-9 h-9 border flex items-center justify-center bg-gray-50" id="logo_2"><span class="text-[7px]">LOGO</span></div>
+                                    <h1 class="text-sm font-bold" style="font-family: serif;">Abdullah Hat Islamia Fazil Madrasah</h1>
+                                    <p class="text-[9px] text-gray-700">Nateshwar, Sonaimury, Noakhali</p>
+                                    <div class="bg-indigo-900 text-white font-bold text-[10px] py-0.5 px-6 inline-block mt-0.5 uppercase rounded">ADMIT CARD</div>
+                                    <p class="text-[10px] font-bold text-gray-800" id="exam_title_2">Half Yearly Examination-2026</p>
+                                </div>
+
+                                <div class="border border-indigo-900 p-2.5 space-y-1 relative z-10 bg-white/95 rounded">
+                                    <div class="grid grid-cols-2 gap-2 text-[9.5px]">
+                                        <div class="space-y-1">
+                                            <div class="flex"><span class="font-bold w-24">Student's Name</span>: <b id="name_2" class="ml-1">---</b></div>
+                                            <div class="flex"><span class="font-bold w-24">Father's Name</span>: <span id="father_2" class="ml-1">---</span></div>
+                                            <div class="flex"><span class="font-bold w-24">Mother's Name</span>: <span id="mother_2" class="ml-1">---</span></div>
+                                            <div class="flex"><span class="font-bold w-24">Class</span>: <span id="class_2" class="ml-1">---</span></div>
+                                        </div>
+                                        <div class="space-y-1">
+                                            <div class="flex"><span class="font-bold w-24">Roll No / ID</span>: <b id="roll_2" class="ml-1 text-indigo-900 text-xs">---</b></div>
+                                            <div class="flex"><span class="font-bold w-24">Reg. No</span>: <span class="ml-1">2026-AHIFM-002</span></div>
+                                            <div class="flex"><span class="font-bold w-24">Session</span>: <span class="ml-1">2026-2027</span></div>
+                                            <div class="flex"><span class="font-bold w-24">Group</span>: <span class="ml-1">General</span></div>
+                                        </div>
+                                    </div>
+                                </div>
+
+                                <div class="flex justify-between items-end pt-4 relative z-10 text-[10px] font-bold">
+                                    <div>Controller of Examinations</div>
+                                    <div class="text-center">
+                                        <div id="sig_2" class="h-6 flex items-center justify-center"></div>
+                                        <div class="border-t border-black w-36 pt-0.5">Principal's Signature</div>
+                                    </div>
                                 </div>
                             </div>
 
@@ -659,7 +707,7 @@
                 if(admitClassSel) {
                     admitClassSel.innerHTML = document.getElementById('rc_class_select').innerHTML;
                 }
-                loadStudentsForAdmitCard(); 
+                loadStudentsForDualAdmit(); 
             }
         }
 
@@ -896,60 +944,89 @@
             document.getElementById('rcMeritRank').innerText = "3";
         }
 
-        function loadStudentsForAdmitCard() {
+        function loadStudentsForDualAdmit() {
             const clsEl = document.getElementById('admit_class_select');
             if(!clsEl) return;
             const cls = clsEl.value;
-            const sel = document.getElementById('admit_student_select');
-            if(!sel) return;
-            sel.innerHTML = '';
+            const sel1 = document.getElementById('admit_student_1');
+            const sel2 = document.getElementById('admit_student_2');
+            if(!sel1 || !sel2) return;
+            
+            sel1.innerHTML = '';
+            sel2.innerHTML = '';
+
             let students = JSON.parse(localStorage.getItem('madrasah_students_all')) || [];
             let filteredStudents = students.filter(s => (s.cls || s.studentClass || s.class || s.grade) === cls);
-            filteredStudents.forEach(st => {
-                let sId = st.id || st.roll || "001";
-                let sName = st.name_bn || st.name || "শিক্ষার্থী";
-                let opt = document.createElement('option');
-                opt.value = sId;
-                opt.text = `${sName} (রোল/আইডি: ${sId})`;
-                sel.add(opt);
-            });
-        }
 
-        function generateAdmitCard() {
-            const exam = document.getElementById('admit_exam_select').value;
-            const cls = document.getElementById('admit_class_select').value;
-            const sId = document.getElementById('admit_student_select').value;
-
-            let students = JSON.parse(localStorage.getItem('madrasah_students_all')) || [];
-            let st = students.find(s => (s.id || s.roll) === sId);
-            if(!st) {
-                alert('দয়া করে প্রথমে সঠিক শিক্ষার্থী নির্বাচন করুন!');
+            if(filteredStudents.length === 0) {
+                sel1.innerHTML = `<option value="">কোনো শিক্ষার্থী নেই</option>`;
+                sel2.innerHTML = `<option value="">কোনো শিক্ষার্থী নেই</option>`;
                 return;
             }
 
-            document.getElementById('admitName').innerText = st.name_bn || st.name || "শিক্ষার্থী";
-            document.getElementById('admitFather').innerText = st.fatherName || "মীর হোসেন";
-            document.getElementById('admitMother').innerText = st.motherName || "ফাতেমা বেগম";
-            document.getElementById('admitRoll').innerText = sId;
-            document.getElementById('admitClass').innerText = cls;
-            document.getElementById('admitExamTitleDisplay').innerText = exam;
+            filteredStudents.forEach((st, idx) => {
+                let sId = st.id || st.roll || "001";
+                let sName = st.name_bn || st.name || "শিক্ষার্থী";
+                
+                let opt1 = document.createElement('option');
+                opt1.value = sId;
+                opt1.text = `${sName} (রোল: ${sId})`;
+                sel1.add(opt1);
 
+                let opt2 = document.createElement('option');
+                opt2.value = sId;
+                opt2.text = `${sName} (রোল: ${sId})`;
+                if(idx === 1 && filteredStudents.length > 1) opt2.selected = true;
+                sel2.add(opt2);
+            });
+        }
+
+        function generateDualAdmitCard() {
+            const exam = document.getElementById('admit_exam_select').value;
+            const cls = document.getElementById('admit_class_select').value;
+            const sId1 = document.getElementById('admit_student_1').value;
+            const sId2 = document.getElementById('admit_student_2').value;
+
+            let students = JSON.parse(localStorage.getItem('madrasah_students_all')) || [];
+            let st1 = students.find(s => (s.id || s.roll) === sId1);
+            let st2 = students.find(s => (s.id || s.roll) === sId2);
+
+            if(!st1 || !st2) {
+                alert('দয়া করে প্রথম ও দ্বিতীয় উভয় শিক্ষার্থী সঠিকভাবে নির্বাচন করুন!');
+                return;
+            }
+
+            // Student 1 Details
+            document.getElementById('name_1').innerText = st1.name_bn || st1.name || "শিক্ষার্থী ১";
+            document.getElementById('father_1').innerText = st1.fatherName || "মীর হোসেন";
+            document.getElementById('mother_1').innerText = st1.motherName || "ফাতেমা বেগম";
+            document.getElementById('roll_1').innerText = sId1;
+            document.getElementById('class_1').innerText = cls;
+            document.getElementById('exam_title_1').innerText = exam;
+
+            // Student 2 Details
+            document.getElementById('name_2').innerText = st2.name_bn || st2.name || "শিক্ষার্থী ২";
+            document.getElementById('father_2').innerText = st2.fatherName || "আব্দুল করিম";
+            document.getElementById('mother_2').innerText = st2.motherName || "আয়েশা বেগম";
+            document.getElementById('roll_2').innerText = sId2;
+            document.getElementById('class_2').innerText = cls;
+            document.getElementById('exam_title_2').innerText = exam;
+
+            // Watermark, Logo & Signatures
             let wmBase64 = localStorage.getItem('madrasah_watermark_base64');
             let logoBase64 = localStorage.getItem('madrasah_logo_base64');
-            let wmLayer = document.getElementById('admitWatermarkLayer');
-            if(wmBase64 && wmLayer) {
-                wmLayer.innerHTML = `<img src="${wmBase64}" class="w-96 h-96 object-contain">`;
-            }
-            let logoBox = document.getElementById('admitLogoBox');
-            if(logoBase64 && logoBox) {
-                logoBox.innerHTML = `<img src="${logoBase64}" class="w-full h-full object-contain">`;
-            }
-
             let sigBase64 = localStorage.getItem('madrasah_signature_base64');
-            let sigContainer = document.getElementById('admitSigContainer');
-            if(sigBase64 && sigContainer) {
-                sigContainer.innerHTML = `<img src="${sigBase64}" class="h-8 object-contain">`;
-            }
+
+            ['1', '2'].forEach(i => {
+                let wmLayer = document.getElementById('watermark_' + i);
+                if(wmBase64 && wmLayer) wmLayer.innerHTML = `<img src="${wmBase64}" class="w-64 h-64 object-contain">`;
+
+                let logoBox = document.getElementById('logo_' + i);
+                if(logoBase64 && logoBox) logoBox.innerHTML = `<img src="${logoBase64}" class="w-full h-full object-contain">`;
+
+                let sigBox = document.getElementById('sig_' + i);
+                if(sigBase64 && sigBox) sigBox.innerHTML = `<img src="${sigBase64}" class="h-5 object-contain">`;
+            });
         }
     </script>
 </body>

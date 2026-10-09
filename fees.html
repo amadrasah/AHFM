@@ -318,15 +318,71 @@
             window.scrollTo({ top: 0, behavior: 'smooth' });
         }
 
-        function collectStudentFee() {
+                function collectStudentFee() {
             let id = document.getElementById('fee_search_id').value.trim();
             let feeType = document.getElementById('fee_type_select').value;
-            let amount = document.getElementById('fee_amount_val').value.trim();
+            let amountStr = document.getElementById('fee_amount_val').value.trim();
+            let amount = parseFloat(amountStr);
 
-            if(!id || !amount) {
-                alert('দয়া করে শিক্ষার্থীর আইডি এবং টাকার পরিমাণ লিখুন!');
+            if(!id || isNaN(amount) || amount <= 0) {
+                alert('দয়া করে সঠিক শিক্ষার্থীর আইডি এবং টাকার পরিমাণ লিখুন!');
                 return;
             }
+
+            let students = JSON.parse(localStorage.getItem('madrasah_students_all')) || [
+                { id: "202606001", name_bn: "মো: আব্দুল্লাহ", cls: "দাখিল ষষ্ঠ শ্রেণি", roll: "001" },
+                { id: "202606002", name_bn: "ফাতেমা তুজ জোহরা", cls: "দাখিল ষষ্ঠ শ্রেণি", roll: "002" }
+            ];
+
+            let found = students.find(s => s.id === id) || { id: id, name_bn: "অজানা শিক্ষার্থী", cls: "দাখিল শ্রেণি", roll: "N/A" };
+            let receiptNo = Math.floor(100000 + Math.random() * 900000);
+            let currentDate = new Date().toLocaleDateString('bn-BD');
+
+            // ১. ফি কালেকশন রেকর্ড সংরক্ষণ
+            let feeRecord = {
+                receiptNo: receiptNo,
+                studentId: found.id,
+                studentName: found.name_bn,
+                className: found.cls,
+                feeType: feeType,
+                amount: amount,
+                date: currentDate
+            };
+
+            let allFees = JSON.parse(localStorage.getItem('madrasah_fees_collected')) || [];
+            allFees.push(feeRecord);
+            localStorage.setItem('madrasah_fees_collected', JSON.stringify(allFees));
+
+            // ২. অটোমেটিক Accounts (Income) মডিউলে যুক্ত করা
+            let incomeRecord = {
+                date: currentDate,
+                source: `ফি কালেকশন - ${feeType} (আইডি: ${found.id}, নাম: ${found.name_bn})`,
+                category: "শিক্ষার্থী ফি",
+                amount: amount,
+                voucherNo: `RCPT-${receiptNo}`
+            };
+
+            let accountsIncome = JSON.parse(localStorage.getItem('madrasah_accounts_income')) || [];
+            accountsIncome.push(incomeRecord);
+            localStorage.setItem('madrasah_accounts_income', JSON.stringify(accountsIncome));
+
+            // ৩. রসিদ প্যানেলে ডেটা বসানো
+            document.getElementById('rcpt_no').innerText = receiptNo;
+            document.getElementById('rcpt_id').innerText = found.id;
+            document.getElementById('rcpt_name').innerText = found.name_bn;
+            document.getElementById('rcpt_class').innerText = found.cls;
+            document.getElementById('rcpt_roll').innerText = found.roll;
+            document.getElementById('rcpt_date').innerText = currentDate;
+            document.getElementById('rcpt_feetype').innerText = feeType;
+            document.getElementById('rcpt_amount').innerText = amount + "/-";
+            document.getElementById('rcpt_in_words').innerText = amount + " টাকা মাত্র।";
+
+            document.getElementById('moneyReceiptContainer').classList.remove('hidden');
+            document.getElementById('printReceiptBtnBox').classList.remove('hidden');
+            document.getElementById('moneyReceiptContainer').scrollIntoView({ behavior: 'smooth' });
+            
+            alert('ফি সফলভাবে গ্রহণ করা হয়েছে এবং অ্যাকাউন্টস মডিউলে আয় হিসেবে জমা হয়েছে!');
+        }
 
             // LocalStorage থেকে শিক্ষার্থীর তথ্য খোঁজা
             let students = JSON.parse(localStorage.getItem('madrasah_students_all')) || [

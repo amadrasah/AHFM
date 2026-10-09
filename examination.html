@@ -706,7 +706,7 @@
                     </div>
                 </div>
 
-                <!-- 9. EXAM ROUTINE PANEL (Updated with Single Date Row Unique Logic) -->
+                <!-- 9. EXAM ROUTINE PANEL (Updated with Routine Reset Button) -->
                 <div id="panel-routine" class="exam-sub-panel bg-white p-5 md:p-6 rounded-2xl shadow-sm border border-gray-200 space-y-4 hidden">
                     <div class="flex justify-between items-center border-b pb-3 no-print">
                         <h3 class="font-bold text-sky-800 text-sm"><i class="fa-solid fa-calendar-days mr-2"></i> ৯. এক্সাম রুটিন জেনারেটর (Landscape A4)</h3>
@@ -730,7 +730,10 @@
                             <label class="font-bold block mb-1">বিষয় (সেটিংস লিংকড):</label>
                             <select id="rout_subject" class="p-2 border rounded bg-white w-full font-bold"></select>
                         </div>
-                        <button onclick="addExamRoutineItem()" class="bg-sky-700 text-white px-4 py-2 rounded font-bold hover:bg-sky-800 shadow">রুটিন এন্ট্রি করুন</button>
+                        <div class="flex gap-2">
+                            <button onclick="addExamRoutineItem()" class="bg-sky-700 text-white px-3 py-2 rounded font-bold hover:bg-sky-800 shadow flex-1">এন্ট্রি</button>
+                            <button onclick="resetExamRoutine()" class="bg-rose-600 text-white px-3 py-2 rounded font-bold hover:bg-rose-700 shadow" title="রুটিন রিসেট করুন"><i class="fa-solid fa-rotate-left"></i></button>
+                        </div>
                     </div>
 
                     <div class="flex justify-between items-center pt-2 no-print">
@@ -1107,7 +1110,7 @@
             });
         }
 
-        // --- UNIQUE DATE ROW ROUTINE ENTRY LOGIC ---
+        // --- EXAM ROUTINE ENTRY & RESET LOGIC ---
         function addExamRoutineItem() {
             const date = document.getElementById('rout_date').value;
             const day = document.getElementById('rout_day').value;
@@ -1121,7 +1124,6 @@
 
             const tbody = document.getElementById('examRoutineTableBody');
             
-            // Check if a row with this exact date already exists in the table
             let existingRow = null;
             for (let row of tbody.rows) {
                 let dateCell = row.cells[0];
@@ -1137,10 +1139,8 @@
             let subjectBadge = `<span class="font-bold text-emerald-800 bg-emerald-50 px-2 py-0.5 rounded border border-emerald-200">${subj}</span>`;
 
             if (existingRow) {
-                // If date already exists, update only the corresponding class column cell within that existing row
                 examClassesList.forEach((c, index) => {
                     if (c.id === classKey) {
-                        // Note: index 0 is date, index 1 is day, so class columns start from index 2
                         let cell = existingRow.cells[index + 2];
                         if (cell) {
                             cell.innerHTML = subjectBadge;
@@ -1149,7 +1149,6 @@
                 });
                 alert('বিদ্যমান তারিখের সারিতে বিষয়টি আপডেট করা হয়েছে!');
             } else {
-                // If date does not exist, create a brand new row
                 let classCellsHTML = "";
                 examClassesList.forEach(c => {
                     let cellContent = (c.id === classKey) ? subjectBadge : `<span class="text-gray-400">-</span>`;
@@ -1169,11 +1168,18 @@
             applyClassColumnVisibility();
         }
 
+        function resetExamRoutine() {
+            if(confirm('আপনি কি নিশ্চিতভাবে সমস্ত রুটিন রিসেট বা মুছে ফেলতে চান?')) {
+                const tbody = document.getElementById('examRoutineTableBody');
+                tbody.innerHTML = '';
+                alert('রুটিন সফলভাবে রিসেট করা হয়েছে!');
+            }
+        }
+
         window.onload = function() {
             populateAllDropdowns();
             getStudentsForExam();
 
-            // Default sample routine row
             const tbody = document.getElementById('examRoutineTableBody');
             if(tbody) {
                 let defaultCells = "";

@@ -6,23 +6,11 @@
     <title>Academic Management - Abdullah Hat Islamia Fazil Madrasah</title>
     <script src="https://cdn.tailwindcss.com"></script>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
-    <link rel="stylesheet" href="style.css">
     <style>
         @media print {
             .no-print { display: none !important; }
             body { background: white !important; font-size: 9pt !important; }
             .print-container { width: 100% !important; margin: 0 !important; padding: 0 !important; box-shadow: none !important; border: none !important; }
-        }
-        .spinner {
-            border: 3px solid rgba(0, 0, 0, 0.1);
-            width: 36px; height: 36px;
-            border-radius: 50%;
-            border-left-color: #047857;
-            animation: spin 1s linear infinite;
-        }
-        @keyframes spin {
-            0% { transform: rotate(0deg); }
-            100% { transform: rotate(360deg); }
         }
     </style>
 </head>
@@ -59,7 +47,7 @@
                 <a href="users.html" class="flex items-center gap-2.5 p-2 rounded hover:bg-emerald-800 transition"><i class="fa-solid fa-shield-halved w-4"></i> 🔐 19. User & Security</a>
                 <a href="cloud-backup.html" class="flex items-center gap-2.5 p-2 rounded hover:bg-emerald-800 transition"><i class="fa-solid fa-cloud-arrow-up w-4"></i> ☁️ 20. Cloud & Backup</a>
                 <a href="reports.html" class="flex items-center gap-2.5 p-2 rounded hover:bg-emerald-800 transition"><i class="fa-solid fa-chart-line w-4"></i> 📈 21. Reports</a>
-                <a href="settings.html" class="flex items-center gap-2.5 p-2 rounded hover:bg-emerald-800 transition"><i class="fa-solid fa-gear w-4"></i> ⚙ 22. Settings</a>
+                <a href="settings.html" class="flex items-center gap-2.5 p-2 rounded hover:bg-emerald-800 transition"><i class="fa-solid fa-gear w-4"></i> ⚙️ 22. Settings</a>
             </nav>
         </aside>
 
@@ -89,122 +77,100 @@
                         <p class="text-emerald-200 text-xs mt-1">ক্লাস, সাবজেক্ট, গ্রুপ, সেকশন, একাডেমিক ইয়ার, রুটিন এবং একাডেমিক ক্যালেন্ডার পরিচালনা করুন।</p>
                     </div>
                     <div class="flex gap-2">
-                        <button onclick="openAcademicPanel('classes')" class="bg-white text-emerald-900 px-4 py-2 rounded-xl font-bold text-xs hover:bg-emerald-50 transition shadow-sm">নতুন ক্লাস যোগ করুন</button>
+                        <button onclick="openAcademicPanel('classes')" class="bg-white text-emerald-900 px-4 py-2 rounded-xl font-bold text-xs hover:bg-emerald-50 transition shadow-sm">ক্লাস ম্যানেজমেন্ট</button>
                     </div>
                 </div>
 
-                <!-- Sub-Modules Grid Layout (7 Features) -->
+                <!-- Sub-Modules Grid Layout -->
                 <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-5 no-print">
                     
                     <!-- 1. Class Management -->
                     <div onclick="openAcademicPanel('classes')" class="bg-white p-5 rounded-xl shadow-sm border-t-4 border-emerald-600 space-y-3 hover:shadow-md cursor-pointer transition">
                         <div class="flex items-center justify-between border-b pb-2">
-                            <h3 class="font-bold text-gray-800 text-sm flex items-center gap-2">
-                                <i class="fa-solid fa-school text-emerald-600"></i> Class Management
-                            </h3>
+                            <h3 class="font-bold text-gray-800 text-sm flex items-center gap-2"><i class="fa-solid fa-school text-emerald-600"></i> Class Management</h3>
                             <span class="text-xs bg-emerald-50 text-emerald-700 px-2 py-0.5 rounded font-semibold">ক্লাস</span>
                         </div>
-                        <p class="text-xs text-gray-600 leading-relaxed">ইবতেদায়ী থেকে ফাজিল স্তর পর্যন্ত বিভিন্ন শ্রেণি ও তার বিবরণী কনফিগারেশন।</p>
-                        <button class="w-full bg-emerald-50 text-emerald-700 py-1.5 rounded text-xs font-bold hover:bg-emerald-100 transition">ক্লাস তালিকা পরিচালনা</button>
+                        <p class="text-xs text-gray-600 leading-relaxed">নূরানী থেকে ফাজিল স্তর পর্যন্ত শ্রেণি ও স্তরভিত্তিক কনফিগারেশন।</p>
+                        <button class="w-full bg-emerald-50 text-emerald-700 py-1.5 rounded text-xs font-bold hover:bg-emerald-100 transition">ক্লাস তালিকা ও স্তর</button>
                     </div>
 
                     <!-- 2. Subject Management -->
                     <div onclick="openAcademicPanel('subjects')" class="bg-white p-5 rounded-xl shadow-sm border-t-4 border-blue-600 space-y-3 hover:shadow-md cursor-pointer transition">
                         <div class="flex items-center justify-between border-b pb-2">
-                            <h3 class="font-bold text-gray-800 text-sm flex items-center gap-2">
-                                <i class="fa-solid fa-book text-blue-600"></i> Subject Management
-                            </h3>
+                            <h3 class="font-bold text-gray-800 text-sm flex items-center gap-2"><i class="fa-solid fa-book text-blue-600"></i> Subject Management</h3>
                             <span class="text-xs bg-blue-50 text-blue-700 px-2 py-0.5 rounded font-semibold">বিষয়</span>
                         </div>
-                        <p class="text-xs text-gray-600 leading-relaxed">আবশ্যিক, ঐচ্ছিক, আরবি ও সাধারণ বিষয়ের কোড, পূর্ণমান এবং শিক্ষক অ্যাসাইনমেন্ট।</p>
-                        <button class="w-full bg-blue-50 text-blue-700 py-1.5 rounded text-xs font-bold hover:bg-blue-100 transition">বিষয় সেটআপ</button>
+                        <p class="text-xs text-gray-600 leading-relaxed">সেটিংস মডিউলের বিষয় ও কোড ম্যানেজমেন্টের সাথে সংযুক্ত সাবজেক্ট তালিকা।</p>
+                        <button class="w-full bg-blue-50 text-blue-700 py-1.5 rounded text-xs font-bold hover:bg-blue-100 transition">বিষয় ও কোড তালিকা</button>
                     </div>
 
                     <!-- 3. Group Management -->
                     <div onclick="openAcademicPanel('groups')" class="bg-white p-5 rounded-xl shadow-sm border-t-4 border-purple-600 space-y-3 hover:shadow-md cursor-pointer transition">
                         <div class="flex items-center justify-between border-b pb-2">
-                            <h3 class="font-bold text-gray-800 text-sm flex items-center gap-2">
-                                <i class="fa-solid fa-layer-group text-purple-600"></i> Group Management
-                            </h3>
+                            <h3 class="font-bold text-gray-800 text-sm flex items-center gap-2"><i class="fa-solid fa-layer-group text-purple-600"></i> Group Management</h3>
                             <span class="text-xs bg-purple-50 text-purple-700 px-2 py-0.5 rounded font-semibold">গ্রুপ</span>
                         </div>
-                        <p class="text-xs text-gray-600 leading-relaxed">বিজ্ঞান, মানবিক, ব্যবসায় শিক্ষা কিংবা মাদ্রাসা বোর্ডের বিশেষ বিভাগসমূহ পরিচালনা।</p>
+                        <p class="text-xs text-gray-600 leading-relaxed">বিজ্ঞান, মানবিক বা মাদ্রাসা বোর্ডের বিশেষ বিভাগসমূহ পরিচালনা।</p>
                         <button class="w-full bg-purple-50 text-purple-700 py-1.5 rounded text-xs font-bold hover:bg-purple-100 transition">গ্রুপ ম্যানেজমেন্ট</button>
                     </div>
 
                     <!-- 4. Section Management -->
                     <div onclick="openAcademicPanel('sections')" class="bg-white p-5 rounded-xl shadow-sm border-t-4 border-amber-600 space-y-3 hover:shadow-md cursor-pointer transition">
                         <div class="flex items-center justify-between border-b pb-2">
-                            <h3 class="font-bold text-gray-800 text-sm flex items-center gap-2">
-                                <i class="fa-solid fa-columns text-amber-600"></i> Section Management
-                            </h3>
+                            <h3 class="font-bold text-gray-800 text-sm flex items-center gap-2"><i class="fa-solid fa-columns text-amber-600"></i> Section Management</h3>
                             <span class="text-xs bg-amber-50 text-amber-700 px-2 py-0.5 rounded font-semibold">সেকশন</span>
                         </div>
-                        <p class="text-xs text-gray-600 leading-relaxed">প্রতিটি শ্রেণির শাখা (যেমন: ক, খ বা Section A, B) এবং ছাত্রসংখ্যা নির্ধারণ।</p>
+                        <p class="text-xs text-gray-600 leading-relaxed">প্রতিটি শ্রেণির শাখা (যেমন: ক, খ বা Section A, B) নির্ধারণ।</p>
                         <button class="w-full bg-amber-50 text-amber-700 py-1.5 rounded text-xs font-bold hover:bg-amber-100 transition">সেকশন কনফিগারেশন</button>
                     </div>
 
                     <!-- 5. Academic Year -->
                     <div onclick="openAcademicPanel('years')" class="bg-white p-5 rounded-xl shadow-sm border-t-4 border-indigo-600 space-y-3 hover:shadow-md cursor-pointer transition">
                         <div class="flex items-center justify-between border-b pb-2">
-                            <h3 class="font-bold text-gray-800 text-sm flex items-center gap-2">
-                                <i class="fa-solid fa-calendar-days text-indigo-600"></i> Academic Year
-                            </h3>
+                            <h3 class="font-bold text-gray-800 text-sm flex items-center gap-2"><i class="fa-solid fa-calendar-days text-indigo-600"></i> Academic Year</h3>
                             <span class="text-xs bg-indigo-50 text-indigo-700 px-2 py-0.5 rounded font-semibold">সেশন</span>
                         </div>
-                        <p class="text-xs text-gray-600 leading-relaxed">বর্তমান শিক্ষাবর্ষ ও সেশন ম্যানেজমেন্ট এবং পূর্ববর্তী সেশনের আর্কাইভ সংরক্ষণ।</p>
+                        <p class="text-xs text-gray-600 leading-relaxed">বর্তমান শিক্ষাবর্ষ ও সেশন ম্যানেজমেন্ট এবং আর্কাইভ সংরক্ষণ।</p>
                         <button class="w-full bg-indigo-50 text-indigo-700 py-1.5 rounded text-xs font-bold hover:bg-indigo-100 transition">একাডেমিক ইয়ার সেটআপ</button>
                     </div>
 
                     <!-- 6. Routine -->
                     <div onclick="openAcademicPanel('routine')" class="bg-white p-5 rounded-xl shadow-sm border-t-4 border-teal-600 space-y-3 hover:shadow-md cursor-pointer transition">
                         <div class="flex items-center justify-between border-b pb-2">
-                            <h3 class="font-bold text-gray-800 text-sm flex items-center gap-2">
-                                <i class="fa-solid fa-clock text-teal-600"></i> Class Routine
-                            </h3>
+                            <h3 class="font-bold text-gray-800 text-sm flex items-center gap-2"><i class="fa-solid fa-clock text-teal-600"></i> Class Routine</h3>
                             <span class="text-xs bg-teal-50 text-teal-700 px-2 py-0.5 rounded font-semibold">রুটিন</span>
                         </div>
-                        <p class="text-xs text-gray-600 leading-relaxed">শ্রেণিভিত্তিক পিরিয়ড রুটিন, শিক্ষক রুটিন এবং সময়সূচি তৈরি ও প্রিন্ট করার ব্যবস্থা।</p>
+                        <p class="text-xs text-gray-600 leading-relaxed">শ্রেণিভিত্তিক পিরিয়ড রুটিন ও সময়সূচি তৈরি ও প্রিন্ট করার ব্যবস্থা।</p>
                         <button class="w-full bg-teal-50 text-teal-700 py-1.5 rounded text-xs font-bold hover:bg-teal-100 transition">রুটিন ম্যানেজমেন্ট</button>
-                    </div>
-
-                    <!-- 7. Academic Calendar -->
-                    <div onclick="openAcademicPanel('calendar')" class="bg-white p-5 rounded-xl shadow-sm border-t-4 border-rose-600 space-y-3 hover:shadow-md cursor-pointer transition">
-                        <div class="flex items-center justify-between border-b pb-2">
-                            <h3 class="font-bold text-gray-800 text-sm flex items-center gap-2">
-                                <i class="fa-solid fa-calendar-check text-rose-600"></i> Academic Calendar
-                            </h3>
-                            <span class="text-xs bg-rose-50 text-rose-700 px-2 py-0.5 rounded font-semibold">ক্যালেন্ডার</span>
-                        </div>
-                        <p class="text-xs text-gray-600 leading-relaxed">বার্ষিক ছুটির তালিকা, পরীক্ষার সম্ভাব্য তারিখ ও মাদ্রাসার বিভিন্ন কার্যক্রমের বার্ষিক সূচি।</p>
-                        <button class="w-full bg-rose-50 text-rose-700 py-1.5 rounded text-xs font-bold hover:bg-rose-100 transition">ক্যালেন্ডার দেখুন</button>
                     </div>
 
                 </div>
 
                 <!-- Dynamic Detail Panels -->
                 
-                <!-- Class Management Panel -->
+                <!-- 1. Class Management Panel -->
                 <div id="panel-classes" class="academic-sub-panel bg-white p-5 md:p-6 rounded-2xl shadow-sm border border-gray-200 space-y-4 hidden">
                     <div class="flex justify-between items-center border-b pb-3 no-print">
-                        <h3 class="font-bold text-emerald-800 text-sm"><i class="fa-solid fa-school mr-2"></i> ক্লাস ম্যানেজমেন্ট ও তালিকা</h3>
+                        <h3 class="font-bold text-emerald-800 text-sm"><i class="fa-solid fa-school mr-2"></i> স্তরভিত্তিক ক্লাস ম্যানেজমেন্ট</h3>
                         <button onclick="closeAllAcademicPanels()" class="text-xs bg-gray-200 px-3 py-1 rounded font-bold text-gray-700 hover:bg-gray-300">বন্ধ করুন</button>
                     </div>
                     <div class="grid grid-cols-1 sm:grid-cols-3 gap-3 bg-emerald-50 p-4 rounded-xl border border-emerald-200 text-xs items-end no-print">
                         <div>
-                            <label class="font-bold block mb-1">নতুন শ্রেণির নাম:</label>
-                            <input type="text" id="new_class_name" placeholder="যেমন: দাখিল একাদশ শ্রেণি" class="p-2 border rounded bg-white w-full font-bold">
+                            <label class="font-bold block mb-1">ক্লাসের নাম:</label>
+                            <input type="text" id="new_class_name" placeholder="যেমন: দাখিল ষষ্ঠ শ্রেণি" class="p-2 border rounded bg-white w-full font-bold">
                         </div>
                         <div>
-                            <label class="font-bold block mb-1">স্তর / বিভাগ:</label>
+                            <label class="font-bold block mb-1">স্তর (Level):</label>
                             <select id="new_class_level" class="p-2 border rounded bg-white w-full font-bold">
-                                <option value="ইবতেদায়ী">ইবতেদায়ী</option>
-                                <option value="দাখিল">দাখিল</option>
-                                <option value="আলিম">আলিম</option>
+                                <option value="নুরানী স্তর">নুরানী স্তর</option>
+                                <option value="ইবতেদায়ী স্তর">ইবতেদায়ী স্তর</option>
+                                <option value="দাখিল স্তর">দাখিল স্তর</option>
+                                <option value="আলিম স্তর">আলিম স্তর</option>
+                                <option value="ফাজিল স্তর">ফাজিল স্তর</option>
                             </select>
                         </div>
                         <div>
-                            <button onclick="addClassItem()" class="w-full bg-emerald-700 text-white px-4 py-2 rounded font-bold hover:bg-emerald-800 shadow">ক্লাস যোগ করুন</button>
+                            <button onclick="addClassItem()" class="w-full bg-emerald-700 text-white px-4 py-2 rounded font-bold hover:bg-emerald-800 shadow">নতুন ক্লাস যোগ করুন</button>
                         </div>
                     </div>
                     <div class="overflow-x-auto">
@@ -212,7 +178,7 @@
                             <thead>
                                 <tr class="bg-emerald-800 text-white">
                                     <th class="border p-2 text-center">ক্র.নং</th>
-                                    <th class="border p-2">শ্রেণির নাম</th>
+                                    <th class="border p-2">ক্লাসের নাম</th>
                                     <th class="border p-2">স্তর</th>
                                     <th class="border p-2 text-center">স্ট্যাটাস</th>
                                 </tr>
@@ -222,28 +188,15 @@
                     </div>
                 </div>
 
-                <!-- Subject Management Panel -->
+                <!-- 2. Subject Management Panel (Linked to Settings) -->
                 <div id="panel-subjects" class="academic-sub-panel bg-white p-5 md:p-6 rounded-2xl shadow-sm border border-gray-200 space-y-4 hidden">
                     <div class="flex justify-between items-center border-b pb-3 no-print">
-                        <h3 class="font-bold text-blue-800 text-sm"><i class="fa-solid fa-book mr-2"></i> বিষয় ম্যানেজমেন্ট ও কোড সেটআপ</h3>
+                        <h3 class="font-bold text-blue-800 text-sm"><i class="fa-solid fa-book mr-2"></i> বিষয় ও কোড ম্যানেজমেন্ট (সেটিংস সংযুক্ত)</h3>
                         <button onclick="closeAllAcademicPanels()" class="text-xs bg-gray-200 px-3 py-1 rounded font-bold text-gray-700 hover:bg-gray-300">বন্ধ করুন</button>
                     </div>
-                    <div class="grid grid-cols-1 sm:grid-cols-4 gap-3 bg-blue-50 p-4 rounded-xl border border-blue-200 text-xs items-end no-print">
-                        <div>
-                            <label class="font-bold block mb-1">বিষয়ের নাম:</label>
-                            <input type="text" id="new_sub_name" placeholder="যেমন: আল-কুরআনুল কারীম" class="p-2 border rounded bg-white w-full font-bold">
-                        </div>
-                        <div>
-                            <label class="font-bold block mb-1">বিষয় কোড:</label>
-                            <input type="text" id="new_sub_code" placeholder="যেমন: ১০০" class="p-2 border rounded bg-white w-full font-bold">
-                        </div>
-                        <div>
-                            <label class="font-bold block mb-1">পূর্ণমান:</label>
-                            <input type="number" id="new_sub_marks" value="100" class="p-2 border rounded bg-white w-full font-bold">
-                        </div>
-                        <div>
-                            <button onclick="addSubjectItem()" class="w-full bg-blue-700 text-white px-4 py-2 rounded font-bold hover:bg-blue-800 shadow">বিষয় যোগ করুন</button>
-                        </div>
+                    <div class="p-3 bg-blue-50 border border-blue-200 rounded-xl text-xs text-blue-900 flex justify-between items-center no-print">
+                        <span>💡 এই বিষয়গুলো সরাসরি সেটিংস মডিউলের বিষয় ও কোড ম্যানেজমেন্ট থেকে সিঙ্ক করা হয়েছে। নতুন বিষয় যোগ করতে সেটিংস মডিউলে যান।</span>
+                        <a href="settings.html" class="bg-blue-700 text-white px-3 py-1.5 rounded font-bold hover:bg-blue-800">সেটিংস মডিউলে যান</a>
                     </div>
                     <div class="overflow-x-auto">
                         <table class="w-full text-left border-collapse border border-gray-200 text-xs">
@@ -260,7 +213,7 @@
                     </div>
                 </div>
 
-                <!-- Group Management Panel -->
+                <!-- 3. Group Management Panel -->
                 <div id="panel-groups" class="academic-sub-panel bg-white p-5 md:p-6 rounded-2xl shadow-sm border border-gray-200 space-y-4 hidden">
                     <div class="flex justify-between items-center border-b pb-3 no-print">
                         <h3 class="font-bold text-purple-800 text-sm"><i class="fa-solid fa-layer-group mr-2"></i> বিভাগ বা গ্রুপ ম্যানেজমেন্ট</h3>
@@ -272,7 +225,7 @@
                             <input type="text" id="new_group_name" placeholder="যেমন: বিজ্ঞান বিভাগ" class="p-2 border rounded bg-white w-full font-bold">
                         </div>
                         <div>
-                            <label class="font-bold block mb-1">কোড/সংক্ষিপ্ত রূপ:</label>
+                            <label class="font-bold block mb-1">কোড:</label>
                             <input type="text" id="new_group_code" placeholder="যেমন: SCI" class="p-2 border rounded bg-white w-full font-bold">
                         </div>
                         <div>
@@ -293,7 +246,7 @@
                     </div>
                 </div>
 
-                <!-- Section Management Panel -->
+                <!-- 4. Section Management Panel -->
                 <div id="panel-sections" class="academic-sub-panel bg-white p-5 md:p-6 rounded-2xl shadow-sm border border-gray-200 space-y-4 hidden">
                     <div class="flex justify-between items-center border-b pb-3 no-print">
                         <h3 class="font-bold text-amber-800 text-sm"><i class="fa-solid fa-columns mr-2"></i> সেকশন ও শাখা কনফিগারেশন</h3>
@@ -302,7 +255,7 @@
                     <div class="grid grid-cols-1 sm:grid-cols-3 gap-3 bg-amber-50 p-4 rounded-xl border border-amber-200 text-xs items-end no-print">
                         <div>
                             <label class="font-bold block mb-1">সেকশনের নাম:</label>
-                            <input type="text" id="new_section_name" placeholder="যেমন: শাপলা / Section A" class="p-2 border rounded bg-white w-full font-bold">
+                            <input type="text" id="new_section_name" placeholder="যেমন: শাখা - ক" class="p-2 border rounded bg-white w-full font-bold">
                         </div>
                         <div>
                             <label class="font-bold block mb-1">শ্রেণি নির্বাচন:</label>
@@ -326,7 +279,7 @@
                     </div>
                 </div>
 
-                <!-- Academic Year Panel -->
+                <!-- 5. Academic Year Panel -->
                 <div id="panel-years" class="academic-sub-panel bg-white p-5 md:p-6 rounded-2xl shadow-sm border border-gray-200 space-y-4 hidden">
                     <div class="flex justify-between items-center border-b pb-3 no-print">
                         <h3 class="font-bold text-indigo-800 text-sm"><i class="fa-solid fa-calendar-days mr-2"></i> একাডেমিক ইয়ার ও সেশন ম্যানেজমেন্ট</h3>
@@ -355,52 +308,15 @@
                     </div>
                 </div>
 
-                <!-- Routine Panel -->
+                <!-- 6. Routine Panel -->
                 <div id="panel-routine" class="academic-sub-panel bg-white p-5 md:p-6 rounded-2xl shadow-sm border border-gray-200 space-y-4 hidden">
                     <div class="flex justify-between items-center border-b pb-3 no-print">
                         <h3 class="font-bold text-teal-800 text-sm"><i class="fa-solid fa-clock mr-2"></i> ক্লাস রুটিন ম্যানেজমেন্ট</h3>
-                        <div class="flex gap-2">
-                            <button onclick="window.print()" class="text-xs bg-gray-800 text-white px-3 py-1 rounded font-bold shadow"><i class="fa-solid fa-print"></i> প্রিন্ট</button>
-                            <button onclick="closeAllAcademicPanels()" class="text-xs bg-gray-200 px-3 py-1 rounded font-bold text-gray-700 hover:bg-gray-300">বন্ধ করুন</button>
-                        </div>
+                        <button onclick="closeAllAcademicPanels()" class="text-xs bg-gray-200 px-3 py-1 rounded font-bold text-gray-700 hover:bg-gray-300">বন্ধ করুন</button>
                     </div>
-                    <div class="p-4 bg-teal-50 rounded-xl border border-teal-200 text-xs space-y-2 no-print">
-                        <p class="font-bold text-teal-900">পরামর্শ:</p>
-                        <p class="text-gray-600">শ্রেণিভিত্তিক মাস্টার রুটিন দেখতে এবং প্রিন্ট করতে সরাসরি মূল রুটিন মডিউলে যেতে পারেন অথবা নিচের জেনারেটর ব্যবহার করুন।</p>
-                        <a href="routine.html" class="inline-block bg-teal-700 text-white px-4 py-2 rounded font-bold shadow hover:bg-teal-800">মাস্টার রুটিন পেজে যান</a>
-                    </div>
-                </div>
-
-                <!-- Academic Calendar Panel -->
-                <div id="panel-calendar" class="academic-sub-panel bg-white p-5 md:p-6 rounded-2xl shadow-sm border border-gray-200 space-y-4 hidden">
-                    <div class="flex justify-between items-center border-b pb-3 no-print">
-                        <h3 class="font-bold text-rose-800 text-sm"><i class="fa-solid fa-calendar-check mr-2"></i> বার্ষিক একাডেমিক ক্যালেন্ডার ও ছুটির তালিকা</h3>
-                        <div class="flex gap-2">
-                            <button onclick="window.print()" class="text-xs bg-gray-800 text-white px-3 py-1 rounded font-bold shadow"><i class="fa-solid fa-print"></i> প্রিন্ট</button>
-                            <button onclick="closeAllAcademicPanels()" class="text-xs bg-gray-200 px-3 py-1 rounded font-bold text-gray-700 hover:bg-gray-300">বন্ধ করুন</button>
-                        </div>
-                    </div>
-                    <div class="overflow-x-auto print-container">
-                        <div class="text-center pb-3 border-b">
-                            <h2 class="font-bold text-sm text-emerald-900">আব্দুল্লাহ হাট ইসলামিয়া ফাজিল মাদ্রাসা</h2>
-                            <p class="text-xs text-gray-600">বার্ষিক ছুটির তালিকা ও একাডেমিক ক্যালেন্ডার - ২০২৬</p>
-                        </div>
-                        <table class="w-full text-left border-collapse border border-gray-200 text-xs mt-3">
-                            <thead>
-                                <tr class="bg-rose-800 text-white">
-                                    <th class="border p-2">ইভেন্ট / ছুটির নাম</th>
-                                    <th class="border p-2">শুরুর তারিখ</th>
-                                    <th class="border p-2">শেষের তারিখ</th>
-                                    <th class="border p-2 text-center">মোট দিন</th>
-                                </tr>
-                            </thead>
-                            <tbody>
-                                <tr><td class="border p-2 font-bold">পবিত্র শবে বরাত ও রমজান ছুটি</td><td class="border p-2">১০ মার্চ ২০২৬</td><td class="border p-2">২৫ এপ্রিল ২০২৬</td><td class="border p-2 text-center font-bold">৪৫ দিন</td></tr>
-                                <tr><td class="border p-2 font-bold">ঈদুল আজহা ও গ্রীষ্মকালীন ছুটি</td><td class="border p-2">২৫ মে ২০২৬</td><td class="border p-2">১০ জুন ২০২৬</td><td class="border p-2 text-center font-bold">১৭ দিন</td></tr>
-                                <tr><td class="border p-2 font-bold">অর্ধবার্ষিক পরীক্ষা</td><td class="border p-2">১০ জুন ২০২৬</td><td class="border p-2">২৪ জুন ২০২৬</td><td class="border p-2 text-center font-bold">১৫ দিন</td></tr>
-                                <tr><td class="border p-2 font-bold">বার্ষিক পরীক্ষা</td><td class="border p-2">০১ ডিসেম্বর ২০২৬</td><td class="border p-2">২০ ডিসেম্বর ২০২৬</td><td class="border p-2 text-center font-bold">২০ দিন</td></tr>
-                            </tbody>
-                        </table>
+                    <div class="p-6 text-center space-y-3">
+                        <p class="text-xs text-gray-600 font-bold">শ্রেণিভিত্তিক মাস্টার রুটিন তৈরি ও পরিচালনার জন্য রুটিন মডিউলে প্রবেশ করুন।</p>
+                        <a href="routine.html" class="inline-block bg-teal-700 text-white px-5 py-2 rounded text-xs font-bold shadow hover:bg-teal-800">রুটিন মডিউলে যান</a>
                     </div>
                 </div>
 
@@ -428,89 +344,92 @@
             window.scrollTo({ top: 0, behavior: 'smooth' });
         }
 
-        // --- LocalStorage Dynamic Handlers ---
-
+        // --- 1. Class Management (Default Classes with Levels) ---
         function loadClassList() {
-            let classes = JSON.parse(localStorage.getItem('madrasah_classes')) || ["দাখিল ষষ্ঠ শ্রেণি", "দাখিল সপ্তম শ্রেণি", "দাখিল অষ্টম শ্রেণি", "দাখিল নবম শ্রেণি", "দাখিল দশম শ্রেণি"];
+            let defaultClasses = [
+                { name: "নুরানী প্রথম শ্রেণি", level: "নুরানী স্তর" },
+                { name: "নুরানী দ্বিতীয় শ্রেণি", level: "নুরানী স্তর" },
+                { name: "নুরানী তৃতীয় শ্রেণি", level: "নুরানী স্তর" },
+                { name: "ইবতেদায়ী চতুর্থ শ্রেণি", level: "ইবতেদায়ী স্তর" },
+                { name: "ইবতেদায়ী পঞ্চম শ্রেণি", level: "ইবতেদায়ী স্তর" },
+                { name: "দাখিল ষষ্ঠ শ্রেণি", level: "দাখিল স্তর" },
+                { name: "দাখিল অষ্টম শ্রেণি", level: "দাখিল স্তর" },
+                { name: "দাখিল নবম শ্রেণি", level: "দাখিল স্তর" },
+                { name: "দাখিল দশম শ্রেণি", level: "দাখিল স্তর" },
+                { name: "আলিম প্রথম বর্ষ", level: "আলিম স্তর" },
+                { name: "আলিম দ্বিতীয় বর্ষ", level: "আলিম স্তর" },
+                { name: "ফাজিল প্রথম বর্ষ", level: "ফাজিল স্তর" },
+                { name: "ফাজিল দ্বিতীয় বর্ষ", level: "ফাজিল স্তর" },
+                { name: "ফাজিল তৃতীয় বর্ষ", level: "ফাজিল স্তর" }
+            ];
+
+            let storedClasses = JSON.parse(localStorage.getItem('madrasah_classes_detailed'));
+            if(!storedClasses) {
+                storedClasses = defaultClasses;
+                localStorage.setItem('madrasah_classes_detailed', JSON.stringify(storedClasses));
+            }
+
             const tbody = document.getElementById('classListTableBody');
             tbody.innerHTML = '';
-            
-            // Populate dropdown for section
             const secSelect = document.getElementById('section_class_select');
             if(secSelect) secSelect.innerHTML = '';
 
-            classes.forEach((cls, i) => {
+            storedClasses.forEach((clsObj, i) => {
                 tbody.innerHTML += `
                     <tr>
                         <td class="border p-2 text-center font-bold">${i + 1}</td>
-                        <td class="border p-2 font-bold text-emerald-800">${cls}</td>
-                        <td class="border p-2">দাখিল স্তর</td>
+                        <td class="border p-2 font-bold text-emerald-800">${clsObj.name}</td>
+                        <td class="border p-2 text-blue-800 font-semibold">${clsObj.level}</td>
                         <td class="border p-2 text-center text-emerald-700 font-bold">সক্রিয়</td>
                     </tr>
                 `;
                 if(secSelect) {
-                    secSelect.innerHTML += `<option value="${cls}">${cls}</option>`;
+                    secSelect.innerHTML += `<option value="${clsObj.name}">${clsObj.name}</option>`;
                 }
             });
         }
 
         function addClassItem() {
-            let val = document.getElementById('new_class_name').value.trim();
-            if(!val) return alert('শ্রেণির নাম লিখুন!');
-            let classes = JSON.parse(localStorage.getItem('madrasah_classes')) || [];
-            if(!classes.includes(val)) {
-                classes.push(val);
-                localStorage.setItem('madrasah_classes', JSON.stringify(classes));
-                document.getElementById('new_class_name').value = '';
-                loadClassList();
-                alert('নতুন ক্লাস সফলভাবে যোগ করা হয়েছে!');
-            } else {
-                alert('এই ক্লাসটি ইতিমধ্যে তালিকায় আছে!');
-            }
+            let name = document.getElementById('new_class_name').value.trim();
+            let level = document.getElementById('new_class_level').value;
+            if(!name) return alert('ক্লাসের নাম লিখুন!');
+
+            let storedClasses = JSON.parse(localStorage.getItem('madrasah_classes_detailed')) || [];
+            storedClasses.push({ name: name, level: level });
+            localStorage.setItem('madrasah_classes_detailed', JSON.stringify(storedClasses));
+
+            document.getElementById('new_class_name').value = '';
+            loadClassList();
+            alert('নতুন ক্লাস সফলভাবে যোগ করা হয়েছে!');
         }
 
+        // --- 2. Subject Management (Linked to Settings Subject & Code Management) ---
         function loadSubjectList() {
-            let rawSubs = JSON.parse(localStorage.getItem('madrasah_subjects')) || [
-                { subjectName: "আল-কুরআনুল কারীম", code: "১০০", marks: 100 },
-                { subjectName: "আল-হাদীস শরীফ", code: "১৭০", marks: 100 },
-                { subjectName: "বাংলা ১ম পত্র", code: "১০১", marks: 100 },
-                { subjectName: "ইংরেজি ১ম পত্র", code: "১০৭", marks: 100 },
-                { subjectName: "গণিত", code: "১২৫", marks: 100 }
+            // Settings মডিউলের সাবজেক্ট কি থেকে ডেটা ফেচ করা হচ্ছে
+            let settingsSubs = JSON.parse(localStorage.getItem('madrasah_settings_subjects')) || [
+                { name: "আল-কুরআনুল কারীম", code: "100", marks: 100 },
+                { name: "আল-হাদীস শরীফ", code: "170", marks: 100 },
+                { name: "বাংলা ১ম পত্র", code: "101", marks: 100 },
+                { name: "ইংরেজি ১ম পত্র", code: "107", marks: 100 },
+                { name: "গণিত", code: "125", marks: 100 }
             ];
+
             const tbody = document.getElementById('subjectListTableBody');
             tbody.innerHTML = '';
 
-            rawSubs.forEach((s, i) => {
-                let name = s.subjectName || s.name || s;
-                let code = s.code || 'N/A';
-                let marks = s.marks || 100;
+            settingsSubs.forEach((s, i) => {
                 tbody.innerHTML += `
                     <tr>
                         <td class="border p-2 text-center font-bold">${i + 1}</td>
-                        <td class="border p-2 font-bold text-blue-800">${name}</td>
-                        <td class="border p-2 text-center">${code}</td>
-                        <td class="border p-2 text-center">${marks}</td>
+                        <td class="border p-2 font-bold text-blue-800">${s.name || s.subjectName}</td>
+                        <td class="border p-2 text-center">${s.code || 'N/A'}</td>
+                        <td class="border p-2 text-center">${s.marks || 100}</td>
                     </tr>
                 `;
             });
         }
 
-        function addSubjectItem() {
-            let name = document.getElementById('new_sub_name').value.trim();
-            let code = document.getElementById('new_sub_code').value.trim();
-            let marks = document.getElementById('new_sub_marks').value;
-            if(!name) return alert('বিষয়ের নাম লিখুন!');
-
-            let subs = JSON.parse(localStorage.getItem('madrasah_subjects')) || [];
-            subs.push({ subjectName: name, code: code, marks: marks });
-            localStorage.setItem('madrasah_subjects', JSON.stringify(subs));
-            
-            document.getElementById('new_sub_name').value = '';
-            document.getElementById('new_sub_code').value = '';
-            loadSubjectList();
-            alert('বিষয় সফলভাবে যোগ করা হয়েছে!');
-        }
-
+        // --- 3. Group Management ---
         function loadGroupList() {
             let groups = JSON.parse(localStorage.getItem('madrasah_groups')) || ["সাধারণ বিভাগ", "বিজ্ঞান বিভাগ", "হিফজুল কুরআন বিভাগ"];
             const tbody = document.getElementById('groupListTableBody');
@@ -537,10 +456,10 @@
             alert('গ্রুপ সফলভাবে যোগ করা হয়েছে!');
         }
 
+        // --- 4. Section Management ---
         function loadSectionList() {
             let sections = JSON.parse(localStorage.getItem('madrasah_sections')) || [
-                { name: "শাখা - ক (Section A)", cls: "দাখিল ষষ্ঠ শ্রেণি" },
-                { name: "শাখা - খ (Section B)", cls: "দাখিল ষষ্ঠ শ্রেণি" }
+                { name: "শাখা - ক (Section A)", cls: "দাখিল ষষ্ঠ শ্রেণি" }
             ];
             const tbody = document.getElementById('sectionListTableBody');
             tbody.innerHTML = '';
@@ -567,10 +486,12 @@
             alert('সেকশন সফলভাবে যোগ করা হয়েছে!');
         }
 
+        // --- 5. Academic Year Management ---
         function loadYearList() {
             let years = JSON.parse(localStorage.getItem('madrasah_years')) || ["২০২৬", "২০২৭"];
             const tbody = document.getElementById('yearListTableBody');
             tbody.innerHTML = '';
+            years.exports = years;
             years.forEach((y, i) => {
                 tbody.innerHTML += `
                     <tr>
@@ -585,7 +506,7 @@
         function addYearItem() {
             let y = document.getElementById('new_year_val').value.trim();
             if(!y) return alert('সেশন লিখুন!');
-            let years = JSON.parse(localStorage.getItem('madrasah_years')) || [];
+            let years = JSON.parse(localStorage.getItem('madrasah_years')) || ["২০২৬", "২০২৭"];
             if(!years.includes(y)) {
                 years.push(y);
                 localStorage.setItem('madrasah_years', JSON.stringify(years));
@@ -593,7 +514,7 @@
                 loadYearList();
                 alert('সেশন সফলভাবে যোগ করা হয়েছে!');
             } else {
-                alert('এই সেশনটি ইতিমধ্যে আছে!');
+                alert('এই সেশনটি ইতিমধ্যে তালিকায় আছে!');
             }
         }
 

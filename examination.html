@@ -821,6 +821,7 @@
 
     <script>
         // Robust Settings Data Initializer from Settings Management
+        
         function getSettingsData() {
             let years = JSON.parse(localStorage.getItem('madrasah_years')) || ["২০২৬", "২০২৭"];
             let classes = JSON.parse(localStorage.getItem('madrasah_classes')) || ["দাখিল ষষ্ঠ শ্রেণি", "দাখিল সপ্তম শ্রেণি", "দাখিল অষ্টম শ্রেণি", "দাখিল নবম শ্রেণি", "দাখিল দশম শ্রেণি"];
@@ -832,12 +833,21 @@
             if (Array.isArray(rawSubjects)) {
                 subjects = rawSubjects.map(s => {
                     if (typeof s === 'object' && s !== null) {
-                        let subName = s.name || s.title || s.subjectName || s.bangla || Object.values(s)[0] || 'বিষয়';
+                        let subName = s.subjectName || s.subject || s.name || s.title || s.bangla || Object.values(s)[0] || '';
                         let subCode = s.code || s.subjectCode || s.id || '';
-                        return subCode ? `${subName} (কোড: ${subCode})` : subName;
+                        
+                        if (subName.includes('শ্রেণি') || subName.includes('নূরানী') || subName.includes('আলিম')) {
+                            return null;
+                        }
+                        
+                        return subName ? (subCode ? `${subName} (কোড: ${subCode})` : subName) : null;
                     }
-                    return String(s);
-                });
+                    let strVal = String(s);
+                    if (strVal.includes('শ্রেণি') || strVal.includes('নূরানী') || strVal.includes('আলিম')) {
+                        return null;
+                    }
+                    return strVal;
+                }).filter(Boolean);
             }
 
             if (subjects.length === 0) {
@@ -854,7 +864,6 @@
 
             return { years, classes, exams, subjects };
         }
-
         function populateAllDropdowns() {
             const data = getSettingsData();
             

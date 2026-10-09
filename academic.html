@@ -90,7 +90,7 @@
                             <h3 class="font-bold text-gray-800 text-sm flex items-center gap-2"><i class="fa-solid fa-school text-emerald-600"></i> Class Management</h3>
                             <span class="text-xs bg-emerald-50 text-emerald-700 px-2 py-0.5 rounded font-semibold">ক্লাস</span>
                         </div>
-                        <p class="text-xs text-gray-600 leading-relaxed">নূরানী থেকে ফাজিল স্তর পর্যন্ত শ্রেণি ও স্তরভিত্তিক কনফিগারেশন।</p>
+                        <p class="text-xs text-gray-600 leading-relaxed">নুরানী থেকে ফাজিল স্তর পর্যন্ত শ্রেণি ও স্তরভিত্তিক কনফিগারেশন।</p>
                         <button class="w-full bg-emerald-50 text-emerald-700 py-1.5 rounded text-xs font-bold hover:bg-emerald-100 transition">ক্লাস তালিকা ও স্তর</button>
                     </div>
 
@@ -325,10 +325,86 @@
     </div>
 
     <script>
-        
-                  // --- 2. Subject Management (Synced directly with Settings madrasah_subjects_detailed) ---
+        function openAcademicPanel(panelName) {
+            document.querySelectorAll('.academic-sub-panel').forEach(p => p.classList.add('hidden'));
+            const target = document.getElementById('panel-' + panelName);
+            if(target) {
+                target.classList.remove('hidden');
+                target.scrollIntoView({ behavior: 'smooth' });
+            }
+            if(panelName === 'classes') loadClassList();
+            if(panelName === 'subjects') loadSubjectList();
+            if(panelName === 'groups') loadGroupList();
+            if(panelName === 'sections') loadSectionList();
+            if(panelName === 'years') loadYearList();
+        }
+
+        function closeAllAcademicPanels() {
+            document.querySelectorAll('.academic-sub-panel').forEach(p => p.classList.add('hidden'));
+            window.scrollTo({ top: 0, behavior: 'smooth' });
+        }
+
+        // --- 1. Class Management ---
+        function loadClassList() {
+            let defaultClasses = [
+                { name: "নুরানী প্রথম শ্রেণি", level: "নুরানী স্তর" },
+                { name: "নুরানী দ্বিতীয় শ্রেণি", level: "নুরানী স্তর" },
+                { name: "নুরানী তৃতীয় শ্রেণি", level: "নুরানী স্তর" },
+                { name: "ইবতেদায়ী চতুর্থ শ্রেণি", level: "ইবতেদায়ী স্তর" },
+                { name: "ইবতেদায়ী পঞ্চম শ্রেণি", level: "ইবতেদায়ী স্তর" },
+                { name: "দাখিল ষষ্ঠ শ্রেণি", level: "দাখিল স্তর" },
+                { name: "দাখিল অষ্টম শ্রেণি", level: "দাখিল স্তর" },
+                { name: "দাখিল নবম শ্রেণি", level: "দাখিল স্তর" },
+                { name: "দাখিল দশম শ্রেণি", level: "দাখিল স্তর" },
+                { name: "আলিম প্রথম বর্ষ", level: "আলিম স্তর" },
+                { name: "আলিম দ্বিতীয় বর্ষ", level: "আলিম স্তর" },
+                { name: "ফাজিল প্রথম বর্ষ", level: "ফাজিল স্তর" },
+                { name: "ফাজিল দ্বিতীয় বর্ষ", level: "ফাজিল স্তর" },
+                { name: "ফাজিল তৃতীয় বর্ষ", level: "ফাজিল স্তর" }
+            ];
+
+            let storedClasses = JSON.parse(localStorage.getItem('madrasah_classes_detailed'));
+            if(!storedClasses) {
+                storedClasses = defaultClasses;
+                localStorage.setItem('madrasah_classes_detailed', JSON.stringify(storedClasses));
+            }
+
+            const tbody = document.getElementById('classListTableBody');
+            tbody.innerHTML = '';
+            const secSelect = document.getElementById('section_class_select');
+            if(secSelect) secSelect.innerHTML = '';
+
+            storedClasses.forEach((clsObj, i) => {
+                tbody.innerHTML += `
+                    <tr>
+                        <td class="border p-2 text-center font-bold">${i + 1}</td>
+                        <td class="border p-2 font-bold text-emerald-800">${clsObj.name}</td>
+                        <td class="border p-2 text-blue-800 font-semibold">${clsObj.level}</td>
+                        <td class="border p-2 text-center text-emerald-700 font-bold">সক্রিয়</td>
+                    </tr>
+                `;
+                if(secSelect) {
+                    secSelect.innerHTML += `<option value="${clsObj.name}">${clsObj.name}</option>`;
+                }
+            });
+        }
+
+        function addClassItem() {
+            let name = document.getElementById('new_class_name').value.trim();
+            let level = document.getElementById('new_class_level').value;
+            if(!name) return alert('ক্লাসের নাম লিখুন!');
+
+            let storedClasses = JSON.parse(localStorage.getItem('madrasah_classes_detailed')) || [];
+            storedClasses.push({ name: name, level: level });
+            localStorage.setItem('madrasah_classes_detailed', JSON.stringify(storedClasses));
+
+            document.getElementById('new_class_name').value = '';
+            loadClassList();
+            alert('নতুন ক্লাস সফলভাবে যোগ করা হয়েছে!');
+        }
+
+        // --- 2. Subject Management (Synced directly with Settings madrasah_subjects_detailed) ---
         function loadSubjectList() {
-            // সেটিংস মডিউলের সঠিক লোকালস্টোরেজ কী (Key) থেকে ডেটা ফেচ করা
             let settingsSubs = JSON.parse(localStorage.getItem('madrasah_subjects_detailed')) || [];
 
             const tbody = document.getElementById('subjectListTableBody');
@@ -353,7 +429,103 @@
                     </tr>
                 `;
             });
-        }  
-<script>
+        }
+
+        // --- 3. Group Management ---
+        function loadGroupList() {
+            let groups = JSON.parse(localStorage.getItem('madrasah_groups')) || ["সাধারণ বিভাগ", "বিজ্ঞান বিভাগ", "হিফজুল কুরআন বিভাগ"];
+            const tbody = document.getElementById('groupListTableBody');
+            tbody.innerHTML = '';
+            groups.forEach((g, i) => {
+                tbody.innerHTML += `
+                    <tr>
+                        <td class="border p-2 text-center font-bold">${i + 1}</td>
+                        <td class="border p-2 font-bold text-purple-800">${g}</td>
+                        <td class="border p-2 text-center">GEN</td>
+                    </tr>
+                `;
+            });
+        }
+
+        function addGroupItem() {
+            let val = document.getElementById('new_group_name').value.trim();
+            if(!val) return alert('গ্রুপের নাম লিখুন!');
+            let groups = JSON.parse(localStorage.getItem('madrasah_groups')) || [];
+            groups.push(val);
+            localStorage.setItem('madrasah_groups', JSON.stringify(groups));
+            document.getElementById('new_group_name').value = '';
+            loadGroupList();
+            alert('গ্রুপ সফলভাবে যোগ করা হয়েছে!');
+        }
+
+        // --- 4. Section Management ---
+        function loadSectionList() {
+            let sections = JSON.parse(localStorage.getItem('madrasah_sections')) || [
+                { name: "শাখা - ক (Section A)", cls: "দাখিল ষষ্ঠ শ্রেণি" }
+            ];
+            const tbody = document.getElementById('sectionListTableBody');
+            tbody.innerHTML = '';
+            sections.forEach((sec, i) => {
+                tbody.innerHTML += `
+                    <tr>
+                        <td class="border p-2 text-center font-bold">${i + 1}</td>
+                        <td class="border p-2 font-bold text-amber-800">${sec.name}</td>
+                        <td class="border p-2">${sec.cls}</td>
+                    </tr>
+                `;
+            });
+        }
+
+        function addSectionItem() {
+            let name = document.getElementById('new_section_name').value.trim();
+            let cls = document.getElementById('section_class_select').value;
+            if(!name) return alert('সেকশনের নাম লিখুন!');
+            let sections = JSON.parse(localStorage.getItem('madrasah_sections')) || [];
+            sections.push({ name: name, cls: cls });
+            localStorage.setItem('madrasah_sections', JSON.stringify(sections));
+            document.getElementById('new_section_name').value = '';
+            loadSectionList();
+            alert('সেকশন সফলভাবে যোগ করা হয়েছে!');
+        }
+
+        // --- 5. Academic Year Management ---
+        function loadYearList() {
+            let years = JSON.parse(localStorage.getItem('madrasah_years')) || ["২০২৬", "২০২৭"];
+            const tbody = document.getElementById('yearListTableBody');
+            tbody.innerHTML = '';
+            years.forEach((y, i) => {
+                tbody.innerHTML += `
+                    <tr>
+                        <td class="border p-2 text-center font-bold">${i + 1}</td>
+                        <td class="border p-2 font-bold text-indigo-800">${y}</td>
+                        <td class="border p-2 text-center text-emerald-700 font-bold">${y === "২০২৬" ? "বর্তমান সেশন" : "আসন্ন সেশন"}</td>
+                    </tr>
+                `;
+            });
+        }
+
+        function addYearItem() {
+            let y = document.getElementById('new_year_val').value.trim();
+            if(!y) return alert('সেশন লিখুন!');
+            let years = JSON.parse(localStorage.getItem('madrasah_years')) || ["২০২৬", "২০২৭"];
+            if(!years.includes(y)) {
+                years.push(y);
+                localStorage.setItem('madrasah_years', JSON.stringify(years));
+                document.getElementById('new_year_val').value = '';
+                loadYearList();
+                alert('সেশন সফলভাবে যোগ করা হয়েছে!');
+            } else {
+                alert('এই সেশনটি ইতিমধ্যে তালিকায় আছে!');
+            }
+        }
+
+        window.onload = function() {
+            loadClassList();
+            loadSubjectList();
+            loadGroupList();
+            loadSectionList();
+            loadYearList();
+        };
+    </script>
 </body>
 </html>

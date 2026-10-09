@@ -706,7 +706,7 @@
                     </div>
                 </div>
 
-                <!-- 9. EXAM ROUTINE PANEL (Updated with Settings Subject Link, Date-Day Auto-sync, and Nurani to Alim Class Columns with Active/Inactive) -->
+                <!-- 9. EXAM ROUTINE PANEL (Updated with Single Date Row Unique Logic) -->
                 <div id="panel-routine" class="exam-sub-panel bg-white p-5 md:p-6 rounded-2xl shadow-sm border border-gray-200 space-y-4 hidden">
                     <div class="flex justify-between items-center border-b pb-3 no-print">
                         <h3 class="font-bold text-sky-800 text-sm"><i class="fa-solid fa-calendar-days mr-2"></i> ৯. এক্সাম রুটিন জেনারেটর (Landscape A4)</h3>
@@ -788,7 +788,6 @@
     </div>
 
     <script>
-        // List of classes from Nurani 3rd to Alim 2nd Year with keys for column hiding/showing
         const examClassesList = [
             { id: "nurani3", name: "নুরানী তৃতীয় শ্রেণি" },
             { id: "nurani4", name: "নুরানী চতুর্থ শ্রেণি" },
@@ -811,12 +810,10 @@
             alim1: true, alim2: true
         };
 
-        // Settings Data Initializer from Settings Management
         function getSettingsData() {
             let years = JSON.parse(localStorage.getItem('madrasah_years')) || ["২০২৬", "২০২৭"];
             let exams = JSON.parse(localStorage.getItem('madrasah_exams')) || ["অর্ধবার্ষিক পরীক্ষা ২০২৬", "বার্ষিক পরীক্ষা ২০২৬"];
             
-            // Fetch subjects from Settings Management (madrasah_subjects_detailed or madrasah_subjects)
             let rawSubs = JSON.parse(localStorage.getItem('madrasah_subjects_detailed')) || JSON.parse(localStorage.getItem('madrasah_subjects')) || [];
             let subjects = rawSubs.map(s => s.name || s.subjectName || s).filter(Boolean);
             
@@ -863,7 +860,6 @@
             populateSelect('admit_filter_exam', data.exams);
             populateSelect('admit_filter_class', data.classes);
 
-            // Routine Panel Dropdowns
             populateSelect('rout_class', data.classes);
             populateSelect('rout_subject', data.subjects);
 
@@ -1069,7 +1065,6 @@
             alert(`এডমিট কার্ড ফিল্টার সফল হয়েছে!\nসাল: ${year}\nপরীক্ষা: ${examName}\nশ্রেণি: ${className}`);
         }
 
-        // --- EXAM ROUTINE AUTO-DETECT DAY & DYNAMIC CLASS COLUMNS ---
         function autoDetectDay(input) {
             const val = input.value;
             if(!val) {
@@ -1112,6 +1107,7 @@
             });
         }
 
+        // --- UNIQUE DATE ROW ROUTINE ENTRY LOGIC ---
         function addExamRoutineItem() {
             const date = document.getElementById('rout_date').value;
             const day = document.getElementById('rout_day').value;
@@ -1125,27 +1121,52 @@
 
             const tbody = document.getElementById('examRoutineTableBody');
             
-            // Find class ID
+            // Check if a row with this exact date already exists in the table
+            let existingRow = null;
+            for (let row of tbody.rows) {
+                let dateCell = row.cells[0];
+                if (dateCell && dateCell.innerText.trim() === date) {
+                    existingRow = row;
+                    break;
+                }
+            }
+
             let matchedClassObj = examClassesList.find(c => c.name === clsName);
             let classKey = matchedClassObj ? matchedClassObj.id : 'dakhil6';
 
-            // Build cells for all 12 classes
-            let classCellsHTML = "";
-            examClassesList.forEach(c => {
-                let cellContent = (c.id === classKey) ? `<span class="font-bold text-emerald-800 bg-emerald-50 px-2 py-0.5 rounded border border-emerald-200">${subj}</span>` : `<span class="text-gray-400">-</span>`;
-                classCellsHTML += `<td class="border p-2 text-center class-col-${c.id}">${cellContent}</td>`;
-            });
+            let subjectBadge = `<span class="font-bold text-emerald-800 bg-emerald-50 px-2 py-0.5 rounded border border-emerald-200">${subj}</span>`;
 
-            tbody.innerHTML += `
-                <tr>
-                    <td class="border p-2 text-center font-bold">${date}</td>
-                    <td class="border p-2 text-center font-semibold text-purple-800">${day}</td>
-                    ${classCellsHTML}
-                </tr>
-            `;
+            if (existingRow) {
+                // If date already exists, update only the corresponding class column cell within that existing row
+                examClassesList.forEach((c, index) => {
+                    if (c.id === classKey) {
+                        // Note: index 0 is date, index 1 is day, so class columns start from index 2
+                        let cell = existingRow.cells[index + 2];
+                        if (cell) {
+                            cell.innerHTML = subjectBadge;
+                        }
+                    }
+                });
+                alert('বিদ্যমান তারিখের সারিতে বিষয়টি আপডেট করা হয়েছে!');
+            } else {
+                // If date does not exist, create a brand new row
+                let classCellsHTML = "";
+                examClassesList.forEach(c => {
+                    let cellContent = (c.id === classKey) ? subjectBadge : `<span class="text-gray-400">-</span>`;
+                    classCellsHTML += `<td class="border p-2 text-center class-col-${c.id}">${cellContent}</td>`;
+                });
+
+                tbody.innerHTML += `
+                    <tr>
+                        <td class="border p-2 text-center font-bold">${date}</td>
+                        <td class="border p-2 text-center font-semibold text-purple-800">${day}</td>
+                        ${classCellsHTML}
+                    </tr>
+                `;
+                alert('নতুন রুটিন এন্ট্রি সফল হয়েছে!');
+            }
 
             applyClassColumnVisibility();
-            alert('রুটিন এন্ট্রি সফল হয়েছে!');
         }
 
         window.onload = function() {

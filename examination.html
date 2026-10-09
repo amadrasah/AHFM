@@ -836,14 +836,16 @@
                         let subName = s.subjectName || s.subject || s.name || s.title || s.bangla || Object.values(s)[0] || '';
                         let subCode = s.code || s.subjectCode || s.id || '';
                         
-                        if (subName.includes('শ্রেণি') || subName.includes('নূরানী') || subName.includes('আলিম')) {
+                        // যদি অবজেক্টের নামটি হুবহু ক্লাসের লিস্টের কোনোটার সাথে মিলে যায়, কেবল তখনই বাদ দিবে
+                        if (classes.includes(subName)) {
                             return null;
                         }
                         
                         return subName ? (subCode ? `${subName} (কোড: ${subCode})` : subName) : null;
                     }
                     let strVal = String(s);
-                    if (strVal.includes('শ্রেণি') || strVal.includes('নূরানী') || strVal.includes('আলিম')) {
+                    // যদি স্ট্রিংটি হুবহু ক্লাস হয় তবে বাদ দিবে
+                    if (classes.includes(strVal)) {
                         return null;
                     }
                     return strVal;

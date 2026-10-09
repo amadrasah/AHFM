@@ -154,16 +154,12 @@
                         
                         <div>
                             <label class="font-bold text-gray-700 mb-1 block">সাল (Academic Year) *</label>
-                            <select id="adm_year" onchange="generateStudentId()" class="w-full p-2 border rounded-lg font-bold settings-year-dropdown">
-                                <!-- Loaded dynamically from Settings -->
-                            </select>
+                            <select id="adm_year" onchange="generateStudentId()" class="w-full p-2 border rounded-lg font-bold settings-year-dropdown"></select>
                         </div>
 
                         <div>
                             <label class="font-bold text-gray-700 mb-1 block">শ্রেণি (Class) *</label>
-                            <select id="adm_class" onchange="generateStudentId()" class="w-full p-2 border rounded-lg font-bold settings-class-dropdown">
-                                <!-- Loaded dynamically from Settings -->
-                            </select>
+                            <select id="adm_class" onchange="generateStudentId()" class="w-full p-2 border rounded-lg font-bold settings-class-dropdown"></select>
                         </div>
 
                         <div>
@@ -293,10 +289,10 @@
                     </div>
                 </div>
 
-                <!-- 3. NEW FRESH DIGITAL ID CARD PANEL WITH QR CODE -->
+                <!-- 3. FRESH DIGITAL ID CARD PANEL WITH QR CODE -->
                 <div id="panel-idcard" class="student-sub-panel bg-white p-6 rounded-2xl shadow-sm border border-gray-200 space-y-4 hidden">
                     <div class="flex justify-between items-center border-b pb-3 no-print">
-                        <h3 class="font-bold text-purple-800 text-sm"><i class="fa-solid fa-address-card mr-2"></i> ৩. ডিজিটাল আইডি কার্ড ও QR কোড জেনারেটর</h3>
+                        <h3 class="font-bold text-purple-800 text-sm"><i class="fa-solid fa-address-card mr-2"></i> ৩. ডিজিটাল আইডি কার্ড ও রিয়েল QR কোড</h3>
                         <button onclick="closeAllPanels()" class="text-xs bg-gray-200 px-3 py-1 rounded font-bold text-gray-700">বন্ধ করুন</button>
                     </div>
                     
@@ -318,41 +314,41 @@
                         </div>
                     </div>
 
-                    <!-- Fresh Modern ID Card Design with QR Code -->
-                    <div id="idCardPreviewContainer" class="hidden w-[320px] mx-auto bg-white text-gray-900 rounded-2xl p-4 shadow-2xl space-y-3 border-2 border-emerald-800 relative overflow-hidden">
+                    <!-- Clean ID Card Design with QR Code -->
+                    <div id="idCardPreviewContainer" class="hidden w-[300px] mx-auto bg-white text-gray-900 rounded-xl p-3 shadow-xl space-y-2 border border-emerald-700 relative overflow-hidden">
                         <div class="absolute inset-0 flex items-center justify-center opacity-10 pointer-events-none">
-                            <span id="watermarkText" class="text-4xl font-extrabold text-emerald-900">AHIFM</span>
+                            <span id="watermarkText" class="text-3xl font-extrabold text-emerald-900">AHIFM</span>
                         </div>
 
-                        <div class="flex items-center gap-2 border-b-2 border-emerald-800 pb-2 relative z-10">
-                            <div id="card_logo_box" class="w-10 h-10 bg-emerald-900 text-white rounded-full flex items-center justify-center font-bold text-xs overflow-hidden shrink-0">লোগো</div>
+                        <div class="flex items-center gap-2 border-b border-emerald-800 pb-2 relative z-10">
+                            <div id="card_logo_box" class="w-9 h-9 bg-emerald-900 text-white rounded-full flex items-center justify-center font-bold text-xs overflow-hidden shrink-0">লোগো</div>
                             <div class="overflow-hidden">
-                                <h4 class="font-bold text-xs text-emerald-900 truncate" id="card_inst_name">আবদুল্লাহ হাট ইসলামিয়া ফাজিল মাদ্রাসা</h4>
+                                <h4 class="font-bold text-[11px] text-emerald-900 truncate" id="card_inst_name">আবদুল্লাহ হাট ইসলামিয়া ফাজিল মাদ্রাসা</h4>
                                 <p class="text-[9px] text-gray-600 truncate" id="card_inst_address">কোম্পানীগঞ্জ, নোয়াখালী</p>
                             </div>
                         </div>
 
-                        <div class="flex gap-3 items-center relative z-10">
+                        <div class="flex gap-2.5 items-center relative z-10 py-1">
                             <div id="card_photo_box" class="w-20 h-24 bg-gray-100 rounded border border-gray-300 flex items-center justify-center overflow-hidden font-bold text-[10px] text-gray-400 shrink-0">ছবি</div>
-                            <div class="space-y-1 text-xs w-full overflow-hidden">
+                            <div class="space-y-0.5 text-xs w-full overflow-hidden">
                                 <p class="font-bold text-emerald-800 text-[11px] truncate" id="card_name_bn">নাম: --</p>
-                                <p class="text-[10px] text-gray-700 truncate" id="card_father">পিতা: --</p>
                                 <p class="text-[10px] font-bold text-blue-800 truncate" id="card_id_display">আইডি: --</p>
                                 <p class="text-[10px] truncate" id="card_class_display">শ্রেণি: --</p>
+                                <p class="text-[10px] truncate" id="card_roll_display">রোল: --</p>
                                 <p class="text-[10px]">ব্লাড: <span class="font-bold text-red-600" id="card_blood_val">--</span></p>
                             </div>
                         </div>
 
-                        <div class="pt-2 border-t border-gray-200 text-[10px] space-y-1 relative z-10">
+                        <div class="pt-1.5 border-t border-gray-200 text-[9px] space-y-1 relative z-10">
                             <div class="flex justify-between text-gray-700">
                                 <span id="card_inst_mobile">মাদ্রাসা: 01814716405</span>
                                 <span id="card_f_mobile">মোবাইল: --</span>
                             </div>
-                            <div class="flex justify-between items-end pt-1">
-                                <div id="realQrCodeContainer" class="p-1 bg-white border rounded shrink-0"></div>
+                            <div class="flex justify-between items-end">
+                                <div id="realQrCodeContainer" class="p-0.5 bg-white border rounded shrink-0"></div>
                                 <div class="text-center">
-                                    <div class="font-serif italic text-[10px]">Principal</div>
-                                    <span class="border-t border-gray-600 inline-block px-3 text-[9px]">অধ্যক্ষ</span>
+                                    <div class="font-serif italic text-[9px] leading-none">Principal</div>
+                                    <span class="border-t border-gray-600 inline-block px-2 text-[8px] mt-0.5">অধ্যক্ষ</span>
                                 </div>
                             </div>
                         </div>
@@ -422,7 +418,7 @@
                     </div>
                 </div>
 
-                <!-- 6. PROMOTION PANEL WITH AUTO NEXT CLASS -->
+                <!-- 6. PROMOTION PANEL -->
                 <div id="panel-promotion" class="student-sub-panel bg-white p-6 rounded-2xl shadow-sm border border-gray-200 space-y-4 hidden">
                     <div class="flex justify-between items-center border-b pb-3">
                         <h3 class="font-bold text-indigo-800 text-sm"><i class="fa-solid fa-arrow-up-right-dots mr-2"></i> ৬. স্টুডেন্টস অটো প্রমোশন প্যানেল</h3>
@@ -504,10 +500,10 @@
                     </div>
                 </div>
 
-                <!-- 8. SEARCH STUDENT PANEL WITH DEDICATED SEARCH BUTTON -->
+                <!-- 8. SEARCH STUDENT PANEL -->
                 <div id="panel-search" class="student-sub-panel bg-white p-6 rounded-2xl shadow-sm border border-gray-200 space-y-4 hidden">
                     <div class="flex justify-between items-center border-b pb-3">
-                        <h3 class="font-bold text-cyan-800 text-sm"><i class="fa-solid fa-magnifying-glass mr-2"></i> ৮. শিক্ষার্থী অনুসন্ধান ও তালিকা (Search Button Added)</h3>
+                        <h3 class="font-bold text-cyan-800 text-sm"><i class="fa-solid fa-magnifying-glass mr-2"></i> ৮. শিক্ষার্থী অনুসন্ধান ও তালিকা</h3>
                         <button onclick="closeAllPanels()" class="text-xs bg-gray-200 px-3 py-1 rounded font-bold text-gray-700">বন্ধ করুন</button>
                     </div>
 
@@ -548,7 +544,7 @@
                 <!-- 9. STUDENT DOCUMENTS ARCHIVE -->
                 <div id="panel-documents" class="student-sub-panel bg-white p-6 rounded-2xl shadow-sm border border-gray-200 space-y-4 hidden">
                     <div class="flex justify-between items-center border-b pb-3">
-                        <h3 class="font-bold text-sky-800 text-sm"><i class="fa-solid fa-folder-open mr-2"></i> ৯. স্টুডেন্ট ডকুমেন্টস আর্কাইভ (Document Storage)</h3>
+                        <h3 class="font-bold text-sky-800 text-sm"><i class="fa-solid fa-folder-open mr-2"></i> ৯. স্টুডেন্ট ডকুমেন্টস আর্কাইভ</h3>
                         <button onclick="closeAllPanels()" class="text-xs bg-gray-200 px-3 py-1 rounded font-bold text-gray-700">বন্ধ করুন</button>
                     </div>
 
@@ -801,6 +797,7 @@
             document.getElementById('card_name_bn').innerText = "নাম: " + found.name_bn;
             document.getElementById('card_father').innerText = "পিতা: " + (found.father || 'প্রযোজ্য নয়');
             document.getElementById('card_class_display').innerText = "শ্রেণি: " + found.cls;
+            document.getElementById('card_roll_display').innerText = "রোল: " + found.roll;
             document.getElementById('card_blood_val').innerText = found.blood || 'N/A';
             document.getElementById('card_f_mobile').innerText = "মোবাইল: " + found.f_mobile;
 
@@ -817,8 +814,8 @@
             try {
                 new QRCode(qrContainer, {
                     text: `ID:${found.id}|Name:${found.name_bn}|Class:${found.cls}|Roll:${found.roll}|Mobile:${found.f_mobile}`,
-                    width: 50,
-                    height: 50
+                    width: 48,
+                    height: 48
                 });
             } catch(e) {
                 qrContainer.innerHTML = "QR";

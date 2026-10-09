@@ -659,15 +659,21 @@
             document.querySelectorAll('.student-sub-panel').forEach(p => p.classList.add('hidden'));
             window.scrollTo({ top: 0, behavior: 'smooth' });
         }
-
-        function generateStudentId() {
-            const year = document.getElementById('adm_year').value;
-            const classSelect = document.getElementById('adm_class');
-            const classCode = classSelect.value;
-            let roll = document.getElementById('adm_roll').value.trim().padStart(3, '0');
-            document.getElementById('adm_id').value = year + classCode + roll;
-        }
-
+            // Real Unique QR Code Generation with Full Student Data
+            const qrContainer = document.getElementById('realQrCodeContainer');
+            qrContainer.innerHTML = '';
+            
+            let qrText = `ID: ${found.id}\nName: ${found.name_bn} (${found.name_en})\nClass: ${found.cls}\nRoll: ${found.roll}\nFather: ${found.father}\nMobile: ${found.f_mobile}\nBlood: ${found.blood || 'N/A'}`;
+            
+            try {
+                new QRCode(qrContainer, {
+                    text: qrText,
+                    width: 48,
+                    height: 48
+                });
+            } catch(e) {
+                qrContainer.innerHTML = "QR";
+            }
         function saveNewAdmission(event) {
             event.preventDefault();
             const editIndex = parseInt(document.getElementById('edit_index').value);

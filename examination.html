@@ -637,7 +637,7 @@
                                         <td class="border p-0.5 text-center">২৩/০৬</td><td class="border p-0.5">কৃষি শিক্ষা</td><td class="border p-0.5 text-center">১৩৪</td>
                                     </tr>
                                     <tr>
-                                        <td class="border p-0.5 text-center">১৭/০۶</td><td class="border p-0.5">বাংলা ১ম পত্র</td><td class="border p-0.5 text-center">১০১</td>
+                                        <td class="border p-0.5 text-center">১৭/০৬</td><td class="border p-0.5">বাংলা ১ম পত্র</td><td class="border p-0.5 text-center">১০১</td>
                                         <td class="border p-0.5 text-center">২৪/০৬</td><td class="border p-0.5">বিজ্ঞান / সাধারণ জ্ঞান</td><td class="border p-0.5 text-center">১২৭</td>
                                     </tr>
                                 </tbody>
@@ -820,23 +820,25 @@
     </div>
 
     <script>
-        // Settings Data Initializer from Settings Management
+        // Robust Settings Data Initializer from Settings Management
         function getSettingsData() {
             let years = JSON.parse(localStorage.getItem('madrasah_years')) || ["২০২৬", "২০২৭"];
             let classes = JSON.parse(localStorage.getItem('madrasah_classes')) || ["দাখিল ষষ্ঠ শ্রেণি", "দাখিল সপ্তম শ্রেণি", "দাখিল অষ্টম শ্রেণি", "দাখিল নবম শ্রেণি", "দাখিল দশম শ্রেণি"];
             let exams = JSON.parse(localStorage.getItem('madrasah_exams')) || ["অর্ধবার্ষিক পরীক্ষা ২০২৬", "বার্ষিক পরীক্ষা ২০২৬", "প্রাক-নির্বাচনী পরীক্ষা"];
             
-            // Fetching subjects from Settings Management safely handling all object types
             let rawSubjects = JSON.parse(localStorage.getItem('madrasah_subjects')) || [];
 
-            let subjects = rawSubjects.map(s => {
-                if (typeof s === 'object' && s !== null) {
-                    let subName = s.name || s.title || s.subjectName || s.bangla || Object.values(s)[0] || '';
-                    let subCode = s.code || s.subjectCode || s.id || '';
-                    return subCode ? `${subName} (কোড: ${subCode})` : subName;
-                }
-                return s;
-            });
+            let subjects = [];
+            if (Array.isArray(rawSubjects)) {
+                subjects = rawSubjects.map(s => {
+                    if (typeof s === 'object' && s !== null) {
+                        let subName = s.name || s.title || s.subjectName || s.bangla || Object.values(s)[0] || 'বিষয়';
+                        let subCode = s.code || s.subjectCode || s.id || '';
+                        return subCode ? `${subName} (কোড: ${subCode})` : subName;
+                    }
+                    return String(s);
+                });
+            }
 
             if (subjects.length === 0) {
                 subjects = [

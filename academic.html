@@ -344,7 +344,7 @@
             window.scrollTo({ top: 0, behavior: 'smooth' });
         }
 
-        // --- 1. Class Management (Default Classes with Levels) ---
+        // --- 1. Class Management ---
         function loadClassList() {
             let defaultClasses = [
                 { name: "নুরানী প্রথম শ্রেণি", level: "নুরানী স্তর" },
@@ -403,27 +403,30 @@
             alert('নতুন ক্লাস সফলভাবে যোগ করা হয়েছে!');
         }
 
-        // --- 2. Subject Management (Linked to Settings Subject & Code Management) ---
+        // --- 2. Subject Management (Fully Dynamic Linked with Settings & Future Add/Remove Support) ---
         function loadSubjectList() {
-            // Settings মডিউলের সাবজেক্ট কি থেকে ডেটা ফেচ করা হচ্ছে
-            let settingsSubs = JSON.parse(localStorage.getItem('madrasah_settings_subjects')) || [
-                { name: "আল-কুরআনুল কারীম", code: "100", marks: 100 },
-                { name: "আল-হাদীস শরীফ", code: "170", marks: 100 },
-                { name: "বাংলা ১ম পত্র", code: "101", marks: 100 },
-                { name: "ইংরেজি ১ম পত্র", code: "107", marks: 100 },
-                { name: "গণিত", code: "125", marks: 100 }
-            ];
+            // সেটিংস মডিউল বা লোকালস্টোরেজ থেকে মূল সাবজেক্ট লিস্ট ফেচ করা
+            let settingsSubs = JSON.parse(localStorage.getItem('madrasah_settings_subjects')) || [];
 
             const tbody = document.getElementById('subjectListTableBody');
             tbody.innerHTML = '';
 
+            if(settingsSubs.length === 0) {
+                tbody.innerHTML = `<tr><td colspan="4" class="border p-4 text-center text-red-600 font-bold">কোনো বিষয় পাওয়া যায়নি। দয়া করে সেটিংস মডিউল থেকে বিষয় যুক্ত করুন।</td></tr>`;
+                return;
+            }
+
             settingsSubs.forEach((s, i) => {
+                let subName = s.name || s.subjectName || 'নামহীন বিষয়';
+                let subCode = s.code || s.subjectCode || 'N/A';
+                let subMarks = s.marks || 100;
+
                 tbody.innerHTML += `
                     <tr>
                         <td class="border p-2 text-center font-bold">${i + 1}</td>
-                        <td class="border p-2 font-bold text-blue-800">${s.name || s.subjectName}</td>
-                        <td class="border p-2 text-center">${s.code || 'N/A'}</td>
-                        <td class="border p-2 text-center">${s.marks || 100}</td>
+                        <td class="border p-2 font-bold text-blue-800">${subName}</td>
+                        <td class="border p-2 text-center font-semibold">${subCode}</td>
+                        <td class="border p-2 text-center">${subMarks}</td>
                     </tr>
                 `;
             });
@@ -491,7 +494,6 @@
             let years = JSON.parse(localStorage.getItem('madrasah_years')) || ["২০২৬", "২০২৭"];
             const tbody = document.getElementById('yearListTableBody');
             tbody.innerHTML = '';
-            years.exports = years;
             years.forEach((y, i) => {
                 tbody.innerHTML += `
                     <tr>

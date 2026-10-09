@@ -637,7 +637,7 @@
                                         <td class="border p-0.5 text-center">২৩/০৬</td><td class="border p-0.5">কৃষি শিক্ষা</td><td class="border p-0.5 text-center">১৩৪</td>
                                     </tr>
                                     <tr>
-                                        <td class="border p-0.5 text-center">১৭/০৬</td><td class="border p-0.5">বাংলা ১ম পত্র</td><td class="border p-0.5 text-center">১০১</td>
+                                        <td class="border p-0.5 text-center">১৭/০۶</td><td class="border p-0.5">বাংলা ১ম পত্র</td><td class="border p-0.5 text-center">১০১</td>
                                         <td class="border p-0.5 text-center">২৪/০৬</td><td class="border p-0.5">বিজ্ঞান / সাধারণ জ্ঞান</td><td class="border p-0.5 text-center">১২৭</td>
                                     </tr>
                                 </tbody>
@@ -826,23 +826,29 @@
             let classes = JSON.parse(localStorage.getItem('madrasah_classes')) || ["দাখিল ষষ্ঠ শ্রেণি", "দাখিল সপ্তম শ্রেণি", "দাখিল অষ্টম শ্রেণি", "দাখিল নবম শ্রেণি", "দাখিল দশম শ্রেণি"];
             let exams = JSON.parse(localStorage.getItem('madrasah_exams')) || ["অর্ধবার্ষিক পরীক্ষা ২০২৬", "বার্ষিক পরীক্ষা ২০২৬", "প্রাক-নির্বাচনী পরীক্ষা"];
             
-            // Fetching subjects from Settings Management (handling both string arrays and object arrays)
-            let rawSubjects = JSON.parse(localStorage.getItem('madrasah_subjects')) || [
-                {name: "আল-কুরআনুল কারীম", code: "100"},
-                {name: "আল-হাদীস শরীফ", code: "170"},
-                {name: "বাংলা ১ম পত্র", code: "101"},
-                {name: "বাংলা ২য় পত্র", code: "102"},
-                {name: "ইংরেজি ১ম পত্র", code: "107"},
-                {name: "ইংরেজি ২য় পত্র", code: "108"},
-                {name: "গণিত", code: "125"}
-            ];
+            // Fetching subjects from Settings Management safely handling all object types
+            let rawSubjects = JSON.parse(localStorage.getItem('madrasah_subjects')) || [];
 
             let subjects = rawSubjects.map(s => {
                 if (typeof s === 'object' && s !== null) {
-                    return s.name + (s.code ? ` (কোড: ${s.code})` : '');
+                    let subName = s.name || s.title || s.subjectName || s.bangla || Object.values(s)[0] || '';
+                    let subCode = s.code || s.subjectCode || s.id || '';
+                    return subCode ? `${subName} (কোড: ${subCode})` : subName;
                 }
                 return s;
             });
+
+            if (subjects.length === 0) {
+                subjects = [
+                    "আল-কুরআনুল কারীম (কোড: ১০০)",
+                    "আল-হাদীস শরীফ (কোড: ১৭০)",
+                    "বাংলা ১ম পত্র (কোড: ১০১)",
+                    "বাংলা ২য় পত্র (কোড: ১০২)",
+                    "ইংরেজি ১ম পত্র (কোড: ১০৭)",
+                    "ইংরেজি ২য় পত্র (কোড: ১০৮)",
+                    "গণিত (কোড: ১২৫)"
+                ];
+            }
 
             return { years, classes, exams, subjects };
         }

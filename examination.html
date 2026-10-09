@@ -9,8 +9,9 @@
     <style>
         @media print {
             .no-print { display: none !important; }
-            body { background: white !important; font-size: 10pt !important; }
+            body { background: white !important; font-size: 10pt !important; -webkit-print-color-adjust: exact; print-color-adjust: exact; }
             .print-container { width: 100% !important; margin: 0 !important; padding: 0 !important; box-shadow: none !important; border: none !important; }
+            * { -webkit-print-color-adjust: exact; print-color-adjust: exact; }
             @page { size: A4 portrait; margin: 6mm; }
         }
         /* Custom Spinner Animation */
@@ -1095,7 +1096,7 @@
                 return;
             }
             const tbody = document.getElementById('examRoutineTableBody');
-            tbody.innerHTML += `<tr><td class="border p-2">${date}</td><td class="border p-2">${cls}</td><td class="border p-2">${subj}</td><td class="border p-2 text-center">সকাল ১০ঃ০০ টা - দুপুর ০১ঃ০০ টা</td></tr>`;
+            tbody.innerHTML += `<tr><td class="border p-2">${date}</td><td class="border p-2">${cls}</td><td class="border p-2">${subj}</td><td class="border p-2 text-center">সকাল ১০:০০ টা - দুপুর ০১:০০ টা</td></tr>`;
             alert('রুটিন এন্ট্রি সফল হয়েছে!');
         }
 

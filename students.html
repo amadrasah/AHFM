@@ -251,7 +251,6 @@
                         <button onclick="closeAllPanels()" class="text-xs bg-gray-200 px-3 py-1 rounded font-bold text-gray-700">বন্ধ করুন</button>
                     </div>
                     
-                    <!-- Filter Controls -->
                     <div class="bg-blue-50 p-4 rounded-xl border border-blue-200 grid grid-cols-1 sm:grid-cols-5 gap-3 items-end text-xs">
                         <div>
                             <label class="font-bold block mb-1">সাল:</label>
@@ -293,19 +292,18 @@
                         <button onclick="closeAllPanels()" class="text-xs bg-gray-200 px-3 py-1 rounded font-bold text-gray-700">বন্ধ করুন</button>
                     </div>
                     
-                    <!-- Filter Controls -->
                     <div class="bg-purple-50 p-4 rounded-xl border border-purple-200 grid grid-cols-1 sm:grid-cols-4 gap-3 items-end text-xs">
                         <div>
-                            <label class="font-bold block mb-1">সাল:</label>
+                            <label class="font-bold block mb-1">সাল (ঐচ্ছিক):</label>
                             <select id="idcard_filter_year" class="p-2 border rounded bg-white font-bold w-full settings-year-dropdown"></select>
                         </div>
                         <div>
-                            <label class="font-bold block mb-1">শ্রেণি:</label>
+                            <label class="font-bold block mb-1">শ্রেণি (ঐচ্ছিক):</label>
                             <select id="idcard_filter_class" class="p-2 border rounded bg-white font-bold w-full settings-class-dropdown"></select>
                         </div>
                         <div>
-                            <label class="font-bold block mb-1">আইডি / রোল / মোবাইল:</label>
-                            <input type="text" id="idCardSearchInput" placeholder="শিক্ষার্থীর আইডি, রোল বা মোবাইল..." class="p-2 border rounded bg-white w-full font-bold">
+                            <label class="font-bold block mb-1">আইডি / রোল / মোবাইল *:</label>
+                            <input type="text" id="idCardSearchInput" placeholder="সঠিক আইডি, রোল বা মোবাইল..." class="p-2 border rounded bg-white w-full font-bold">
                         </div>
                         <div>
                             <button onclick="generateIdCard()" class="w-full bg-purple-700 text-white px-4 py-2 rounded font-bold hover:bg-purple-800 shadow">আইডি কার্ড খুঁজুন</button>
@@ -348,14 +346,13 @@
                     </div>
                 </div>
 
-                <!-- 4. PROFILE PANEL WITH ACTIVE/INACTIVE & VIEW MODAL -->
+                <!-- 4. PROFILE PANEL WITH DETAILED CARDS & MODAL -->
                 <div id="panel-profile" class="student-sub-panel bg-white p-6 rounded-2xl shadow-sm border border-gray-200 space-y-4 hidden">
                     <div class="flex justify-between items-center border-b pb-3">
-                        <h3 class="font-bold text-amber-800 text-sm"><i class="fa-solid fa-id-badge mr-2"></i> ৪. স্টুডেন্টস লাইফটাইম প্রোফাইল (Active / Inactive / View)</h3>
+                        <h3 class="font-bold text-amber-800 text-sm"><i class="fa-solid fa-id-badge mr-2"></i> ৪. স্টুডেন্টস লাইফটাইম প্রোফাইল (বিস্তারিত তথ্যসহ)</h3>
                         <button onclick="closeAllPanels()" class="text-xs bg-gray-200 px-3 py-1 rounded font-bold text-gray-700">বন্ধ করুন</button>
                     </div>
 
-                    <!-- Filter Controls -->
                     <div class="bg-amber-50 p-4 rounded-xl border border-amber-200 grid grid-cols-1 sm:grid-cols-4 gap-3 items-end text-xs">
                         <div>
                             <label class="font-bold block mb-1">সাল:</label>
@@ -374,17 +371,17 @@
                         </div>
                     </div>
 
-                    <div id="studentProfileContainer" class="space-y-3"></div>
+                    <div id="studentProfileContainer" class="space-y-4"></div>
                 </div>
 
                 <!-- VIEW PROFILE MODAL -->
                 <div id="profileViewModal" class="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center hidden z-50">
-                    <div class="bg-white p-6 rounded-2xl max-w-lg w-full space-y-4 shadow-xl text-xs">
+                    <div class="bg-white p-6 rounded-2xl max-w-xl w-full space-y-4 shadow-xl text-xs overflow-y-auto max-h-[90vh]">
                         <div class="flex justify-between items-center border-b pb-2">
                             <h4 class="font-bold text-sm text-emerald-800"><i class="fa-solid fa-user-graduate mr-1"></i> শিক্ষার্থীর বিস্তারিত প্রোফাইল ও অর্জন</h4>
                             <button onclick="closeProfileModal()" class="text-red-600 font-bold">বন্ধ করুন X</button>
                         </div>
-                        <div id="modalProfileContent" class="space-y-2 text-gray-700">
+                        <div id="modalProfileContent" class="space-y-3 text-gray-700">
                             <!-- Loaded Dynamically -->
                         </div>
                     </div>
@@ -415,7 +412,6 @@
                         <button onclick="closeAllPanels()" class="text-xs bg-gray-200 px-3 py-1 rounded font-bold text-gray-700">বন্ধ করুন</button>
                     </div>
 
-                    <!-- Filter Controls -->
                     <div class="bg-indigo-50 p-4 rounded-xl border border-indigo-200 grid grid-cols-1 sm:grid-cols-4 gap-3 items-end text-xs">
                         <div>
                             <label class="font-bold block mb-1">সাল:</label>
@@ -427,7 +423,7 @@
                         </div>
                         <div>
                             <label class="font-bold block mb-1">আইডি / রোল / মোবাইল:</label>
-                            <input type="text" id="promo_filter_query" placeholder="আইডি/রোল/মোবাইল..." class="p-2 border rounded bg-white w-full font-bold">
+                            <input type="text" id="promo_filter_query" placeholder="আইডি/রোল/মোবাইল..." class="p-2 border rounded bg-white font-bold">
                         </div>
                         <div>
                             <button onclick="loadPromotionTable()" class="w-full bg-indigo-700 text-white px-4 py-2 rounded font-bold hover:bg-indigo-800 shadow">ফিল্টার</button>
@@ -457,7 +453,6 @@
                         <button onclick="closeAllPanels()" class="text-xs bg-gray-200 px-3 py-1 rounded font-bold text-gray-700">বন্ধ করুন</button>
                     </div>
 
-                    <!-- Filter Controls -->
                     <div class="bg-rose-50 p-4 rounded-xl border border-rose-200 grid grid-cols-1 sm:grid-cols-4 gap-3 items-end text-xs">
                         <div>
                             <label class="font-bold block mb-1">সাল:</label>
@@ -469,7 +464,7 @@
                         </div>
                         <div>
                             <label class="font-bold block mb-1">আইডি / রোল / মোবাইল:</label>
-                            <input type="text" id="tc_filter_query" placeholder="আইডি/রোল/মোবাইল..." class="p-2 border rounded bg-white w-full font-bold">
+                            <input type="text" id="tc_filter_query" placeholder="আইডি/রোল/মোবাইল..." class="p-2 border rounded bg-white font-bold">
                         </div>
                         <div>
                             <button onclick="loadTcTable()" class="w-full bg-rose-700 text-white px-4 py-2 rounded font-bold hover:bg-rose-800 shadow">ফিল্টার</button>
@@ -499,7 +494,6 @@
                         <button onclick="closeAllPanels()" class="text-xs bg-gray-200 px-3 py-1 rounded font-bold text-gray-700">বন্ধ করুন</button>
                     </div>
 
-                    <!-- Filter Controls -->
                     <div class="bg-cyan-50 p-4 rounded-xl border border-cyan-200 grid grid-cols-1 sm:grid-cols-4 gap-3 items-end text-xs">
                         <div>
                             <label class="font-bold block mb-1">সাল:</label>
@@ -511,7 +505,7 @@
                         </div>
                         <div>
                             <label class="font-bold block mb-1">আইডি / রোল / মোবাইল / নাম:</label>
-                            <input type="text" id="liveSearchInput" placeholder="নাম, আইডি, রোল বা মোবাইল..." class="p-2 border rounded bg-white w-full font-bold">
+                            <input type="text" id="liveSearchInput" placeholder="নাম, আইডি, রোল বা মোবাইল..." class="p-2 border rounded bg-white font-bold">
                         </div>
                         <div>
                             <button onclick="executeSearch()" class="w-full bg-cyan-700 text-white px-4 py-2 rounded font-bold hover:bg-cyan-800 shadow">সার্চ করুন</button>
@@ -541,7 +535,6 @@
                         <button onclick="closeAllPanels()" class="text-xs bg-gray-200 px-3 py-1 rounded font-bold text-gray-700">বন্ধ করুন</button>
                     </div>
 
-                    <!-- Filter Controls -->
                     <div class="bg-sky-50 p-4 rounded-xl border border-sky-200 grid grid-cols-1 sm:grid-cols-4 gap-3 items-end text-xs">
                         <div>
                             <label class="font-bold block mb-1">সাল:</label>
@@ -553,7 +546,7 @@
                         </div>
                         <div>
                             <label class="font-bold block mb-1">আইডি / রোল / মোবাইল:</label>
-                            <input type="text" id="doc_filter_query" placeholder="আইডি/রোল/মোবাইল..." class="p-2 border rounded bg-white w-full font-bold">
+                            <input type="text" id="doc_filter_query" placeholder="আইডি/রোল/মোবাইল..." class="p-2 border rounded bg-white font-bold">
                         </div>
                         <div>
                             <button onclick="loadDocumentArchive()" class="w-full bg-sky-700 text-white px-4 py-2 rounded font-bold hover:bg-sky-800 shadow">ফিল্টার</button>
@@ -593,7 +586,6 @@
 
     <!-- JavaScript Engine -->
     <script>
-        // Populate Settings Dropdowns (Years & Classes)
         function populateSettingsDropdowns() {
             let years = JSON.parse(localStorage.getItem('madrasah_years')) || ["২০২৬", "২০২৭"];
             let classes = JSON.parse(localStorage.getItem('madrasah_classes')) || [
@@ -603,7 +595,6 @@
                 "আলিম প্রথম বর্ষ", "আলিম দ্বিতীয় বর্ষ", "ফাজিল প্রথম বর্ষ", "ফাজিল দ্বিতীয় বর্ষ", "ফাজিল তৃতীয় বর্ষ"
             ];
 
-            // Populate all year dropdowns with class settings-year-dropdown
             document.querySelectorAll('.settings-year-dropdown').forEach(el => {
                 el.innerHTML = '<option value="">সকল সাল</option>';
                 years.forEach(y => {
@@ -611,7 +602,6 @@
                 });
             });
 
-            // Populate all class dropdowns with class settings-class-dropdown
             document.querySelectorAll('.settings-class-dropdown').forEach(el => {
                 el.innerHTML = '<option value="">সকল শ্রেণি</option>';
                 classes.forEach(c => {
@@ -619,7 +609,6 @@
                 });
             });
 
-            // Set default year if available
             const admYear = document.getElementById('adm_year');
             if(admYear && years.length > 0) {
                 admYear.innerHTML = '';
@@ -657,17 +646,21 @@
             document.getElementById('adm_id').value = year + classCode + roll;
         }
 
-        // Save Admission with Photo Base64
         function saveNewAdmission(event) {
             event.preventDefault();
             const editIndex = parseInt(document.getElementById('edit_index').value);
             const photoInput = document.getElementById('adm_photo_file');
 
             let classSelect = document.getElementById('adm_class');
+            let selectedClassName = classSelect.options[classSelect.selectedIndex].text;
+            let selectedYear = document.getElementById('adm_year').value;
+
             let studentData = {
-                year: document.getElementById('adm_year').value,
+                year: selectedYear,
+                admissionYear: selectedYear,
+                admissionClass: selectedClassName,
                 classCode: classSelect.value,
-                cls: classSelect.options[classSelect.selectedIndex].text,
+                cls: selectedClassName,
                 roll: document.getElementById('adm_roll').value,
                 id: document.getElementById('adm_id').value,
                 name_bn: document.getElementById('adm_name_bn').value,
@@ -681,7 +674,7 @@
                 f_mobile: document.getElementById('adm_f_mobile').value,
                 village: document.getElementById('adm_village').value,
                 status: document.getElementById('adm_status').value,
-                history: [{ year: document.getElementById('adm_year').value, class: classSelect.options[classSelect.selectedIndex].text, achievement: "নিয়মিত উপস্থিতি ও সন্তোষজনক ফলাফল।" }],
+                history: [{ year: selectedYear, class: selectedClassName, achievement: "নিয়মিত উপস্থিতি ও সন্তোষজনক ফলাফল।" }],
                 registered: false,
                 tc: false,
                 tcDate: ""
@@ -692,6 +685,9 @@
             function proceedSave(photoBase64) {
                 if(photoBase64) studentData.photo = photoBase64;
                 else if(editIndex >= 0 && students[editIndex].photo) studentData.photo = students[editIndex].photo;
+
+                if(!studentData.admissionYear) studentData.admissionYear = studentData.year;
+                if(!studentData.admissionClass) studentData.admissionClass = studentData.cls;
 
                 if(editIndex >= 0) {
                     students[editIndex] = studentData;
@@ -720,29 +716,35 @@
             let students = JSON.parse(localStorage.getItem('madrasah_students_all'));
             if(!students || students.length === 0) {
                 students = [
-                    { year: "২০২৬", classCode: "06", cls: "দাখিল ষষ্ঠ শ্রেণি", roll: "001", id: "202606001", name_bn: "মো: আব্দুল্লাহ", name_en: "Md. Abdullah", father: "Md. Ibrahim", mother: "Amena", dob: "2014-01-01", date: "2026-01-02", gender: "Male", blood: "A+", f_mobile: "01800000000", village: "Abdullah Hat", status: "Active", history: [{year: "২০২৬", class: "দাখিল ষষ্ঠ শ্রেণি", achievement: "সেরা উপস্থিতি পুরস্কার"}], registered: true, tc: false, tcDate: "" }
+                    { 
+                        year: "২০২৬", admissionYear: "২০২৬", admissionClass: "দাখিল ষষ্ঠ শ্রেণি", 
+                        classCode: "06", cls: "দাখিল ষষ্ঠ শ্রেণি", roll: "001", id: "202606001", 
+                        name_bn: "মো: আব্দুল্লাহ", name_en: "Md. Abdullah", father: "Md. Ibrahim", 
+                        mother: "Amena", dob: "2014-01-01", date: "2026-01-02", gender: "Male", 
+                        blood: "A+", f_mobile: "01800000000", village: "Abdullah Hat", status: "Active", 
+                        history: [{year: "২০২৬", class: "দাখিল ষষ্ঠ শ্রেণি", achievement: "সেরা উপস্থিতি পুরস্কার"}], 
+                        registered: true, tc: false, tcDate: "" 
+                    }
                 ];
                 localStorage.setItem('madrasah_students_all', JSON.stringify(students));
             }
             return students;
         }
 
-        // Real QR Code Generator for ID Card
+        // Fixed ID Card Search & Unique QR Code Generator
         function generateIdCard() {
-            const year = document.getElementById('idcard_filter_year').value;
-            const cls = document.getElementById('idcard_filter_class').value;
             const query = document.getElementById('idCardSearchInput').value.trim().toLowerCase();
             
+            if(!query) {
+                alert('দয়া করে শিক্ষার্থীর আইডি, রোল বা মোবাইল নম্বর লিখুন!');
+                return;
+            }
+
             const students = getStoredStudents();
-            const found = students.find(s => {
-                let matchYear = !year || s.year === year;
-                let matchCls = !cls || s.cls === cls;
-                let matchQuery = !query || s.id.toLowerCase().includes(query) || s.roll.toLowerCase().includes(query) || s.f_mobile.includes(query);
-                return matchYear && matchCls && matchQuery;
-            });
+            const found = students.find(s => s.id.toLowerCase() === query || s.roll.toLowerCase() === query || s.f_mobile === query);
 
             if(!found) {
-                alert('শিক্ষার্থী পাওয়া যায়নি!');
+                alert('এই আইডি, রোল বা মোবাইল নম্বরের কোনো শিক্ষার্থী পাওয়া যায়নি!');
                 document.getElementById('idCardPreviewContainer').classList.add('hidden');
                 return;
             }
@@ -760,19 +762,19 @@
                 photoBox.innerHTML = "ছবি নেই";
             }
 
-            // Render Real QR Code
+            // Render Unique QR Code
             const qrContainer = document.getElementById('realQrCodeContainer');
             qrContainer.innerHTML = '';
             new QRCode(qrContainer, {
-                text: `ID: ${found.id}, Name: ${found.name_en}, Class: ${found.cls}, Mobile: ${found.f_mobile}`,
-                width: 50,
-                height: 50
+                text: `ID:${found.id}|Name:${found.name_en}|Class:${found.cls}|Roll:${found.roll}|Mobile:${found.f_mobile}`,
+                width: 60,
+                height: 60
             });
 
             document.getElementById('idCardPreviewContainer').classList.remove('hidden');
         }
 
-        // Profile Panel with Active/Inactive and View Modal
+        // Detailed Profile Section with Auto Data Load
         function loadProfileSection() {
             const year = document.getElementById('prof_filter_year').value;
             const cls = document.getElementById('prof_filter_class').value;
@@ -785,7 +787,7 @@
             const filtered = students.filter(s => {
                 let matchYear = !year || s.year === year;
                 let matchCls = !cls || s.cls === cls;
-                let matchQuery = !query || s.id.toLowerCase().includes(query) || s.roll.toLowerCase().includes(query) || s.f_mobile.includes(query);
+                let matchQuery = !query || s.id.toLowerCase().includes(query) || s.roll.toLowerCase().includes(query) || s.f_mobile.includes(query) || s.name_bn.toLowerCase().includes(query);
                 return matchYear && matchCls && matchQuery;
             });
 
@@ -797,15 +799,26 @@
             filtered.forEach((s) => {
                 let originalIndex = students.indexOf(s);
                 let statusBadge = s.status === 'Inactive' ? `<span class="bg-gray-200 text-gray-700 px-2 py-0.5 rounded font-bold">Inactive</span>` : `<span class="bg-green-100 text-green-800 px-2 py-0.5 rounded font-bold">Active</span>`;
+                let photoHtml = s.photo ? `<img src="${s.photo}" class="w-16 h-20 object-cover rounded border">` : `<div class="w-16 h-20 bg-gray-200 rounded border flex items-center justify-center text-[10px] font-bold text-gray-500">ছবি নেই</div>`;
+                
+                let admYear = s.admissionYear || s.year;
+                let admClass = s.admissionClass || s.cls;
+
                 container.innerHTML += `
-                    <div class="border p-3 rounded-xl bg-amber-50 border-amber-200 text-xs flex justify-between items-center">
-                        <div>
-                            <h4 class="font-bold text-gray-800 text-sm">${s.name_bn} (${s.id})</h4>
-                            <p class="text-gray-600">সাল: ${s.year} | শ্রেণি: ${s.cls} | রোল: ${s.roll} | মোবাইল: ${s.f_mobile} | স্ট্যাটাস: ${statusBadge}</p>
+                    <div class="border p-4 rounded-xl bg-amber-50/50 border-amber-200 text-xs flex flex-col sm:flex-row justify-between items-start sm:items-center gap-4">
+                        <div class="flex gap-3 items-center">
+                            <div>${photoHtml}</div>
+                            <div class="space-y-1">
+                                <h4 class="font-bold text-gray-900 text-sm">${s.name_bn} (${s.name_en})</h4>
+                                <p class="text-gray-700"><b>আইডি:</b> <span class="text-blue-800 font-bold">${s.id}</span> | <b>রোল:</b> ${s.roll} | <b>মোবাইল:</b> ${s.f_mobile}</p>
+                                <p class="text-gray-700"><b>পিতা:</b> ${s.father} | <b>মাতা:</b> ${s.mother}</p>
+                                <p class="text-gray-700"><b>ভর্তির সাল:</b> ${admYear} | <b>ভর্তির শ্রেণি:</b> ${admClass} | <b>বর্তমান শ্রেণি:</b> <span class="text-emerald-800 font-bold">${s.cls}</span></p>
+                                <p class="text-gray-700"><b>জন্ম তারিখ:</b> ${s.dob} | <b>ঠিকানা:</b> ${s.village} | <b>স্ট্যাটাস:</b> ${statusBadge}</p>
+                            </div>
                         </div>
-                        <div class="space-x-2">
-                            <button onclick="toggleStatus(${originalIndex})" class="bg-gray-700 text-white px-3 py-1 rounded font-bold">সুইচ স্ট্যাটাস</button>
-                            <button onclick="viewStudentProfile(${originalIndex})" class="bg-amber-700 text-white px-3 py-1 rounded font-bold">ভিউ (View)</button>
+                        <div class="flex sm:flex-col gap-2 w-full sm:w-auto">
+                            <button onclick="toggleStatus(${originalIndex})" class="bg-gray-700 text-white px-3 py-1.5 rounded font-bold flex-1">সুইচ স্ট্যাটাস</button>
+                            <button onclick="viewStudentProfile(${originalIndex})" class="bg-amber-700 text-white px-3 py-1.5 rounded font-bold flex-1">বিস্তারিত ভিউ</button>
                         </div>
                     </div>
                 `;
@@ -828,13 +841,32 @@
                 });
             }
 
+            let photoHtml = s.photo ? `<img src="${s.photo}" class="w-24 h-28 object-cover rounded border mx-auto">` : `<div class="w-24 h-28 bg-gray-200 rounded border mx-auto flex items-center justify-center font-bold text-gray-500">ছবি নেই</div>`;
+            let admYear = s.admissionYear || s.year;
+            let admClass = s.admissionClass || s.cls;
+
             document.getElementById('modalProfileContent').innerHTML = `
-                <p><b>আইডি:</b> ${s.id}</p>
-                <p><b>নাম (বাংলা):</b> ${s.name_bn}</p>
-                <p><b>নাম (English):</b> ${s.name_en}</p>
-                <p><b>ভর্তি সাল:</b> ${s.year}</p>
-                <p class="font-bold text-emerald-800 mt-2">অধ্যয়ন ও অর্জন রেকর্ড:</p>
-                <ul class="list-disc pl-5 space-y-1">${historyHtml}</ul>
+                <div class="text-center pb-2">${photoHtml}</div>
+                <div class="grid grid-cols-2 gap-2 border p-3 rounded bg-gray-50">
+                    <p><b>আইডি:</b> ${s.id}</p>
+                    <p><b>রোল:</b> ${s.roll}</p>
+                    <p><b>নাম (বাংলা):</b> ${s.name_bn}</p>
+                    <p><b>নাম (English):</b> ${s.name_en}</p>
+                    <p><b>পিতার নাম:</b> ${s.father}</p>
+                    <p><b>মাতার নাম:</b> ${s.mother}</p>
+                    <p><b>জন্ম তারিখ:</b> ${s.dob}</p>
+                    <p><b>মোবাইল:</b> ${s.f_mobile}</p>
+                    <p><b>ঠিকানা:</b> ${s.village}</p>
+                    <p><b>ব্লাড গ্রুপ:</b> ${s.blood || 'N/A'}</p>
+                    <p><b>ভর্তির সাল:</b> ${admYear}</p>
+                    <p><b>ভর্তির শ্রেণি:</b> ${admClass}</p>
+                    <p><b>বর্তমান শ্রেণি:</b> ${s.cls}</p>
+                    <p><b>স্ট্যাটাস:</b> ${s.status}</p>
+                </div>
+                <div>
+                    <p class="font-bold text-emerald-800 mb-1">অধ্যয়ন ও অর্জন রেকর্ড (History & Achievement):</p>
+                    <ul class="list-disc pl-5 space-y-1">${historyHtml}</ul>
+                </div>
             `;
             document.getElementById('profileViewModal').classList.remove('hidden');
         }
@@ -843,7 +875,6 @@
             document.getElementById('profileViewModal').classList.add('hidden');
         }
 
-        // Auto Promotion with Next Class Selection
         function loadPromotionTable() {
             const year = document.getElementById('promo_filter_year').value;
             const cls = document.getElementById('promo_filter_class').value;
@@ -863,7 +894,7 @@
             const filtered = students.filter(s => {
                 let matchYear = !year || s.year === year;
                 let matchCls = !cls || s.cls === cls;
-                let matchQuery = !query || s.id.toLowerCase().includes(query) || s.roll.toLowerCase().includes(query) || s.f_mobile.includes(query);
+                let matchQuery = !query || s.id.toLowerCase().includes(query) || s.roll.toLowerCase().includes(query) || s.f_mobile.includes(query) || s.name_bn.toLowerCase().includes(query);
                 return !s.tc && matchYear && matchCls && matchQuery;
             });
 
@@ -912,7 +943,6 @@
             alert('শিক্ষার্থী সফলভাবে পরবর্তী শ্রেণীতে উন্নীত হয়েছে!');
         }
 
-        // Search Student with Search Button
         function loadSearchTable() {
             executeSearch();
         }
@@ -987,7 +1017,6 @@
             }
         }
 
-        // Student Documents Archive
         function saveStudentDocument() {
             const studentId = document.getElementById('doc_student_id').value.trim();
             const docTitle = document.getElementById('doc_title').value.trim();
@@ -1068,7 +1097,6 @@
             loadDocumentArchive();
         }
 
-        // Standard Load Functions for Reg, TC
         function loadRegTables() {
             const year = document.getElementById('reg_filter_year').value;
             const cls = document.getElementById('reg_filter_class').value;
@@ -1081,7 +1109,7 @@
             const filtered = students.filter(s => {
                 let matchYear = !year || s.year === year;
                 let matchCls = !cls || s.cls === cls;
-                let matchQuery = !query || s.id.toLowerCase().includes(query) || s.roll.toLowerCase().includes(query) || s.f_mobile.includes(query);
+                let matchQuery = !query || s.id.toLowerCase().includes(query) || s.roll.toLowerCase().includes(query) || s.f_mobile.includes(query) || s.name_bn.toLowerCase().includes(query);
                 return !s.registered && matchYear && matchCls && matchQuery;
             });
 
@@ -1125,7 +1153,7 @@
             const filtered = students.filter(s => {
                 let matchYear = !year || s.year === year;
                 let matchCls = !cls || s.cls === cls;
-                let matchQuery = !query || s.id.toLowerCase().includes(query) || s.roll.toLowerCase().includes(query) || s.f_mobile.includes(query);
+                let matchQuery = !query || s.id.toLowerCase().includes(query) || s.roll.toLowerCase().includes(query) || s.f_mobile.includes(query) || s.name_bn.toLowerCase().includes(query);
                 return matchYear && matchCls && matchQuery;
             });
 

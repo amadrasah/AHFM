@@ -257,7 +257,7 @@
                     <!-- Clean & Modern ID Card Design -->
                     <div id="idCardPreviewContainer" class="hidden w-[300px] mx-auto bg-white text-gray-900 rounded-xl p-3 shadow-xl space-y-2 border border-emerald-700 relative overflow-hidden">
                         <!-- Watermark -->
-                        <div class="absolute inset-0 flex items-center justify-center opacity-5 pointer-events-none">
+                        <div class="absolute inset-0 flex items-center justify-center opacity-10 pointer-events-none">
                             <span id="watermarkText" class="text-3xl font-extrabold text-emerald-900">AHIFM</span>
                         </div>
 
@@ -469,12 +469,14 @@
                 return;
             }
 
-            // Fetch Institution Settings / Details from localStorage safely
-            let instSettings = JSON.parse(localStorage.getItem('madrasah_institution_info')) || {};
+            // Safe Fallback for Settings (Checks multiple possible localStorage keys to prevent undefined)
+            let instSettings = JSON.parse(localStorage.getItem('madrasah_institution_info')) || 
+                               JSON.parse(localStorage.getItem('madrasah_settings')) || 
+                               JSON.parse(localStorage.getItem('institution_info')) || {};
             
-            let instName = instSettings.institutionName || instSettings.name || "আবদুল্লাহ হাট ইসলামিয়া ফাজিল মাদ্রাসা";
-            let instAddress = instSettings.address || "কোম্পানীগঞ্জ, নোয়াখালী";
-            let instMobile = instSettings.mobile || "01814716405";
+            let instName = instSettings.institutionName || instSettings.name || instSettings.instName || "আবদুল্লাহ হাট ইসলামিয়া ফাজিল মাদ্রাসা";
+            let instAddress = instSettings.address || instSettings.location || "কোম্পানীগঞ্জ, নোয়াখালী";
+            let instMobile = instSettings.mobile || instSettings.phone || "01814716405";
             let watermark = instSettings.watermark || "AHIFM";
 
             document.getElementById('card_inst_name').innerText = instName;
@@ -484,8 +486,9 @@
 
             // Logo connection
             const logoBox = document.getElementById('card_logo_box');
-            if(instSettings.logo) {
-                logoBox.innerHTML = `<img src="${instSettings.logo}" class="w-full h-full object-cover rounded-full">`;
+            let logoSrc = instSettings.logo || instSettings.institutionLogo;
+            if(logoSrc) {
+                logoBox.innerHTML = `<img src="${logoSrc}" class="w-full h-full object-cover rounded-full">`;
             } else {
                 logoBox.innerHTML = "লোগো";
             }

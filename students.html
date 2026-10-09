@@ -19,7 +19,7 @@
             #idCardPreviewContainer {
                 position: absolute;
                 left: 50%;
-                top: 40px;
+                top: 20px;
                 transform: translateX(-50%);
                 margin: 0;
                 box-shadow: none !important;
@@ -253,19 +253,21 @@
                         </div>
                     </div>
 
-                    <!-- ID Card Design -->
+                    <!-- ID Card Design Connected with Settings & Real QR Code -->
                     <div id="idCardPreviewContainer" class="hidden max-w-[320px] mx-auto bg-white text-gray-900 rounded-2xl p-4 shadow-2xl space-y-3 border-2 border-emerald-800 relative overflow-hidden">
-                        <!-- Background Watermark -->
-                        <div class="absolute inset-0 flex items-center justify-center opacity-5 pointer-events-none">
-                            <span class="text-6xl font-extrabold text-emerald-900">AHIFM</span>
+                        <!-- Dynamic Background Watermark -->
+                        <div class="absolute inset-0 flex items-center justify-center opacity-10 pointer-events-none">
+                            <span id="watermarkText" class="text-4xl font-extrabold text-emerald-900 text-center px-4">AHIFM</span>
                         </div>
 
-                        <!-- Header -->
+                        <!-- Header with Settings Logo & Madrasah Name -->
                         <div class="flex items-center gap-2 border-b-2 border-emerald-800 pb-2 relative z-10">
-                            <div class="w-10 h-10 bg-emerald-900 text-white rounded-full flex items-center justify-center font-bold text-xs">লোগো</div>
+                            <div id="card_logo_box" class="w-10 h-10 bg-emerald-900 text-white rounded-full flex items-center justify-center font-bold text-xs overflow-hidden">
+                                লোগো
+                            </div>
                             <div>
-                                <h4 class="font-bold text-xs text-emerald-900">আবদুল্লাহ হাট ইসলামিয়া ফাজিল মাদ্রাসা</h4>
-                                <p class="text-[9px] text-gray-600">কোম্পানীগঞ্জ, নোয়াখালী</p>
+                                <h4 class="font-bold text-xs text-emerald-900 leading-tight" id="card_inst_name">আবদুল্লাহ হাট ইসলামিয়া ফাজিল মাদ্রাসা</h4>
+                                <p class="text-[9px] text-gray-600" id="card_inst_address">কোম্পানীগঞ্জ, নোয়াখালী</p>
                             </div>
                         </div>
 
@@ -281,13 +283,14 @@
                             </div>
                         </div>
 
-                        <!-- Footer / Contacts & Signature -->
+                        <!-- Footer / Contacts & Real QR & Signature -->
                         <div class="pt-2 border-t border-gray-200 text-[10px] space-y-2 relative z-10">
                             <div class="flex justify-between text-gray-700">
                                 <span id="card_inst_mobile">মাদ্রাসা: 01814716405</span>
                                 <span id="card_f_mobile">অভিভাবক: --</span>
                             </div>
-                            <div class="flex justify-between items-end pt-2">
+                            <div class="flex justify-between items-end pt-1">
+                                <!-- Real Unique QR Code Box -->
                                 <div id="realQrCodeContainer" class="p-1 bg-white border rounded"></div>
                                 <div class="text-center">
                                     <div class="font-serif italic text-[10px]">Principal</div>
@@ -448,7 +451,7 @@
             return students;
         }
 
-        // Real Unique QR Code & Connected ID Card Generator
+        // Real Unique QR Code & Connected ID Card Generator (Synced with Settings)
         function generateIdCard() {
             const query = document.getElementById('idCardSearchInput').value.trim().toLowerCase();
             
@@ -464,6 +467,27 @@
                 alert('এই তথ্য অনুযায়ী কোনো শিক্ষার্থী পাওয়া যায়নি!');
                 document.getElementById('idCardPreviewContainer').classList.add('hidden');
                 return;
+            }
+
+            // Fetch Institution Settings / Details from localStorage if available
+            let instSettings = JSON.parse(localStorage.getItem('madrasah_institution_info')) || {
+                name: "আবদুল্লাহ হাট ইসলামিয়া ফাজিল মাদ্রাসা",
+                address: "কোম্পানীগঞ্জ, নোয়াখালী",
+                mobile: "01814716405",
+                watermark: "AHIFM"
+            };
+
+            document.getElementById('card_inst_name').innerText = instSettings.name;
+            document.getElementById('card_inst_address').innerText = instSettings.address;
+            document.getElementById('card_inst_mobile').innerText = "মাদ্রাসা: " + (instSettings.mobile || "01814716405");
+            document.getElementById('watermarkText').innerText = instSettings.watermark || "AHIFM";
+
+            // Logo connection
+            const logoBox = document.getElementById('card_logo_box');
+            if(instSettings.logo) {
+                logoBox.innerHTML = `<img src="${instSettings.logo}" class="w-full h-full object-cover rounded-full">`;
+            } else {
+                logoBox.innerHTML = "লোগো";
             }
 
             document.getElementById('card_id_display').innerText = "আইডি: " + found.id;

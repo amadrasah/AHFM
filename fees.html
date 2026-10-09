@@ -6,86 +6,59 @@
     <title>Fees Management - Abdullah Hat Islamia Fazil Madrasah</title>
     <script src="https://cdn.tailwindcss.com"></script>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
-    <link rel="stylesheet" href="style.css">
+    <style>
+        @media print {
+            .no-print { display: none !important; }
+            body { background: white !important; font-size: 9pt !important; }
+            .print-container { width: 100% !important; margin: 0 !important; padding: 0 !important; box-shadow: none !important; border: none !important; }
+        }
+        .spinner {
+            border: 3px solid rgba(0, 0, 0, 0.1);
+            width: 36px; height: 36px;
+            border-radius: 50%;
+            border-left-color: #047857;
+            animation: spin 1s linear infinite;
+        }
+        @keyframes spin {
+            0% { transform: rotate(0deg); }
+            100% { transform: rotate(360deg); }
+        }
+    </style>
 </head>
-<body class="bg-gray-100 font-sans">
+<body class="bg-gray-100 font-sans antialiased text-gray-800">
 
     <div class="flex h-screen overflow-hidden">
         
         <!-- Sidebar with 22 Modules -->
-        <aside class="w-72 bg-emerald-900 text-white flex flex-col shadow-lg overflow-y-auto no-print">
+        <aside class="w-72 bg-emerald-900 text-white flex flex-col shadow-lg overflow-y-auto no-print hidden md:flex">
             <div class="p-4 bg-emerald-950 text-center border-b border-emerald-800 sticky top-0 z-10">
                 <h1 class="font-bold text-base">AHIFM ERP</h1>
                 <p class="text-xs text-emerald-300">Abdullah Hat Islamia Fazil Madrasah</p>
             </div>
 
             <nav class="flex-1 p-3 space-y-1 text-xs">
-                <a href="index.html" class="flex items-center gap-2.5 p-2 rounded hover:bg-emerald-800 transition">
-                    <i class="fa-solid fa-house w-4"></i> 🏠 01. Home
-                </a>
-                <a href="institution.html" class="flex items-center gap-2.5 p-2 rounded hover:bg-emerald-800 transition">
-                    <i class="fa-solid fa-school w-4"></i> 🏫 02. Institution
-                </a>
-                <a href="students.html" class="flex items-center gap-2.5 p-2 rounded hover:bg-emerald-800 transition">
-                    <i class="fa-solid fa-user-graduate w-4"></i> 👨‍🎓 03. Student Management
-                </a>
-                <a href="teachers.html" class="flex items-center gap-2.5 p-2 rounded hover:bg-emerald-800 transition">
-                    <i class="fa-solid fa-chalkboard-user w-4"></i> 👨‍🏫 04. Teacher & Staff
-                </a>
-                <a href="academic.html" class="flex items-center gap-2.5 p-2 rounded hover:bg-emerald-800 transition">
-                    <i class="fa-solid fa-book-open w-4"></i> 📚 05. Academic Management
-                </a>
-                <a href="examination.html" class="flex items-center gap-2.5 p-2 rounded hover:bg-emerald-800 transition">
-                    <i class="fa-solid fa-file-lines w-4"></i> 📝 06. Examination
-                </a>
-                <a href="attendance.html" class="flex items-center gap-2.5 p-2 rounded hover:bg-emerald-800 transition">
-                    <i class="fa-solid fa-clipboard-user w-4"></i> 🕐 07. Attendance
-                </a>
-                <a href="accounts.html" class="flex items-center gap-2.5 p-2 rounded hover:bg-emerald-800 transition">
-                    <i class="fa-solid fa-wallet w-4"></i> 💰 08. Accounts
-                </a>
-                <a href="fees.html" class="flex items-center gap-2.5 p-2 rounded bg-emerald-800 text-white font-medium">
-                    <i class="fa-solid fa-receipt w-4"></i> 🧾 09. Fees Management
-                </a>
-                <a href="dashboard.html" class="flex items-center gap-2.5 p-2 rounded hover:bg-emerald-800 transition">
-                    <i class="fa-solid fa-chart-pie w-4"></i> 📊 10. Dashboard
-                </a>
-                <a href="notice.html" class="flex items-center gap-2.5 p-2 rounded hover:bg-emerald-800 transition">
-                    <i class="fa-solid fa-bullhorn w-4"></i> 📢 11. Notice Management
-                </a>
-                <a href="routine.html" class="flex items-center gap-2.5 p-2 rounded hover:bg-emerald-800 transition">
-                    <i class="fa-solid fa-calendar-days w-4"></i> 📅 12. Routine & Calendar
-                </a>
-                <a href="certificates.html" class="flex items-center gap-2.5 p-2 rounded hover:bg-emerald-800 transition">
-                    <i class="fa-solid fa-award w-4"></i> 📄 13. Certificates
-                </a>
-                <a href="inventory.html" class="flex items-center gap-2.5 p-2 rounded hover:bg-emerald-800 transition">
-                    <i class="fa-solid fa-boxes-stacked w-4"></i> 📦 14. Inventory
-                </a>
-                <a href="library.html" class="flex items-center gap-2.5 p-2 rounded hover:bg-emerald-800 transition">
-                    <i class="fa-solid fa-books w-4"></i> 📖 15. Library
-                </a>
-                <a href="transport.html" class="flex items-center gap-2.5 p-2 rounded hover:bg-emerald-800 transition">
-                    <i class="fa-solid fa-bus w-4"></i> 🚌 16. Transport
-                </a>
-                <a href="hostel.html" class="flex items-center gap-2.5 p-2 rounded hover:bg-emerald-800 transition">
-                    <i class="fa-solid fa-bed w-4"></i> 🍚 17. Hostel / Facilities
-                </a>
-                <a href="communication.html" class="flex items-center gap-2.5 p-2 rounded hover:bg-emerald-800 transition">
-                    <i class="fa-solid fa-comments w-4"></i> 📱 18. Communication
-                </a>
-                <a href="users.html" class="flex items-center gap-2.5 p-2 rounded hover:bg-emerald-800 transition">
-                    <i class="fa-solid fa-shield-halved w-4"></i> 🔐 19. User & Security
-                </a>
-                <a href="cloud-backup.html" class="flex items-center gap-2.5 p-2 rounded hover:bg-emerald-800 transition">
-                    <i class="fa-solid fa-cloud-arrow-up w-4"></i> ☁️ 20. Cloud & Backup
-                </a>
-                <a href="reports.html" class="flex items-center gap-2.5 p-2 rounded hover:bg-emerald-800 transition">
-                    <i class="fa-solid fa-chart-line w-4"></i> 📈 21. Reports
-                </a>
-                <a href="settings.html" class="flex items-center gap-2.5 p-2 rounded hover:bg-emerald-800 transition">
-                    <i class="fa-solid fa-gear w-4"></i> ⚙️ 22. Settings
-                </a>
+                <a href="index.html" class="flex items-center gap-2.5 p-2 rounded hover:bg-emerald-800 transition"><i class="fa-solid fa-house w-4"></i> 🏠 01. Home</a>
+                <a href="institution.html" class="flex items-center gap-2.5 p-2 rounded hover:bg-emerald-800 transition"><i class="fa-solid fa-school w-4"></i> 🏫 02. Institution</a>
+                <a href="students.html" class="flex items-center gap-2.5 p-2 rounded hover:bg-emerald-800 transition"><i class="fa-solid fa-user-graduate w-4"></i> 👨‍🎓 03. Student Management</a>
+                <a href="teachers.html" class="flex items-center gap-2.5 p-2 rounded hover:bg-emerald-800 transition"><i class="fa-solid fa-chalkboard-user w-4"></i> 👨‍🏫 04. Teacher & Staff</a>
+                <a href="academic.html" class="flex items-center gap-2.5 p-2 rounded hover:bg-emerald-800 transition"><i class="fa-solid fa-book-open w-4"></i> 📚 05. Academic Management</a>
+                <a href="examination.html" class="flex items-center gap-2.5 p-2 rounded hover:bg-emerald-800 transition"><i class="fa-solid fa-file-lines w-4"></i> 📝 06. Examination</a>
+                <a href="attendance.html" class="flex items-center gap-2.5 p-2 rounded hover:bg-emerald-800 transition"><i class="fa-solid fa-clipboard-user w-4"></i> 🕐 07. Attendance</a>
+                <a href="accounts.html" class="flex items-center gap-2.5 p-2 rounded hover:bg-emerald-800 transition"><i class="fa-solid fa-wallet w-4"></i> 💰 08. Accounts</a>
+                <a href="fees.html" class="flex items-center gap-2.5 p-2 rounded bg-emerald-800 text-white font-medium"><i class="fa-solid fa-receipt w-4"></i> 🧾 09. Fees Management</a>
+                <a href="dashboard.html" class="flex items-center gap-2.5 p-2 rounded hover:bg-emerald-800 transition"><i class="fa-solid fa-chart-pie w-4"></i> 📊 10. Dashboard</a>
+                <a href="notice.html" class="flex items-center gap-2.5 p-2 rounded hover:bg-emerald-800 transition"><i class="fa-solid fa-bullhorn w-4"></i> 📢 11. Notice Management</a>
+                <a href="routine.html" class="flex items-center gap-2.5 p-2 rounded hover:bg-emerald-800 transition"><i class="fa-solid fa-calendar-days w-4"></i> 📅 12. Routine & Calendar</a>
+                <a href="certificates.html" class="flex items-center gap-2.5 p-2 rounded hover:bg-emerald-800 transition"><i class="fa-solid fa-award w-4"></i> 📄 13. Certificates</a>
+                <a href="inventory.html" class="flex items-center gap-2.5 p-2 rounded hover:bg-emerald-800 transition"><i class="fa-solid fa-boxes-stacked w-4"></i> 📦 14. Inventory</a>
+                <a href="library.html" class="flex items-center gap-2.5 p-2 rounded hover:bg-emerald-800 transition"><i class="fa-solid fa-books w-4"></i> 📖 15. Library</a>
+                <a href="transport.html" class="flex items-center gap-2.5 p-2 rounded hover:bg-emerald-800 transition"><i class="fa-solid fa-bus w-4"></i> 🚌 16. Transport</a>
+                <a href="hostel.html" class="flex items-center gap-2.5 p-2 rounded hover:bg-emerald-800 transition"><i class="fa-solid fa-bed w-4"></i> 🍚 17. Hostel / Facilities</a>
+                <a href="communication.html" class="flex items-center gap-2.5 p-2 rounded hover:bg-emerald-800 transition"><i class="fa-solid fa-comments w-4"></i> 📱 18. Communication</a>
+                <a href="users.html" class="flex items-center gap-2.5 p-2 rounded hover:bg-emerald-800 transition"><i class="fa-solid fa-shield-halved w-4"></i> 🔐 19. User & Security</a>
+                <a href="cloud-backup.html" class="flex items-center gap-2.5 p-2 rounded hover:bg-emerald-800 transition"><i class="fa-solid fa-cloud-arrow-up w-4"></i> ☁️ 20. Cloud & Backup</a>
+                <a href="reports.html" class="flex items-center gap-2.5 p-2 rounded hover:bg-emerald-800 transition"><i class="fa-solid fa-chart-line w-4"></i> 📈 21. Reports</a>
+                <a href="settings.html" class="flex items-center gap-2.5 p-2 rounded hover:bg-emerald-800 transition"><i class="fa-solid fa-gear w-4"></i> ⚙️ 22. Settings</a>
             </nav>
         </aside>
 
@@ -93,39 +66,39 @@
         <div class="flex-1 flex flex-col overflow-y-auto">
             
             <!-- Top Navbar -->
-            <header class="bg-white shadow-sm p-4 flex justify-between items-center no-print">
+            <header class="bg-white shadow-sm p-4 flex justify-between items-center no-print sticky top-0 z-20">
                 <div class="flex items-center gap-3">
-                    <span class="font-bold text-emerald-800 text-lg">🧾 Fees Management (ফি ব্যবস্থাপনা)</span>
+                    <span class="font-bold text-emerald-800 text-base md:text-lg">🧾 Fees Management (ফি ব্যবস্থাপনা)</span>
                 </div>
                 <div class="flex items-center gap-4">
-                    <span class="text-sm text-gray-600 font-medium"><i class="fa-solid fa-user-shield text-emerald-700 mr-1"></i> সুপার অ্যাডমিন</span>
-                    <a href="index.html" class="bg-red-600 text-white px-4 py-1.5 rounded text-xs font-medium hover:bg-red-700">লগআউট</a>
+                    <span class="text-xs md:text-sm text-gray-700 font-semibold bg-emerald-50 px-3 py-1 rounded-full border border-emerald-200">
+                        <i class="fa-solid fa-user-shield text-emerald-700 mr-1"></i> সুপার অ্যাডমিন
+                    </span>
+                    <a href="index.html" class="bg-red-600 text-white px-3 py-1.5 rounded text-xs font-medium hover:bg-red-700">লগআউট</a>
                 </div>
             </header>
 
             <!-- Page Content -->
-            <main class="p-6 space-y-6">
+            <main class="p-4 md:p-6 space-y-6">
                 
                 <!-- Page Header Banner -->
-                <div class="bg-gradient-to-r from-emerald-800 to-emerald-950 text-white p-6 rounded-2xl shadow-sm flex flex-col md:flex-row justify-between items-center gap-4">
+                <div class="bg-gradient-to-r from-emerald-800 to-emerald-950 text-white p-5 md:p-6 rounded-2xl shadow-sm flex flex-col md:flex-row justify-between items-center gap-4 no-print">
                     <div>
-                        <h2 class="text-xl font-bold">শিক্ষার্থী ফি ও কালেকশন ব্যবস্থাপনা প্যানেল</h2>
+                        <h2 class="text-lg md:text-xl font-bold">শিক্ষার্থী ফি ও কালেকশন ব্যবস্থাপনা প্যানেল</h2>
                         <p class="text-emerald-200 text-xs mt-1">ভর্তি, পরীক্ষা, রেজিস্ট্রেশন, ফরম পূরণ, মাসিক বেতন, বকেয়া তালিকা ও ফি কালেকশন রিপোর্ট।</p>
                     </div>
                     <div class="flex gap-2">
-                        <button class="bg-white text-emerald-900 px-4 py-2 rounded-xl font-bold text-xs hover:bg-emerald-50 transition shadow-sm">নতুন ফি কালেকশন</button>
+                        <button onclick="openFeePanel('collection')" class="bg-white text-emerald-900 px-4 py-2 rounded-xl font-bold text-xs hover:bg-emerald-50 transition shadow-sm">নতুন ফি কালেকশন</button>
                     </div>
                 </div>
 
                 <!-- Sub-Modules Grid Layout (9 Features) -->
-                <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+                <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-5 no-print">
                     
                     <!-- 1. Admission Fee -->
-                    <div class="bg-white p-5 rounded-xl shadow-sm border-t-4 border-emerald-600 space-y-3">
+                    <div onclick="openFeePanel('admission')" class="bg-white p-5 rounded-xl shadow-sm border-t-4 border-emerald-600 space-y-3 hover:shadow-md cursor-pointer transition">
                         <div class="flex items-center justify-between border-b pb-2">
-                            <h3 class="font-bold text-gray-800 text-sm flex items-center gap-2">
-                                <i class="fa-solid fa-user-plus text-emerald-600"></i> Admission Fee
-                            </h3>
+                            <h3 class="font-bold text-gray-800 text-sm flex items-center gap-2"><i class="fa-solid fa-user-plus text-emerald-600"></i> Admission Fee</h3>
                             <span class="text-xs bg-emerald-50 text-emerald-700 px-2 py-0.5 rounded font-semibold">ভর্তি ফি</span>
                         </div>
                         <p class="text-xs text-gray-600 leading-relaxed">নতুন শিক্ষাবর্ষে শিক্ষার্থী ভর্তির সময় নির্ধারিত ভর্তি ফি কালেকশন ও রসিদ প্রদান।</p>
@@ -133,11 +106,9 @@
                     </div>
 
                     <!-- 2. Exam Fee -->
-                    <div class="bg-white p-5 rounded-xl shadow-sm border-t-4 border-blue-600 space-y-3">
+                    <div onclick="openFeePanel('exam')" class="bg-white p-5 rounded-xl shadow-sm border-t-4 border-blue-600 space-y-3 hover:shadow-md cursor-pointer transition">
                         <div class="flex items-center justify-between border-b pb-2">
-                            <h3 class="font-bold text-gray-800 text-sm flex items-center gap-2">
-                                <i class="fa-solid fa-file-pen text-blue-600"></i> Exam Fee
-                            </h3>
+                            <h3 class="font-bold text-gray-800 text-sm flex items-center gap-2"><i class="fa-solid fa-file-pen text-blue-600"></i> Exam Fee</h3>
                             <span class="text-xs bg-blue-50 text-blue-700 px-2 py-0.5 rounded font-semibold">পরীক্ষা ফি</span>
                         </div>
                         <p class="text-xs text-gray-600 leading-relaxed">অর্ধবার্ষিক, বার্ষিক বা প্রাক-নির্বাচনী পরীক্ষার ফি নির্ধারণ ও গ্রহণের হিসাব।</p>
@@ -145,11 +116,9 @@
                     </div>
 
                     <!-- 3. Registration Fee -->
-                    <div class="bg-white p-5 rounded-xl shadow-sm border-t-4 border-purple-600 space-y-3">
+                    <div onclick="openFeePanel('registration')" class="bg-white p-5 rounded-xl shadow-sm border-t-4 border-purple-600 space-y-3 hover:shadow-md cursor-pointer transition">
                         <div class="flex items-center justify-between border-b pb-2">
-                            <h3 class="font-bold text-gray-800 text-sm flex items-center gap-2">
-                                <i class="fa-solid fa-address-card text-purple-600"></i> Registration Fee
-                            </h3>
+                            <h3 class="font-bold text-gray-800 text-sm flex items-center gap-2"><i class="fa-solid fa-address-card text-purple-600"></i> Registration Fee</h3>
                             <span class="text-xs bg-purple-50 text-purple-700 px-2 py-0.5 rounded font-semibold">রেজিস্ট্রেশন ফি</span>
                         </div>
                         <p class="text-xs text-gray-600 leading-relaxed">বোর্ড পরীক্ষার বা মাদ্রাসার অভ্যন্তরীণ রেজিস্ট্রেশন ফি বাবদ অর্থ গ্রহণ ও ট্র্যাকিং।</p>
@@ -157,11 +126,9 @@
                     </div>
 
                     <!-- 4. Form Fill-up Fee -->
-                    <div class="bg-white p-5 rounded-xl shadow-sm border-t-4 border-amber-600 space-y-3">
+                    <div onclick="openFeePanel('formfill')" class="bg-white p-5 rounded-xl shadow-sm border-t-4 border-amber-600 space-y-3 hover:shadow-md cursor-pointer transition">
                         <div class="flex items-center justify-between border-b pb-2">
-                            <h3 class="font-bold text-gray-800 text-sm flex items-center gap-2">
-                                <i class="fa-solid fa-file-invoice text-amber-600"></i> Form Fill-up Fee
-                            </h3>
+                            <h3 class="font-bold text-gray-800 text-sm flex items-center gap-2"><i class="fa-solid fa-file-invoice text-amber-600"></i> Form Fill-up Fee</h3>
                             <span class="text-xs bg-amber-50 text-amber-700 px-2 py-0.5 rounded font-semibold">ফরম পূরণ ফি</span>
                         </div>
                         <p class="text-xs text-gray-600 leading-relaxed">দাখিল, আলিম বা সমাপনী পরীক্ষার ফরম পূরণ ফি এবং সেন্টার ফি কালেকশন।</p>
@@ -169,11 +136,9 @@
                     </div>
 
                     <!-- 5. Tuition Fee -->
-                    <div class="bg-white p-5 rounded-xl shadow-sm border-t-4 border-indigo-600 space-y-3">
+                    <div onclick="openFeePanel('tuition')" class="bg-white p-5 rounded-xl shadow-sm border-t-4 border-indigo-600 space-y-3 hover:shadow-md cursor-pointer transition">
                         <div class="flex items-center justify-between border-b pb-2">
-                            <h3 class="font-bold text-gray-800 text-sm flex items-center gap-2">
-                                <i class="fa-solid fa-wallet text-indigo-600"></i> Tuition Fee
-                            </h3>
+                            <h3 class="font-bold text-gray-800 text-sm flex items-center gap-2"><i class="fa-solid fa-wallet text-indigo-600"></i> Tuition Fee</h3>
                             <span class="text-xs bg-indigo-50 text-indigo-700 px-2 py-0.5 rounded font-semibold">মাসিক বেতন</span>
                         </div>
                         <p class="text-xs text-gray-600 leading-relaxed">শিক্ষার্থীদের প্রতি মাসের টিউশন ফি বা বেতন পরিশোধ ও আপডেট করার প্যানেল।</p>
@@ -181,11 +146,9 @@
                     </div>
 
                     <!-- 6. Late Fee -->
-                    <div class="bg-white p-5 rounded-xl shadow-sm border-t-4 border-rose-600 space-y-3">
+                    <div onclick="openFeePanel('latefee')" class="bg-white p-5 rounded-xl shadow-sm border-t-4 border-rose-600 space-y-3 hover:shadow-md cursor-pointer transition">
                         <div class="flex items-center justify-between border-b pb-2">
-                            <h3 class="font-bold text-gray-800 text-sm flex items-center gap-2">
-                                <i class="fa-solid fa-clock-rotate-left text-rose-600"></i> Late Fee / Fine
-                            </h3>
+                            <h3 class="font-bold text-gray-800 text-sm flex items-center gap-2"><i class="fa-solid fa-clock-rotate-left text-rose-600"></i> Late Fee / Fine</h3>
                             <span class="text-xs bg-rose-50 text-rose-700 px-2 py-0.5 rounded font-semibold">জরিমানা</span>
                         </div>
                         <p class="text-xs text-gray-600 leading-relaxed">নির্ধারিত সময়ের পর ফি পরিশোধের ক্ষেত্রে স্বয়ংক্রিয় বা ম্যানুয়াল জরিমানা (Late Fine) যুক্তকরণ।</p>
@@ -193,11 +156,9 @@
                     </div>
 
                     <!-- 7. Other Fees -->
-                    <div class="bg-white p-5 rounded-xl shadow-sm border-t-4 border-teal-600 space-y-3">
+                    <div onclick="openFeePanel('otherfees')" class="bg-white p-5 rounded-xl shadow-sm border-t-4 border-teal-600 space-y-3 hover:shadow-md cursor-pointer transition">
                         <div class="flex items-center justify-between border-b pb-2">
-                            <h3 class="font-bold text-gray-800 text-sm flex items-center gap-2">
-                                <i class="fa-solid fa-list-check text-teal-600"></i> Other Fees
-                            </h3>
+                            <h3 class="font-bold text-gray-800 text-sm flex items-center gap-2"><i class="fa-solid fa-list-check text-teal-600"></i> Other Fees</h3>
                             <span class="text-xs bg-teal-50 text-teal-700 px-2 py-0.5 rounded font-semibold">অন্যান্য ফি</span>
                         </div>
                         <p class="text-xs text-gray-600 leading-relaxed">লাইব্রেরি ফি, স্পোর্টস ফি, ম্যাগাজিন বা আইডি কার্ড তৈরি বাবদ অন্যান্য ফি কালেকশন।</p>
@@ -205,11 +166,9 @@
                     </div>
 
                     <!-- 8. Due List -->
-                    <div class="bg-white p-5 rounded-xl shadow-sm border-t-4 border-cyan-600 space-y-3">
+                    <div onclick="openFeePanel('duelist')" class="bg-white p-5 rounded-xl shadow-sm border-t-4 border-cyan-600 space-y-3 hover:shadow-md cursor-pointer transition">
                         <div class="flex items-center justify-between border-b pb-2">
-                            <h3 class="font-bold text-gray-800 text-sm flex items-center gap-2">
-                                <i class="fa-solid fa-triangle-exclamation text-cyan-600"></i> Due List
-                            </h3>
+                            <h3 class="font-bold text-gray-800 text-sm flex items-center gap-2"><i class="fa-solid fa-triangle-exclamation text-cyan-600"></i> Due List</h3>
                             <span class="text-xs bg-cyan-50 text-cyan-700 px-2 py-0.5 rounded font-semibold">বকেয়া তালিকা</span>
                         </div>
                         <p class="text-xs text-gray-600 leading-relaxed">যেসকল শিক্ষার্থী নির্দিষ্ট সময়ে ফি পরিশোধ করেনি তাদের বকেয়া (Due) তালিকা ও নোটিশ জেনারেট।</p>
@@ -217,11 +176,9 @@
                     </div>
 
                     <!-- 9. Fee Collection Report -->
-                    <div class="bg-white p-5 rounded-xl shadow-sm border-t-4 border-violet-600 space-y-3">
+                    <div onclick="openFeePanel('report')" class="bg-white p-5 rounded-xl shadow-sm border-t-4 border-violet-600 space-y-3 hover:shadow-md cursor-pointer transition">
                         <div class="flex items-center justify-between border-b pb-2">
-                            <h3 class="font-bold text-gray-800 text-sm flex items-center gap-2">
-                                <i class="fa-solid fa-chart-line text-violet-600"></i> Collection Report
-                            </h3>
+                            <h3 class="font-bold text-gray-800 text-sm flex items-center gap-2"><i class="fa-solid fa-chart-line text-violet-600"></i> Collection Report</h3>
                             <span class="text-xs bg-violet-50 text-violet-700 px-2 py-0.5 rounded font-semibold">রিপোর্ট</span>
                         </div>
                         <p class="text-xs text-gray-600 leading-relaxed">দৈনিক, মাসিক বা বার্ষিক ফি আদায়ের সারসংক্ষেপ এবং বিস্তারিত কালেকশন রিপোর্ট প্রিন্ট।</p>
@@ -230,11 +187,171 @@
 
                 </div>
 
-            </main>
+                <!-- Dynamic Functional Panel (General Collection & Receipt Form) -->
+                <div id="panel-collection" class="fee-sub-panel bg-white p-5 md:p-6 rounded-2xl shadow-sm border border-gray-200 space-y-4 hidden">
+                    <div class="flex justify-between items-center border-b pb-3 no-print">
+                        <h3 class="font-bold text-emerald-800 text-sm"><i class="fa-solid fa-receipt mr-2"></i> ফি কালেকশন ও মানি রসিদ জেনারেটর</h3>
+                        <button onclick="closeAllFeePanels()" class="text-xs bg-gray-200 px-3 py-1 rounded font-bold text-gray-700 hover:bg-gray-300">বন্ধ করুন</button>
+                    </div>
+                    
+                    <div class="grid grid-cols-1 sm:grid-cols-4 gap-3 bg-emerald-50 p-4 rounded-xl border border-emerald-200 text-xs items-end no-print">
+                        <div>
+                            <label class="font-bold block mb-1">শিক্ষার্থীর আইডি:</label>
+                            <input type="text" id="fee_search_id" placeholder="আইডি লিখুন (যেমন: 202606001)" class="p-2 border rounded bg-white w-full font-bold">
+                        </div>
+                        <div>
+                            <label class="font-bold block mb-1">ফি-র খাত:</label>
+                            <select id="fee_type_select" class="p-2 border rounded bg-white w-full font-bold">
+                                <option value="ভর্তি ফি (Admission Fee)">ভর্তি ফি</option>
+                                <option value="পরীক্ষা ফি (Exam Fee)">পরীক্ষা ফি</option>
+                                <option value="মাসিক বেতন (Tuition Fee)">মাসিক বেতন</option>
+                                <option value="ফরম পূরণ ফি (Form Fill-up)">ফরম পূরণ ফি</option>
+                                <option value="অন্যান্য ফি (Other Fee)">অন্যান্য ফি</option>
+                            </select>
+                        </div>
+                        <div>
+                            <label class="font-bold block mb-1">টাকার পরিমাণ (টাকা):</label>
+                            <input type="number" id="fee_amount_val" placeholder="যেমন: ৫০০" class="p-2 border rounded bg-white w-full font-bold">
+                        </div>
+                        <div>
+                            <button onclick="collectStudentFee()" class="w-full bg-emerald-700 text-white px-4 py-2 rounded font-bold hover:bg-emerald-800 shadow">ফি গ্রহণ ও রসিদ তৈরি</button>
+                        </div>
+                    </div>
 
+                    <!-- Printable Money Receipt Container -->
+                    <div id="moneyReceiptContainer" class="hidden print-container max-w-xl mx-auto bg-white border-2 border-emerald-800 p-6 rounded-xl shadow-lg relative space-y-4 text-xs">
+                        <div class="absolute inset-0 flex items-center justify-center opacity-5 pointer-events-none select-none">
+                            <span class="text-7xl font-bold text-emerald-900">AHIFM</span>
+                        </div>
+
+                        <div class="text-center border-b-2 border-emerald-800 pb-3 relative">
+                            <h1 class="font-bold text-base text-emerald-900">আবদুল্লাহ হাট ইসলামিয়া ফাজিল মাদ্রাসা</h1>
+                            <p class="text-[11px] text-gray-600">কোম্পানীগঞ্জ, নোয়াখালী | হটলাইন: 01814716405</p>
+                            <h3 class="font-bold text-xs bg-emerald-800 text-white py-1 mt-2 inline-block px-6 rounded">মানি রসিদ (Money Receipt)</h3>
+                        </div>
+
+                        <div class="grid grid-cols-2 gap-2 border p-3 rounded-lg bg-emerald-50/50">
+                            <div class="space-y-1">
+                                <p><b>রসিদ নং:</b> <span id="rcpt_no">2026001</span></p>
+                                <p><b>শিক্ষার্থীর আইডি:</b> <span id="rcpt_id">202606001</span></p>
+                                <p><b>নাম:</b> <span id="rcpt_name">মো: আব্দুল্লাহ</span></p>
+                            </div>
+                            <div class="space-y-1 text-right">
+                                <p><b>তারিখ:</b> <span id="rcpt_date">09/10/2026</span></p>
+                                <p><b>শ্রেণি:</b> <span id="rcpt_class">দাখিল ষষ্ঠ শ্রেণি</span></p>
+                                <p><b>শাখা:</b> <span id="rcpt_roll">সাধারণ</span></p>
+                            </div>
+                        </div>
+
+                        <table class="w-full text-left border-collapse border border-gray-300 text-xs">
+                            <thead>
+                                <tr class="bg-emerald-800 text-white">
+                                    <th class="border p-2">ক্র.নং</th>
+                                    <th class="border p-2">ফি-র বিবরণ / খাত</th>
+                                    <th class="border p-2 text-center">টাকার পরিমাণ</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr>
+                                    <td class="border p-2 text-center">১</td>
+                                    <td id="rcpt_feetype" class="border p-2 font-bold">মাসিক বেতন</td>
+                                    <td id="rcpt_amount" class="border p-2 text-center font-bold">৫০০/-</td>
+                                </tr>
+                            </tbody>
+                        </table>
+
+                        <p class="text-xs"><b>কথায়:</b> <span id="rcpt_in_words">পাঁচশত টাকা মাত্র।</span></p>
+
+                        <div class="pt-8 flex justify-between items-center text-center">
+                            <div><span class="border-t border-gray-800 inline-block px-4 pt-1 font-bold">প্রদানকারীর স্বাক্ষর</span></div>
+                            <div><span class="border-t border-gray-800 inline-block px-4 pt-1 font-bold">হিসابরক্ষক / ক্যাশিয়ার</span></div>
+                        </div>
+                    </div>
+
+                    <div id="printReceiptBtnBox" class="text-center pt-2 hidden no-print">
+                        <button onclick="window.print()" class="bg-emerald-700 text-white px-6 py-2 rounded-lg text-xs font-bold hover:bg-emerald-800 shadow"><i class="fa-solid fa-print mr-1"></i> মানি রসিদ প্রিন্ট করুন</button>
+                    </div>
+                </div>
+
+                <!-- Generic Info Panel for other items -->
+                <div id="panel-generic" class="fee-sub-panel bg-white p-5 md:p-6 rounded-2xl shadow-sm border border-gray-200 space-y-4 hidden">
+                    <div class="flex justify-between items-center border-b pb-3 no-print">
+                        <h3 id="genericPanelTitle" class="font-bold text-blue-800 text-sm"><i class="fa-solid fa-list mr-2"></i> ফি ম্যানেজমেন্ট প্যানেল</h3>
+                        <button onclick="closeAllFeePanels()" class="text-xs bg-gray-200 px-3 py-1 rounded font-bold text-gray-700 hover:bg-gray-300">বন্ধ করুন</button>
+                    </div>
+                    <div class="p-6 text-center space-y-3">
+                        <p id="genericPanelDesc" class="text-xs text-gray-600 font-bold">এই ফি ক্যাটাগরির ট্র্যাকিং এবং তালিকা এখান থেকে পরিচালিত হবে।</p>
+                        <button onclick="openFeePanel('collection')" class="bg-emerald-700 text-white px-5 py-2 rounded text-xs font-bold shadow hover:bg-emerald-800">ফি কালেকশন প্যানেলে যান</button>
+                    </div>
+                </div>
+
+            </main>
         </div>
     </div>
 
-    <script src="script.js"></script>
+    <script>
+        function openFeePanel(panelName) {
+            document.querySelectorAll('.fee-sub-panel').forEach(p => p.classList.add('hidden'));
+            
+            if(panelName === 'collection' || panelName === 'admission' || panelName === 'exam' || panelName === 'tuition') {
+                document.getElementById('panel-collection').classList.remove('hidden');
+                document.getElementById('panel-collection').scrollIntoView({ behavior: 'smooth' });
+            } else {
+                const target = document.getElementById('panel-generic');
+                target.classList.remove('hidden');
+                target.scrollIntoView({ behavior: 'smooth' });
+                
+                let titleMap = {
+                    'registration': 'রেজিস্ট্রেশন ফি ম্যানেজমেন্ট প্যানেল',
+                    'formfill': 'ফরম পূরণ ফি কালেকশন প্যানেল',
+                    'latefee': 'জরিমানা (Late Fine) ম্যানেজমেন্ট',
+                    'otherfees': 'অন্যান্য ফি কালেকশন প্যানেল',
+                    'duelist': 'শিক্ষার্থীদের বকেয়া (Due) তালিকা',
+                    'report': 'ফি কালেকশন ও আদায় রিপোর্ট'
+                };
+                document.getElementById('genericPanelTitle').innerHTML = `<i class="fa-solid fa-list mr-2"></i> ${titleMap[panelName] || 'ফি ম্যানেজমেন্ট'}`;
+            }
+        }
+
+        function closeAllFeePanels() {
+            document.querySelectorAll('.fee-sub-panel').forEach(p => p.classList.add('hidden'));
+            window.scrollTo({ top: 0, behavior: 'smooth' });
+        }
+
+        function collectStudentFee() {
+            let id = document.getElementById('fee_search_id').value.trim();
+            let feeType = document.getElementById('fee_type_select').value;
+            let amount = document.getElementById('fee_amount_val').value.trim();
+
+            if(!id || !amount) {
+                alert('দয়া করে শিক্ষার্থীর আইডি এবং টাকার পরিমাণ লিখুন!');
+                return;
+            }
+
+            // LocalStorage থেকে শিক্ষার্থীর তথ্য খোঁজা
+            let students = JSON.parse(localStorage.getItem('madrasah_students_all')) || [
+                { id: "202606001", name_bn: "মো: আব্দুল্লাহ", cls: "দাখিল ষষ্ঠ শ্রেণি", roll: "001" },
+                { id: "202606002", name_bn: "ফাতেমা তুজ জোহরা", cls: "দাখিল ষষ্ঠ শ্রেণি", roll: "002" }
+            ];
+
+            let found = students.find(s => s.id === id) || { id: id, name_bn: "অজানা শিক্ষার্থী", cls: "দাখিল শ্রেণি", roll: "N/A" };
+
+            document.getElementById('rcpt_no').innerText = Math.floor(100000 + Math.random() * 900000);
+            document.getElementById('rcpt_id').innerText = found.id;
+            document.getElementById('rcpt_name').innerText = found.name_bn;
+            document.getElementById('rcpt_class').innerText = found.cls;
+            document.getElementById('rcpt_roll').innerText = found.roll;
+            document.getElementById('rcpt_date').innerText = new Date().toLocaleDateString('bn-BD');
+            document.getElementById('rcpt_feetype').innerText = feeType;
+            document.getElementById('rcpt_amount').innerText = amount + "/-";
+            document.getElementById('rcpt_in_words').innerText = amount + " টাকা মাত্র।";
+
+            document.getElementById('moneyReceiptContainer').classList.remove('hidden');
+            document.getElementById('printReceiptBtnBox').classList.remove('hidden');
+            document.getElementById('moneyReceiptContainer').scrollIntoView({ behavior: 'smooth' });
+            
+            alert('ফি সফলভাবে গ্রহণ করা হয়েছে এবং মানি রসিদ তৈরি হয়েছে!');
+        }
+    </script>
 </body>
 </html>

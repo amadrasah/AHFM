@@ -7,85 +7,59 @@
     <script src="https://cdn.tailwindcss.com"></script>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     <link rel="stylesheet" href="style.css">
+    <style>
+        @media print {
+            .no-print { display: none !important; }
+            body { background: white !important; font-size: 9pt !important; }
+            .print-container { width: 100% !important; margin: 0 !important; padding: 0 !important; box-shadow: none !important; border: none !important; }
+        }
+        .spinner {
+            border: 3px solid rgba(0, 0, 0, 0.1);
+            width: 36px; height: 36px;
+            border-radius: 50%;
+            border-left-color: #047857;
+            animation: spin 1s linear infinite;
+        }
+        @keyframes spin {
+            0% { transform: rotate(0deg); }
+            100% { transform: rotate(360deg); }
+        }
+    </style>
 </head>
-<body class="bg-gray-100 font-sans">
+<body class="bg-gray-100 font-sans antialiased text-gray-800">
 
     <div class="flex h-screen overflow-hidden">
         
         <!-- Sidebar with 22 Modules -->
-        <aside class="w-72 bg-emerald-900 text-white flex flex-col shadow-lg overflow-y-auto no-print">
+        <aside class="w-72 bg-emerald-900 text-white flex flex-col shadow-lg overflow-y-auto no-print hidden md:flex">
             <div class="p-4 bg-emerald-950 text-center border-b border-emerald-800 sticky top-0 z-10">
                 <h1 class="font-bold text-base">AHIFM ERP</h1>
                 <p class="text-xs text-emerald-300">Abdullah Hat Islamia Fazil Madrasah</p>
             </div>
 
             <nav class="flex-1 p-3 space-y-1 text-xs">
-                <a href="index.html" class="flex items-center gap-2.5 p-2 rounded hover:bg-emerald-800 transition">
-                    <i class="fa-solid fa-house w-4"></i> 🏠 01. Home
-                </a>
-                <a href="institution.html" class="flex items-center gap-2.5 p-2 rounded hover:bg-emerald-800 transition">
-                    <i class="fa-solid fa-school w-4"></i> 🏫 02. Institution
-                </a>
-                <a href="students.html" class="flex items-center gap-2.5 p-2 rounded hover:bg-emerald-800 transition">
-                    <i class="fa-solid fa-user-graduate w-4"></i> 👨‍🎓 03. Student Management
-                </a>
-                <a href="teachers.html" class="flex items-center gap-2.5 p-2 rounded hover:bg-emerald-800 transition">
-                    <i class="fa-solid fa-chalkboard-user w-4"></i> 👨‍🏫 04. Teacher & Staff
-                </a>
-                <a href="academic.html" class="flex items-center gap-2.5 p-2 rounded bg-emerald-800 text-white font-medium">
-                    <i class="fa-solid fa-book-open w-4"></i> 📚 05. Academic Management
-                </a>
-                <a href="examination.html" class="flex items-center gap-2.5 p-2 rounded hover:bg-emerald-800 transition">
-                    <i class="fa-solid fa-file-lines w-4"></i> 📝 06. Examination
-                </a>
-                <a href="attendance.html" class="flex items-center gap-2.5 p-2 rounded hover:bg-emerald-800 transition">
-                    <i class="fa-solid fa-clipboard-user w-4"></i> 🕐 07. Attendance
-                </a>
-                <a href="accounts.html" class="flex items-center gap-2.5 p-2 rounded hover:bg-emerald-800 transition">
-                    <i class="fa-solid fa-wallet w-4"></i> 💰 08. Accounts
-                </a>
-                <a href="fees.html" class="flex items-center gap-2.5 p-2 rounded hover:bg-emerald-800 transition">
-                    <i class="fa-solid fa-receipt w-4"></i> 🧾 09. Fees Management
-                </a>
-                <a href="dashboard.html" class="flex items-center gap-2.5 p-2 rounded hover:bg-emerald-800 transition">
-                    <i class="fa-solid fa-chart-pie w-4"></i> 📊 10. Dashboard
-                </a>
-                <a href="notice.html" class="flex items-center gap-2.5 p-2 rounded hover:bg-emerald-800 transition">
-                    <i class="fa-solid fa-bullhorn w-4"></i> 📢 11. Notice Management
-                </a>
-                <a href="routine.html" class="flex items-center gap-2.5 p-2 rounded hover:bg-emerald-800 transition">
-                    <i class="fa-solid fa-calendar-days w-4"></i> 📅 12. Routine & Calendar
-                </a>
-                <a href="certificates.html" class="flex items-center gap-2.5 p-2 rounded hover:bg-emerald-800 transition">
-                    <i class="fa-solid fa-award w-4"></i> 📄 13. Certificates
-                </a>
-                <a href="inventory.html" class="flex items-center gap-2.5 p-2 rounded hover:bg-emerald-800 transition">
-                    <i class="fa-solid fa-boxes-stacked w-4"></i> 📦 14. Inventory
-                </a>
-                <a href="library.html" class="flex items-center gap-2.5 p-2 rounded hover:bg-emerald-800 transition">
-                    <i class="fa-solid fa-books w-4"></i> 📖 15. Library
-                </a>
-                <a href="transport.html" class="flex items-center gap-2.5 p-2 rounded hover:bg-emerald-800 transition">
-                    <i class="fa-solid fa-bus w-4"></i> 🚌 16. Transport
-                </a>
-                <a href="hostel.html" class="flex items-center gap-2.5 p-2 rounded hover:bg-emerald-800 transition">
-                    <i class="fa-solid fa-bed w-4"></i> 🍚 17. Hostel / Facilities
-                </a>
-                <a href="communication.html" class="flex items-center gap-2.5 p-2 rounded hover:bg-emerald-800 transition">
-                    <i class="fa-solid fa-comments w-4"></i> 📱 18. Communication
-                </a>
-                <a href="users.html" class="flex items-center gap-2.5 p-2 rounded hover:bg-emerald-800 transition">
-                    <i class="fa-solid fa-shield-halved w-4"></i> 🔐 19. User & Security
-                </a>
-                <a href="cloud-backup.html" class="flex items-center gap-2.5 p-2 rounded hover:bg-emerald-800 transition">
-                    <i class="fa-solid fa-cloud-arrow-up w-4"></i> ☁️ 20. Cloud & Backup
-                </a>
-                <a href="reports.html" class="flex items-center gap-2.5 p-2 rounded hover:bg-emerald-800 transition">
-                    <i class="fa-solid fa-chart-line w-4"></i> 📈 21. Reports
-                </a>
-                <a href="settings.html" class="flex items-center gap-2.5 p-2 rounded hover:bg-emerald-800 transition">
-                    <i class="fa-solid fa-gear w-4"></i> ⚙️️ 22. Settings
-                </a>
+                <a href="index.html" class="flex items-center gap-2.5 p-2 rounded hover:bg-emerald-800 transition"><i class="fa-solid fa-house w-4"></i> 🏠 01. Home</a>
+                <a href="institution.html" class="flex items-center gap-2.5 p-2 rounded hover:bg-emerald-800 transition"><i class="fa-solid fa-school w-4"></i> 🏫 02. Institution</a>
+                <a href="students.html" class="flex items-center gap-2.5 p-2 rounded hover:bg-emerald-800 transition"><i class="fa-solid fa-user-graduate w-4"></i> 👨‍🎓 03. Student Management</a>
+                <a href="teachers.html" class="flex items-center gap-2.5 p-2 rounded hover:bg-emerald-800 transition"><i class="fa-solid fa-chalkboard-user w-4"></i> 👨‍🏫 04. Teacher & Staff</a>
+                <a href="academic.html" class="flex items-center gap-2.5 p-2 rounded bg-emerald-800 text-white font-medium"><i class="fa-solid fa-book-open w-4"></i> 📚 05. Academic Management</a>
+                <a href="examination.html" class="flex items-center gap-2.5 p-2 rounded hover:bg-emerald-800 transition"><i class="fa-solid fa-file-lines w-4"></i> 📝 06. Examination</a>
+                <a href="attendance.html" class="flex items-center gap-2.5 p-2 rounded hover:bg-emerald-800 transition"><i class="fa-solid fa-clipboard-user w-4"></i> 🕐 07. Attendance</a>
+                <a href="accounts.html" class="flex items-center gap-2.5 p-2 rounded hover:bg-emerald-800 transition"><i class="fa-solid fa-wallet w-4"></i> 💰 08. Accounts</a>
+                <a href="fees.html" class="flex items-center gap-2.5 p-2 rounded hover:bg-emerald-800 transition"><i class="fa-solid fa-receipt w-4"></i> 🧾 09. Fees Management</a>
+                <a href="dashboard.html" class="flex items-center gap-2.5 p-2 rounded hover:bg-emerald-800 transition"><i class="fa-solid fa-chart-pie w-4"></i> 📊 10. Dashboard</a>
+                <a href="notice.html" class="flex items-center gap-2.5 p-2 rounded hover:bg-emerald-800 transition"><i class="fa-solid fa-bullhorn w-4"></i> 📢 11. Notice Management</a>
+                <a href="routine.html" class="flex items-center gap-2.5 p-2 rounded hover:bg-emerald-800 transition"><i class="fa-solid fa-calendar-days w-4"></i> 📅 12. Routine & Calendar</a>
+                <a href="certificates.html" class="flex items-center gap-2.5 p-2 rounded hover:bg-emerald-800 transition"><i class="fa-solid fa-award w-4"></i> 📄 13. Certificates</a>
+                <a href="inventory.html" class="flex items-center gap-2.5 p-2 rounded hover:bg-emerald-800 transition"><i class="fa-solid fa-boxes-stacked w-4"></i> 📦 14. Inventory</a>
+                <a href="library.html" class="flex items-center gap-2.5 p-2 rounded hover:bg-emerald-800 transition"><i class="fa-solid fa-books w-4"></i> 📖 15. Library</a>
+                <a href="transport.html" class="flex items-center gap-2.5 p-2 rounded hover:bg-emerald-800 transition"><i class="fa-solid fa-bus w-4"></i> 🚌 16. Transport</a>
+                <a href="hostel.html" class="flex items-center gap-2.5 p-2 rounded hover:bg-emerald-800 transition"><i class="fa-solid fa-bed w-4"></i> 🍚 17. Hostel / Facilities</a>
+                <a href="communication.html" class="flex items-center gap-2.5 p-2 rounded hover:bg-emerald-800 transition"><i class="fa-solid fa-comments w-4"></i> 📱 18. Communication</a>
+                <a href="users.html" class="flex items-center gap-2.5 p-2 rounded hover:bg-emerald-800 transition"><i class="fa-solid fa-shield-halved w-4"></i> 🔐 19. User & Security</a>
+                <a href="cloud-backup.html" class="flex items-center gap-2.5 p-2 rounded hover:bg-emerald-800 transition"><i class="fa-solid fa-cloud-arrow-up w-4"></i> ☁️ 20. Cloud & Backup</a>
+                <a href="reports.html" class="flex items-center gap-2.5 p-2 rounded hover:bg-emerald-800 transition"><i class="fa-solid fa-chart-line w-4"></i> 📈 21. Reports</a>
+                <a href="settings.html" class="flex items-center gap-2.5 p-2 rounded hover:bg-emerald-800 transition"><i class="fa-solid fa-gear w-4"></i> ⚙ 22. Settings</a>
             </nav>
         </aside>
 
@@ -93,35 +67,37 @@
         <div class="flex-1 flex flex-col overflow-y-auto">
             
             <!-- Top Navbar -->
-            <header class="bg-white shadow-sm p-4 flex justify-between items-center no-print">
+            <header class="bg-white shadow-sm p-4 flex justify-between items-center no-print sticky top-0 z-20">
                 <div class="flex items-center gap-3">
-                    <span class="font-bold text-emerald-800 text-lg">📚 Academic Management (একাডেমিক ব্যবস্থাপনা)</span>
+                    <span class="font-bold text-emerald-800 text-base md:text-lg">📚 Academic Management (একাডেমিক ব্যবস্থাপনা)</span>
                 </div>
                 <div class="flex items-center gap-4">
-                    <span class="text-sm text-gray-600 font-medium"><i class="fa-solid fa-user-shield text-emerald-700 mr-1"></i> সুপার অ্যাডমিন</span>
-                    <a href="index.html" class="bg-red-600 text-white px-4 py-1.5 rounded text-xs font-medium hover:bg-red-700">লগআউট</a>
+                    <span class="text-xs md:text-sm text-gray-700 font-semibold bg-emerald-50 px-3 py-1 rounded-full border border-emerald-200">
+                        <i class="fa-solid fa-user-shield text-emerald-700 mr-1"></i> সুপার অ্যাডমিন
+                    </span>
+                    <a href="index.html" class="bg-red-600 text-white px-3 py-1.5 rounded text-xs font-medium hover:bg-red-700">লগআউট</a>
                 </div>
             </header>
 
             <!-- Page Content -->
-            <main class="p-6 space-y-6">
+            <main class="p-4 md:p-6 space-y-6">
                 
                 <!-- Page Header Banner -->
-                <div class="bg-gradient-to-r from-emerald-800 to-emerald-950 text-white p-6 rounded-2xl shadow-sm flex flex-col md:flex-row justify-between items-center gap-4">
+                <div class="bg-gradient-to-r from-emerald-800 to-emerald-950 text-white p-5 md:p-6 rounded-2xl shadow-sm flex flex-col md:flex-row justify-between items-center gap-4 no-print">
                     <div>
-                        <h2 class="text-xl font-bold">একাডেমিক স্ট্রাকচার ও কারিকুলাম প্যানেল</h2>
-                        <p class="text-emerald-200 text-xs mt-1">ক্লাস, সাবজেক্ট, গ্রুপ, সেকশন, একাডেমিক ইয়ার, রুটিন এবং একাডেমিক ক্যালেন্ডার পরিচালনা।</p>
+                        <h2 class="text-lg md:text-xl font-bold">একাডেমিক স্ট্রাকচার ও কারিকুলাম প্যানেল</h2>
+                        <p class="text-emerald-200 text-xs mt-1">ক্লাস, সাবজেক্ট, গ্রুপ, সেকশন, একাডেমিক ইয়ার, রুটিন এবং একাডেমিক ক্যালেন্ডার পরিচালনা করুন।</p>
                     </div>
                     <div class="flex gap-2">
-                        <button class="bg-white text-emerald-900 px-4 py-2 rounded-xl font-bold text-xs hover:bg-emerald-50 transition shadow-sm">নতুন ক্লাস যোগ করুন</button>
+                        <button onclick="openAcademicPanel('classes')" class="bg-white text-emerald-900 px-4 py-2 rounded-xl font-bold text-xs hover:bg-emerald-50 transition shadow-sm">নতুন ক্লাস যোগ করুন</button>
                     </div>
                 </div>
 
                 <!-- Sub-Modules Grid Layout (7 Features) -->
-                <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+                <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-5 no-print">
                     
                     <!-- 1. Class Management -->
-                    <div class="bg-white p-5 rounded-xl shadow-sm border-t-4 border-emerald-600 space-y-3">
+                    <div onclick="openAcademicPanel('classes')" class="bg-white p-5 rounded-xl shadow-sm border-t-4 border-emerald-600 space-y-3 hover:shadow-md cursor-pointer transition">
                         <div class="flex items-center justify-between border-b pb-2">
                             <h3 class="font-bold text-gray-800 text-sm flex items-center gap-2">
                                 <i class="fa-solid fa-school text-emerald-600"></i> Class Management
@@ -133,7 +109,7 @@
                     </div>
 
                     <!-- 2. Subject Management -->
-                    <div class="bg-white p-5 rounded-xl shadow-sm border-t-4 border-blue-600 space-y-3">
+                    <div onclick="openAcademicPanel('subjects')" class="bg-white p-5 rounded-xl shadow-sm border-t-4 border-blue-600 space-y-3 hover:shadow-md cursor-pointer transition">
                         <div class="flex items-center justify-between border-b pb-2">
                             <h3 class="font-bold text-gray-800 text-sm flex items-center gap-2">
                                 <i class="fa-solid fa-book text-blue-600"></i> Subject Management
@@ -145,7 +121,7 @@
                     </div>
 
                     <!-- 3. Group Management -->
-                    <div class="bg-white p-5 rounded-xl shadow-sm border-t-4 border-purple-600 space-y-3">
+                    <div onclick="openAcademicPanel('groups')" class="bg-white p-5 rounded-xl shadow-sm border-t-4 border-purple-600 space-y-3 hover:shadow-md cursor-pointer transition">
                         <div class="flex items-center justify-between border-b pb-2">
                             <h3 class="font-bold text-gray-800 text-sm flex items-center gap-2">
                                 <i class="fa-solid fa-layer-group text-purple-600"></i> Group Management
@@ -157,7 +133,7 @@
                     </div>
 
                     <!-- 4. Section Management -->
-                    <div class="bg-white p-5 rounded-xl shadow-sm border-t-4 border-amber-600 space-y-3">
+                    <div onclick="openAcademicPanel('sections')" class="bg-white p-5 rounded-xl shadow-sm border-t-4 border-amber-600 space-y-3 hover:shadow-md cursor-pointer transition">
                         <div class="flex items-center justify-between border-b pb-2">
                             <h3 class="font-bold text-gray-800 text-sm flex items-center gap-2">
                                 <i class="fa-solid fa-columns text-amber-600"></i> Section Management
@@ -169,7 +145,7 @@
                     </div>
 
                     <!-- 5. Academic Year -->
-                    <div class="bg-white p-5 rounded-xl shadow-sm border-t-4 border-indigo-600 space-y-3">
+                    <div onclick="openAcademicPanel('years')" class="bg-white p-5 rounded-xl shadow-sm border-t-4 border-indigo-600 space-y-3 hover:shadow-md cursor-pointer transition">
                         <div class="flex items-center justify-between border-b pb-2">
                             <h3 class="font-bold text-gray-800 text-sm flex items-center gap-2">
                                 <i class="fa-solid fa-calendar-days text-indigo-600"></i> Academic Year
@@ -181,7 +157,7 @@
                     </div>
 
                     <!-- 6. Routine -->
-                    <div class="bg-white p-5 rounded-xl shadow-sm border-t-4 border-teal-600 space-y-3">
+                    <div onclick="openAcademicPanel('routine')" class="bg-white p-5 rounded-xl shadow-sm border-t-4 border-teal-600 space-y-3 hover:shadow-md cursor-pointer transition">
                         <div class="flex items-center justify-between border-b pb-2">
                             <h3 class="font-bold text-gray-800 text-sm flex items-center gap-2">
                                 <i class="fa-solid fa-clock text-teal-600"></i> Class Routine
@@ -193,7 +169,7 @@
                     </div>
 
                     <!-- 7. Academic Calendar -->
-                    <div class="bg-white p-5 rounded-xl shadow-sm border-t-4 border-rose-600 space-y-3">
+                    <div onclick="openAcademicPanel('calendar')" class="bg-white p-5 rounded-xl shadow-sm border-t-4 border-rose-600 space-y-3 hover:shadow-md cursor-pointer transition">
                         <div class="flex items-center justify-between border-b pb-2">
                             <h3 class="font-bold text-gray-800 text-sm flex items-center gap-2">
                                 <i class="fa-solid fa-calendar-check text-rose-600"></i> Academic Calendar
@@ -206,11 +182,428 @@
 
                 </div>
 
-            </main>
+                <!-- Dynamic Detail Panels -->
+                
+                <!-- Class Management Panel -->
+                <div id="panel-classes" class="academic-sub-panel bg-white p-5 md:p-6 rounded-2xl shadow-sm border border-gray-200 space-y-4 hidden">
+                    <div class="flex justify-between items-center border-b pb-3 no-print">
+                        <h3 class="font-bold text-emerald-800 text-sm"><i class="fa-solid fa-school mr-2"></i> ক্লাস ম্যানেজমেন্ট ও তালিকা</h3>
+                        <button onclick="closeAllAcademicPanels()" class="text-xs bg-gray-200 px-3 py-1 rounded font-bold text-gray-700 hover:bg-gray-300">বন্ধ করুন</button>
+                    </div>
+                    <div class="grid grid-cols-1 sm:grid-cols-3 gap-3 bg-emerald-50 p-4 rounded-xl border border-emerald-200 text-xs items-end no-print">
+                        <div>
+                            <label class="font-bold block mb-1">নতুন শ্রেণির নাম:</label>
+                            <input type="text" id="new_class_name" placeholder="যেমন: দাখিল একাদশ শ্রেণি" class="p-2 border rounded bg-white w-full font-bold">
+                        </div>
+                        <div>
+                            <label class="font-bold block mb-1">স্তর / বিভাগ:</label>
+                            <select id="new_class_level" class="p-2 border rounded bg-white w-full font-bold">
+                                <option value="ইবতেদায়ী">ইবতেদায়ী</option>
+                                <option value="দাখিল">দাখিল</option>
+                                <option value="আলিম">আলিম</option>
+                            </select>
+                        </div>
+                        <div>
+                            <button onclick="addClassItem()" class="w-full bg-emerald-700 text-white px-4 py-2 rounded font-bold hover:bg-emerald-800 shadow">ক্লাস যোগ করুন</button>
+                        </div>
+                    </div>
+                    <div class="overflow-x-auto">
+                        <table class="w-full text-left border-collapse border border-gray-200 text-xs">
+                            <thead>
+                                <tr class="bg-emerald-800 text-white">
+                                    <th class="border p-2 text-center">ক্র.নং</th>
+                                    <th class="border p-2">শ্রেণির নাম</th>
+                                    <th class="border p-2">স্তর</th>
+                                    <th class="border p-2 text-center">স্ট্যাটাস</th>
+                                </tr>
+                            </thead>
+                            <tbody id="classListTableBody"></tbody>
+                        </table>
+                    </div>
+                </div>
 
+                <!-- Subject Management Panel -->
+                <div id="panel-subjects" class="academic-sub-panel bg-white p-5 md:p-6 rounded-2xl shadow-sm border border-gray-200 space-y-4 hidden">
+                    <div class="flex justify-between items-center border-b pb-3 no-print">
+                        <h3 class="font-bold text-blue-800 text-sm"><i class="fa-solid fa-book mr-2"></i> বিষয় ম্যানেজমেন্ট ও কোড সেটআপ</h3>
+                        <button onclick="closeAllAcademicPanels()" class="text-xs bg-gray-200 px-3 py-1 rounded font-bold text-gray-700 hover:bg-gray-300">বন্ধ করুন</button>
+                    </div>
+                    <div class="grid grid-cols-1 sm:grid-cols-4 gap-3 bg-blue-50 p-4 rounded-xl border border-blue-200 text-xs items-end no-print">
+                        <div>
+                            <label class="font-bold block mb-1">বিষয়ের নাম:</label>
+                            <input type="text" id="new_sub_name" placeholder="যেমন: আল-কুরআনুল কারীম" class="p-2 border rounded bg-white w-full font-bold">
+                        </div>
+                        <div>
+                            <label class="font-bold block mb-1">বিষয় কোড:</label>
+                            <input type="text" id="new_sub_code" placeholder="যেমন: ১০০" class="p-2 border rounded bg-white w-full font-bold">
+                        </div>
+                        <div>
+                            <label class="font-bold block mb-1">পূর্ণমান:</label>
+                            <input type="number" id="new_sub_marks" value="100" class="p-2 border rounded bg-white w-full font-bold">
+                        </div>
+                        <div>
+                            <button onclick="addSubjectItem()" class="w-full bg-blue-700 text-white px-4 py-2 rounded font-bold hover:bg-blue-800 shadow">বিষয় যোগ করুন</button>
+                        </div>
+                    </div>
+                    <div class="overflow-x-auto">
+                        <table class="w-full text-left border-collapse border border-gray-200 text-xs">
+                            <thead>
+                                <tr class="bg-blue-700 text-white">
+                                    <th class="border p-2 text-center">ক্র.নং</th>
+                                    <th class="border p-2">বিষয়ের নাম</th>
+                                    <th class="border p-2 text-center">বিষয় কোড</th>
+                                    <th class="border p-2 text-center">পূর্ণমান</th>
+                                </tr>
+                            </thead>
+                            <tbody id="subjectListTableBody"></tbody>
+                        </table>
+                    </div>
+                </div>
+
+                <!-- Group Management Panel -->
+                <div id="panel-groups" class="academic-sub-panel bg-white p-5 md:p-6 rounded-2xl shadow-sm border border-gray-200 space-y-4 hidden">
+                    <div class="flex justify-between items-center border-b pb-3 no-print">
+                        <h3 class="font-bold text-purple-800 text-sm"><i class="fa-solid fa-layer-group mr-2"></i> বিভাগ বা গ্রুপ ম্যানেজমেন্ট</h3>
+                        <button onclick="closeAllAcademicPanels()" class="text-xs bg-gray-200 px-3 py-1 rounded font-bold text-gray-700 hover:bg-gray-300">বন্ধ করুন</button>
+                    </div>
+                    <div class="grid grid-cols-1 sm:grid-cols-3 gap-3 bg-purple-50 p-4 rounded-xl border border-purple-200 text-xs items-end no-print">
+                        <div>
+                            <label class="font-bold block mb-1">গ্রুপের নাম:</label>
+                            <input type="text" id="new_group_name" placeholder="যেমন: বিজ্ঞান বিভাগ" class="p-2 border rounded bg-white w-full font-bold">
+                        </div>
+                        <div>
+                            <label class="font-bold block mb-1">কোড/সংক্ষিপ্ত রূপ:</label>
+                            <input type="text" id="new_group_code" placeholder="যেমন: SCI" class="p-2 border rounded bg-white w-full font-bold">
+                        </div>
+                        <div>
+                            <button onclick="addGroupItem()" class="w-full bg-purple-700 text-white px-4 py-2 rounded font-bold hover:bg-purple-800 shadow">গ্রুপ যোগ করুন</button>
+                        </div>
+                    </div>
+                    <div class="overflow-x-auto">
+                        <table class="w-full text-left border-collapse border border-gray-200 text-xs">
+                            <thead>
+                                <tr class="bg-purple-700 text-white">
+                                    <th class="border p-2 text-center">ক্র.নং</th>
+                                    <th class="border p-2">গ্রুপের নাম</th>
+                                    <th class="border p-2 text-center">কোড</th>
+                                </tr>
+                            </thead>
+                            <tbody id="groupListTableBody"></tbody>
+                        </table>
+                    </div>
+                </div>
+
+                <!-- Section Management Panel -->
+                <div id="panel-sections" class="academic-sub-panel bg-white p-5 md:p-6 rounded-2xl shadow-sm border border-gray-200 space-y-4 hidden">
+                    <div class="flex justify-between items-center border-b pb-3 no-print">
+                        <h3 class="font-bold text-amber-800 text-sm"><i class="fa-solid fa-columns mr-2"></i> সেকশন ও শাখা কনফিগারেশন</h3>
+                        <button onclick="closeAllAcademicPanels()" class="text-xs bg-gray-200 px-3 py-1 rounded font-bold text-gray-700 hover:bg-gray-300">বন্ধ করুন</button>
+                    </div>
+                    <div class="grid grid-cols-1 sm:grid-cols-3 gap-3 bg-amber-50 p-4 rounded-xl border border-amber-200 text-xs items-end no-print">
+                        <div>
+                            <label class="font-bold block mb-1">সেকশনের নাম:</label>
+                            <input type="text" id="new_section_name" placeholder="যেমন: শাপলা / Section A" class="p-2 border rounded bg-white w-full font-bold">
+                        </div>
+                        <div>
+                            <label class="font-bold block mb-1">শ্রেণি নির্বাচন:</label>
+                            <select id="section_class_select" class="p-2 border rounded bg-white w-full font-bold"></select>
+                        </div>
+                        <div>
+                            <button onclick="addSectionItem()" class="w-full bg-amber-700 text-white px-4 py-2 rounded font-bold hover:bg-amber-800 shadow">সেকশন যোগ করুন</button>
+                        </div>
+                    </div>
+                    <div class="overflow-x-auto">
+                        <table class="w-full text-left border-collapse border border-gray-200 text-xs">
+                            <thead>
+                                <tr class="bg-amber-700 text-white">
+                                    <th class="border p-2 text-center">ক্র.নং</th>
+                                    <th class="border p-2">সেকশন / শাখা</th>
+                                    <th class="border p-2">শ্রেণি</th>
+                                </tr>
+                            </thead>
+                            <tbody id="sectionListTableBody"></tbody>
+                        </table>
+                    </div>
+                </div>
+
+                <!-- Academic Year Panel -->
+                <div id="panel-years" class="academic-sub-panel bg-white p-5 md:p-6 rounded-2xl shadow-sm border border-gray-200 space-y-4 hidden">
+                    <div class="flex justify-between items-center border-b pb-3 no-print">
+                        <h3 class="font-bold text-indigo-800 text-sm"><i class="fa-solid fa-calendar-days mr-2"></i> একাডেমিক ইয়ার ও সেশন ম্যানেজমেন্ট</h3>
+                        <button onclick="closeAllAcademicPanels()" class="text-xs bg-gray-200 px-3 py-1 rounded font-bold text-gray-700 hover:bg-gray-300">বন্ধ করুন</button>
+                    </div>
+                    <div class="grid grid-cols-1 sm:grid-cols-2 gap-3 bg-indigo-50 p-4 rounded-xl border border-indigo-200 text-xs items-end no-print">
+                        <div>
+                            <label class="font-bold block mb-1">নতুন শিক্ষাবর্ষ / সেশন:</label>
+                            <input type="text" id="new_year_val" placeholder="যেমন: ২০২৬" class="p-2 border rounded bg-white w-full font-bold">
+                        </div>
+                        <div>
+                            <button onclick="addYearItem()" class="w-full bg-indigo-700 text-white px-4 py-2 rounded font-bold hover:bg-indigo-800 shadow">সেশন যোগ করুন</button>
+                        </div>
+                    </div>
+                    <div class="overflow-x-auto">
+                        <table class="w-full text-left border-collapse border border-gray-200 text-xs">
+                            <thead>
+                                <tr class="bg-indigo-700 text-white">
+                                    <th class="border p-2 text-center">ক্র.নং</th>
+                                    <th class="border p-2">শিক্ষাবর্ষ / সেশন</th>
+                                    <th class="border p-2 text-center">স্ট্যাটাস</th>
+                                </tr>
+                            </thead>
+                            <tbody id="yearListTableBody"></tbody>
+                        </table>
+                    </div>
+                </div>
+
+                <!-- Routine Panel -->
+                <div id="panel-routine" class="academic-sub-panel bg-white p-5 md:p-6 rounded-2xl shadow-sm border border-gray-200 space-y-4 hidden">
+                    <div class="flex justify-between items-center border-b pb-3 no-print">
+                        <h3 class="font-bold text-teal-800 text-sm"><i class="fa-solid fa-clock mr-2"></i> ক্লাস রুটিন ম্যানেজমেন্ট</h3>
+                        <div class="flex gap-2">
+                            <button onclick="window.print()" class="text-xs bg-gray-800 text-white px-3 py-1 rounded font-bold shadow"><i class="fa-solid fa-print"></i> প্রিন্ট</button>
+                            <button onclick="closeAllAcademicPanels()" class="text-xs bg-gray-200 px-3 py-1 rounded font-bold text-gray-700 hover:bg-gray-300">বন্ধ করুন</button>
+                        </div>
+                    </div>
+                    <div class="p-4 bg-teal-50 rounded-xl border border-teal-200 text-xs space-y-2 no-print">
+                        <p class="font-bold text-teal-900">পরামর্শ:</p>
+                        <p class="text-gray-600">শ্রেণিভিত্তিক মাস্টার রুটিন দেখতে এবং প্রিন্ট করতে সরাসরি মূল রুটিন মডিউলে যেতে পারেন অথবা নিচের জেনারেটর ব্যবহার করুন।</p>
+                        <a href="routine.html" class="inline-block bg-teal-700 text-white px-4 py-2 rounded font-bold shadow hover:bg-teal-800">মাস্টার রুটিন পেজে যান</a>
+                    </div>
+                </div>
+
+                <!-- Academic Calendar Panel -->
+                <div id="panel-calendar" class="academic-sub-panel bg-white p-5 md:p-6 rounded-2xl shadow-sm border border-gray-200 space-y-4 hidden">
+                    <div class="flex justify-between items-center border-b pb-3 no-print">
+                        <h3 class="font-bold text-rose-800 text-sm"><i class="fa-solid fa-calendar-check mr-2"></i> বার্ষিক একাডেমিক ক্যালেন্ডার ও ছুটির তালিকা</h3>
+                        <div class="flex gap-2">
+                            <button onclick="window.print()" class="text-xs bg-gray-800 text-white px-3 py-1 rounded font-bold shadow"><i class="fa-solid fa-print"></i> প্রিন্ট</button>
+                            <button onclick="closeAllAcademicPanels()" class="text-xs bg-gray-200 px-3 py-1 rounded font-bold text-gray-700 hover:bg-gray-300">বন্ধ করুন</button>
+                        </div>
+                    </div>
+                    <div class="overflow-x-auto print-container">
+                        <div class="text-center pb-3 border-b">
+                            <h2 class="font-bold text-sm text-emerald-900">আব্দুল্লাহ হাট ইসলামিয়া ফাজিল মাদ্রাসা</h2>
+                            <p class="text-xs text-gray-600">বার্ষিক ছুটির তালিকা ও একাডেমিক ক্যালেন্ডার - ২০২৬</p>
+                        </div>
+                        <table class="w-full text-left border-collapse border border-gray-200 text-xs mt-3">
+                            <thead>
+                                <tr class="bg-rose-800 text-white">
+                                    <th class="border p-2">ইভেন্ট / ছুটির নাম</th>
+                                    <th class="border p-2">শুরুর তারিখ</th>
+                                    <th class="border p-2">শেষের তারিখ</th>
+                                    <th class="border p-2 text-center">মোট দিন</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr><td class="border p-2 font-bold">পবিত্র শবে বরাত ও রমজান ছুটি</td><td class="border p-2">১০ মার্চ ২০২৬</td><td class="border p-2">২৫ এপ্রিল ২০২৬</td><td class="border p-2 text-center font-bold">৪৫ দিন</td></tr>
+                                <tr><td class="border p-2 font-bold">ঈদুল আজহা ও গ্রীষ্মকালীন ছুটি</td><td class="border p-2">২৫ মে ২০২৬</td><td class="border p-2">১০ জুন ২০২৬</td><td class="border p-2 text-center font-bold">১৭ দিন</td></tr>
+                                <tr><td class="border p-2 font-bold">অর্ধবার্ষিক পরীক্ষা</td><td class="border p-2">১০ জুন ২০২৬</td><td class="border p-2">২৪ জুন ২০২৬</td><td class="border p-2 text-center font-bold">১৫ দিন</td></tr>
+                                <tr><td class="border p-2 font-bold">বার্ষিক পরীক্ষা</td><td class="border p-2">০১ ডিসেম্বর ২০২৬</td><td class="border p-2">২০ ডিসেম্বর ২০২৬</td><td class="border p-2 text-center font-bold">২০ দিন</td></tr>
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+
+            </main>
         </div>
     </div>
 
-    <script src="script.js"></script>
+    <script>
+        function openAcademicPanel(panelName) {
+            document.querySelectorAll('.academic-sub-panel').forEach(p => p.classList.add('hidden'));
+            const target = document.getElementById('panel-' + panelName);
+            if(target) {
+                target.classList.remove('hidden');
+                target.scrollIntoView({ behavior: 'smooth' });
+            }
+            if(panelName === 'classes') loadClassList();
+            if(panelName === 'subjects') loadSubjectList();
+            if(panelName === 'groups') loadGroupList();
+            if(panelName === 'sections') loadSectionList();
+            if(panelName === 'years') loadYearList();
+        }
+
+        function closeAllAcademicPanels() {
+            document.querySelectorAll('.academic-sub-panel').forEach(p => p.classList.add('hidden'));
+            window.scrollTo({ top: 0, behavior: 'smooth' });
+        }
+
+        // --- LocalStorage Dynamic Handlers ---
+
+        function loadClassList() {
+            let classes = JSON.parse(localStorage.getItem('madrasah_classes')) || ["দাখিল ষষ্ঠ শ্রেণি", "দাখিল সপ্তম শ্রেণি", "দাখিল অষ্টম শ্রেণি", "দাখিল নবম শ্রেণি", "দাখিল দশম শ্রেণি"];
+            const tbody = document.getElementById('classListTableBody');
+            tbody.innerHTML = '';
+            
+            // Populate dropdown for section
+            const secSelect = document.getElementById('section_class_select');
+            if(secSelect) secSelect.innerHTML = '';
+
+            classes.forEach((cls, i) => {
+                tbody.innerHTML += `
+                    <tr>
+                        <td class="border p-2 text-center font-bold">${i + 1}</td>
+                        <td class="border p-2 font-bold text-emerald-800">${cls}</td>
+                        <td class="border p-2">দাখিল স্তর</td>
+                        <td class="border p-2 text-center text-emerald-700 font-bold">সক্রিয়</td>
+                    </tr>
+                `;
+                if(secSelect) {
+                    secSelect.innerHTML += `<option value="${cls}">${cls}</option>`;
+                }
+            });
+        }
+
+        function addClassItem() {
+            let val = document.getElementById('new_class_name').value.trim();
+            if(!val) return alert('শ্রেণির নাম লিখুন!');
+            let classes = JSON.parse(localStorage.getItem('madrasah_classes')) || [];
+            if(!classes.includes(val)) {
+                classes.push(val);
+                localStorage.setItem('madrasah_classes', JSON.stringify(classes));
+                document.getElementById('new_class_name').value = '';
+                loadClassList();
+                alert('নতুন ক্লাস সফলভাবে যোগ করা হয়েছে!');
+            } else {
+                alert('এই ক্লাসটি ইতিমধ্যে তালিকায় আছে!');
+            }
+        }
+
+        function loadSubjectList() {
+            let rawSubs = JSON.parse(localStorage.getItem('madrasah_subjects')) || [
+                { subjectName: "আল-কুরআনুল কারীম", code: "১০০", marks: 100 },
+                { subjectName: "আল-হাদীস শরীফ", code: "১৭০", marks: 100 },
+                { subjectName: "বাংলা ১ম পত্র", code: "১০১", marks: 100 },
+                { subjectName: "ইংরেজি ১ম পত্র", code: "১০৭", marks: 100 },
+                { subjectName: "গণিত", code: "১২৫", marks: 100 }
+            ];
+            const tbody = document.getElementById('subjectListTableBody');
+            tbody.innerHTML = '';
+
+            rawSubs.forEach((s, i) => {
+                let name = s.subjectName || s.name || s;
+                let code = s.code || 'N/A';
+                let marks = s.marks || 100;
+                tbody.innerHTML += `
+                    <tr>
+                        <td class="border p-2 text-center font-bold">${i + 1}</td>
+                        <td class="border p-2 font-bold text-blue-800">${name}</td>
+                        <td class="border p-2 text-center">${code}</td>
+                        <td class="border p-2 text-center">${marks}</td>
+                    </tr>
+                `;
+            });
+        }
+
+        function addSubjectItem() {
+            let name = document.getElementById('new_sub_name').value.trim();
+            let code = document.getElementById('new_sub_code').value.trim();
+            let marks = document.getElementById('new_sub_marks').value;
+            if(!name) return alert('বিষয়ের নাম লিখুন!');
+
+            let subs = JSON.parse(localStorage.getItem('madrasah_subjects')) || [];
+            subs.push({ subjectName: name, code: code, marks: marks });
+            localStorage.setItem('madrasah_subjects', JSON.stringify(subs));
+            
+            document.getElementById('new_sub_name').value = '';
+            document.getElementById('new_sub_code').value = '';
+            loadSubjectList();
+            alert('বিষয় সফলভাবে যোগ করা হয়েছে!');
+        }
+
+        function loadGroupList() {
+            let groups = JSON.parse(localStorage.getItem('madrasah_groups')) || ["সাধারণ বিভাগ", "বিজ্ঞান বিভাগ", "হিফজুল কুরআন বিভাগ"];
+            const tbody = document.getElementById('groupListTableBody');
+            tbody.innerHTML = '';
+            groups.forEach((g, i) => {
+                tbody.innerHTML += `
+                    <tr>
+                        <td class="border p-2 text-center font-bold">${i + 1}</td>
+                        <td class="border p-2 font-bold text-purple-800">${g}</td>
+                        <td class="border p-2 text-center">GEN</td>
+                    </tr>
+                `;
+            });
+        }
+
+        function addGroupItem() {
+            let val = document.getElementById('new_group_name').value.trim();
+            if(!val) return alert('গ্রুপের নাম লিখুন!');
+            let groups = JSON.parse(localStorage.getItem('madrasah_groups')) || [];
+            groups.push(val);
+            localStorage.setItem('madrasah_groups', JSON.stringify(groups));
+            document.getElementById('new_group_name').value = '';
+            loadGroupList();
+            alert('গ্রুপ সফলভাবে যোগ করা হয়েছে!');
+        }
+
+        function loadSectionList() {
+            let sections = JSON.parse(localStorage.getItem('madrasah_sections')) || [
+                { name: "শাখা - ক (Section A)", cls: "দাখিল ষষ্ঠ শ্রেণি" },
+                { name: "শাখা - খ (Section B)", cls: "দাখিল ষষ্ঠ শ্রেণি" }
+            ];
+            const tbody = document.getElementById('sectionListTableBody');
+            tbody.innerHTML = '';
+            sections.forEach((sec, i) => {
+                tbody.innerHTML += `
+                    <tr>
+                        <td class="border p-2 text-center font-bold">${i + 1}</td>
+                        <td class="border p-2 font-bold text-amber-800">${sec.name}</td>
+                        <td class="border p-2">${sec.cls}</td>
+                    </tr>
+                `;
+            });
+        }
+
+        function addSectionItem() {
+            let name = document.getElementById('new_section_name').value.trim();
+            let cls = document.getElementById('section_class_select').value;
+            if(!name) return alert('সেকশনের নাম লিখুন!');
+            let sections = JSON.parse(localStorage.getItem('madrasah_sections')) || [];
+            sections.push({ name: name, cls: cls });
+            localStorage.setItem('madrasah_sections', JSON.stringify(sections));
+            document.getElementById('new_section_name').value = '';
+            loadSectionList();
+            alert('সেকশন সফলভাবে যোগ করা হয়েছে!');
+        }
+
+        function loadYearList() {
+            let years = JSON.parse(localStorage.getItem('madrasah_years')) || ["২০২৬", "২০২৭"];
+            const tbody = document.getElementById('yearListTableBody');
+            tbody.innerHTML = '';
+            years.forEach((y, i) => {
+                tbody.innerHTML += `
+                    <tr>
+                        <td class="border p-2 text-center font-bold">${i + 1}</td>
+                        <td class="border p-2 font-bold text-indigo-800">${y}</td>
+                        <td class="border p-2 text-center text-emerald-700 font-bold">${y === "২০২৬" ? "বর্তমান সেশন" : "আসন্ন সেশন"}</td>
+                    </tr>
+                `;
+            });
+        }
+
+        function addYearItem() {
+            let y = document.getElementById('new_year_val').value.trim();
+            if(!y) return alert('সেশন লিখুন!');
+            let years = JSON.parse(localStorage.getItem('madrasah_years')) || [];
+            if(!years.includes(y)) {
+                years.push(y);
+                localStorage.setItem('madrasah_years', JSON.stringify(years));
+                document.getElementById('new_year_val').value = '';
+                loadYearList();
+                alert('সেশন সফলভাবে যোগ করা হয়েছে!');
+            } else {
+                alert('এই সেশনটি ইতিমধ্যে আছে!');
+            }
+        }
+
+        window.onload = function() {
+            loadClassList();
+            loadSubjectList();
+            loadGroupList();
+            loadSectionList();
+            loadYearList();
+        };
+    </script>
 </body>
 </html>

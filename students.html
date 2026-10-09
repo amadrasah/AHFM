@@ -167,6 +167,7 @@
                                 <option value="08">দাখিল অষ্টম শ্রেণি</option>
                                 <option value="09">দাখিল নবম শ্রেণি</option>
                                 <option value="10">দাখিল দশম শ্রেণি</option>
+                                <option value="13">ফাজিল প্রথম বর্ষ</option>
                             </select>
                         </div>
 
@@ -253,48 +254,47 @@
                         </div>
                     </div>
 
-                    <!-- ID Card Design Connected with Settings & Real QR Code -->
-                    <div id="idCardPreviewContainer" class="hidden max-w-[320px] mx-auto bg-white text-gray-900 rounded-2xl p-4 shadow-2xl space-y-3 border-2 border-emerald-800 relative overflow-hidden">
-                        <!-- Dynamic Background Watermark -->
-                        <div class="absolute inset-0 flex items-center justify-center opacity-10 pointer-events-none">
-                            <span id="watermarkText" class="text-4xl font-extrabold text-emerald-900 text-center px-4">AHIFM</span>
+                    <!-- Clean & Modern ID Card Design -->
+                    <div id="idCardPreviewContainer" class="hidden w-[300px] mx-auto bg-white text-gray-900 rounded-xl p-3 shadow-xl space-y-2 border border-emerald-700 relative overflow-hidden">
+                        <!-- Watermark -->
+                        <div class="absolute inset-0 flex items-center justify-center opacity-5 pointer-events-none">
+                            <span id="watermarkText" class="text-3xl font-extrabold text-emerald-900">AHIFM</span>
                         </div>
 
-                        <!-- Header with Settings Logo & Madrasah Name -->
-                        <div class="flex items-center gap-2 border-b-2 border-emerald-800 pb-2 relative z-10">
-                            <div id="card_logo_box" class="w-10 h-10 bg-emerald-900 text-white rounded-full flex items-center justify-center font-bold text-xs overflow-hidden">
+                        <!-- Header -->
+                        <div class="flex items-center gap-2 border-b border-emerald-800 pb-2 relative z-10">
+                            <div id="card_logo_box" class="w-9 h-9 bg-emerald-900 text-white rounded-full flex items-center justify-center font-bold text-xs overflow-hidden shrink-0">
                                 লোগো
                             </div>
-                            <div>
-                                <h4 class="font-bold text-xs text-emerald-900 leading-tight" id="card_inst_name">আবদুল্লাহ হাট ইসলামিয়া ফাজিল মাদ্রাসা</h4>
-                                <p class="text-[9px] text-gray-600" id="card_inst_address">কোম্পানীগঞ্জ, নোয়াখালী</p>
+                            <div class="overflow-hidden">
+                                <h4 class="font-bold text-[11px] text-emerald-900 truncate" id="card_inst_name">আবদুল্লাহ হাট ইসলামিয়া ফাজিল মাদ্রাসা</h4>
+                                <p class="text-[9px] text-gray-600 truncate" id="card_inst_address">কোম্পানীগঞ্জ, নোয়াখালী</p>
                             </div>
                         </div>
 
                         <!-- Body -->
-                        <div class="flex gap-3 items-center relative z-10">
-                            <div id="card_photo_box" class="w-20 h-24 bg-gray-100 rounded border flex items-center justify-center overflow-hidden font-bold text-[10px] text-gray-400">ছবি</div>
-                            <div class="space-y-1 text-xs w-full">
-                                <p class="font-bold text-emerald-800 text-[11px]" id="card_name_bn">নাম: --</p>
-                                <p class="text-[10px] text-gray-700" id="card_father">পিতা: --</p>
-                                <p class="text-[10px] font-bold text-blue-800" id="card_id_display">আইডি: --</p>
-                                <p class="text-[10px]" id="card_class_display">শ্রেণি: --</p>
-                                <p class="text-[10px]" id="card_blood">ব্লাড গ্রুপ: <span class="font-bold text-red-600" id="card_blood_val">--</span></p>
+                        <div class="flex gap-2.5 items-center relative z-10 py-1">
+                            <div id="card_photo_box" class="w-20 h-24 bg-gray-100 rounded border border-gray-300 flex items-center justify-center overflow-hidden font-bold text-[10px] text-gray-400 shrink-0">ছবি</div>
+                            <div class="space-y-0.5 text-xs w-full overflow-hidden">
+                                <p class="font-bold text-emerald-800 text-[11px] truncate" id="card_name_bn">নাম: --</p>
+                                <p class="text-[10px] text-gray-700 truncate" id="card_father">পিতা: --</p>
+                                <p class="text-[10px] font-bold text-blue-800 truncate" id="card_id_display">আইডি: --</p>
+                                <p class="text-[10px] truncate" id="card_class_display">শ্রেণি: --</p>
+                                <p class="text-[10px]">ব্লাড: <span class="font-bold text-red-600" id="card_blood_val">--</span></p>
                             </div>
                         </div>
 
-                        <!-- Footer / Contacts & Real QR & Signature -->
-                        <div class="pt-2 border-t border-gray-200 text-[10px] space-y-2 relative z-10">
+                        <!-- Footer -->
+                        <div class="pt-1.5 border-t border-gray-200 text-[9px] space-y-1 relative z-10">
                             <div class="flex justify-between text-gray-700">
                                 <span id="card_inst_mobile">মাদ্রাসা: 01814716405</span>
                                 <span id="card_f_mobile">অভিভাবক: --</span>
                             </div>
-                            <div class="flex justify-between items-end pt-1">
-                                <!-- Real Unique QR Code Box -->
-                                <div id="realQrCodeContainer" class="p-1 bg-white border rounded inline-block"></div>
+                            <div class="flex justify-between items-end">
+                                <div id="realQrCodeContainer" class="p-0.5 bg-white border rounded shrink-0"></div>
                                 <div class="text-center">
-                                    <div class="font-serif italic text-[10px]">Principal</div>
-                                    <span class="border-t border-gray-600 inline-block px-3 text-[9px]">অধ্যক্ষ</span>
+                                    <div class="font-serif italic text-[9px] leading-none">Principal</div>
+                                    <span class="border-t border-gray-600 inline-block px-2 text-[8px] mt-0.5">অধ্যক্ষ</span>
                                 </div>
                             </div>
                         </div>
@@ -469,18 +469,18 @@
                 return;
             }
 
-            // Fetch Institution Settings / Details from localStorage
-            let instSettings = JSON.parse(localStorage.getItem('madrasah_institution_info')) || {
-                name: "আবদুল্লাহ হাট ইসলামিয়া ফাজিল মাদ্রাসা",
-                address: "কোম্পানীগঞ্জ, নোয়াখালী",
-                mobile: "01814716405",
-                watermark: "AHIFM"
-            };
+            // Fetch Institution Settings / Details from localStorage safely
+            let instSettings = JSON.parse(localStorage.getItem('madrasah_institution_info')) || {};
+            
+            let instName = instSettings.institutionName || instSettings.name || "আবদুল্লাহ হাট ইসলামিয়া ফাজিল মাদ্রাসা";
+            let instAddress = instSettings.address || "কোম্পানীগঞ্জ, নোয়াখালী";
+            let instMobile = instSettings.mobile || "01814716405";
+            let watermark = instSettings.watermark || "AHIFM";
 
-            document.getElementById('card_inst_name').innerText = instSettings.name;
-            document.getElementById('card_inst_address').innerText = instSettings.address;
-            document.getElementById('card_inst_mobile').innerText = "মাদ্রাসা: " + (instSettings.mobile || "01814716405");
-            document.getElementById('watermarkText').innerText = instSettings.watermark || "AHIFM";
+            document.getElementById('card_inst_name').innerText = instName;
+            document.getElementById('card_inst_address').innerText = instAddress;
+            document.getElementById('card_inst_mobile').innerText = "মাদ্রাসা: " + instMobile;
+            document.getElementById('watermarkText').innerText = watermark;
 
             // Logo connection
             const logoBox = document.getElementById('card_logo_box');
@@ -510,8 +510,8 @@
             try {
                 new QRCode(qrContainer, {
                     text: `ID:${found.id}|Name:${found.name_bn}|Class:${found.cls}|Mobile:${found.f_mobile}`,
-                    width: 50,
-                    height: 50
+                    width: 48,
+                    height: 48
                 });
             } catch(e) {
                 qrContainer.innerHTML = "QR";

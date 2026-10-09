@@ -132,10 +132,8 @@
                         
                         <div>
                             <label class="font-bold text-gray-700 mb-1 block">সাল (Academic Year) *</label>
-                            <select id="adm_year" onchange="generateStudentId()" class="w-full p-2 border rounded-lg font-bold">
-                                <option value="2025">2025</option>
-                                <option value="2026" selected>2026</option>
-                                <option value="2027">2027</option>
+                            <select id="adm_year" onchange="generateStudentId()" class="w-full p-2 border rounded-lg font-bold settings-year-dropdown">
+                                <!-- Loaded dynamically from Settings -->
                             </select>
                         </div>
 
@@ -252,6 +250,26 @@
                         <h3 class="font-bold text-blue-800 text-sm"><i class="fa-solid fa-id-card mr-2"></i> ২. স্টুডেন্ট রেজিস্ট্রেশন ম্যানেজমেন্ট</h3>
                         <button onclick="closeAllPanels()" class="text-xs bg-gray-200 px-3 py-1 rounded font-bold text-gray-700">বন্ধ করুন</button>
                     </div>
+                    
+                    <!-- Filter Controls -->
+                    <div class="bg-blue-50 p-4 rounded-xl border border-blue-200 grid grid-cols-1 sm:grid-cols-5 gap-3 items-end text-xs">
+                        <div>
+                            <label class="font-bold block mb-1">সাল:</label>
+                            <select id="reg_filter_year" class="p-2 border rounded bg-white font-bold w-full settings-year-dropdown"></select>
+                        </div>
+                        <div>
+                            <label class="font-bold block mb-1">শ্রেণি:</label>
+                            <select id="reg_filter_class" class="p-2 border rounded bg-white font-bold w-full settings-class-dropdown"></select>
+                        </div>
+                        <div>
+                            <label class="font-bold block mb-1">আইডি / রোল / মোবাইল:</label>
+                            <input type="text" id="reg_filter_query" placeholder="আইডি/রোল/মোবাইল..." class="p-2 border rounded bg-white w-full font-bold">
+                        </div>
+                        <div class="flex gap-2">
+                            <button onclick="loadRegTables()" class="bg-blue-700 text-white px-4 py-2 rounded font-bold hover:bg-blue-800 flex-1">ফিল্টার</button>
+                        </div>
+                    </div>
+
                     <div class="overflow-x-auto">
                         <table class="w-full text-left border-collapse border border-gray-200 text-xs">
                             <thead>
@@ -259,6 +277,7 @@
                                     <th class="border p-2">আইডি</th>
                                     <th class="border p-2">নাম</th>
                                     <th class="border p-2">শ্রেণি</th>
+                                    <th class="border p-2">মোবাইল</th>
                                     <th class="border p-2 text-center">অনুমোদন</th>
                                 </tr>
                             </thead>
@@ -274,9 +293,23 @@
                         <button onclick="closeAllPanels()" class="text-xs bg-gray-200 px-3 py-1 rounded font-bold text-gray-700">বন্ধ করুন</button>
                     </div>
                     
-                    <div class="flex gap-2 max-w-md mx-auto">
-                        <input type="text" id="idCardSearchInput" placeholder="শিক্ষার্থীর আইডি বা রোল লিখুন..." class="p-2 border rounded-lg w-full text-xs font-bold">
-                        <button onclick="generateIdCard()" class="bg-purple-700 text-white px-4 py-2 rounded-lg text-xs font-bold hover:bg-purple-800">সার্চ করুন</button>
+                    <!-- Filter Controls -->
+                    <div class="bg-purple-50 p-4 rounded-xl border border-purple-200 grid grid-cols-1 sm:grid-cols-4 gap-3 items-end text-xs">
+                        <div>
+                            <label class="font-bold block mb-1">সাল:</label>
+                            <select id="idcard_filter_year" class="p-2 border rounded bg-white font-bold w-full settings-year-dropdown"></select>
+                        </div>
+                        <div>
+                            <label class="font-bold block mb-1">শ্রেণি:</label>
+                            <select id="idcard_filter_class" class="p-2 border rounded bg-white font-bold w-full settings-class-dropdown"></select>
+                        </div>
+                        <div>
+                            <label class="font-bold block mb-1">আইডি / রোল / মোবাইল:</label>
+                            <input type="text" id="idCardSearchInput" placeholder="শিক্ষার্থীর আইডি, রোল বা মোবাইল..." class="p-2 border rounded bg-white w-full font-bold">
+                        </div>
+                        <div>
+                            <button onclick="generateIdCard()" class="w-full bg-purple-700 text-white px-4 py-2 rounded font-bold hover:bg-purple-800 shadow">আইডি কার্ড খুঁজুন</button>
+                        </div>
                     </div>
 
                     <div id="idCardPreviewContainer" class="hidden max-w-sm mx-auto bg-gradient-to-b from-purple-900 to-emerald-900 text-white rounded-2xl p-4 shadow-xl space-y-3 border-2 border-purple-400">
@@ -285,7 +318,7 @@
                                 <h4 class="font-bold text-xs">আবদুল্লাহ হাট ইসলামিয়া ফাজিল মাদ্রাসা</h4>
                                 <p class="text-[9px] text-emerald-200">কোম্পানীগঞ্জ, নোয়াখালী - হটলাইন: 01814716405</p>
                             </div>
-                            <div class="w-8 h-8 bg-white text-emerald-900 rounded-full flex items-center justify-center font-bold text-[10px]">ਲੋਗੋ</div>
+                            <div class="w-8 h-8 bg-white text-emerald-900 rounded-full flex items-center justify-center font-bold text-[10px]">লোগো</div>
                         </div>
 
                         <div class="flex gap-3 items-center">
@@ -321,6 +354,26 @@
                         <h3 class="font-bold text-amber-800 text-sm"><i class="fa-solid fa-id-badge mr-2"></i> ৪. স্টুডেন্টস লাইফটাইম প্রোফাইল (Active / Inactive / View)</h3>
                         <button onclick="closeAllPanels()" class="text-xs bg-gray-200 px-3 py-1 rounded font-bold text-gray-700">বন্ধ করুন</button>
                     </div>
+
+                    <!-- Filter Controls -->
+                    <div class="bg-amber-50 p-4 rounded-xl border border-amber-200 grid grid-cols-1 sm:grid-cols-4 gap-3 items-end text-xs">
+                        <div>
+                            <label class="font-bold block mb-1">সাল:</label>
+                            <select id="prof_filter_year" class="p-2 border rounded bg-white font-bold w-full settings-year-dropdown"></select>
+                        </div>
+                        <div>
+                            <label class="font-bold block mb-1">শ্রেণি:</label>
+                            <select id="prof_filter_class" class="p-2 border rounded bg-white font-bold w-full settings-class-dropdown"></select>
+                        </div>
+                        <div>
+                            <label class="font-bold block mb-1">আইডি / রোল / মোবাইল:</label>
+                            <input type="text" id="prof_filter_query" placeholder="আইডি/রোল/মোবাইল..." class="p-2 border rounded bg-white w-full font-bold">
+                        </div>
+                        <div>
+                            <button onclick="loadProfileSection()" class="w-full bg-amber-700 text-white px-4 py-2 rounded font-bold hover:bg-amber-800 shadow">ফিল্টার</button>
+                        </div>
+                    </div>
+
                     <div id="studentProfileContainer" class="space-y-3"></div>
                 </div>
 
@@ -361,6 +414,26 @@
                         <h3 class="font-bold text-indigo-800 text-sm"><i class="fa-solid fa-arrow-up-right-dots mr-2"></i> ৬. স্টুডেন্টস অটো প্রমোশন প্যানেল</h3>
                         <button onclick="closeAllPanels()" class="text-xs bg-gray-200 px-3 py-1 rounded font-bold text-gray-700">বন্ধ করুন</button>
                     </div>
+
+                    <!-- Filter Controls -->
+                    <div class="bg-indigo-50 p-4 rounded-xl border border-indigo-200 grid grid-cols-1 sm:grid-cols-4 gap-3 items-end text-xs">
+                        <div>
+                            <label class="font-bold block mb-1">সাল:</label>
+                            <select id="promo_filter_year" class="p-2 border rounded bg-white font-bold w-full settings-year-dropdown"></select>
+                        </div>
+                        <div>
+                            <label class="font-bold block mb-1">শ্রেণি:</label>
+                            <select id="promo_filter_class" class="p-2 border rounded bg-white font-bold w-full settings-class-dropdown"></select>
+                        </div>
+                        <div>
+                            <label class="font-bold block mb-1">আইডি / রোল / মোবাইল:</label>
+                            <input type="text" id="promo_filter_query" placeholder="আইডি/রোল/মোবাইল..." class="p-2 border rounded bg-white w-full font-bold">
+                        </div>
+                        <div>
+                            <button onclick="loadPromotionTable()" class="w-full bg-indigo-700 text-white px-4 py-2 rounded font-bold hover:bg-indigo-800 shadow">ফিল্টার</button>
+                        </div>
+                    </div>
+
                     <div class="overflow-x-auto">
                         <table class="w-full text-left border-collapse border border-gray-200 text-xs">
                             <thead>
@@ -383,6 +456,26 @@
                         <h3 class="font-bold text-rose-800 text-sm"><i class="fa-solid fa-right-left mr-2"></i> ৭. টিসি (TC) ম্যানেজমেন্ট</h3>
                         <button onclick="closeAllPanels()" class="text-xs bg-gray-200 px-3 py-1 rounded font-bold text-gray-700">বন্ধ করুন</button>
                     </div>
+
+                    <!-- Filter Controls -->
+                    <div class="bg-rose-50 p-4 rounded-xl border border-rose-200 grid grid-cols-1 sm:grid-cols-4 gap-3 items-end text-xs">
+                        <div>
+                            <label class="font-bold block mb-1">সাল:</label>
+                            <select id="tc_filter_year" class="p-2 border rounded bg-white font-bold w-full settings-year-dropdown"></select>
+                        </div>
+                        <div>
+                            <label class="font-bold block mb-1">শ্রেণি:</label>
+                            <select id="tc_filter_class" class="p-2 border rounded bg-white font-bold w-full settings-class-dropdown"></select>
+                        </div>
+                        <div>
+                            <label class="font-bold block mb-1">আইডি / রোল / মোবাইল:</label>
+                            <input type="text" id="tc_filter_query" placeholder="আইডি/রোল/মোবাইল..." class="p-2 border rounded bg-white w-full font-bold">
+                        </div>
+                        <div>
+                            <button onclick="loadTcTable()" class="w-full bg-rose-700 text-white px-4 py-2 rounded font-bold hover:bg-rose-800 shadow">ফিল্টার</button>
+                        </div>
+                    </div>
+
                     <div class="overflow-x-auto">
                         <table class="w-full text-left border-collapse border border-gray-200 text-xs">
                             <thead>
@@ -405,10 +498,26 @@
                         <h3 class="font-bold text-cyan-800 text-sm"><i class="fa-solid fa-magnifying-glass mr-2"></i> ৮. শিক্ষার্থী অনুসন্ধান ও তালিকা (Search Button Added)</h3>
                         <button onclick="closeAllPanels()" class="text-xs bg-gray-200 px-3 py-1 rounded font-bold text-gray-700">বন্ধ করুন</button>
                     </div>
-                    <div class="flex gap-2">
-                        <input type="text" id="liveSearchInput" placeholder="নাম, আইডি বা মোবাইল দিয়ে খুঁজুন..." class="p-2 border rounded-lg w-full text-xs font-bold">
-                        <button onclick="executeSearch()" class="bg-cyan-700 text-white px-5 py-2 rounded-lg text-xs font-bold hover:bg-cyan-800">সার্চ করুন</button>
+
+                    <!-- Filter Controls -->
+                    <div class="bg-cyan-50 p-4 rounded-xl border border-cyan-200 grid grid-cols-1 sm:grid-cols-4 gap-3 items-end text-xs">
+                        <div>
+                            <label class="font-bold block mb-1">সাল:</label>
+                            <select id="search_filter_year" class="p-2 border rounded bg-white font-bold w-full settings-year-dropdown"></select>
+                        </div>
+                        <div>
+                            <label class="font-bold block mb-1">শ্রেণি:</label>
+                            <select id="search_filter_class" class="p-2 border rounded bg-white font-bold w-full settings-class-dropdown"></select>
+                        </div>
+                        <div>
+                            <label class="font-bold block mb-1">আইডি / রোল / মোবাইল / নাম:</label>
+                            <input type="text" id="liveSearchInput" placeholder="নাম, আইডি, রোল বা মোবাইল..." class="p-2 border rounded bg-white w-full font-bold">
+                        </div>
+                        <div>
+                            <button onclick="executeSearch()" class="w-full bg-cyan-700 text-white px-4 py-2 rounded font-bold hover:bg-cyan-800 shadow">সার্চ করুন</button>
+                        </div>
                     </div>
+
                     <div class="overflow-x-auto">
                         <table class="w-full text-left border-collapse border border-gray-200 text-xs">
                             <thead>
@@ -430,6 +539,25 @@
                     <div class="flex justify-between items-center border-b pb-3">
                         <h3 class="font-bold text-sky-800 text-sm"><i class="fa-solid fa-folder-open mr-2"></i> ৯. স্টুডেন্ট ডকুমেন্টস আর্কাইভ (Document Storage)</h3>
                         <button onclick="closeAllPanels()" class="text-xs bg-gray-200 px-3 py-1 rounded font-bold text-gray-700">বন্ধ করুন</button>
+                    </div>
+
+                    <!-- Filter Controls -->
+                    <div class="bg-sky-50 p-4 rounded-xl border border-sky-200 grid grid-cols-1 sm:grid-cols-4 gap-3 items-end text-xs">
+                        <div>
+                            <label class="font-bold block mb-1">সাল:</label>
+                            <select id="doc_filter_year" class="p-2 border rounded bg-white font-bold w-full settings-year-dropdown"></select>
+                        </div>
+                        <div>
+                            <label class="font-bold block mb-1">শ্রেণি:</label>
+                            <select id="doc_filter_class" class="p-2 border rounded bg-white font-bold w-full settings-class-dropdown"></select>
+                        </div>
+                        <div>
+                            <label class="font-bold block mb-1">আইডি / রোল / মোবাইল:</label>
+                            <input type="text" id="doc_filter_query" placeholder="আইডি/রোল/মোবাইল..." class="p-2 border rounded bg-white w-full font-bold">
+                        </div>
+                        <div>
+                            <button onclick="loadDocumentArchive()" class="w-full bg-sky-700 text-white px-4 py-2 rounded font-bold hover:bg-sky-800 shadow">ফিল্টার</button>
+                        </div>
                     </div>
                     
                     <div class="bg-sky-50 p-4 rounded-xl border border-sky-200 space-y-3 text-xs">
@@ -465,6 +593,42 @@
 
     <!-- JavaScript Engine -->
     <script>
+        // Populate Settings Dropdowns (Years & Classes)
+        function populateSettingsDropdowns() {
+            let years = JSON.parse(localStorage.getItem('madrasah_years')) || ["২০২৬", "২০২৭"];
+            let classes = JSON.parse(localStorage.getItem('madrasah_classes')) || [
+                "নুরানী প্রথম শ্রেণি", "নুরানী দ্বিতীয় শ্রেণি", "নুরানী তৃতীয় শ্রেণি", 
+                "ইবতেদায়ী চতুর্থ শ্রেণি", "ইবতেদায়ী পঞ্চম শ্রেণি", "দাখিল ষষ্ঠ শ্রেণি", 
+                "দাখিল সপ্তম শ্রেণি", "দাখিল অষ্টম শ্রেণি", "দাখিল নবম শ্রেণি", "দাখিল দশম শ্রেণি",
+                "আলিম প্রথম বর্ষ", "আলিম দ্বিতীয় বর্ষ", "ফাজিল প্রথম বর্ষ", "ফাজিল দ্বিতীয় বর্ষ", "ফাজিল তৃতীয় বর্ষ"
+            ];
+
+            // Populate all year dropdowns with class settings-year-dropdown
+            document.querySelectorAll('.settings-year-dropdown').forEach(el => {
+                el.innerHTML = '<option value="">সকল সাল</option>';
+                years.forEach(y => {
+                    el.innerHTML += `<option value="${y}">${y}</option>`;
+                });
+            });
+
+            // Populate all class dropdowns with class settings-class-dropdown
+            document.querySelectorAll('.settings-class-dropdown').forEach(el => {
+                el.innerHTML = '<option value="">সকল শ্রেণি</option>';
+                classes.forEach(c => {
+                    el.innerHTML += `<option value="${c}">${c}</option>`;
+                });
+            });
+
+            // Set default year if available
+            const admYear = document.getElementById('adm_year');
+            if(admYear && years.length > 0) {
+                admYear.innerHTML = '';
+                years.forEach(y => {
+                    admYear.innerHTML += `<option value="${y}">${y}</option>`;
+                });
+            }
+        }
+
         function openStudentPanel(panelName) {
             document.querySelectorAll('.student-sub-panel').forEach(p => p.classList.add('hidden'));
             const target = document.getElementById('panel-' + panelName);
@@ -487,7 +651,8 @@
 
         function generateStudentId() {
             const year = document.getElementById('adm_year').value;
-            const classCode = document.getElementById('adm_class').value;
+            const classSelect = document.getElementById('adm_class');
+            const classCode = classSelect.value;
             let roll = document.getElementById('adm_roll').value.trim().padStart(3, '0');
             document.getElementById('adm_id').value = year + classCode + roll;
         }
@@ -498,10 +663,11 @@
             const editIndex = parseInt(document.getElementById('edit_index').value);
             const photoInput = document.getElementById('adm_photo_file');
 
+            let classSelect = document.getElementById('adm_class');
             let studentData = {
                 year: document.getElementById('adm_year').value,
-                classCode: document.getElementById('adm_class').value,
-                cls: document.getElementById('adm_class').options[document.getElementById('adm_class').selectedIndex].text,
+                classCode: classSelect.value,
+                cls: classSelect.options[classSelect.selectedIndex].text,
                 roll: document.getElementById('adm_roll').value,
                 id: document.getElementById('adm_id').value,
                 name_bn: document.getElementById('adm_name_bn').value,
@@ -515,7 +681,7 @@
                 f_mobile: document.getElementById('adm_f_mobile').value,
                 village: document.getElementById('adm_village').value,
                 status: document.getElementById('adm_status').value,
-                history: [{ year: document.getElementById('adm_year').value, class: document.getElementById('adm_class').options[document.getElementById('adm_class').selectedIndex].text, achievement: "নিয়মিত উপস্থিতি ও সন্তোষজনক ফলাফল।" }],
+                history: [{ year: document.getElementById('adm_year').value, class: classSelect.options[classSelect.selectedIndex].text, achievement: "নিয়মিত উপস্থিতি ও সন্তোষজনক ফলাফল।" }],
                 registered: false,
                 tc: false,
                 tcDate: ""
@@ -554,7 +720,7 @@
             let students = JSON.parse(localStorage.getItem('madrasah_students_all'));
             if(!students || students.length === 0) {
                 students = [
-                    { year: "2026", classCode: "06", cls: "দাখিল ষষ্ঠ শ্রেণি", roll: "001", id: "202606001", name_bn: "মো: আব্দুল্লাহ", name_en: "Md. Abdullah", father: "Md. Ibrahim", mother: "Amena", dob: "2014-01-01", date: "2026-01-02", gender: "Male", blood: "A+", f_mobile: "01800000000", village: "Abdullah Hat", status: "Active", history: [{year: "2026", class: "দাখিল ষষ্ঠ শ্রেণি", achievement: "সেরা উপস্থিতি পুরস্কার"}], registered: true, tc: false, tcDate: "" }
+                    { year: "২০২৬", classCode: "06", cls: "দাখিল ষষ্ঠ শ্রেণি", roll: "001", id: "202606001", name_bn: "মো: আব্দুল্লাহ", name_en: "Md. Abdullah", father: "Md. Ibrahim", mother: "Amena", dob: "2014-01-01", date: "2026-01-02", gender: "Male", blood: "A+", f_mobile: "01800000000", village: "Abdullah Hat", status: "Active", history: [{year: "২০২৬", class: "দাখিল ষষ্ঠ শ্রেণি", achievement: "সেরা উপস্থিতি পুরস্কার"}], registered: true, tc: false, tcDate: "" }
                 ];
                 localStorage.setItem('madrasah_students_all', JSON.stringify(students));
             }
@@ -563,9 +729,17 @@
 
         // Real QR Code Generator for ID Card
         function generateIdCard() {
-            const query = document.getElementById('idCardSearchInput').value.trim();
+            const year = document.getElementById('idcard_filter_year').value;
+            const cls = document.getElementById('idcard_filter_class').value;
+            const query = document.getElementById('idCardSearchInput').value.trim().toLowerCase();
+            
             const students = getStoredStudents();
-            const found = students.find(s => s.id === query || s.roll === query);
+            const found = students.find(s => {
+                let matchYear = !year || s.year === year;
+                let matchCls = !cls || s.cls === cls;
+                let matchQuery = !query || s.id.toLowerCase().includes(query) || s.roll.toLowerCase().includes(query) || s.f_mobile.includes(query);
+                return matchYear && matchCls && matchQuery;
+            });
 
             if(!found) {
                 alert('শিক্ষার্থী পাওয়া যায়নি!');
@@ -600,21 +774,38 @@
 
         // Profile Panel with Active/Inactive and View Modal
         function loadProfileSection() {
+            const year = document.getElementById('prof_filter_year').value;
+            const cls = document.getElementById('prof_filter_class').value;
+            const query = document.getElementById('prof_filter_query').value.trim().toLowerCase();
+
             const students = getStoredStudents();
             const container = document.getElementById('studentProfileContainer');
             container.innerHTML = '';
 
-            students.forEach((s, i) => {
+            const filtered = students.filter(s => {
+                let matchYear = !year || s.year === year;
+                let matchCls = !cls || s.cls === cls;
+                let matchQuery = !query || s.id.toLowerCase().includes(query) || s.roll.toLowerCase().includes(query) || s.f_mobile.includes(query);
+                return matchYear && matchCls && matchQuery;
+            });
+
+            if(filtered.length === 0) {
+                container.innerHTML = `<p class="text-center text-gray-500 font-bold p-4">কোনো শিক্ষার্থী পাওয়া যায়নি!</p>`;
+                return;
+            }
+
+            filtered.forEach((s) => {
+                let originalIndex = students.indexOf(s);
                 let statusBadge = s.status === 'Inactive' ? `<span class="bg-gray-200 text-gray-700 px-2 py-0.5 rounded font-bold">Inactive</span>` : `<span class="bg-green-100 text-green-800 px-2 py-0.5 rounded font-bold">Active</span>`;
                 container.innerHTML += `
                     <div class="border p-3 rounded-xl bg-amber-50 border-amber-200 text-xs flex justify-between items-center">
                         <div>
                             <h4 class="font-bold text-gray-800 text-sm">${s.name_bn} (${s.id})</h4>
-                            <p class="text-gray-600">শ্রেণি: ${s.cls} | রোল: ${s.roll} | স্ট্যাটাস: ${statusBadge}</p>
+                            <p class="text-gray-600">সাল: ${s.year} | শ্রেণি: ${s.cls} | রোল: ${s.roll} | মোবাইল: ${s.f_mobile} | স্ট্যাটাস: ${statusBadge}</p>
                         </div>
                         <div class="space-x-2">
-                            <button onclick="toggleStatus(${i})" class="bg-gray-700 text-white px-3 py-1 rounded font-bold">সুইচ স্ট্যাটাস</button>
-                            <button onclick="viewStudentProfile(${i})" class="bg-amber-700 text-white px-3 py-1 rounded font-bold">ভিউ (View)</button>
+                            <button onclick="toggleStatus(${originalIndex})" class="bg-gray-700 text-white px-3 py-1 rounded font-bold">সুইচ স্ট্যাটাস</button>
+                            <button onclick="viewStudentProfile(${originalIndex})" class="bg-amber-700 text-white px-3 py-1 rounded font-bold">ভিউ (View)</button>
                         </div>
                     </div>
                 `;
@@ -654,6 +845,10 @@
 
         // Auto Promotion with Next Class Selection
         function loadPromotionTable() {
+            const year = document.getElementById('promo_filter_year').value;
+            const cls = document.getElementById('promo_filter_class').value;
+            const query = document.getElementById('promo_filter_query').value.trim().toLowerCase();
+
             const students = getStoredStudents();
             const tbody = document.getElementById('promotionTableBody');
             tbody.innerHTML = '';
@@ -665,29 +860,40 @@
                 "আলিম প্রথম বর্ষ", "আলিম দ্বিতীয় বর্ষ", "ফাজিল প্রথম বর্ষ", "ফাজিল দ্বিতীয় বর্ষ", "ফাজিল তৃতীয় বর্ষ"
             ];
 
-            students.forEach((s, i) => {
-                if(!s.tc) {
-                    let nextClassOptions = '';
-                    let currentIndex = classes.indexOf(s.cls);
-                    classes.forEach((c, cIdx) => {
-                        let selected = (cIdx === currentIndex + 1) ? 'selected' : '';
-                        nextClassOptions += `<option value="${c}" ${selected}>${c}</option>`;
-                    });
+            const filtered = students.filter(s => {
+                let matchYear = !year || s.year === year;
+                let matchCls = !cls || s.cls === cls;
+                let matchQuery = !query || s.id.toLowerCase().includes(query) || s.roll.toLowerCase().includes(query) || s.f_mobile.includes(query);
+                return !s.tc && matchYear && matchCls && matchQuery;
+            });
 
-                    tbody.innerHTML += `
-                        <tr>
-                            <td class="border p-2 font-bold">${s.id}</td>
-                            <td class="border p-2 font-bold">${s.name_bn}</td>
-                            <td class="border p-2">${s.cls}</td>
-                            <td class="border p-2">
-                                <select id="promo_target_${i}" class="p-1 border rounded text-xs font-bold">${nextClassOptions}</select>
-                            </td>
-                            <td class="border p-2 text-center">
-                                <button onclick="executePromotion(${i})" class="bg-indigo-600 text-white px-3 py-1 rounded font-bold hover:bg-indigo-700">প্রমোশন দিন</button>
-                            </td>
-                        </tr>
-                    `;
-                }
+            if(filtered.length === 0) {
+                tbody.innerHTML = `<tr><td colspan="5" class="border p-4 text-center text-gray-500 font-bold">কোনো শিক্ষার্থী পাওয়া যায়নি!</td></tr>`;
+                return;
+            }
+
+            filtered.forEach((s) => {
+                let originalIndex = students.indexOf(s);
+                let nextClassOptions = '';
+                let currentIndex = classes.indexOf(s.cls);
+                classes.forEach((c, cIdx) => {
+                    let selected = (cIdx === currentIndex + 1) ? 'selected' : '';
+                    nextClassOptions += `<option value="${c}" ${selected}>${c}</option>`;
+                });
+
+                tbody.innerHTML += `
+                    <tr>
+                        <td class="border p-2 font-bold">${s.id}</td>
+                        <td class="border p-2 font-bold">${s.name_bn}</td>
+                        <td class="border p-2">${s.cls} (${s.year})</td>
+                        <td class="border p-2">
+                            <select id="promo_target_${originalIndex}" class="p-1 border rounded text-xs font-bold">${nextClassOptions}</select>
+                        </td>
+                        <td class="border p-2 text-center">
+                            <button onclick="executePromotion(${originalIndex})" class="bg-indigo-600 text-white px-3 py-1 rounded font-bold hover:bg-indigo-700">প্রমোশন দিন</button>
+                        </td>
+                    </tr>
+                `;
             });
         }
 
@@ -697,6 +903,7 @@
             const currentYear = new Date().getFullYear().toString();
             
             students[i].cls = targetCls;
+            students[i].year = currentYear;
             if(!students[i].history) students[i].history = [];
             students[i].history.push({ year: currentYear, class: targetCls, achievement: "বার্ষিক পরীক্ষায় উত্তীর্ণ হয়ে প্রমোশন প্রাপ্ত।" });
 
@@ -707,23 +914,27 @@
 
         // Search Student with Search Button
         function loadSearchTable() {
-            const students = getStoredStudents();
-            renderSearchRows(students);
+            executeSearch();
         }
 
         function renderSearchRows(students) {
             const tbody = document.getElementById('searchTableBody');
             tbody.innerHTML = '';
-            students.forEach((s, index) => {
+            if(students.length === 0) {
+                tbody.innerHTML = `<tr><td colspan="5" class="border p-4 text-center text-gray-500 font-bold">কোনো শিক্ষার্থী পাওয়া যায়নি!</td></tr>`;
+                return;
+            }
+            students.forEach((s) => {
+                let originalIndex = getStoredStudents().indexOf(s);
                 tbody.innerHTML += `
                     <tr>
                         <td class="border p-2 font-bold text-blue-800">${s.id}</td>
                         <td class="border p-2 font-bold">${s.name_bn}</td>
-                        <td class="border p-2">${s.cls}</td>
+                        <td class="border p-2">${s.cls} (${s.year})</td>
                         <td class="border p-2">${s.f_mobile}</td>
                         <td class="border p-2 text-center space-x-2">
-                            <button onclick="editStudent(${index})" class="text-blue-600 font-bold hover:underline">এডিট</button>
-                            <button onclick="deleteStudent(${index})" class="text-red-600 font-bold hover:underline">ডিলিট</button>
+                            <button onclick="editStudent(${originalIndex})" class="text-blue-600 font-bold hover:underline">এডিট</button>
+                            <button onclick="deleteStudent(${originalIndex})" class="text-red-600 font-bold hover:underline">ডিলিট</button>
                         </td>
                     </tr>
                 `;
@@ -731,17 +942,17 @@
         }
 
         function executeSearch() {
+            const year = document.getElementById('search_filter_year').value;
+            const cls = document.getElementById('search_filter_class').value;
             const query = document.getElementById('liveSearchInput').value.toLowerCase().trim();
             const students = getStoredStudents();
-            if(!query) {
-                renderSearchRows(students);
-                return;
-            }
-            const filtered = students.filter(s => 
-                s.name_bn.toLowerCase().includes(query) || 
-                s.id.toLowerCase().includes(query) || 
-                s.f_mobile.includes(query)
-            );
+
+            const filtered = students.filter(s => {
+                let matchYear = !year || s.year === year;
+                let matchCls = !cls || s.cls === cls;
+                let matchQuery = !query || s.name_bn.toLowerCase().includes(query) || s.id.toLowerCase().includes(query) || s.roll.toLowerCase().includes(query) || s.f_mobile.includes(query);
+                return matchYear && matchCls && matchQuery;
+            });
             renderSearchRows(filtered);
         }
 
@@ -749,7 +960,7 @@
             const students = getStoredStudents();
             const s = students[index];
             document.getElementById('edit_index').value = index;
-            document.getElementById('adm_year').value = s.year || "2026";
+            document.getElementById('adm_year').value = s.year || "২০২৬";
             document.getElementById('adm_class').value = s.classCode || "06";
             document.getElementById('adm_roll').value = s.roll || "001";
             document.getElementById('adm_id').value = s.id;
@@ -810,14 +1021,31 @@
         }
 
         function loadDocumentArchive() {
+            const year = document.getElementById('doc_filter_year').value;
+            const cls = document.getElementById('doc_filter_class').value;
+            const query = document.getElementById('doc_filter_query').value.trim().toLowerCase();
+
             let docs = JSON.parse(localStorage.getItem('madrasah_student_docs')) || [];
+            let students = getStoredStudents();
             const tbody = document.getElementById('documentArchiveTable');
             tbody.innerHTML = '';
-            if(docs.length === 0) {
+
+            const filteredDocs = docs.filter(d => {
+                let student = students.find(s => s.id === d.studentId);
+                if(!student) return false;
+                let matchYear = !year || student.year === year;
+                let matchCls = !cls || student.cls === cls;
+                let matchQuery = !query || student.id.toLowerCase().includes(query) || student.roll.toLowerCase().includes(query) || student.f_mobile.includes(query);
+                return matchYear && matchCls && matchQuery;
+            });
+
+            if(filteredDocs.length === 0) {
                 tbody.innerHTML = `<tr><td colspan="4" class="border p-2 text-center text-gray-500">কোনো ডকুমেন্ট সংরক্ষিত নেই।</td></tr>`;
                 return;
             }
-            docs.forEach((d, i) => {
+
+            filteredDocs.forEach((d) => {
+                let originalIndex = docs.indexOf(d);
                 let viewLink = d.file ? `<a href="${d.file}" target="_blank" class="text-blue-600 font-bold underline">দেখুন</a>` : 'ফাইল নেই';
                 tbody.innerHTML += `
                     <tr>
@@ -826,7 +1054,7 @@
                         <td class="border p-2">${d.date}</td>
                         <td class="border p-2 text-center space-x-2">
                             ${viewLink}
-                            <button onclick="deleteDoc(${i})" class="text-red-600 font-bold">ডিলিট</button>
+                            <button onclick="deleteDoc(${originalIndex})" class="text-red-600 font-bold">ডিলিট</button>
                         </td>
                     </tr>
                 `;
@@ -842,13 +1070,29 @@
 
         // Standard Load Functions for Reg, TC
         function loadRegTables() {
+            const year = document.getElementById('reg_filter_year').value;
+            const cls = document.getElementById('reg_filter_class').value;
+            const query = document.getElementById('reg_filter_query').value.trim().toLowerCase();
+
             const students = getStoredStudents();
             const doRegBody = document.getElementById('admissionListForReg');
             doRegBody.innerHTML = '';
-            students.forEach((s, index) => {
-                if(!s.registered) {
-                    doRegBody.innerHTML += `<tr><td class="border p-2 font-bold">${s.id}</td><td class="border p-2">${s.name_bn}</td><td class="border p-2">${s.cls}</td><td class="border p-2 text-center"><button onclick="approveReg(${index})" class="bg-blue-600 text-white px-3 py-1 rounded font-bold">Yes</button></td></tr>`;
-                }
+
+            const filtered = students.filter(s => {
+                let matchYear = !year || s.year === year;
+                let matchCls = !cls || s.cls === cls;
+                let matchQuery = !query || s.id.toLowerCase().includes(query) || s.roll.toLowerCase().includes(query) || s.f_mobile.includes(query);
+                return !s.registered && matchYear && matchCls && matchQuery;
+            });
+
+            if(filtered.length === 0) {
+                doRegBody.innerHTML = `<tr><td colspan="5" class="border p-4 text-center text-gray-500 font-bold">কোনো শিক্ষার্থী পাওয়া যায়নি!</td></tr>`;
+                return;
+            }
+
+            filtered.forEach((s) => {
+                let originalIndex = students.indexOf(s);
+                doRegBody.innerHTML += `<tr><td class="border p-2 font-bold">${s.id}</td><td class="border p-2">${s.name_bn}</td><td class="border p-2">${s.cls} (${s.year})</td><td class="border p-2">${s.f_mobile}</td><td class="border p-2 text-center"><button onclick="approveReg(${originalIndex})" class="bg-blue-600 text-white px-3 py-1 rounded font-bold">Yes</button></td></tr>`;
             });
         }
 
@@ -870,13 +1114,31 @@
         }
 
         function loadTcTable() {
+            const year = document.getElementById('tc_filter_year').value;
+            const cls = document.getElementById('tc_filter_class').value;
+            const query = document.getElementById('tc_filter_query').value.trim().toLowerCase();
+
             const students = getStoredStudents();
             const tbody = document.getElementById('tcTableBody');
             tbody.innerHTML = '';
-            students.forEach((s, i) => {
+
+            const filtered = students.filter(s => {
+                let matchYear = !year || s.year === year;
+                let matchCls = !cls || s.cls === cls;
+                let matchQuery = !query || s.id.toLowerCase().includes(query) || s.roll.toLowerCase().includes(query) || s.f_mobile.includes(query);
+                return matchYear && matchCls && matchQuery;
+            });
+
+            if(filtered.length === 0) {
+                tbody.innerHTML = `<tr><td colspan="5" class="border p-4 text-center text-gray-500 font-bold">কোনো শিক্ষার্থী পাওয়া যায়নি!</td></tr>`;
+                return;
+            }
+
+            filtered.forEach((s) => {
+                let originalIndex = students.indexOf(s);
                 let st = s.tc ? `<span class="text-rose-600 font-bold">TC Issued</span>` : `<span class="text-emerald-700 font-bold">Active</span>`;
-                let btn = s.tc ? `Issued` : `<button onclick="issueTc(${i})" class="bg-rose-600 text-white px-2 py-1 rounded">টিসি দিন</button>`;
-                tbody.innerHTML += `<tr><td class="border p-2">${s.id}</td><td class="border p-2">${s.name_bn}</td><td class="border p-2">${s.cls}</td><td class="border p-2">${st}</td><td class="border p-2 text-center">${btn}</td></tr>`;
+                let btn = s.tc ? `Issued` : `<button onclick="issueTc(${originalIndex})" class="bg-rose-600 text-white px-2 py-1 rounded">টিসি দিন</button>`;
+                tbody.innerHTML += `<tr><td class="border p-2">${s.id}</td><td class="border p-2">${s.name_bn}</td><td class="border p-2">${s.cls} (${s.year})</td><td class="border p-2">${st}</td><td class="border p-2 text-center">${btn}</td></tr>`;
             });
         }
 
@@ -890,6 +1152,7 @@
         }
 
         window.onload = function() {
+            populateSettingsDropdowns();
             getStoredStudents();
             generateStudentId();
         };

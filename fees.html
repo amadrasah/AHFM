@@ -85,113 +85,123 @@
                 <div class="bg-gradient-to-r from-emerald-800 to-emerald-950 text-white p-5 md:p-6 rounded-2xl shadow-sm flex flex-col md:flex-row justify-between items-center gap-4 no-print">
                     <div>
                         <h2 class="text-lg md:text-xl font-bold">শিক্ষার্থী ফি ও কালেকশন ব্যবস্থাপনা প্যানেল</h2>
-                        <p class="text-emerald-200 text-xs mt-1">ভর্তি, পরীক্ষা, রেজিস্ট্রেশন, ফরম পূরণ, মাসিক বেতন, বকেয়া তালিকা ও ফি কালেকশন রিপোর্ট।</p>
+                        <p class="text-emerald-200 text-xs mt-1">ভর্তি, মাসিক ফি, পরীক্ষা, রেজিস্ট্রেশন, ফরম পূরণ, বকেয়া তালিকা ও ফি কালেকশন রিপোর্ট।</p>
                     </div>
                     <div class="flex gap-2">
-                        <button onclick="openFeePanel('admission')" class="bg-white text-emerald-900 px-4 py-2 rounded-xl font-bold text-xs hover:bg-emerald-50 transition shadow-sm">নতুন ফি কালেকশন</button>
+                        <button onclick="openFeePanel('monthly')" class="bg-white text-emerald-900 px-4 py-2 rounded-xl font-bold text-xs hover:bg-emerald-50 transition shadow-sm"><i class="fa-solid fa-calendar-check mr-1"></i> মাসিক ফি জমা</button>
                     </div>
                 </div>
 
-                <!-- Sub-Modules Grid Layout (9 Features) -->
+                <!-- Sub-Modules Grid Layout (10 Features including Monthly Fee) -->
                 <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-5 no-print">
                     
+                    <!-- 1. Admission Fee -->
                     <div onclick="openFeePanel('admission')" class="bg-white p-5 rounded-xl shadow-sm border-t-4 border-emerald-600 space-y-3 hover:shadow-md cursor-pointer transition">
                         <div class="flex items-center justify-between border-b pb-2">
                             <h3 class="font-bold text-gray-800 text-sm flex items-center gap-2"><i class="fa-solid fa-user-plus text-emerald-600"></i> 1. Admission Fee</h3>
                             <span class="text-xs bg-emerald-50 text-emerald-700 px-2 py-0.5 rounded font-semibold">ভর্তি ফি</span>
                         </div>
-                        <p class="text-xs text-gray-600 leading-relaxed">নতুন শিক্ষাবর্ষে শিক্ষার্থী ভর্তির সময় নির্ধারিত শুধু ভর্তি ফি কালেকশন ও রসিদ প্রদান।</p>
+                        <p class="text-xs text-gray-600 leading-relaxed">নতুন শিক্ষাবর্ষে শিক্ষার্থী ভর্তির সময় নির্ধারিত নির্দিষ্ট ভর্তি ফি কালেকশন।</p>
                         <button class="w-full bg-emerald-50 text-emerald-700 py-1.5 rounded text-xs font-bold hover:bg-emerald-100 transition">ভর্তি ফি প্যানেল খুলুন</button>
                     </div>
 
+                    <!-- 2. Monthly Fee (NEW) -->
+                    <div onclick="openFeePanel('monthly')" class="bg-white p-5 rounded-xl shadow-sm border-t-4 border-teal-600 space-y-3 hover:shadow-md cursor-pointer transition">
+                        <div class="flex items-center justify-between border-b pb-2">
+                            <h3 class="font-bold text-gray-800 text-sm flex items-center gap-2"><i class="fa-solid fa-calendar-days text-teal-600"></i> 2. Monthly Fee</h3>
+                            <span class="text-xs bg-teal-50 text-teal-700 px-2 py-0.5 rounded font-semibold">মাসিক ফি</span>
+                        </div>
+                        <p class="text-xs text-gray-600 leading-relaxed">শিক্ষার্থীদের প্রতি মাসের নির্দিষ্ট মাসিক বেতন / টিউটোরিয়াল ফি কালেকশন।</p>
+                        <button class="w-full bg-teal-50 text-teal-700 py-1.5 rounded text-xs font-bold hover:bg-teal-100 transition">মাসিক ফি প্যানেল খুলুন</button>
+                    </div>
+
+                    <!-- 3. Exam Fee -->
                     <div onclick="openFeePanel('exam')" class="bg-white p-5 rounded-xl shadow-sm border-t-4 border-blue-600 space-y-3 hover:shadow-md cursor-pointer transition">
                         <div class="flex items-center justify-between border-b pb-2">
-                            <h3 class="font-bold text-gray-800 text-sm flex items-center gap-2"><i class="fa-solid fa-file-pen text-blue-600"></i> 2. Exam Fee</h3>
+                            <h3 class="font-bold text-gray-800 text-sm flex items-center gap-2"><i class="fa-solid fa-file-pen text-blue-600"></i> 3. Exam Fee</h3>
                             <span class="text-xs bg-blue-50 text-blue-700 px-2 py-0.5 rounded font-semibold">পরীক্ষা ফি</span>
                         </div>
-                        <p class="text-xs text-gray-600 leading-relaxed">অর্ধবার্ষিক, বার্ষিক বা প্রাক-নির্বাচনী পরীক্ষার ফি নির্ধারণ ও গ্রহণের হিসাব।</p>
+                        <p class="text-xs text-gray-600 leading-relaxed">অর্ধ বার্ষিক, বার্ষিক, প্রাক-নির্বাচনী, মডেল টেস্ট বা অন্যান্য পরীক্ষা ফি।</p>
                         <button class="w-full bg-blue-50 text-blue-700 py-1.5 rounded text-xs font-bold hover:bg-blue-100 transition">পরীক্ষা ফি প্যানেল খুলুন</button>
                     </div>
 
+                    <!-- 4. Registration Fee -->
                     <div onclick="openFeePanel('registration')" class="bg-white p-5 rounded-xl shadow-sm border-t-4 border-purple-600 space-y-3 hover:shadow-md cursor-pointer transition">
                         <div class="flex items-center justify-between border-b pb-2">
-                            <h3 class="font-bold text-gray-800 text-sm flex items-center gap-2"><i class="fa-solid fa-address-card text-purple-600"></i> 3. Registration Fee</h3>
+                            <h3 class="font-bold text-gray-800 text-sm flex items-center gap-2"><i class="fa-solid fa-address-card text-purple-600"></i> 4. Registration Fee</h3>
                             <span class="text-xs bg-purple-50 text-purple-700 px-2 py-0.5 rounded font-semibold">রেজিস্ট্রেশন ফি</span>
                         </div>
-                        <p class="text-xs text-gray-600 leading-relaxed">বোর্ড পরীক্ষার বা মাদ্রাসার অভ্যন্তরীণ রেজিস্ট্রেশন ফি বাবদ অর্থ গ্রহণ ও ট্র্যাকিং।</p>
+                        <p class="text-xs text-gray-600 leading-relaxed">বোর্ড পরীক্ষার বা মাদ্রাসার অভ্যন্তরীণ রেজিস্ট্রেশন ফি আদায় ও রসিদ।</p>
                         <button class="w-full bg-purple-50 text-purple-700 py-1.5 rounded text-xs font-bold hover:bg-purple-100 transition">রেজিস্ট্রেশন ফি প্যানেল খুলুন</button>
                     </div>
 
+                    <!-- 5. Form Fill-up Fee -->
                     <div onclick="openFeePanel('formfill')" class="bg-white p-5 rounded-xl shadow-sm border-t-4 border-amber-600 space-y-3 hover:shadow-md cursor-pointer transition">
                         <div class="flex items-center justify-between border-b pb-2">
-                            <h3 class="font-bold text-gray-800 text-sm flex items-center gap-2"><i class="fa-solid fa-file-invoice text-amber-600"></i> 4. Form Fill-up Fee</h3>
+                            <h3 class="font-bold text-gray-800 text-sm flex items-center gap-2"><i class="fa-solid fa-file-invoice text-amber-600"></i> 5. Form Fill-up Fee</h3>
                             <span class="text-xs bg-amber-50 text-amber-700 px-2 py-0.5 rounded font-semibold">ফরম পূরণ ফি</span>
                         </div>
-                        <p class="text-xs text-gray-600 leading-relaxed">দাখিল, আলিম বা সমাপনী পরীক্ষার ফরম পূরণ ফি এবং সেন্টার ফি কালেকশন।</p>
+                        <p class="text-xs text-gray-600 leading-relaxed">দাখিল, আলিম, ফাজিল বা সমাপনী পরীক্ষার নির্দিষ্ট ফরম পূরণ ফি গ্রহণ।</p>
                         <button class="w-full bg-amber-50 text-amber-700 py-1.5 rounded text-xs font-bold hover:bg-amber-100 transition">ফরম পূরণ ফি প্যানেল খুলুন</button>
                     </div>
 
-                    <div onclick="openFeePanel('tuition')" class="bg-white p-5 rounded-xl shadow-sm border-t-4 border-indigo-600 space-y-3 hover:shadow-md cursor-pointer transition">
-                        <div class="flex items-center justify-between border-b pb-2">
-                            <h3 class="font-bold text-gray-800 text-sm flex items-center gap-2"><i class="fa-solid fa-wallet text-indigo-600"></i> 5. Tuition Fee</h3>
-                            <span class="text-xs bg-indigo-50 text-indigo-700 px-2 py-0.5 rounded font-semibold">মাসিক বেতন</span>
-                        </div>
-                        <p class="text-xs text-gray-600 leading-relaxed">শিক্ষার্থীদের প্রতি মাসের টিউশন ফি বা বেতন পরিশোধ ও আপডেট করার প্যানেল।</p>
-                        <button class="w-full bg-indigo-50 text-indigo-700 py-1.5 rounded text-xs font-bold hover:bg-indigo-100 transition">টিউশন ফি প্যানেল খুলুন</button>
-                    </div>
-
+                    <!-- 6. Late Fee / Fine -->
                     <div onclick="openFeePanel('latefee')" class="bg-white p-5 rounded-xl shadow-sm border-t-4 border-rose-600 space-y-3 hover:shadow-md cursor-pointer transition">
                         <div class="flex items-center justify-between border-b pb-2">
                             <h3 class="font-bold text-gray-800 text-sm flex items-center gap-2"><i class="fa-solid fa-clock-rotate-left text-rose-600"></i> 6. Late Fee / Fine</h3>
                             <span class="text-xs bg-rose-50 text-rose-700 px-2 py-0.5 rounded font-semibold">জরিমানা</span>
                         </div>
-                        <p class="text-xs text-gray-600 leading-relaxed">নির্ধারিত সময়ের পর ফি পরিশোধের ক্ষেত্রে স্বয়ংক্রিয় বা ম্যানুয়াল জরিমানা (Late Fine) যুক্তকরণ।</p>
+                        <p class="text-xs text-gray-600 leading-relaxed">নির্ধারিত সময়ের পর ফি পরিশোধের ক্ষেত্রে বিলম্ব ফি বা জরিমানা জমা।</p>
                         <button class="w-full bg-rose-50 text-rose-700 py-1.5 rounded text-xs font-bold hover:bg-rose-100 transition">জরিমানা প্যানেল খুলুন</button>
                     </div>
 
-                    <div onclick="openFeePanel('otherfees')" class="bg-white p-5 rounded-xl shadow-sm border-t-4 border-teal-600 space-y-3 hover:shadow-md cursor-pointer transition">
+                    <!-- 7. Other Fees -->
+                    <div onclick="openFeePanel('otherfees')" class="bg-white p-5 rounded-xl shadow-sm border-t-4 border-indigo-600 space-y-3 hover:shadow-md cursor-pointer transition">
                         <div class="flex items-center justify-between border-b pb-2">
-                            <h3 class="font-bold text-gray-800 text-sm flex items-center gap-2"><i class="fa-solid fa-list-check text-teal-600"></i> 7. Other Fees</h3>
-                            <span class="text-xs bg-teal-50 text-teal-700 px-2 py-0.5 rounded font-semibold">অন্যান্য ফি</span>
+                            <h3 class="font-bold text-gray-800 text-sm flex items-center gap-2"><i class="fa-solid fa-list-check text-indigo-600"></i> 7. Other Fees</h3>
+                            <span class="text-xs bg-indigo-50 text-indigo-700 px-2 py-0.5 rounded font-semibold">অন্যান্য ফি</span>
                         </div>
-                        <p class="text-xs text-gray-600 leading-relaxed">লাইব্রেরি ফি, স্পোর্টস ফি, ম্যাগাজিন বা আইডি কার্ড তৈরি বাবদ অন্যান্য ফি কালেকশন।</p>
-                        <button class="w-full bg-teal-50 text-teal-700 py-1.5 rounded text-xs font-bold hover:bg-teal-100 transition">অন্যান্য ফি প্যানেল খুলুন</button>
+                        <p class="text-xs text-gray-600 leading-relaxed">লাইব্রেরি, স্পোর্টস, আইডিকার্ড বা সনদ বাবদ নির্দিষ্ট অন্যান্য ফি গ্রহণ।</p>
+                        <button class="w-full bg-indigo-50 text-indigo-700 py-1.5 rounded text-xs font-bold hover:bg-indigo-100 transition">অন্যান্য ফি প্যানেল খুলুন</button>
                     </div>
 
+                    <!-- 8. Due List -->
                     <div onclick="openFeePanel('duelist')" class="bg-white p-5 rounded-xl shadow-sm border-t-4 border-cyan-600 space-y-3 hover:shadow-md cursor-pointer transition">
                         <div class="flex items-center justify-between border-b pb-2">
                             <h3 class="font-bold text-gray-800 text-sm flex items-center gap-2"><i class="fa-solid fa-triangle-exclamation text-cyan-600"></i> 8. Due List</h3>
                             <span class="text-xs bg-cyan-50 text-cyan-700 px-2 py-0.5 rounded font-semibold">বকেয়া তালিকা</span>
                         </div>
-                        <p class="text-xs text-gray-600 leading-relaxed">যেসকল শিক্ষার্থী নির্দিষ্ট সময়ে ফি পরিশোধ করেনি তাদের বকেয়া (Due) তালিকা ও নোটিশ জেনারেট।</p>
+                        <p class="text-xs text-gray-600 leading-relaxed">ফি বকেয়া থাকা শিক্ষার্থীদের শ্রেণিভিত্তিক ফিল্টারিং ও তালিকা ট্র্যাকিং।</p>
                         <button class="w-full bg-cyan-50 text-cyan-700 py-1.5 rounded text-xs font-bold hover:bg-cyan-100 transition">বকেয়া তালিকা প্যানেল খুলুন</button>
                     </div>
 
+                    <!-- 9. Collection Report -->
                     <div onclick="openFeePanel('report')" class="bg-white p-5 rounded-xl shadow-sm border-t-4 border-violet-600 space-y-3 hover:shadow-md cursor-pointer transition">
                         <div class="flex items-center justify-between border-b pb-2">
                             <h3 class="font-bold text-gray-800 text-sm flex items-center gap-2"><i class="fa-solid fa-chart-line text-violet-600"></i> 9. Collection Report</h3>
                             <span class="text-xs bg-violet-50 text-violet-700 px-2 py-0.5 rounded font-semibold">রিপোর্ট</span>
                         </div>
-                        <p class="text-xs text-gray-600 leading-relaxed">দৈনিক, মাসিক বা বার্ষিক ফি আদায়ের সারসংক্ষেপ এবং বিস্তারিত কালেকশন রিপোর্ট প্রিন্ট।</p>
+                        <p class="text-xs text-gray-600 leading-relaxed">দৈনিক, মাসিক বা বার্ষিক কালেকশন সামারি ও রিপোর্ট জেনারেট।</p>
                         <button class="w-full bg-violet-50 text-violet-700 py-1.5 rounded text-xs font-bold hover:bg-violet-100 transition">রিপোর্ট প্যানেল খুলুন</button>
                     </div>
 
                 </div>
 
-                <!-- MAIN DYNAMIC PANEL FORM FOR ALL MODULES -->
+                <!-- MAIN DYNAMIC PANEL FORM -->
                 <div id="panel-collection" class="fee-sub-panel bg-white p-5 md:p-6 rounded-2xl shadow-sm border border-gray-200 space-y-6 hidden">
                     <div class="flex justify-between items-center border-b pb-3 no-print">
                         <h3 id="panel_header_title" class="font-bold text-emerald-800 text-base"><i class="fa-solid fa-receipt mr-2"></i> ফি কালেকশন ও মানি রিসিট জেনারেটর</h3>
                         <button onclick="closeAllFeePanels()" class="text-xs bg-gray-200 px-3 py-1 rounded font-bold text-gray-700 hover:bg-gray-300">বন্ধ করুন</button>
                     </div>
                     
-                    <!-- Advanced Input Form -->
+                    <!-- Form Controls -->
                     <div class="grid grid-cols-1 sm:grid-cols-3 gap-4 bg-emerald-50 p-4 rounded-xl border border-emerald-200 text-xs items-end no-print">
                         <div>
                             <label class="font-bold block mb-1 text-gray-700">শিক্ষাবর্ষ / সাল *:</label>
                             <select id="fee_year_select" class="p-2 border rounded bg-white w-full font-bold settings-year-dropdown"></select>
                         </div>
-                        <div>
+                        
+                        <div id="month_select_wrapper">
                             <label class="font-bold block mb-1 text-gray-700">মাস (Month) *:</label>
                             <select id="fee_month_select" class="p-2 border rounded bg-white w-full font-bold">
                                 <option value="জানুয়ারি">জানুয়ারি</option><option value="ফেব্রুয়ারি">ফেব্রুয়ারি</option><option value="মার্চ">মার্চ</option>
@@ -200,30 +210,37 @@
                                 <option value="অক্টোবর">অক্টোবর</option><option value="নভেম্বর">নভেম্বর</option><option value="ডিসেম্বর">ডিসেম্বর</option>
                             </select>
                         </div>
+
                         <div>
-                            <label class="font-bold block mb-1 text-gray-700">শ্রেণি নির্বাচন (নুরানী থেকে ফাজিল) *:</label>
+                            <label class="font-bold block mb-1 text-gray-700">শ্রেণি নির্বাচন (নুরানী ১ম - ফাজিল ৩য়) *:</label>
                             <select id="fee_class_select" onchange="autoFetchStudentByClassRoll()" class="p-2 border rounded bg-white w-full font-bold master-class-dropdown"></select>
                         </div>
+
                         <div>
                             <label class="font-bold block mb-1 text-gray-700">রোল নম্বর *:</label>
                             <input type="text" id="fee_roll_input" onkeyup="autoFetchStudentByClassRoll()" placeholder="যেমন: 001" class="p-2 border rounded bg-white w-full font-bold">
                         </div>
+
                         <div>
-                            <label class="font-bold block mb-1 text-gray-700">শিক্ষার্থীর নাম (স্টুডেন্ট প্রোফাইল থেকে):</label>
+                            <label class="font-bold block mb-1 text-gray-700">শিক্ষার্থীর নাম (অটো সিঙ্ক):</label>
                             <input type="text" id="fee_name_display" placeholder="নাম স্বয়ংক্রিয়ভাবে আসবে..." class="p-2 border rounded bg-gray-100 w-full font-bold text-emerald-800" readonly>
                         </div>
+
                         <div>
-                            <label class="font-bold block mb-1 text-gray-700">স্টুডেন্ট আইডি (স্টুডেন্ট প্রোফাইল থেকে):</label>
+                            <label class="font-bold block mb-1 text-gray-700">স্টুডেন্ট আইডি (অটো সিঙ্ক):</label>
                             <input type="text" id="fee_id_display" placeholder="আইডি স্বয়ংক্রিয়ভাবে আসবে..." class="p-2 border rounded bg-gray-100 w-full font-bold text-blue-800" readonly>
                         </div>
+
                         <div>
-                            <label class="font-bold block mb-1 text-gray-700">ফি-র খাত / ক্যাটাগরি *:</label>
+                            <label class="font-bold block mb-1 text-gray-700">ফি-র খাত / পরীক্ষা / ক্যাটাগরি *:</label>
                             <select id="fee_type_select" class="p-2 border rounded bg-white w-full font-bold"></select>
                         </div>
+
                         <div>
                             <label class="font-bold block mb-1 text-gray-700">টাকার পরিমাণ (BDT) *:</label>
                             <input type="number" id="fee_amount_val" placeholder="যেমন: ৫০০" class="p-2 border rounded bg-white w-full font-bold">
                         </div>
+
                         <div>
                             <button onclick="collectStudentFee()" class="w-full bg-emerald-700 text-white px-4 py-2.5 rounded font-bold hover:bg-emerald-800 shadow transition"><i class="fa-solid fa-floppy-disk mr-1"></i> ফি সংরক্ষণ ও রসিদ তৈরি</button>
                         </div>
@@ -232,7 +249,7 @@
                     <!-- Filtered Record Table for individual panels -->
                     <div class="overflow-x-auto no-print border rounded-xl bg-white p-3 space-y-2">
                         <h4 class="font-bold text-xs text-gray-700 flex justify-between items-center">
-                            <span><i class="fa-solid fa-list mr-1"></i> জমা হওয়া ফি তালিকা (ফি হিস্ট্রি)</span>
+                            <span><i class="fa-solid fa-list mr-1"></i> জমা হওয়া ফি তালিকা (হিস্ট্রি)</span>
                             <button onclick="renderFeeHistoryTable()" class="text-xs text-blue-700 underline font-bold">রিফ্রেশ করুন</button>
                         </h4>
                         <table class="w-full text-left border-collapse border border-gray-200 text-xs">
@@ -243,7 +260,7 @@
                                     <th class="border p-2">আইডি</th>
                                     <th class="border p-2">শিক্ষার্থীর নাম</th>
                                     <th class="border p-2">শ্রেণি ও রোল</th>
-                                    <th class="border p-2">ফি-র খাত</th>
+                                    <th class="border p-2">ফি-র বিবরণ / খাত</th>
                                     <th class="border p-2 text-center">টাকা</th>
                                 </tr>
                             </thead>
@@ -272,7 +289,7 @@
                             <div class="space-y-1 text-right">
                                 <p><b>তারিখ:</b> <span id="rcpt_date">09/10/2026</span></p>
                                 <p><b>শ্রেণি:</b> <span id="rcpt_class">দাখিল ষষ্ঠ শ্রেণি</span></p>
-                                <p><b>রোল:</b> <span id="rcpt_roll">001</span> | <b>মাস:</b> <span id="rcpt_month">জানুয়ারি</span></p>
+                                <p><b>রোল:</b> <span id="rcpt_roll">001</span> | <b>মাস/সেশন:</b> <span id="rcpt_month">জানুয়ারি</span></p>
                             </div>
                         </div>
 
@@ -280,7 +297,7 @@
                             <thead>
                                 <tr class="bg-emerald-800 text-white">
                                     <th class="border p-2">ক্র.নং</th>
-                                    <th class="border p-2">ফি-র বিবরণ / খাত</th>
+                                    <th class="border p-2">ফি-র বিবরণ / বিবরণ</th>
                                     <th class="border p-2 text-center">টাকার পরিমাণ</th>
                                 </tr>
                             </thead>
@@ -314,7 +331,7 @@
     </div>
 
     <script>
-        // ধারাবায়িকভাবে নুরানী থেকে ফাজিল পর্যন্ত শ্রেণির তালিকা
+        // ধারাবায়িকভাবে নুরানী থেকে ফাজিল পর্যন্ত ১৫টি শ্রেণির তালিকা
         const MASTER_CLASS_LIST = [
             "নুরানী প্রথম শ্রেণি",
             "নুরানী দ্বিতীয় শ্রেণি",
@@ -363,37 +380,73 @@
 
             mainPanel.classList.remove('hidden');
 
-            if(panelType === 'admission') {
+            if (panelType === 'admission') {
                 headerTitle.innerHTML = `<i class="fa-solid fa-user-plus mr-2 text-emerald-700"></i> ১. ভর্তি ফি (Admission Fee) কালেকশন প্যানেল`;
                 typeSelect.innerHTML = `<option value="ভর্তি ফি (Admission Fee)">ভর্তি ফি (Admission Fee)</option>`;
                 typeSelect.disabled = true;
-            } else {
-                typeSelect.disabled = false;
+            } 
+            else if (panelType === 'monthly') {
+                headerTitle.innerHTML = `<i class="fa-solid fa-calendar-days mr-2 text-teal-700"></i> ২. মাসিক ফি (Monthly Fee) কালেকশন প্যানেল`;
                 typeSelect.innerHTML = `
-                    <option value="ভর্তি ফি (Admission Fee)">১. ভর্তি ফি (Admission Fee)</option>
-                    <option value="পরীক্ষা ফি (Exam Fee)">২. পরীক্ষা ফি (Exam Fee)</option>
-                    <option value="রেজিস্ট্রেশন ফি (Registration Fee)">৩. রেজিস্ট্রেশন ফি (Registration Fee)</option>
-                    <option value="ফরম পূরণ ফি (Form Fill-up Fee)">৪. ফরম পূরণ ফি (Form Fill-up Fee)</option>
-                    <option value="মাসিক বেতন (Tuition Fee)">৫. মাসিক বেতন (Tuition Fee)</option>
-                    <option value="জরিমানা (Late Fee / Fine)">৬. জরিমানা (Late Fee / Fine)</option>
-                    <option value="অন্যান্য ফি (Other Fee)">৭. অন্যান্য ফি (Other Fee)</option>
+                    <option value="মাসিক বেতন - জানুয়ারি">মাসিক বেতন (জানুয়ারি)</option>
+                    <option value="মাসিক বেতন - ফেব্রুয়ারি">মাসিক বেতন (ফেব্রুয়ারি)</option>
+                    <option value="মাসিক বেতন - মার্চ">মাসিক বেতন (মার্চ)</option>
+                    <option value="মাসিক বেতন - এপ্রিল">মাসিক বেতন (এপ্রিল)</option>
+                    <option value="মাসিক বেতন - মে">মাসিক বেতন (মে)</option>
+                    <option value="মাসিক বেতন - জুন">মাসিক বেতন (জুন)</option>
+                    <option value="মাসিক বেতন - জুলাই">মাসিক বেতন (জুলাই)</option>
+                    <option value="মাসিক বেতন - আগস্ট">মাসিক বেতন (আগস্ট)</option>
+                    <option value="মাসিক বেতন - সেপ্টেম্বর">মাসিক বেতন (সেপ্টেম্বর)</option>
+                    <option value="মাসিক বেতন - অক্টোবর">মাসিক বেতন (অক্টোবর)</option>
+                    <option value="মাসিক বেতন - নভেম্বর">মাসিক বেতন (নভেম্বর)</option>
+                    <option value="মাসিক বেতন - ডিসেম্বর">মাসিক বেতন (ডিসেম্বর)</option>
                 `;
-
-                let panelConfig = {
-                    'exam': { title: '২. পরীক্ষা ফি (Exam Fee) কালেকশন প্যানেল', defaultType: 'পরীক্ষা ফি (Exam Fee)' },
-                    'registration': { title: '৩. রেজিস্ট্রেশন ফি (Registration Fee) প্যানেল', defaultType: 'রেজিস্ট্রেশন ফি (Registration Fee)' },
-                    'formfill': { title: '৪. ফরম পূরণ ফি (Form Fill-up Fee) কালেকশন প্যানেল', defaultType: 'ফরম পূরণ ফি (Form Fill-up Fee)' },
-                    'tuition': { title: '৫. টিউশন ফি (Tuition Fee) / মাসিক বেতন প্যানেল', defaultType: 'মাসিক বেতন (Tuition Fee)' },
-                    'latefee': { title: '৬. জরিমানা (Late Fee / Fine) কালেকশন প্যানেল', defaultType: 'জরিমানা (Late Fee / Fine)' },
-                    'otherfees': { title: '৭. অন্যান্য ফি (Other Fees) কালেকশন প্যানেল', defaultType: 'অন্যান্য ফি (Other Fee)' },
-                    'duelist': { title: '৮. বকেয়া ফি (Due List) ফিল্টার ও আদায় প্যানেল', defaultType: 'মাসিক বেতন (Tuition Fee)' },
-                    'report': { title: '৯. ফি কালেকশন ও রিপোর্ট প্যানেল', defaultType: 'মাসিক বেতন (Tuition Fee)' }
-                };
-
-                if(panelConfig[panelType]) {
-                    headerTitle.innerHTML = `<i class="fa-solid fa-receipt mr-2"></i> ${panelConfig[panelType].title}`;
-                    typeSelect.value = panelConfig[panelType].defaultType;
-                }
+                typeSelect.disabled = false;
+            }
+            else if (panelType === 'exam') {
+                headerTitle.innerHTML = `<i class="fa-solid fa-file-pen mr-2 text-blue-700"></i> ৩. পরীক্ষা ফি (Exam Fee) কালেকশন প্যানেল`;
+                typeSelect.innerHTML = `
+                    <option value="অর্ধ বার্ষিক পরীক্ষা">১. অর্ধ বার্ষিক পরীক্ষা</option>
+                    <option value="বার্ষিক পরীক্ষা">২. বার্ষিক পরীক্ষা</option>
+                    <option value="প্রাক্ নির্বাচনী পরীক্ষা">৩. প্রাক্ নির্বাচনী পরীক্ষা</option>
+                    <option value="নির্বাচনী পরীক্ষা">৪. নির্বাচনী পরীক্ষা</option>
+                    <option value="প্রথম টিউটোরিয়াল পরীক্ষা">৫. প্রথম টিউটোরিয়াল পরীক্ষা</option>
+                    <option value="দ্বিতীয় টিউটোরিয়াল পরীক্ষা">৬. দ্বিতীয় টিউটোরিয়াল পরীক্ষা</option>
+                    <option value="মডেল টেস্ট">৭. মডেল টেস্ট</option>
+                    <option value="বৃত্তি পরীক্ষা">৮. বৃত্তি পরীক্ষা</option>
+                    <option value="অন্যান্য">৯. অন্যান্য</option>
+                `;
+                typeSelect.disabled = false;
+            }
+            else if (panelType === 'registration') {
+                headerTitle.innerHTML = `<i class="fa-solid fa-address-card mr-2 text-purple-700"></i> ৪. রেজিস্ট্রেশন ফি (Registration Fee) প্যানেল`;
+                typeSelect.innerHTML = `<option value="রেজিস্ট্রেশন ফি (Registration Fee)">রেজিস্ট্রেশন ফি (Registration Fee)</option>`;
+                typeSelect.disabled = true;
+            }
+            else if (panelType === 'formfill') {
+                headerTitle.innerHTML = `<i class="fa-solid fa-file-invoice mr-2 text-amber-700"></i> ৫. ফরম পূরণ ফি (Form Fill-up Fee) প্যানেল`;
+                typeSelect.innerHTML = `<option value="ফরম পূরণ ফি (Form Fill-up Fee)">ফরম পূরণ ফি (Form Fill-up Fee)</option>`;
+                typeSelect.disabled = true;
+            }
+            else if (panelType === 'latefee') {
+                headerTitle.innerHTML = `<i class="fa-solid fa-clock-rotate-left mr-2 text-rose-700"></i> ৬. জরিমানা (Late Fee / Fine) প্যানেল`;
+                typeSelect.innerHTML = `<option value="জরিমানা (Late Fee / Fine)">জরিমানা (Late Fee / Fine)</option>`;
+                typeSelect.disabled = true;
+            }
+            else if (panelType === 'otherfees') {
+                headerTitle.innerHTML = `<i class="fa-solid fa-list-check mr-2 text-indigo-700"></i> ৭. অন্যান্য ফি (Other Fees) প্যানেল`;
+                typeSelect.innerHTML = `<option value="অন্যান্য ফি (Other Fee)">অন্যান্য ফি (Other Fee)</option>`;
+                typeSelect.disabled = true;
+            }
+            else if (panelType === 'duelist') {
+                headerTitle.innerHTML = `<i class="fa-solid fa-triangle-exclamation mr-2 text-cyan-700"></i> ৮. বকেয়া ফি (Due List) ও আদায় প্যানেল`;
+                typeSelect.innerHTML = `<option value="বকেয়া ফি আদায়">বকেয়া ফি আদায়</option>`;
+                typeSelect.disabled = true;
+            }
+            else if (panelType === 'report') {
+                headerTitle.innerHTML = `<i class="fa-solid fa-chart-line mr-2 text-violet-700"></i> ৯. ফি কালেকশন ও রিপোর্ট প্যানেল`;
+                typeSelect.innerHTML = `<option value="ফি জমা">ফি জমা</option>`;
+                typeSelect.disabled = false;
             }
 
             renderFeeHistoryTable();
@@ -405,7 +458,7 @@
             window.scrollTo({ top: 0, behavior: 'smooth' });
         }
 
-        // স্টুডেন্ট ম্যানেজমেন্ট মডিউল (Student Profile Data) থেকে অটো ফেচ করার ফাংশন
+        // স্টুডেন্ট প্রোফাইল ডাটাবেস থেকে অটো সিঙ্ক ফাংশন
         function autoFetchStudentByClassRoll() {
             let selectedClass = document.getElementById('fee_class_select').value;
             let rollInput = document.getElementById('fee_roll_input').value.trim();
@@ -419,7 +472,6 @@
                 return;
             }
 
-            // Student Management Module Data Connect
             let students = JSON.parse(localStorage.getItem('madrasah_students_all')) || JSON.parse(localStorage.getItem('students_list')) || [];
             
             let found = students.find(s => {
@@ -432,8 +484,6 @@
                 nameDisplay.value = found.name_bn || found.name || found.studentName;
                 idDisplay.value = found.id || found.studentId;
             } else {
-                // স্টুডেন্ট প্রফাইলে না পাওয়া গেলে অটো জেনারেটেড ফলব্যাক আইডি
-                let classPrefix = selectedClass.substring(0, 3);
                 nameDisplay.value = `শিক্ষার্থী (রোল: ${rollInput})`;
                 idDisplay.value = `STU-${new Date().getFullYear()}-${rollInput}`;
             }
@@ -489,7 +539,7 @@
             accountsIncome.push(incomeRecord);
             localStorage.setItem('madrasah_accounts_income', JSON.stringify(accountsIncome));
 
-            // ৩. রসিদ প্যানেলে ডেটা বসানো
+            // ৩. মানি রসিদে তথ্য বসানো
             document.getElementById('rcpt_no').innerText = receiptNo;
             document.getElementById('rcpt_id').innerText = id;
             document.getElementById('rcpt_name').innerText = name;
@@ -515,7 +565,7 @@
             renderFeeHistoryTable();
             document.getElementById('moneyReceiptContainer').scrollIntoView({ behavior: 'smooth' });
             
-            alert('ফি সফলভাবে সংরক্ষণ করা হয়েছে এবং অ্যাকাউন্টস মডিউলে আয় হিসেবে জমা হয়েছে!');
+            alert('ফি সফলভাবে সংরক্ষণ করা হয়েছে এবং অ্যাকাউন্টস মডিউলে জমা হয়েছে!');
         }
 
         function renderFeeHistoryTable() {

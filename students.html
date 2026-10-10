@@ -6,7 +6,6 @@
     <title>Student Management - Abdullah Hat Islamia Fazil Madrasah</title>
     <script src="https://cdn.tailwindcss.com"></script>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
-    <!-- QRCode Generator Library -->
     <script src="https://cdnjs.cloudflare.com/ajax/libs/qrcodejs/1.0.0/qrcode.min.js"></script>
     <style>
         @media print {
@@ -35,7 +34,6 @@
 
     <div class="flex h-screen overflow-hidden">
         
-        <!-- Sidebar -->
         <aside class="w-72 bg-emerald-900 text-white flex flex-col shadow-lg overflow-y-auto no-print">
             <div class="p-4 bg-emerald-950 text-center border-b border-emerald-800 sticky top-0 z-10">
                 <h1 class="font-bold text-base">AHIFM ERP</h1>
@@ -68,7 +66,6 @@
             </nav>
         </aside>
 
-        <!-- Main Content Area -->
         <div class="flex-1 flex flex-col overflow-y-auto">
             
             <header class="bg-white shadow-sm p-4 flex justify-between items-center no-print">
@@ -78,26 +75,25 @@
 
             <main class="p-6 space-y-6">
 
-                <!-- 9 Cards Grid -->
                 <div class="grid grid-cols-1 md:grid-cols-3 gap-6 no-print">
                     <div onclick="openStudentPanel('admission')" class="bg-white p-5 rounded-2xl shadow-sm border border-gray-200 hover:border-emerald-500 cursor-pointer transition space-y-3">
                         <div class="flex justify-between items-center border-b pb-2"><h3 class="font-bold text-gray-800 text-sm"><i class="fa-solid fa-user-plus text-emerald-600 mr-2"></i> এডমিশন</h3><span class="text-xs bg-emerald-100 text-emerald-800 px-2 py-0.5 rounded font-bold">ভর্তি ফরম</span></div>
-                        <p class="text-xs text-gray-600">ছবি ও তথ্যসহ নতুন শিক্ষার্থী ভর্তি করান।</p>
+                        <p class="text-xs text-gray-600">ছবি ও তথ্যসহ সঠিক শ্রেণিক্রম অনুযায়ী নতুন শিক্ষার্থী ভর্তি করান।</p>
                     </div>
 
                     <div onclick="openStudentPanel('registration')" class="bg-white p-5 rounded-2xl shadow-sm border border-gray-200 hover:border-blue-500 cursor-pointer transition space-y-3">
-                        <div class="flex justify-between items-center border-b pb-2"><h3 class="font-bold text-gray-800 text-sm"><i class="fa-solid fa-id-card text-blue-600 mr-2"></i> রেজিস্ট্রেশন</h3><span class="text-xs bg-blue-100 text-blue-800 px-2 py-0.5 rounded font-bold">বোর্ড/মাদ্রাসা</span></div>
-                        <p class="text-xs text-gray-600">রেজিস্ট্রেশন ও তালিকা অনুমোদন প্যানেল।</p>
+                        <div class="flex justify-between items-center border-b pb-2"><h3 class="font-bold text-gray-800 text-sm"><i class="fa-solid fa-id-card text-blue-600 mr-2"></i> রেজিস্ট্রেশন</h3><span class="text-xs bg-blue-100 text-blue-800 px-2 py-0.5 rounded font-bold">ফিল্টারিং সহ</span></div>
+                        <p class="text-xs text-gray-600">সাল, শ্রেণি ও সার্চ বাটন সম্বলিত রেজিস্ট্রেশন প্যানেল।</p>
                     </div>
 
                     <div onclick="openStudentPanel('idcard')" class="bg-white p-5 rounded-2xl shadow-sm border border-gray-200 hover:border-purple-500 cursor-pointer transition space-y-3">
-                        <div class="flex justify-between items-center border-b pb-2"><h3 class="font-bold text-gray-800 text-sm"><i class="fa-solid fa-address-card text-purple-600 mr-2"></i> আইডি কার্ড মডিউল</h3><span class="text-xs bg-purple-100 text-purple-800 px-2 py-0.5 rounded font-bold">ডিজিটাল আইডি</span></div>
-                        <p class="text-xs text-gray-600">স্বতন্ত্র প্যানেল থেকে আইডি কার্ড জেনারেট ও প্রিন্ট।</p>
+                        <div class="flex justify-between items-center border-b pb-2"><h3 class="font-bold text-gray-800 text-sm"><i class="fa-solid fa-address-card text-purple-600 mr-2"></i> আইডি কার্ড মডিউল</h3><span class="text-xs bg-purple-100 text-purple-800 px-2 py-0.5 rounded font-bold">QR ও প্রিন্ট</span></div>
+                        <p class="text-xs text-gray-600">ফিল্টারিং এবং রিয়েল QR কোডযুক্ত ডিজিটাল আইডি কার্ড।</p>
                     </div>
 
                     <div onclick="openStudentPanel('profile')" class="bg-white p-5 rounded-2xl shadow-sm border border-gray-200 hover:border-amber-500 cursor-pointer transition space-y-3">
-                        <div class="flex justify-between items-center border-b pb-2"><h3 class="font-bold text-gray-800 text-sm"><i class="fa-solid fa-id-badge text-amber-600 mr-2"></i> স্টুডেন্টস প্রোফাইল</h3><span class="text-xs bg-amber-100 text-amber-800 px-2 py-0.5 rounded font-bold">অ্যাক্টিভ/ভিউ</span></div>
-                        <p class="text-xs text-gray-600">লাইফটাইম রেকর্ড ও বিস্তারিত প্রোফাইল ভিউ।</p>
+                        <div class="flex justify-between items-center border-b pb-2"><h3 class="font-bold text-gray-800 text-sm"><i class="fa-solid fa-id-badge text-amber-600 mr-2"></i> স্টুডেন্টস প্রোফাইল</h3><span class="text-xs bg-amber-100 text-amber-800 px-2 py-0.5 rounded font-bold">ফিল্টার ও সার্চ</span></div>
+                        <p class="text-xs text-gray-600">লাইফটাইম রেকর্ড, অর্জন ও বিস্তারিত প্রোফাইল ভিউ।</p>
                     </div>
 
                     <div onclick="openStudentPanel('class_section')" class="bg-white p-5 rounded-2xl shadow-sm border border-gray-200 hover:border-teal-500 cursor-pointer transition space-y-3">
@@ -106,27 +102,26 @@
                     </div>
 
                     <div onclick="openStudentPanel('promotion')" class="bg-white p-5 rounded-2xl shadow-sm border border-gray-200 hover:border-indigo-500 cursor-pointer transition space-y-3">
-                        <div class="flex justify-between items-center border-b pb-2"><h3 class="font-bold text-gray-800 text-sm"><i class="fa-solid fa-arrow-up-right-dots text-indigo-600 mr-2"></i> স্টুডেন্টস প্রমোশন</h3><span class="text-xs bg-indigo-100 text-indigo-800 px-2 py-0.5 rounded font-bold">অটো প্রমোশন</span></div>
-                        <p class="text-xs text-gray-600">পরবর্তী শ্রেণিতে স্বয়ংক্রিয় প্রমোশন প্যানেল।</p>
+                        <div class="flex justify-between items-center border-b pb-2"><h3 class="font-bold text-gray-800 text-sm"><i class="fa-solid fa-arrow-up-right-dots text-indigo-600 mr-2"></i> স্টুডেন্টস প্রমোশন</h3><span class="text-xs bg-indigo-100 text-indigo-800 px-2 py-0.5 rounded font-bold">ফিল্টারিং সহ</span></div>
+                        <p class="text-xs text-gray-600">ফিল্টার ও সার্চ বাটনযুক্ত অটো প্রমোশন প্যানেল।</p>
                     </div>
 
                     <div onclick="openStudentPanel('transfer')" class="bg-white p-5 rounded-2xl shadow-sm border border-gray-200 hover:border-rose-500 cursor-pointer transition space-y-3">
-                        <div class="flex justify-between items-center border-b pb-2"><h3 class="font-bold text-gray-800 text-sm"><i class="fa-solid fa-right-left text-rose-600 mr-2"></i> টিসি (TC)</h3><span class="text-xs bg-rose-100 text-rose-800 px-2 py-0.5 rounded font-bold">টিসি সার্টিফিকেট</span></div>
-                        <p class="text-xs text-gray-600">ফিল্টারিং করে টিসি ইস্যু ও স্ট্যাটাস আপডেট।</p>
+                        <div class="flex justify-between items-center border-b pb-2"><h3 class="font-bold text-gray-800 text-sm"><i class="fa-solid fa-right-left text-rose-600 mr-2"></i> টিসি (TC)</h3><span class="text-xs bg-rose-100 text-rose-800 px-2 py-0.5 rounded font-bold">ফিল্টারিং সহ</span></div>
+                        <p class="text-xs text-gray-600">ফিল্টার ও সার্চ বাটনযুক্ত টিসি ইস্যু প্যানেল।</p>
                     </div>
 
                     <div onclick="openStudentPanel('search')" class="bg-white p-5 rounded-2xl shadow-sm border border-gray-200 hover:border-cyan-500 cursor-pointer transition space-y-3">
-                        <div class="flex justify-between items-center border-b pb-2"><h3 class="font-bold text-gray-800 text-sm"><i class="fa-solid fa-magnifying-glass text-cyan-600 mr-2"></i> সার্চ স্টুডেন্ট</h3><span class="text-xs bg-cyan-100 text-cyan-800 px-2 py-0.5 rounded font-bold">সার্চ বাটন</span></div>
-                        <p class="text-xs text-gray-600">নাম বা আইডি দিয়ে নিখুঁত সার্চ প্যানেল।</p>
+                        <div class="flex justify-between items-center border-b pb-2"><h3 class="font-bold text-gray-800 text-sm"><i class="fa-solid fa-magnifying-glass text-cyan-600 mr-2"></i> সার্চ স্টুডেন্ট</h3><span class="text-xs bg-cyan-100 text-cyan-800 px-2 py-0.5 rounded font-bold">সার্চ প্যানেল</span></div>
+                        <p class="text-xs text-gray-600">সাল ও শ্রেণি ফিল্টারসহ নিখুঁত সার্চ প্যানেল।</p>
                     </div>
 
                     <div onclick="openStudentPanel('documents')" class="bg-white p-5 rounded-2xl shadow-sm border border-gray-200 hover:border-sky-500 cursor-pointer transition space-y-3">
-                        <div class="flex justify-between items-center border-b pb-2"><h3 class="font-bold text-sky-800 text-sm"><i class="fa-solid fa-folder-open text-sky-600 mr-2"></i> স্টুডেন্ট ডকুমেন্ট</h3><span class="text-xs bg-sky-100 text-sky-800 px-2 py-0.5 rounded font-bold">ডকুমেন্ট আর্কাইভ</span></div>
-                        <p class="text-xs text-gray-600">জন্ম নিবন্ধন ও সার্টিফিকেট আর্কাইভ।</p>
+                        <div class="flex justify-between items-center border-b pb-2"><h3 class="font-bold text-sky-800 text-sm"><i class="fa-solid fa-folder-open text-sky-600 mr-2"></i> স্টুডেন্ট ডকুমেন্ট</h3><span class="text-xs bg-sky-100 text-sky-800 px-2 py-0.5 rounded font-bold">ফিল্টারিং সহ</span></div>
+                        <p class="text-xs text-gray-600">ফিল্টার ও সার্চ বাটনযুক্ত ডকুমেন্ট আর্কাইভ।</p>
                     </div>
                 </div>
 
-                <!-- 1. ADMISSION PANEL -->
                 <div id="panel-admission" class="student-sub-panel bg-white p-6 rounded-2xl shadow-sm border border-gray-200 space-y-6 hidden no-print">
                     <div class="flex justify-between items-center border-b pb-3">
                         <h3 class="font-bold text-emerald-800 text-sm"><i class="fa-solid fa-user-plus mr-2"></i> ১. নতুন শিক্ষার্থী ভর্তি ফরম</h3>
@@ -140,7 +135,7 @@
                             <select id="adm_year" onchange="generateStudentId()" class="w-full p-2 border rounded-lg font-bold settings-year-dropdown"></select>
                         </div>
                         <div>
-                            <label class="font-bold text-gray-700 mb-1 block">শ্রেণি *</label>
+                            <label class="font-bold text-gray-700 mb-1 block">শ্রেণি (সঠিক ক্রম) *</label>
                             <select id="adm_class" onchange="generateStudentId()" class="w-full p-2 border rounded-lg font-bold settings-class-dropdown"></select>
                         </div>
                         <div>
@@ -148,7 +143,7 @@
                             <input type="text" id="adm_roll" onkeyup="generateStudentId()" value="001" class="w-full p-2 border rounded-lg font-bold text-emerald-700" required>
                         </div>
                         <div>
-                            <label class="font-bold text-gray-700 mb-1 block">আইডি নম্বর (৯ ডিজিট)</label>
+                            <label class="font-bold text-gray-700 mb-1 block">আইডি নম্বর</label>
                             <input type="text" id="adm_id" value="202606001" class="w-full p-2 border rounded-lg bg-gray-100 font-bold text-blue-700" readonly>
                         </div>
                         <div>
@@ -193,14 +188,13 @@
                     </form>
                 </div>
 
-                <!-- 2. REGISTRATION PANEL -->
                 <div id="panel-registration" class="student-sub-panel bg-white p-6 rounded-2xl shadow-sm border border-gray-200 space-y-4 hidden no-print">
                     <div class="flex justify-between items-center border-b pb-3">
                         <h3 class="font-bold text-blue-800 text-sm"><i class="fa-solid fa-id-card mr-2"></i> ২. রেজিস্ট্রেশন ম্যানেজমেন্ট</h3>
                         <button onclick="closeAllPanels()" class="text-xs bg-gray-200 px-3 py-1 rounded font-bold text-gray-700">বন্ধ করুন</button>
                     </div>
                     
-                    <div class="bg-blue-50 p-4 rounded-xl border border-blue-200 grid grid-cols-1 sm:grid-cols-4 gap-3 items-end text-xs no-print">
+                    <div class="bg-blue-50 p-4 rounded-xl border border-blue-200 grid grid-cols-1 sm:grid-cols-4 gap-3 items-end text-xs">
                         <div>
                             <label class="font-bold block mb-1">সাল:</label>
                             <select id="reg_filter_year" class="p-2 border rounded bg-white font-bold w-full settings-year-dropdown"></select>
@@ -234,20 +228,19 @@
                     </div>
                 </div>
 
-                <!-- 3. INDEPENDENT ID CARD MODULE PANEL -->
                 <div id="panel-idcard" class="student-sub-panel bg-white p-6 rounded-2xl shadow-sm border border-gray-200 space-y-4 hidden">
                     <div class="flex justify-between items-center border-b pb-3 no-print">
-                        <h3 class="font-bold text-purple-800 text-sm"><i class="fa-solid fa-address-card mr-2"></i> ৩. আইডি কার্ড মডিউল (ডিজিটাল কার্ড ও QR কোড)</h3>
+                        <h3 class="font-bold text-purple-800 text-sm"><i class="fa-solid fa-address-card mr-2"></i> ৩. আইডি কার্ড মডিউল (ডিজিটাল কার্ড ও স্পষ্ট QR কোড)</h3>
                         <button onclick="closeAllPanels()" class="text-xs bg-gray-200 px-3 py-1 rounded font-bold text-gray-700">বন্ধ করুন</button>
                     </div>
                     
                     <div class="bg-purple-50 p-4 rounded-xl border border-purple-200 grid grid-cols-1 sm:grid-cols-4 gap-3 items-end text-xs no-print">
                         <div>
-                            <label class="font-bold block mb-1">সাল (ঐচ্ছিক):</label>
+                            <label class="font-bold block mb-1">সাল:</label>
                             <select id="idcard_filter_year" class="p-2 border rounded bg-white font-bold w-full settings-year-dropdown"></select>
                         </div>
                         <div>
-                            <label class="font-bold block mb-1">শ্রেণি (ঐচ্ছিক):</label>
+                            <label class="font-bold block mb-1">শ্রেণি:</label>
                             <select id="idcard_filter_class" class="p-2 border rounded bg-white font-bold w-full settings-class-dropdown"></select>
                         </div>
                         <div>
@@ -259,30 +252,28 @@
                         </div>
                     </div>
 
-                    <!-- Clear Watermark & High Contrast ID Card Preview Box -->
-                    <div id="idCardPreviewContainer" class="hidden w-[310px] mx-auto bg-white text-gray-900 rounded-xl p-3.5 shadow-2xl space-y-2 border-2 border-emerald-800 relative overflow-hidden">
+                    <div id="idCardPreviewContainer" class="hidden w-[300px] mx-auto bg-white text-gray-900 rounded-xl p-3 shadow-xl space-y-2 border border-emerald-700 relative overflow-hidden">
                         
-                        <!-- HIGH VISIBILITY CLEAR WATERMARK -->
                         <div class="absolute inset-0 flex items-center justify-center opacity-30 pointer-events-none z-0">
-                            <span id="watermarkText" class="text-4xl font-black text-emerald-800 tracking-wider">AHIFM</span>
+                            <span id="watermarkText" class="text-4xl font-black text-emerald-800 tracking-widest">AHIFM</span>
                         </div>
 
-                        <div class="flex items-center gap-2 border-b-2 border-emerald-800 pb-2 relative z-10">
-                            <div id="card_logo_box" class="w-10 h-10 bg-emerald-900 text-white rounded-full flex items-center justify-center font-bold text-xs overflow-hidden shrink-0 shadow">লোগো</div>
+                        <div class="flex items-center gap-2 border-b border-emerald-800 pb-2 relative z-10">
+                            <div id="card_logo_box" class="w-9 h-9 bg-emerald-900 text-white rounded-full flex items-center justify-center font-bold text-xs overflow-hidden shrink-0 shadow">লোগো</div>
                             <div class="overflow-hidden">
                                 <h4 class="font-bold text-[11px] text-emerald-900 truncate" id="card_inst_name">আবদুল্লাহ হাট ইসলামিয়া ফাজিল মাদ্রাসা</h4>
-                                <p class="text-[9px] text-gray-600 truncate font-semibold" id="card_inst_address">আব্দুল্লাহ্ হাট, সোনাইমুড়ী, নোয়াখালী</p>
+                                <p class="text-[9px] text-gray-600 truncate font-semibold" id="card_inst_address">কোম্পানীগঞ্জ, নোয়াখালী</p>
                             </div>
                         </div>
 
                         <div class="flex gap-2.5 items-center relative z-10 py-1">
-                            <div id="card_photo_box" class="w-20 h-24 bg-gray-100 rounded-lg border-2 border-gray-300 flex items-center justify-center overflow-hidden font-bold text-[10px] text-gray-400 shrink-0 shadow-sm">ছবি</div>
+                            <div id="card_photo_box" class="w-20 h-24 bg-gray-100 rounded border border-gray-300 flex items-center justify-center overflow-hidden font-bold text-[10px] text-gray-400 shrink-0 shadow-sm">ছবি</div>
                             <div class="space-y-0.5 text-xs w-full overflow-hidden">
                                 <p class="font-extrabold text-emerald-900 text-[11px] truncate" id="card_name_bn">নাম: --</p>
                                 <p class="text-[10px] font-bold text-blue-900 truncate" id="card_id_display">আইডি: --</p>
                                 <p class="text-[10px] font-bold text-gray-800 truncate" id="card_class_display">শ্রেণি: --</p>
                                 <p class="text-[10px] font-bold text-gray-800 truncate" id="card_roll_display">রোল: --</p>
-                                <p class="text-[10px] font-bold">ব্লাড গ্রুপ: <span class="text-red-600" id="card_blood_val">--</span></p>
+                                <p class="text-[10px] font-bold">ব্লাড: <span class="text-red-600" id="card_blood_val">--</span></p>
                             </div>
                         </div>
 
@@ -302,13 +293,12 @@
                     </div>
 
                     <div class="text-center pt-2 no-print">
-                        <button onclick="window.print()" class="bg-purple-700 text-white px-5 py-2 rounded-lg text-xs font-bold hover:bg-purple-800 shadow">
+                        <button onclick="window.print()" class="bg-purple-700 text-white px-5 py-2 rounded-lg text-xs font-bold hover:bg-purple-800 shadow-sm">
                             <i class="fa-solid fa-print mr-1"></i> আইডি কার্ড প্রিন্ট করুন
                         </button>
                     </div>
                 </div>
 
-                <!-- 4. PROFILE PANEL -->
                 <div id="panel-profile" class="student-sub-panel bg-white p-6 rounded-2xl shadow-sm border border-gray-200 space-y-4 hidden no-print">
                     <div class="flex justify-between items-center border-b pb-3">
                         <h3 class="font-bold text-amber-800 text-sm"><i class="fa-solid fa-id-badge mr-2"></i> ৪. স্টুডেন্টস প্রোফাইল</h3>
@@ -336,31 +326,103 @@
                     <div id="studentProfileContainer" class="space-y-3"></div>
                 </div>
 
-                <!-- 5. CLASS / SECTION PANEL -->
+                <div id="profileViewModal" class="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center hidden z-50">
+                    <div class="bg-white p-6 rounded-2xl max-w-xl w-full space-y-4 shadow-xl text-xs overflow-y-auto max-h-[90vh]">
+                        <div class="flex justify-between items-center border-b pb-2">
+                            <h4 class="font-bold text-sm text-emerald-800"><i class="fa-solid fa-user-graduate mr-1"></i> শিক্ষার্থীর বিস্তারিত প্রোফাইল ও অর্জন</h4>
+                            <button onclick="closeProfileModal()" class="text-red-600 font-bold">বন্ধ করুন X</button>
+                        </div>
+                        <div id="modalProfileContent" class="space-y-3 text-gray-700"></div>
+                    </div>
+                </div>
+
                 <div id="panel-class_section" class="student-sub-panel bg-white p-6 rounded-2xl shadow-sm border border-gray-200 space-y-4 hidden no-print">
                     <div class="flex justify-between items-center border-b pb-3">
-                        <h3 class="font-bold text-teal-800 text-sm"><i class="fa-solid fa-layer-group mr-2"></i> ৫. শ্রেণি ও সেকশন সেটআপ</h3>
+                        <h3 class="font-bold text-teal-800 text-sm"><i class="fa-solid fa-layer-group mr-2"></i> ৫. ক্লাস বা সেকশন</h3>
                         <button onclick="closeAllPanels()" class="text-xs bg-gray-200 px-3 py-1 rounded font-bold text-gray-700">বন্ধ করুন</button>
                     </div>
                 </div>
 
-                <!-- 6. PROMOTION PANEL -->
                 <div id="panel-promotion" class="student-sub-panel bg-white p-6 rounded-2xl shadow-sm border border-gray-200 space-y-4 hidden no-print">
                     <div class="flex justify-between items-center border-b pb-3">
                         <h3 class="font-bold text-indigo-800 text-sm"><i class="fa-solid fa-arrow-up-right-dots mr-2"></i> ৬. স্টুডেন্টস প্রমোশন</h3>
                         <button onclick="closeAllPanels()" class="text-xs bg-gray-200 px-3 py-1 rounded font-bold text-gray-700">বন্ধ করুন</button>
                     </div>
+
+                    <div class="bg-indigo-50 p-4 rounded-xl border border-indigo-200 grid grid-cols-1 sm:grid-cols-4 gap-3 items-end text-xs">
+                        <div>
+                            <label class="font-bold block mb-1">সাল:</label>
+                            <select id="promo_filter_year" class="p-2 border rounded bg-white font-bold w-full settings-year-dropdown"></select>
+                        </div>
+                        <div>
+                            <label class="font-bold block mb-1">শ্রেণি:</label>
+                            <select id="promo_filter_class" class="p-2 border rounded bg-white font-bold w-full settings-class-dropdown"></select>
+                        </div>
+                        <div>
+                            <label class="font-bold block mb-1">আইডি / রোল / নাম:</label>
+                            <input type="text" id="promo_filter_query" placeholder="সার্চ করুন..." class="p-2 border rounded bg-white font-bold w-full">
+                        </div>
+                        <div>
+                            <button onclick="loadPromotionTable()" class="w-full bg-indigo-700 text-white px-4 py-2 rounded font-bold hover:bg-indigo-800 shadow"><i class="fa-solid fa-magnifying-glass mr-1"></i> ফিল্টার / সার্চ</button>
+                        </div>
+                    </div>
+
+                    <div class="overflow-x-auto">
+                        <table class="w-full text-left border-collapse border border-gray-200 text-xs">
+                            <thead>
+                                <tr class="bg-indigo-700 text-white">
+                                    <th class="border p-2">আইডি</th>
+                                    <th class="border p-2">নাম</th>
+                                    <th class="border p-2">বর্তমান শ্রেণি</th>
+                                    <th class="border p-2">পরবর্তী শ্রেণি নির্ধারণ</th>
+                                    <th class="border p-2 text-center">প্রমোশন দিন</th>
+                                </tr>
+                            </thead>
+                            <tbody id="promotionTableBody"></tbody>
+                        </table>
+                    </div>
                 </div>
 
-                <!-- 7. TRANSFER PANEL -->
                 <div id="panel-transfer" class="student-sub-panel bg-white p-6 rounded-2xl shadow-sm border border-gray-200 space-y-4 hidden no-print">
                     <div class="flex justify-between items-center border-b pb-3">
                         <h3 class="font-bold text-rose-800 text-sm"><i class="fa-solid fa-right-left mr-2"></i> ৭. টিসি (TC)</h3>
                         <button onclick="closeAllPanels()" class="text-xs bg-gray-200 px-3 py-1 rounded font-bold text-gray-700">বন্ধ করুন</button>
                     </div>
+
+                    <div class="bg-rose-50 p-4 rounded-xl border border-rose-200 grid grid-cols-1 sm:grid-cols-4 gap-3 items-end text-xs">
+                        <div>
+                            <label class="font-bold block mb-1">সাল:</label>
+                            <select id="tc_filter_year" class="p-2 border rounded bg-white font-bold w-full settings-year-dropdown"></select>
+                        </div>
+                        <div>
+                            <label class="font-bold block mb-1">শ্রেণি:</label>
+                            <select id="tc_filter_class" class="p-2 border rounded bg-white font-bold w-full settings-class-dropdown"></select>
+                        </div>
+                        <div>
+                            <label class="font-bold block mb-1">আইডি / রোল / নাম:</label>
+                            <input type="text" id="tc_filter_query" placeholder="সার্চ করুন..." class="p-2 border rounded bg-white font-bold w-full">
+                        </div>
+                        <div>
+                            <button onclick="loadTcTable()" class="w-full bg-rose-700 text-white px-4 py-2 rounded font-bold hover:bg-rose-800 shadow"><i class="fa-solid fa-magnifying-glass mr-1"></i> ফিল্টার / সার্চ</button>
+                        </div>
+                    </div>
+
+                    <div class="overflow-x-auto">
+                        <table class="w-full text-left border-collapse border border-gray-200 text-xs">
+                            <thead>
+                                <tr class="bg-rose-700 text-white">
+                                    <th class="border p-2">আইডি</th>
+                                    <th class="border p-2">নাম</th>
+                                    <th class="border p-2">শ্রেণি</th>
+                                    <th class="border p-2">স্ট্যাটাস</th>
+                                    <th class="border p-2 text-center">টিসি ইস্যু</th>
+                                </tr>
+                            </thead>
+                            <tbody id="tcTableBody"></tbody>
+                        </table>
+                    </div>
                 </div>
 
-                <!-- 8. SEARCH PANEL -->
                 <div id="panel-search" class="student-sub-panel bg-white p-6 rounded-2xl shadow-sm border border-gray-200 space-y-4 hidden no-print">
                     <div class="flex justify-between items-center border-b pb-3">
                         <h3 class="font-bold text-cyan-800 text-sm"><i class="fa-solid fa-magnifying-glass mr-2"></i> ৮. সার্চ স্টুডেন্ট</h3>
@@ -381,7 +443,7 @@
                             <input type="text" id="liveSearchInput" placeholder="নাম, আইডি, রোল বা মোবাইল..." class="p-2 border rounded bg-white font-bold w-full">
                         </div>
                         <div>
-                            <button onclick="loadSearchTable()" class="w-full bg-cyan-700 text-white px-4 py-2 rounded font-bold hover:bg-cyan-800 shadow"><i class="fa-solid fa-magnifying-glass mr-1"></i> সার্চ করুন</button>
+                            <button onclick="executeSearch()" class="w-full bg-cyan-700 text-white px-4 py-2 rounded font-bold hover:bg-cyan-800 shadow"><i class="fa-solid fa-magnifying-glass mr-1"></i> সার্চ করুন</button>
                         </div>
                     </div>
 
@@ -393,6 +455,7 @@
                                     <th class="border p-2">নাম</th>
                                     <th class="border p-2">শ্রেণি</th>
                                     <th class="border p-2">মোবাইল</th>
+                                    <th class="border p-2 text-center">কার্যক্রম</th>
                                 </tr>
                             </thead>
                             <tbody id="searchTableBody"></tbody>
@@ -400,11 +463,54 @@
                     </div>
                 </div>
 
-                <!-- 9. DOCUMENTS PANEL -->
                 <div id="panel-documents" class="student-sub-panel bg-white p-6 rounded-2xl shadow-sm border border-gray-200 space-y-4 hidden no-print">
                     <div class="flex justify-between items-center border-b pb-3">
                         <h3 class="font-bold text-sky-800 text-sm"><i class="fa-solid fa-folder-open mr-2"></i> ৯. স্টুডেন্ট ডকুমেন্ট</h3>
                         <button onclick="closeAllPanels()" class="text-xs bg-gray-200 px-3 py-1 rounded font-bold text-gray-700">বন্ধ করুন</button>
+                    </div>
+
+                    <div class="bg-sky-50 p-4 rounded-xl border border-sky-200 grid grid-cols-1 sm:grid-cols-4 gap-3 items-end text-xs">
+                        <div>
+                            <label class="font-bold block mb-1">সাল:</label>
+                            <select id="doc_filter_year" class="p-2 border rounded bg-white font-bold w-full settings-year-dropdown"></select>
+                        </div>
+                        <div>
+                            <label class="font-bold block mb-1">শ্রেণি:</label>
+                            <select id="doc_filter_class" class="p-2 border rounded bg-white font-bold w-full settings-class-dropdown"></select>
+                        </div>
+                        <div>
+                            <label class="font-bold block mb-1">আইডি / রোল / মোবাইল:</label>
+                            <input type="text" id="doc_filter_query" placeholder="আইডি/রোল/মোবাইল..." class="p-2 border rounded bg-white font-bold w-full">
+                        </div>
+                        <div>
+                            <button onclick="loadDocumentArchive()" class="w-full bg-sky-700 text-white px-4 py-2 rounded font-bold hover:bg-sky-800 shadow"><i class="fa-solid fa-magnifying-glass mr-1"></i> ফিল্টার / সার্চ</button>
+                        </div>
+                    </div>
+
+                    <div class="bg-sky-50 p-4 rounded-xl border border-sky-200 space-y-3 text-xs">
+                        <h4 class="font-bold text-sky-900">নতুন ডকুমেন্ট আপলোড ও সংরক্ষণ করুন:</h4>
+                        <div class="grid grid-cols-1 md:grid-cols-3 gap-3">
+                            <input type="text" id="doc_student_id" placeholder="শিক্ষার্থীর আইডি" class="p-2 border rounded bg-white">
+                            <input type="text" id="doc_title" placeholder="ডকুমেন্টের নাম" class="p-2 border rounded bg-white">
+                            <input type="file" id="doc_file" class="p-1 border rounded bg-white">
+                        </div>
+                        <div class="flex justify-end">
+                            <button onclick="saveStudentDocument()" class="bg-sky-700 text-white px-4 py-2 rounded font-bold hover:bg-sky-800">সংরক্ষণ করুন</button>
+                        </div>
+                    </div>
+
+                    <div class="overflow-x-auto pt-2">
+                        <table class="w-full text-left border-collapse border border-gray-200 text-xs">
+                            <thead>
+                                <tr class="bg-sky-700 text-white">
+                                    <th class="border p-2">স্টুডেন্ট আইডি</th>
+                                    <th class="border p-2">ডকুমেন্টের বিবরণ</th>
+                                    <th class="border p-2">সংরক্ষিত তারিখ</th>
+                                    <th class="border p-2 text-center">কার্যক্রম</th>
+                                </tr>
+                            </thead>
+                            <tbody id="documentArchiveTable"></tbody>
+                        </table>
                     </div>
                 </div>
 
@@ -412,9 +518,8 @@
         </div>
     </div>
 
-    <!-- JavaScript Engine -->
     <script>
-        // নির্দিষ্ট ক্রমানুসারে শ্রেণি তালিকা (১ - ১৫)
+        // ১ থেকে ১৫ পর্যন্ত সঠিক শ্রেণিক্রম (Master Class List)
         const MASTER_CLASS_LIST = [
             "নুরানী প্রথম শ্রেণি", "নুরানী দ্বিতীয় শ্রেণি", "নুরানী তৃতীয় শ্রেণি", 
             "ইবতেদায়ী চতুর্থ শ্রেণি", "ইবতেদায়ী পঞ্চম শ্রেণি", "দাখিল ষষ্ঠ শ্রেণি", 
@@ -446,7 +551,6 @@
             if(admClass) {
                 admClass.innerHTML = '';
                 classes.forEach((c) => {
-                    // MASTER_CLASS_LIST অনুযায়ী ইনডেক্স থেকে ০১, ০২... ১৫ পর্যন্ত কোড নেওয়া
                     let masterIdx = MASTER_CLASS_LIST.indexOf(c);
                     let code = masterIdx !== -1 ? (masterIdx + 1).toString().padStart(2, '0') : "01";
                     admClass.innerHTML += `<option value="${code}">${c}</option>`;
@@ -462,8 +566,11 @@
                 target.scrollIntoView({ behavior: 'smooth' });
             }
             if(panelName === 'search') loadSearchTable();
-            if(panelName === 'profile') loadProfileSection();
             if(panelName === 'registration') loadRegTables();
+            if(panelName === 'promotion') loadPromotionTable();
+            if(panelName === 'transfer') loadTcTable();
+            if(panelName === 'profile') loadProfileSection();
+            if(panelName === 'documents') loadDocumentArchive();
         }
 
         function closeAllPanels() {
@@ -476,8 +583,6 @@
             const classSelect = document.getElementById('adm_class');
             const classCode = classSelect ? classSelect.value : "01";
             let roll = document.getElementById('adm_roll').value.trim().padStart(3, '0');
-            
-            // আইডি তৈরি: সাল (৪ ডিজিট) + শ্রেণি কোড (২ ডিজিট) + রোল (৩ ডিজিট) = ৯ ডিজিট
             document.getElementById('adm_id').value = year + classCode + roll;
         }
 
@@ -488,6 +593,7 @@
 
             let studentData = {
                 year: document.getElementById('adm_year').value,
+                admissionYear: document.getElementById('adm_year').value,
                 cls: classSelect.options[classSelect.selectedIndex].text,
                 classCode: classSelect.value,
                 roll: document.getElementById('adm_roll').value.trim(),
@@ -499,7 +605,9 @@
                 dob: document.getElementById('adm_dob').value,
                 blood: document.getElementById('adm_blood').value,
                 f_mobile: document.getElementById('adm_f_mobile').value.trim(),
-                registered: true
+                registered: true,
+                tc: false,
+                history: [{ year: document.getElementById('adm_year').value, class: classSelect.options[classSelect.selectedIndex].text, achievement: "ভর্তি সম্পন্ন।" }]
             };
 
             let students = JSON.parse(localStorage.getItem('madrasah_students_all')) || [];
@@ -528,8 +636,9 @@
             if(!students || students.length === 0) {
                 students = [
                     { 
-                        year: "২০২৬", cls: "দাখিল ষষ্ঠ শ্রেণি", classCode: "06", roll: "001", id: "202606001", 
-                        name_bn: "মো: আব্দুল্লাহ", name_en: "Md. Abdullah", father: "মো: ইব্রাহিম", blood: "A+", f_mobile: "01800000000", registered: true 
+                        year: "২০২৬", admissionYear: "২০২৬", cls: "দাখিল ষষ্ঠ শ্রেণি", classCode: "06", roll: "001", id: "202606001", 
+                        name_bn: "মো: আব্দুল্লাহ", name_en: "Md. Abdullah", father: "মো: ইব্রাহিম", blood: "A+", f_mobile: "01800000000", registered: true, tc: false,
+                        history: [{ year: "২০২৬", class: "দাখিল ষষ্ঠ শ্রেণি", achievement: "সেরা উপস্থিতি" }]
                     }
                 ];
                 localStorage.setItem('madrasah_students_all', JSON.stringify(students));
@@ -537,14 +646,14 @@
             return students;
         }
 
-        // Dedicated ID Card Generator Function
+        // ID Card Generator with Clear Watermark
         function generateIdCard() {
             const query = document.getElementById('idCardSearchInput').value.trim().toLowerCase();
             const filterYear = document.getElementById('idcard_filter_year').value;
             const filterClass = document.getElementById('idcard_filter_class').value;
             
             if(!query && !filterYear && !filterClass) {
-                alert('দয়া করে সার্চ বক্সে আইডি/রোল/নাম/মোবাইল অথবা যেকোনো একটি ফিল্টার সিলেক্ট করুন!');
+                alert('দয়া করে আইডি/রোল/নাম লিখুন অথবা ফিল্টার সিলেক্ট করুন!');
                 return;
             }
 
@@ -562,17 +671,15 @@
                 return;
             }
 
-            // Settings Management থেকে ফেচ করা
             let genInfo = JSON.parse(localStorage.getItem('madrasah_general_info')) || {};
             let savedLogo = localStorage.getItem('madrasah_logo_url');
             let savedWatermark = localStorage.getItem('madrasah_watermark_url') || savedLogo;
             let principalSign = localStorage.getItem('madrasah_principal_sign') || localStorage.getItem('madrasah_signature');
 
             document.getElementById('card_inst_name').innerText = genInfo.name_bn || "আবদুল্লাহ হাট ইসলামিয়া ফাজিল মাদ্রাসা";
-            document.getElementById('card_inst_address').innerText = genInfo.address || "আব্দুল্লাহ্ হাট, সোনাইমুড়ী, নোয়াখালী";
+            document.getElementById('card_inst_address').innerText = genInfo.address || "কোম্পানীগঞ্জ, নোয়াখালী";
             document.getElementById('card_inst_mobile').innerText = "মাদ্রাসা: " + (genInfo.phone || "01814-716405");
             
-            // ওয়াটারমার্ক সেটআপ (স্পষ্ট ও বড় দৃশ্যমান)
             const watermarkElem = document.getElementById('watermarkText');
             if(savedWatermark) {
                 watermarkElem.innerHTML = `<img src="${savedWatermark}" class="w-32 h-32 object-contain opacity-25">`;
@@ -580,7 +687,6 @@
                 watermarkElem.innerText = "AHIFM";
             }
 
-            // লোগো
             const logoBox = document.getElementById('card_logo_box');
             if(savedLogo) {
                 logoBox.innerHTML = `<img src="${savedLogo}" class="w-full h-full object-cover rounded-full">`;
@@ -588,7 +694,6 @@
                 logoBox.innerHTML = "লোগো";
             }
 
-            // অধ্যক্ষের সিগনেচার
             const signContainer = document.getElementById('card_sign_container');
             if(signContainer) {
                 if(principalSign) {
@@ -607,20 +712,18 @@
 
             const photoBox = document.getElementById('card_photo_box');
             if(found.photo) {
-                photoBox.innerHTML = `<img src="${found.photo}" class="w-full h-full object-cover rounded-lg">`;
+                photoBox.innerHTML = `<img src="${found.photo}" class="w-full h-full object-cover rounded">`;
             } else {
                 photoBox.innerHTML = "ছবি নেই";
             }
 
-            // QR Code জেনারেট
             const qrContainer = document.getElementById('realQrCodeContainer');
             qrContainer.innerHTML = '';
-            let qrText = `ID: ${found.id}\nName: ${found.name_bn}\nClass: ${found.cls}\nRoll: ${found.roll}\nMobile: ${found.f_mobile}`;
             try {
                 new QRCode(qrContainer, {
-                    text: qrText,
-                    width: 50,
-                    height: 50
+                    text: `ID: ${found.id}\nName: ${found.name_bn}\nClass: ${found.cls}\nRoll: ${found.roll}\nMobile: ${found.f_mobile}`,
+                    width: 48,
+                    height: 48
                 });
             } catch(e) {
                 qrContainer.innerHTML = "QR";
@@ -631,6 +734,7 @@
             previewContainer.scrollIntoView({ behavior: 'smooth' });
         }
 
+        // Profile Panel with Filtering
         function loadProfileSection() {
             const year = document.getElementById('prof_filter_year').value;
             const cls = document.getElementById('prof_filter_class').value;
@@ -669,6 +773,7 @@
             });
         }
 
+        // Search Panel
         function loadSearchTable() {
             const year = document.getElementById('search_filter_year').value;
             const cls = document.getElementById('search_filter_class').value;
@@ -695,6 +800,7 @@
             });
         }
 
+        // Registration Panel
         function loadRegTables() {
             const year = document.getElementById('reg_filter_year').value;
             const cls = document.getElementById('reg_filter_class').value;
@@ -719,6 +825,176 @@
             filtered.forEach((s) => {
                 tbody.innerHTML += `<tr><td class="border p-2 font-bold">${s.id}</td><td class="border p-2">${s.name_bn}</td><td class="border p-2">${s.cls}</td><td class="border p-2">${s.f_mobile}</td><td class="border p-2 text-center"><span class="text-green-700 font-bold">Approved</span></td></tr>`;
             });
+        }
+
+        // Promotion Panel
+        function loadPromotionTable() {
+            const year = document.getElementById('promo_filter_year').value;
+            const cls = document.getElementById('promo_filter_class').value;
+            const query = document.getElementById('promo_filter_query').value.trim().toLowerCase();
+
+            const students = getStoredStudents();
+            const tbody = document.getElementById('promotionTableBody');
+            tbody.innerHTML = '';
+
+            const filtered = students.filter(s => {
+                let matchYear = !year || s.year === year;
+                let matchCls = !cls || s.cls === cls;
+                let matchQuery = !query || s.id.toLowerCase().includes(query) || s.roll.toLowerCase().includes(query) || s.name_bn.toLowerCase().includes(query);
+                return !s.tc && matchYear && matchCls && matchQuery;
+            });
+
+            if(filtered.length === 0) {
+                tbody.innerHTML = `<tr><td colspan="5" class="border p-4 text-center text-gray-500 font-bold">কোনো শিক্ষার্থী পাওয়া যায়নি!</td></tr>`;
+                return;
+            }
+
+            filtered.forEach((s, i) => {
+                let originalIndex = students.indexOf(s);
+                let nextClassOptions = '';
+                let currentIndex = MASTER_CLASS_LIST.indexOf(s.cls);
+                MASTER_CLASS_LIST.forEach((c, cIdx) => {
+                    let selected = (cIdx === currentIndex + 1) ? 'selected' : '';
+                    nextClassOptions += `<option value="${c}" ${selected}>${c}</option>`;
+                });
+
+                tbody.innerHTML += `
+                    <tr>
+                        <td class="border p-2 font-bold">${s.id}</td>
+                        <td class="border p-2 font-bold">${s.name_bn}</td>
+                        <td class="border p-2">${s.cls}</td>
+                        <td class="border p-2">
+                            <select id="promo_target_${originalIndex}" class="p-1 border rounded text-xs font-bold">${nextClassOptions}</select>
+                        </td>
+                        <td class="border p-2 text-center">
+                            <button onclick="executePromotion(${originalIndex})" class="bg-indigo-600 text-white px-3 py-1 rounded font-bold hover:bg-indigo-700">প্রমোশন দিন</button>
+                        </td>
+                    </tr>
+                `;
+            });
+        }
+
+        function executePromotion(i) {
+            let students = getStoredStudents();
+            const targetCls = document.getElementById('promo_target_' + i).value;
+            const currentYear = new Date().getFullYear().toString();
+            
+            students[i].cls = targetCls;
+            students[i].year = currentYear;
+            if(!students[i].history) students[i].history = [];
+            students[i].history.push({ year: currentYear, class: targetCls, achievement: "প্রমোশন প্রাপ্ত।" });
+
+            localStorage.setItem('madrasah_students_all', JSON.stringify(students));
+            loadPromotionTable();
+            alert('শিক্ষার্থী সফলভাবে পরবর্তী শ্রেণীতে উন্নীত হয়েছে!');
+        }
+
+        // TC Panel
+        function loadTcTable() {
+            const year = document.getElementById('tc_filter_year').value;
+            const cls = document.getElementById('tc_filter_class').value;
+            const query = document.getElementById('tc_filter_query').value.trim().toLowerCase();
+
+            const students = getStoredStudents();
+            const tbody = document.getElementById('tcTableBody');
+            tbody.innerHTML = '';
+
+            const filtered = students.filter(s => {
+                let matchYear = !year || s.year === year;
+                let matchCls = !cls || s.cls === cls;
+                let matchQuery = !query || s.id.toLowerCase().includes(query) || s.roll.toLowerCase().includes(query) || s.name_bn.toLowerCase().includes(query);
+                return matchYear && matchCls && matchQuery;
+            });
+
+            if(filtered.length === 0) {
+                tbody.innerHTML = `<tr><td colspan="5" class="border p-4 text-center text-gray-500 font-bold">কোনো শিক্ষার্থী পাওয়া যায়নি!</td></tr>`;
+                return;
+            }
+
+            filtered.forEach((s) => {
+                let originalIndex = students.indexOf(s);
+                let st = s.tc ? `<span class="text-rose-600 font-bold">TC Issued</span>` : `<span class="text-emerald-700 font-bold">Active</span>`;
+                let btn = s.tc ? `Issued` : `<button onclick="issueTc(${originalIndex})" class="bg-rose-600 text-white px-2 py-1 rounded">টিসি দিন</button>`;
+                tbody.innerHTML += `<tr><td class="border p-2">${s.id}</td><td class="border p-2">${s.name_bn}</td><td class="border p-2">${s.cls}</td><td class="border p-2">${st}</td><td class="border p-2 text-center">${btn}</td></tr>`;
+            });
+        }
+
+        function issueTc(i) {
+            let students = getStoredStudents();
+            students[i].tc = true;
+            localStorage.setItem('madrasah_students_all', JSON.stringify(students));
+            loadTcTable();
+            alert('টিসি ইস্যু করা হয়েছে!');
+        }
+
+        // Document Archive Panel
+        function loadDocumentArchive() {
+            const year = document.getElementById('doc_filter_year').value;
+            const cls = document.getElementById('doc_filter_class').value;
+            const query = document.getElementById('doc_filter_query').value.trim().toLowerCase();
+
+            let docs = JSON.parse(localStorage.getItem('madrasah_student_docs')) || [];
+            let students = getStoredStudents();
+            const tbody = document.getElementById('documentArchiveTable');
+            tbody.innerHTML = '';
+
+            const filteredDocs = docs.filter(d => {
+                let student = students.find(s => s.id === d.studentId);
+                if(!student) return false;
+                let matchYear = !year || student.year === year;
+                let matchCls = !cls || student.cls === cls;
+                let matchQuery = !query || student.id.toLowerCase().includes(query) || student.f_mobile.includes(query);
+                return matchYear && matchCls && matchQuery;
+            });
+
+            if(filteredDocs.length === 0) {
+                tbody.innerHTML = `<tr><td colspan="4" class="border p-2 text-center text-gray-500">কোনো ডকুমেন্ট সংরক্ষিত নেই।</td></tr>`;
+                return;
+            }
+
+            filteredDocs.forEach((d) => {
+                let originalIndex = docs.indexOf(d);
+                let viewLink = d.file ? `<a href="${d.file}" target="_blank" class="text-blue-600 font-bold underline">দেখুন</a>` : 'ফাইল নেই';
+                tbody.innerHTML += `
+                    <tr>
+                        <td class="border p-2 font-bold">${d.studentId}</td>
+                        <td class="border p-2">${d.docTitle}</td>
+                        <td class="border p-2">${d.date}</td>
+                        <td class="border p-2 text-center">
+                            ${viewLink}
+                        </td>
+                    </tr>
+                `;
+            });
+        }
+
+        function saveStudentDocument() {
+            const studentId = document.getElementById('doc_student_id').value.trim();
+            const docTitle = document.getElementById('doc_title').value.trim();
+            const fileInput = document.getElementById('doc_file');
+
+            if(!studentId || !docTitle) {
+                alert('দয়া করে স্টুডেন্ট আইডি ও ডকুমেন্টের নাম লিখুন!');
+                return;
+            }
+
+            let docs = JSON.parse(localStorage.getItem('madrasah_student_docs')) || [];
+            let today = new Date().toLocaleDateString('bn-BD');
+
+            if(fileInput.files && fileInput.files[0]) {
+                const reader = new FileReader();
+                reader.onload = function(e) {
+                    docs.push({ studentId, docTitle, date: today, file: e.target.result });
+                    localStorage.setItem('madrasah_student_docs', JSON.stringify(docs));
+                    loadDocumentArchive();
+                    alert('ডকুমেন্ট সফলভাবে সংরক্ষিত হয়েছে!');
+                    document.getElementById('doc_student_id').value = '';
+                    document.getElementById('doc_title').value = '';
+                };
+                reader.readAsDataURL(fileInput.files[0]);
+            } else {
+                alert('দয়া করে ফাইল সিলেক্ট করুন!');
+            }
         }
 
         window.onload = function() {

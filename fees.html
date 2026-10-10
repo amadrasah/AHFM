@@ -100,7 +100,7 @@
                             <h3 class="font-bold text-gray-800 text-sm flex items-center gap-2"><i class="fa-solid fa-user-plus text-emerald-600"></i> 1. Admission Fee</h3>
                             <span class="text-xs bg-emerald-50 text-emerald-700 px-2 py-0.5 rounded font-semibold">ভর্তি ফি</span>
                         </div>
-                        <p class="text-xs text-gray-600 leading-relaxed">নতুন শিক্ষাবর্ষে শিক্ষার্থী ভর্তির সময় নির্ধারিত ভর্তি ফি কালেকশন ও রসিদ প্রদান।</p>
+                        <p class="text-xs text-gray-600 leading-relaxed">নতুন শিক্ষাবর্ষে শিক্ষার্থী ভর্তির সময় নির্ধারিত শুধু ভর্তি ফি কালেকশন ও রসিদ প্রদান।</p>
                         <button class="w-full bg-emerald-50 text-emerald-700 py-1.5 rounded text-xs font-bold hover:bg-emerald-100 transition">ভর্তি ফি প্যানেল খুলুন</button>
                     </div>
 
@@ -185,7 +185,7 @@
                         <button onclick="closeAllFeePanels()" class="text-xs bg-gray-200 px-3 py-1 rounded font-bold text-gray-700 hover:bg-gray-300">বন্ধ করুন</button>
                     </div>
                     
-                    <!-- Advanced Input Form (Works for all Panels) -->
+                    <!-- Advanced Input Form -->
                     <div class="grid grid-cols-1 sm:grid-cols-3 gap-4 bg-emerald-50 p-4 rounded-xl border border-emerald-200 text-xs items-end no-print">
                         <div>
                             <label class="font-bold block mb-1 text-gray-700">শিক্ষাবর্ষ / সাল *:</label>
@@ -201,7 +201,7 @@
                             </select>
                         </div>
                         <div>
-                            <label class="font-bold block mb-1 text-gray-700">শ্রেণি নির্বাচন *:</label>
+                            <label class="font-bold block mb-1 text-gray-700">শ্রেণি নির্বাচন (নুরানী থেকে ফাজিল) *:</label>
                             <select id="fee_class_select" onchange="autoFetchStudentByClassRoll()" class="p-2 border rounded bg-white w-full font-bold master-class-dropdown"></select>
                         </div>
                         <div>
@@ -209,24 +209,16 @@
                             <input type="text" id="fee_roll_input" onkeyup="autoFetchStudentByClassRoll()" placeholder="যেমন: 001" class="p-2 border rounded bg-white w-full font-bold">
                         </div>
                         <div>
-                            <label class="font-bold block mb-1 text-gray-700">শিক্ষার্থীর নাম (স্বয়ংক্রিয়):</label>
+                            <label class="font-bold block mb-1 text-gray-700">শিক্ষার্থীর নাম (স্টুডেন্ট প্রোফাইল থেকে):</label>
                             <input type="text" id="fee_name_display" placeholder="নাম স্বয়ংক্রিয়ভাবে আসবে..." class="p-2 border rounded bg-gray-100 w-full font-bold text-emerald-800" readonly>
                         </div>
                         <div>
-                            <label class="font-bold block mb-1 text-gray-700">স্টুডেন্ট আইডি (স্বয়ংক্রিয়):</label>
+                            <label class="font-bold block mb-1 text-gray-700">স্টুডেন্ট আইডি (স্টুডেন্ট প্রোফাইল থেকে):</label>
                             <input type="text" id="fee_id_display" placeholder="আইডি স্বয়ংক্রিয়ভাবে আসবে..." class="p-2 border rounded bg-gray-100 w-full font-bold text-blue-800" readonly>
                         </div>
                         <div>
                             <label class="font-bold block mb-1 text-gray-700">ফি-র খাত / ক্যাটাগরি *:</label>
-                            <select id="fee_type_select" class="p-2 border rounded bg-white w-full font-bold">
-                                <option value="ভর্তি ফি (Admission Fee)">১. ভর্তি ফি (Admission Fee)</option>
-                                <option value="পরীক্ষা ফি (Exam Fee)">২. পরীক্ষা ফি (Exam Fee)</option>
-                                <option value="রেজিস্ট্রেশন ফি (Registration Fee)">৩. রেজিস্ট্রেশন ফি (Registration Fee)</option>
-                                <option value="ফরম পূরণ ফি (Form Fill-up Fee)">৪. ফরম পূরণ ফি (Form Fill-up Fee)</option>
-                                <option value="মাসিক বেতন (Tuition Fee)">৫. মাসিক বেতন (Tuition Fee)</option>
-                                <option value="জরিমানা (Late Fee / Fine)">৬. জরিমানা (Late Fee / Fine)</option>
-                                <option value="অন্যান্য ফি (Other Fee)">৭. অন্যান্য ফি (Other Fee)</option>
-                            </select>
+                            <select id="fee_type_select" class="p-2 border rounded bg-white w-full font-bold"></select>
                         </div>
                         <div>
                             <label class="font-bold block mb-1 text-gray-700">টাকার পরিমাণ (BDT) *:</label>
@@ -295,7 +287,7 @@
                             <tbody>
                                 <tr>
                                     <td class="border p-2 text-center">১</td>
-                                    <td id="rcpt_feetype" class="border p-2 font-bold">মাসিক বেতন</td>
+                                    <td id="rcpt_feetype" class="border p-2 font-bold">ভর্তি ফি</td>
                                     <td id="rcpt_amount" class="border p-2 text-center font-bold">৫০০/-</td>
                                 </tr>
                             </tbody>
@@ -322,16 +314,29 @@
     </div>
 
     <script>
+        // ধারাবায়িকভাবে নুরানী থেকে ফাজিল পর্যন্ত শ্রেণির তালিকা
         const MASTER_CLASS_LIST = [
-            "নুরানী প্রথম শ্রেণি", "নুরানী দ্বিতীয় শ্রেণি", "নুরানী তৃতীয় শ্রেণি", 
-            "ইবতেদায়ী চতুর্থ শ্রেণি", "ইবতেদায়ী পঞ্চম শ্রেণি", "দাখিল ষষ্ঠ শ্রেণি", 
-            "দাখিল সপ্তম শ্রেণি", "দাখিল অষ্টম শ্রেণি", "দাখিল নবম শ্রেণি", "দাখিল দশম শ্রেণি",
-            "আলিম প্রথম বর্ষ", "আলিম দ্বিতীয় বর্ষ", "ফাজিল প্রথম বর্ষ", "ফাজিল দ্বিতীয় বর্ষ", "ফাজিল তৃতীয় বর্ষ"
+            "নুরানী প্রথম শ্রেণি",
+            "নুরানী দ্বিতীয় শ্রেণি",
+            "নুরানী তৃতীয় শ্রেণি", 
+            "ইবতেদায়ী চতুর্থ শ্রেণি",
+            "ইবতেদায়ী পঞ্চম শ্রেণি",
+            "দাখিল ষষ্ঠ শ্রেণি", 
+            "দাখিল সপ্তম শ্রেণি",
+            "দাখিল অষ্টম শ্রেণি",
+            "দাখিল নবম শ্রেণি",
+            "দাখিল দশম শ্রেণি",
+            "আলিম প্রথম বর্ষ",
+            "আলিম দ্বিতীয় বর্ষ",
+            "ফাজিল প্রথম বর্ষ",
+            "ফাজিল দ্বিতীয় বর্ষ",
+            "ফাজিল তৃতীয় বর্ষ"
         ];
 
+        let currentActivePanel = 'admission';
+
         function populateSettingsDropdowns() {
-            let years = JSON.parse(localStorage.getItem('madrasah_years')) || ["২০২৬", "২০২৭"];
-            let classes = JSON.parse(localStorage.getItem('madrasah_classes')) || MASTER_CLASS_LIST;
+            let years = JSON.parse(localStorage.getItem('madrasah_years')) || ["২০২৬", "২০২৭", "২০২৮"];
 
             document.querySelectorAll('.settings-year-dropdown').forEach(el => {
                 el.innerHTML = '';
@@ -340,16 +345,16 @@
 
             document.querySelectorAll('.master-class-dropdown').forEach(el => {
                 el.innerHTML = '<option value="">শ্রেণি নির্বাচন করুন</option>';
-                classes.forEach(c => el.innerHTML += `<option value="${c}">${c}</option>`);
+                MASTER_CLASS_LIST.forEach(c => el.innerHTML += `<option value="${c}">${c}</option>`);
             });
 
-            // জেনারেল সেটিংস থেকে ইনস্টটিউটের তথ্য আপগ্রেড করা
             let genInfo = JSON.parse(localStorage.getItem('madrasah_general_info')) || {};
             if(genInfo.name_bn) document.getElementById('receipt_inst_name').innerText = genInfo.name_bn;
             if(genInfo.address) document.getElementById('receipt_inst_address').innerText = genInfo.address;
         }
 
         function openFeePanel(panelType) {
+            currentActivePanel = panelType;
             document.querySelectorAll('.fee-sub-panel').forEach(p => p.classList.add('hidden'));
             
             const mainPanel = document.getElementById('panel-collection');
@@ -358,21 +363,37 @@
 
             mainPanel.classList.remove('hidden');
 
-            let panelConfig = {
-                'admission': { title: '১. ভর্তি ফি (Admission Fee) কালেকশন প্যানেল', defaultType: 'ভর্তি ফি (Admission Fee)' },
-                'exam': { title: '২. পরীক্ষা ফি (Exam Fee) কালেকশন প্যানেল', defaultType: 'পরীক্ষা ফি (Exam Fee)' },
-                'registration': { title: '৩. রেজিস্ট্রেশন ফি (Registration Fee) প্যানেল', defaultType: 'রেজিস্ট্রেশন ফি (Registration Fee)' },
-                'formfill': { title: '৪. ফরম পূরণ ফি (Form Fill-up Fee) কালেকশন প্যানেল', defaultType: 'ফরম পূরণ ফি (Form Fill-up Fee)' },
-                'tuition': { title: '৫. টিউশন ফি (Tuition Fee) / মাসিক বেতন প্যানেল', defaultType: 'মাসিক বেতন (Tuition Fee)' },
-                'latefee': { title: '৬. জরিমানা (Late Fee / Fine) কালেকশন প্যানেল', defaultType: 'জরিমানা (Late Fee / Fine)' },
-                'otherfees': { title: '৭. অন্যান্য ফি (Other Fees) কালেকশন প্যানেল', defaultType: 'অন্যান্য ফি (Other Fee)' },
-                'duelist': { title: '৮. বকেয়া ফি (Due List) ফিল্টার ও আদায় প্যানেল', defaultType: 'মাসিক বেতন (Tuition Fee)' },
-                'report': { title: '৯. ফি কালেকশন ও রিপোর্ট প্যানেল', defaultType: 'মাসিক বেতন (Tuition Fee)' }
-            };
+            if(panelType === 'admission') {
+                headerTitle.innerHTML = `<i class="fa-solid fa-user-plus mr-2 text-emerald-700"></i> ১. ভর্তি ফি (Admission Fee) কালেকশন প্যানেল`;
+                typeSelect.innerHTML = `<option value="ভর্তি ফি (Admission Fee)">ভর্তি ফি (Admission Fee)</option>`;
+                typeSelect.disabled = true;
+            } else {
+                typeSelect.disabled = false;
+                typeSelect.innerHTML = `
+                    <option value="ভর্তি ফি (Admission Fee)">১. ভর্তি ফি (Admission Fee)</option>
+                    <option value="পরীক্ষা ফি (Exam Fee)">২. পরীক্ষা ফি (Exam Fee)</option>
+                    <option value="রেজিস্ট্রেশন ফি (Registration Fee)">৩. রেজিস্ট্রেশন ফি (Registration Fee)</option>
+                    <option value="ফরম পূরণ ফি (Form Fill-up Fee)">৪. ফরম পূরণ ফি (Form Fill-up Fee)</option>
+                    <option value="মাসিক বেতন (Tuition Fee)">৫. মাসিক বেতন (Tuition Fee)</option>
+                    <option value="জরিমানা (Late Fee / Fine)">৬. জরিমানা (Late Fee / Fine)</option>
+                    <option value="অন্যান্য ফি (Other Fee)">৭. অন্যান্য ফি (Other Fee)</option>
+                `;
 
-            if(panelConfig[panelType]) {
-                headerTitle.innerHTML = `<i class="fa-solid fa-receipt mr-2"></i> ${panelConfig[panelType].title}`;
-                typeSelect.value = panelConfig[panelType].defaultType;
+                let panelConfig = {
+                    'exam': { title: '২. পরীক্ষা ফি (Exam Fee) কালেকশন প্যানেল', defaultType: 'পরীক্ষা ফি (Exam Fee)' },
+                    'registration': { title: '৩. রেজিস্ট্রেশন ফি (Registration Fee) প্যানেল', defaultType: 'রেজিস্ট্রেশন ফি (Registration Fee)' },
+                    'formfill': { title: '৪. ফরম পূরণ ফি (Form Fill-up Fee) কালেকশন প্যানেল', defaultType: 'ফরম পূরণ ফি (Form Fill-up Fee)' },
+                    'tuition': { title: '৫. টিউশন ফি (Tuition Fee) / মাসিক বেতন প্যানেল', defaultType: 'মাসিক বেতন (Tuition Fee)' },
+                    'latefee': { title: '৬. জরিমানা (Late Fee / Fine) কালেকশন প্যানেল', defaultType: 'জরিমানা (Late Fee / Fine)' },
+                    'otherfees': { title: '৭. অন্যান্য ফি (Other Fees) কালেকশন প্যানেল', defaultType: 'অন্যান্য ফি (Other Fee)' },
+                    'duelist': { title: '৮. বকেয়া ফি (Due List) ফিল্টার ও আদায় প্যানেল', defaultType: 'মাসিক বেতন (Tuition Fee)' },
+                    'report': { title: '৯. ফি কালেকশন ও রিপোর্ট প্যানেল', defaultType: 'মাসিক বেতন (Tuition Fee)' }
+                };
+
+                if(panelConfig[panelType]) {
+                    headerTitle.innerHTML = `<i class="fa-solid fa-receipt mr-2"></i> ${panelConfig[panelType].title}`;
+                    typeSelect.value = panelConfig[panelType].defaultType;
+                }
             }
 
             renderFeeHistoryTable();
@@ -384,7 +405,7 @@
             window.scrollTo({ top: 0, behavior: 'smooth' });
         }
 
-        // শ্রেণি ও রোল লিখলেই নাম ও আইডি স্বয়ংক্রিয়ভাবে শো করার ফাংশন
+        // স্টুডেন্ট ম্যানেজমেন্ট মডিউল (Student Profile Data) থেকে অটো ফেচ করার ফাংশন
         function autoFetchStudentByClassRoll() {
             let selectedClass = document.getElementById('fee_class_select').value;
             let rollInput = document.getElementById('fee_roll_input').value.trim();
@@ -398,15 +419,23 @@
                 return;
             }
 
-            let students = JSON.parse(localStorage.getItem('madrasah_students_all')) || [];
-            let found = students.find(s => s.cls === selectedClass && s.roll.padStart(3,'0') === rollInput.padStart(3,'0'));
+            // Student Management Module Data Connect
+            let students = JSON.parse(localStorage.getItem('madrasah_students_all')) || JSON.parse(localStorage.getItem('students_list')) || [];
+            
+            let found = students.find(s => {
+                let matchClass = (s.cls || s.className || s.class) === selectedClass;
+                let matchRoll = (s.roll || s.rollNo || s.studentRoll) == rollInput;
+                return matchClass && matchRoll;
+            });
 
             if(found) {
-                nameDisplay.value = found.name_bn;
-                idDisplay.value = found.id;
+                nameDisplay.value = found.name_bn || found.name || found.studentName;
+                idDisplay.value = found.id || found.studentId;
             } else {
-                nameDisplay.value = "শিক্ষার্থী পাওয়া যায়নি";
-                idDisplay.value = "N/A";
+                // স্টুডেন্ট প্রফাইলে না পাওয়া গেলে অটো জেনারেটেড ফলব্যাক আইডি
+                let classPrefix = selectedClass.substring(0, 3);
+                nameDisplay.value = `শিক্ষার্থী (রোল: ${rollInput})`;
+                idDisplay.value = `STU-${new Date().getFullYear()}-${rollInput}`;
             }
         }
 
@@ -421,7 +450,7 @@
             let amountStr = document.getElementById('fee_amount_val').value.trim();
             let amount = parseFloat(amountStr);
 
-            if(!cls || !roll || !id || id === "N/A" || isNaN(amount) || amount <= 0) {
+            if(!cls || !roll || !id || isNaN(amount) || amount <= 0) {
                 alert('দয়া করে সঠিক শ্রেণি, রোল দিয়ে বৈধ শিক্ষার্থী সিলেক্ট করুন এবং টাকার পরিমাণ লিখুন!');
                 return;
             }

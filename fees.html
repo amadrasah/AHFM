@@ -164,7 +164,7 @@
                             <h3 class="font-bold text-gray-800 text-sm flex items-center gap-2"><i class="fa-solid fa-triangle-exclamation text-cyan-600"></i> 8. Due List (বকেয়া)</h3>
                             <span class="text-xs bg-cyan-50 text-cyan-700 px-2 py-0.5 rounded font-semibold">বকেয়া তালিকা</span>
                         </div>
-                        <p class="text-xs text-gray-600 leading-relaxed">শেষ তারিখ অতিক্রান্ত বকেয়া ফি-র অটোমেটিক শিক্ষার্থীভিত্তিক তালিকা।</p>
+                        <p class="text-xs text-gray-600 leading-relaxed">শেষ তারিখ অতিক্রান্ত বকেয়া ফি-র ফিল্টারসহ অটোমেটিক শিক্ষার্থী তালিকা।</p>
                         <button class="w-full bg-cyan-50 text-cyan-700 py-1.5 rounded text-xs font-bold hover:bg-cyan-100 transition">বকেয়া তালিকা দেখুন</button>
                     </div>
 
@@ -179,7 +179,7 @@
 
                 </div>
 
-                <!-- NEW PANEL: CLASS-WISE FEE SETUP & DUE DATE CONFIGURATION -->
+                <!-- CLASS-WISE FEE SETUP & DUE DATE CONFIGURATION PANEL -->
                 <div id="panel-fee-setup" class="fee-sub-panel bg-white p-5 md:p-6 rounded-2xl shadow-sm border border-gray-200 space-y-6 hidden">
                     <div class="flex justify-between items-center border-b pb-3 no-print">
                         <h3 class="font-bold text-amber-800 text-base"><i class="fa-solid fa-sliders mr-2"></i> শ্রেণিভিত্তিক ফি ও পরিশোধের শেষ তারিখ (Due Date) নির্ধারণ</h3>
@@ -236,7 +236,7 @@
                     </div>
                 </div>
 
-                <!-- MAIN DYNAMIC PANEL FORM WITH CART (MULTI-FEE SUPPORT) -->
+                <!-- MAIN DYNAMIC PANEL FORM WITH CART -->
                 <div id="panel-collection" class="fee-sub-panel bg-white p-5 md:p-6 rounded-2xl shadow-sm border border-gray-200 space-y-6 hidden">
                     <div class="flex justify-between items-center border-b pb-3 no-print">
                         <h3 id="panel_header_title" class="font-bold text-emerald-800 text-base"><i class="fa-solid fa-receipt mr-2"></i> ফি কালেকশন ও মানি রিসিট জেনারেটর</h3>
@@ -244,7 +244,7 @@
                     </div>
                     
                     <!-- Form Controls -->
-                    <div class="grid grid-cols-1 sm:grid-cols-3 gap-4 bg-emerald-50 p-4 rounded-xl border border-emerald-200 text-xs items-end no-print">
+                    <div id="fee_input_form_wrapper" class="grid grid-cols-1 sm:grid-cols-3 gap-4 bg-emerald-50 p-4 rounded-xl border border-emerald-200 text-xs items-end no-print">
                         <div>
                             <label class="font-bold block mb-1 text-gray-700">শিক্ষাবর্ষ / সাল *:</label>
                             <select id="fee_year_select" class="p-2 border rounded bg-white w-full font-bold settings-year-dropdown"></select>
@@ -296,7 +296,7 @@
                     </div>
 
                     <!-- Cart Table -->
-                    <div class="no-print border rounded-xl bg-teal-50/50 p-4 space-y-3 border-teal-200">
+                    <div id="fee_cart_wrapper" class="no-print border rounded-xl bg-teal-50/50 p-4 space-y-3 border-teal-200">
                         <h4 class="font-bold text-xs text-teal-900 flex justify-between items-center">
                             <span><i class="fa-solid fa-basket-shopping mr-1"></i> এই রসিদের জন্য নির্বাচিত ফি তালিকা (একাধিক ফি একসাথে)</span>
                             <span class="font-bold text-emerald-800">মোট ফি: <span id="cartTotalDisplay">0</span>/-</span>
@@ -316,6 +316,32 @@
                         </table>
                         <div class="flex justify-end pt-2">
                             <button onclick="collectMultipleFees()" class="bg-emerald-700 text-white px-6 py-2.5 rounded-lg font-bold text-xs hover:bg-emerald-800 shadow transition"><i class="fa-solid fa-floppy-disk mr-1"></i> সকল ফি সংরক্ষণ ও মূল মানি রসিদ তৈরি করুন</button>
+                        </div>
+                    </div>
+
+                    <!-- DUE LIST FILTERING BAR (Appears only when Due List open) -->
+                    <div id="due_list_filter_bar" class="hidden no-print bg-cyan-50 p-4 rounded-xl border border-cyan-200 text-xs space-y-2">
+                        <h4 class="font-bold text-cyan-900 flex items-center gap-1.5"><i class="fa-solid fa-filter"></i> বকেয়া তালিকা ফিল্টারিং ফিল্ড:</h4>
+                        <div class="grid grid-cols-1 sm:grid-cols-3 gap-3">
+                            <div>
+                                <label class="font-bold block mb-1 text-gray-700">শ্রেণি অনুযায়ী ফিল্টার:</label>
+                                <select id="due_filter_class" onchange="renderAutomaticDueList()" class="p-2 border rounded bg-white w-full font-bold master-class-dropdown">
+                                    <option value="">সকল শ্রেণি</option>
+                                </select>
+                            </div>
+                            <div>
+                                <label class="font-bold block mb-1 text-gray-700">ফি-র খাত অনুযায়ী ফিল্টার:</label>
+                                <select id="due_filter_category" onchange="renderAutomaticDueList()" class="p-2 border rounded bg-white w-full font-bold">
+                                    <option value="">সকল ফি-র খাত</option>
+                                    <option value="মাসিক ফি">মাসিক ফি (Monthly Fee)</option>
+                                    <option value="পরীক্ষা ফি">পরীক্ষা ফি (Exam Fee)</option>
+                                    <option value="ফরম পূরণ ফি">ফরম পূরণ ফি (Form Fill-up Fee)</option>
+                                    <option value="রেজিস্ট্রেশন ফি">রেজিস্ট্রেশন ফি (Registration Fee)</option>
+                                </select>
+                            </div>
+                            <div class="flex items-end">
+                                <button onclick="resetDueFilters()" class="w-full bg-cyan-700 text-white p-2 rounded font-bold hover:bg-cyan-800 shadow transition"><i class="fa-solid fa-rotate-left mr-1"></i> ফিল্টার রিসেট করুন</button>
+                            </div>
                         </div>
                     </div>
 
@@ -450,7 +476,6 @@
             }
 
             let rules = JSON.parse(localStorage.getItem('madrasah_fee_rules')) || [];
-            // একই শ্রেণি এবং ক্যাটাগরির নিয়ম আগে থাকলে তা আপডেট করবে
             let existingIdx = rules.findIndex(r => r.category === category && r.className === className);
             
             let ruleObj = { category, className, amount, dueDate };
@@ -503,13 +528,23 @@
             const mainPanel = document.getElementById('panel-collection');
             const headerTitle = document.getElementById('panel_header_title');
             const typeSelect = document.getElementById('fee_type_select');
+            
+            const formWrapper = document.getElementById('fee_input_form_wrapper');
+            const cartWrapper = document.getElementById('fee_cart_wrapper');
+            const dueFilterBar = document.getElementById('due_list_filter_bar');
 
             mainPanel.classList.remove('hidden');
+
+            // রিসেট ফিল্টার ভিজিবিলিটি
+            formWrapper.classList.remove('hidden');
+            cartWrapper.classList.remove('hidden');
+            dueFilterBar.classList.add('hidden');
 
             if (panelType === 'admission') {
                 headerTitle.innerHTML = `<i class="fa-solid fa-user-plus mr-2 text-emerald-700"></i> ১. ভর্তি ফি (Admission Fee) কালেকশন প্যানেল`;
                 typeSelect.innerHTML = `<option value="ভর্তি ফি (Admission Fee)">ভর্তি ফি (Admission Fee)</option>`;
                 typeSelect.disabled = true;
+                renderFeeHistoryTable();
             } 
             else if (panelType === 'monthly') {
                 headerTitle.innerHTML = `<i class="fa-solid fa-calendar-days mr-2 text-teal-700"></i> ২. মাসিক ফি (Monthly Fee) কালেকশন প্যানেল`;
@@ -528,6 +563,7 @@
                     <option value="মাসিক বেতন - ডিসেম্বর">মাসিক বেতন (ডিসেম্বর)</option>
                 `;
                 typeSelect.disabled = false;
+                renderFeeHistoryTable();
             }
             else if (panelType === 'exam') {
                 headerTitle.innerHTML = `<i class="fa-solid fa-file-pen mr-2 text-blue-700"></i> ৩. পরীক্ষা ফি (Exam Fee) কালেকশন প্যানেল`;
@@ -543,37 +579,41 @@
                     <option value="অন্যান্য">৯. অন্যান্য</option>
                 `;
                 typeSelect.disabled = false;
+                renderFeeHistoryTable();
             }
             else if (panelType === 'registration') {
                 headerTitle.innerHTML = `<i class="fa-solid fa-address-card mr-2 text-purple-700"></i> ৪. রেজিস্ট্রেশন ফি (Registration Fee) প্যানেল`;
                 typeSelect.innerHTML = `<option value="রেজিস্ট্রেশন ফি (Registration Fee)">রেজিস্ট্রেশন ফি (Registration Fee)</option>`;
                 typeSelect.disabled = true;
+                renderFeeHistoryTable();
             }
             else if (panelType === 'formfill') {
                 headerTitle.innerHTML = `<i class="fa-solid fa-file-invoice mr-2 text-amber-700"></i> ৫. ফরম পূরণ ফি (Form Fill-up Fee) প্যানেল`;
                 typeSelect.innerHTML = `<option value="ফরম পূরণ ফি (Form Fill-up Fee)">ফরম পূরণ ফি (Form Fill-up Fee)</option>`;
                 typeSelect.disabled = true;
+                renderFeeHistoryTable();
             }
             else if (panelType === 'latefee') {
                 headerTitle.innerHTML = `<i class="fa-solid fa-clock-rotate-left mr-2 text-rose-700"></i> ৬. জরিমানা (Late Fee / Fine) প্যানেল`;
                 typeSelect.innerHTML = `<option value="জরিমানা (Late Fee / Fine)">জরিমানা (Late Fee / Fine)</option>`;
                 typeSelect.disabled = true;
+                renderFeeHistoryTable();
             }
             else if (panelType === 'otherfees') {
                 headerTitle.innerHTML = `<i class="fa-solid fa-list-check mr-2 text-indigo-700"></i> ৭. অন্যান্য ফি (Other Fees) প্যানেল`;
                 typeSelect.innerHTML = `<option value="অন্যান্য ফি (Other Fee)">অন্যান্য ফি (Other Fee)</option>`;
                 typeSelect.disabled = true;
+                renderFeeHistoryTable();
             }
             else if (panelType === 'duelist') {
-                headerTitle.innerHTML = `<i class="fa-solid fa-triangle-exclamation mr-2 text-cyan-700"></i> ৮. বকেয়া ফি (Due List) অটোমেটিক ট্র্যাকার`;
+                headerTitle.innerHTML = `<i class="fa-solid fa-triangle-exclamation mr-2 text-cyan-700"></i> ৮. বকেয়া ফি (Due List) ফিল্টার ট্র্যাকার`;
+                formWrapper.classList.add('hidden');
+                cartWrapper.classList.add('hidden');
+                dueFilterBar.classList.remove('hidden');
+                renderAutomaticDueList();
             }
             else if (panelType === 'report') {
                 headerTitle.innerHTML = `<i class="fa-solid fa-chart-line mr-2 text-violet-700"></i> ৯. ফি কালেকশন ও রিপোর্ট প্যানেল`;
-            }
-
-            if(panelType === 'duelist') {
-                renderAutomaticDueList();
-            } else {
                 renderFeeHistoryTable();
             }
             
@@ -614,7 +654,6 @@
                 idDisplay.value = `STU-${new Date().getFullYear()}-${rollInput}`;
             }
 
-            // সেট করা রুলস থাকলে অটোমেটিক ফি ফিলআপ করা
             let rules = JSON.parse(localStorage.getItem('madrasah_fee_rules')) || [];
             let feeCategory = document.getElementById('fee_type_select').value;
             let foundRule = rules.find(r => r.className === selectedClass && feeCategory.includes(r.category.split(' ')[0]));
@@ -763,20 +802,24 @@
             alert('সকল ফি সফলভাবে সংরক্ষণ করা হয়েছে এবং একটি সমন্বিত মানি রসিদ তৈরি হয়েছে!');
         }
 
-        // অটোমেটিক বকেয়া তালিকা (Due List) জেনারেটর
+        // অটোমেটিক বকেয়া তালিকা (Due List) ফিল্টারিং সহ জেনারেটর
         function renderAutomaticDueList() {
             let rules = JSON.parse(localStorage.getItem('madrasah_fee_rules')) || [];
             let students = JSON.parse(localStorage.getItem('madrasah_students_all')) || JSON.parse(localStorage.getItem('students_list')) || [];
             let collectedFees = JSON.parse(localStorage.getItem('madrasah_fees_collected')) || [];
 
-            let today = new Date().toISOString().split('T')[0];
+            let filterClass = document.getElementById('due_filter_class').value;
+            let filterCat = document.getElementById('due_filter_category').value;
 
+            let today = new Date().toISOString().split('T')[0];
             let dueStudentsList = [];
 
-            // শেষ তারিখ পার হওয়া রুলসগুলো ফিল্টার করা
             let expiredRules = rules.filter(r => r.dueDate < today);
 
             expiredRules.forEach(rule => {
+                if(filterCat && !rule.category.includes(filterCat)) return;
+                if(filterClass && rule.className !== filterClass) return;
+
                 let targetStudents = students.filter(s => (s.cls || s.className || s.class) === rule.className);
 
                 targetStudents.forEach(stu => {
@@ -784,7 +827,6 @@
                     let sName = stu.name_bn || stu.name || stu.studentName;
                     let sRoll = stu.roll || stu.rollNo || stu.studentRoll;
 
-                    // স্টুডেন্ট ফি পরিশোধ করেছে কিনা চেক
                     let isPaid = collectedFees.some(f => f.studentId === sId && f.feeType.includes(rule.category.split(' ')[0]));
 
                     if(!isPaid) {
@@ -806,7 +848,7 @@
             tbody.innerHTML = '';
 
             if(dueStudentsList.length === 0) {
-                tbody.innerHTML = `<tr><td colspan="7" class="border p-3 text-center text-emerald-700 font-bold">অভিনন্দন! নির্ধারিত শেষ তারিখ অতিক্রান্ত কোনো বকেয়া নেই।</td></tr>`;
+                tbody.innerHTML = `<tr><td colspan="7" class="border p-3 text-center text-emerald-700 font-bold">অভিনন্দন! নির্বাচিত ফিল্টারে কোনো বকেয়া নেই।</td></tr>`;
                 return;
             }
 
@@ -823,6 +865,12 @@
                     </tr>
                 `;
             });
+        }
+
+        function resetDueFilters() {
+            document.getElementById('due_filter_class').value = '';
+            document.getElementById('due_filter_category').value = '';
+            renderAutomaticDueList();
         }
 
         function renderFeeHistoryTable() {

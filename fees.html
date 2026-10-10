@@ -85,9 +85,10 @@
                 <div class="bg-gradient-to-r from-emerald-800 to-emerald-950 text-white p-5 md:p-6 rounded-2xl shadow-sm flex flex-col md:flex-row justify-between items-center gap-4 no-print">
                     <div>
                         <h2 class="text-lg md:text-xl font-bold">শিক্ষার্থী ফি ও কালেকশন ব্যবস্থাপনা প্যানেল</h2>
-                        <p class="text-emerald-200 text-xs mt-1">ভর্তি, মাসিক ফি, পরীক্ষা, রেজিস্ট্রেশন, ফরম পূরণ, বকেয়া তালিকা ও ফি কালেকশন রিপোর্ট।</p>
+                        <p class="text-emerald-200 text-xs mt-1">ভর্তি, মাসিক ফি, পরীক্ষা, রেজিস্ট্রেশন, ফরম পূরণ, ফি নির্ধারণ, বকেয়া তালিকা ও রিপোর্ট।</p>
                     </div>
-                    <div class="flex gap-2">
+                    <div class="flex flex-wrap gap-2">
+                        <button onclick="openFeeSetupPanel()" class="bg-amber-500 text-white px-4 py-2 rounded-xl font-bold text-xs hover:bg-amber-600 transition shadow-sm"><i class="fa-solid fa-sliders mr-1"></i> শ্রেণিভিত্তিক ফি নির্ধারণ</button>
                         <button onclick="openFeePanel('monthly')" class="bg-white text-emerald-900 px-4 py-2 rounded-xl font-bold text-xs hover:bg-emerald-50 transition shadow-sm"><i class="fa-solid fa-calendar-check mr-1"></i> মাসিক ফি জমা</button>
                     </div>
                 </div>
@@ -160,22 +161,79 @@
 
                     <div onclick="openFeePanel('duelist')" class="bg-white p-5 rounded-xl shadow-sm border-t-4 border-cyan-600 space-y-3 hover:shadow-md cursor-pointer transition">
                         <div class="flex items-center justify-between border-b pb-2">
-                            <h3 class="font-bold text-gray-800 text-sm flex items-center gap-2"><i class="fa-solid fa-triangle-exclamation text-cyan-600"></i> 8. Due List</h3>
+                            <h3 class="font-bold text-gray-800 text-sm flex items-center gap-2"><i class="fa-solid fa-triangle-exclamation text-cyan-600"></i> 8. Due List (বকেয়া)</h3>
                             <span class="text-xs bg-cyan-50 text-cyan-700 px-2 py-0.5 rounded font-semibold">বকেয়া তালিকা</span>
                         </div>
-                        <p class="text-xs text-gray-600 leading-relaxed">ফি বকেয়া থাকা শিক্ষার্থীদের শ্রেণিভিত্তিক ফিল্টারিং ও তালিকা ট্র্যাকিং।</p>
-                        <button class="w-full bg-cyan-50 text-cyan-700 py-1.5 rounded text-xs font-bold hover:bg-cyan-100 transition">বকেয়া তালিকা প্যানেল খুলুন</button>
+                        <p class="text-xs text-gray-600 leading-relaxed">শেষ তারিখ অতিক্রান্ত বকেয়া ফি-র অটোমেটিক শিক্ষার্থীভিত্তিক তালিকা।</p>
+                        <button class="w-full bg-cyan-50 text-cyan-700 py-1.5 rounded text-xs font-bold hover:bg-cyan-100 transition">বকেয়া তালিকা দেখুন</button>
                     </div>
 
-                    <div onclick="openFeePanel('report')" class="bg-white p-5 rounded-xl shadow-sm border-t-4 border-violet-600 space-y-3 hover:shadow-md cursor-pointer transition">
+                    <div onclick="openFeeSetupPanel()" class="bg-white p-5 rounded-xl shadow-sm border-t-4 border-amber-600 space-y-3 hover:shadow-md cursor-pointer transition">
                         <div class="flex items-center justify-between border-b pb-2">
-                            <h3 class="font-bold text-gray-800 text-sm flex items-center gap-2"><i class="fa-solid fa-chart-line text-violet-600"></i> 9. Collection Report</h3>
-                            <span class="text-xs bg-violet-50 text-violet-700 px-2 py-0.5 rounded font-semibold">রিপোর্ট</span>
+                            <h3 class="font-bold text-gray-800 text-sm flex items-center gap-2"><i class="fa-solid fa-sliders text-amber-600"></i> 9. Fee Setup</h3>
+                            <span class="text-xs bg-amber-50 text-amber-700 px-2 py-0.5 rounded font-semibold">ফি নির্ধারণ</span>
                         </div>
-                        <p class="text-xs text-gray-600 leading-relaxed">দৈনিক, মাসিক বা বার্ষিক কালেকশন সামারি ও রিপোর্ট জেনারেট।</p>
-                        <button class="w-full bg-violet-50 text-violet-700 py-1.5 rounded text-xs font-bold hover:bg-violet-100 transition">রিপোর্ট প্যানেল খুলুন</button>
+                        <p class="text-xs text-gray-600 leading-relaxed">শ্রেণিভিত্তিক সকল ফি এবং পরিশোধের শেষ তারিখ নির্ধারণ করুন।</p>
+                        <button class="w-full bg-amber-50 text-amber-700 py-1.5 rounded text-xs font-bold hover:bg-amber-100 transition">ফি নির্ধারণ করুন</button>
                     </div>
 
+                </div>
+
+                <!-- NEW PANEL: CLASS-WISE FEE SETUP & DUE DATE CONFIGURATION -->
+                <div id="panel-fee-setup" class="fee-sub-panel bg-white p-5 md:p-6 rounded-2xl shadow-sm border border-gray-200 space-y-6 hidden">
+                    <div class="flex justify-between items-center border-b pb-3 no-print">
+                        <h3 class="font-bold text-amber-800 text-base"><i class="fa-solid fa-sliders mr-2"></i> শ্রেণিভিত্তিক ফি ও পরিশোধের শেষ তারিখ (Due Date) নির্ধারণ</h3>
+                        <button onclick="closeAllFeePanels()" class="text-xs bg-gray-200 px-3 py-1 rounded font-bold text-gray-700 hover:bg-gray-300">বন্ধ করুন</button>
+                    </div>
+
+                    <div class="grid grid-cols-1 sm:grid-cols-4 gap-4 bg-amber-50 p-4 rounded-xl border border-amber-200 text-xs items-end no-print">
+                        <div>
+                            <label class="font-bold block mb-1 text-gray-700">ফি-র খাত নির্বাচন করুন *:</label>
+                            <select id="setup_fee_category" class="p-2 border rounded bg-white w-full font-bold">
+                                <option value="মাসিক ফি (Monthly Fee)">১. মাসিক ফি (Monthly Fee)</option>
+                                <option value="পরীক্ষা ফি (Exam Fee)">২. পরীক্ষা ফি (Exam Fee)</option>
+                                <option value="ফরম পূরণ ফি (Form Fill-up Fee)">৩. ফরম পূরণ ফি (Form Fill-up Fee)</option>
+                                <option value="রেজিস্ট্রেশন ফি (Registration Fee)">৪. রেজিস্ট্রেশন ফি (Registration Fee)</option>
+                            </select>
+                        </div>
+
+                        <div>
+                            <label class="font-bold block mb-1 text-gray-700">শ্রেণি নির্বাচন করুন *:</label>
+                            <select id="setup_class_select" class="p-2 border rounded bg-white w-full font-bold master-class-dropdown"></select>
+                        </div>
+
+                        <div>
+                            <label class="font-bold block mb-1 text-gray-700">নির্ধারিত ফি (BDT) *:</label>
+                            <input type="number" id="setup_fee_amount" placeholder="যেমন: ৫০০" class="p-2 border rounded bg-white w-full font-bold">
+                        </div>
+
+                        <div>
+                            <label class="font-bold block mb-1 text-gray-700">পরিশোধের শেষ তারিখ (Due Date) *:</label>
+                            <input type="date" id="setup_due_date" class="p-2 border rounded bg-white w-full font-bold">
+                        </div>
+
+                        <div class="sm:col-span-4 flex justify-end">
+                            <button onclick="saveFeeSettingRule()" class="bg-amber-600 text-white px-6 py-2 rounded font-bold hover:bg-amber-700 shadow transition"><i class="fa-solid fa-check mr-1"></i> ফি ও শেষ তারিখ সংরক্ষণ করুন</button>
+                        </div>
+                    </div>
+
+                    <!-- Configured Rules Table -->
+                    <div class="overflow-x-auto border rounded-xl bg-white p-3 space-y-2">
+                        <h4 class="font-bold text-xs text-gray-700"><i class="fa-solid fa-list-check mr-1"></i> নির্ধারিত ফি ও ডেডলাইন নিয়মাবলী</h4>
+                        <table class="w-full text-left border-collapse border border-gray-200 text-xs">
+                            <thead>
+                                <tr class="bg-amber-800 text-white">
+                                    <th class="border p-2">ক্র.নং</th>
+                                    <th class="border p-2">ফি-র খাত</th>
+                                    <th class="border p-2">শ্রেণি</th>
+                                    <th class="border p-2 text-center">নির্ধারিত ফি</th>
+                                    <th class="border p-2 text-center">পরিশোধের শেষ তারিখ (Due Date)</th>
+                                    <th class="border p-2 text-center">অ্যাকশন</th>
+                                </tr>
+                            </thead>
+                            <tbody id="feeRulesTableBody"></tbody>
+                        </table>
+                    </div>
                 </div>
 
                 <!-- MAIN DYNAMIC PANEL FORM WITH CART (MULTI-FEE SUPPORT) -->
@@ -237,7 +295,7 @@
                         </div>
                     </div>
 
-                    <!-- Cart / Multiple Fee Items Selected Table -->
+                    <!-- Cart Table -->
                     <div class="no-print border rounded-xl bg-teal-50/50 p-4 space-y-3 border-teal-200">
                         <h4 class="font-bold text-xs text-teal-900 flex justify-between items-center">
                             <span><i class="fa-solid fa-basket-shopping mr-1"></i> এই রসিদের জন্য নির্বাচিত ফি তালিকা (একাধিক ফি একসাথে)</span>
@@ -261,15 +319,15 @@
                         </div>
                     </div>
 
-                    <!-- Filtered Record Table for History -->
+                    <!-- Filtered Due / Collection History Table -->
                     <div class="overflow-x-auto no-print border rounded-xl bg-white p-3 space-y-2">
                         <h4 class="font-bold text-xs text-gray-700 flex justify-between items-center">
-                            <span><i class="fa-solid fa-list mr-1"></i> জমা হওয়া ফি তালিকা (হিস্ট্রি)</span>
+                            <span id="history_table_title"><i class="fa-solid fa-list mr-1"></i> জমা হওয়া ফি তালিকা (হিস্ট্রি)</span>
                             <button onclick="renderFeeHistoryTable()" class="text-xs text-blue-700 underline font-bold">রিফ্রেশ করুন</button>
                         </h4>
                         <table class="w-full text-left border-collapse border border-gray-200 text-xs">
                             <thead>
-                                <tr class="bg-emerald-800 text-white">
+                                <tr class="bg-emerald-800 text-white" id="history_table_head">
                                     <th class="border p-2 text-center">রসিদ নং</th>
                                     <th class="border p-2">তারিখ</th>
                                     <th class="border p-2">আইডি</th>
@@ -316,9 +374,7 @@
                                     <th class="border p-2 text-center">টাকার পরিমাণ</th>
                                 </tr>
                             </thead>
-                            <tbody id="receiptItemsTableBody">
-                                <!-- Dynamic Cart Items Will Render Here -->
-                            </tbody>
+                            <tbody id="receiptItemsTableBody"></tbody>
                         </table>
 
                         <div class="flex justify-between items-center font-bold border-t pt-2">
@@ -373,6 +429,71 @@
             let genInfo = JSON.parse(localStorage.getItem('madrasah_general_info')) || {};
             if(genInfo.name_bn) document.getElementById('receipt_inst_name').innerText = genInfo.name_bn;
             if(genInfo.address) document.getElementById('receipt_inst_address').innerText = genInfo.address;
+        }
+
+        function openFeeSetupPanel() {
+            closeAllFeePanels();
+            document.getElementById('panel-fee-setup').classList.remove('hidden');
+            renderFeeRulesTable();
+            document.getElementById('panel-fee-setup').scrollIntoView({ behavior: 'smooth' });
+        }
+
+        function saveFeeSettingRule() {
+            let category = document.getElementById('setup_fee_category').value;
+            let className = document.getElementById('setup_class_select').value;
+            let amount = parseFloat(document.getElementById('setup_fee_amount').value.trim());
+            let dueDate = document.getElementById('setup_due_date').value;
+
+            if(!className || isNaN(amount) || amount <= 0 || !dueDate) {
+                alert('দয়া করে শ্রেণি, টাকার সঠিক পরিমাণ এবং পরিশোধের শেষ তারিখ সঠিকভাবে পূরণ করুন!');
+                return;
+            }
+
+            let rules = JSON.parse(localStorage.getItem('madrasah_fee_rules')) || [];
+            // একই শ্রেণি এবং ক্যাটাগরির নিয়ম আগে থাকলে তা আপডেট করবে
+            let existingIdx = rules.findIndex(r => r.category === category && r.className === className);
+            
+            let ruleObj = { category, className, amount, dueDate };
+            if(existingIdx >= 0) {
+                rules[existingIdx] = ruleObj;
+            } else {
+                rules.push(ruleObj);
+            }
+
+            localStorage.setItem('madrasah_fee_rules', JSON.stringify(rules));
+            alert('ফি এবং পরিশোধের ডেডলাইন নিয়ম সফলভাবে সংরক্ষণ করা হয়েছে!');
+            renderFeeRulesTable();
+        }
+
+        function deleteFeeRule(index) {
+            let rules = JSON.parse(localStorage.getItem('madrasah_fee_rules')) || [];
+            rules.splice(index, 1);
+            localStorage.setItem('madrasah_fee_rules', JSON.stringify(rules));
+            renderFeeRulesTable();
+        }
+
+        function renderFeeRulesTable() {
+            let rules = JSON.parse(localStorage.getItem('madrasah_fee_rules')) || [];
+            let tbody = document.getElementById('feeRulesTableBody');
+            tbody.innerHTML = '';
+
+            if(rules.length === 0) {
+                tbody.innerHTML = `<tr><td colspan="6" class="border p-3 text-center text-gray-500 font-bold">কোনো ফি রুলস সেট করা হয়নি।</td></tr>`;
+                return;
+            }
+
+            rules.forEach((r, idx) => {
+                tbody.innerHTML += `
+                    <tr>
+                        <td class="border p-2 font-bold text-center">${idx + 1}</td>
+                        <td class="border p-2 font-bold text-amber-900">${r.category}</td>
+                        <td class="border p-2">${r.className}</td>
+                        <td class="border p-2 text-center font-bold text-emerald-800">${r.amount}/-</td>
+                        <td class="border p-2 text-center font-bold text-rose-700">${r.dueDate}</td>
+                        <td class="border p-2 text-center"><button onclick="deleteFeeRule(${idx})" class="bg-red-500 text-white px-2 py-1 rounded text-[10px] hover:bg-red-600">মুছে ফেলুন</button></td>
+                    </tr>
+                `;
+            });
         }
 
         function openFeePanel(panelType) {
@@ -444,17 +565,18 @@
                 typeSelect.disabled = true;
             }
             else if (panelType === 'duelist') {
-                headerTitle.innerHTML = `<i class="fa-solid fa-triangle-exclamation mr-2 text-cyan-700"></i> ৮. বকেয়া ফি (Due List) ও আদায় প্যানেল`;
-                typeSelect.innerHTML = `<option value="বকেয়া ফি আদায়">বকেয়া ফি আদায়</option>`;
-                typeSelect.disabled = true;
+                headerTitle.innerHTML = `<i class="fa-solid fa-triangle-exclamation mr-2 text-cyan-700"></i> ৮. বকেয়া ফি (Due List) অটোমেটিক ট্র্যাকার`;
             }
             else if (panelType === 'report') {
                 headerTitle.innerHTML = `<i class="fa-solid fa-chart-line mr-2 text-violet-700"></i> ৯. ফি কালেকশন ও রিপোর্ট প্যানেল`;
-                typeSelect.innerHTML = `<option value="ফি জমা">ফি জমা</option>`;
-                typeSelect.disabled = false;
             }
 
-            renderFeeHistoryTable();
+            if(panelType === 'duelist') {
+                renderAutomaticDueList();
+            } else {
+                renderFeeHistoryTable();
+            }
+            
             mainPanel.scrollIntoView({ behavior: 'smooth' });
         }
 
@@ -491,9 +613,16 @@
                 nameDisplay.value = `শিক্ষার্থী (রোল: ${rollInput})`;
                 idDisplay.value = `STU-${new Date().getFullYear()}-${rollInput}`;
             }
+
+            // সেট করা রুলস থাকলে অটোমেটিক ফি ফিলআপ করা
+            let rules = JSON.parse(localStorage.getItem('madrasah_fee_rules')) || [];
+            let feeCategory = document.getElementById('fee_type_select').value;
+            let foundRule = rules.find(r => r.className === selectedClass && feeCategory.includes(r.category.split(' ')[0]));
+            if(foundRule) {
+                document.getElementById('fee_amount_val').value = foundRule.amount;
+            }
         }
 
-        // ফি কার্টে একাধিক ফি আইটেম যুক্ত করার ফাংশন
         function addFeeToCart() {
             let cls = document.getElementById('fee_class_select').value;
             let roll = document.getElementById('fee_roll_input').value.trim();
@@ -546,7 +675,6 @@
             document.getElementById('cartTotalDisplay').innerText = total;
         }
 
-        // একসাথে একাধিক ফি সংরক্ষণ ও অ্যাকাউন্টস এবং রসিদে যুক্ত করা
         function collectMultipleFees() {
             let year = document.getElementById('fee_year_select').value;
             let month = document.getElementById('fee_month_select').value;
@@ -565,7 +693,6 @@
             let totalAmount = currentFeeCart.reduce((sum, item) => sum + item.amount, 0);
             let combinedFeeTypes = currentFeeCart.map(i => i.feeType).join(', ');
 
-            // ১. ফি কালেকশন রেকর্ড সংরক্ষণ
             let feeRecord = {
                 receiptNo: receiptNo,
                 year: year,
@@ -584,7 +711,6 @@
             allFees.push(feeRecord);
             localStorage.setItem('madrasah_fees_collected', JSON.stringify(allFees));
 
-            // ২. অটোমেটিক Accounts (Income) মডিউলে যুক্ত করা
             let incomeRecord = {
                 date: currentDate,
                 source: `ফি কালেকশন - [${combinedFeeTypes}] (${month} ${year}, আইডি: ${id}, নাম: ${name})`,
@@ -597,7 +723,6 @@
             accountsIncome.push(incomeRecord);
             localStorage.setItem('madrasah_accounts_income', JSON.stringify(accountsIncome));
 
-            // ৩. মানি রসিদে তথ্য বসানো
             document.getElementById('rcpt_no').innerText = receiptNo;
             document.getElementById('rcpt_id').innerText = id;
             document.getElementById('rcpt_name').innerText = name;
@@ -620,7 +745,6 @@
                 `;
             });
 
-            // অধ্যক্ষের স্বাক্ষর লোড করা
             let principalSign = localStorage.getItem('madrasah_principal_sign') || localStorage.getItem('madrasah_signature');
             const rSignImg = document.getElementById('receipt_sign_img');
             if(rSignImg && principalSign) {
@@ -631,7 +755,6 @@
             document.getElementById('moneyReceiptContainer').classList.remove('hidden');
             document.getElementById('printReceiptBtnBox').classList.remove('hidden');
             
-            // কার্ট খালি করা
             currentFeeCart = [];
             renderFeeCartTable();
             renderFeeHistoryTable();
@@ -640,7 +763,70 @@
             alert('সকল ফি সফলভাবে সংরক্ষণ করা হয়েছে এবং একটি সমন্বিত মানি রসিদ তৈরি হয়েছে!');
         }
 
+        // অটোমেটিক বকেয়া তালিকা (Due List) জেনারেটর
+        function renderAutomaticDueList() {
+            let rules = JSON.parse(localStorage.getItem('madrasah_fee_rules')) || [];
+            let students = JSON.parse(localStorage.getItem('madrasah_students_all')) || JSON.parse(localStorage.getItem('students_list')) || [];
+            let collectedFees = JSON.parse(localStorage.getItem('madrasah_fees_collected')) || [];
+
+            let today = new Date().toISOString().split('T')[0];
+
+            let dueStudentsList = [];
+
+            // শেষ তারিখ পার হওয়া রুলসগুলো ফিল্টার করা
+            let expiredRules = rules.filter(r => r.dueDate < today);
+
+            expiredRules.forEach(rule => {
+                let targetStudents = students.filter(s => (s.cls || s.className || s.class) === rule.className);
+
+                targetStudents.forEach(stu => {
+                    let sId = stu.id || stu.studentId;
+                    let sName = stu.name_bn || stu.name || stu.studentName;
+                    let sRoll = stu.roll || stu.rollNo || stu.studentRoll;
+
+                    // স্টুডেন্ট ফি পরিশোধ করেছে কিনা চেক
+                    let isPaid = collectedFees.some(f => f.studentId === sId && f.feeType.includes(rule.category.split(' ')[0]));
+
+                    if(!isPaid) {
+                        dueStudentsList.push({
+                            id: sId,
+                            name: sName,
+                            cls: rule.className,
+                            roll: sRoll,
+                            category: rule.category,
+                            amount: rule.amount,
+                            dueDate: rule.dueDate
+                        });
+                    }
+                });
+            });
+
+            document.getElementById('history_table_title').innerHTML = `<i class="fa-solid fa-triangle-exclamation text-rose-600 mr-1"></i> বকেয়া (Due) তালিকা (নির্ধারিত শেষ তারিখ অতিক্রান্ত)`;
+            let tbody = document.getElementById('feeHistoryTableBody');
+            tbody.innerHTML = '';
+
+            if(dueStudentsList.length === 0) {
+                tbody.innerHTML = `<tr><td colspan="7" class="border p-3 text-center text-emerald-700 font-bold">অভিনন্দন! নির্ধারিত শেষ তারিখ অতিক্রান্ত কোনো বকেয়া নেই।</td></tr>`;
+                return;
+            }
+
+            dueStudentsList.forEach((d, i) => {
+                tbody.innerHTML += `
+                    <tr class="bg-rose-50/50">
+                        <td class="border p-2 text-center font-bold text-rose-700">বকেয়া #${i+1}</td>
+                        <td class="border p-2 font-bold text-rose-700">${d.dueDate} (অতিক্রান্ত)</td>
+                        <td class="border p-2 font-bold">${d.id}</td>
+                        <td class="border p-2 font-bold">${d.name}</td>
+                        <td class="border p-2">${d.cls} (রোল: ${d.roll})</td>
+                        <td class="border p-2 text-rose-800 font-bold">${d.category}</td>
+                        <td class="border p-2 text-center font-bold text-rose-700">${d.amount}/-</td>
+                    </tr>
+                `;
+            });
+        }
+
         function renderFeeHistoryTable() {
+            document.getElementById('history_table_title').innerHTML = `<i class="fa-solid fa-list mr-1"></i> জমা হওয়া ফি তালিকা (হিস্ট্রি)`;
             let allFees = JSON.parse(localStorage.getItem('madrasah_fees_collected')) || [];
             let tbody = document.getElementById('feeHistoryTableBody');
             tbody.innerHTML = '';

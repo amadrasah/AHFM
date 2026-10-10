@@ -1647,12 +1647,97 @@
             window.scrollTo({ top: 0, behavior: 'smooth' });
         }
 
-        function generateStudentId() {
-            const year = document.getElementById('adm_year').value;
-            const classSelect = document.getElementById('adm_class');
-            const classCode = classSelect.value;
-            let roll = document.getElementById('adm_roll').value.trim().padStart(3, '0');
-            document.getElementById('adm_id').value = year + classCode + roll;
+                // Dedicated ID Card Module Generator Function with Settings Link
+        function generateIdCard() {
+            const query = document.getElementById('idCardSearchInput').value.trim().toLowerCase();
+            const filterYear = document.getElementById('idcard_filter_year').value;
+            const filterClass = document.getElementById('idcard_filter_class').value;
+            
+            if(!query) {
+                alert('দয়া করে শিক্ষার্থীর আইডি, রোল বা মোবাইল নম্বর লিখুন!');
+                return;
+            }
+
+            const students = getStoredStudents();
+            const found = students.find(s => {
+                let matchQuery = s.id.toLowerCase() === query || s.roll.toLowerCase() === query || s.f_mobile === query;
+                let matchYear = !filterYear || s.year === filterYear;
+                let matchClass = !filterClass || s.cls === filterClass;
+                return matchQuery && matchYear && matchClass;
+            });
+
+            if(!found) {
+                alert('এই তথ্য অনুযায়ী কোনো শিক্ষার্থী পাওয়া যায়নি!');
+                document.getElementById('idCardPreviewContainer').classList.add('hidden');
+                return;
+            }
+
+            // Settings Management থেকে জেনারেল ইনফো ও লোগো লোড করা
+            let genInfo = JSON.parse(localStorage.getItem('madrasah_general_info')) || {};
+            let savedLogo = localStorage.getItem('madrasah_logo_url');
+            let savedWatermark = localStorage.getItem('madrasah_watermark_url') || savedLogo;
+            let principalSign = localStorage.getItem('madrasah_principal_sign') || localStorage.getItem('madrasah_signature');
+
+            document.getElementById('card_inst_name').innerText = genInfo.name_bn || "আবদুল্লাহ হাট ইসলামিয়া ফাজিল মাদ্রাসা";
+            document.getElementById('card_inst_address').innerText = genInfo.address || "আব্দুল্লাহ্ হাট, না‌টেশ্বর, সোনইমু‌ড়ি, নোয়াখালী";
+            document.getElementById('card_inst_mobile').innerText = "মাদ্রাসা: " + (genInfo.phone || "01814-716405");
+            
+            // ওয়াটারমার্ক সেটআপ
+            const watermarkElem = document.getElementById('watermarkText');
+            if(savedWatermark) {
+                watermarkElem.innerHTML = `<img src="${savedWatermark}" class="w-24 h-24 object-contain opacity-20">`;
+            } else {
+                watermarkElem.innerText = "AHIFM";
+            }
+
+            // লোগো সেটআপ (সেটিংস থেকে)
+            const logoBox = document.getElementById('card_logo_box');
+            if(savedLogo) {
+                logoBox.innerHTML = `<img src="${savedLogo}" class="w-full h-full object-cover rounded-full">`;
+            } else {
+                logoBox.innerHTML = "লোগো";
+            }
+
+            // অধ্যক্ষের স্বাক্ষর বা সিল সেটআপ
+            const signContainer = document.getElementById('card_sign_container');
+            if(signContainer) {
+                if(principalSign) {
+                    signContainer.innerHTML = `<img src="${principalSign}" class="h-6 mx-auto object-contain"><span class="border-t border-gray-600 inline-block px-2 text-[8px] mt-0.5">অধ্যক্ষ</span>`;
+                } else {
+                    signContainer.innerHTML = `<div class="font-serif italic text-[9px] leading-none">Principal</div><span class="border-t border-gray-600 inline-block px-2 text-[8px] mt-0.5">অধ্যক্ষ</span>`;
+                }
+            }
+
+            document.getElementById('card_id_display').innerText = "আইডি: " + found.id;
+            document.getElementById('card_name_bn').innerText = "নাম: " + found.name_bn;
+            document.getElementById('card_class_display').innerText = "শ্রেণি: " + found.cls;
+            document.getElementById('card_roll_display').innerText = "রোল: " + found.roll;
+            document.getElementById('card_blood_val').innerText = found.blood || 'N/A';
+            document.getElementById('card_f_mobile').innerText = "মোবাইল: " + found.f_mobile;
+
+            const photoBox = document.getElementById('card_photo_box');
+            if(found.photo) {
+                photoBox.innerHTML = `<img src="${found.photo}" class="w-full h-full object-cover rounded">`;
+            } else {
+                photoBox.innerHTML = "ছবি নেই";
+            }
+
+            // QR Code Connection
+            const qrContainer = document.getElementById('realQrCodeContainer');
+            qrContainer.innerHTML = '';
+            try {
+                new QRCode(qrContainer, {
+                    text: `ID: ${found.id}\nName: ${found.name_bn}\nClass: ${found.cls}\nRoll: ${found.roll}\nMobile: ${found.f_mobile}`,
+                    width: 48,
+                    height: 48
+                });
+            } catch(e) {
+                qrContainer.innerHTML = "QR";
+            }
+
+            const previewContainer = document.getElementById('idCardPreviewContainer');
+            previewContainer.classList.remove('hidden');
+            previewContainer.scrollIntoView({ behavior: 'smooth' });
         }
 
         function saveNewAdmission(event) {

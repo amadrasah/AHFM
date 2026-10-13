@@ -93,7 +93,6 @@
                 <div id="daily_sub_buttons" class="bg-white p-4 rounded-xl shadow-sm border space-y-4 no-print">
                     <div class="flex flex-wrap justify-between items-center gap-4 border-b pb-2">
                         <h3 class="font-bold text-emerald-900 text-sm"><i class="fa-solid fa-list-check mr-1"></i> ডেইলি এটেন্ডেন্স ক্যাটাগরি ও মেসেজ চ্যানেল:</h3>
-                        <!-- SMS Channel Selector -->
                         <div class="flex items-center gap-2">
                             <label class="text-xs font-bold text-gray-700">অনুপস্থিতি মেসেজ চ্যানেল:</label>
                             <select id="attendance_msg_channel" class="p-1.5 border rounded bg-white text-xs font-bold text-emerald-900">
@@ -202,7 +201,7 @@
                                     <th class="border p-2">রোল / আইডি</th>
                                     <th class="border p-2">নাম</th>
                                     <th class="border p-2">শ্রেণি / পদবি</th>
-                                    <th class="border p-2 text-center">حاضر / উপস্থিতি ও ক্লিক টাইম</th>
+                                    <th class="border p-2 text-center">حاضر / উপস্থিতি নির্ধারণ (উপস্থিত / অনুপস্থিত)</th>
                                 </tr>
                             </thead>
                             <tbody id="table_body"></tbody>
@@ -336,7 +335,7 @@
                     <th class="border p-2">আইডি ও রোল</th>
                     <th class="border p-2">শিক্ষার্থীর নাম</th>
                     <th class="border p-2">শ্রেণি</th>
-                    <th class="border p-2 text-center">حاضر / উপস্থিতি ও ক্লিক টাইম (টগল করুন)</th>
+                    <th class="border p-2 text-center">حاضر / উপস্থিতি নির্ধারণ (উপস্থিত / অনুপস্থিত)</th>
                 `;
 
                 students.forEach(s => {
@@ -350,8 +349,10 @@
                     if(searchKey && !sName.toLowerCase().includes(searchKey) && !sRoll.toLowerCase().includes(searchKey) && !sUniqueId.toLowerCase().includes(searchKey)) return;
 
                     let attKey = `att_s_${sUniqueId}_${selectedDate}`;
-                    let record = JSON.parse(localStorage.getItem(attKey)) || { status: 'উপস্থিত', time: '-' };
-                    let badgeClass = record.status === 'উপস্থিত' ? 'bg-green-100 text-green-800' : 'bg-red-100 text-red-800';
+                    let record = JSON.parse(localStorage.getItem(attKey)) || { status: 'অনির্ধারিত', time: '-' };
+
+                    let presentBtnStyle = record.status === 'উপস্থিত' ? 'bg-green-600 text-white shadow' : 'bg-gray-100 text-green-700 hover:bg-green-100';
+                    let absentBtnStyle = record.status === 'অনুপস্থিত' ? 'bg-red-600 text-white shadow' : 'bg-gray-100 text-red-700 hover:bg-red-100';
 
                     tbody.innerHTML += `
                         <tr>
@@ -359,9 +360,14 @@
                             <td class="border p-2 font-bold text-blue-700">ID: ${sUniqueId} <br>Roll: ${sRoll}</td>
                             <td class="border p-2 font-bold">${sName}</td>
                             <td class="border p-2">${sClass}</td>
-                            <td class="border p-2 text-center">
-                                <button onclick="toggleDailyAttendance('s', '${sUniqueId}', '${selectedDate}', '${sPhone}', '${sName}', this)" class="${badgeClass} px-3 py-1 rounded font-bold text-xs transition shadow-sm">
-                                    ${record.status} <span class="text-[10px] text-gray-600 font-normal">(${record.time})</span>
+                            <td class="border p-2 text-center space-x-2">
+                                <button onclick="markDailyAttendance('s', '${sUniqueId}', '${selectedDate}', 'উপস্থিত', '${sPhone}', '${sName}')" class="${presentBtnStyle} px-3 py-1 rounded font-bold text-xs border border-green-300 transition">
+                                    <i class="fa-solid fa-check mr-1"></i> উপস্থিত 
+                                    ${record.status === 'উপস্থিত' ? `<span class="text-[10px] block font-normal">(${record.time})</span>` : ''}
+                                </button>
+                                <button onclick="markDailyAttendance('s', '${sUniqueId}', '${selectedDate}', 'অনুপস্থিত', '${sPhone}', '${sName}')" class="${absentBtnStyle} px-3 py-1 rounded font-bold text-xs border border-red-300 transition">
+                                    <i class="fa-solid fa-xmark mr-1"></i> অনুপস্থিত
+                                    ${record.status === 'অনুপস্থিত' ? `<span class="text-[10px] block font-normal">(${record.time})</span>` : ''}
                                 </button>
                             </td>
                         </tr>
@@ -373,7 +379,7 @@
                     <th class="border p-2">ইনডেক্স/আইডি</th>
                     <th class="border p-2">শিক্ষকের নাম</th>
                     <th class="border p-2">পদবি (Designation)</th>
-                    <th class="border p-2 text-center">حاضر / উপস্থিতি ও ক্লিক টাইম (টগল করুন)</th>
+                    <th class="border p-2 text-center">حاضر / উপস্থিতি নির্ধারণ (উপস্থিত / অনুপস্থিত)</th>
                 `;
 
                 teachers.forEach(t => {
@@ -385,8 +391,10 @@
                     if(searchKey && !tName.toLowerCase().includes(searchKey) && !tId.toLowerCase().includes(searchKey)) return;
 
                     let attKey = `att_t_${tId}_${selectedDate}`;
-                    let record = JSON.parse(localStorage.getItem(attKey)) || { status: 'উপস্থিত', time: '-' };
-                    let badgeClass = record.status === 'উপস্থিত' ? 'bg-green-100 text-green-800' : 'bg-red-100 text-red-800';
+                    let record = JSON.parse(localStorage.getItem(attKey)) || { status: 'অনির্ধারিত', time: '-' };
+
+                    let presentBtnStyle = record.status === 'উপস্থিত' ? 'bg-green-600 text-white shadow' : 'bg-gray-100 text-green-700 hover:bg-green-100';
+                    let absentBtnStyle = record.status === 'অনুপস্থিত' ? 'bg-red-600 text-white shadow' : 'bg-gray-100 text-red-700 hover:bg-red-100';
 
                     tbody.innerHTML += `
                         <tr>
@@ -394,9 +402,14 @@
                             <td class="border p-2 font-bold text-emerald-700">${tId}</td>
                             <td class="border p-2 font-bold">${tName}</td>
                             <td class="border p-2">${tDesig}</td>
-                            <td class="border p-2 text-center">
-                                <button onclick="toggleDailyAttendance('t', '${tId}', '${selectedDate}', '${tPhone}', '${tName}', this)" class="${badgeClass} px-3 py-1 rounded font-bold text-xs transition shadow-sm">
-                                    ${record.status} <span class="text-[10px] text-gray-600 font-normal">(${record.time})</span>
+                            <td class="border p-2 text-center space-x-2">
+                                <button onclick="markDailyAttendance('t', '${tId}', '${selectedDate}', 'উপস্থিত', '${tPhone}', '${tName}')" class="${presentBtnStyle} px-3 py-1 rounded font-bold text-xs border border-green-300 transition">
+                                    <i class="fa-solid fa-check mr-1"></i> উপস্থিত
+                                    ${record.status === 'উপস্থিত' ? `<span class="text-[10px] block font-normal">(${record.time})</span>` : ''}
+                                </button>
+                                <button onclick="markDailyAttendance('t', '${tId}', '${selectedDate}', 'অনুপস্থিত', '${tPhone}', '${tName}')" class="${absentBtnStyle} px-3 py-1 rounded font-bold text-xs border border-red-300 transition">
+                                    <i class="fa-solid fa-xmark mr-1"></i> অনুপস্থিত
+                                    ${record.status === 'অনুপস্থিত' ? `<span class="text-[10px] block font-normal">(${record.time})</span>` : ''}
                                 </button>
                             </td>
                         </tr>
@@ -408,7 +421,7 @@
                     <th class="border p-2">আইডি</th>
                     <th class="border p-2">স্টাফের নাম</th>
                     <th class="border p-2">পদবি (Designation)</th>
-                    <th class="border p-2 text-center">حاضر / উপস্থিতি ও ক্লিক টাইম (টগল করুন)</th>
+                    <th class="border p-2 text-center">حاضر / উপস্থিতি নির্ধারণ (উপস্থিত / অনুপস্থিত)</th>
                 `;
 
                 staffList.forEach(st => {
@@ -420,8 +433,10 @@
                     if(searchKey && !stName.toLowerCase().includes(searchKey) && !stId.toLowerCase().includes(searchKey)) return;
 
                     let attKey = `att_st_${stId}_${selectedDate}`;
-                    let record = JSON.parse(localStorage.getItem(attKey)) || { status: 'উপস্থিত', time: '-' };
-                    let badgeClass = record.status === 'উপস্থিত' ? 'bg-green-100 text-green-800' : 'bg-red-100 text-red-800';
+                    let record = JSON.parse(localStorage.getItem(attKey)) || { status: 'অনির্ধারিত', time: '-' };
+
+                    let presentBtnStyle = record.status === 'উপস্থিত' ? 'bg-green-600 text-white shadow' : 'bg-gray-100 text-green-700 hover:bg-green-100';
+                    let absentBtnStyle = record.status === 'অনুপস্থিত' ? 'bg-red-600 text-white shadow' : 'bg-gray-100 text-red-700 hover:bg-red-100';
 
                     tbody.innerHTML += `
                         <tr>
@@ -429,9 +444,14 @@
                             <td class="border p-2 font-bold text-purple-700">${stId}</td>
                             <td class="border p-2 font-bold">${stName}</td>
                             <td class="border p-2">${stDesig}</td>
-                            <td class="border p-2 text-center">
-                                <button onclick="toggleDailyAttendance('st', '${stId}', '${selectedDate}', '${stPhone}', '${stName}', this)" class="${badgeClass} px-3 py-1 rounded font-bold text-xs transition shadow-sm">
-                                    ${record.status} <span class="text-[10px] text-gray-600 font-normal">(${record.time})</span>
+                            <td class="border p-2 text-center space-x-2">
+                                <button onclick="markDailyAttendance('st', '${stId}', '${selectedDate}', 'উপস্থিত', '${stPhone}', '${stName}')" class="${presentBtnStyle} px-3 py-1 rounded font-bold text-xs border border-green-300 transition">
+                                    <i class="fa-solid fa-check mr-1"></i> উপস্থিত
+                                    ${record.status === 'উপস্থিত' ? `<span class="text-[10px] block font-normal">(${record.time})</span>` : ''}
+                                </button>
+                                <button onclick="markDailyAttendance('st', '${stId}', '${selectedDate}', 'অনুপস্থিত', '${stPhone}', '${stName}')" class="${absentBtnStyle} px-3 py-1 rounded font-bold text-xs border border-red-300 transition">
+                                    <i class="fa-solid fa-xmark mr-1"></i> অনুপস্থিত
+                                    ${record.status === 'অনুপস্থিত' ? `<span class="text-[10px] block font-normal">(${record.time})</span>` : ''}
                                 </button>
                             </td>
                         </tr>
@@ -440,23 +460,19 @@
             }
         }
 
-        // রিয়েল টাইম হাজিরা সেভ এবং অনুপস্থিতিতে মেসেজ ট্রিগার লজিক
-        function toggleDailyAttendance(type, id, date, phone, name, btn) {
+        // আলাদা উপস্থিত / অনুপস্থিত বাটন ক্লিক করার রিয়েল-টাইম সেভ ও মেসেজ ট্রিগার ফাংশন
+        function markDailyAttendance(type, id, date, status, phone, name) {
             let attKey = `att_${type}_${id}_${date}`;
-            let currentRecord = JSON.parse(localStorage.getItem(attKey)) || { status: 'উপস্থিত', time: '-' };
-            
-            // টগল লজিক: উপস্থিত থাকলে অনুপস্থিত হবে, এবং উল্টোটা
-            let nextStatus = currentRecord.status === 'উপস্থিত' ? 'অনুপস্থিত' : 'উপস্থিত';
-            let clickTime = nextStatus === 'উপস্থিত' ? new Date().toLocaleTimeString('en-US', { hour: '2-digit', minute: '2-digit' }) : '-';
+            let clickTime = new Date().toLocaleTimeString('en-US', { hour: '2-digit', minute: '2-digit' });
 
-            let newRecord = { status: nextStatus, time: clickTime };
+            let newRecord = { status: status, time: clickTime };
             localStorage.setItem(attKey, JSON.stringify(newRecord));
 
-            // যদি 'অনুপস্থিত' (Absent) করা হয়, তবে সাথে সাথেই মেসেজ ট্রিগার করবে
-            if (nextStatus === 'অনুপস্থিত') {
+            // যদি 'অনুপস্থিত' সিলেক্ট করা হয়, তবে সাথে সাথেই মেসেজ ট্রিগার করবে
+            if (status === 'অনুপস্থিত') {
                 let channel = document.getElementById('attendance_msg_channel').value;
                 let formattedPhone = phone.startsWith('0') ? '+88' + phone : phone;
-                let msgBody = `[AHIFM] সম্মানিত অভিভাবক, আবদুল্লাহ হাট ইসলামিয়া ফাজিল মাদ্রাসার পক্ষ থেকে জানানো যাচ্ছে যে, আপনার সন্তান/প্রতিষ্ঠান সদস্য ${name} আজ (${date}) উপস্থিত নেই।`;
+                let msgBody = `[AHIFM] সম্মানিত অভিভাবক, আবদুল্লাহ হাট ইসলামিয়া ফাজিল মাদ্রাসার পক্ষ থেকে জানানো যাচ্ছে যে, আপনার সন্তান/প্রতিষ্ঠান সদস্য ${name} আজ (${date}) অনুপস্থিত রয়েছেন।`;
 
                 if (channel === 'SIM SMS') {
                     const smsUri = `sms:${formattedPhone}?body=${encodeURIComponent(msgBody)}`;
@@ -549,7 +565,7 @@
                                 totalPresent++;
                             }
                             totalWorkingDays++;
-                            rowHTML += `<td class="border p-1 text-center cursor-pointer ${colorClass}" onclick="toggleMonthlyCell('s', '${sUniqueId}', '${dateKey}', this)">${mark}</td>`;
+                            rowHTML += `<td class="border p-1 text-center ${colorClass}">${mark}</td>`;
                         });
                     } else {
                         let daysInMonth = new Date(parseInt(filterYear), parseInt(filterMonth), 0).getDate();
@@ -574,7 +590,7 @@
                                     colorClass = 'text-red-600 font-bold';
                                 }
 
-                                rowHTML += `<td class="border p-1 text-center cursor-pointer ${colorClass}" onclick="toggleMonthlyCell('s', '${sUniqueId}', '${dateKey}', this)" title="${dateKey}">${mark}</td>`;
+                                rowHTML += `<td class="border p-1 text-center ${colorClass}" title="${dateKey}">${mark}</td>`;
                             }
                         }
                     }
@@ -621,7 +637,7 @@
                                 colorClass = 'text-red-600 font-bold';
                             }
 
-                            rowHTML += `<td class="border p-1 text-center cursor-pointer ${colorClass}" onclick="toggleMonthlyCell('${prefix}', '${itemId}', '${dateKey}', this)" title="${dateKey}">${mark}</td>`;
+                            rowHTML += `<td class="border p-1 text-center ${colorClass}" title="${dateKey}">${mark}</td>`;
                         }
                     }
 
@@ -630,19 +646,6 @@
                     tbody.innerHTML += rowHTML;
                 });
             }
-        }
-
-        function toggleMonthlyCell(type, id, date, td) {
-            let attKey = `att_${type}_${id}_${date}`;
-            let currentRecord = JSON.parse(localStorage.getItem(attKey)) || { status: 'অনুপস্থিত', time: '-' };
-            
-            let nextStatus = currentRecord.status === 'উপস্থিত' ? 'অনুপস্থিত' : 'উপস্থিত';
-            let clickTime = nextStatus === 'উপস্থিত' ? new Date().toLocaleTimeString('en-US', { hour: '2-digit', minute: '2-digit' }) : '-';
-
-            let newRecord = { status: nextStatus, time: clickTime };
-            localStorage.setItem(attKey, JSON.stringify(newRecord));
-
-            renderMonthlyTable();
         }
     </script>
 </body>

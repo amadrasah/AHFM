@@ -13,7 +13,6 @@
             body { background: white !important; }
             table { width: 100% !important; border-collapse: collapse !important; }
             th, td { border: 1px solid #000 !important; padding: 4px !important; font-size: 9px !important; }
-            /* ফাঁকা বা অপ্রয়োজনীয় কলাম প্রিন্টে হাইড করার জন্য */
             .empty-col { display: none !important; }
         }
     </style>
@@ -44,7 +43,7 @@
                 <a href="routine.html" class="flex items-center gap-2.5 p-2 rounded hover:bg-emerald-800 transition"><i class="fa-solid fa-calendar-days w-4"></i> 📅 12. Routine & Calendar</a>
                 <a href="certificates.html" class="flex items-center gap-2.5 p-2 rounded hover:bg-emerald-800 transition"><i class="fa-solid fa-award w-4"></i> 📄 13. Certificates</a>
                 <a href="inventory.html" class="flex items-center gap-2.5 p-2 rounded hover:bg-emerald-800 transition"><i class="fa-solid fa-boxes-stacked w-4"></i> 📦 14. Inventory</a>
-                <a href="library.html" class="flex items-center gap-2.5 p-2 rounded hover:bg-emerald-800 transition"><i class="fa-solid fa-books w-4"></i> 📖 15. Library</a>
+                <a href="library.html" class="flex items-center gap-2.5 p-2 rounded hover:bg-emerald-800 transition"><i class="fa-solid fa-book-bookmark w-4"></i> 📖 15. Library</a>
                 <a href="transport.html" class="flex items-center gap-2.5 p-2 rounded hover:bg-emerald-800 transition"><i class="fa-solid fa-bus w-4"></i> 🚌 16. Transport</a>
                 <a href="hostel.html" class="flex items-center gap-2.5 p-2 rounded hover:bg-emerald-800 transition"><i class="fa-solid fa-bed w-4"></i> 🍚 17. Hostel / Facilities</a>
                 <a href="communication.html" class="flex items-center gap-2.5 p-2 rounded hover:bg-emerald-800 transition"><i class="fa-solid fa-comments w-4"></i> 📱 18. Communication</a>
@@ -90,9 +89,20 @@
                     </button>
                 </div>
 
-                <!-- SUB-CONTAINER FOR DAILY ATTENDANCE (3 Buttons) -->
+                <!-- SUB-CONTAINER FOR DAILY ATTENDANCE -->
                 <div id="daily_sub_buttons" class="bg-white p-4 rounded-xl shadow-sm border space-y-4 no-print">
-                    <h3 class="font-bold text-emerald-900 text-sm border-b pb-2"><i class="fa-solid fa-list-check mr-1"></i> ডেইলি এটেন্ডেন্স ক্যাটাগরি:</h3>
+                    <div class="flex flex-wrap justify-between items-center gap-4 border-b pb-2">
+                        <h3 class="font-bold text-emerald-900 text-sm"><i class="fa-solid fa-list-check mr-1"></i> ডেইলি এটেন্ডেন্স ক্যাটাগরি ও মেসেজ চ্যানেল:</h3>
+                        <!-- SMS Channel Selector -->
+                        <div class="flex items-center gap-2">
+                            <label class="text-xs font-bold text-gray-700">অনুপস্থিতি মেসেজ চ্যানেল:</label>
+                            <select id="attendance_msg_channel" class="p-1.5 border rounded bg-white text-xs font-bold text-emerald-900">
+                                <option value="SIM SMS">মোবাইল সিম (SIM SMS)</option>
+                                <option value="WhatsApp">WhatsApp Direct</option>
+                            </select>
+                        </div>
+                    </div>
+
                     <div class="flex flex-wrap gap-3">
                         <button onclick="loadDailyForm('student')" class="bg-emerald-100 text-emerald-900 hover:bg-emerald-200 px-4 py-2 rounded-lg font-bold text-xs transition border border-emerald-300">
                             <i class="fa-solid fa-user-graduate mr-1"></i> স্টুডেন্টস এটেন্ডেন্স
@@ -105,7 +115,6 @@
                         </button>
                     </div>
 
-                    <!-- Daily Inputs Bar -->
                     <div class="flex flex-wrap gap-4 items-end pt-2 text-xs">
                         <div id="daily_class_box" class="hidden">
                             <label class="font-bold text-gray-700 block mb-1">শ্রেণি নির্বাচন:</label>
@@ -124,7 +133,7 @@
                     </div>
                 </div>
 
-                <!-- SUB-CONTAINER FOR MONTHLY REPORT (3 Buttons) -->
+                <!-- SUB-CONTAINER FOR MONTHLY REPORT -->
                 <div id="monthly_sub_buttons" class="bg-white p-4 rounded-xl shadow-sm border space-y-4 hidden no-print">
                     <h3 class="font-bold text-blue-900 text-sm border-b pb-2"><i class="fa-solid fa-file-invoice mr-1"></i> রিপোর্ট ক্যাটাগরি নির্বাচন:</h3>
                     <div class="flex flex-wrap gap-3">
@@ -139,7 +148,6 @@
                         </button>
                     </div>
 
-                    <!-- Updated Filtering Section (Date, Month, Year & Dynamic Year Add Option) -->
                     <div class="flex flex-wrap gap-4 items-end pt-2 text-xs">
                         <div id="monthly_class_box">
                             <label class="font-bold text-gray-700 block mb-1">শ্রেণি নির্বাচন:</label>
@@ -194,7 +202,7 @@
                                     <th class="border p-2">রোল / আইডি</th>
                                     <th class="border p-2">নাম</th>
                                     <th class="border p-2">শ্রেণি / পদবি</th>
-                                    <th class="border p-2 text-center">حاضر / উপস্থিতি (ক্লিক করুন)</th>
+                                    <th class="border p-2 text-center">حاضر / উপস্থিতি ও ক্লিক টাইম</th>
                                 </tr>
                             </thead>
                             <tbody id="table_body"></tbody>
@@ -262,7 +270,6 @@
             renderMonthlyTable();
         }
 
-        // স্টুডেন্ট ম্যানেজমেন্ট ফাইল থেকে নিখুঁত আইডি ও ক্লাস ফেচ করা
         function loadDynamicClasses() {
             let classSelects = [document.getElementById('daily_class_select'), document.getElementById('monthly_class_select')];
             let students = JSON.parse(localStorage.getItem('madrasah_students_all')) || [];
@@ -329,14 +336,15 @@
                     <th class="border p-2">আইডি ও রোল</th>
                     <th class="border p-2">শিক্ষার্থীর নাম</th>
                     <th class="border p-2">শ্রেণি</th>
-                    <th class="border p-2 text-center">حاضر / উপস্থিতি ও ক্লিক টাইম</th>
+                    <th class="border p-2 text-center">حاضر / উপস্থিতি ও ক্লিক টাইম (টগল করুন)</th>
                 `;
 
                 students.forEach(s => {
                     let sClass = s.cls || s.studentClass || s.class || "নুরানী প্রথম শ্রেণি";
                     let sRoll = s.roll || s.id || s.studentId || "001";
-                    let sUniqueId = s.id || sRoll; // ইউনিক আইডি ম্যাপ
+                    let sUniqueId = s.id || sRoll;
                     let sName = s.name_bn || s.name || "শিক্ষার্থী";
+                    let sPhone = s.phone || s.guardianPhone || "01640388584";
 
                     if(filterClass !== 'all' && sClass !== filterClass) return;
                     if(searchKey && !sName.toLowerCase().includes(searchKey) && !sRoll.toLowerCase().includes(searchKey) && !sUniqueId.toLowerCase().includes(searchKey)) return;
@@ -352,7 +360,7 @@
                             <td class="border p-2 font-bold">${sName}</td>
                             <td class="border p-2">${sClass}</td>
                             <td class="border p-2 text-center">
-                                <button onclick="toggleDailyAttendance('s', '${sUniqueId}', '${selectedDate}', this)" class="${badgeClass} px-3 py-1 rounded font-bold text-xs">
+                                <button onclick="toggleDailyAttendance('s', '${sUniqueId}', '${selectedDate}', '${sPhone}', '${sName}', this)" class="${badgeClass} px-3 py-1 rounded font-bold text-xs transition shadow-sm">
                                     ${record.status} <span class="text-[10px] text-gray-600 font-normal">(${record.time})</span>
                                 </button>
                             </td>
@@ -365,13 +373,14 @@
                     <th class="border p-2">ইনডেক্স/আইডি</th>
                     <th class="border p-2">শিক্ষকের নাম</th>
                     <th class="border p-2">পদবি (Designation)</th>
-                    <th class="border p-2 text-center">حاضر / উপস্থিতি ও ক্লিক টাইম</th>
+                    <th class="border p-2 text-center">حاضر / উপস্থিতি ও ক্লিক টাইম (টগল করুন)</th>
                 `;
 
                 teachers.forEach(t => {
                     let tId = t.id || t.indexNo || "ID";
                     let tName = t.name_bn || "শিক্ষক";
                     let tDesig = t.designation || "শিক্ষক";
+                    let tPhone = t.phone || "01640388584";
 
                     if(searchKey && !tName.toLowerCase().includes(searchKey) && !tId.toLowerCase().includes(searchKey)) return;
 
@@ -386,7 +395,7 @@
                             <td class="border p-2 font-bold">${tName}</td>
                             <td class="border p-2">${tDesig}</td>
                             <td class="border p-2 text-center">
-                                <button onclick="toggleDailyAttendance('t', '${tId}', '${selectedDate}', this)" class="${badgeClass} px-3 py-1 rounded font-bold text-xs">
+                                <button onclick="toggleDailyAttendance('t', '${tId}', '${selectedDate}', '${tPhone}', '${tName}', this)" class="${badgeClass} px-3 py-1 rounded font-bold text-xs transition shadow-sm">
                                     ${record.status} <span class="text-[10px] text-gray-600 font-normal">(${record.time})</span>
                                 </button>
                             </td>
@@ -399,13 +408,14 @@
                     <th class="border p-2">আইডি</th>
                     <th class="border p-2">স্টাফের নাম</th>
                     <th class="border p-2">পদবি (Designation)</th>
-                    <th class="border p-2 text-center">حاضر / উপস্থিতি ও ক্লিক টাইম</th>
+                    <th class="border p-2 text-center">حاضر / উপস্থিতি ও ক্লিক টাইম (টগল করুন)</th>
                 `;
 
                 staffList.forEach(st => {
                     let stId = st.id || "STF";
                     let stName = st.name || "স্টাফ";
                     let stDesig = st.designation || "স্টাফ";
+                    let stPhone = st.phone || "01640388584";
 
                     if(searchKey && !stName.toLowerCase().includes(searchKey) && !stId.toLowerCase().includes(searchKey)) return;
 
@@ -420,7 +430,7 @@
                             <td class="border p-2 font-bold">${stName}</td>
                             <td class="border p-2">${stDesig}</td>
                             <td class="border p-2 text-center">
-                                <button onclick="toggleDailyAttendance('st', '${stId}', '${selectedDate}', this)" class="${badgeClass} px-3 py-1 rounded font-bold text-xs">
+                                <button onclick="toggleDailyAttendance('st', '${stId}', '${selectedDate}', '${stPhone}', '${stName}', this)" class="${badgeClass} px-3 py-1 rounded font-bold text-xs transition shadow-sm">
                                     ${record.status} <span class="text-[10px] text-gray-600 font-normal">(${record.time})</span>
                                 </button>
                             </td>
@@ -430,16 +440,32 @@
             }
         }
 
-        // প্রত্যেকের জন্য আলাদা এবং সঠিক সেভ লজিক
-        function toggleDailyAttendance(type, id, date, btn) {
+        // রিয়েল টাইম হাজিরা সেভ এবং অনুপস্থিতিতে মেসেজ ট্রিগার লজিক
+        function toggleDailyAttendance(type, id, date, phone, name, btn) {
             let attKey = `att_${type}_${id}_${date}`;
             let currentRecord = JSON.parse(localStorage.getItem(attKey)) || { status: 'উপস্থিত', time: '-' };
             
+            // টগল লজিক: উপস্থিত থাকলে অনুপস্থিত হবে, এবং উল্টোটা
             let nextStatus = currentRecord.status === 'উপস্থিত' ? 'অনুপস্থিত' : 'উপস্থিত';
             let clickTime = nextStatus === 'উপস্থিত' ? new Date().toLocaleTimeString('en-US', { hour: '2-digit', minute: '2-digit' }) : '-';
 
             let newRecord = { status: nextStatus, time: clickTime };
             localStorage.setItem(attKey, JSON.stringify(newRecord));
+
+            // যদি 'অনুপস্থিত' (Absent) করা হয়, তবে সাথে সাথেই মেসেজ ট্রিগার করবে
+            if (nextStatus === 'অনুপস্থিত') {
+                let channel = document.getElementById('attendance_msg_channel').value;
+                let formattedPhone = phone.startsWith('0') ? '+88' + phone : phone;
+                let msgBody = `[AHIFM] সম্মানিত অভিভাবক, আবদুল্লাহ হাট ইসলামিয়া ফাজিল মাদ্রাসার পক্ষ থেকে জানানো যাচ্ছে যে, আপনার সন্তান/প্রতিষ্ঠান সদস্য ${name} আজ (${date}) উপস্থিত নেই।`;
+
+                if (channel === 'SIM SMS') {
+                    const smsUri = `sms:${formattedPhone}?body=${encodeURIComponent(msgBody)}`;
+                    window.location.href = smsUri;
+                } else if (channel === 'WhatsApp') {
+                    const waUri = `https://wa.me/${formattedPhone.replace('+', '')}?text=${encodeURIComponent(msgBody)}`;
+                    window.open(waUri, '_blank');
+                }
+            }
 
             renderDailyTable();
         }
@@ -512,7 +538,7 @@
 
                     if(rType === 'annual') {
                         targetMonths.forEach(m => {
-                            let dateKey = `${filterYear}-${m}-15`; // বার্ষিক সামারি
+                            let dateKey = `${filterYear}-${m}-15`;
                             let attKey = `att_s_${sUniqueId}_${dateKey}`;
                             let record = JSON.parse(localStorage.getItem(attKey));
                             let mark = '-';
@@ -530,17 +556,17 @@
                         for(let d=1; d<=daysInMonth; d++) {
                             let dayStr = d < 10 ? '0' + d : '' + d;
                             let dateKey = `${filterYear}-${filterMonth}-${dayStr}`;
-                            let dayOfWeek = new Date(dateKey).getDay(); // Friday = 5
+                            let dayOfWeek = new Date(dateKey).getDay();
                             
-                            if(dayOfWeek !== 5) { // শুক্রবার বাদে
+                            if(dayOfWeek !== 5) {
                                 totalWorkingDays++;
                                 let attKey = `att_s_${sUniqueId}_${dateKey}`;
                                 let record = JSON.parse(localStorage.getItem(attKey));
 
                                 let mark = '-';
-                                let colorClass = 'text-gray-400 empty-col'; // ফাঁকা কলাম প্রিন্টে হাইড করার ক্লাস
+                                let colorClass = 'text-gray-400 empty-col';
                                 if(record && record.status === 'উপস্থিত') {
-                                    mark = record.time; // সঠিক ক্লিক টাইম
+                                    mark = record.time;
                                     colorClass = 'text-green-700 font-bold text-[9px]';
                                     totalPresent++;
                                 } else if(record && record.status === 'অনুপস্থিত') {
@@ -587,7 +613,7 @@
                             let mark = '-';
                             let colorClass = 'text-gray-400 empty-col';
                             if(record && record.status === 'উপস্থিত') {
-                                mark = record.time; // ক্লিক টাইম
+                                mark = record.time;
                                 colorClass = 'text-green-700 font-bold text-[9px]';
                                 totalPresent++;
                             } else if(record && record.status === 'অনুপস্থিত') {

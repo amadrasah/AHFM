@@ -341,9 +341,9 @@
                 students.forEach(s => {
                     let sClass = s.cls || s.studentClass || s.class || "নুরানী প্রথম শ্রেণি";
                     let sRoll = s.roll || s.id || s.studentId || "001";
-                    let sUniqueId = s.id || sRoll;
-                    let sName = s.name_bn || s.name || "শিক্ষার্থী";
-                    let sPhone = s.phone || s.guardianPhone || "01640388584";
+                    let sUniqueId = String(s.id || sRoll).replace(/'/g, "");
+                    let sName = String(s.name_bn || s.name || "শিক্ষার্থী").replace(/'/g, "");
+                    let sPhone = String(s.phone || s.guardianPhone || "01640388584").replace(/'/g, "");
 
                     if(filterClass !== 'all' && sClass !== filterClass) return;
                     if(searchKey && !sName.toLowerCase().includes(searchKey) && !sRoll.toLowerCase().includes(searchKey) && !sUniqueId.toLowerCase().includes(searchKey)) return;
@@ -383,10 +383,10 @@
                 `;
 
                 teachers.forEach(t => {
-                    let tId = t.id || t.indexNo || "ID";
-                    let tName = t.name_bn || "শিক্ষক";
+                    let tId = String(t.id || t.indexNo || "ID").replace(/'/g, "");
+                    let tName = String(t.name_bn || "শিক্ষক").replace(/'/g, "");
                     let tDesig = t.designation || "শিক্ষক";
-                    let tPhone = t.phone || "01640388584";
+                    let tPhone = String(t.phone || "01640388584").replace(/'/g, "");
 
                     if(searchKey && !tName.toLowerCase().includes(searchKey) && !tId.toLowerCase().includes(searchKey)) return;
 
@@ -425,10 +425,10 @@
                 `;
 
                 staffList.forEach(st => {
-                    let stId = st.id || "STF";
-                    let stName = st.name || "স্টাফ";
+                    let stId = String(st.id || "STF").replace(/'/g, "");
+                    let stName = String(st.name || "স্টাফ").replace(/'/g, "");
                     let stDesig = st.designation || "স্টাফ";
-                    let stPhone = st.phone || "01640388584";
+                    let stPhone = String(st.phone || "01640388584").replace(/'/g, "");
 
                     if(searchKey && !stName.toLowerCase().includes(searchKey) && !stId.toLowerCase().includes(searchKey)) return;
 
@@ -460,19 +460,21 @@
             }
         }
 
-        // আলাদা উপস্থিত / অনুপস্থিত বাটন ক্লিক করার রিয়েল-টাইম সেভ ও মেসেজ ট্রিগার ফাংশন
+        // সম্পূর্ণ নির্ভরযোগ্য রিয়েল-টাইম সেভ ও মেসেজিং ফাংশন
         function markDailyAttendance(type, id, date, status, phone, name) {
             let attKey = `att_${type}_${id}_${date}`;
-            let clickTime = new Date().toLocaleTimeString('en-US', { hour: '2-digit', minute: '2-digit' });
+            
+            // রিয়েল টাইম ফরমেট (যেমন: 02:58 PM)
+            let clickTime = new Date().toLocaleTimeString('en-US', { hour: '2-digit', minute: '2-digit', hour12: true });
 
             let newRecord = { status: status, time: clickTime };
             localStorage.setItem(attKey, JSON.stringify(newRecord));
 
-            // যদি 'অনুপস্থিত' সিলেক্ট করা হয়, তবে সাথে সাথেই মেসেজ ট্রিগার করবে
+            // 'অনুপস্থিত' হলে মেসেজ পাঠাবে
             if (status === 'অনুপস্থিত') {
                 let channel = document.getElementById('attendance_msg_channel').value;
                 let formattedPhone = phone.startsWith('0') ? '+88' + phone : phone;
-                let msgBody = `[AHIFM] সম্মানিত অভিভাবক, আবদুল্লাহ হাট ইসলামিয়া ফাজিল মাদ্রাসার পক্ষ থেকে জানানো যাচ্ছে যে, আপনার সন্তান/প্রতিষ্ঠান সদস্য ${name} আজ (${date}) অনুপস্থিত রয়েছেন।`;
+                let msgBody = `[AHIFM] সম্মানিত অভিভাবক, আবদুল্লাহ হাট ইসলামিয়া ফাজিল মাদ্রাসার পক্ষ থেকে জানানো যাচ্ছে যে, আপনার সন্তান/প্রতিষ্ঠান সদস্য ${name} আজ (${date}) অনুপস্থিত রয়েছে।`;
 
                 if (channel === 'SIM SMS') {
                     const smsUri = `sms:${formattedPhone}?body=${encodeURIComponent(msgBody)}`;

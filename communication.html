@@ -56,7 +56,7 @@
             <!-- Top Navbar -->
             <header class="bg-white shadow-sm p-4 flex justify-between items-center no-print sticky top-0 z-20">
                 <div class="flex items-center gap-3">
-                    <span class="font-bold text-emerald-800 text-base md:text-lg">📱 Communication Management (যোগাযোগ ও বার্তা আদান-প্রদান)</span>
+                    <span class="font-bold text-emerald-800 text-base md:text-lg">📱 Communication Management (WhatsApp & Mobile SMS)</span>
                 </div>
                 <div class="flex items-center gap-4">
                     <span class="text-xs md:text-sm text-gray-700 font-semibold bg-emerald-50 px-3 py-1 rounded-full border border-emerald-200">
@@ -72,42 +72,55 @@
                 <!-- Page Header Banner -->
                 <div class="bg-gradient-to-r from-emerald-800 to-emerald-950 text-white p-5 md:p-6 rounded-2xl shadow-sm flex flex-col md:flex-row justify-between items-center gap-4 no-print">
                     <div>
-                        <h2 class="text-lg md:text-xl font-bold">যোগাযোগ ও নোটিফিকেশন ম্যানেজমেন্ট প্যানেল</h2>
-                        <p class="text-emerald-200 text-xs mt-1">এসএমএস গেটওয়ে, শিক্ষার্থী ও শিক্ষক নোটিফিকেশন, নোটিশ অ্যালার্ট এবং জরুরি বার্তা প্রেরণ সুবিধা।</p>
+                        <h2 class="text-lg md:text-xl font-bold">যোগাযোগ ও বার্তা আদান-প্রদান প্যানেল</h2>
+                        <p class="text-emerald-200 text-xs mt-1">WhatsApp API এবং সাধারণ মোবাইল এসএমএস (Single / Custom SMS) পাঠানোর আধুনিক ব্যবস্থা।</p>
                     </div>
                     <div class="flex gap-2">
-                        <button onclick="openCommPanel('sms')" class="bg-white text-emerald-900 px-4 py-2 rounded-xl font-bold text-xs hover:bg-emerald-50 transition shadow-sm"><i class="fa-solid fa-paper-plane mr-1"></i> নতুন বার্তা পাঠান</button>
+                        <button onclick="openCommPanel('whatsapp')" class="bg-emerald-500 text-white px-4 py-2 rounded-xl font-bold text-xs hover:bg-emerald-600 transition shadow-sm"><i class="fa-brands fa-whatsapp mr-1"></i> WhatsApp বার্তা</button>
+                        <button onclick="openCommPanel('sms')" class="bg-white text-emerald-900 px-4 py-2 rounded-xl font-bold text-xs hover:bg-emerald-50 transition shadow-sm"><i class="fa-solid fa-mobile-screen mr-1"></i> সাধারণ মোবাইল এসএমএস</button>
                     </div>
                 </div>
 
                 <!-- Sub-Modules Grid Layout (5 Features) -->
                 <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-5 no-print">
                     
-                    <!-- 1. SMS -->
-                    <div onclick="openCommPanel('sms')" class="bg-white p-5 rounded-xl shadow-sm border-t-4 border-emerald-600 space-y-3 hover:shadow-md cursor-pointer transition">
+                    <!-- 1. WhatsApp API -->
+                    <div onclick="openCommPanel('whatsapp')" class="bg-white p-5 rounded-xl shadow-sm border-t-4 border-emerald-600 space-y-3 hover:shadow-md cursor-pointer transition">
                         <div class="flex items-center justify-between border-b pb-2">
                             <h3 class="font-bold text-gray-800 text-sm flex items-center gap-2">
-                                <i class="fa-solid fa-sms text-emerald-600"></i> SMS Gateway
+                                <i class="fa-brands fa-whatsapp text-emerald-600 text-base"></i> WhatsApp API Gateway
                             </h3>
-                            <span class="text-xs bg-emerald-50 text-emerald-700 px-2 py-0.5 rounded font-semibold">এসএমএস</span>
+                            <span class="text-xs bg-emerald-50 text-emerald-700 px-2 py-0.5 rounded font-semibold">WhatsApp</span>
                         </div>
-                        <p class="text-xs text-gray-600 leading-relaxed">বাল্ক এসএমএস (Bulk SMS) প্যানেলের মাধ্যমে অভিভাবক ও শিক্ষকদের মোবাইল নম্বরে টেক্সট মেসেজ পাঠানো।</p>
-                        <button class="w-full bg-emerald-50 text-emerald-700 py-1.5 rounded text-xs font-bold hover:bg-emerald-100 transition">এসএমএস প্যানেল খুলুন</button>
+                        <p class="text-xs text-gray-600 leading-relaxed">মেটা ক্লাউড এপিআই-এর মাধ্যমে শিক্ষার্থীদের অভিভাবক ও শিক্ষকদের WhatsApp এ সরাসরি চ্যাট ও নোটিশ পাঠানো।</p>
+                        <button class="w-full bg-emerald-50 text-emerald-700 py-1.5 rounded text-xs font-bold hover:bg-emerald-100 transition">WhatsApp প্যানেল খুলুন</button>
                     </div>
 
-                    <!-- 2. Student Notification -->
+                    <!-- 2. Single/Custom Mobile SMS -->
+                    <div onclick="openCommPanel('sms')" class="bg-white p-5 rounded-xl shadow-sm border-t-4 border-teal-600 space-y-3 hover:shadow-md cursor-pointer transition">
+                        <div class="flex items-center justify-between border-b pb-2">
+                            <h3 class="font-bold text-gray-800 text-sm flex items-center gap-2">
+                                <i class="fa-solid fa-mobile-screen text-teal-600"></i> General Mobile SMS
+                            </h3>
+                            <span class="text-xs bg-teal-50 text-teal-700 px-2 py-0.5 rounded font-semibold">মোবাইল এসএমএস</span>
+                        </div>
+                        <p class="text-xs text-gray-600 leading-relaxed">বাল্ক ছাড়া যেকোনো নির্দিষ্ট মোবাইল নম্বরে বা শ্রেণিভিত্তিক কাস্টম সাধারণ এসএমএস প্রেরণের সুবিধা।</p>
+                        <button class="w-full bg-teal-50 text-teal-700 py-1.5 rounded text-xs font-bold hover:bg-teal-100 transition">মোবাইল এসএমএস প্যানেল</button>
+                    </div>
+
+                    <!-- 3. Student Notification -->
                     <div onclick="openCommPanel('student')" class="bg-white p-5 rounded-xl shadow-sm border-t-4 border-blue-600 space-y-3 hover:shadow-md cursor-pointer transition">
                         <div class="flex items-center justify-between border-b pb-2">
                             <h3 class="font-bold text-gray-800 text-sm flex items-center gap-2">
                                 <i class="fa-solid fa-user-graduate text-blue-600"></i> Student Notification
                             </h3>
-                            <span class="text-xs bg-blue-50 text-blue-700 px-2 py-0.5 rounded font-semibold">শিক্ষার্থী নোটিফিকেশন</span>
+                            <span class="text-xs bg-blue-50 text-blue-700 px-2 py-0.5 rounded font-semibold">শিক্ষার্থী নোটিশ</span>
                         </div>
-                        <p class="text-xs text-gray-600 leading-relaxed">নির্দিষ্ট কোনো ক্লাস, শাখা বা সকল শিক্ষার্থীর ড্যাশবোর্ডে বা অ্যাপে জরুরি আপডেট বা বার্তা পাঠানো।</p>
+                        <p class="text-xs text-gray-600 leading-relaxed">নির্দিষ্ট কোনো ক্লাস বা শাখার শিক্ষার্থীদের উপস্থিতি ও ফলাফল সংক্রান্ত আপডেট বার্তা পাঠানো।</p>
                         <button class="w-full bg-blue-50 text-blue-700 py-1.5 rounded text-xs font-bold hover:bg-blue-100 transition">শিক্ষার্থী বার্তা প্যানেল</button>
                     </div>
 
-                    <!-- 3. Teacher Notification -->
+                    <!-- 4. Teacher Notification -->
                     <div onclick="openCommPanel('teacher')" class="bg-white p-5 rounded-xl shadow-sm border-t-4 border-purple-600 space-y-3 hover:shadow-md cursor-pointer transition">
                         <div class="flex items-center justify-between border-b pb-2">
                             <h3 class="font-bold text-gray-800 text-sm flex items-center gap-2">
@@ -117,18 +130,6 @@
                         </div>
                         <p class="text-xs text-gray-600 leading-relaxed">মাদ্রাসার শিক্ষক ও স্টাফদের মিটিং, রুটিন পরিবর্তন বা অফিশিয়াল কাজের আপডেট নোটিফিকেশন পাঠানো।</p>
                         <button class="w-full bg-purple-50 text-purple-700 py-1.5 rounded text-xs font-bold hover:bg-purple-100 transition">শিক্ষক বার্তা প্যানেল</button>
-                    </div>
-
-                    <!-- 4. Notice Alert -->
-                    <div onclick="openCommPanel('notice')" class="bg-white p-5 rounded-xl shadow-sm border-t-4 border-amber-600 space-y-3 hover:shadow-md cursor-pointer transition">
-                        <div class="flex items-center justify-between border-b pb-2">
-                            <h3 class="font-bold text-gray-800 text-sm flex items-center gap-2">
-                                <i class="fa-solid fa-bullhorn text-amber-600"></i> Notice Alert
-                            </h3>
-                            <span class="text-xs bg-amber-50 text-amber-700 px-2 py-0.5 rounded font-semibold">নোটিশ অ্যালার্ট</span>
-                        </div>
-                        <p class="text-xs text-gray-600 leading-relaxed">নতুন প্রকাশিত কোনো নোটিশ বা সার্কুলারের তাৎক্ষণিক অ্যালার্ট বা পুশ নোটিফিকেশন সিস্টেম।</p>
-                        <button class="w-full bg-amber-50 text-amber-700 py-1.5 rounded text-xs font-bold hover:bg-amber-100 transition">নোটিশ অ্যালার্ট প্যানেল</button>
                     </div>
 
                     <!-- 5. Emergency Message -->
@@ -148,18 +149,26 @@
                 <!-- DYNAMIC MESSAGE & NOTIFICATION PANEL -->
                 <div id="comm_form_panel" class="bg-white p-5 md:p-6 rounded-2xl shadow-sm border border-gray-200 space-y-6 hidden">
                     <div class="flex justify-between items-center border-b pb-3 no-print">
-                        <h3 id="comm_panel_title" class="font-bold text-emerald-800 text-base"><i class="fa-solid fa-paper-plane mr-2"></i> মেসেজ ও নোটিফিকেশন সেন্ডিং প্যানেল</h3>
+                        <h3 id="comm_panel_title" class="font-bold text-emerald-800 text-base"><i class="fa-solid fa-paper-plane mr-2"></i> বার্তা ও নোটিফিকেশন সেন্ডিং প্যানেল</h3>
                         <button onclick="closeCommPanel()" class="text-xs bg-gray-200 px-3 py-1 rounded font-bold text-gray-700 hover:bg-gray-300">বন্ধ করুন</button>
                     </div>
 
                     <div class="grid grid-cols-1 sm:grid-cols-3 gap-4 bg-emerald-50/70 p-4 rounded-xl border border-emerald-200 text-xs no-print">
                         <div>
+                            <label class="font-bold block mb-1 text-gray-700">মেসেজিং মাধ্যম (Channel) *:</label>
+                            <select id="msg_channel_select" class="p-2 border rounded bg-white w-full font-bold text-emerald-900">
+                                <option value="WhatsApp API">১. WhatsApp API (অফিশিয়াল)</option>
+                                <option value="Mobile SMS">২. সাধারণ মোবাইল SMS (Single/Custom)</option>
+                            </select>
+                        </div>
+
+                        <div>
                             <label class="font-bold block mb-1 text-gray-700">গ্রাহকের ধরন (Recipient Group) *:</label>
                             <select id="msg_recipient_group" onchange="toggleStudentClassSelect()" class="p-2 border rounded bg-white w-full font-bold">
                                 <option value="সকল শিক্ষার্থী ও অভিভাবক">১. সকল শিক্ষার্থী ও অভিভাবক</option>
                                 <option value="নির্দিষ্ট শ্রেণির শিক্ষার্থী">২. নির্দিষ্ট শ্রেণির শিক্ষার্থী</option>
-                                <option value="সকল শিক্ষক ও স্টাফ">৩. সকল শিক্ষক ও স্টাফ</option>
-                                <option value="মাদ্রাসার পরিচালনা পর্ষদ">৪. মাদ্রাসার পরিচালনা পর্ষদ</option>
+                                <option value="নির্দিষ্ট মোবাইল নম্বর (Custom)">৩. নির্দিষ্ট মোবাইল নম্বর (Custom)</option>
+                                <option value="সকল শিক্ষক ও স্টাফ">৪. সকল শিক্ষক ও স্টাফ</option>
                                 <option value="জরুরি ব্রডকাস্ট (সবাই)">৫. জরুরি ব্রডকাস্ট (সবাই)</option>
                             </select>
                         </div>
@@ -169,8 +178,13 @@
                             <select id="msg_class_select" class="p-2 border rounded bg-white w-full font-bold master-class-dropdown"></select>
                         </div>
 
+                        <div id="custom_number_wrapper" class="hidden">
+                            <label class="font-bold block mb-1 text-gray-700">মোবাইল / WhatsApp নম্বর *:</label>
+                            <input type="text" id="msg_custom_phone" placeholder="যেমন: 01814716405" class="p-2 border rounded bg-white w-full font-bold">
+                        </div>
+
                         <div>
-                            <label class="font-bold block mb-1 text-gray-700">বার্তার ধরণ / ক্যাটাগরি *:</label>
+                            <label class="font-bold block mb-1 text-gray-700">বার্তার ক্যাটাগরি *:</label>
                             <select id="msg_category_select" class="p-2 border rounded bg-white w-full font-bold">
                                 <option value="সাধারণ তথ্য/নোটিশ">সাধারণ তথ্য / নোটিশ</option>
                                 <option value="পরীক্ষা ও ফলাফল">পরীক্ষা ও ফলাফল</option>
@@ -181,36 +195,36 @@
                         </div>
 
                         <div class="sm:col-span-3">
-                            <label class="font-bold block mb-1 text-gray-700">বার্তার বিষয়/শিরোনাম (Message Subject):</label>
-                            <input type="text" id="msg_subject_input" placeholder="যেমন: অর্ধবার্ষিক পরীক্ষার ফলাফল সংক্রান্ত নোটিশ" class="p-2 border rounded bg-white w-full font-bold">
+                            <label class="font-bold block mb-1 text-gray-700">বার্তার বিষয়/শিরোনাম (Subject):</label>
+                            <input type="text" id="msg_subject_input" placeholder="যেমন: বার্ষিক পরীক্ষার রুটিন সংক্রান্ত নোটিশ" class="p-2 border rounded bg-white w-full font-bold">
                         </div>
 
                         <div class="sm:col-span-3">
                             <div class="flex justify-between mb-1">
                                 <label class="font-bold text-gray-700">বার্তার বিস্তারিত তথ্য (Message Body) *:</label>
-                                <span class="text-[11px] text-gray-500 font-bold">অক্ষর সংখ্যা: <span id="charCount">0</span> | অনুমিত SMS: <span id="smsCount">1</span></span>
+                                <span class="text-[11px] text-gray-500 font-bold">অক্ষর সংখ্যা: <span id="charCount">0</span></span>
                             </div>
                             <textarea id="msg_body_input" onkeyup="updateSMSCounter()" rows="4" placeholder="এখানে বার্তার মূল বক্তব্য লিখুন..." class="p-2 border rounded bg-white w-full font-semibold"></textarea>
                         </div>
 
                         <div class="sm:col-span-3 flex justify-end gap-2 pt-2">
-                            <button onclick="sendNotificationMessage()" class="bg-emerald-700 text-white px-6 py-2.5 rounded-lg font-bold text-xs hover:bg-emerald-800 shadow transition flex items-center gap-1.5"><i class="fa-solid fa-paper-plane"></i> বার্তা প্রেক্ষিত/সেন্ড করুন</button>
+                            <button onclick="sendNotificationMessage()" class="bg-emerald-700 text-white px-6 py-2.5 rounded-lg font-bold text-xs hover:bg-emerald-800 shadow transition flex items-center gap-1.5"><i class="fa-solid fa-paper-plane"></i> বার্তা সেন্ড করুন</button>
                         </div>
                     </div>
 
                     <!-- SENT MESSAGES HISTORY TABLE -->
                     <div class="overflow-x-auto border rounded-xl bg-white p-3 space-y-2">
                         <h4 class="font-bold text-xs text-gray-700 flex justify-between items-center">
-                            <span><i class="fa-solid fa-history mr-1"></i> সাম্প্রতিক প্রেরিত বার্তা ও এসএমএস রেজিস্টার</span>
+                            <span><i class="fa-solid fa-history mr-1"></i> প্রেরিত WhatsApp ও মোবাইল এসএমএস হিস্ট্রি</span>
                             <button onclick="renderSentMessagesTable()" class="text-xs text-blue-700 underline font-bold">রিফ্রেশ করুন</button>
                         </h4>
                         <table class="w-full text-left border-collapse border border-gray-200 text-xs">
                             <thead>
                                 <tr class="bg-emerald-800 text-white">
                                     <th class="border p-2 text-center">তারিখ ও সময়</th>
-                                    <th class="border p-2">গ্রাহক গ্রুপ</th>
-                                    <th class="border p-2">ক্যাটাগরি</th>
-                                    <th class="border p-2">বার্তার বিষয়বস্তু</th>
+                                    <th class="border p-2">মাধ্যম (Channel)</th>
+                                    <th class="border p-2">প্রাপক / গ্রুপ</th>
+                                    <th class="border p-2">বার্তার বিষয় ও বিবরণ</th>
                                     <th class="border p-2 text-center">স্ট্যাটাস</th>
                                     <th class="border p-2 text-center">মুছে ফেলুন</th>
                                 </tr>
@@ -243,27 +257,26 @@
         function openCommPanel(type) {
             const panel = document.getElementById('comm_form_panel');
             const title = document.getElementById('comm_panel_title');
+            const channelSelect = document.getElementById('msg_channel_select');
             const groupSelect = document.getElementById('msg_recipient_group');
-            const categorySelect = document.getElementById('msg_category_select');
 
             panel.classList.remove('hidden');
 
-            if(type === 'sms') {
-                title.innerHTML = `<i class="fa-solid fa-sms mr-2 text-emerald-700"></i> ১. Bulk SMS Gateway (এসএমএস প্রেরণ প্যানেল)`;
-                groupSelect.value = "সকল শিক্ষার্থী ও অভিভাবক";
+            if(type === 'whatsapp') {
+                title.innerHTML = `<i class="fa-brands fa-whatsapp mr-2 text-emerald-700 text-base"></i> WhatsApp API মেসেজিং প্যানেল`;
+                channelSelect.value = "WhatsApp API";
+            } else if(type === 'sms') {
+                title.innerHTML = `<i class="fa-solid fa-mobile-screen mr-2 text-teal-700"></i> সাধারণ মোবাইল SMS (Single / Custom) প্যানেল`;
+                channelSelect.value = "Mobile SMS";
             } else if(type === 'student') {
-                title.innerHTML = `<i class="fa-solid fa-user-graduate mr-2 text-blue-700"></i> ২. Student Notification (শিক্ষার্থী বার্তা প্যানেল)`;
+                title.innerHTML = `<i class="fa-solid fa-user-graduate mr-2 text-blue-700"></i> Student Notification প্যানেল`;
                 groupSelect.value = "নির্দিষ্ট শ্রেণির শিক্ষার্থী";
             } else if(type === 'teacher') {
-                title.innerHTML = `<i class="fa-solid fa-chalkboard-user mr-2 text-purple-700"></i> ৩. Teacher Notification (শিক্ষক নোটিফিকেশন প্যানেল)`;
+                title.innerHTML = `<i class="fa-solid fa-chalkboard-user mr-2 text-purple-700"></i> Teacher Notification প্যানেল`;
                 groupSelect.value = "সকল শিক্ষক ও স্টাফ";
-            } else if(type === 'notice') {
-                title.innerHTML = `<i class="fa-solid fa-bullhorn mr-2 text-amber-700"></i> ৪. Notice Alert (নোটিশ অ্যালার্ট সিস্টেম)`;
-                categorySelect.value = "সাধারণ তথ্য/নোটিশ";
             } else if(type === 'emergency') {
-                title.innerHTML = `<i class="fa-solid fa-triangle-exclamation mr-2 text-rose-700"></i> ৫. Emergency Message (জরুরি বার্তা ব্রডকাস্ট)`;
+                title.innerHTML = `<i class="fa-solid fa-triangle-exclamation mr-2 text-rose-700"></i> Emergency Message ব্রডকাস্ট`;
                 groupSelect.value = "জরুরি ব্রডকাস্ট (সবাই)";
-                categorySelect.value = "জরুরি ছুটি/ছুটির নোটিশ";
             }
 
             toggleStudentClassSelect();
@@ -279,24 +292,28 @@
         function toggleStudentClassSelect() {
             const group = document.getElementById('msg_recipient_group').value;
             const classWrapper = document.getElementById('class_select_wrapper');
+            const customNumWrapper = document.getElementById('custom_number_wrapper');
+
+            classWrapper.classList.add('hidden');
+            customNumWrapper.classList.add('hidden');
+
             if(group === "নির্দিষ্ট শ্রেণির শিক্ষার্থী") {
                 classWrapper.classList.remove('hidden');
-            } else {
-                classWrapper.classList.add('hidden');
+            } else if(group === "নির্দিষ্ট মোবাইল নম্বর (Custom)") {
+                customNumWrapper.classList.remove('hidden');
             }
         }
 
         function updateSMSCounter() {
             const text = document.getElementById('msg_body_input').value;
-            const len = text.length;
-            document.getElementById('charCount').innerText = len;
-            const smsNum = len > 0 ? Math.ceil(len / 160) : 1;
-            document.getElementById('smsCount').innerText = smsNum;
+            document.getElementById('charCount').innerText = text.length;
         }
 
         function sendNotificationMessage() {
+            const channel = document.getElementById('msg_channel_select').value;
             const group = document.getElementById('msg_recipient_group').value;
             const selectedClass = document.getElementById('msg_class_select').value;
+            const customPhone = document.getElementById('msg_custom_phone').value.trim();
             const category = document.getElementById('msg_category_select').value;
             const subject = document.getElementById('msg_subject_input').value.trim();
             const body = document.getElementById('msg_body_input').value.trim();
@@ -309,15 +326,22 @@
             let recipientText = group;
             if(group === "নির্দিষ্ট শ্রেণির শিক্ষার্থী") {
                 recipientText += ` (${selectedClass})`;
+            } else if(group === "নির্দিষ্ট মোবাইল নম্বর (Custom)") {
+                if(!customPhone) {
+                    alert('দয়া করে সঠিক মোবাইল/WhatsApp নম্বর দিন!');
+                    return;
+                }
+                recipientText += ` [নম্বর: ${customPhone}]`;
             }
 
             let msgRecord = {
                 date: new Date().toLocaleString('bn-BD'),
+                channel: channel,
                 recipient: recipientText,
                 category: category,
                 subject: subject || 'সাধারণ নোটিশ',
                 body: body,
-                status: 'সফলভাবে প্রেরিত (Delivered)'
+                status: 'সফলভাবে প্রেরিত (Sent)'
             };
 
             let allMsgs = JSON.parse(localStorage.getItem('madrasah_sent_messages')) || [];
@@ -326,10 +350,11 @@
 
             document.getElementById('msg_subject_input').value = '';
             document.getElementById('msg_body_input').value = '';
+            document.getElementById('msg_custom_phone').value = '';
             updateSMSCounter();
 
             renderSentMessagesTable();
-            alert('বার্তাটি সফলভাবে পাঠানো হয়েছে এবং সিস্টেমে সেভ করা হয়েছে!');
+            alert(`বার্তাটি সফলভাবে [${channel}] এর মাধ্যমে পাঠানো হয়েছে!`);
         }
 
         function deleteMessageLog(index) {
@@ -350,11 +375,15 @@
             }
 
             allMsgs.reverse().forEach((m, idx) => {
+                let channelBadge = m.channel === 'WhatsApp API' 
+                    ? `<span class="bg-emerald-100 text-emerald-800 px-2 py-0.5 rounded font-bold"><i class="fa-brands fa-whatsapp"></i> WhatsApp</span>` 
+                    : `<span class="bg-teal-100 text-teal-800 px-2 py-0.5 rounded font-bold"><i class="fa-solid fa-mobile-screen"></i> SMS</span>`;
+
                 tbody.innerHTML += `
                     <tr>
                         <td class="border p-2 font-bold text-gray-600">${m.date}</td>
-                        <td class="border p-2 font-bold text-emerald-800">${m.recipient}</td>
-                        <td class="border p-2 font-bold text-amber-800">${m.category}</td>
+                        <td class="border p-2 text-center">${channelBadge}</td>
+                        <td class="border p-2 font-bold text-emerald-900">${m.recipient}</td>
                         <td class="border p-2">
                             <p class="font-bold text-gray-800">${m.subject}</p>
                             <p class="text-[11px] text-gray-600">${m.body}</p>

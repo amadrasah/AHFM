@@ -70,7 +70,7 @@
                 <div class="bg-gradient-to-r from-emerald-800 to-emerald-950 text-white p-5 md:p-6 rounded-2xl shadow-sm flex flex-col md:flex-row justify-between items-center gap-4 no-print">
                     <div>
                         <h2 class="text-lg md:text-xl font-bold">যোগাযোগ ও নোটিফিকেশন ম্যানেজমেন্ট প্যানেল</h2>
-                        <p class="text-emerald-200 text-xs mt-1">মোবাইল সিম সরাসরি সংযোগ এবং WhatsApp মেসেজিংয়ের মাধ্যমে তাৎক্ষণিক বার্তা প্রেরণ।</p>
+                        <p class="text-emerald-200 text-xs mt-1">গ্রুপ ও শ্রেণিভিত্তিক মোবাইল সিম এবং WhatsApp মেসেজিংয়ের মাধ্যমে তাৎক্ষণিক বার্তা প্রেরণ।</p>
                     </div>
                 </div>
 
@@ -84,12 +84,28 @@
                         <div>
                             <label class="font-bold block mb-1 text-gray-700">মেসেজিং মাধ্যম (Channel) *:</label>
                             <select id="msg_channel_select" class="p-2 border rounded bg-white w-full font-bold text-emerald-900">
-                                <option value="Mobile SIM SMS">১. মোবাইল সিম SMS (Direct Mobile App/SIM)</option>
+                                <option value="Mobile SIM SMS">১. মোবাইল সিম SMS (Direct SIM)</option>
                                 <option value="WhatsApp Direct">২. WhatsApp Direct (সরাসরি চ্যাট)</option>
                             </select>
                         </div>
 
                         <div>
+                            <label class="font-bold block mb-1 text-gray-700">গ্রাহকের ধরন (Recipient Group) *:</label>
+                            <select id="msg_recipient_group" onchange="toggleStudentClassSelect()" class="p-2 border rounded bg-white w-full font-bold">
+                                <option value="সকল শিক্ষার্থী ও অভিভাবক">১. সকল শিক্ষার্থী ও অভিভাবক</option>
+                                <option value="নির্দিষ্ট শ্রেণির শিক্ষার্থী">২. নির্দিষ্ট শ্রেণির শিক্ষার্থী</option>
+                                <option value="নির্দিষ্ট মোবাইল নম্বর (Custom)">৩. নির্দিষ্ট মোবাইল নম্বর (Custom)</option>
+                                <option value="সকল শিক্ষক ও স্টাফ">৪. সকল শিক্ষক ও স্টাফ</option>
+                                <option value="জরুরি ব্রডকাস্ট (সবাই)">৫. জরুরি ব্রডকাস্ট (সবাই)</option>
+                            </select>
+                        </div>
+
+                        <div id="class_select_wrapper" class="hidden">
+                            <label class="font-bold block mb-1 text-gray-700">শ্রেণি নির্বাচন করুন *:</label>
+                            <select id="msg_class_select" class="p-2 border rounded bg-white w-full font-bold master-class-dropdown"></select>
+                        </div>
+
+                        <div id="custom_number_wrapper" class="hidden">
                             <label class="font-bold block mb-1 text-gray-700">মোবাইল নম্বর *:</label>
                             <input type="text" id="msg_custom_phone" value="01640388584" placeholder="01XXXXXXXXX" class="p-2 border rounded bg-white w-full font-bold">
                         </div>
@@ -131,7 +147,7 @@
                                 <tr class="bg-emerald-800 text-white">
                                     <th class="border p-2 text-center">তারিখ ও সময়</th>
                                     <th class="border p-2">মাধ্যম (Channel)</th>
-                                    <th class="border p-2">প্রাপক নম্বর</th>
+                                    <th class="border p-2">গ্রাপ / প্রাপক</th>
                                     <th class="border p-2">বার্তার বিবরণ</th>
                                     <th class="border p-2 text-center">স্ট্যাটাস</th>
                                     <th class="border p-2 text-center">মুছে ফেলুন</th>
@@ -148,41 +164,84 @@
     </div>
 
     <script>
-        // সরাসরি ডিভাইস এবং সিম ব্যবহার করে ইনস্ট্যান্ট মেসেজ ট্রিগার করার ফাংশন
+        const MASTER_CLASS_LIST = [
+            "নুরানী প্রথম শ্রেণি", "নুরানী দ্বিতীয় শ্রেণি", "নুরানী তৃতীয় শ্রেণি", 
+            "ইবতেদায়ী চতুর্থ শ্রেণি", "ইবতেদায়ী পঞ্চম শ্রেণি", "দাখিল ষষ্ঠ শ্রেণি", 
+            "দাখিল সপ্তম শ্রেণি", "দাখিল অষ্টম শ্রেণি", "দাখিল নবম শ্রেণি", "দাখিল দশম শ্রেণি",
+            "আলিম প্রথম বর্ষ", "আলিম দ্বিতীয় বর্ষ", "ফাজিল প্রথম বর্ষ", "ফাজিল দ্বিতীয় বর্ষ", "ফাজিল তৃতীয় বর্ষ"
+        ];
+
+        function populateClassDropdowns() {
+            document.querySelectorAll('.master-class-dropdown').forEach(el => {
+                el.innerHTML = '<option value="">শ্রেণি নির্বাচন করুন</option>';
+                MASTER_CLASS_LIST.forEach(c => el.innerHTML += `<option value="${c}">${c}</option>`);
+            });
+        }
+
+        function toggleStudentClassSelect() {
+            const group = document.getElementById('msg_recipient_group').value;
+            const classWrapper = document.getElementById('class_select_wrapper');
+            const customNumWrapper = document.getElementById('custom_number_wrapper');
+
+            classWrapper.classList.add('hidden');
+            customNumWrapper.classList.add('hidden');
+
+            if(group === "নির্দিষ্ট শ্রেণির শিক্ষার্থী") {
+                classWrapper.classList.remove('hidden');
+            } else if(group === "নির্দিষ্ট মোবাইল নম্বর (Custom)") {
+                customNumWrapper.classList.remove('hidden');
+            }
+        }
+
         function sendDirectGatewayMessage() {
             const channel = document.getElementById('msg_channel_select').value;
+            const group = document.getElementById('msg_recipient_group').value;
+            const selectedClass = document.getElementById('msg_class_select').value;
             let phone = document.getElementById('msg_custom_phone').value.trim();
             const subject = document.getElementById('msg_subject_input').value.trim();
             const body = document.getElementById('msg_body_input').value.trim();
             const category = document.getElementById('msg_category_select').value;
 
-            if(!phone || !body) {
-                alert('দয়া করে সঠিক মোবাইল নম্বর এবং বার্তার বিবরণ লিখুন!');
+            if(!body) {
+                alert('দয়া করে বার্তার বিবরণ লিখুন!');
                 return;
             }
 
-            // নম্বর ফরম্যাট ঠিক করা (যেমন: 01... কে +8801... এ রূপান্তর)
-            if(phone.startsWith('0')) {
-                phone = '+88' + phone;
+            let recipientText = group;
+            let targetPhone = phone || "01640388584";
+
+            if(group === "নির্দিষ্ট শ্রেণির শিক্ষার্থী") {
+                if(!selectedClass) {
+                    alert('দয়া করে শ্রেণি নির্বাচন করুন!');
+                    return;
+                }
+                recipientText += ` (${selectedClass})`;
+            } else if(group === "নির্দিষ্ট মোবাইল নম্বর (Custom)") {
+                if(!phone) {
+                    alert('দয়া করে সঠিক মোবাইল নম্বর দিন!');
+                    return;
+                }
+                recipientText += ` [নম্বর: ${phone}]`;
+            }
+
+            if(targetPhone.startsWith('0')) {
+                targetPhone = '+88' + targetPhone;
             }
 
             let fullMessage = `[AHIFM] ${subject ? subject + '\n' : ''}${body}`;
 
             if(channel === "Mobile SIM SMS") {
-                // মোবাইলের নিজস্ব সিম ও SMS অ্যাপ ওপেন করার স্ট্যান্ডার্ড প্রোটোকল
-                const smsUri = `sms:${phone}?body=${encodeURIComponent(fullMessage)}`;
+                const smsUri = `sms:${targetPhone}?body=${encodeURIComponent(fullMessage)}`;
                 window.location.href = smsUri;
             } else if(channel === "WhatsApp Direct") {
-                // WhatsApp-এর অফিসিয়াল ওয়াব লিংকের মাধ্যমে সরাসরি চ্যাট ওপেন করা
-                const waUri = `https://wa.me/${phone.replace('+', '')}?text=${encodeURIComponent(fullMessage)}`;
+                const waUri = `https://wa.me/${targetPhone.replace('+', '')}?text=${encodeURIComponent(fullMessage)}`;
                 window.open(waUri, '_blank');
             }
 
-            // লোকাল স্টোরেজে হিস্ট্রি সেভ করা
             let msgRecord = {
                 date: new Date().toLocaleString('bn-BD'),
                 channel: channel,
-                recipient: phone,
+                recipient: recipientText,
                 subject: subject || 'সাধারণ নোটিশ',
                 body: body,
                 status: 'সফলভাবে ট্রিগার হয়েছে (Triggered)'
@@ -236,6 +295,7 @@
         }
 
         window.onload = function() {
+            populateClassDropdowns();
             renderSentMessagesTable();
         };
     </script>

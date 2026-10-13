@@ -7,10 +7,7 @@
     <script src="https://cdn.tailwindcss.com"></script>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     <style>
-        @media print {
-            .no-print { display: none !important; }
-            body { background: white !important; font-size: 9pt !important; }
-        }
+        @media print { .no-print { display: none !important; } }
     </style>
 </head>
 <body class="bg-gray-100 font-sans antialiased text-gray-800">
@@ -56,7 +53,7 @@
             <!-- Top Navbar -->
             <header class="bg-white shadow-sm p-4 flex justify-between items-center no-print sticky top-0 z-20">
                 <div class="flex items-center gap-3">
-                    <span class="font-bold text-emerald-800 text-base md:text-lg">📱 Communication Management (WhatsApp & Mobile SMS)</span>
+                    <span class="font-bold text-emerald-800 text-base md:text-lg">📱 Communication Management (WhatsApp & TextBee SIM Gateway)</span>
                 </div>
                 <div class="flex items-center gap-4">
                     <span class="text-xs md:text-sm text-gray-700 font-semibold bg-emerald-50 px-3 py-1 rounded-full border border-emerald-200">
@@ -72,72 +69,76 @@
                 <!-- Page Header Banner -->
                 <div class="bg-gradient-to-r from-emerald-800 to-emerald-950 text-white p-5 md:p-6 rounded-2xl shadow-sm flex flex-col md:flex-row justify-between items-center gap-4 no-print">
                     <div>
-                        <h2 class="text-lg md:text-xl font-bold">যোগাযোগ ও বার্তা আদান-প্রদান প্যানেল</h2>
-                        <p class="text-emerald-200 text-xs mt-1">WhatsApp API এবং সাধারণ মোবাইল এসএমএস (Single / Custom SMS) পাঠানোর আধুনিক ব্যবস্থা।</p>
+                        <h2 class="text-lg md:text-xl font-bold">যোগাযোগ ও নোটিফিকেশন ম্যানেজমেন্ট প্যানেল</h2>
+                        <p class="text-emerald-200 text-xs mt-1">WhatsApp API এবং আপনার নিজের মোবাইল সিম (TextBee Gateway) ব্যবহার করে সরাসরি বার্তা প্রেরণের ব্যবস্থা।</p>
                     </div>
                     <div class="flex gap-2">
                         <button onclick="openCommPanel('whatsapp')" class="bg-emerald-500 text-white px-4 py-2 rounded-xl font-bold text-xs hover:bg-emerald-600 transition shadow-sm"><i class="fa-brands fa-whatsapp mr-1"></i> WhatsApp বার্তা</button>
-                        <button onclick="openCommPanel('sms')" class="bg-white text-emerald-900 px-4 py-2 rounded-xl font-bold text-xs hover:bg-emerald-50 transition shadow-sm"><i class="fa-solid fa-mobile-screen mr-1"></i> সাধারণ মোবাইল এসএমএস</button>
+                        <button onclick="openCommPanel('sms')" class="bg-white text-emerald-900 px-4 py-2 rounded-xl font-bold text-xs hover:bg-emerald-50 transition shadow-sm"><i class="fa-solid fa-mobile-screen mr-1"></i> মোবাইল সিম এসএমএস</button>
                     </div>
                 </div>
 
-                <!-- Sub-Modules Grid Layout (5 Features) -->
+                <!-- API Settings / Config Box -->
+                <div class="bg-amber-50 border border-amber-200 p-4 rounded-xl text-xs space-y-3 no-print">
+                    <h4 class="font-bold text-amber-900 flex items-center gap-1.5"><i class="fa-solid fa-gear"></i> API গেটওয়ে কনফিগারেশন সেটিংস:</h4>
+                    <div class="grid grid-cols-1 sm:grid-cols-3 gap-3">
+                        <div>
+                            <label class="font-bold block mb-1">TextBee Device API Key:</label>
+                            <input type="text" id="config_textbee_key" placeholder="TextBee API Key বসান" class="p-2 border rounded bg-white w-full font-bold">
+                        </div>
+                        <div>
+                            <label class="font-bold block mb-1">WhatsApp Phone Number ID:</label>
+                            <input type="text" id="config_wa_phone_id" placeholder="Meta Phone Number ID" class="p-2 border rounded bg-white w-full font-bold">
+                        </div>
+                        <div>
+                            <label class="font-bold block mb-1">WhatsApp Access Token:</label>
+                            <input type="password" id="config_wa_token" placeholder="Meta Permanent Token" class="p-2 border rounded bg-white w-full font-bold">
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Sub-Modules Grid Layout -->
                 <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-5 no-print">
                     
-                    <!-- 1. WhatsApp API -->
                     <div onclick="openCommPanel('whatsapp')" class="bg-white p-5 rounded-xl shadow-sm border-t-4 border-emerald-600 space-y-3 hover:shadow-md cursor-pointer transition">
                         <div class="flex items-center justify-between border-b pb-2">
-                            <h3 class="font-bold text-gray-800 text-sm flex items-center gap-2">
-                                <i class="fa-brands fa-whatsapp text-emerald-600 text-base"></i> WhatsApp API Gateway
-                            </h3>
+                            <h3 class="font-bold text-gray-800 text-sm flex items-center gap-2"><i class="fa-brands fa-whatsapp text-emerald-600 text-base"></i> WhatsApp API Gateway</h3>
                             <span class="text-xs bg-emerald-50 text-emerald-700 px-2 py-0.5 rounded font-semibold">WhatsApp</span>
                         </div>
-                        <p class="text-xs text-gray-600 leading-relaxed">মেটা ক্লাউড এপিআই-এর মাধ্যমে শিক্ষার্থীদের অভিভাবক ও শিক্ষকদের WhatsApp এ সরাসরি চ্যাট ও নোটিশ পাঠানো।</p>
+                        <p class="text-xs text-gray-600 leading-relaxed">মেটা ক্লাউড এপিআই-এর মাধ্যমে অভিভাবক ও শিক্ষকদের WhatsApp এ চ্যাট ও নোটিশ পাঠানো।</p>
                         <button class="w-full bg-emerald-50 text-emerald-700 py-1.5 rounded text-xs font-bold hover:bg-emerald-100 transition">WhatsApp প্যানেল খুলুন</button>
                     </div>
 
-                    <!-- 2. Single/Custom Mobile SMS -->
                     <div onclick="openCommPanel('sms')" class="bg-white p-5 rounded-xl shadow-sm border-t-4 border-teal-600 space-y-3 hover:shadow-md cursor-pointer transition">
                         <div class="flex items-center justify-between border-b pb-2">
-                            <h3 class="font-bold text-gray-800 text-sm flex items-center gap-2">
-                                <i class="fa-solid fa-mobile-screen text-teal-600"></i> General Mobile SMS
-                            </h3>
-                            <span class="text-xs bg-teal-50 text-teal-700 px-2 py-0.5 rounded font-semibold">মোবাইল এসএমএস</span>
+                            <h3 class="font-bold text-gray-800 text-sm flex items-center gap-2"><i class="fa-solid fa-mobile-screen text-teal-600"></i> Mobile SIM SMS (TextBee)</h3>
+                            <span class="text-xs bg-teal-50 text-teal-700 px-2 py-0.5 rounded font-semibold">মোবাইল সিম</span>
                         </div>
-                        <p class="text-xs text-gray-600 leading-relaxed">বাল্ক ছাড়া যেকোনো নির্দিষ্ট মোবাইল নম্বরে বা শ্রেণিভিত্তিক কাস্টম সাধারণ এসএমএস প্রেরণের সুবিধা।</p>
-                        <button class="w-full bg-teal-50 text-teal-700 py-1.5 rounded text-xs font-bold hover:bg-teal-100 transition">মোবাইল এসএমএস প্যানেল</button>
+                        <p class="text-xs text-gray-600 leading-relaxed">আপনার নিজের মোবাইল সিম ও TextBee গেটওয়ে ব্যবহার করে নির্দিষ্ট নম্বরে বা ক্লাসে এসএমএস পাঠানো।</p>
+                        <button class="w-full bg-teal-50 text-teal-700 py-1.5 rounded text-xs font-bold hover:bg-teal-100 transition">মোবাইল সিম এসএমএস প্যানেল</button>
                     </div>
 
-                    <!-- 3. Student Notification -->
                     <div onclick="openCommPanel('student')" class="bg-white p-5 rounded-xl shadow-sm border-t-4 border-blue-600 space-y-3 hover:shadow-md cursor-pointer transition">
                         <div class="flex items-center justify-between border-b pb-2">
-                            <h3 class="font-bold text-gray-800 text-sm flex items-center gap-2">
-                                <i class="fa-solid fa-user-graduate text-blue-600"></i> Student Notification
-                            </h3>
+                            <h3 class="font-bold text-gray-800 text-sm flex items-center gap-2"><i class="fa-solid fa-user-graduate text-blue-600"></i> Student Notification</h3>
                             <span class="text-xs bg-blue-50 text-blue-700 px-2 py-0.5 rounded font-semibold">শিক্ষার্থী নোটিশ</span>
                         </div>
                         <p class="text-xs text-gray-600 leading-relaxed">নির্দিষ্ট কোনো ক্লাস বা শাখার শিক্ষার্থীদের উপস্থিতি ও ফলাফল সংক্রান্ত আপডেট বার্তা পাঠানো।</p>
                         <button class="w-full bg-blue-50 text-blue-700 py-1.5 rounded text-xs font-bold hover:bg-blue-100 transition">শিক্ষার্থী বার্তা প্যানেল</button>
                     </div>
 
-                    <!-- 4. Teacher Notification -->
                     <div onclick="openCommPanel('teacher')" class="bg-white p-5 rounded-xl shadow-sm border-t-4 border-purple-600 space-y-3 hover:shadow-md cursor-pointer transition">
                         <div class="flex items-center justify-between border-b pb-2">
-                            <h3 class="font-bold text-gray-800 text-sm flex items-center gap-2">
-                                <i class="fa-solid fa-chalkboard-user text-purple-600"></i> Teacher Notification
-                            </h3>
+                            <h3 class="font-bold text-gray-800 text-sm flex items-center gap-2"><i class="fa-solid fa-chalkboard-user text-purple-600"></i> Teacher Notification</h3>
                             <span class="text-xs bg-purple-50 text-purple-700 px-2 py-0.5 rounded font-semibold">শিক্ষক নোটিফিকেশন</span>
                         </div>
                         <p class="text-xs text-gray-600 leading-relaxed">মাদ্রাসার শিক্ষক ও স্টাফদের মিটিং, রুটিন পরিবর্তন বা অফিশিয়াল কাজের আপডেট নোটিফিকেশন পাঠানো।</p>
                         <button class="w-full bg-purple-50 text-purple-700 py-1.5 rounded text-xs font-bold hover:bg-purple-100 transition">শিক্ষক বার্তা প্যানেল</button>
                     </div>
 
-                    <!-- 5. Emergency Message -->
                     <div onclick="openCommPanel('emergency')" class="bg-white p-5 rounded-xl shadow-sm border-t-4 border-rose-600 space-y-3 hover:shadow-md cursor-pointer transition">
                         <div class="flex items-center justify-between border-b pb-2">
-                            <h3 class="font-bold text-gray-800 text-sm flex items-center gap-2">
-                                <i class="fa-solid fa-triangle-exclamation text-rose-600"></i> Emergency Message
-                            </h3>
+                            <h3 class="font-bold text-gray-800 text-sm flex items-center gap-2"><i class="fa-solid fa-triangle-exclamation text-rose-600"></i> Emergency Message</h3>
                             <span class="text-xs bg-rose-50 text-rose-700 px-2 py-0.5 rounded font-semibold">জরুরি বার্তা</span>
                         </div>
                         <p class="text-xs text-gray-600 leading-relaxed">প্রতিষ্ঠান বন্ধ ঘোষণা, প্রাকৃতিক দুর্যোগ বা জরুরি পরিস্থিতিতে দ্রুত সংশ্লিষ্ট সবার কাছে অ্যালার্ট মেসেজ পাঠানো।</p>
@@ -158,7 +159,7 @@
                             <label class="font-bold block mb-1 text-gray-700">মেসেজিং মাধ্যম (Channel) *:</label>
                             <select id="msg_channel_select" class="p-2 border rounded bg-white w-full font-bold text-emerald-900">
                                 <option value="WhatsApp API">১. WhatsApp API (অফিশিয়াল)</option>
-                                <option value="Mobile SMS">২. সাধারণ মোবাইল SMS (Single/Custom)</option>
+                                <option value="TextBee SIM SMS">২. মোবাইল সিম SMS (TextBee Gateway)</option>
                             </select>
                         </div>
 
@@ -180,7 +181,7 @@
 
                         <div id="custom_number_wrapper" class="hidden">
                             <label class="font-bold block mb-1 text-gray-700">মোবাইল / WhatsApp নম্বর *:</label>
-                            <input type="text" id="msg_custom_phone" placeholder="যেমন: 01814716405" class="p-2 border rounded bg-white w-full font-bold">
+                            <input type="text" id="msg_custom_phone" value="01640388584" placeholder="01XXXXXXXXX" class="p-2 border rounded bg-white w-full font-bold">
                         </div>
 
                         <div>
@@ -204,18 +205,18 @@
                                 <label class="font-bold text-gray-700">বার্তার বিস্তারিত তথ্য (Message Body) *:</label>
                                 <span class="text-[11px] text-gray-500 font-bold">অক্ষর সংখ্যা: <span id="charCount">0</span></span>
                             </div>
-                            <textarea id="msg_body_input" onkeyup="updateSMSCounter()" rows="4" placeholder="এখানে বার্তার মূল বক্তব্য লিখুন..." class="p-2 border rounded bg-white w-full font-semibold"></textarea>
+                            <textarea id="msg_body_input" onkeyup="updateSMSCounter()" rows="4" placeholder="এখানে বার্তার মূল বক্তব্য লিখুন..." class="p-2 border rounded bg-white w-full font-semibold">সম্মানিত অভিভাবক, আবদুল্লাহ হাট ইসলামিয়া ফাজিল মাদ্রাসার পক্ষ থেকে জানানো যাচ্ছে যে...</textarea>
                         </div>
 
                         <div class="sm:col-span-3 flex justify-end gap-2 pt-2">
-                            <button onclick="sendNotificationMessage()" class="bg-emerald-700 text-white px-6 py-2.5 rounded-lg font-bold text-xs hover:bg-emerald-800 shadow transition flex items-center gap-1.5"><i class="fa-solid fa-paper-plane"></i> বার্তা সেন্ড করুন</button>
+                            <button onclick="sendLiveNotificationMessage()" class="bg-emerald-700 text-white px-6 py-2.5 rounded-lg font-bold text-xs hover:bg-emerald-800 shadow transition flex items-center gap-1.5"><i class="fa-solid fa-paper-plane"></i> বার্তা সেন্ড করুন (Live Send)</button>
                         </div>
                     </div>
 
                     <!-- SENT MESSAGES HISTORY TABLE -->
                     <div class="overflow-x-auto border rounded-xl bg-white p-3 space-y-2">
                         <h4 class="font-bold text-xs text-gray-700 flex justify-between items-center">
-                            <span><i class="fa-solid fa-history mr-1"></i> প্রেরিত WhatsApp ও মোবাইল এসএমএস হিস্ট্রি</span>
+                            <span><i class="fa-solid fa-history mr-1"></i> প্রেরিত WhatsApp ও মোবাইল সিম এসএমএস রেজিস্টার</span>
                             <button onclick="renderSentMessagesTable()" class="text-xs text-blue-700 underline font-bold">রিফ্রেশ করুন</button>
                         </h4>
                         <table class="w-full text-left border-collapse border border-gray-200 text-xs">
@@ -224,7 +225,7 @@
                                     <th class="border p-2 text-center">তারিখ ও সময়</th>
                                     <th class="border p-2">মাধ্যম (Channel)</th>
                                     <th class="border p-2">প্রাপক / গ্রুপ</th>
-                                    <th class="border p-2">বার্তার বিষয় ও বিবরণ</th>
+                                    <th class="border p-2">বার্তার বিবরণ</th>
                                     <th class="border p-2 text-center">স্ট্যাটাস</th>
                                     <th class="border p-2 text-center">মুছে ফেলুন</th>
                                 </tr>
@@ -266,8 +267,8 @@
                 title.innerHTML = `<i class="fa-brands fa-whatsapp mr-2 text-emerald-700 text-base"></i> WhatsApp API মেসেজিং প্যানেল`;
                 channelSelect.value = "WhatsApp API";
             } else if(type === 'sms') {
-                title.innerHTML = `<i class="fa-solid fa-mobile-screen mr-2 text-teal-700"></i> সাধারণ মোবাইল SMS (Single / Custom) প্যানেল`;
-                channelSelect.value = "Mobile SMS";
+                title.innerHTML = `<i class="fa-solid fa-mobile-screen mr-2 text-teal-700"></i> মোবাইল সিম SMS (TextBee Gateway) প্যানেল`;
+                channelSelect.value = "TextBee SIM SMS";
             } else if(type === 'student') {
                 title.innerHTML = `<i class="fa-solid fa-user-graduate mr-2 text-blue-700"></i> Student Notification প্যানেল`;
                 groupSelect.value = "নির্দিষ্ট শ্রেণির শিক্ষার্থী";
@@ -309,7 +310,8 @@
             document.getElementById('charCount').innerText = text.length;
         }
 
-        function sendNotificationMessage() {
+        // রিয়েল API কল এবং লাইভ মেসেজ প্রেরণের প্রধান ফাংশন
+        async function sendLiveNotificationMessage() {
             const channel = document.getElementById('msg_channel_select').value;
             const group = document.getElementById('msg_recipient_group').value;
             const selectedClass = document.getElementById('msg_class_select').value;
@@ -324,6 +326,8 @@
             }
 
             let recipientText = group;
+            let targetPhone = customPhone;
+
             if(group === "নির্দিষ্ট শ্রেণির শিক্ষার্থী") {
                 recipientText += ` (${selectedClass})`;
             } else if(group === "নির্দিষ্ট মোবাইল নম্বর (Custom)") {
@@ -332,29 +336,105 @@
                     return;
                 }
                 recipientText += ` [নম্বর: ${customPhone}]`;
+            } else {
+                targetPhone = "01640388584"; // ডিফল্ট টেস্ট নম্বর
             }
 
-            let msgRecord = {
-                date: new Date().toLocaleString('bn-BD'),
-                channel: channel,
-                recipient: recipientText,
-                category: category,
-                subject: subject || 'সাধারণ নোটিশ',
-                body: body,
-                status: 'সফলভাবে প্রেরিত (Sent)'
-            };
+            let sendSuccess = false;
 
-            let allMsgs = JSON.parse(localStorage.getItem('madrasah_sent_messages')) || [];
-            allMsgs.push(msgRecord);
-            localStorage.setItem('madrasah_sent_messages', JSON.stringify(allMsgs));
+            // ১. TextBee SIM SMS Gateway API Call
+            if(channel === "TextBee SIM SMS") {
+                let textbeeKey = document.getElementById('config_textbee_key').value.trim();
+                if(!textbeeKey) {
+                    alert('দয়া করে উপরে কনফিগারেশন বক্সে আপনার TextBee API Key বসান!');
+                    return;
+                }
 
-            document.getElementById('msg_subject_input').value = '';
-            document.getElementById('msg_body_input').value = '';
-            document.getElementById('msg_custom_phone').value = '';
-            updateSMSCounter();
+                try {
+                    let response = await fetch('https://api.textbee.dev/api/v1/gateway/devices/send-sms', {
+                        method: 'POST',
+                        headers: {
+                            'Content-Type': 'application/json',
+                            'x-api-key': textbeeKey
+                        },
+                        body: JSON.stringify({
+                            recipients: [targetPhone],
+                            message: `[AHIFM] ${subject}\n${body}`
+                        })
+                    });
 
-            renderSentMessagesTable();
-            alert(`বার্তাটি সফলভাবে [${channel}] এর মাধ্যমে পাঠানো হয়েছে!`);
+                    if(response.ok) {
+                        sendSuccess = true;
+                    } else {
+                        alert('TextBee গেটওয়ে থেকে এসএমএস পাঠাতে ব্যর্থ হয়েছে। API Key যাচাই করুন।');
+                    }
+                } catch(e) {
+                    alert('নেটওয়ার্ক ত্রুটি: ' + e.message);
+                    return;
+                }
+            } 
+            // ২. WhatsApp Cloud API Call
+            else if(channel === "WhatsApp API") {
+                let waPhoneId = document.getElementById('config_wa_phone_id').value.trim();
+                let waToken = document.getElementById('config_wa_token').value.trim();
+
+                if(!waPhoneId || !waToken) {
+                    alert('দয়া করে উপরে কনফিগারেশন বক্সে WhatsApp Phone ID এবং Access Token বসান!');
+                    return;
+                }
+
+                let formattedPhone = targetPhone.startsWith("88") ? targetPhone : "88" + targetPhone;
+
+                try {
+                    let response = await fetch(`https://graph.facebook.com/v18.0/${waPhoneId}/messages`, {
+                        method: 'POST',
+                        headers: {
+                            'Authorization': `Bearer ${waToken}`,
+                            'Content-Type': 'application/json'
+                        },
+                        body: JSON.stringify({
+                            messaging_product: "whatsapp",
+                            to: formattedPhone,
+                            type: "text",
+                            text: { body: `*${subject}*\n\n${body}` }
+                        })
+                    });
+
+                    if(response.ok) {
+                        sendSuccess = true;
+                    } else {
+                        let errData = await response.json();
+                        alert('WhatsApp API ত্রুটি: ' + (errData.error?.message || 'মেসেজ পাঠানো যায়নি'));
+                        return;
+                    }
+                } catch(e) {
+                    alert('নেটওয়ার্ক ত্রুটি: ' + e.message);
+                    return;
+                }
+            }
+
+            if(sendSuccess || channel !== "TextBee SIM SMS" && channel !== "WhatsApp API") {
+                let msgRecord = {
+                    date: new Date().toLocaleString('bn-BD'),
+                    channel: channel,
+                    recipient: recipientText,
+                    category: category,
+                    subject: subject || 'সাধারণ নোটিশ',
+                    body: body,
+                    status: 'সফলভাবে প্রেরিত (Delivered)'
+                };
+
+                let allMsgs = JSON.parse(localStorage.getItem('madrasah_sent_messages')) || [];
+                allMsgs.push(msgRecord);
+                localStorage.setItem('madrasah_sent_messages', JSON.stringify(allMsgs));
+
+                document.getElementById('msg_subject_input').value = '';
+                document.getElementById('msg_body_input').value = '';
+                updateSMSCounter();
+
+                renderSentMessagesTable();
+                alert(`সফলভাবে [${channel}] এর মাধ্যমে বার্তা পাঠানো হয়েছে!`);
+            }
         }
 
         function deleteMessageLog(index) {
@@ -377,7 +457,7 @@
             allMsgs.reverse().forEach((m, idx) => {
                 let channelBadge = m.channel === 'WhatsApp API' 
                     ? `<span class="bg-emerald-100 text-emerald-800 px-2 py-0.5 rounded font-bold"><i class="fa-brands fa-whatsapp"></i> WhatsApp</span>` 
-                    : `<span class="bg-teal-100 text-teal-800 px-2 py-0.5 rounded font-bold"><i class="fa-solid fa-mobile-screen"></i> SMS</span>`;
+                    : `<span class="bg-teal-100 text-teal-800 px-2 py-0.5 rounded font-bold"><i class="fa-solid fa-mobile-screen"></i> TextBee SIM</span>`;
 
                 tbody.innerHTML += `
                     <tr>
@@ -397,6 +477,7 @@
 
         window.onload = function() {
             populateClassDropdowns();
+            renderSentMessagesTable();
         };
     </script>
 </body>

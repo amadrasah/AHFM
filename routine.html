@@ -320,6 +320,20 @@
             word-break: break-word;
         }
 
+        /* Delete Button */
+        .btn-delete {
+            background-color: #e74c3c;
+            color: white;
+            border: none;
+            padding: 4px 8px;
+            border-radius: 3px;
+            cursor: pointer;
+            font-size: 11px;
+        }
+        .btn-delete:hover {
+            background-color: #c0392b;
+        }
+
         /* PRINT STYLING */
         @media print {
             body {
@@ -328,7 +342,7 @@
                 padding: 0;
             }
             .print-header {
-                display: block !important; /* প্রিন্ট করার সময় সরাসরি লোড হওয়া প্রতিষ্ঠানের তথ্য প্রদর্শন করবে */
+                display: block !important;
             }
             .main-nav, .sub-nav, form, .day-tabs, .btn-print, .calendar-controls, .settings-card {
                 display: none !important;
@@ -368,7 +382,7 @@
 <body>
 
 <div class="container">
-    <!-- ডায়নামিক প্রিন্ট হেডার (সেটিং প্যানেল থেকে নাম, ঠিকানা ও লোগো সংযুক্ত) -->
+    <!-- ডায়নামিক প্রিন্ট হেডার -->
     <div class="print-header" id="dynamicPrintHeader">
         <div class="print-header-content">
             <img id="headerLogo" src="" alt="Logo" style="display:none;">
@@ -438,15 +452,9 @@
                         </select>
                     </div>
                     <div class="input-box">
-                        <label>বিষয়</label>
+                        <label>বিষয় (সেটিং প্যানেল থেকে লোডকৃত)</label>
                         <select id="subject" required>
                             <option value="">বিষয় নির্বাচন করুন</option>
-                            <option value="বাংলা [BNG]">বাংলা [BNG]</option>
-                            <option value="ইংরেজি [ENG]">ইংরেজি [ENG]</option>
-                            <option value="গণিত [MTH]">গণিত [MTH]</option>
-                            <option value="বিজ্ঞান [SCI]">বিজ্ঞান [SCI]</option>
-                            <option value="আইসিটি [ICT]">আইসিটি [ICT]</option>
-                            <option value="আরবি [ARB]">আরবি [ARB]</option>
                         </select>
                     </div>
                     <div class="input-box">
@@ -639,10 +647,42 @@
         </div>
     </div>
 
-    <!-- ৫. সেটিং ম্যানেজমেন্ট মডিউল (ইনফো এবং লোগো অ্যান্ড ওয়াটারমার্ক) -->
+    <!-- ৫. সেটিং ম্যানেজমেন্ট মডিউল -->
     <div id="settingsPanel" class="panel-section">
         <h2>সেটিং ম্যানেজমেন্ট মডিউল</h2>
         
+        <!-- নতুন প্যানেল: বিষয় ও কোড ম্যানেজমেন্ট -->
+        <div class="settings-card" style="background: #f9f9f9; padding: 15px; border-radius: 6px; border: 1px solid #ddd; margin-bottom: 20px;">
+            <h3 style="margin-top:0;">📚 বিষয় ও কোড ম্যানেজমেন্ট (Subject & Code Management)</h3>
+            <form id="subjectForm" onsubmit="addNewSubject(event)">
+                <div class="form-group">
+                    <div class="input-box">
+                        <label>বিষয় (Subject Name)</label>
+                        <input type="text" id="newSubjectName" placeholder="যেমন: কুরআন মাজীদ" required>
+                    </div>
+                    <div class="input-box">
+                        <label>বিষয় কোড (Subject Code)</label>
+                        <input type="text" id="newSubjectCode" placeholder="যেমন: QUR" required>
+                    </div>
+                </div>
+                <button type="submit" class="btn-submit" style="background-color: #27ae60;">নতুন বিষয় যোগ করুন</button>
+            </form>
+
+            <h4 style="margin-top: 20px; margin-bottom: 5px;">সেভ করা বিষয়সমূহের তালিকা:</h4>
+            <div class="table-responsive">
+                <table>
+                    <thead>
+                        <tr>
+                            <th>ক্রমিক</th>
+                            <th>বিষয় ও কোড</th>
+                            <th>অ্যাকশন</th>
+                        </tr>
+                    </thead>
+                    <tbody id="subjectTableBody"></tbody>
+                </table>
+            </div>
+        </div>
+
         <!-- ইনফো প্যানেল -->
         <div class="settings-card" style="background: #f9f9f9; padding: 15px; border-radius: 6px; border: 1px solid #ddd; margin-bottom: 20px;">
             <h3 style="margin-top:0;">📋 ইন্সটিটিউশন ইনফো (Info) প্যানেল</h3>
@@ -685,6 +725,17 @@
         logoUrl: ""
     };
 
+    // লোকাল স্টোরেজ থেকে বিষয় লোড বা ডিফল্ট বিষয়সমূহ সেট করা
+    let defaultSubjects = [
+        "বাংলা [BNG]",
+        "ইংরেজি [ENG]",
+        "গণিত [MTH]",
+        "বিজ্ঞান [SCI]",
+        "আইসিটি [ICT]",
+        "আরবি [ARB]"
+    ];
+    let subjectList = JSON.parse(localStorage.getItem('savedSubjectsMaster')) || defaultSubjects;
+
     const academicClassManagementList = [
         "নুরানী প্রথম শ্রেণি", "নুরানী দ্বিতীয় শ্রেণি", "নুরানী তৃতীয় শ্রেণি",
         "ইবতেদায়ী চতুর্থ শ্রেণি", "ইবতেদায়ী পঞ্চম শ্রেণি",
@@ -716,6 +767,55 @@
 
     const daysList = ["শনিবার", "রবিবার", "সোমবার", "মঙ্গলবার", "বুধবার", "বৃহস্পতিবার"];
     const weekDaysBangla = ['রবিবার', 'সোমবার', 'মঙ্গলবার', 'বুধবার', 'বৃহস্পতিবার', 'শুক্রবার', 'শনিবার'];
+
+    // বিষয়সমূহ ড্রপডাউনে লোড ও সেটিং সারণীতে রেন্ডার করার ফাংশন
+    function renderSubjectDropdownAndTable() {
+        const subjectSelect = document.getElementById('subject');
+        const subjectTableBody = document.getElementById('subjectTableBody');
+
+        subjectSelect.innerHTML = '<option value="">বিষয় নির্বাচন করুন</option>';
+        subjectTableBody.innerHTML = '';
+
+        subjectList.forEach((subj, idx) => {
+            subjectSelect.innerHTML += `<option value="${subj}">${subj}</option>`;
+            subjectTableBody.innerHTML += `
+                <tr>
+                    <td>${idx + 1}</td>
+                    <td><strong>${subj}</strong></td>
+                    <td><button type="button" class="btn-delete" onclick="deleteSubject(${idx})">ডিলিট</button></td>
+                </tr>
+            `;
+        });
+        localStorage.setItem('savedSubjectsMaster', JSON.stringify(subjectList));
+    }
+
+    // নতুন বিষয় যোগ করার ফাংশন
+    function addNewSubject(e) {
+        e.preventDefault();
+        const name = document.getElementById('newSubjectName').value.trim();
+        const code = document.getElementById('newSubjectCode').value.trim();
+
+        if (name && code) {
+            const formattedSubject = `${name} [${code.toUpperCase()}]`;
+            if (!subjectList.includes(formattedSubject)) {
+                subjectList.push(formattedSubject);
+                renderSubjectDropdownAndTable();
+                document.getElementById('newSubjectName').value = '';
+                document.getElementById('newSubjectCode').value = '';
+                alert("নতুন বিষয় সফলভাবে সেটিং প্যানেলে যুক্ত এবং ড্রপডাউনে লিঙ্ক হয়েছে!");
+            } else {
+                alert("এই বিষয় বা কোডটি আগে থেকেই সেভ করা আছে!");
+            }
+        }
+    }
+
+    // বিষয় ডিলিট করার ফাংশন
+    function deleteSubject(index) {
+        if (confirm("আপনি কি নিশ্চিত যে এই বিষয়টি ডিলিট করতে চান?")) {
+            subjectList.splice(index, 1);
+            renderSubjectDropdownAndTable();
+        }
+    }
 
     // সেটিং প্যানেল থেকে তথ্য সংরক্ষণ করা
     function saveSettingInfo() {
@@ -996,6 +1096,7 @@
 
     // প্রাথমিক লোড
     loadClassDropdowns();
+    renderSubjectDropdownAndTable();
     renderCombinedRoutine();
     updatePrintHeader();
 </script>

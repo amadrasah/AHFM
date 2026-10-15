@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>ক্লাস রুটিন ও ম্যানেজমেন্ট সিস্টেম</title>
+    <title>একাডেমিক ও ক্লাস রুটিন ম্যানেজমেন্ট সিস্টেম</title>
     <style>
         body {
             font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
@@ -24,25 +24,60 @@
             border-radius: 8px;
             box-shadow: 0 0 10px rgba(0,0,0,0.1);
         }
-        /* Top Navigation Panels / Buttons */
-        .top-panels {
+        /* Main Navigation Panels */
+        .main-nav {
             display: flex;
-            gap: 15px;
-            margin-bottom: 25px;
+            gap: 10px;
+            margin-bottom: 20px;
             flex-wrap: wrap;
+            background: #2c3e50;
+            padding: 12px;
+            border-radius: 6px;
         }
-        .panel-btn {
-            background-color: #8e44ad;
+        .main-btn {
+            background-color: #34495e;
             color: white;
-            padding: 10px 18px;
+            padding: 10px 16px;
             border: none;
-            border-radius: 5px;
+            border-radius: 4px;
             cursor: pointer;
             font-weight: bold;
             font-size: 14px;
+            transition: 0.3s;
         }
-        .panel-btn:hover {
-            background-color: #732d91;
+        .main-btn.active, .main-btn:hover {
+            background-color: #3498db;
+        }
+
+        /* Sub Navigation for Class Routine */
+        .sub-nav {
+            display: none;
+            gap: 10px;
+            margin-bottom: 20px;
+            background: #ecf0f1;
+            padding: 10px;
+            border-radius: 6px;
+        }
+        .sub-btn {
+            background-color: #7f8c8d;
+            color: white;
+            padding: 8px 14px;
+            border: none;
+            border-radius: 4px;
+            cursor: pointer;
+            font-weight: bold;
+            font-size: 13px;
+        }
+        .sub-btn.active, .sub-btn:hover {
+            background-color: #2980b9;
+        }
+
+        /* Panel Sections */
+        .panel-section {
+            display: none;
+        }
+        .panel-section.active {
+            display: block;
         }
 
         /* Form Styling */
@@ -87,26 +122,21 @@
         .day-tabs {
             display: flex;
             gap: 10px;
-            margin-top: 30px;
+            margin-top: 20px;
             margin-bottom: 15px;
             flex-wrap: wrap;
         }
         .tab-btn {
-            padding: 10px 20px;
+            padding: 8px 16px;
             background-color: #bdc3c7;
             border: none;
             border-radius: 4px;
             cursor: pointer;
             font-weight: bold;
             color: #2c3e50;
-            transition: 0.3s;
         }
         .tab-btn.active {
             background-color: #3498db;
-            color: white;
-        }
-        .tab-btn:hover {
-            background-color: #2980b9;
             color: white;
         }
 
@@ -147,95 +177,201 @@
             display: block;
             margin-top: 2px;
         }
-        
-        /* Modal / Section view styling for extra panels */
-        .extra-panel-section {
-            background: #f9f9f9;
-            border: 1px dashed #3498db;
-            padding: 15px;
-            border-radius: 6px;
-            margin-top: 20px;
-            display: none;
-        }
     </style>
 </head>
 <body>
 
 <div class="container">
-    <!-- অতিরিক্ত প্যানেল বা বাটন (শিক্ষক পার্সোনাল রুটিন ও একাডেমিক ক্যালেন্ডার) -->
-    <div class="top-panels">
-        <button class="panel-btn" onclick="openPanel('teacherRoutine')">👨‍🏫 শিক্ষক পার্সোনাল রুটিন প্যানেল</button>
-        <button class="panel-btn" onclick="openPanel('academicCalendar')">📅 একাডেমিক ক্যালেন্ডার প্যানেল</button>
+    <!-- প্রধান ন্যাভিগেশন প্যানেল বাটন -->
+    <div class="main-nav">
+        <button class="main-btn active" onclick="switchMainPanel('routinePanel', this)">ক্লাস রুটিন</button>
+        <button class="main-btn" onclick="switchMainPanel('teacherRoutinePanel', this)">শিক্ষক পার্সোনাল রুটিন</button>
+        <button class="main-btn" onclick="switchMainPanel('academicCalendarPanel', this)">একাডেমিক ক্যালেন্ডার</button>
+        <button class="main-btn" onclick="switchMainPanel('holidayPanel', this)">হলি ডে (ছুটির দিন)</button>
     </div>
 
-    <!-- অতিরিক্ত প্যানেলের ডিসপ্লে এরিয়া -->
-    <div id="extraPanelDisplay" class="extra-panel-section">
-        <h3 id="panelHeading" style="margin-top:0;">প্যানেল শিরোনাম</h3>
-        <p id="panelContent">এখানে সংশ্লিষ্ট প্যানেলের তথ্য প্রদর্শিত হবে।</p>
-        <button onclick="closePanel()" style="padding: 5px 10px; background: #e74c3c; color: white; border: none; border-radius: 4px; cursor: pointer;">বন্ধ করুন</button>
+    <!-- ১. ক্লাস রুটিন প্যানেল ও সাব-বাটন -->
+    <div id="routinePanel" class="panel-section active">
+        <div class="sub-nav" id="routineSubNav" style="display: flex;">
+            <button class="sub-btn active" onclick="switchRoutineSub('combinedView', this)">সমন্বিত রুটিন</button>
+            <button class="sub-btn" onclick="switchRoutineSub('classWiseView', this)">শ্রেণিভিত্তিক রুটিন</button>
+            <button class="sub-btn" onclick="switchRoutineSub('periodSettingView', this)">ঘণ্টা/পিরিয়ড সেটিং</button>
+        </div>
+
+        <!-- সাব-ভিউ ১: সমন্বিত রুটিন -->
+        <div id="combinedView" class="routine-sub-section">
+            <h2>ক্লাস রুটিন এন্ট্রি ও সমন্বিত রুটিন</h2>
+            <form id="routineForm">
+                <div class="form-group">
+                    <div class="input-box">
+                        <label>বছর/সাল</label>
+                        <input type="number" id="year" value="2026" required>
+                    </div>
+                    <div class="input-box">
+                        <label>শ্রেণি</label>
+                        <select id="className" required>
+                            <option value="">শ্রেণি নির্বাচন করুন</option>
+                            <option value="নুরানী প্রথম শ্রেণি">নুরানী প্রথম শ্রেণি</option>
+                            <option value="নুরানী দ্বিতীয় শ্রেণি">নুরানী দ্বিতীয় শ্রেণি</option>
+                            <option value="হিফজ বিভাগ">হিফজ বিভাগ</option>
+                            <option value="ষষ্ঠ শ্রেণি">ষষ্ঠ শ্রেণি</option>
+                            <option value="সপ্তম শ্রেণি">সপ্তম শ্রেণি</option>
+                            <option value="অষ্টম শ্রেণি">অষ্টম শ্রেণি</option>
+                            <option value="নবম শ্রেণি">নবম শ্রেণি</option>
+                            <option value="দশম শ্রেণি">দশম শ্রেণি</option>
+                            <option value="আলিম প্রথম বর্ষ">আলিম প্রথম বর্ষ</option>
+                            <option value="ফাজিল তৃতীয় বর্ষ">ফাজিল তৃতীয় বর্ষ</option>
+                        </select>
+                    </div>
+                    <div class="input-box">
+                        <label>বার (Day)</label>
+                        <select id="day" required>
+                            <option value="শনিবার">শনিবার</option>
+                            <option value="রবিবার">রবিবার</option>
+                            <option value="সোমবার">সোমবার</option>
+                            <option value="মঙ্গলবার">মঙ্গলবার</option>
+                            <option value="বুধবার">বুধবার</option>
+                            <option value="বৃহস্পতিবার">বৃহস্পতিবার</option>
+                        </select>
+                    </div>
+                    <div class="input-box">
+                        <label>পিরিয়ড/ঘণ্টা</label>
+                        <select id="period" required>
+                            <option value="1">১ম ঘণ্টা</option>
+                            <option value="2">২য় ঘণ্টা</option>
+                            <option value="3">৩য় ঘণ্টা</option>
+                            <option value="4">৪র্থ ঘণ্টা</option>
+                            <option value="5">৫ম ঘণ্টা</option>
+                            <option value="6">৬ষ্ঠ ঘণ্টা</option>
+                            <option value="7">৭ম ঘণ্টা</option>
+                            <option value="8">৮ম ঘণ্টা</option>
+                        </select>
+                    </div>
+                    <div class="input-box">
+                        <label>বিষয়</label>
+                        <select id="subject" required>
+                            <option value="">বিষয় নির্বাচন করুন</option>
+                            <option value="বাংলা [BNG]">বাংলা [BNG]</option>
+                            <option value="ইংরেজি [ENG]">ইংরেজি [ENG]</option>
+                            <option value="গণিত [MTH]">গণিত [MTH]</option>
+                            <option value="বিজ্ঞান [SCI]">বিজ্ঞান [SCI]</option>
+                            <option value="আইসিটি [ICT]">আইসিটি [ICT]</option>
+                            <option value="আরবি [ARB]">আরবি [ARB]</option>
+                        </select>
+                    </div>
+                    <div class="input-box">
+                        <label>শিক্ষক</label>
+                        <select id="teacher" required>
+                            <option value="">শিক্ষক নির্বাচন করুন</option>
+                            <option value="M.R. (মোঃ রফিক)">মোঃ রফিক [M.R.]</option>
+                            <option value="A.K. (আব্দুল করিম)">আব্দুল করিম [A.K.]</option>
+                            <option value="S.N. (নাজমা সুলতানা)">নাজমা সুলতানা [S.N.]</option>
+                            <option value="F.H. (ফয়সাল আহমেদ)">ফয়সাল আহমেদ [F.H.]</option>
+                        </select>
+                    </div>
+                </div>
+                <button type="submit" class="btn-submit">রুটিনে এন্ট্রি করুন</button>
+            </form>
+
+            <!-- বারের আলাদা ট্যাব -->
+            <div class="day-tabs" id="dayTabs">
+                <button class="tab-btn active" onclick="switchDay('শনিবার')">শনিবার</button>
+                <button class="tab-btn" onclick="switchDay('রবিবার')">রবিবার</button>
+                <button class="tab-btn" onclick="switchDay('সোমবার')">সোমবার</button>
+                <button class="tab-btn" onclick="switchDay('মঙ্গলবার')">মঙ্গলবার</button>
+                <button class="tab-btn" onclick="switchDay('বুধবার')">বুধবার</button>
+                <button class="tab-btn" onclick="switchDay('বৃহস্পতিবার')">বৃহস্পতিবার</button>
+            </div>
+
+            <h3 id="tableTitle">শনিবারের সমন্বিত রুটিন</h3>
+            <div class="table-responsive">
+                <table>
+                    <thead>
+                        <tr>
+                            <th>শ্রেণি</th>
+                            <th>১ম ঘণ্টা</th>
+                            <th>২য় ঘণ্টা</th>
+                            <th>৩য় ঘণ্টা</th>
+                            <th>৪র্থ ঘণ্টা</th>
+                            <th>৫ম ঘণ্টা</th>
+                            <th>৬ষ্ঠ ঘণ্টা</th>
+                            <th>৭ম ঘণ্টা</th>
+                            <th>৮ম ঘণ্টা</th>
+                        </tr>
+                    </thead>
+                    <tbody id="combinedRoutineBody">
+                        <!-- ডাইনামিক রেন্ডার -->
+                    </tbody>
+                </table>
+            </div>
+        </div>
+
+        <!-- সাব-ভিউ ২: শ্রেণিভিত্তিক রুটিন -->
+        <div id="classWiseView" class="routine-sub-section" style="display:none;">
+            <h2>শ্রেনিভিত্তিক রুটিন ফিল্টারিং</h2>
+            <div class="form-group" style="margin-bottom: 20px;">
+                <div class="input-box">
+                    <label>শ্রেণি নির্বাচন করুন</label>
+                    <select id="filterClassSelect" onchange="renderClassWiseRoutine()">
+                        <option value="নুরানী প্রথম শ্রেণি">নুরানী প্রথম শ্রেণি</option>
+                        <option value="নুরানী দ্বিতীয় শ্রেণি">নুরানী দ্বিতীয় শ্রেণি</option>
+                        <option value="হিফজ বিভাগ">হিফজ বিভাগ</option>
+                        <option value="ষষ্ঠ শ্রেণি">ষষ্ঠ শ্রেণি</option>
+                        <option value="সপ্তম শ্রেণি">সপ্তম শ্রেণি</option>
+                        <option value="অষ্টম শ্রেণি">অষ্টম শ্রেণি</option>
+                        <option value="নবম শ্রেণি">নবম শ্রেণি</option>
+                        <option value="দশম শ্রেণি">দশম শ্রেণি</option>
+                        <option value="আলিম প্রথম বর্ষ">আলিম প্রথম বর্ষ</option>
+                        <option value="ফাজিল তৃতীয় বর্ষ">ফাজিল তৃতীয় বর্ষ</option>
+                    </select>
+                </div>
+            </div>
+            <div class="table-responsive">
+                <table>
+                    <thead>
+                        <tr>
+                            <th>বার (Day)</th>
+                            <th>১ম ঘণ্টা</th>
+                            <th>২য় ঘণ্টা</th>
+                            <th>৩য় ঘণ্টা</th>
+                            <th>৪র্থ ঘণ্টা</th>
+                            <th>৫ম ঘণ্টা</th>
+                            <th>৬ষ্ঠ ঘণ্টা</th>
+                            <th>৭ম ঘণ্টা</th>
+                            <th>৮ম ঘণ্টা</th>
+                        </tr>
+                    </thead>
+                    <tbody id="classWiseBody">
+                        <!-- শ্রেণিভিত্তিক ডেটা রেন্ডার হবে -->
+                    </tbody>
+                </table>
+            </div>
+        </div>
+
+        <!-- সাব-ভিউ ৩: পিরিয়ড/ঘণ্টা সেটিং -->
+        <div id="periodSettingView" class="routine-sub-section" style="display:none;">
+            <h2>ঘণ্টা ও পিরিয়ড সময় সেটিং</h2>
+            <p>এখানে আপনি প্রতিটি ঘণ্টার শুরুর ও শেষের সময় নির্ধারণ করতে পারবেন।</p>
+            <ul>
+                <li>১ম ঘণ্টা: 09:00 AM - 09:45 AM</li>
+                <li>২য় ঘণ্টা: 09:45 AM - 10:30 AM</li>
+                <li>৩য় ঘণ্টা: 10:30 AM - 11:15 AM</li>
+                <li>৪র্থ ঘণ্টা: 11:15 AM - 12:00 PM</li>
+                <li>৫ম ঘণ্টা: 12:00 PM - 12:45 PM</li>
+                <li>৬ষ্ঠ ঘণ্টা: 01:30 PM - 02:15 PM</li>
+                <li>৭ম ঘণ্টা: 02:15 PM - 03:00 PM</li>
+                <li>৮ম ঘণ্টা: 03:00 PM - 03:45 PM</li>
+            </ul>
+        </div>
     </div>
 
-    <!-- ১. ক্লাস রুটিন এন্ট্রি ফরম -->
-    <h2>ক্লাস রুটিন এন্ট্রি ফরম</h2>
-    <form id="routineForm">
-        <div class="form-group">
+    <!-- ২. শিক্ষক পার্সোনাল রুটিন প্যানেল -->
+    <div id="teacherRoutinePanel" class="panel-section">
+        <h2>শিক্ষক পার্সোনাল রুটিন</h2>
+        <div class="form-group" style="margin-bottom: 20px;">
             <div class="input-box">
-                <label>বছর/সাল</label>
-                <input type="number" id="year" value="2026" required>
-            </div>
-            <div class="input-box">
-                <label>শ্রেণি</label>
-                <select id="className" required>
-                    <option value="">শ্রেণি নির্বাচন করুন</option>
-                    <option value="ষষ্ঠ শ্রেণি">ষষ্ঠ শ্রেণি</option>
-                    <option value="সপ্তম শ্রেণি">সপ্তম শ্রেণি</option>
-                    <option value="অষ্টম শ্রেণি">অষ্টম শ্রেণি</option>
-                    <option value="নবম শ্রেণি">নবম শ্রেণি</option>
-                    <option value="দশম শ্রেণি">দশম শ্রেণি</option>
-                </select>
-            </div>
-            <div class="input-box">
-                <label>বার (Day)</label>
-                <select id="day" required>
-                    <option value="শনিবার">শনিবার</option>
-                    <option value="রবিবার">রবিবার</option>
-                    <option value="সোমবার">সোমবার</option>
-                    <option value="মঙ্গলবার">মঙ্গলবার</option>
-                    <option value="বুধবার">বুধবার</option>
-                    <option value="বৃহস্পতিবার">বৃহস্পতিবার</option>
-                </select>
-            </div>
-            <div class="input-box">
-                <label>পিরিয়ড/ঘণ্টা</label>
-                <select id="period" required>
-                    <option value="1">১ম ঘণ্টা</option>
-                    <option value="2">২য় ঘণ্টা</option>
-                    <option value="3">৩য় ঘণ্টা</option>
-                    <option value="4">৪র্থ ঘণ্টা</option>
-                    <option value="5">৫ম ঘণ্টা</option>
-                    <option value="6">৬ষ্ঠ ঘণ্টা</option>
-                    <option value="7">৭ম ঘণ্টা</option>
-                    <option value="8">৮ম ঘণ্টা</option>
-                </select>
-            </div>
-            <!-- সেটিং ম্যানেজমেন্ট মডিউলের বিষয় ও কোড প্যানেল থেকে লিংকযোগ্য ড্রপডাউন -->
-            <div class="input-box">
-                <label>বিষয় (সেটিং মডিউল)</label>
-                <select id="subject" required>
-                    <option value="">বিষয় নির্বাচন করুন</option>
-                    <option value="বাংলা [BNG]">বাংলা [BNG]</option>
-                    <option value="ইংরেজি [ENG]">ইংরেজি [ENG]</option>
-                    <option value="গণিত [MTH]">গণিত [MTH]</option>
-                    <option value="বিজ্ঞান [SCI]">বিজ্ঞান [SCI]</option>
-                    <option value="আইসিটি [ICT]">আইসিটি [ICT]</option>
-                    <option value="ধর্ম [REL]">ধর্ম [REL]</option>
-                </select>
-            </div>
-            <!-- টিচার অ্যান্ড স্টাফ ম্যানেজমেন্ট মডিউলের টিচার প্রোফাইল প্যানেল থেকে লিংকযোগ্য ড্রপডাউন -->
-            <div class="input-box">
-                <label>শিক্ষক (টিচার প্রোফাইল)</label>
-                <select id="teacher" required>
-                    <option value="">শিক্ষক নির্বাচন করুন</option>
+                <label>শিক্ষক নির্বাচন করুন</label>
+                <select id="filterTeacherSelect" onchange="renderTeacherRoutine()">
                     <option value="M.R. (মোঃ রফিক)">মোঃ রফিক [M.R.]</option>
                     <option value="A.K. (আব্দুল করিম)">আব্দুল করিম [A.K.]</option>
                     <option value="S.N. (নাজমা সুলতানা)">নাজমা সুলতানা [S.N.]</option>
@@ -243,53 +379,149 @@
                 </select>
             </div>
         </div>
-        <button type="submit" class="btn-submit">রুটিনে এন্ট্রি করুন</button>
-    </form>
-
-    <!-- ২. বারের আলাদা ট্যাব সিলেক্টর -->
-    <div class="day-tabs" id="dayTabs">
-        <button class="tab-btn active" onclick="switchDay('শনিবার')">শনিবার</button>
-        <button class="tab-btn" onclick="switchDay('রবিবার')">রবিবার</button>
-        <button class="tab-btn" onclick="switchDay('সোমবার')">সোমবার</button>
-        <button class="tab-btn" onclick="switchDay('মঙ্গলবার')">মঙ্গলবার</button>
-        <button class="tab-btn" onclick="switchDay('বুধবার')">বুধবার</button>
-        <button class="tab-btn" onclick="switchDay('বৃহস্পতিবার')">বৃহস্পতিবার</button>
+        <div class="table-responsive">
+            <table>
+                <thead>
+                    <tr>
+                        <th>বার (Day)</th>
+                        <th>১ম ঘণ্টা</th>
+                        <th>২য় ঘণ্টা</th>
+                        <th>৩য় ঘণ্টা</th>
+                        <th>৪র্থ ঘণ্টা</th>
+                        <th>৫ম ঘণ্টা</th>
+                        <th>৬ষ্ঠ ঘণ্টা</th>
+                        <th>৭ম ঘণ্টা</th>
+                        <th>৮ম ঘণ্টা</th>
+                    </tr>
+                </thead>
+                <tbody id="teacherRoutineBody">
+                    <!-- শিক্ষকের ব্যক্তিগত রুটিন রেন্ডার হবে -->
+                </tbody>
+            </table>
+        </div>
     </div>
 
-    <!-- ৩. দৈনিক রুটিন টেবিল -->
-    <h3 id="tableTitle">শনিবারের ক্লাস রুটিন</h3>
-    <div class="table-responsive">
-        <table id="routineTable">
-            <thead>
-                <tr>
-                    <th>শ্রেণি</th>
-                    <th>১ম ঘণ্টা</th>
-                    <th>২য় ঘণ্টা</th>
-                    <th>৩য় ঘণ্টা</th>
-                    <th>৪র্থ ঘণ্টা</th>
-                    <th>৫ম ঘণ্টা</th>
-                    <th>৬ষ্ঠ ঘণ্টা</th>
-                    <th>৭ম ঘণ্টা</th>
-                    <th>৮ম ঘণ্টা</th>
-                </tr>
-            </thead>
-            <tbody id="routineBody">
-                <!-- ডাইনামিকালি ডাটা লোড হবে -->
-            </tbody>
-        </table>
+    <!-- ৩. একাডেমিক ক্যালেন্ডার প্যানেল -->
+    <div id="academicCalendarPanel" class="panel-section">
+        <h2>একাডেমিক ক্যালেন্ডার ও ইভেন্ট ফরম</h2>
+        <form id="calendarForm" style="margin-bottom: 20px; background: #ecf0f1; padding: 15px; border-radius: 6px;">
+            <div class="form-group">
+                <div class="input-box">
+                    <label>তারিখ</label>
+                    <input type="date" id="eventDate" required>
+                </div>
+                <div class="input-box">
+                    <label>ইভেন্ট বা ছুটির নাম</label>
+                    <input type="text" id="eventTitle" placeholder="যেমন: ঈদুল ফিতর ছুটি / বার্ষিক পরীক্ষা" required>
+                </div>
+                <div class="input-box">
+                    <label>ধরন (Type)</label>
+                    <select id="eventType">
+                        <option value="ছুটি (Holiday)">ছুটি (Holiday)</option>
+                        <option value="পরীক্ষা (Exam)">পরীক্ষা (Exam)</option>
+                        <option value="বিশেষ অনুষ্ঠান (Event)">বিশেষ অনুষ্ঠান (Event)</option>
+                    </select>
+                </div>
+            </div>
+            <button type="submit" class="btn-submit" style="background-color: #3498db;">ইভেন্ট যোগ করুন</button>
+        </form>
+
+        <h3>গ্লোবাল ক্যালেন্ডার তালিকা</h3>
+        <div class="table-responsive">
+            <table>
+                <thead>
+                    <tr>
+                        <th>তারিখ</th>
+                        <th>ইভেন্টের বিবরণ</th>
+                        <th>ধরন</th>
+                    </tr>
+                </thead>
+                <tbody id="calendarTableBody">
+                    <tr><td>2026-03-20</td><td>ঈদুল ফিতর ছুটি</td><td>ছুটি (Holiday)</td></tr>
+                    <tr><td>2026-05-15</td><td>অর্ধ-বার্ষিক পরীক্ষা শুরু</td><td>পরীক্ষা (Exam)</td></tr>
+                </tbody>
+            </table>
+        </div>
+    </div>
+
+    <!-- ৪. হলি ডে (ছুটির দিন) প্যানেল -->
+    <div id="holidayPanel" class="panel-section">
+        <h2>ছুটির দিনসমূহ (স্বয়ংক্রিয়ভাবে উপস্থাপিত)</h2>
+        <div class="table-responsive">
+            <table>
+                <thead>
+                    <tr>
+                        <th>তারিখ</th>
+                        <th>ছুটির বিবরণ</th>
+                    </tr>
+                </thead>
+                <tbody id="holidayTableBody">
+                    <!-- একাডেমিক ক্যালেন্ডার থেকে স্বয়ংক্রিয়ভাবে ছুটির দিনগুলো এখানে আসবে -->
+                </tbody>
+            </table>
+        </div>
     </div>
 </div>
 
 <script>
     let routineData = [];
-    let currentSelectedDay = "শনিবার";
-    
-    const classesList = ["ষষ্ঠ শ্রেণি", "সপ্তম শ্রেণি", "অষ্টম শ্রেণি", "নবম শ্রেণি", "দশম শ্রেণি"];
+    let currentDay = "শনিবার";
+    let calendarEvents = [
+        { date: "2026-03-20", title: "ঈদুল ফিতর ছুটি", type: "ছুটি (Holiday)" },
+        { date: "2026-05-15", title: "অর্ধ-বার্ষিক পরীক্ষা শুরু", type: "পরীক্ষা (Exam)" },
+        { date: "2026-08-15", title: "জাতীয় শোক দিবস", type: "ছুটি (Holiday)" }
+    ];
 
-    // ফরম সাবমিট হ্যান্ডলার
+    const classesList = [
+        "নুরানী প্রথম শ্রেণি", "নুরানী দ্বিতীয় শ্রেণি", "হিফজ বিভাগ",
+        "ষষ্ঠ শ্রেণি", "সপ্তম শ্রেণি", "অষ্টম শ্রেণি", "নবম শ্রেণি", "দশম শ্রেণি",
+        "আলিম প্রথম বর্ষ", "ফাজিল তৃতীয় বর্ষ"
+    ];
+
+    const daysList = ["শনিবার", "রবিবার", "সোমবার", "মঙ্গলবার", "বুধবার", "বৃহস্পতিবার"];
+
+    // প্রধান প্যানেল পরিবর্তন
+    function switchMainPanel(panelId, btnElement) {
+        document.querySelectorAll('.panel-section').forEach(p => p.classList.remove('active'));
+        document.querySelectorAll('.main-btn').forEach(b => b.classList.remove('active'));
+        
+        document.getElementById(panelId).classList.add('active');
+        btnElement.classList.add('active');
+
+        if(panelId === 'holidayPanel') {
+            renderHolidays();
+        } else if(panelId === 'teacherRoutinePanel') {
+            renderTeacherRoutine();
+        }
+    }
+
+    // ক্লাস রুটিনের সাব-প্যানেল পরিবর্তন
+    function switchRoutineSub(subId, btnElement) {
+        document.querySelectorAll('.routine-sub-section').forEach(s => s.style.display = 'none');
+        document.querySelectorAll('#routineSubNav .sub-btn').forEach(b => b.classList.remove('active'));
+
+        document.getElementById(subId).style.display = 'block';
+        btnElement.classList.add('active');
+
+        if(subId === 'classWiseView') {
+            renderClassWiseRoutine();
+        }
+    }
+
+    // দিন পরিবর্তন (ট্যাব)
+    function switchDay(day) {
+        currentDay = day;
+        document.querySelectorAll('#dayTabs .tab-btn').forEach(b => {
+            if(b.innerText === day) b.classList.add('active');
+            else b.classList.remove('active');
+        });
+        document.getElementById('tableTitle').innerText = `${day}র সমন্বিত রুটিন`;
+        renderCombinedRoutine();
+    }
+
+    // ফরম সাবমিট (ক্লাস রুটিন)
     document.getElementById('routineForm').addEventListener('submit', function(e) {
         e.preventDefault();
-
         const entry = {
             year: document.getElementById('year').value,
             className: document.getElementById('className').value,
@@ -300,93 +532,117 @@
         };
 
         const existingIndex = routineData.findIndex(item => 
-            item.year === entry.year && 
-            item.className === entry.className && 
-            item.day === entry.day && 
-            item.period === entry.period
+            item.year === entry.year && item.className === entry.className && 
+            item.day === entry.day && item.period === entry.period
         );
 
-        if (existingIndex > -1) {
-            routineData[existingIndex] = entry;
-        } else {
-            routineData.push(entry);
-        }
+        if (existingIndex > -1) routineData[existingIndex] = entry;
+        else routineData.push(entry);
 
-        // রিসেট সিলেক্ট অপশন
         document.getElementById('subject').value = '';
         document.getElementById('teacher').value = '';
-
-        renderRoutineTable();
+        renderCombinedRoutine();
     });
 
-    // ট্যাব পরিবর্তন ফাংশন
-    function switchDay(day) {
-        currentSelectedDay = day;
-        let buttons = document.querySelectorAll('.day-tabs .tab-btn');
-        buttons.forEach(btn => {
-            if(btn.innerText === day) {
-                btn.classList.add('active');
-            } else {
-                btn.classList.remove('active');
-            }
-        });
-
-        document.getElementById('tableTitle').innerText = `${day}র ক্লাস রুটিন`;
-        renderRoutineTable();
-    }
-
-    // টেবিল রেন্ডার করার ফাংশন
-    function renderRoutineTable() {
-        const tbody = document.getElementById('routineBody');
+    // সমন্বিত রুটিন রেন্ডার
+    function renderCombinedRoutine() {
+        const tbody = document.getElementById('combinedRoutineBody');
         tbody.innerHTML = '';
 
         classesList.forEach(cls => {
             let rowHtml = `<tr><td>${cls}</td>`;
-
             for (let p = 1; p <= 8; p++) {
-                const matchedEntry = routineData.find(item => 
-                    item.day === currentSelectedDay && 
-                    item.className === cls && 
-                    item.period === p
-                );
-
-                if (matchedEntry) {
-                    rowHtml += `<td>
-                        <span class="subject-text">${matchedEntry.subject}</span>
-                        <span class="teacher-text">(${matchedEntry.teacher})</span>
-                    </td>`;
+                const matched = routineData.find(item => item.day === currentDay && item.className === cls && item.period === p);
+                if (matched) {
+                    rowHtml += `<td><span class="subject-text">${matched.subject}</span><span class="teacher-text">(${matched.teacher})</span></td>`;
                 } else {
                     rowHtml += `<td>-</td>`;
                 }
             }
-
             rowHtml += `</tr>`;
             tbody.innerHTML += rowHtml;
         });
     }
 
-    // অতিরিক্ত প্যানেল কন্ট্রোল ফাংশন
-    function openPanel(panelType) {
-        const displayDiv = document.getElementById('extraPanelDisplay');
-        const heading = document.getElementById('panelHeading');
-        const content = document.getElementById('panelContent');
-        
-        displayDiv.style.display = 'block';
+    // শ্রেণিভিত্তিক রুটিন রেন্ডার
+    function renderClassWiseRoutine() {
+        const selectedClass = document.getElementById('filterClassSelect').value;
+        const tbody = document.getElementById('classWiseBody');
+        tbody.innerHTML = '';
 
-        if(panelType === 'teacherRoutine') {
-            heading.innerText = "শিক্ষক পার্সোনাল রুটিন প্যানেল";
-            content.innerText = "এখানে নির্দিষ্ট শিক্ষকের ব্যক্তিগত ক্লাস শিডিউল ও রুটিন দেখা যাবে (টিচার প্রোফাইল মডিউল সংযুক্ত)।";
-        } else if(panelType === 'academicCalendar') {
-            heading.innerText = "একাডেমিক ক্যালেন্ডার প্যানেল";
-            content.innerText = "এখানে প্রতিষ্ঠানের বার্ষিক পরীক্ষা, ছুটি এবং বিশেষ কার্যক্রমের দিনলিপি বা ক্যালেন্ডার প্রদর্শিত হবে।";
+        daysList.forEach(day => {
+            let rowHtml = `<tr><td>${day}</td>`;
+            for (let p = 1; p <= 8; p++) {
+                const matched = routineData.find(item => item.day === day && item.className === selectedClass && item.period === p);
+                if (matched) {
+                    rowHtml += `<td><span class="subject-text">${matched.subject}</span><span class="teacher-text">(${matched.teacher})</span></td>`;
+                } else {
+                    rowHtml += `<td>-</td>`;
+                }
+            }
+            rowHtml += `</tr>`;
+            tbody.innerHTML += rowHtml;
+        });
+    }
+
+    // শিক্ষক পার্সোনাল রুটিন রেন্ডার
+    function renderTeacherRoutine() {
+        const selectedTeacher = document.getElementById('filterTeacherSelect').value;
+        const tbody = document.getElementById('teacherRoutineBody');
+        tbody.innerHTML = '';
+
+        daysList.forEach(day => {
+            let rowHtml = `<tr><td>${day}</td>`;
+            for (let p = 1; p <= 8; p++) {
+                const matched = routineData.find(item => item.day === day && item.teacher === selectedTeacher && item.period === p);
+                if (matched) {
+                    rowHtml += `<td><span class="subject-text">${matched.className}</span><br><span class="teacher-text">${matched.subject}</span></td>`;
+                } else {
+                    rowHtml += `<td>-</td>`;
+                }
+            }
+            rowHtml += `</tr>`;
+            tbody.innerHTML += rowHtml;
+        });
+    }
+
+    // একাডেমিক ক্যালেন্ডার ফরম সাবমিট
+    document.getElementById('calendarForm').addEventListener('submit', function(e) {
+        e.preventDefault();
+        const newEvent = {
+            date: document.getElementById('eventDate').value,
+            title: document.getElementById('eventTitle').value,
+            type: document.getElementById('eventType').value
+        };
+        calendarEvents.push(newEvent);
+        renderCalendarTable();
+        document.getElementById('eventTitle').value = '';
+    });
+
+    function renderCalendarTable() {
+        const tbody = document.getElementById('calendarTableBody');
+        tbody.innerHTML = '';
+        calendarEvents.forEach(ev => {
+            tbody.innerHTML += `<tr><td>${ev.date}</td><td>${ev.title}</td><td>${ev.type}</td></tr>`;
+        });
+    }
+
+    // হলি ডে প্যানেলে শুধুমাত্র ছুটির দিনগুলো স্বয়ংক্রিয়ভাবে ফিল্টার করা
+    function renderHolidays() {
+        const tbody = document.getElementById('holidayTableBody');
+        tbody.innerHTML = '';
+        const holidays = calendarEvents.filter(ev => ev.type.includes('ছুটি'));
+        if(holidays.length === 0) {
+            tbody.innerHTML = `<tr><td colspan="2">কোনো ছুটির দিন এন্ট্রি করা নেই।</td></tr>`;
+            return;
         }
+        holidays.forEach(h => {
+            tbody.innerHTML += `<tr><td>${h.date}</td><td>${h.title}</td></tr>`;
+        });
     }
 
-    function closePanel() {
-        document.getElementById('extraPanelDisplay').style.display = 'none';
-    }
-
-    renderRoutineTable();
+    renderCombinedRoutine();
+    renderCalendarTable();
 </script>
 
 </body>

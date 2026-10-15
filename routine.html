@@ -24,6 +24,37 @@
             border-radius: 8px;
             box-shadow: 0 0 10px rgba(0,0,0,0.1);
         }
+
+        /* Dynamic Print Header Styling */
+        .print-header {
+            text-align: center;
+            margin-bottom: 20px;
+            padding-bottom: 10px;
+            border-bottom: 2px solid #2c3e50;
+            display: none; /* স্ক্রিনে সাধারণ ভিউতে লুকানো থাকবে */
+        }
+        .print-header-content {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 20px;
+        }
+        .print-header img {
+            max-height: 70px;
+            width: auto;
+        }
+        .print-header-text h1 {
+            margin: 0;
+            font-size: 24px;
+            color: #16a085;
+            font-weight: bold;
+        }
+        .print-header-text p {
+            margin: 4px 0 0 0;
+            font-size: 14px;
+            color: #555;
+        }
+
         /* Main Navigation Panels */
         .main-nav {
             display: flex;
@@ -296,7 +327,10 @@
                 margin: 0;
                 padding: 0;
             }
-            .main-nav, .sub-nav, form, .day-tabs, .btn-print, .calendar-controls {
+            .print-header {
+                display: block !important; /* প্রিন্ট করার সময় সরাসরি লোড হওয়া প্রতিষ্ঠানের তথ্য প্রদর্শন করবে */
+            }
+            .main-nav, .sub-nav, form, .day-tabs, .btn-print, .calendar-controls, .settings-card {
                 display: none !important;
             }
             .container {
@@ -334,12 +368,25 @@
 <body>
 
 <div class="container">
+    <!-- ডায়নামিক প্রিন্ট হেডার (সেটিং প্যানেল থেকে নাম, ঠিকানা ও লোগো সংযুক্ত) -->
+    <div class="print-header" id="dynamicPrintHeader">
+        <div class="print-header-content">
+            <img id="headerLogo" src="" alt="Logo" style="display:none;">
+            <div class="print-header-text">
+                <h1 id="headerName">মাদ্রাসার নাম</h1>
+                <p id="headerAddress">মাদ্রাসার ঠিকানা</p>
+                <p id="headerContact">যোগাযোগের তথ্য</p>
+            </div>
+        </div>
+    </div>
+
     <!-- প্রধান ন্যাভিগেশন প্যানেল বাটন -->
     <div class="main-nav">
         <button class="main-btn active" onclick="switchMainPanel('routinePanel', this)">ক্লাস রুটিন</button>
         <button class="main-btn" onclick="switchMainPanel('teacherRoutinePanel', this)">শিক্ষক পার্সোনাল রুটিন</button>
         <button class="main-btn" onclick="switchMainPanel('academicCalendarPanel', this)">একাডেমিক ক্যালেন্ডার</button>
         <button class="main-btn" onclick="switchMainPanel('holidayPanel', this)">হলি ডে (ছুটির দিন)</button>
+        <button class="main-btn" style="background-color:#8e44ad;" onclick="switchMainPanel('settingsPanel', this)">⚙️ সেটিং ম্যানেজমেন্ট</button>
     </div>
 
     <!-- ১. ক্লাস রুটিন প্যানেল ও সাব-বাটন -->
@@ -416,7 +463,6 @@
                 <button type="submit" class="btn-submit">রুটিনে এন্ট্রি করুন</button>
             </form>
 
-            <!-- বারের আলাদা ট্যাব -->
             <div class="day-tabs" id="dayTabs">
                 <button class="tab-btn active" onclick="switchDay('শনিবার')">শনিবার</button>
                 <button class="tab-btn" onclick="switchDay('রবিবার')">রবিবার</button>
@@ -442,9 +488,7 @@
                             <th>৮ম ঘণ্টা</th>
                         </tr>
                     </thead>
-                    <tbody id="combinedRoutineBody">
-                        <!-- ডাইনামিক রেন্ডার -->
-                    </tbody>
+                    <tbody id="combinedRoutineBody"></tbody>
                 </table>
             </div>
         </div>
@@ -456,9 +500,7 @@
             <div class="form-group" style="margin-bottom: 20px;">
                 <div class="input-box">
                     <label>শ্রেণি নির্বাচন করুন</label>
-                    <select id="filterClassSelect" onchange="renderClassWiseRoutine()">
-                        <!-- ডাইনামিক লোড হবে -->
-                    </select>
+                    <select id="filterClassSelect" onchange="renderClassWiseRoutine()"></select>
                 </div>
             </div>
             <div class="table-responsive">
@@ -476,9 +518,7 @@
                             <th>৮ম ঘণ্টা</th>
                         </tr>
                     </thead>
-                    <tbody id="classWiseBody">
-                        <!-- শ্রেণিভিত্তিক ডেটা রেন্ডার হবে -->
-                    </tbody>
+                    <tbody id="classWiseBody"></tbody>
                 </table>
             </div>
         </div>
@@ -498,9 +538,7 @@
                                 <th>শেষের সময়</th>
                             </tr>
                         </thead>
-                        <tbody id="periodSettingTableBody">
-                            <!-- সংশোধিত ১ম ঘণ্টা হতে ৮ম ঘণ্টা ফরম লোড হবে -->
-                        </tbody>
+                        <tbody id="periodSettingTableBody"></tbody>
                     </table>
                 </div>
                 <button type="button" class="btn-submit" style="margin-top:15px;" onclick="savePeriodTimes()">সময় আপডেট করুন</button>
@@ -538,9 +576,7 @@
                         <th>৮ম ঘণ্টা</th>
                     </tr>
                 </thead>
-                <tbody id="teacherRoutineBody">
-                    <!-- শিক্ষকের ব্যক্তিগত রুটিন রেন্ডার হবে -->
-                </tbody>
+                <tbody id="teacherRoutineBody"></tbody>
             </table>
         </div>
     </div>
@@ -575,9 +611,7 @@
             <label>মাস ও বছর নির্বাচন:</label>
             <input type="month" id="calendarMonthPicker" value="2026-10" onchange="renderRealCalendar()">
         </div>
-        <div class="calendar-grid" id="realCalendarGrid">
-            <!-- রঙিন ক্যালেন্ডার গ্রিড লোড হবে -->
-        </div>
+        <div class="calendar-grid" id="realCalendarGrid"></div>
     </div>
 
     <!-- ৪. হলি ডে (ছুটির দিন) প্যানেল (লিস্ট ভিউ) -->
@@ -600,32 +634,63 @@
                         <th style="background-color: #e74c3c;">ছুটির বিবরণ/উপলক্ষ</th>
                     </tr>
                 </thead>
-                <tbody id="holidayTableBody">
-                    <!-- ছুটির দিনগুলো লোড হবে -->
-                </tbody>
+                <tbody id="holidayTableBody"></tbody>
             </table>
+        </div>
+    </div>
+
+    <!-- ৫. সেটিং ম্যানেজমেন্ট মডিউল (ইনফো এবং লোগো অ্যান্ড ওয়াটারমার্ক) -->
+    <div id="settingsPanel" class="panel-section">
+        <h2>সেটিং ম্যানেজমেন্ট মডিউল</h2>
+        
+        <!-- ইনফো প্যানেল -->
+        <div class="settings-card" style="background: #f9f9f9; padding: 15px; border-radius: 6px; border: 1px solid #ddd; margin-bottom: 20px;">
+            <h3 style="margin-top:0;">📋 ইন্সটিটিউশন ইনফো (Info) প্যানেল</h3>
+            <div class="form-group">
+                <div class="input-box">
+                    <label>প্রতিষ্ঠানের নাম</label>
+                    <input type="text" id="infoInstName" value="দারুল উলুম ইসলামিয়া মাদ্রাসা ও কলেজ">
+                </div>
+                <div class="input-box">
+                    <label>ঠিকানা</label>
+                    <input type="text" id="infoInstAddress" value="ডাকঘর: মাদ্রাসা রোড, থানা: সদর, জেলা: ঢাকা-১২০০">
+                </div>
+                <div class="input-box">
+                    <label>যোগাযোগের নম্বর/ইমেইল</label>
+                    <input type="text" id="infoInstContact" value="ইমেইল: info@madrasa.edu.bd | ফোন: ০১৭০০-০০০০০০">
+                </div>
+            </div>
+        </div>
+
+        <!-- লোগো অ্যান্ড ওয়াটারমার্ক প্যানেল -->
+        <div class="settings-card" style="background: #f9f9f9; padding: 15px; border-radius: 6px; border: 1px solid #ddd;">
+            <h3 style="margin-top:0;">🖼️ লোগো অ্যান্ড ওয়াটারমার্ক (Logo & Watermark) প্যানেল</h3>
+            <div class="form-group">
+                <div class="input-box" style="grid-column: 1 / -1;">
+                    <label>লোগো ছবির লিঙ্ক/URL (Image Link)</label>
+                    <input type="text" id="infoLogoUrl" placeholder="https://example.com/logo.png">
+                </div>
+            </div>
+            <button class="btn-submit" onclick="saveSettingInfo()">সেটিং তথ্য সেভ করুন</button>
         </div>
     </div>
 </div>
 
 <script>
-    // সংশোধিত শ্রেণি তালিকা
+    // সেটিং ডাইনামিক ডেটা
+    let institutionInfo = {
+        name: "দারুল উলুম ইসলামিয়া মাদ্রাসা ও কলেজ",
+        address: "ডাকঘর: মাদ্রাসা রোড, থানা: সদর, জেলা: ঢাকা-১২০০",
+        contact: "ইমেইল: info@madrasa.edu.bd | ফোন: ০১৭০০-০০০০০০",
+        logoUrl: ""
+    };
+
     const academicClassManagementList = [
-        "নুরানী প্রথম শ্রেণি",
-        "নুরানী দ্বিতীয় শ্রেণি",
-        "নুরানী তৃতীয় শ্রেণি",
-        "ইবতেদায়ী চতুর্থ শ্রেণি",
-        "ইবতেদায়ী পঞ্চম শ্রেণি",
-        "দাখিল ষষ্ঠ শ্রেণি",
-        "দাখিল সপ্তম শ্রেণি",
-        "দাখিল অষ্টম শ্রেণি",
-        "দাখিল নবম শ্রেণি",
-        "দাখিল দশম শ্রেণি",
-        "আলিম প্রথম বর্ষ",
-        "আলিম দ্বিতীয় বর্ষ",
-        "ফাজিল প্রথম বর্ষ",
-        "ফাজিল দ্বিতীয় বর্ষ",
-        "ফাজিল তৃতীয় বর্ষ"
+        "নুরানী প্রথম শ্রেণি", "নুরানী দ্বিতীয় শ্রেণি", "নুরানী তৃতীয় শ্রেণি",
+        "ইবতেদায়ী চতুর্থ শ্রেণি", "ইবতেদায়ী পঞ্চম শ্রেণি",
+        "দাখিল ষষ্ঠ শ্রেণি", "দাখিল সপ্তম শ্রেণি", "দাখিল অষ্টম শ্রেণি", "দাখিল নবম শ্রেণি", "দাখিল দশম শ্রেণি",
+        "আলিম প্রথম বর্ষ", "আলিম দ্বিতীয় বর্ষ",
+        "ফাজিল প্রথম বর্ষ", "ফাজিল দ্বিতীয় বর্ষ", "ফাজিল তৃতীয় বর্ষ"
     ];
 
     let periodTimes = [
@@ -651,6 +716,32 @@
 
     const daysList = ["শনিবার", "রবিবার", "সোমবার", "মঙ্গলবার", "বুধবার", "বৃহস্পতিবার"];
     const weekDaysBangla = ['রবিবার', 'সোমবার', 'মঙ্গলবার', 'বুধবার', 'বৃহস্পতিবার', 'শুক্রবার', 'শনিবার'];
+
+    // সেটিং প্যানেল থেকে তথ্য সংরক্ষণ করা
+    function saveSettingInfo() {
+        institutionInfo.name = document.getElementById('infoInstName').value;
+        institutionInfo.address = document.getElementById('infoInstAddress').value;
+        institutionInfo.contact = document.getElementById('infoInstContact').value;
+        institutionInfo.logoUrl = document.getElementById('infoLogoUrl').value;
+
+        updatePrintHeader();
+        alert("ইন্সটিটিউশন ইনফো ও লোগো সফলভাবে আপডেট হয়েছে!");
+    }
+
+    // প্রিন্ট হেডার আপডেট ফাংশন
+    function updatePrintHeader() {
+        document.getElementById('headerName').innerText = institutionInfo.name;
+        document.getElementById('headerAddress').innerText = institutionInfo.address;
+        document.getElementById('headerContact').innerText = institutionInfo.contact;
+
+        const logoImg = document.getElementById('headerLogo');
+        if (institutionInfo.logoUrl.trim() !== '') {
+            logoImg.src = institutionInfo.logoUrl;
+            logoImg.style.display = 'block';
+        } else {
+            logoImg.style.display = 'none';
+        }
+    }
 
     function loadClassDropdowns() {
         const classNameSelect = document.getElementById('className');
@@ -903,8 +994,10 @@
         window.print();
     }
 
+    // প্রাথমিক লোড
     loadClassDropdowns();
     renderCombinedRoutine();
+    updatePrintHeader();
 </script>
 
 </body>

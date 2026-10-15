@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>প্রতিদিনের ক্লাস রুটিন ম্যানেজমেন্ট</title>
+    <title>ক্লাস রুটিন ও ম্যানেজমেন্ট সিস্টেম</title>
     <style>
         body {
             font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
@@ -24,6 +24,27 @@
             border-radius: 8px;
             box-shadow: 0 0 10px rgba(0,0,0,0.1);
         }
+        /* Top Navigation Panels / Buttons */
+        .top-panels {
+            display: flex;
+            gap: 15px;
+            margin-bottom: 25px;
+            flex-wrap: wrap;
+        }
+        .panel-btn {
+            background-color: #8e44ad;
+            color: white;
+            padding: 10px 18px;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            font-weight: bold;
+            font-size: 14px;
+        }
+        .panel-btn:hover {
+            background-color: #732d91;
+        }
+
         /* Form Styling */
         .form-group {
             display: grid;
@@ -126,11 +147,34 @@
             display: block;
             margin-top: 2px;
         }
+        
+        /* Modal / Section view styling for extra panels */
+        .extra-panel-section {
+            background: #f9f9f9;
+            border: 1px dashed #3498db;
+            padding: 15px;
+            border-radius: 6px;
+            margin-top: 20px;
+            display: none;
+        }
     </style>
 </head>
 <body>
 
 <div class="container">
+    <!-- অতিরিক্ত প্যানেল বা বাটন (শিক্ষক পার্সোনাল রুটিন ও একাডেমিক ক্যালেন্ডার) -->
+    <div class="top-panels">
+        <button class="panel-btn" onclick="openPanel('teacherRoutine')">👨‍🏫 শিক্ষক পার্সোনাল রুটিন প্যানেল</button>
+        <button class="panel-btn" onclick="openPanel('academicCalendar')">📅 একাডেমিক ক্যালেন্ডার প্যানেল</button>
+    </div>
+
+    <!-- অতিরিক্ত প্যানেলের ডিসপ্লে এরিয়া -->
+    <div id="extraPanelDisplay" class="extra-panel-section">
+        <h3 id="panelHeading" style="margin-top:0;">প্যানেল শিরোনাম</h3>
+        <p id="panelContent">এখানে সংশ্লিষ্ট প্যানেলের তথ্য প্রদর্শিত হবে।</p>
+        <button onclick="closePanel()" style="padding: 5px 10px; background: #e74c3c; color: white; border: none; border-radius: 4px; cursor: pointer;">বন্ধ করুন</button>
+    </div>
+
     <!-- ১. ক্লাস রুটিন এন্ট্রি ফরম -->
     <h2>ক্লাস রুটিন এন্ট্রি ফরম</h2>
     <form id="routineForm">
@@ -174,13 +218,29 @@
                     <option value="8">৮ম ঘণ্টা</option>
                 </select>
             </div>
+            <!-- সেটিং ম্যানেজমেন্ট মডিউলের বিষয় ও কোড প্যানেল থেকে লিংকযোগ্য ড্রপডাউন -->
             <div class="input-box">
-                <label>বিষয়</label>
-                <input type="text" id="subject" placeholder="যেমন: গণিত" required>
+                <label>বিষয় (সেটিং মডিউল)</label>
+                <select id="subject" required>
+                    <option value="">বিষয় নির্বাচন করুন</option>
+                    <option value="বাংলা [BNG]">বাংলা [BNG]</option>
+                    <option value="ইংরেজি [ENG]">ইংরেজি [ENG]</option>
+                    <option value="গণিত [MTH]">গণিত [MTH]</option>
+                    <option value="বিজ্ঞান [SCI]">বিজ্ঞান [SCI]</option>
+                    <option value="আইসিটি [ICT]">আইসিটি [ICT]</option>
+                    <option value="ধর্ম [REL]">ধর্ম [REL]</option>
+                </select>
             </div>
+            <!-- টিচার অ্যান্ড স্টাফ ম্যানেজমেন্ট মডিউলের টিচার প্রোফাইল প্যানেল থেকে লিংকযোগ্য ড্রপডাউন -->
             <div class="input-box">
-                <label>শিক্ষকের নাম (সংক্ষেপে)</label>
-                <input type="text" id="teacher" placeholder="যেমন: M.R." required>
+                <label>শিক্ষক (টিচার প্রোফাইল)</label>
+                <select id="teacher" required>
+                    <option value="">শিক্ষক নির্বাচন করুন</option>
+                    <option value="M.R. (মোঃ রফিক)">মোঃ রফিক [M.R.]</option>
+                    <option value="A.K. (আব্দুল করিম)">আব্দুল করিম [A.K.]</option>
+                    <option value="S.N. (নাজমা সুলতানা)">নাজমা সুলতানা [S.N.]</option>
+                    <option value="F.H. (ফয়সাল আহমেদ)">ফয়সাল আহমেদ [F.H.]</option>
+                </select>
             </div>
         </div>
         <button type="submit" class="btn-submit">রুটিনে এন্ট্রি করুন</button>
@@ -196,7 +256,7 @@
         <button class="tab-btn" onclick="switchDay('বৃহস্পতিবার')">বৃহস্পতিবার</button>
     </div>
 
-    <!-- ৩. দৈনিক রুটিন টেবিল (শ্রেণি ভিত্তিক সারি ও ১ম থেকে ৮ম ঘণ্টা কলাম) -->
+    <!-- ৩. দৈনিক রুটিন টেবিল -->
     <h3 id="tableTitle">শনিবারের ক্লাস রুটিন</h3>
     <div class="table-responsive">
         <table id="routineTable">
@@ -214,7 +274,7 @@
                 </tr>
             </thead>
             <tbody id="routineBody">
-                <!-- জাভাস্ক্রিপ্টের মাধ্যমে ডাইনামিকালি তথ্য লোড হবে -->
+                <!-- ডাইনামিকালি ডাটা লোড হবে -->
             </tbody>
         </table>
     </div>
@@ -239,7 +299,6 @@
             teacher: document.getElementById('teacher').value
         };
 
-        // একই শ্রেণি, বার এবং পিরিয়ডে ডাটা থাকলে আপডেট হবে, নয়তো নতুন যোগ হবে
         const existingIndex = routineData.findIndex(item => 
             item.year === entry.year && 
             item.className === entry.className && 
@@ -253,20 +312,17 @@
             routineData.push(entry);
         }
 
-        // ইনপুট রিসেট
+        // রিসেট সিলেক্ট অপশন
         document.getElementById('subject').value = '';
         document.getElementById('teacher').value = '';
 
-        // টেবিল রিফ্রেশ
         renderRoutineTable();
     });
 
     // ট্যাব পরিবর্তন ফাংশন
     function switchDay(day) {
         currentSelectedDay = day;
-        
-        // বাটনের অ্যাক্টিভ ক্লাস পরিবর্তন
-        let buttons = document.querySelectorAll('.tab-btn');
+        let buttons = document.querySelectorAll('.day-tabs .tab-btn');
         buttons.forEach(btn => {
             if(btn.innerText === day) {
                 btn.classList.add('active');
@@ -288,7 +344,6 @@
             let rowHtml = `<tr><td>${cls}</td>`;
 
             for (let p = 1; p <= 8; p++) {
-                // বর্তমান নির্বাচিত বার এবং শ্রেণির জন্য পিরিয়ড ম্যাচ করা
                 const matchedEntry = routineData.find(item => 
                     item.day === currentSelectedDay && 
                     item.className === cls && 
@@ -310,7 +365,27 @@
         });
     }
 
-    // প্রাথমিক রেন্ডার
+    // অতিরিক্ত প্যানেল কন্ট্রোল ফাংশন
+    function openPanel(panelType) {
+        const displayDiv = document.getElementById('extraPanelDisplay');
+        const heading = document.getElementById('panelHeading');
+        const content = document.getElementById('panelContent');
+        
+        displayDiv.style.display = 'block';
+
+        if(panelType === 'teacherRoutine') {
+            heading.innerText = "শিক্ষক পার্সোনাল রুটিন প্যানেল";
+            content.innerText = "এখানে নির্দিষ্ট শিক্ষকের ব্যক্তিগত ক্লাস শিডিউল ও রুটিন দেখা যাবে (টিচার প্রোফাইল মডিউল সংযুক্ত)।";
+        } else if(panelType === 'academicCalendar') {
+            heading.innerText = "একাডেমিক ক্যালেন্ডার প্যানেল";
+            content.innerText = "এখানে প্রতিষ্ঠানের বার্ষিক পরীক্ষা, ছুটি এবং বিশেষ কার্যক্রমের দিনলিপি বা ক্যালেন্ডার প্রদর্শিত হবে।";
+        }
+    }
+
+    function closePanel() {
+        document.getElementById('extraPanelDisplay').style.display = 'none';
+    }
+
     renderRoutineTable();
 </script>
 

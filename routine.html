@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>ক্লাস রুটিন ম্যানেজমেন্ট</title>
+    <title>প্রতিদিনের ক্লাস রুটিন ম্যানেজমেন্ট</title>
     <style>
         body {
             font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
@@ -17,7 +17,7 @@
             padding-bottom: 5px;
         }
         .container {
-            max-width: 1100px;
+            max-width: 1200px;
             margin: 0 auto;
             background: #fff;
             padding: 20px;
@@ -27,7 +27,7 @@
         /* Form Styling */
         .form-group {
             display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
             gap: 15px;
             margin-bottom: 15px;
         }
@@ -62,30 +62,31 @@
             background-color: #27ae60;
         }
 
-        /* Filter Section */
-        .filter-section {
-            background: #eef2f5;
-            padding: 15px;
-            border-radius: 6px;
-            margin-top: 30px;
-            margin-bottom: 20px;
+        /* Day Tabs Styling */
+        .day-tabs {
             display: flex;
-            gap: 15px;
-            align-items: center;
+            gap: 10px;
+            margin-top: 30px;
+            margin-bottom: 15px;
             flex-wrap: wrap;
         }
-        .btn-filter {
-            background-color: #3498db;
-            color: white;
+        .tab-btn {
+            padding: 10px 20px;
+            background-color: #bdc3c7;
             border: none;
-            padding: 9px 18px;
             border-radius: 4px;
             cursor: pointer;
             font-weight: bold;
-            margin-top: 18px;
+            color: #2c3e50;
+            transition: 0.3s;
         }
-        .btn-filter:hover {
+        .tab-btn.active {
+            background-color: #3498db;
+            color: white;
+        }
+        .tab-btn:hover {
             background-color: #2980b9;
+            color: white;
         }
 
         /* Table Styling */
@@ -108,6 +109,11 @@
             background-color: #34495e;
             color: white;
         }
+        td:first-child {
+            font-weight: bold;
+            background-color: #ecf0f1;
+            color: #2c3e50;
+        }
         .subject-text {
             font-weight: bold;
             color: #2c3e50;
@@ -125,7 +131,7 @@
 <body>
 
 <div class="container">
-    <!-- ১. ক্লাস রুটিন ইনপুট ফরম -->
+    <!-- ১. ক্লাস রুটিন এন্ট্রি ফরম -->
     <h2>ক্লাস রুটিন এন্ট্রি ফরম</h2>
     <form id="routineForm">
         <div class="form-group">
@@ -137,11 +143,11 @@
                 <label>শ্রেণি</label>
                 <select id="className" required>
                     <option value="">শ্রেণি নির্বাচন করুন</option>
-                    <option value="Class 6">ষষ্ঠ শ্রেণি</option>
-                    <option value="Class 7">সপ্তম শ্রেণি</option>
-                    <option value="Class 8">অষ্টম শ্রেণি</option>
-                    <option value="Class 9">নবম শ্রেণি</option>
-                    <option value="Class 10">দশম শ্রেণি</option>
+                    <option value="ষষ্ঠ শ্রেণি">ষষ্ঠ শ্রেণি</option>
+                    <option value="সপ্তম শ্রেণি">সপ্তম শ্রেণি</option>
+                    <option value="অষ্টম শ্রেণি">অষ্টম শ্রেণি</option>
+                    <option value="নবম শ্রেণি">নবম শ্রেণি</option>
+                    <option value="দশম শ্রেণি">দশম শ্রেণি</option>
                 </select>
             </div>
             <div class="input-box">
@@ -158,14 +164,14 @@
             <div class="input-box">
                 <label>পিরিয়ড/ঘণ্টা</label>
                 <select id="period" required>
-                    <option value="1">১ম ঘণ্টা (09:00 - 09:45)</option>
-                    <option value="2">২য় ঘণ্টা (09:45 - 10:30)</option>
-                    <option value="3">৩য় ঘণ্টা (10:30 - 11:15)</option>
-                    <option value="4">৪র্থ ঘণ্টা (11:15 - 12:00)</option>
-                    <option value="5">৫ম ঘণ্টা (12:00 - 12:45)</option>
-                    <option value="6">৬ষ্ঠ ঘণ্টা (01:30 - 02:15)</option>
-                    <option value="7">৭ম ঘণ্টা (02:15 - 03:00)</option>
-                    <option value="8">৮ম ঘণ্টা (03:00 - 03:45)</option>
+                    <option value="1">১ম ঘণ্টা</option>
+                    <option value="2">২য় ঘণ্টা</option>
+                    <option value="3">৩য় ঘণ্টা</option>
+                    <option value="4">৪র্থ ঘণ্টা</option>
+                    <option value="5">৫ম ঘণ্টা</option>
+                    <option value="6">৬ষ্ঠ ঘণ্টা</option>
+                    <option value="7">৭ম ঘণ্টা</option>
+                    <option value="8">৮ম ঘণ্টা</option>
                 </select>
             </div>
             <div class="input-box">
@@ -174,65 +180,51 @@
             </div>
             <div class="input-box">
                 <label>শিক্ষকের নাম (সংক্ষেপে)</label>
-                <input type="text" id="teacher" placeholder="যেমন: M.R. (মোঃ রফিক)" required>
+                <input type="text" id="teacher" placeholder="যেমন: M.R." required>
             </div>
         </div>
         <button type="submit" class="btn-submit">রুটিনে এন্ট্রি করুন</button>
     </form>
 
-    <!-- ২. ফিল্টারিং সেকশন -->
-    <div class="filter-section">
-        <div class="input-box">
-            <label>ফিল্টার সাল:</label>
-            <input type="number" id="filterYear" value="2026">
-        </div>
-        <div class="input-box">
-            <label>ফিল্টার শ্রেণি:</label>
-            <select id="filterClass">
-                <option value="ALL">সকল শ্রেণি</option>
-                <option value="Class 6">ষষ্ঠ শ্রেণি</option>
-                <option value="Class 7">সপ্তম শ্রেণি</option>
-                <option value="Class 8">অষ্টম শ্রেণি</option>
-                <option value="Class 9">নবম শ্রেণি</option>
-                <option value="Class 10">দশম শ্রেণি</option>
-            </select>
-        </div>
-        <div class="input-box">
-            <label>ফিল্টার শিক্ষক:</label>
-            <input type="text" id="filterTeacher" placeholder="শিক্ষকের নাম সংক্ষেপে">
-        </div>
-        <button type="button" class="btn-filter" onclick="renderRoutineTable()">ফিল্টার করুন</button>
+    <!-- ২. বারের আলাদা ট্যাব সিলেক্টর -->
+    <div class="day-tabs" id="dayTabs">
+        <button class="tab-btn active" onclick="switchDay('শনিবার')">শনিবার</button>
+        <button class="tab-btn" onclick="switchDay('রবিবার')">রবিবার</button>
+        <button class="tab-btn" onclick="switchDay('সোমবার')">সোমবার</button>
+        <button class="tab-btn" onclick="switchDay('মঙ্গলবার')">মঙ্গলবার</button>
+        <button class="tab-btn" onclick="switchDay('বুধবার')">বুধবার</button>
+        <button class="tab-btn" onclick="switchDay('বৃহস্পতিবার')">বৃহস্পতিবার</button>
     </div>
 
-    <!-- ৩. সমন্বিত রুটিন ফরম/টেবিল -->
-    <h3>সমন্বিত ক্লাস রুটিন (Combined Routine)</h3>
+    <!-- ৩. দৈনিক রুটিন টেবিল (শ্রেণি ভিত্তিক সারি ও ১ম থেকে ৮ম ঘণ্টা কলাম) -->
+    <h3 id="tableTitle">শনিবারের ক্লাস রুটিন</h3>
     <div class="table-responsive">
         <table id="routineTable">
             <thead>
                 <tr>
-                    <th>বার / সময়</th>
-                    <th>১ম ঘণ্টা<br><small>09:00-09:45</small></th>
-                    <th>২য় ঘণ্টা<br><small>09:45-10:30</small></th>
-                    <th>৩য় ঘণ্টা<br><small>10:30-11:15</small></th>
-                    <th>৪র্থ ঘণ্টা<br><small>11:15-12:00</small></th>
-                    <th>৫ম ঘণ্টা<br><small>12:00-12:45</small></th>
-                    <th>৬ষ্ঠ ঘণ্টা<br><small>01:30-02:15</small></th>
-                    <th>৭ম ঘণ্টা<br><small>02:15-03:00</small></th>
-                    <th>৮ম ঘণ্টা<br><small>03:00-03:45</small></th>
+                    <th>শ্রেণি</th>
+                    <th>১ম ঘণ্টা</th>
+                    <th>২য় ঘণ্টা</th>
+                    <th>৩য় ঘণ্টা</th>
+                    <th>৪র্থ ঘণ্টা</th>
+                    <th>৫ম ঘণ্টা</th>
+                    <th>৬ষ্ঠ ঘণ্টা</th>
+                    <th>৭ম ঘণ্টা</th>
+                    <th>৮ম ঘণ্টা</th>
                 </tr>
             </thead>
             <tbody id="routineBody">
-                <!-- জাভাস্ক্রিপ্টের মাধ্যমে এখানে ডাটা রেন্ডার হবে -->
+                <!-- জাভাস্ক্রিপ্টের মাধ্যমে ডাইনামিকালি তথ্য লোড হবে -->
             </tbody>
         </table>
     </div>
 </div>
 
 <script>
-    // রুটিনের ডাটা সংরক্ষণের জন্য অ্যারে
     let routineData = [];
-
-    const days = ["শনিবার", "রবিবার", "সোমবার", "মঙ্গলবার", "বুধবার", "বৃহস্পতিবার"];
+    let currentSelectedDay = "শনিবার";
+    
+    const classesList = ["ষষ্ঠ শ্রেণি", "সপ্তম শ্রেণি", "অষ্টম শ্রেণি", "নবম শ্রেণি", "দশম শ্রেণি"];
 
     // ফরম সাবমিট হ্যান্ডলার
     document.getElementById('routineForm').addEventListener('submit', function(e) {
@@ -247,7 +239,7 @@
             teacher: document.getElementById('teacher').value
         };
 
-        // পূর্বে একই দিনে ও সময়ে কোনো ডাটা থাকলে তা আপডেট হবে, নাহলে নতুন যোগ হবে
+        // একই শ্রেণি, বার এবং পিরিয়ডে ডাটা থাকলে আপডেট হবে, নয়তো নতুন যোগ হবে
         const existingIndex = routineData.findIndex(item => 
             item.year === entry.year && 
             item.className === entry.className && 
@@ -269,33 +261,45 @@
         renderRoutineTable();
     });
 
-    // সমন্বিত রুটিন টেবিলে ডাটা দেখানোর ফাংশন
-    function renderRoutineTable() {
-        const filterYear = document.getElementById('filterYear').value;
-        const filterClass = document.getElementById('filterClass').value;
-        const filterTeacher = document.getElementById('filterTeacher').value.trim().toLowerCase();
+    // ট্যাব পরিবর্তন ফাংশন
+    function switchDay(day) {
+        currentSelectedDay = day;
+        
+        // বাটনের অ্যাক্টিভ ক্লাস পরিবর্তন
+        let buttons = document.querySelectorAll('.tab-btn');
+        buttons.forEach(btn => {
+            if(btn.innerText === day) {
+                btn.classList.add('active');
+            } else {
+                btn.classList.remove('active');
+            }
+        });
 
+        document.getElementById('tableTitle').innerText = `${day}র ক্লাস রুটিন`;
+        renderRoutineTable();
+    }
+
+    // টেবিল রেন্ডার করার ফাংশন
+    function renderRoutineTable() {
         const tbody = document.getElementById('routineBody');
         tbody.innerHTML = '';
 
-        days.forEach(day => {
-            let rowHtml = `<tr><strong><td>${day}</td></strong>`;
+        classesList.forEach(cls => {
+            let rowHtml = `<tr><td>${cls}</td>`;
 
             for (let p = 1; p <= 8; p++) {
-                // ফিল্টার অনুযায়ী ডাটা খোঁজা
-                const matchedEntries = routineData.filter(item => {
-                    const matchYear = !filterYear || item.year === filterYear;
-                    const matchClass = filterClass === 'ALL' || item.className === filterClass;
-                    const matchTeacher = !filterTeacher || item.teacher.toLowerCase().includes(filterTeacher);
-                    return item.day === day && item.period === p && matchYear && matchClass && matchTeacher;
-                });
+                // বর্তমান নির্বাচিত বার এবং শ্রেণির জন্য পিরিয়ড ম্যাচ করা
+                const matchedEntry = routineData.find(item => 
+                    item.day === currentSelectedDay && 
+                    item.className === cls && 
+                    item.period === p
+                );
 
-                if (matchedEntries.length > 0) {
-                    let cellContent = matchedEntries.map(e => 
-                        `<span class="subject-text">${e.subject}</span><span class="teacher-text">(${e.teacher})</span>`
-                    ).join('<hr style="margin: 4px 0; border: 0.5px solid #eee;">');
-
-                    rowHtml += `<td>${cellContent}</td>`;
+                if (matchedEntry) {
+                    rowHtml += `<td>
+                        <span class="subject-text">${matchedEntry.subject}</span>
+                        <span class="teacher-text">(${matchedEntry.teacher})</span>
+                    </td>`;
                 } else {
                     rowHtml += `<td>-</td>`;
                 }
@@ -306,7 +310,7 @@
         });
     }
 
-    // প্রথমবার পেজ লোড হলে খালি টেবিল তৈরি করবে
+    // প্রাথমিক রেন্ডার
     renderRoutineTable();
 </script>
 

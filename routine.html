@@ -289,7 +289,7 @@
             word-break: break-word;
         }
 
-        /* PRINT STYLING (প্রিন্ট দেওয়ার সময় শুধু টেবিল দেখতে পাওয়ার জন্য) */
+        /* PRINT STYLING */
         @media print {
             body {
                 background-color: white;
@@ -457,7 +457,7 @@
                 <div class="input-box">
                     <label>শ্রেণি নির্বাচন করুন</label>
                     <select id="filterClassSelect" onchange="renderClassWiseRoutine()">
-                        <!-- ক্লাস ম্যানেজমেন্ট থেকে ডায়নামিক লোড হবে -->
+                        <!-- ডাইনামিক লোড হবে -->
                     </select>
                 </div>
             </div>
@@ -545,7 +545,7 @@
         </div>
     </div>
 
-    <!-- ৩. একাডেমিক ক্যালেন্ডার প্যানেল (ক্যালেন্ডার ভিউ - প্রিন্ট বাটন ছাড়া) -->
+    <!-- ৩. একাডেমিক ক্যালেন্ডার প্যানেল -->
     <div id="academicCalendarPanel" class="panel-section">
         <h2>একাডেমিক ক্যালেন্ডার ও ইভেন্ট ফরম</h2>
         <form id="calendarForm" style="margin-bottom: 20px; background: #ecf0f1; padding: 15px; border-radius: 6px;">
@@ -576,11 +576,11 @@
             <input type="month" id="calendarMonthPicker" value="2026-10" onchange="renderRealCalendar()">
         </div>
         <div class="calendar-grid" id="realCalendarGrid">
-            <!-- রঙিন ক্যালেন্ডার গ্রিড ডায়নামিক লোড হবে -->
+            <!-- রঙিন ক্যালেন্ডার গ্রিড লোড হবে -->
         </div>
     </div>
 
-    <!-- ৪. হলি ডে (ছুটির দিন) প্যানেল (ক্যালেন্ডার আউট - শুধুই রঙিন লিস্ট ভিউ) -->
+    <!-- ৪. হলি ডে (ছুটির দিন) প্যানেল (লিস্ট ভিউ) -->
     <div id="holidayPanel" class="panel-section">
         <button class="btn-print" onclick="printSection('holidayPanel')">🖨️ প্রিন্ট করুন</button>
         <h2>ছুটির তালিকা (Holiday List)</h2>
@@ -601,7 +601,7 @@
                     </tr>
                 </thead>
                 <tbody id="holidayTableBody">
-                    <!-- লিস্ট আকারে এখানে ছুটির দিনগুলো লোড হবে -->
+                    <!-- ছুটির দিনগুলো লোড হবে -->
                 </tbody>
             </table>
         </div>
@@ -609,10 +609,23 @@
 </div>
 
 <script>
+    // সংশোধিত শ্রেণি তালিকা
     const academicClassManagementList = [
-        "নুরানী প্রথম শ্রেণি", "নুরানী দ্বিতীয় শ্রেণি", "হিফজ বিভাগ",
-        "ষষ্ঠ শ্রেণি", "সপ্তম শ্রেণি", "অষ্টম শ্রেণি", "নবম শ্রেণি", "দশম শ্রেণি",
-        "আলিম প্রথম বর্ষ", "ফাজিল তৃতীয় বর্ষ"
+        "নুরানী প্রথম শ্রেণি",
+        "নুরানী দ্বিতীয় শ্রেণি",
+        "নুরানী তৃতীয় শ্রেণি",
+        "ইবতেদায়ী চতুর্থ শ্রেণি",
+        "ইবতেদায়ী পঞ্চম শ্রেণি",
+        "দাখিল ষষ্ঠ শ্রেণি",
+        "দাখিল সপ্তম শ্রেণি",
+        "দাখিল অষ্টম শ্রেণি",
+        "দাখিল নবম শ্রেণি",
+        "দাখিল দশম শ্রেণি",
+        "আলিম প্রথম বর্ষ",
+        "আলিম দ্বিতীয় বর্ষ",
+        "ফাজিল প্রথম বর্ষ",
+        "ফাজিল দ্বিতীয় বর্ষ",
+        "ফাজিল তৃতীয় বর্ষ"
     ];
 
     let periodTimes = [
@@ -802,7 +815,6 @@
         alert("১ম হতে ৮ম ঘণ্টার সময় সফলভাবে আপডেট করা হয়েছে!");
     }
 
-    // হলি ডে প্যানেলে ক্যালেন্ডারের পরিবর্তে তালিকা (List View)
     function renderHolidayList() {
         const filterVal = document.getElementById('holidayMonthFilter').value;
         const tbody = document.getElementById('holidayTableBody');
@@ -830,7 +842,6 @@
         });
     }
 
-    // একাডেমিক ক্যালেন্ডার ইভেন্ট ফরম সাবমিট
     document.getElementById('calendarForm').addEventListener('submit', function(e) {
         e.preventDefault();
         const newEvent = {
@@ -843,7 +854,6 @@
         document.getElementById('eventTitle').value = '';
     });
 
-    // গ্লোবাল রঙিন রিয়েল ক্যালেন্ডার রেন্ডার
     function renderRealCalendar() {
         const yearMonth = document.getElementById('calendarMonthPicker').value;
         const grid = document.getElementById('realCalendarGrid');
@@ -889,12 +899,10 @@
         }
     }
 
-    // প্রিন্ট করার ফাংশন
     function printSection(sectionId) {
         window.print();
     }
 
-    // ইনিশিয়ালাইজেশন
     loadClassDropdowns();
     renderCombinedRoutine();
 </script>

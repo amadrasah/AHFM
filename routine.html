@@ -3,393 +3,312 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Routine & Calendar - Abdullah Hat Islamia Fazil Madrasah</title>
-    <script src="https://cdn.tailwindcss.com"></script>
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <title>ক্লাস রুটিন ম্যানেজমেন্ট</title>
     <style>
-        @media print {
-            .no-print { display: none !important; }
-            body { background: white !important; font-size: 9pt !important; }
-            table { width: 100% !important; border-collapse: collapse !important; }
-            th, td { border: 1px solid #000 !important; padding: 4px !important; }
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            margin: 20px;
+            background-color: #f4f7f6;
+            color: #333;
+        }
+        h2, h3 {
+            color: #2c3e50;
+            border-bottom: 2px solid #3498db;
+            padding-bottom: 5px;
+        }
+        .container {
+            max-width: 1100px;
+            margin: 0 auto;
+            background: #fff;
+            padding: 20px;
+            border-radius: 8px;
+            box-shadow: 0 0 10px rgba(0,0,0,0.1);
+        }
+        /* Form Styling */
+        .form-group {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 15px;
+            margin-bottom: 15px;
+        }
+        .input-box {
+            display: flex;
+            flex-direction: column;
+        }
+        .input-box label {
+            font-weight: bold;
+            margin-bottom: 5px;
+            font-size: 14px;
+        }
+        .input-box input, .input-box select {
+            padding: 8px 10px;
+            border: 1px solid #ccc;
+            border-radius: 4px;
+            font-size: 14px;
+        }
+        .btn-submit {
+            background-color: #2ecc71;
+            color: white;
+            padding: 10px 20px;
+            border: none;
+            border-radius: 4px;
+            cursor: pointer;
+            font-size: 16px;
+            font-weight: bold;
+            grid-column: 1 / -1;
+            justify-self: start;
+        }
+        .btn-submit:hover {
+            background-color: #27ae60;
+        }
+
+        /* Filter Section */
+        .filter-section {
+            background: #eef2f5;
+            padding: 15px;
+            border-radius: 6px;
+            margin-top: 30px;
+            margin-bottom: 20px;
+            display: flex;
+            gap: 15px;
+            align-items: center;
+            flex-wrap: wrap;
+        }
+        .btn-filter {
+            background-color: #3498db;
+            color: white;
+            border: none;
+            padding: 9px 18px;
+            border-radius: 4px;
+            cursor: pointer;
+            font-weight: bold;
+            margin-top: 18px;
+        }
+        .btn-filter:hover {
+            background-color: #2980b9;
+        }
+
+        /* Table Styling */
+        .table-responsive {
+            overflow-x: auto;
+        }
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            margin-top: 10px;
+            background: white;
+        }
+        th, td {
+            border: 1px solid #bdc3c7;
+            padding: 10px;
+            text-align: center;
+            font-size: 13px;
+        }
+        th {
+            background-color: #34495e;
+            color: white;
+        }
+        .subject-text {
+            font-weight: bold;
+            color: #2c3e50;
+            display: block;
+        }
+        .teacher-text {
+            font-size: 11px;
+            color: #7f8c8d;
+            font-style: italic;
+            display: block;
+            margin-top: 2px;
         }
     </style>
 </head>
-<body class="bg-gray-100 font-sans text-gray-800">
+<body>
 
-    <div class="flex h-screen overflow-hidden">
-        
-        <!-- Sidebar -->
-        <aside class="w-72 bg-emerald-900 text-white flex flex-col shadow-lg overflow-y-auto no-print hidden md:flex">
-            <div class="p-4 bg-emerald-950 text-center border-b border-emerald-800 sticky top-0 z-10">
-                <h1 class="font-bold text-base">AHIFM ERP</h1>
-                <p class="text-xs text-emerald-300">Abdullah Hat Islamia Fazil Madrasah</p>
+<div class="container">
+    <!-- ১. ক্লাস রুটিন ইনপুট ফরম -->
+    <h2>ক্লাস রুটিন এন্ট্রি ফরম</h2>
+    <form id="routineForm">
+        <div class="form-group">
+            <div class="input-box">
+                <label>বছর/সাল</label>
+                <input type="number" id="year" value="2026" required>
             </div>
-
-            <nav class="flex-1 p-3 space-y-1 text-xs">
-                <a href="index.html" class="flex items-center gap-2.5 p-2 rounded hover:bg-emerald-800 transition"><i class="fa-solid fa-house w-4"></i> 🏠 01. Home</a>
-                <a href="students.html" class="flex items-center gap-2.5 p-2 rounded hover:bg-emerald-800 transition"><i class="fa-solid fa-user-graduate w-4"></i> 👨‍🎓 03. Student Management</a>
-                <a href="teachers.html" class="flex items-center gap-2.5 p-2 rounded hover:bg-emerald-800 transition"><i class="fa-solid fa-chalkboard-user w-4"></i> 👨‍🏫 04. Teacher & Staff</a>
-                <a href="attendance.html" class="flex items-center gap-2.5 p-2 rounded hover:bg-emerald-800 transition"><i class="fa-solid fa-clipboard-user w-4"></i> 🕐 07. Attendance</a>
-                <a href="routine.html" class="flex items-center gap-2.5 p-2 rounded bg-emerald-800 text-white font-medium"><i class="fa-solid fa-calendar-days w-4"></i> 📅 12. Routine & Calendar</a>
-                <a href="communication.html" class="flex items-center gap-2.5 p-2 rounded hover:bg-emerald-800 transition"><i class="fa-solid fa-comments w-4"></i> 📱 18. Communication</a>
-            </nav>
-        </aside>
-
-        <!-- Main Content Area -->
-        <div class="flex-1 flex flex-col overflow-y-auto">
-            
-            <!-- Top Navbar -->
-            <header class="bg-white shadow-sm p-4 flex justify-between items-center no-print sticky top-0 z-20">
-                <div class="flex items-center gap-3">
-                    <span class="font-bold text-emerald-800 text-base md:text-lg">📅 Routine & Calendar (সমন্বিত রুটিন ও পঞ্জিকা)</span>
-                </div>
-                <div class="flex items-center gap-4">
-                    <span class="text-xs md:text-sm text-gray-700 font-semibold bg-emerald-50 px-3 py-1 rounded-full border border-emerald-200">
-                        <i class="fa-solid fa-user-shield text-emerald-700 mr-1"></i> সুপার অ্যাডমিন
-                    </span>
-                    <a href="index.html" class="bg-red-600 text-white px-3 py-1.5 rounded text-xs font-medium hover:bg-red-700">লগআউট</a>
-                </div>
-            </header>
-
-            <!-- Page Content -->
-            <main class="p-4 md:p-6 space-y-6">
-                
-                <!-- Page Banner -->
-                <div class="bg-gradient-to-r from-emerald-800 to-emerald-950 text-white p-5 md:p-6 rounded-2xl shadow-sm flex flex-col md:flex-row justify-between items-center gap-4 no-print">
-                    <div>
-                        <h2 class="text-lg md:text-xl font-bold">সমন্বিত ক্লাস রুটিন, অটো শিক্ষক সিডিউল ও পরীক্ষা সময়সূচি</h2>
-                        <p class="text-emerald-200 text-xs mt-1">বিষয় ও শিক্ষক বাছুন—যা অটোমেটিক শিক্ষকের নিজস্ব পার্সোনাল রুটিনে যুক্ত হয়ে যাবে।</p>
-                    </div>
-                </div>
-
-                <!-- 6 Main Sub-Module Cards -->
-                <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-5 no-print">
-                    
-                    <div onclick="openRoutineForm('class')" class="bg-white p-5 rounded-xl shadow-sm border-t-4 border-emerald-600 space-y-3 hover:shadow-md cursor-pointer transition">
-                        <div class="flex items-center justify-between border-b pb-2">
-                            <h3 class="font-bold text-gray-800 text-sm flex items-center gap-2"><i class="fa-solid fa-clock text-emerald-600"></i> Combined Class Routine</h3>
-                            <span class="text-xs bg-emerald-50 text-emerald-700 px-2 py-0.5 rounded font-semibold">সমন্বিত ক্লাস রুটিন</span>
-                        </div>
-                        <p class="text-xs text-gray-600 leading-relaxed">বিষয় ও বিষয়ের সাথে শিক্ষক যুক্ত করার আধুনিক প্যানেল (অটো পার্সোনাল রুটিন সিঙ্ক)।</p>
-                        <button class="w-full bg-emerald-50 text-emerald-700 py-1.5 rounded text-xs font-bold hover:bg-emerald-100 transition">ক্লাস রুটিন তৈরি ও দেখুন</button>
-                    </div>
-
-                    <div onclick="openRoutineForm('exam')" class="bg-white p-5 rounded-xl shadow-sm border-t-4 border-blue-600 space-y-3 hover:shadow-md cursor-pointer transition">
-                        <div class="flex items-center justify-between border-b pb-2">
-                            <h3 class="font-bold text-gray-800 text-sm flex items-center gap-2"><i class="fa-solid fa-file-signature text-blue-600"></i> Combined Exam Routine</h3>
-                            <span class="text-xs bg-blue-50 text-blue-700 px-2 py-0.5 rounded font-semibold">সমন্বিত পরীক্ষা রুটিন</span>
-                        </div>
-                        <p class="text-xs text-gray-600 leading-relaxed">অর্ধবার্ষিক, বার্ষিক ও টিউটোরিয়াল পরীক্ষার স্থান, সময় ও পরিদর্শকসহ রুটিন।</p>
-                        <button class="w-full bg-blue-50 text-blue-700 py-1.5 rounded text-xs font-bold hover:bg-blue-100 transition">পরীক্ষার রুটিন প্যানেল</button>
-                    </div>
-
-                    <div onclick="openRoutineForm('teacher_personal')" class="bg-white p-5 rounded-xl shadow-sm border-t-4 border-teal-600 space-y-3 hover:shadow-md cursor-pointer transition">
-                        <div class="flex items-center justify-between border-b pb-2">
-                            <h3 class="font-bold text-gray-800 text-sm flex items-center gap-2"><i class="fa-solid fa-chalkboard-user text-teal-600"></i> Teacher Personal Routine</h3>
-                            <span class="text-xs bg-teal-50 text-teal-700 px-2 py-0.5 rounded font-semibold">শিক্ষক পার্সোনাল রুটিন</span>
-                        </div>
-                        <p class="text-xs text-gray-600 leading-relaxed">ক্লাস রুটিন থেকে স্বয়ংক্রিয়ভাবে আসা শিক্ষকের পিরিয়ড সময়সূচি ও প্রিন্টভিউ।</p>
-                        <button class="w-full bg-teal-50 text-teal-700 py-1.5 rounded text-xs font-bold hover:bg-teal-100 transition">শিক্ষক সিডিউল দেখুন</button>
-                    </div>
-
-                </div>
-
-                <!-- DYNAMIC ROUTINE WORKSPACE PANEL -->
-                <div id="routine_workspace" class="bg-white p-5 md:p-6 rounded-2xl shadow-sm border border-gray-200 space-y-6 hidden">
-                    <div class="flex justify-between items-center border-b pb-3 no-print">
-                        <h3 id="workspace_title" class="font-bold text-emerald-800 text-base"><i class="fa-solid fa-calendar-check mr-2"></i> রুটিন ওয়ার্কস্পেস</h3>
-                        <div class="flex gap-2">
-                            <button onclick="window.print()" class="bg-emerald-700 text-white px-3 py-1.5 rounded text-xs font-bold hover:bg-emerald-800 shadow"><i class="fa-solid fa-print mr-1"></i> প্রিন্ট রুটিন</button>
-                            <button onclick="closeRoutineWorkspace()" class="bg-gray-200 text-gray-700 px-3 py-1.5 rounded text-xs font-bold hover:bg-gray-300">বন্ধ করুন</button>
-                        </div>
-                    </div>
-
-                    <!-- Global Calendar & Year Filters Bar -->
-                    <div class="grid grid-cols-1 sm:grid-cols-4 gap-4 bg-emerald-50/70 p-4 rounded-xl border border-emerald-200 text-xs no-print">
-                        <div>
-                            <label class="font-bold block mb-1 text-gray-700">গ্লোবাল ক্যালেন্ডার (Global Calendar):</label>
-                            <input type="date" id="global_date_picker" onchange="renderRoutineData()" class="p-2 border rounded bg-white w-full font-bold text-emerald-900">
-                        </div>
-
-                        <div>
-                            <label class="font-bold block mb-1 text-gray-700">বছর (Year Filter):</label>
-                            <div class="flex gap-1">
-                                <select id="year_filter_select" onchange="renderRoutineData()" class="p-2 border rounded bg-white w-full font-bold">
-                                    <option value="2026" selected>2026</option>
-                                    <option value="2027">2027</option>
-                                </select>
-                                <button onclick="addNewYearFilter()" class="bg-gray-200 px-2 rounded font-bold hover:bg-gray-300" title="নতুন বছর সেভ করুন">+</button>
-                            </div>
-                        </div>
-
-                        <div id="class_select_div">
-                            <label class="font-bold block mb-1 text-gray-700">শ্রেণি নির্বাচন করুন *:</label>
-                            <select id="routine_class_select" onchange="renderRoutineData()" class="p-2 border rounded bg-white w-full font-bold master-class-dropdown"></select>
-                        </div>
-
-                        <div id="teacher_select_div" class="hidden">
-                            <label class="font-bold block mb-1 text-gray-700">শিক্ষক নির্বাচন করুন *:</label>
-                            <select id="routine_teacher_select" onchange="renderRoutineData()" class="p-2 border rounded bg-white w-full font-bold master-teacher-dropdown"></select>
-                        </div>
-
-                        <div class="sm:col-span-4 flex justify-end pt-1">
-                            <button id="add_entry_btn" onclick="showAddFormModal()" class="bg-emerald-700 text-white px-5 py-2 rounded-lg font-bold hover:bg-emerald-800 text-xs shadow-sm">
-                                <i class="fa-solid fa-plus mr-1"></i> নতুন রুটিন এন্ট্রি যোগ করুন
-                            </button>
-                        </div>
-                    </div>
-
-                    <!-- DISPLAY TABLE -->
-                    <div class="overflow-x-auto">
-                        <table class="w-full text-left border-collapse border border-gray-200 text-xs">
-                            <thead>
-                                <tr class="bg-emerald-800 text-white" id="routine_table_head">
-                                    <th class="border p-2">বার / দিন</th>
-                                    <th class="border p-2">সময় ও পিরিয়ড</th>
-                                    <th class="border p-2">বিষয় (Subject)</th>
-                                    <th class="border p-2">দায়িত্বপ্রাপ্ত শিক্ষক</th>
-                                    <th class="border p-2 text-center no-print">অ্যাকশন</th>
-                                </tr>
-                            </thead>
-                            <tbody id="routine_table_body"></tbody>
-                        </table>
-                    </div>
-                </div>
-
-            </main>
-
-        </div>
-    </div>
-
-    <!-- MODAL FOR ADDING CLASS / EXAM ROUTINE ENTRY -->
-    <div id="add_entry_modal" class="fixed inset-0 bg-black/50 z-50 flex items-center justify-center hidden no-print">
-        <div class="bg-white p-6 rounded-2xl w-full max-w-md shadow-lg space-y-4 text-xs">
-            <div class="flex justify-between items-center border-b pb-2">
-                <h4 class="font-bold text-emerald-800 text-sm" id="modal_form_title">সমন্বিত রুটিন এন্ট্রি ফরম</h4>
-                <button onclick="closeModal()" class="text-gray-500 font-bold hover:text-black">✕</button>
+            <div class="input-box">
+                <label>শ্রেণি</label>
+                <select id="className" required>
+                    <option value="">শ্রেণি নির্বাচন করুন</option>
+                    <option value="Class 6">ষষ্ঠ শ্রেণি</option>
+                    <option value="Class 7">সপ্তম শ্রেণি</option>
+                    <option value="Class 8">অষ্টম শ্রেণি</option>
+                    <option value="Class 9">নবম শ্রেণি</option>
+                    <option value="Class 10">দশম শ্রেণি</option>
+                </select>
             </div>
-
-            <div class="space-y-3">
-                <div>
-                    <label class="font-bold block mb-1">বার / দিন নির্বাচন করুন *:</label>
-                    <select id="entry_day_name" class="p-2 border rounded w-full font-bold">
-                        <option value="শনিবার">শনিবার (Saturday)</option>
-                        <option value="রবিবার">রবিবার (Sunday)</option>
-                        <option value="সোমবার">সোমবার (Monday)</option>
-                        <option value="মঙ্গলবার">মঙ্গলবার (Tuesday)</option>
-                        <option value="বুধবার">বুধবার (Wednesday)</option>
-                        <option value="বৃহস্পতিবার">বৃহস্পতিবার (Thursday)</option>
-                    </select>
-                </div>
-                <div>
-                    <label class="font-bold block mb-1">পিরিয়ড ও সময়সূচি (Period & Time) *:</label>
-                    <input type="text" id="entry_period_time" placeholder="যেমন: ১ম পিরিয়ড (০৯:০০ - ০৯:৪৫ AM)" class="p-2 border rounded w-full font-bold">
-                </div>
-                <div>
-                    <label class="font-bold block mb-1">বিষয় (Subject Name) *:</label>
-                    <input type="text" id="entry_subject" placeholder="যেমন: কুরআন মাজীদ / আরবি ১ম" class="p-2 border rounded w-full font-bold">
-                </div>
-                <div>
-                    <label class="font-bold block mb-1">বিষয় শিক্ষক (Assign Teacher) *:</label>
-                    <select id="entry_teacher_name" class="p-2 border rounded w-full font-bold master-teacher-dropdown"></select>
-                </div>
+            <div class="input-box">
+                <label>বার (Day)</label>
+                <select id="day" required>
+                    <option value="শনিবার">শনিবার</option>
+                    <option value="রবিবার">রবিবার</option>
+                    <option value="সোমবার">সোমবার</option>
+                    <option value="মঙ্গলবার">মঙ্গলবার</option>
+                    <option value="বুধবার">বুধবার</option>
+                    <option value="বৃহস্পতিবার">বৃহস্পতিবার</option>
+                </select>
             </div>
-
-            <div class="flex justify-end gap-2 pt-2 border-t">
-                <button onclick="saveCombinedRoutineEntry()" class="bg-emerald-700 text-white px-4 py-2 rounded font-bold hover:bg-emerald-800">সংরক্ষণ ও অটো-সিঙ্ক করুন</button>
-                <button onclick="closeModal()" class="bg-gray-200 text-gray-700 px-4 py-2 rounded font-bold">বাতিল</button>
+            <div class="input-box">
+                <label>পিরিয়ড/ঘণ্টা</label>
+                <select id="period" required>
+                    <option value="1">১ম ঘণ্টা (09:00 - 09:45)</option>
+                    <option value="2">২য় ঘণ্টা (09:45 - 10:30)</option>
+                    <option value="3">৩য় ঘণ্টা (10:30 - 11:15)</option>
+                    <option value="4">৪র্থ ঘণ্টা (11:15 - 12:00)</option>
+                    <option value="5">৫ম ঘণ্টা (12:00 - 12:45)</option>
+                    <option value="6">৬ষ্ঠ ঘণ্টা (01:30 - 02:15)</option>
+                    <option value="7">৭ম ঘণ্টা (02:15 - 03:00)</option>
+                    <option value="8">৮ম ঘণ্টা (03:00 - 03:45)</option>
+                </select>
+            </div>
+            <div class="input-box">
+                <label>বিষয়</label>
+                <input type="text" id="subject" placeholder="যেমন: গণিত" required>
+            </div>
+            <div class="input-box">
+                <label>শিক্ষকের নাম (সংক্ষেপে)</label>
+                <input type="text" id="teacher" placeholder="যেমন: M.R. (মোঃ রফিক)" required>
             </div>
         </div>
+        <button type="submit" class="btn-submit">রুটিনে এন্ট্রি করুন</button>
+    </form>
+
+    <!-- ২. ফিল্টারিং সেকশন -->
+    <div class="filter-section">
+        <div class="input-box">
+            <label>ফিল্টার সাল:</label>
+            <input type="number" id="filterYear" value="2026">
+        </div>
+        <div class="input-box">
+            <label>ফিল্টার শ্রেণি:</label>
+            <select id="filterClass">
+                <option value="ALL">সকল শ্রেণি</option>
+                <option value="Class 6">ষষ্ঠ শ্রেণি</option>
+                <option value="Class 7">সপ্তম শ্রেণি</option>
+                <option value="Class 8">অষ্টম শ্রেণি</option>
+                <option value="Class 9">নবম শ্রেণি</option>
+                <option value="Class 10">দশম শ্রেণি</option>
+            </select>
+        </div>
+        <div class="input-box">
+            <label>ফিল্টার শিক্ষক:</label>
+            <input type="text" id="filterTeacher" placeholder="শিক্ষকের নাম সংক্ষেপে">
+        </div>
+        <button type="button" class="btn-filter" onclick="renderRoutineTable()">ফিল্টার করুন</button>
     </div>
 
-    <!-- JavaScript & Auto Sync Engine -->
-    <script>
-        const MASTER_CLASS_LIST = [
-            "নুরানী প্রথম শ্রেণি", "নুরানী দ্বিতীয় শ্রেণি", "নুরানী তৃতীয় শ্রেণি", 
-            "ইবতেদায়ী চতুর্থ শ্রেণি", "ইবতেদায়ী পঞ্চম শ্রেণি", "দাখিল ষষ্ঠ শ্রেণি", 
-            "দাখিল সপ্তম শ্রেণি", "দাখিল অষ্টম শ্রেণি", "দাখিল নবম শ্রেণি", "দাখিল দশম শ্রেণি",
-            "আলিম প্রথম বর্ষ", "আলিম দ্বিতীয় বর্ষ", "ফাজিল প্রথম বর্ষ", "ফাজিল দ্বিতীয় বর্ষ", "ফাজিল তৃতীয় বর্ষ"
-        ];
+    <!-- ৩. সমন্বিত রুটিন ফরম/টেবিল -->
+    <h3>সমন্বিত ক্লাস রুটিন (Combined Routine)</h3>
+    <div class="table-responsive">
+        <table id="routineTable">
+            <thead>
+                <tr>
+                    <th>বার / সময়</th>
+                    <th>১ম ঘণ্টা<br><small>09:00-09:45</small></th>
+                    <th>২য় ঘণ্টা<br><small>09:45-10:30</small></th>
+                    <th>৩য় ঘণ্টা<br><small>10:30-11:15</small></th>
+                    <th>৪র্থ ঘণ্টা<br><small>11:15-12:00</small></th>
+                    <th>৫ম ঘণ্টা<br><small>12:00-12:45</small></th>
+                    <th>৬ষ্ঠ ঘণ্টা<br><small>01:30-02:15</small></th>
+                    <th>৭ম ঘণ্টা<br><small>02:15-03:00</small></th>
+                    <th>৮ম ঘণ্টা<br><small>03:00-03:45</small></th>
+                </tr>
+            </thead>
+            <tbody id="routineBody">
+                <!-- জাভাস্ক্রিপ্টের মাধ্যমে এখানে ডাটা রেন্ডার হবে -->
+            </tbody>
+        </table>
+    </div>
+</div>
 
-        let activeModuleType = 'class'; 
+<script>
+    // রুটিনের ডাটা সংরক্ষণের জন্য অ্যারে
+    let routineData = [];
 
-        function populateDropdowns() {
-            const classSelect = document.getElementById('routine_class_select');
-            classSelect.innerHTML = '<option value="">শ্রেণি নির্বাচন করুন</option>';
-            MASTER_CLASS_LIST.forEach(c => classSelect.innerHTML += `<option value="${c}">${c}</option>`);
+    const days = ["শনিবার", "রবিবার", "সোমবার", "মঙ্গলবার", "বুধবার", "বৃহস্পতিবার"];
 
-            let teachers = JSON.parse(localStorage.getItem('madrasah_teachers_master')) || [
-                { name_bn: "মাওলানা আব্দুল হাদি" }, { name_bn: "মাওলানা নুরুল ইসলাম" }, { name_bn: "মুফতি জালাল উদ্দিন" }
-            ];
+    // ফরম সাবমিট হ্যান্ডলার
+    document.getElementById('routineForm').addEventListener('submit', function(e) {
+        e.preventDefault();
 
-            document.querySelectorAll('.master-teacher-dropdown').forEach(sel => {
-                sel.innerHTML = '<option value="">শিক্ষক নির্বাচন করুন</option>';
-                teachers.forEach(t => sel.innerHTML += `<option value="${t.name_bn}">${t.name_bn}</option>`);
-            });
-        }
-
-        function addNewYearFilter() {
-            let newY = prompt("নতুন বছর প্রবেশ করান (যেমন: 2028):");
-            if(newY && newY.trim() !== '') {
-                let yearSel = document.getElementById('year_filter_select');
-                let opt = document.createElement('option');
-                opt.value = newY.trim();
-                opt.text = newY.trim();
-                yearSel.add(opt);
-                yearSel.value = newY.trim();
-                renderRoutineData();
-            }
-        }
-
-        function openRoutineForm(type) {
-            activeModuleType = type;
-            const workspace = document.getElementById('routine_workspace');
-            const title = document.getElementById('workspace_title');
-            
-            const classDiv = document.getElementById('class_select_div');
-            const teacherDiv = document.getElementById('teacher_select_div');
-            const addBtn = document.getElementById('add_entry_btn');
-
-            workspace.classList.remove('hidden');
-
-            classDiv.classList.add('hidden');
-            teacherDiv.classList.add('hidden');
-            addBtn.classList.remove('hidden');
-
-            if(type === 'class') {
-                title.innerHTML = `<i class="fa-solid fa-clock mr-2 text-emerald-700"></i> সমন্বিত ক্লাস রুটিন প্যানেল`;
-                classDiv.classList.remove('hidden');
-            } else if(type === 'exam') {
-                title.innerHTML = `<i class="fa-solid fa-file-signature mr-2 text-blue-700"></i> সমন্বিত পরীক্ষা সময়সূচি প্যানেল`;
-                classDiv.classList.remove('hidden');
-            } else if(type === 'teacher_personal') {
-                title.innerHTML = `<i class="fa-solid fa-chalkboard-user mr-2 text-teal-700"></i> শিক্ষকের স্বয়ংক্রিয় পার্সোনাল রুটিনভিউ`;
-                teacherDiv.classList.remove('hidden');
-                addBtn.classList.add('hidden'); // শিক্ষকের রুটিন অটো সিঙ্ক হয়ে আসে
-            }
-
-            renderRoutineData();
-            workspace.scrollIntoView({ behavior: 'smooth' });
-        }
-
-        function closeRoutineWorkspace() {
-            document.getElementById('routine_workspace').classList.add('hidden');
-        }
-
-        function showAddFormModal() {
-            let cls = document.getElementById('routine_class_select').value;
-            if(!cls && activeModuleType !== 'teacher_personal') {
-                alert('দয়া করে প্রথমে একটি শ্রেণি নির্বাচন করুন!');
-                return;
-            }
-            document.getElementById('add_entry_modal').classList.remove('hidden');
-        }
-
-        function closeModal() {
-            document.getElementById('add_entry_modal').classList.add('hidden');
-        }
-
-        // মূল সমন্বিত সেভ এবং শিক্ষকের পার্সোনাল রুটিনে স্বয়ংক্রিয় সেভ লজিক
-        function saveCombinedRoutineEntry() {
-            const day = document.getElementById('entry_day_name').value;
-            const periodTime = document.getElementById('entry_period_time').value.trim();
-            const subject = document.getElementById('entry_subject').value.trim();
-            const teacher = document.getElementById('entry_teacher_name').value;
-            const year = document.getElementById('year_filter_select').value;
-            const selectedClass = document.getElementById('routine_class_select').value;
-
-            if(!periodTime || !subject || !teacher) {
-                alert('দয়া করে পিরিয়ড সময়সূচি, বিষয় এবং শিক্ষকের নাম সঠিক করে সিলেক্ট করুন!');
-                return;
-            }
-
-            // ১. সমন্বিত ক্লাস রুটিনে সেভ
-            let classKey = `combined_routine_${year}_${selectedClass}`;
-            let classRecords = JSON.parse(localStorage.getItem(classKey)) || [];
-
-            let entryData = { id: Date.now(), day, periodTime, subject, teacher, className: selectedClass };
-            classRecords.push(entryData);
-            localStorage.setItem(classKey, JSON.stringify(classRecords));
-
-            // ২. স্বয়ংক্রিয়ভাবে শিক্ষকের পার্সোনাল রুটিনে সিঙ্ক ও সেভ
-            let teacherKey = `teacher_routine_${year}_${teacher}`;
-            let teacherRecords = JSON.parse(localStorage.getItem(teacherKey)) || [];
-            teacherRecords.push(entryData);
-            localStorage.setItem(teacherKey, JSON.stringify(teacherRecords));
-
-            document.getElementById('entry_period_time').value = '';
-            document.getElementById('entry_subject').value = '';
-            
-            closeModal();
-            renderRoutineData();
-            alert('সফলভাবে ক্লাস রুটিন যুক্ত হয়েছে এবং শিক্ষকের পার্সোনাল রুটিনে সিঙ্ক হয়েছে!');
-        }
-
-        function deleteRoutineEntry(entryId) {
-            const year = document.getElementById('year_filter_select').value;
-            const selectedClass = document.getElementById('routine_class_select').value;
-
-            let classKey = `combined_routine_${year}_${selectedClass}`;
-            let classRecords = JSON.parse(localStorage.getItem(classKey)) || [];
-
-            let target = classRecords.find(r => r.id === entryId);
-            if(target) {
-                // শিক্ষকের পার্সোনাল রুটিন থেকেও বাদ দেওয়া
-                let teacherKey = `teacher_routine_${year}_${target.teacher}`;
-                let teacherRecords = JSON.parse(localStorage.getItem(teacherKey)) || [];
-                teacherRecords = teacherRecords.filter(tr => tr.id !== entryId);
-                localStorage.setItem(teacherKey, JSON.stringify(teacherRecords));
-            }
-
-            classRecords = classRecords.filter(r => r.id !== entryId);
-            localStorage.setItem(classKey, JSON.stringify(classRecords));
-
-            renderRoutineData();
-        }
-
-        function renderRoutineData() {
-            const tbody = document.getElementById('routine_table_body');
-            tbody.innerHTML = '';
-
-            const year = document.getElementById('year_filter_select').value;
-            const cls = document.getElementById('routine_class_select').value;
-            const teacher = document.getElementById('routine_teacher_select').value;
-
-            let records = [];
-
-            if(activeModuleType === 'class' || activeModuleType === 'exam') {
-                let classKey = `combined_routine_${year}_${cls}`;
-                records = JSON.parse(localStorage.getItem(classKey)) || [];
-            } else if(activeModuleType === 'teacher_personal') {
-                let teacherKey = `teacher_routine_${year}_${teacher}`;
-                records = JSON.parse(localStorage.getItem(teacherKey)) || [];
-            }
-
-            if(records.length === 0) {
-                tbody.innerHTML = `<tr><td colspan="5" class="border p-4 text-center text-gray-500 font-bold">কোনো রুটিন ডেটা পাওয়া যায়নি! নতুন রুটিন যুক্ত করুন।</td></tr>`;
-                return;
-            }
-
-            records.forEach(r => {
-                tbody.innerHTML += `
-                    <tr>
-                        <td class="border p-2 font-bold text-gray-700">${r.day}</td>
-                        <td class="border p-2 font-bold text-amber-800">${r.periodTime}</td>
-                        <td class="border p-2 font-bold text-emerald-900">${r.subject} ${r.className ? `<span class="text-[10px] text-blue-700 block">(${r.className})</span>` : ''}</td>
-                        <td class="border p-2 font-bold text-teal-800">${r.teacher}</td>
-                        <td class="border p-2 text-center no-print">
-                            <button onclick="deleteRoutineEntry(${r.id})" class="bg-red-500 text-white px-2 py-1 rounded hover:bg-red-600 text-[10px]"><i class="fa-solid fa-trash"></i> বাদ দিন</button>
-                        </td>
-                    </tr>
-                `;
-            });
-        }
-
-        window.onload = function() {
-            document.getElementById('global_date_picker').valueAsDate = new Date();
-            populateDropdowns();
+        const entry = {
+            year: document.getElementById('year').value,
+            className: document.getElementById('className').value,
+            day: document.getElementById('day').value,
+            period: parseInt(document.getElementById('period').value),
+            subject: document.getElementById('subject').value,
+            teacher: document.getElementById('teacher').value
         };
-    </script>
+
+        // পূর্বে একই দিনে ও সময়ে কোনো ডাটা থাকলে তা আপডেট হবে, নাহলে নতুন যোগ হবে
+        const existingIndex = routineData.findIndex(item => 
+            item.year === entry.year && 
+            item.className === entry.className && 
+            item.day === entry.day && 
+            item.period === entry.period
+        );
+
+        if (existingIndex > -1) {
+            routineData[existingIndex] = entry;
+        } else {
+            routineData.push(entry);
+        }
+
+        // ইনপুট রিসেট
+        document.getElementById('subject').value = '';
+        document.getElementById('teacher').value = '';
+
+        // টেবিল রিফ্রেশ
+        renderRoutineTable();
+    });
+
+    // সমন্বিত রুটিন টেবিলে ডাটা দেখানোর ফাংশন
+    function renderRoutineTable() {
+        const filterYear = document.getElementById('filterYear').value;
+        const filterClass = document.getElementById('filterClass').value;
+        const filterTeacher = document.getElementById('filterTeacher').value.trim().toLowerCase();
+
+        const tbody = document.getElementById('routineBody');
+        tbody.innerHTML = '';
+
+        days.forEach(day => {
+            let rowHtml = `<tr><strong><td>${day}</td></strong>`;
+
+            for (let p = 1; p <= 8; p++) {
+                // ফিল্টার অনুযায়ী ডাটা খোঁজা
+                const matchedEntries = routineData.filter(item => {
+                    const matchYear = !filterYear || item.year === filterYear;
+                    const matchClass = filterClass === 'ALL' || item.className === filterClass;
+                    const matchTeacher = !filterTeacher || item.teacher.toLowerCase().includes(filterTeacher);
+                    return item.day === day && item.period === p && matchYear && matchClass && matchTeacher;
+                });
+
+                if (matchedEntries.length > 0) {
+                    let cellContent = matchedEntries.map(e => 
+                        `<span class="subject-text">${e.subject}</span><span class="teacher-text">(${e.teacher})</span>`
+                    ).join('<hr style="margin: 4px 0; border: 0.5px solid #eee;">');
+
+                    rowHtml += `<td>${cellContent}</td>`;
+                } else {
+                    rowHtml += `<td>-</td>`;
+                }
+            }
+
+            rowHtml += `</tr>`;
+            tbody.innerHTML += rowHtml;
+        });
+    }
+
+    // প্রথমবার পেজ লোড হলে খালি টেবিল তৈরি করবে
+    renderRoutineTable();
+</script>
+
 </body>
 </html>

@@ -178,64 +178,110 @@
             margin-top: 2px;
         }
 
-        /* Real Calendar Styling */
+        /* Colorful Real Calendar Styling */
         .calendar-controls {
             display: flex;
             gap: 15px;
             align-items: center;
             margin-bottom: 15px;
-            background: #eef2f5;
-            padding: 10px;
-            border-radius: 6px;
+            background: linear-gradient(135deg, #6c5ce7, #a29bfe);
+            color: white;
+            padding: 12px 18px;
+            border-radius: 8px;
+            box-shadow: 0 4px 6px rgba(0,0,0,0.1);
+        }
+        .calendar-controls label {
+            font-weight: bold;
+        }
+        .calendar-controls input {
+            padding: 5px 10px;
+            border-radius: 4px;
+            border: none;
+            font-weight: bold;
         }
         .calendar-grid {
             display: grid;
             grid-template-columns: repeat(7, 1fr);
-            gap: 5px;
-            background: #ddd;
-            padding: 5px;
-            border-radius: 6px;
+            gap: 8px;
+            background: #f1f2f6;
+            padding: 10px;
+            border-radius: 8px;
+            border: 1px solid #dfe4ea;
         }
         .calendar-day-header {
-            background: #34495e;
+            background: #2ed573;
             color: white;
             font-weight: bold;
             text-align: center;
-            padding: 8px 0;
-            font-size: 13px;
+            padding: 10px 0;
+            font-size: 14px;
+            border-radius: 5px;
+            box-shadow: 0 2px 4px rgba(0,0,0,0.05);
+        }
+        .calendar-day-header:nth-child(1), .calendar-day-header:nth-child(6) {
+            background: #ff4757; /* ছুটির বারের হেডার কালার */
         }
         .calendar-cell {
             background: white;
-            min-height: 80px;
-            padding: 5px;
-            border-radius: 4px;
+            min-height: 85px;
+            padding: 8px;
+            border-radius: 6px;
             display: flex;
             flex-direction: column;
             justify-content: flex-start;
             font-size: 12px;
+            border: 1px solid #e4e7eb;
+            box-shadow: 0 2px 4px rgba(0,0,0,0.02);
+            transition: transform 0.2s;
+        }
+        .calendar-cell:hover {
+            transform: translateY(-2px);
         }
         .calendar-cell .date-num {
             font-weight: bold;
-            color: #2c3e50;
-            margin-bottom: 4px;
+            font-size: 14px;
+            color: #2f3542;
+            margin-bottom: 6px;
+            display: inline-block;
+            width: 24px;
+            height: 24px;
+            line-height: 24px;
+            text-align: center;
+            border-radius: 50%;
+            background: #f1f2f6;
         }
         .calendar-cell.holiday {
-            background-color: #fadbd8;
+            background-color: #ffebd9;
+            border: 1px solid #ff7875;
+        }
+        .calendar-cell.holiday .date-num {
+            background: #ff4757;
+            color: white;
         }
         .calendar-cell.event {
-            background-color: #d4efdf;
+            background-color: #e6f7ff;
+            border: 1px solid #69c0ff;
+        }
+        .calendar-cell.event .date-num {
+            background: #1890ff;
+            color: white;
         }
         .event-tag {
-            font-size: 10px;
-            background: #e74c3c;
+            font-size: 11px;
+            background: #ff4d4f;
             color: white;
-            padding: 2px 4px;
-            border-radius: 3px;
-            margin-top: 2px;
+            padding: 3px 6px;
+            border-radius: 4px;
+            margin-top: 3px;
+            font-weight: bold;
+            box-shadow: 0 1px 3px rgba(0,0,0,0.1);
             word-break: break-word;
         }
+        .event-tag.exam {
+            background: #fa8c16;
+        }
         .event-tag.general {
-            background: #27ae60;
+            background: #13c2c2;
         }
     </style>
 </head>
@@ -267,12 +313,12 @@
                         <label>বছর/সাল</label>
                         <input type="number" id="year" value="2026" required>
                     </div>
-                    <!-- সেটিং ম্যানেজমেন্ট মডিউলের 'শ্রেণি ও কোড ম্যানেজমেন্ট' প্যানেল থেকে লিংকযুক্ত ড্রপডাউন -->
+                    <!-- একাডেমিক ম্যানেজমেন্ট মডিউলের 'ক্লাস ম্যানেজমেন্ট' প্যানেল থেকে লিঙ্কযুক্ত ড্রপডাউন -->
                     <div class="input-box">
-                        <label>শ্রেণি (সেটিং মডিউল)</label>
+                        <label>শ্রেণি (একাডেমিক ক্লাস ম্যানেজমেন্ট)</label>
                         <select id="className" required>
                             <option value="">শ্রেণি নির্বাচন করুন</option>
-                            <!-- সেটিং মডিউল থেকে ডাইনামিক লোড হওয়া ডেটা -->
+                            <!-- ক্লাস ম্যানেজমেন্ট প্যানেল থেকে ডায়নামিক লোড হবে -->
                         </select>
                     </div>
                     <div class="input-box">
@@ -341,14 +387,14 @@
                     <thead>
                         <tr>
                             <th>শ্রেণি</th>
-                            <th id="th-p1">১ম ঘণ্টা</th>
-                            <th id="th-p2">২য় ঘণ্টা</th>
-                            <th id="th-p3">৩য় ঘণ্টা</th>
-                            <th id="th-p4">৪র্থ ঘণ্টা</th>
-                            <th id="th-p5">৫ম ঘণ্টা</th>
-                            <th id="th-p6">৬ষ্ঠ ঘণ্টা</th>
-                            <th id="th-p7">৭ম ঘণ্টা</th>
-                            <th id="th-p8">৮ম ঘণ্টা</th>
+                            <th>১ম ঘণ্টা</th>
+                            <th>২য় ঘণ্টা</th>
+                            <th>৩য় ঘণ্টা</th>
+                            <th>৪র্থ ঘণ্টা</th>
+                            <th>৫ম ঘণ্টা</th>
+                            <th>৬ষ্ঠ ঘণ্টা</th>
+                            <th>৭ম ঘণ্টা</th>
+                            <th>৮ম ঘণ্টা</th>
                         </tr>
                     </thead>
                     <tbody id="combinedRoutineBody">
@@ -365,7 +411,7 @@
                 <div class="input-box">
                     <label>শ্রেণি নির্বাচন করুন</label>
                     <select id="filterClassSelect" onchange="renderClassWiseRoutine()">
-                        <!-- সেটিং মডিউল থেকে ডাইনামিক লোড হবে -->
+                        <!-- ক্লাস ম্যানেজমেন্ট থেকে ডায়নামিক লোড হবে -->
                     </select>
                 </div>
             </div>
@@ -394,19 +440,19 @@
         <!-- সাব-ভিউ ৩: পিরিয়ড/ঘণ্টা সময় এডিট ও সেটিং -->
         <div id="periodSettingView" class="routine-sub-section" style="display:none;">
             <h2>ঘণ্টা ও পিরিয়ড সময় এডিটিং সেটিং</h2>
-            <p>প্রতিটি ঘণ্টার জন্য শুরুর এবং শেষের সময় নির্ধারণ/এডিট করে আপডেট বাটনে ক্লিক করুন:</p>
+            <p>১ম ঘণ্টা হতে ৮ম ঘণ্টা পর্যন্ত সময় সংশোধন করে আপডেট বাটনে ক্লিক করুন:</p>
             <form id="periodForm">
                 <div class="table-responsive">
                     <table>
                         <thead>
                             <tr>
-                                <th>পিরিয়ড</th>
+                                <th>পিরিয়ড / ঘণ্টা</th>
                                 <th>শুরুর সময়</th>
                                 <th>শেষের সময়</th>
                             </tr>
                         </thead>
                         <tbody id="periodSettingTableBody">
-                            <!-- জাভাস্ক্রিপ্টের মাধ্যমে সময় এডিটিং ফিল্ড লোড হবে -->
+                            <!-- সংশোধিত ১ম ঘণ্টা হতে ৮ম ঘণ্টা ফরম লোড হবে -->
                         </tbody>
                     </table>
                 </div>
@@ -451,7 +497,7 @@
         </div>
     </div>
 
-    <!-- ৩. একাডেমিক ক্যালেন্ডার প্যানেল (রিয়েল ক্যালেন্ডার ভিউ সহ) -->
+    <!-- ৩. একাডেমিক ক্যালেন্ডার প্যানেল (রঙিন রিয়েল ক্যালেন্ডার) -->
     <div id="academicCalendarPanel" class="panel-section">
         <h2>একাডেমিক ক্যালেন্ডার ও ইভেন্ট ফরম</h2>
         <form id="calendarForm" style="margin-bottom: 20px; background: #ecf0f1; padding: 15px; border-radius: 6px;">
@@ -476,61 +522,61 @@
             <button type="submit" class="btn-submit" style="background-color: #3498db;">ইভেন্ট যোগ করুন</button>
         </form>
 
-        <h3>গ্লোবাল রিয়েল ক্যালেন্ডার</h3>
+        <h3>গ্লোবাল রঙিন ক্যালেন্ডার</h3>
         <div class="calendar-controls">
-            <label><strong>মাস ও বছর নির্বাচন:</strong></label>
+            <label>মাস ও বছর নির্বাচন:</label>
             <input type="month" id="calendarMonthPicker" value="2026-10" onchange="renderRealCalendar()">
         </div>
         <div class="calendar-grid" id="realCalendarGrid">
-            <!-- রিয়েল ক্যালেন্ডার গ্রিড ডায়নামিক লোড হবে -->
+            <!-- রঙিন ক্যালেন্ডার গ্রিড ডায়নামিক লোড হবে -->
         </div>
     </div>
 
-    <!-- ৪. হলি ডে (ছুটির দিন) প্যানেল (রিয়েল ক্যালেন্ডার সহ) -->
+    <!-- ৪. হলি ডে (ছুটির দিন) প্যানেল (রঙিন ক্যালেন্ডার) -->
     <div id="holidayPanel" class="panel-section">
-        <h2>ছুটির দিনসমূহ (রিয়েল ক্যালেন্ডার ভিউ)</h2>
-        <div class="calendar-controls">
-            <label><strong>মাস ও বছর নির্বাচন:</strong></label>
+        <h2>ছুটির দিনসমূহ (রঙিন ক্যালেন্ডার ভিউ)</h2>
+        <div class="calendar-controls" style="background: linear-gradient(135deg, #ff7675, #d63031);">
+            <label>মাস ও বছর নির্বাচন:</label>
             <input type="month" id="holidayMonthPicker" value="2026-10" onchange="renderHolidayCalendar()">
         </div>
         <div class="calendar-grid" id="holidayCalendarGrid">
-            <!-- রিয়েল হলিডে ক্যালেন্ডার গ্রিড ডাইনামিক লোড হবে -->
+            <!-- রঙিন হলিডে ক্যালেন্ডার গ্রিড ডায়নামিক লোড হবে -->
         </div>
     </div>
 </div>
 
 <script>
-    // সেটিং মডিউলের 'শ্রেণি ও কোড ম্যানেজমেন্ট' এর লিংকভিত্তিক ডাটা
-    const settingModuleClasses = [
+    // একাডেমিক ম্যানেজমেন্ট মডিউলের 'ক্লাস ম্যানেজমেন্ট' প্যানেল থেকে লিঙ্কড ডাটা
+    const academicClassManagementList = [
         "নুরানী প্রথম শ্রেণি", "নুরানী দ্বিতীয় শ্রেণি", "হিফজ বিভাগ",
         "ষষ্ঠ শ্রেণি", "সপ্তম শ্রেণি", "অষ্টম শ্রেণি", "নবম শ্রেণি", "দশম শ্রেণি",
         "আলিম প্রথম বর্ষ", "ফাজিল তৃতীয় বর্ষ"
     ];
 
-    // পিরিয়ড ও সময়ের সেটিংস
+    // ১ম ঘণ্টা থেকে ৮ম ঘণ্টা পর্যন্ত সময় ও লেবেল
     let periodTimes = [
-        { period: 1, start: "09:00", end: "09:45" },
-        { period: 2, start: "09:45", end: "10:30" },
-        { period: 3, start: "10:30", end: "11:15" },
-        { period: 4, start: "11:15", end: "12:00" },
-        { period: 5, start: "12:00", end: "12:45" },
-        { period: 6, start: "01:30", end: "02:15" },
-        { period: 7, start: "02:15", end: "03:00" },
-        { period: 8, start: "03:00", end: "03:45" }
+        { label: "১ম ঘণ্টা", start: "09:00", end: "09:45" },
+        { label: "২য় ঘণ্টা", start: "09:45", end: "10:30" },
+        { label: "৩য় ঘণ্টা", start: "10:30", end: "11:15" },
+        { label: "৪র্থ ঘণ্টা", start: "11:15", end: "12:00" },
+        { label: "৫ম ঘণ্টা", start: "12:00", end: "12:45" },
+        { label: "৬ষ্ঠ ঘণ্টা", start: "01:30", end: "02:15" },
+        { label: "৭ম ঘণ্টা", start: "02:15", end: "03:00" },
+        { label: "৮ম ঘণ্টা", start: "03:00", end: "03:45" }
     ];
 
     let routineData = [];
     let currentDay = "শনিবার";
     let calendarEvents = [
         { date: "2026-03-20", title: "ঈদুল ফিতর ছুটি", type: "ছুটি (Holiday)" },
-        { date: "2026-05-15", title: "অর্ধ-বার্ষিক পরীক্ষা শুরু", type: "পরীক্ষা (Exam)" },
+        { date: "2026-05-15", title: "অর্ধ-বার্ষিক পরীক্ষা", type: "পরীক্ষা (Exam)" },
         { date: "2026-08-15", title: "জাতীয় শোক দিবস", type: "ছুটি (Holiday)" },
         { date: "2026-10-25", title: "দুর্গাপূজা ছুটি", type: "ছুটি (Holiday)" }
     ];
 
     const daysList = ["শনিবার", "রবিবার", "সোমবার", "মঙ্গলবার", "বুধবার", "বৃহস্পতিবার"];
 
-    // পেজ লোড হলে ডাইনামিক শ্রেণি লোড করা
+    // শ্রেণি ড্রপডাউন লোড করা (ক্লাস ম্যানেজমেন্ট লিঙ্কযুক্ত)
     function loadClassDropdowns() {
         const classNameSelect = document.getElementById('className');
         const filterClassSelect = document.getElementById('filterClassSelect');
@@ -538,7 +584,7 @@
         classNameSelect.innerHTML = '<option value="">শ্রেণি নির্বাচন করুন</option>';
         filterClassSelect.innerHTML = '';
 
-        settingModuleClasses.forEach(cls => {
+        academicClassManagementList.forEach(cls => {
             classNameSelect.innerHTML += `<option value="${cls}">${cls}</option>`;
             filterClassSelect.innerHTML += `<option value="${cls}">${cls}</option>`;
         });
@@ -617,7 +663,7 @@
         const tbody = document.getElementById('combinedRoutineBody');
         tbody.innerHTML = '';
 
-        settingModuleClasses.forEach(cls => {
+        academicClassManagementList.forEach(cls => {
             let rowHtml = `<tr><td>${cls}</td>`;
             for (let p = 1; p <= 8; p++) {
                 const matched = routineData.find(item => item.day === currentDay && item.className === cls && item.period === p);
@@ -674,14 +720,14 @@
         });
     }
 
-    // পিরিয়ড সময় এডিটিং ফরম রেন্ডার
+    // পিরিয়ড সময় সংশোধিত ফরম (১ম ঘণ্টা থেকে ৮ম ঘণ্টা)
     function renderPeriodSettingForm() {
         const tbody = document.getElementById('periodSettingTableBody');
         tbody.innerHTML = '';
         periodTimes.forEach((p, idx) => {
             tbody.innerHTML += `
                 <tr>
-                    <td><strong>${p.period}ম ঘণ্টা</strong></td>
+                    <td><strong>${p.label}</strong></td>
                     <td><input type="time" id="startTime_${idx}" value="${p.start}"></td>
                     <td><input type="time" id="endTime_${idx}" value="${p.end}"></td>
                 </tr>
@@ -689,13 +735,13 @@
         });
     }
 
-    // পিরিয়ডের নতুন সময় সংরক্ষণ
+    // পিরিয়ডের সংগৃহীত সময় সেভ
     function savePeriodTimes() {
         periodTimes.forEach((p, idx) => {
             p.start = document.getElementById(`startTime_${idx}`).value;
             p.end = document.getElementById(`endTime_${idx}`).value;
         });
-        alert("ঘণ্টার সময় সফলভাবে আপডেট করা হয়েছে!");
+        alert("১ম হতে ৮ম ঘণ্টার সময় সফলভাবে আপডেট ও সংশোধন করা হয়েছে!");
     }
 
     // একাডেমিক ক্যালেন্ডার ফরম সাবমিট
@@ -711,21 +757,21 @@
         document.getElementById('eventTitle').value = '';
     });
 
-    // গ্লোবাল রিয়েল ক্যালেন্ডার রেন্ডার
+    // গ্লোবাল রঙিন রিয়েল ক্যালেন্ডার রেন্ডার
     function renderRealCalendar() {
         const yearMonth = document.getElementById('calendarMonthPicker').value;
         const grid = document.getElementById('realCalendarGrid');
         buildCalendarGrid(grid, yearMonth, false);
     }
 
-    // রিয়েল হলিডে ক্যালেন্ডার রেন্ডার
+    // হলি ডে রঙিন রিয়েল ক্যালেন্ডার রেন্ডার
     function renderHolidayCalendar() {
         const yearMonth = document.getElementById('holidayMonthPicker').value;
         const grid = document.getElementById('holidayCalendarGrid');
         buildCalendarGrid(grid, yearMonth, true);
     }
 
-    // ক্যালেন্ডার গ্রিড বিল্ডার ফাংশন
+    // রঙিন ক্যালেন্ডার গ্রিড বিল্ডার
     function buildCalendarGrid(container, yearMonth, onlyHolidays) {
         container.innerHTML = '';
         const weekDays = ['রবি', 'সোম', 'মঙ্গল', 'বুধ', 'বৃহঃ', 'শুক্র', 'শনি'];
@@ -737,31 +783,35 @@
 
         const parts = yearMonth.split('-');
         const year = parseInt(parts[0]);
-        const month = parseInt(parts[1]) - 1; // 0 index based
+        const month = parseInt(parts[1]) - 1;
 
         const firstDay = new Date(year, month, 1).getDay();
         const daysInMonth = new Date(year, month + 1, 0).getDate();
 
-        // ফাঁকা দিনসমূহ
+        // শুরুর ফাঁকা দিনসমূহ
         for (let i = 0; i < firstDay; i++) {
-            container.innerHTML += `<div class="calendar-cell" style="background:#f0f0f0;"></div>`;
+            container.innerHTML += `<div class="calendar-cell" style="background:#f8f9fa; border:none;"></div>`;
         }
 
-        // মাসের তারিখসমূহ
+        // মাসের দিনসমূহ
         for (let day = 1; day <= daysInMonth; day++) {
             const dateStr = `${year}-${String(month + 1).padStart(2, '0')}-${String(day).padStart(2, '0')}`;
             const matchedEvents = calendarEvents.filter(ev => ev.date === dateStr);
             
             let isHoliday = matchedEvents.some(ev => ev.type.includes('ছুটি'));
+            let isExam = matchedEvents.some(ev => ev.type.includes('পরীক্ষা'));
+            
             let cellClass = "calendar-cell";
-
             if (isHoliday) cellClass += " holiday";
             else if (matchedEvents.length > 0) cellClass += " event";
 
             let eventsHtml = '';
             matchedEvents.forEach(ev => {
                 if (!onlyHolidays || ev.type.includes('ছুটি')) {
-                    const tagClass = ev.type.includes('ছুটি') ? '' : 'general';
+                    let tagClass = '';
+                    if (ev.type.includes('পরীক্ষা')) tagClass = 'exam';
+                    else if (!ev.type.includes('ছুটি')) tagClass = 'general';
+                    
                     eventsHtml += `<div class="event-tag ${tagClass}">${ev.title}</div>`;
                 }
             });
@@ -775,7 +825,7 @@
         }
     }
 
-    // ইনিশিয়ালাইজেশন
+    // প্রারম্ভিক লোড
     loadClassDropdowns();
     renderCombinedRoutine();
 </script>

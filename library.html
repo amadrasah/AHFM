@@ -132,7 +132,7 @@
                         <button onclick="openModal('modalBookAdd')" class="w-full bg-emerald-50 text-emerald-700 py-1.5 rounded text-xs font-bold hover:bg-emerald-100 transition">বই এন্ট্রি ও তালিকা</button>
                     </div>
 
-                    <!-- 2. Student Membership (Student Profile Connected) -->
+                    <!-- 2. Student Membership -->
                     <div class="bg-white p-5 rounded-xl shadow-sm border-t-4 border-blue-600 space-y-3">
                         <div class="flex items-center justify-between border-b pb-2">
                             <h3 class="font-bold text-gray-800 text-sm flex items-center gap-2">
@@ -345,33 +345,38 @@
         </div>
     </div>
 
-    <!-- 5. Fine Management Modal -->
+    <!-- 5. Fine Management Modal (Updated with Accounts Deposit Connection) -->
     <div id="modalFine" class="fixed inset-0 bg-black/50 hidden flex justify-center items-center z-50 p-4">
         <div class="bg-white w-full max-w-lg rounded-2xl p-6 space-y-4 shadow-xl">
             <div class="flex justify-between items-center border-b pb-3">
-                <h3 class="font-bold text-rose-800 text-base">⚠️ জরিমানা গণনা ও আদায়</h3>
+                <h3 class="font-bold text-rose-800 text-base">⚠️ জরিমানা গণনা ও জমা (Accounts Integration)</h3>
                 <button onclick="closeModal('modalFine')" class="text-gray-500 text-lg">&times;</button>
             </div>
-            <form onsubmit="alert('জরিমানা ফি সফলভাবে আদায় করা হয়েছে!'); closeModal('modalFine'); return false;" class="space-y-3 text-xs">
+            <form onsubmit="collectFineToAccounts(event)" class="space-y-3 text-xs">
                 <div>
                     <label class="block font-medium mb-1">শিক্ষার্থী আইডি</label>
-                    <input type="text" placeholder="ST-2026-001" required class="w-full p-2 border rounded">
+                    <input type="text" id="fineStudentId" placeholder="ST-2026-001" required class="w-full p-2 border rounded">
                 </div>
                 <div class="grid grid-cols-2 gap-3">
                     <div>
-                        <label class="block font-medium mb-1">বিলম্ব দিন</label>
-                        <input type="number" value="3" class="w-full p-2 border rounded">
+                        <label class="block font-medium mb-1">জমা দেওয়ার অ্যাকাউন্ট/ফান্ড</label>
+                        <select id="fineAccountSector" class="w-full p-2 border rounded bg-rose-50 font-bold">
+                            <option value="Accounts - Library Fine Income">08. Accounts (আয় খাত - লাইব্রেরি জরিমানা)</option>
+                            <option value="Fees Management - Fine Collection">09. Fees Management (জরিমানা ফি খাত)</option>
+                        </select>
                     </div>
                     <div>
-                        <label class="block font-medium mb-1">মোট জরিমানা (টাকা)</label>
-                        <input type="number" value="30" class="w-full p-2 border rounded font-bold text-rose-600">
+                        <label class="block font-medium mb-1">আদায়কৃত জরিমানা (টাকা)</label>
+                        <input type="number" id="fineAmount" value="30" required class="w-full p-2 border rounded font-bold text-rose-600">
                     </div>
                 </div>
                 <div>
-                    <label class="block font-medium mb-1">জরিমানার কারণ</label>
-                    <input type="text" value="নির্ধারিত সময়ের পর বই ফেরত প্রদান" class="w-full p-2 border rounded">
+                    <label class="block font-medium mb-1">জরিমানার বিবরণ/কারণ</label>
+                    <input type="text" id="fineReason" value="লাইব্রেরির বই দেরিতে জমা দেওয়া" class="w-full p-2 border rounded">
                 </div>
-                <button type="submit" class="w-full bg-rose-700 text-white py-2 rounded font-bold hover:bg-rose-800">জরিমানা আদায় করুন</button>
+                <button type="submit" class="w-full bg-rose-700 text-white py-2 rounded font-bold hover:bg-rose-800">
+                    💰 জরিমানা ফান্ডে জমা দিন (Deposit Money)
+                </button>
             </form>
         </div>
     </div>
@@ -397,8 +402,8 @@
                     <h4 class="text-lg font-bold text-blue-800">৩২০ জন</h4>
                 </div>
                 <div class="bg-rose-50 p-3 rounded-lg border border-rose-200">
-                    <p class="text-gray-600">আদায়কৃত মোট জরিমানা</p>
-                    <h4 class="text-lg font-bold text-rose-800">৳ ১,৪৫০</h4>
+                    <p class="text-gray-600">আদায়কৃত মোট জরিমানা (Accounts)</p>
+                    <h4 id="totalFineReport" class="text-lg font-bold text-rose-800">৳ 0</h4>
                 </div>
             </div>
             <div class="text-right">
@@ -407,10 +412,13 @@
         </div>
     </div>
 
-    <!-- JavaScript Functions for Modals and Student Profile Connection -->
+    <!-- JavaScript Functions for Modals, Accounts Fine Collection and Student Profile Connection -->
     <script>
         function openModal(modalId) {
             document.getElementById(modalId).classList.remove('hidden');
+            if (modalId === 'modalReport') {
+                updateFineReportDisplay();
+            }
         }
 
         function closeModal(modalId) {
@@ -426,11 +434,46 @@
             }
 
             // Student Profile Module (students.html) Connect / Search Logic
-            // ডেমো ডাটা কানেকশন (Student Management থেকে লোড হচ্ছে)
             document.getElementById('studentNameField').value = "আব্দুল্লাহ আল-মামুন";
             document.getElementById('studentClassField').value = "দাখিল নবম শ্রেণি";
             document.getElementById('studentRollField').value = "০৫";
             alert('Student Management Module (Student Profile) থেকে আইডি: ' + studentId + ' -এর তথ্য সফলভাবে লোড হয়েছে!');
+        }
+
+        // Fine Collection to Accounts Management Function
+        function collectFineToAccounts(event) {
+            event.preventDefault();
+            const studentId = document.getElementById('fineStudentId').value;
+            const sector = document.getElementById('fineAccountSector').value;
+            const amount = parseFloat(document.getElementById('fineAmount').value) || 0;
+            const reason = document.getElementById('fineReason').value;
+
+            // 1. Save entry to Accounts module storage
+            let accountsLedger = JSON.parse(localStorage.getItem('accounts_transactions')) || [];
+            const newTransaction = {
+                id: 'FIN-' + Date.now(),
+                date: new Date().toISOString().split('T')[0],
+                studentId: studentId,
+                type: 'Income (আয়)',
+                sector: sector,
+                amount: amount,
+                description: reason
+            };
+            accountsLedger.push(newTransaction);
+            localStorage.setItem('accounts_transactions', JSON.stringify(accountsLedger));
+
+            // 2. Update total fine count in Library Module
+            let currentTotalFine = parseFloat(localStorage.getItem('total_library_fine_collected')) || 0;
+            currentTotalFine += amount;
+            localStorage.setItem('total_library_fine_collected', currentTotalFine);
+
+            alert(`✅ ৳${amount} টাকা সফলভাবে "${sector}" এ জমা করা হয়েছে! (Transaction ID: ${newTransaction.id})`);
+            closeModal('modalFine');
+        }
+
+        function updateFineReportDisplay() {
+            let totalCollected = parseFloat(localStorage.getItem('total_library_fine_collected')) || 0;
+            document.getElementById('totalFineReport').innerText = `৳ ${totalCollected}`;
         }
     </script>
 

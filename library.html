@@ -140,7 +140,7 @@
                             </h3>
                             <span class="text-xs bg-blue-50 text-blue-700 px-2 py-0.5 rounded font-semibold">সদস্য নিবন্ধন</span>
                         </div>
-                        <p class="text-xs text-gray-600 leading-relaxed">স্টুডেন্ট ম্যানেজমেন্ট মডিউল (Student Profile) থেকে ৯ ডিজিটের শিক্ষার্থী তথ্য ফিল্টার করে মেম্বারশিপ প্রদান।</p>
+                        <p class="text-xs text-gray-600 leading-relaxed">স্টুডেন্ট ম্যানেজমেন্ট মডিউল (Student Profile) থেকে শিক্ষার্থী তথ্য লোড করে মেম্বারশিপ কার্ড প্রদান।</p>
                         <button onclick="openModal('modalMembership')" class="w-full bg-blue-50 text-blue-700 py-1.5 rounded text-xs font-bold hover:bg-blue-100 transition">সদস্য রেজিস্টার করুন</button>
                     </div>
 
@@ -243,7 +243,7 @@
         </div>
     </div>
 
-    <!-- 2. Dynamic Student Membership Modal (Strict ID Matcher) -->
+    <!-- 2. Direct Student Profile Fetch Modal -->
     <div id="modalMembership" class="fixed inset-0 bg-black/50 hidden flex justify-center items-center z-50 p-4">
         <div class="bg-white w-full max-w-lg rounded-2xl p-6 space-y-4 shadow-xl">
             <div class="flex justify-between items-center border-b pb-3">
@@ -252,7 +252,7 @@
             </div>
             <form onsubmit="saveStudentMembership(event)" class="space-y-3 text-xs">
                 <div>
-                    <label class="block font-medium mb-1">শিক্ষার্থীর আইডি (৯ ডিজিটের আইডি)</label>
+                    <label class="block font-medium mb-1">শিক্ষার্থীর আইডি (Student Profile ID)</label>
                     <div class="flex gap-2">
                         <input type="text" id="studentSearchId" placeholder="যেমন: 202615001" required class="flex-1 p-2 border rounded font-bold text-blue-900">
                         <button type="button" onclick="fetchStudentFromProfile()" class="bg-blue-600 text-white px-3 py-1.5 rounded font-bold hover:bg-blue-700">
@@ -416,7 +416,7 @@
         </div>
     </div>
 
-    <!-- Smart Exact-ID Match Engine -->
+    <!-- Script to Fetch Real Data directly from Student Management Profile -->
     <script>
         function openModal(modalId) {
             document.getElementById(modalId).classList.remove('hidden');
@@ -429,19 +429,19 @@
             document.getElementById(modalId).classList.add('hidden');
         }
 
-        // Exact ID Search Engine based on Student Profile List
+        // Fetch Directly from Student Management (students.html / Student Profile Data)
         function fetchStudentFromProfile() {
             const searchId = document.getElementById('studentSearchId').value.trim();
             const msg = document.getElementById('searchMessage');
 
             if (!searchId) {
-                alert('অনুগ্রহ করে শিক্ষার্থীর ৯ ডিজিটের আইডি লিখুন!');
+                alert('অনুগ্রহ করে স্টুডেন্ট প্রোফাইলের আইডি লিখুন!');
                 return;
             }
 
             let foundStudent = null;
 
-            // 1. Scan LocalStorage dynamically for exact student ID
+            // 1. Scan LocalStorage for student profile data array
             for (let i = 0; i < localStorage.length; i++) {
                 let key = localStorage.key(i);
                 try {
@@ -449,7 +449,8 @@
                     if (Array.isArray(data)) {
                         let matched = data.find(st => {
                             if (!st) return false;
-                            let id = (st.id || st.studentId || st.student_id || st.code || '').toString().trim();
+                            // Search all possible ID and Roll field names
+                            let id = (st.id || st.studentId || st.student_id || st.code || st.roll || st.rollNo || '').toString().trim();
                             return id === searchId;
                         });
                         if (matched) {
@@ -460,45 +461,26 @@
                 } catch (e) {}
             }
 
-            // 2. Exact Match Handler with your exact screenshot database mapping
+            // 2. Set fetched student details to form fields
             if (foundStudent) {
-                let name = foundStudent.name || foundStudent.studentName || foundStudent.name_bn || "অজ্ঞাত নাম";
-                let className = foundStudent.className || foundStudent.class || "শ্রেণি উল্লেখ নেই";
-                let roll = foundStudent.roll || foundStudent.rollNo || "001";
+                let name = foundStudent.name || foundStudent.studentName || foundStudent.name_bn || "নাম পাওয়া যায়নি";
+                let className = foundStudent.className || foundStudent.class || foundStudent.class_name || "শ্রেণি উল্লেখ নেই";
+                let roll = foundStudent.roll || foundStudent.rollNo || foundStudent.roll_no || "001";
 
                 document.getElementById('studentNameField').value = name;
                 document.getElementById('studentClassField').value = className;
                 document.getElementById('studentRollField').value = roll;
 
-                msg.innerText = "✅ Student Management থেকে তথ্য সঠিকভাবে ফেচ হয়েছে!";
+                msg.innerText = "✅ Student Management (স্টুডেন্ট প্রোফাইল) থেকে তথ্য লোড হয়েছে!";
                 msg.className = "text-[11px] font-semibold mt-1 text-emerald-600";
             } else {
-                // Precise mapping directly from your Student Profile Screenshot Database
-                const demoDatabase = {
-                    "202606001": { name: "মাহবুবা (Mahbuba)", class: "দাখিল ষষ্ঠ শ্রেণি", roll: "001" },
-                    "202610001": { name: "সুস্মিতা (Susmita)", class: "দাখিল অষ্টম শ্রেণি", roll: "001" },
-                    "202615001": { name: "সুস্মিতা (Susmita)", class: "নুরানী প্রথম শ্রেণি", roll: "001" },
-                    "202613001": { name: "পূর্ণতা (Purnota)", class: "ফাজিল প্রথম বর্ষ", roll: "001" },
-                    "202611001": { name: "মাজেদ (MAzad)", class: "আলিম প্রথম বর্ষ", roll: "001" },
-                    "202609001": { name: "মোত্তাকী (Mottaki)", class: "দাখিল নবম শ্রেণি", roll: "001" }
-                };
+                // If ID does not exist in Student Profile
+                document.getElementById('studentNameField').value = "";
+                document.getElementById('studentClassField').value = "";
+                document.getElementById('studentRollField').value = "";
 
-                if (demoDatabase[searchId]) {
-                    const student = demoDatabase[searchId];
-                    document.getElementById('studentNameField').value = student.name;
-                    document.getElementById('studentClassField').value = student.class;
-                    document.getElementById('studentRollField').value = student.roll;
-
-                    msg.innerText = "✅ Student Profile থেকে তথ্য লোড হয়েছে!";
-                    msg.className = "text-[11px] font-semibold mt-1 text-emerald-600";
-                } else {
-                    document.getElementById('studentNameField').value = "";
-                    document.getElementById('studentClassField').value = "";
-                    document.getElementById('studentRollField').value = "";
-
-                    msg.innerText = "⚠️ এই আইডিটি সিস্টেমে পাওয়া যায়নি! সঠিক আইডি প্রদান করুন।";
-                    msg.className = "text-[11px] font-semibold mt-1 text-rose-600";
-                }
+                msg.innerText = "⚠️ আইডি: '" + searchId + "' দিয়ে স্টুডেন্ট প্রোফাইলে কোনো তথ্য পাওয়া যায়নি! সঠিক আইডি দিন।";
+                msg.className = "text-[11px] font-semibold mt-1 text-rose-600";
             }
         }
 

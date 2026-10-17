@@ -113,7 +113,7 @@
                         <p class="text-emerald-200 text-xs mt-1">বই ও কিতাব ব্যবস্থাপনা, সদস্য অন্তর্ভুক্তি, বই ইস্যু ও রিটার্ন ট্র্যাকিং, জরিমানা আদায় এবং লাইব্রেরি রিপোর্ট।</p>
                     </div>
                     <div class="flex gap-2">
-                        <button class="bg-white text-emerald-900 px-4 py-2 rounded-xl font-bold text-xs hover:bg-emerald-50 transition shadow-sm">নতুন বই বা কিতাব যোগ করুন</button>
+                        <button onclick="openModal('modalBookAdd')" class="bg-white text-emerald-900 px-4 py-2 rounded-xl font-bold text-xs hover:bg-emerald-50 transition shadow-sm">+ নতুন বই বা কিতাব যোগ করুন</button>
                     </div>
                 </div>
 
@@ -129,10 +129,10 @@
                             <span class="text-xs bg-emerald-50 text-emerald-700 px-2 py-0.5 rounded font-semibold">বই ম্যানেজমেন্ট</span>
                         </div>
                         <p class="text-xs text-gray-600 leading-relaxed">আরবি, ইংরেজি, বাংলা সহ বিভিন্ন বিষয়ের পাঠ্যবই, হাদিস ও তাফসীরের কিতাব তালিকাভুক্তকরণ।</p>
-                        <button class="w-full bg-emerald-50 text-emerald-700 py-1.5 rounded text-xs font-bold hover:bg-emerald-100 transition">বইয়ের তালিকা</button>
+                        <button onclick="openModal('modalBookAdd')" class="w-full bg-emerald-50 text-emerald-700 py-1.5 rounded text-xs font-bold hover:bg-emerald-100 transition">বই এন্ট্রি ও তালিকা</button>
                     </div>
 
-                    <!-- 2. Student Membership (Connected with Student Profile - students.html) -->
+                    <!-- 2. Student Membership (Student Profile Connected) -->
                     <div class="bg-white p-5 rounded-xl shadow-sm border-t-4 border-blue-600 space-y-3">
                         <div class="flex items-center justify-between border-b pb-2">
                             <h3 class="font-bold text-gray-800 text-sm flex items-center gap-2">
@@ -140,10 +140,8 @@
                             </h3>
                             <span class="text-xs bg-blue-50 text-blue-700 px-2 py-0.5 rounded font-semibold">সদস্য নিবন্ধন</span>
                         </div>
-                        <p class="text-xs text-gray-600 leading-relaxed">শিক্ষার্থী ও শিক্ষকদের লাইব্রেরি কার্ড প্রদান এবং লাইব্রেরি সদস্য অ্যাকাউন্ট বা আইডি তৈরি।</p>
-                        <a href="students.html" class="block text-center w-full bg-blue-50 text-blue-700 py-1.5 rounded text-xs font-bold hover:bg-blue-100 transition">
-                            সদস্য প্যানেল (স্টুডেন্ট প্রোফাইল)
-                        </a>
+                        <p class="text-xs text-gray-600 leading-relaxed">স্টুডেন্ট ম্যানেজমেন্ট মডিউল (Student Profile) থেকে শিক্ষার্থী তথ্য লোড করে মেম্বারশিপ কার্ড প্রদান।</p>
+                        <button onclick="openModal('modalMembership')" class="w-full bg-blue-50 text-blue-700 py-1.5 rounded text-xs font-bold hover:bg-blue-100 transition">সদস্য রেজিস্টার করুন</button>
                     </div>
 
                     <!-- 3. Book Issue -->
@@ -155,7 +153,7 @@
                             <span class="text-xs bg-purple-50 text-purple-700 px-2 py-0.5 rounded font-semibold">বই ইস্যু</span>
                         </div>
                         <p class="text-xs text-gray-600 leading-relaxed">নির্দিষ্ট সময়ের জন্য শিক্ষার্থী বা শিক্ষকদের মাঝে লাইব্রেরির বই বা কিতাব ইস্যু করার প্রক্রিয়া।</p>
-                        <button class="w-full bg-purple-50 text-purple-700 py-1.5 rounded text-xs font-bold hover:bg-purple-100 transition">বই ইস্যু করুন</button>
+                        <button onclick="openModal('modalBookIssue')" class="w-full bg-purple-50 text-purple-700 py-1.5 rounded text-xs font-bold hover:bg-purple-100 transition">বই ইস্যু করুন</button>
                     </div>
 
                     <!-- 4. Book Return -->
@@ -167,10 +165,10 @@
                             <span class="text-xs bg-amber-50 text-amber-700 px-2 py-0.5 rounded font-semibold">বই ফেরত</span>
                         </div>
                         <p class="text-xs text-gray-600 leading-relaxed">ইস্যুকৃত বই বা কিতাব নির্দিষ্ট সময়ে বা পরবর্তীতে লাইব্রেরিতে ফেরত নেওয়া এবং স্টক আপডেট।</p>
-                        <button class="w-full bg-amber-50 text-amber-700 py-1.5 rounded text-xs font-bold hover:bg-amber-100 transition">বই রিটার্ন প্যানেল</button>
+                        <button onclick="openModal('modalBookReturn')" class="w-full bg-amber-50 text-amber-700 py-1.5 rounded text-xs font-bold hover:bg-amber-100 transition">বই রিটার্ন প্যানেল</button>
                     </div>
 
-                    <!-- 5. Fine -->
+                    <!-- 5. Fine Management -->
                     <div class="bg-white p-5 rounded-xl shadow-sm border-t-4 border-rose-600 space-y-3">
                         <div class="flex items-center justify-between border-b pb-2">
                             <h3 class="font-bold text-gray-800 text-sm flex items-center gap-2">
@@ -179,7 +177,7 @@
                             <span class="text-xs bg-rose-50 text-rose-700 px-2 py-0.5 rounded font-semibold">জরিমানা</span>
                         </div>
                         <p class="text-xs text-gray-600 leading-relaxed">নির্ধারিত সময়ের পরে বই ফেরত দিলে বা বই নষ্ট/হারিয়ে ফেললে জরিমানা গণনা ও আদায়করণ।</p>
-                        <button class="w-full bg-rose-50 text-rose-700 py-1.5 rounded text-xs font-bold hover:bg-rose-100 transition">জরিমানা ম্যানেজমেন্ট</button>
+                        <button onclick="openModal('modalFine')" class="w-full bg-rose-50 text-rose-700 py-1.5 rounded text-xs font-bold hover:bg-rose-100 transition">জরিমানা এন্ট্রি ও আদায়</button>
                     </div>
 
                     <!-- 6. Library Report -->
@@ -191,7 +189,7 @@
                             <span class="text-xs bg-indigo-50 text-indigo-700 px-2 py-0.5 rounded font-semibold">লাইব্রেরি রিপোর্ট</span>
                         </div>
                         <p class="text-xs text-gray-600 leading-relaxed">মোট বইয়ের হিসাব, ইস্যুকৃত বইয়ের পরিসংখ্যান, জরিমানা আদায় এবং লাইব্রেরি ব্যবহারের সামারি রিপোর্ট।</p>
-                        <button class="w-full bg-indigo-50 text-indigo-700 py-1.5 rounded text-xs font-bold hover:bg-indigo-100 transition">রিপোর্ট দেখুন</button>
+                        <button onclick="openModal('modalReport')" class="w-full bg-indigo-50 text-indigo-700 py-1.5 rounded text-xs font-bold hover:bg-indigo-100 transition">রিপোর্ট দেখুন</button>
                     </div>
 
                 </div>
@@ -200,6 +198,241 @@
 
         </div>
     </div>
+
+    <!-- ==================== MODALS / FORMS ==================== -->
+
+    <!-- 1. Book Management Form Modal -->
+    <div id="modalBookAdd" class="fixed inset-0 bg-black/50 hidden flex justify-center items-center z-50 p-4">
+        <div class="bg-white w-full max-w-lg rounded-2xl p-6 space-y-4 shadow-xl">
+            <div class="flex justify-between items-center border-b pb-3">
+                <h3 class="font-bold text-emerald-800 text-base">📚 নতুন বই/কিতাব যোগ করুন</h3>
+                <button onclick="closeModal('modalBookAdd')" class="text-gray-500 text-lg">&times;</button>
+            </div>
+            <form onsubmit="alert('বই সফলভাবে যোগ করা হয়েছে!'); closeModal('modalBookAdd'); return false;" class="space-y-3 text-xs">
+                <div>
+                    <label class="block font-medium mb-1">বই/কিতাবের নাম</label>
+                    <input type="text" placeholder="যেমন: সহীহ আল-বুখারী" required class="w-full p-2 border rounded">
+                </div>
+                <div class="grid grid-cols-2 gap-3">
+                    <div>
+                        <label class="block font-medium mb-1">লেখক/মুসান্নিফ</label>
+                        <input type="text" placeholder="ইমাম বুখারী (র.)" class="w-full p-2 border rounded">
+                    </div>
+                    <div>
+                        <label class="block font-medium mb-1">ক্যাটাগরি</label>
+                        <select class="w-full p-2 border rounded">
+                            <option>হাদিস শরীফ</option>
+                            <option>তাফসীর</option>
+                            <option>ফিকহ</option>
+                            <option>পাঠ্যবই</option>
+                        </select>
+                    </div>
+                </div>
+                <div class="grid grid-cols-2 gap-3">
+                    <div>
+                        <label class="block font-medium mb-1">বই আইডি/আইএসবিএন (ISBN)</label>
+                        <input type="text" placeholder="BK-1020" required class="w-full p-2 border rounded">
+                    </div>
+                    <div>
+                        <label class="block font-medium mb-1">মোট সংখ্যা (Quantity)</label>
+                        <input type="number" value="5" min="1" class="w-full p-2 border rounded">
+                    </div>
+                </div>
+                <button type="submit" class="w-full bg-emerald-700 text-white py-2 rounded font-bold hover:bg-emerald-800">বই সেভ করুন</button>
+            </form>
+        </div>
+    </div>
+
+    <!-- 2. Student Membership Form Modal (Student Profile Connected) -->
+    <div id="modalMembership" class="fixed inset-0 bg-black/50 hidden flex justify-center items-center z-50 p-4">
+        <div class="bg-white w-full max-w-lg rounded-2xl p-6 space-y-4 shadow-xl">
+            <div class="flex justify-between items-center border-b pb-3">
+                <h3 class="font-bold text-blue-800 text-base">👨‍🎓 স্টুডেন্ট লাইব্রেরি মেম্বারশিপ (Student Profile Linked)</h3>
+                <button onclick="closeModal('modalMembership')" class="text-gray-500 text-lg">&times;</button>
+            </div>
+            <form onsubmit="alert('শিক্ষার্থীর লাইব্রেরি মেম্বারশিপ কার্ড সফলভাবে জেনারেট হয়েছে!'); closeModal('modalMembership'); return false;" class="space-y-3 text-xs">
+                <div>
+                    <label class="block font-medium mb-1">শিক্ষার্থীর আইডি (Student Profile ID)</label>
+                    <div class="flex gap-2">
+                        <input type="text" id="studentSearchId" placeholder="যেমন: ST-2026-001" required class="flex-1 p-2 border rounded">
+                        <button type="button" onclick="fetchStudentFromProfile()" class="bg-blue-600 text-white px-3 py-1.5 rounded font-bold">ডাটা ফেচ করুন</button>
+                    </div>
+                    <p class="text-[10px] text-gray-500 mt-1">* তথ্য সরাসরি Student Management মডিউল (Student Profile) থেকে সংগৃহীত হবে।</p>
+                </div>
+                <div>
+                    <label class="block font-medium mb-1">শিক্ষার্থীর নাম</label>
+                    <input type="text" id="studentNameField" placeholder="আইডি প্রদান করে তথ্য ফিল্টার করুন" readonly class="w-full p-2 border rounded bg-gray-50">
+                </div>
+                <div class="grid grid-cols-2 gap-3">
+                    <div>
+                        <label class="block font-medium mb-1">শ্রেণি (Class)</label>
+                        <input type="text" id="studentClassField" readonly class="w-full p-2 border rounded bg-gray-50">
+                    </div>
+                    <div>
+                        <label class="block font-medium mb-1">রোল নম্বর</label>
+                        <input type="text" id="studentRollField" readonly class="w-full p-2 border rounded bg-gray-50">
+                    </div>
+                </div>
+                <div>
+                    <label class="block font-medium mb-1">মেম্বারশিপ টাইপ</label>
+                    <select class="w-full p-2 border rounded">
+                        <option>নিয়মিত শিক্ষার্থী মেম্বার (Regular Student)</option>
+                        <option>বিশেষ আবাসিক শিক্ষার্থী (Residential Student)</option>
+                    </select>
+                </div>
+                <button type="submit" class="w-full bg-blue-700 text-white py-2 rounded font-bold hover:bg-blue-800">মেম্বারশিপ কার্ড প্রদান করুন</button>
+            </form>
+        </div>
+    </div>
+
+    <!-- 3. Book Issue Modal -->
+    <div id="modalBookIssue" class="fixed inset-0 bg-black/50 hidden flex justify-center items-center z-50 p-4">
+        <div class="bg-white w-full max-w-lg rounded-2xl p-6 space-y-4 shadow-xl">
+            <div class="flex justify-between items-center border-b pb-3">
+                <h3 class="font-bold text-purple-800 text-base">📤 বই বা কিতাব ইস্যু ফরম</h3>
+                <button onclick="closeModal('modalBookIssue')" class="text-gray-500 text-lg">&times;</button>
+            </div>
+            <form onsubmit="alert('বই ইস্যু সম্পন্ন হয়েছে!'); closeModal('modalBookIssue'); return false;" class="space-y-3 text-xs">
+                <div>
+                    <label class="block font-medium mb-1">মেম্বার আইডি/শিক্ষার্থী আইডি</label>
+                    <input type="text" placeholder="ST-2026-001" required class="w-full p-2 border rounded">
+                </div>
+                <div>
+                    <label class="block font-medium mb-1">বইয়ের আইডি/কোড</label>
+                    <input type="text" placeholder="BK-1020" required class="w-full p-2 border rounded">
+                </div>
+                <div class="grid grid-cols-2 gap-3">
+                    <div>
+                        <label class="block font-medium mb-1">ইস্যুর তারিখ</label>
+                        <input type="date" value="2026-10-17" required class="w-full p-2 border rounded">
+                    </div>
+                    <div>
+                        <label class="block font-medium mb-1">ফেরতের শেষ তারিখ</label>
+                        <input type="date" value="2026-10-24" required class="w-full p-2 border rounded">
+                    </div>
+                </div>
+                <button type="submit" class="w-full bg-purple-700 text-white py-2 rounded font-bold hover:bg-purple-800">ইস্যু নিশ্চিত করুন</button>
+            </form>
+        </div>
+    </div>
+
+    <!-- 4. Book Return Modal -->
+    <div id="modalBookReturn" class="fixed inset-0 bg-black/50 hidden flex justify-center items-center z-50 p-4">
+        <div class="bg-white w-full max-w-lg rounded-2xl p-6 space-y-4 shadow-xl">
+            <div class="flex justify-between items-center border-b pb-3">
+                <h3 class="font-bold text-amber-800 text-base">📥 বই ফেরত (Return) প্যানেল</h3>
+                <button onclick="closeModal('modalBookReturn')" class="text-gray-500 text-lg">&times;</button>
+            </div>
+            <form onsubmit="alert('বই ফেরত নেওয়া হয়েছে এবং স্টক আপডেট করা হয়েছে!'); closeModal('modalBookReturn'); return false;" class="space-y-3 text-xs">
+                <div>
+                    <label class="block font-medium mb-1">ইস্যু আইডি বা বইয়ের কোড</label>
+                    <input type="text" placeholder="BK-1020" required class="w-full p-2 border rounded">
+                </div>
+                <div>
+                    <label class="block font-medium mb-1">ফেরতের তারিখ</label>
+                    <input type="date" value="2026-10-17" required class="w-full p-2 border rounded">
+                </div>
+                <div>
+                    <label class="block font-medium mb-1">বইয়ের অবস্থা</label>
+                    <select class="w-full p-2 border rounded">
+                        <option>ভালো/অক্ষত</option>
+                        <option>আংশিক ক্ষতিগ্রস্ত (জরিমানা প্রযোজ্য)</option>
+                        <option>হারিয়ে গেছে (সম্পূর্ণ জরিমানা প্রযোজ্য)</option>
+                    </select>
+                </div>
+                <button type="submit" class="w-full bg-amber-700 text-white py-2 rounded font-bold hover:bg-amber-800">রিটার্ন এন্ট্রি করুন</button>
+            </form>
+        </div>
+    </div>
+
+    <!-- 5. Fine Management Modal -->
+    <div id="modalFine" class="fixed inset-0 bg-black/50 hidden flex justify-center items-center z-50 p-4">
+        <div class="bg-white w-full max-w-lg rounded-2xl p-6 space-y-4 shadow-xl">
+            <div class="flex justify-between items-center border-b pb-3">
+                <h3 class="font-bold text-rose-800 text-base">⚠️ জরিমানা গণনা ও আদায়</h3>
+                <button onclick="closeModal('modalFine')" class="text-gray-500 text-lg">&times;</button>
+            </div>
+            <form onsubmit="alert('জরিমানা ফি সফলভাবে আদায় করা হয়েছে!'); closeModal('modalFine'); return false;" class="space-y-3 text-xs">
+                <div>
+                    <label class="block font-medium mb-1">শিক্ষার্থী আইডি</label>
+                    <input type="text" placeholder="ST-2026-001" required class="w-full p-2 border rounded">
+                </div>
+                <div class="grid grid-cols-2 gap-3">
+                    <div>
+                        <label class="block font-medium mb-1">বিলম্ব দিন</label>
+                        <input type="number" value="3" class="w-full p-2 border rounded">
+                    </div>
+                    <div>
+                        <label class="block font-medium mb-1">মোট জরিমানা (টাকা)</label>
+                        <input type="number" value="30" class="w-full p-2 border rounded font-bold text-rose-600">
+                    </div>
+                </div>
+                <div>
+                    <label class="block font-medium mb-1">জরিমানার কারণ</label>
+                    <input type="text" value="নির্ধারিত সময়ের পর বই ফেরত প্রদান" class="w-full p-2 border rounded">
+                </div>
+                <button type="submit" class="w-full bg-rose-700 text-white py-2 rounded font-bold hover:bg-rose-800">জরিমানা আদায় করুন</button>
+            </form>
+        </div>
+    </div>
+
+    <!-- 6. Library Report Modal -->
+    <div id="modalReport" class="fixed inset-0 bg-black/50 hidden flex justify-center items-center z-50 p-4">
+        <div class="bg-white w-full max-w-xl rounded-2xl p-6 space-y-4 shadow-xl">
+            <div class="flex justify-between items-center border-b pb-3">
+                <h3 class="font-bold text-indigo-800 text-base">📊 লাইব্রেরি ও কিতাবখানা রিপোর্ট সামারি</h3>
+                <button onclick="closeModal('modalReport')" class="text-gray-500 text-lg">&times;</button>
+            </div>
+            <div class="grid grid-cols-2 gap-4 text-xs">
+                <div class="bg-emerald-50 p-3 rounded-lg border border-emerald-200">
+                    <p class="text-gray-600">মোট কিতাব/বই সংখ্যা</p>
+                    <h4 class="text-lg font-bold text-emerald-800">১,২৫০ টি</h4>
+                </div>
+                <div class="bg-purple-50 p-3 rounded-lg border border-purple-200">
+                    <p class="text-gray-600">বর্তমানে ইস্যুকৃত বই</p>
+                    <h4 class="text-lg font-bold text-purple-800">৮৫ টি</h4>
+                </div>
+                <div class="bg-blue-50 p-3 rounded-lg border border-blue-200">
+                    <p class="text-gray-600">মোট রেজিস্ট্রার্ড শিক্ষার্থী মেম্বার</p>
+                    <h4 class="text-lg font-bold text-blue-800">৩২০ জন</h4>
+                </div>
+                <div class="bg-rose-50 p-3 rounded-lg border border-rose-200">
+                    <p class="text-gray-600">আদায়কৃত মোট জরিমানা</p>
+                    <h4 class="text-lg font-bold text-rose-800">৳ ১,৪৫০</h4>
+                </div>
+            </div>
+            <div class="text-right">
+                <button onclick="window.print()" class="bg-indigo-700 text-white px-4 py-2 rounded text-xs font-bold hover:bg-indigo-800">🖨️ রিপোর্ট প্রিন্ট করুন</button>
+            </div>
+        </div>
+    </div>
+
+    <!-- JavaScript Functions for Modals and Student Profile Connection -->
+    <script>
+        function openModal(modalId) {
+            document.getElementById(modalId).classList.remove('hidden');
+        }
+
+        function closeModal(modalId) {
+            document.getElementById(modalId).classList.add('hidden');
+        }
+
+        // Student Profile Data Collection Logic
+        function fetchStudentFromProfile() {
+            const studentId = document.getElementById('studentSearchId').value.trim();
+            if (!studentId) {
+                alert('অনুগ্রহ করে শিক্ষার্থীর আইডি প্রদান করুন!');
+                return;
+            }
+
+            // Student Profile Module (students.html) Connect / Search Logic
+            // ডেমো ডাটা কানেকশন (Student Management থেকে লোড হচ্ছে)
+            document.getElementById('studentNameField').value = "আব্দুল্লাহ আল-মামুন";
+            document.getElementById('studentClassField').value = "দাখিল নবম শ্রেণি";
+            document.getElementById('studentRollField').value = "০৫";
+            alert('Student Management Module (Student Profile) থেকে আইডি: ' + studentId + ' -এর তথ্য সফলভাবে লোড হয়েছে!');
+        }
+    </script>
 
     <script src="script.js"></script>
 </body>

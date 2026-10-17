@@ -140,11 +140,23 @@
                             </h3>
                             <span class="text-xs bg-blue-50 text-blue-700 px-2 py-0.5 rounded font-semibold">সদস্য নিবন্ধন</span>
                         </div>
-                        <p class="text-xs text-gray-600 leading-relaxed">স্টুডেন্ট ম্যানেজমেন্ট মডিউল (Student Profile) থেকে শিক্ষার্থী তথ্য লোড করে মেম্বারশিপ কার্ড প্রদান।</p>
+                        <p class="text-xs text-gray-600 leading-relaxed">স্টুডেন্ট ম্যানেজমেন্ট মডিউল (Student Profile) থেকে শিক্ষার্থী নির্বাচন করে সরাসরি সদস্য নিবন্ধন।</p>
                         <button onclick="openModal('modalMembership')" class="w-full bg-blue-50 text-blue-700 py-1.5 rounded text-xs font-bold hover:bg-blue-100 transition">সদস্য রেজিস্টার করুন</button>
                     </div>
 
-                    <!-- 3. Book Issue -->
+                    <!-- 3. Members List Panel Button -->
+                    <div class="bg-white p-5 rounded-xl shadow-sm border-t-4 border-teal-600 space-y-3">
+                        <div class="flex items-center justify-between border-b pb-2">
+                            <h3 class="font-bold text-gray-800 text-sm flex items-center gap-2">
+                                <i class="fa-solid fa-users text-teal-600"></i> Library Members List
+                            </h3>
+                            <span class="text-xs bg-teal-50 text-teal-700 px-2 py-0.5 rounded font-semibold">সদস্য তালিকা</span>
+                        </div>
+                        <p class="text-xs text-gray-600 leading-relaxed">লাইব্রেরির সকল নিবন্ধিত সদস্য তালিকা দেখুন এবং শ্রেণি, নাম, রোল ও আইডি দিয়ে ফিল্টার করুন।</p>
+                        <button onclick="openModal('modalMemberList')" class="w-full bg-teal-50 text-teal-700 py-1.5 rounded text-xs font-bold hover:bg-teal-100 transition">সদস্য তালিকা ও ফিল্টারিং</button>
+                    </div>
+
+                    <!-- 4. Book Issue -->
                     <div class="bg-white p-5 rounded-xl shadow-sm border-t-4 border-purple-600 space-y-3">
                         <div class="flex items-center justify-between border-b pb-2">
                             <h3 class="font-bold text-gray-800 text-sm flex items-center gap-2">
@@ -156,7 +168,7 @@
                         <button onclick="openModal('modalBookIssue')" class="w-full bg-purple-50 text-purple-700 py-1.5 rounded text-xs font-bold hover:bg-purple-100 transition">বই ইস্যু করুন</button>
                     </div>
 
-                    <!-- 4. Book Return -->
+                    <!-- 5. Book Return -->
                     <div class="bg-white p-5 rounded-xl shadow-sm border-t-4 border-amber-600 space-y-3">
                         <div class="flex items-center justify-between border-b pb-2">
                             <h3 class="font-bold text-gray-800 text-sm flex items-center gap-2">
@@ -168,7 +180,7 @@
                         <button onclick="openModal('modalBookReturn')" class="w-full bg-amber-50 text-amber-700 py-1.5 rounded text-xs font-bold hover:bg-amber-100 transition">বই রিটার্ন প্যানেল</button>
                     </div>
 
-                    <!-- 5. Fine Management -->
+                    <!-- 6. Fine Management -->
                     <div class="bg-white p-5 rounded-xl shadow-sm border-t-4 border-rose-600 space-y-3">
                         <div class="flex items-center justify-between border-b pb-2">
                             <h3 class="font-bold text-gray-800 text-sm flex items-center gap-2">
@@ -178,18 +190,6 @@
                         </div>
                         <p class="text-xs text-gray-600 leading-relaxed">নির্ধারিত সময়ের পরে বই ফেরত দিলে বা বই নষ্ট/হারিয়ে ফেললে জরিমানা গণনা ও আদায়করণ।</p>
                         <button onclick="openModal('modalFine')" class="w-full bg-rose-50 text-rose-700 py-1.5 rounded text-xs font-bold hover:bg-rose-100 transition">জরিমানা এন্ট্রি ও আদায়</button>
-                    </div>
-
-                    <!-- 6. Library Report -->
-                    <div class="bg-white p-5 rounded-xl shadow-sm border-t-4 border-indigo-600 space-y-3">
-                        <div class="flex items-center justify-between border-b pb-2">
-                            <h3 class="font-bold text-gray-800 text-sm flex items-center gap-2">
-                                <i class="fa-solid fa-chart-line text-indigo-600"></i> Library Report
-                            </h3>
-                            <span class="text-xs bg-indigo-50 text-indigo-700 px-2 py-0.5 rounded font-semibold">লাইব্রেরি রিপোর্ট</span>
-                        </div>
-                        <p class="text-xs text-gray-600 leading-relaxed">মোট বইয়ের হিসাব, ইস্যুকৃত বইয়ের পরিসংখ্যান, জরিমানা আদায় এবং লাইব্রেরি ব্যবহারের সামারি রিপোর্ট।</p>
-                        <button onclick="openModal('modalReport')" class="w-full bg-indigo-50 text-indigo-700 py-1.5 rounded text-xs font-bold hover:bg-indigo-100 transition">রিপোর্ট দেখুন</button>
                     </div>
 
                 </div>
@@ -243,7 +243,7 @@
         </div>
     </div>
 
-    <!-- 2. Direct Student Profile Fetch Modal -->
+    <!-- 2. Student Membership Registration Modal -->
     <div id="modalMembership" class="fixed inset-0 bg-black/50 hidden flex justify-center items-center z-50 p-4">
         <div class="bg-white w-full max-w-lg rounded-2xl p-6 space-y-4 shadow-xl">
             <div class="flex justify-between items-center border-b pb-3">
@@ -252,18 +252,21 @@
             </div>
             <form onsubmit="saveStudentMembership(event)" class="space-y-3 text-xs">
                 <div>
-                    <label class="block font-medium mb-1">শিক্ষার্থীর আইডি (Student Profile ID)</label>
-                    <div class="flex gap-2">
-                        <input type="text" id="studentSearchId" placeholder="যেমন: 202615001" required class="flex-1 p-2 border rounded font-bold text-blue-900">
-                        <button type="button" onclick="fetchStudentFromProfile()" class="bg-blue-600 text-white px-3 py-1.5 rounded font-bold hover:bg-blue-700">
-                            🔍 তথ্য ফেচ করুন
-                        </button>
-                    </div>
-                    <p id="searchMessage" class="text-[11px] font-semibold mt-1 text-gray-500">* আইডি দিয়ে ফেচ বাটনে চাপ দিন।</p>
+                    <label class="block font-medium mb-1">শিক্ষার্থী নির্বাচন করুন (Student Profile)</label>
+                    <select id="studentSelectDropdown" onchange="onStudentSelectChange()" class="w-full p-2 border rounded font-bold text-blue-900 bg-blue-50">
+                        <option value="">-- স্টুডেন্ট প্রোফাইল থেকে নির্বাচন করুন --</option>
+                    </select>
                 </div>
+                <div class="flex gap-2">
+                    <input type="text" id="studentSearchId" placeholder="বা সরাসরি আইডি লিখুন" class="flex-1 p-2 border rounded font-bold text-blue-900">
+                    <button type="button" onclick="fetchStudentFromProfile()" class="bg-blue-600 text-white px-3 py-1.5 rounded font-bold hover:bg-blue-700">
+                        🔍 সার্চ
+                    </button>
+                </div>
+                <p id="searchMessage" class="text-[11px] font-semibold mt-1 text-gray-500">* ড্রপডাউন থেকে নির্বাচন করুন অথবা ম্যানুয়ালি আইডি দিয়ে সার্চ করুন।</p>
                 <div>
                     <label class="block font-medium mb-1">শিক্ষার্থীর নাম</label>
-                    <input type="text" id="studentNameField" placeholder="ফেচ করার পর নাম প্রদর্শিত হবে" readonly class="w-full p-2 border rounded bg-gray-50 font-bold text-gray-800">
+                    <input type="text" id="studentNameField" placeholder="শিক্ষার্থীর নাম" readonly class="w-full p-2 border rounded bg-gray-50 font-bold text-gray-800">
                 </div>
                 <div class="grid grid-cols-2 gap-3">
                     <div>
@@ -289,7 +292,60 @@
         </div>
     </div>
 
-    <!-- 3. Book Issue Modal -->
+    <!-- 3. NEW: Library Members List Modal with Smart Combined Filter -->
+    <div id="modalMemberList" class="fixed inset-0 bg-black/50 hidden flex justify-center items-center z-50 p-4">
+        <div class="bg-white w-full max-w-4xl rounded-2xl p-6 space-y-4 shadow-xl max-h-[90vh] flex flex-col">
+            <div class="flex justify-between items-center border-b pb-3">
+                <h3 class="font-bold text-teal-800 text-base">📋 লাইব্রেরি সদস্য তালিকা ও স্মার্ট ফিল্টারিং</h3>
+                <button onclick="closeModal('modalMemberList')" class="text-gray-500 text-lg">&times;</button>
+            </div>
+
+            <!-- Smart Combined Filter Controls -->
+            <div class="grid grid-cols-1 md:grid-cols-2 gap-3 bg-teal-50 p-3 rounded-xl border border-teal-200 text-xs">
+                <div>
+                    <label class="block font-bold text-gray-700 mb-1">১. শ্রেণি নির্বাচন করুন (Class Filter):</label>
+                    <select id="filterClass" onchange="filterMembersList()" class="w-full p-2 border rounded font-semibold text-gray-800 bg-white">
+                        <option value="all">সকল শ্রেণি (All Classes)</option>
+                        <option value="নুরানী প্রথম শ্রেণি">নুরানী প্রথম শ্রেণি</option>
+                        <option value="দাখিল ষষ্ঠ শ্রেণি">দাখিল ষষ্ঠ শ্রেণি</option>
+                        <option value="দাখিল অষ্টম শ্রেণি">দাখিল অষ্টম শ্রেণি</option>
+                        <option value="দাখিল নবম শ্রেণি">দাখিল নবম শ্রেণি</option>
+                        <option value="আলিম প্রথম বর্ষ">আলিম প্রথম বর্ষ</option>
+                        <option value="ফাজিল প্রথম বর্ষ">ফাজিল প্রথম বর্ষ</option>
+                    </select>
+                </div>
+                <div>
+                    <label class="block font-bold text-gray-700 mb-1">২. নাম / রোল / আইডি দিয়ে খুঁজুন (Keyword Search):</label>
+                    <input type="text" id="filterKeyword" onkeyup="filterMembersList()" placeholder="নাম, রোল অথবা আইডি লিখুন..." class="w-full p-2 border rounded font-semibold text-gray-800 bg-white">
+                </div>
+            </div>
+
+            <!-- Members Data Table -->
+            <div class="flex-1 overflow-y-auto border rounded-xl">
+                <table class="w-full text-left text-xs">
+                    <thead class="bg-teal-800 text-white sticky top-0">
+                        <tr>
+                            <th class="p-2.5">আইডি (ID)</th>
+                            <th class="p-2.5">নাম (Name)</th>
+                            <th class="p-2.5">শ্রেণি (Class)</th>
+                            <th class="p-2.5">রোল (Roll)</th>
+                            <th class="p-2.5">স্ট্যাটাস</th>
+                        </tr>
+                    </thead>
+                    <tbody id="membersTableBody" class="divide-y divide-gray-200 text-gray-700">
+                        <!-- Dynamic Filtered Content Loads Here -->
+                    </tbody>
+                </table>
+            </div>
+            
+            <div class="flex justify-between items-center pt-2 text-xs">
+                <span id="memberCountText" class="font-bold text-gray-600">মোট সদস্য: 0 জন</span>
+                <button onclick="closeModal('modalMemberList')" class="bg-gray-600 text-white px-4 py-1.5 rounded font-bold">বন্ধ করুন</button>
+            </div>
+        </div>
+    </div>
+
+    <!-- 4. Book Issue Modal -->
     <div id="modalBookIssue" class="fixed inset-0 bg-black/50 hidden flex justify-center items-center z-50 p-4">
         <div class="bg-white w-full max-w-lg rounded-2xl p-6 space-y-4 shadow-xl">
             <div class="flex justify-between items-center border-b pb-3">
@@ -299,7 +355,7 @@
             <form onsubmit="alert('বই ইস্যু সম্পন্ন হয়েছে!'); closeModal('modalBookIssue'); return false;" class="space-y-3 text-xs">
                 <div>
                     <label class="block font-medium mb-1">মেম্বার আইডি/শিক্ষার্থী আইডি</label>
-                    <input type="text" placeholder="202615001" required class="w-full p-2 border rounded">
+                    <input type="text" placeholder="202610001" required class="w-full p-2 border rounded">
                 </div>
                 <div>
                     <label class="block font-medium mb-1">বইয়ের আইডি/কোড</label>
@@ -320,7 +376,7 @@
         </div>
     </div>
 
-    <!-- 4. Book Return Modal -->
+    <!-- 5. Book Return Modal -->
     <div id="modalBookReturn" class="fixed inset-0 bg-black/50 hidden flex justify-center items-center z-50 p-4">
         <div class="bg-white w-full max-w-lg rounded-2xl p-6 space-y-4 shadow-xl">
             <div class="flex justify-between items-center border-b pb-3">
@@ -349,7 +405,7 @@
         </div>
     </div>
 
-    <!-- 5. Fine Management Modal -->
+    <!-- 6. Fine Management Modal -->
     <div id="modalFine" class="fixed inset-0 bg-black/50 hidden flex justify-center items-center z-50 p-4">
         <div class="bg-white w-full max-w-lg rounded-2xl p-6 space-y-4 shadow-xl">
             <div class="flex justify-between items-center border-b pb-3">
@@ -359,7 +415,7 @@
             <form onsubmit="collectFineToAccounts(event)" class="space-y-3 text-xs">
                 <div>
                     <label class="block font-medium mb-1">শিক্ষার্থী আইডি</label>
-                    <input type="text" id="fineStudentId" placeholder="202615001" required class="w-full p-2 border rounded">
+                    <input type="text" id="fineStudentId" placeholder="202610001" required class="w-full p-2 border rounded">
                 </div>
                 <div class="grid grid-cols-2 gap-3">
                     <div>
@@ -385,43 +441,25 @@
         </div>
     </div>
 
-    <!-- 6. Library Report Modal -->
-    <div id="modalReport" class="fixed inset-0 bg-black/50 hidden flex justify-center items-center z-50 p-4">
-        <div class="bg-white w-full max-w-xl rounded-2xl p-6 space-y-4 shadow-xl">
-            <div class="flex justify-between items-center border-b pb-3">
-                <h3 class="font-bold text-indigo-800 text-base">📊 লাইব্রেরি ও কিতাবখানা রিপোর্ট সামারি</h3>
-                <button onclick="closeModal('modalReport')" class="text-gray-500 text-lg">&times;</button>
-            </div>
-            <div class="grid grid-cols-2 gap-4 text-xs">
-                <div class="bg-emerald-50 p-3 rounded-lg border border-emerald-200">
-                    <p class="text-gray-600">মোট কিতাব/বই সংখ্যা</p>
-                    <h4 class="text-lg font-bold text-emerald-800">১,২৫০ টি</h4>
-                </div>
-                <div class="bg-purple-50 p-3 rounded-lg border border-purple-200">
-                    <p class="text-gray-600">বর্তমানে ইস্যুকৃত বই</p>
-                    <h4 class="text-lg font-bold text-purple-800">৮৫ টি</h4>
-                </div>
-                <div class="bg-blue-50 p-3 rounded-lg border border-blue-200">
-                    <p class="text-gray-600">মোট রেজিস্ট্রার্ড শিক্ষার্থী মেম্বার</p>
-                    <h4 id="totalMembersReport" class="text-lg font-bold text-blue-800">০ জন</h4>
-                </div>
-                <div class="bg-rose-50 p-3 rounded-lg border border-rose-200">
-                    <p class="text-gray-600">আদায়কৃত মোট জরিমানা (Accounts)</p>
-                    <h4 id="totalFineReport" class="text-lg font-bold text-rose-800">৳ 0</h4>
-                </div>
-            </div>
-            <div class="text-right">
-                <button onclick="window.print()" class="bg-indigo-700 text-white px-4 py-2 rounded text-xs font-bold hover:bg-indigo-800">🖨️ রিপোর্ট প্রিন্ট করুন</button>
-            </div>
-        </div>
-    </div>
-
-    <!-- Script to Fetch Real Data directly from Student Management Profile -->
+    <!-- JavaScript for Filtering & Student Profiles -->
     <script>
+        // Exact Student Database from Student Profile
+        const studentProfileData = [
+            { id: "202606001", name: "মাহবুবা (Mahbuba)", class: "দাখিল ষষ্ঠ শ্রেণি", roll: "001" },
+            { id: "202610001", name: "সুস্মিতা (Susmita)", class: "দাখিল অষ্টম শ্রেণি", roll: "001" },
+            { id: "202615001", name: "সুস্মিতা (Susmita)", class: "নুরানী প্রথম শ্রেণি", roll: "001" },
+            { id: "202613001", name: "পূর্ণতা (Purnota)", class: "ফাজিল প্রথম বর্ষ", roll: "001" },
+            { id: "202611001", name: "মাজেদ (MAzad)", class: "আলিম প্রথম বর্ষ", roll: "001" },
+            { id: "202609001", name: "মোত্তাকী (Mottaki)", class: "দাখিল নবম শ্রেণি", roll: "001" }
+        ];
+
         function openModal(modalId) {
             document.getElementById(modalId).classList.remove('hidden');
-            if (modalId === 'modalReport') {
-                updateReportDisplay();
+            if (modalId === 'modalMembership') {
+                populateStudentDropdown();
+            }
+            if (modalId === 'modalMemberList') {
+                filterMembersList();
             }
         }
 
@@ -429,101 +467,116 @@
             document.getElementById(modalId).classList.add('hidden');
         }
 
-        // Fetch Directly from Student Management (students.html / Student Profile Data)
+        // Auto-Populate Dropdown
+        function populateStudentDropdown() {
+            const dropdown = document.getElementById('studentSelectDropdown');
+            dropdown.innerHTML = '<option value="">-- স্টুডেন্ট প্রোফাইল থেকে নির্বাচন করুন --</option>';
+
+            studentProfileData.forEach(st => {
+                let opt = document.createElement('option');
+                opt.value = st.id;
+                opt.textContent = `${st.name} | আইডি: ${st.id} (${st.class})`;
+                dropdown.appendChild(opt);
+            });
+        }
+
+        function onStudentSelectChange() {
+            const selectedId = document.getElementById('studentSelectDropdown').value;
+            if (selectedId) {
+                document.getElementById('studentSearchId').value = selectedId;
+                fetchStudentFromProfile();
+            }
+        }
+
         function fetchStudentFromProfile() {
             const searchId = document.getElementById('studentSearchId').value.trim();
             const msg = document.getElementById('searchMessage');
 
             if (!searchId) {
-                alert('অনুগ্রহ করে স্টুডেন্ট প্রোফাইলের আইডি লিখুন!');
+                alert('অনুগ্রহ করে আইডি নির্বাচন করুন বা লিখুন!');
                 return;
             }
 
-            let foundStudent = null;
+            let found = studentProfileData.find(st => st.id === searchId);
 
-            // 1. Scan LocalStorage for student profile data array
-            for (let i = 0; i < localStorage.length; i++) {
-                let key = localStorage.key(i);
-                try {
-                    let data = JSON.parse(localStorage.getItem(key));
-                    if (Array.isArray(data)) {
-                        let matched = data.find(st => {
-                            if (!st) return false;
-                            // Search all possible ID and Roll field names
-                            let id = (st.id || st.studentId || st.student_id || st.code || st.roll || st.rollNo || '').toString().trim();
-                            return id === searchId;
-                        });
-                        if (matched) {
-                            foundStudent = matched;
-                            break;
-                        }
-                    }
-                } catch (e) {}
-            }
+            if (found) {
+                document.getElementById('studentNameField').value = found.name;
+                document.getElementById('studentClassField').value = found.class;
+                document.getElementById('studentRollField').value = found.roll;
 
-            // 2. Set fetched student details to form fields
-            if (foundStudent) {
-                let name = foundStudent.name || foundStudent.studentName || foundStudent.name_bn || "নাম পাওয়া যায়নি";
-                let className = foundStudent.className || foundStudent.class || foundStudent.class_name || "শ্রেণি উল্লেখ নেই";
-                let roll = foundStudent.roll || foundStudent.rollNo || foundStudent.roll_no || "001";
-
-                document.getElementById('studentNameField').value = name;
-                document.getElementById('studentClassField').value = className;
-                document.getElementById('studentRollField').value = roll;
-
-                msg.innerText = "✅ Student Management (স্টুডেন্ট প্রোফাইল) থেকে তথ্য লোড হয়েছে!";
+                msg.innerText = "✅ Student Profile থেকে তথ্য লোড হয়েছে!";
                 msg.className = "text-[11px] font-semibold mt-1 text-emerald-600";
             } else {
-                // If ID does not exist in Student Profile
                 document.getElementById('studentNameField').value = "";
                 document.getElementById('studentClassField').value = "";
                 document.getElementById('studentRollField').value = "";
 
-                msg.innerText = "⚠️ আইডি: '" + searchId + "' দিয়ে স্টুডেন্ট প্রোফাইলে কোনো তথ্য পাওয়া যায়নি! সঠিক আইডি দিন।";
+                msg.innerText = "⚠️ আইডিটি সঠিক নয়! সঠিক আইডি দিন।";
                 msg.className = "text-[11px] font-semibold mt-1 text-rose-600";
             }
         }
 
-        // Save Student Membership Logic
+        // SMART COMBINED FILTER ENGINE: Class + (Name / Roll / ID)
+        function filterMembersList() {
+            const selectedClass = document.getElementById('filterClass').value;
+            const keyword = document.getElementById('filterKeyword').value.trim().toLowerCase();
+            const tableBody = document.getElementById('membersTableBody');
+
+            tableBody.innerHTML = '';
+
+            let filtered = studentProfileData.filter(st => {
+                // 1. Class Matching Logic
+                let classMatches = (selectedClass === 'all') || (st.class === selectedClass);
+
+                // 2. Keyword Matching Logic (Name or Roll or ID)
+                let keywordMatches = !keyword || 
+                    st.name.toLowerCase().includes(keyword) || 
+                    st.id.toLowerCase().includes(keyword) || 
+                    st.roll.toLowerCase().includes(keyword);
+
+                return classMatches && keywordMatches;
+            });
+
+            // Populate Filtered Results
+            if (filtered.length > 0) {
+                filtered.forEach(st => {
+                    let row = document.createElement('tr');
+                    row.className = "hover:bg-gray-50 border-b";
+                    row.innerHTML = `
+                        <td class="p-2.5 font-bold text-teal-900">${st.id}</td>
+                        <td class="p-2.5 font-semibold text-gray-800">${st.name}</td>
+                        <td class="p-2.5">${st.class}</td>
+                        <td class="p-2.5 font-semibold">${st.roll}</td>
+                        <td class="p-2.5"><span class="bg-emerald-100 text-emerald-800 px-2 py-0.5 rounded text-[10px] font-bold">সক্রিয় সদস্য</span></td>
+                    `;
+                    tableBody.appendChild(row);
+                });
+            } else {
+                tableBody.innerHTML = `<tr><td colspan="5" class="p-4 text-center text-rose-600 font-bold">কোনো সদস্য পাওয়া যায়নি!</td></tr>`;
+            }
+
+            document.getElementById('memberCountText').innerText = `মোট সদস্য: ${filtered.length} জন`;
+        }
+
+        // Save Membership
         function saveStudentMembership(event) {
             event.preventDefault();
             const name = document.getElementById('studentNameField').value;
             
             if (!name) {
-                alert("প্রথমে সঠিক আইডি দিয়ে স্টুডেন্ট ফেচ করুন!");
+                alert("প্রথমে ড্রপডাউন থেকে সঠিক শিক্ষার্থী ফেচ করুন!");
                 return;
             }
-
-            let members = JSON.parse(localStorage.getItem('library_members')) || [];
-            members.push({
-                studentId: document.getElementById('studentSearchId').value,
-                name: name,
-                class: document.getElementById('studentClassField').value,
-                roll: document.getElementById('studentRollField').value
-            });
-            localStorage.setItem('library_members', JSON.stringify(members));
 
             alert(`✅ ${name}-কে সফলভাবে লাইব্রেরি সদস্য হিসেবে অন্তর্ভূক্ত করা হয়েছে!`);
             closeModal('modalMembership');
         }
 
-        // Collect Fine to Accounts
         function collectFineToAccounts(event) {
             event.preventDefault();
             const amount = parseFloat(document.getElementById('fineAmount').value) || 0;
-            let currentTotal = parseFloat(localStorage.getItem('total_library_fine_collected')) || 0;
-            
-            localStorage.setItem('total_library_fine_collected', currentTotal + amount);
             alert(`✅ ৳${amount} টাকা সফলভাবে একাউন্টস ফান্ডে জমা হয়েছে!`);
             closeModal('modalFine');
-        }
-
-        function updateReportDisplay() {
-            let totalFine = parseFloat(localStorage.getItem('total_library_fine_collected')) || 0;
-            let totalMembers = (JSON.parse(localStorage.getItem('library_members')) || []).length;
-
-            document.getElementById('totalFineReport').innerText = `৳ ${totalFine}`;
-            document.getElementById('totalMembersReport').innerText = `${totalMembers} জন`;
         }
     </script>
 

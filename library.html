@@ -8,7 +8,7 @@
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     <link rel="stylesheet" href="style.css">
 </head>
-<body class="bg-gray-100 font-sans">
+<body class="bg-gray-100 font-sans" onload="initLibrarySystem()">
 
     <div class="flex h-screen overflow-hidden">
         
@@ -20,72 +20,28 @@
             </div>
 
             <nav class="flex-1 p-3 space-y-1 text-xs">
-                <a href="index.html" class="flex items-center gap-2.5 p-2 rounded hover:bg-emerald-800 transition">
-                    <i class="fa-solid fa-house w-4"></i> 🏠 01. Home
-                </a>
-                <a href="institution.html" class="flex items-center gap-2.5 p-2 rounded hover:bg-emerald-800 transition">
-                    <i class="fa-solid fa-school w-4"></i> 🏫 02. Institution
-                </a>
-                <a href="students.html" class="flex items-center gap-2.5 p-2 rounded hover:bg-emerald-800 transition">
-                    <i class="fa-solid fa-user-graduate w-4"></i> 👨‍🎓 03. Student Management
-                </a>
-                <a href="teachers.html" class="flex items-center gap-2.5 p-2 rounded hover:bg-emerald-800 transition">
-                    <i class="fa-solid fa-chalkboard-user w-4"></i> 👨‍🏫 04. Teacher & Staff
-                </a>
-                <a href="academic.html" class="flex items-center gap-2.5 p-2 rounded hover:bg-emerald-800 transition">
-                    <i class="fa-solid fa-book-open w-4"></i> 📚 05. Academic Management
-                </a>
-                <a href="examination.html" class="flex items-center gap-2.5 p-2 rounded hover:bg-emerald-800 transition">
-                    <i class="fa-solid fa-file-lines w-4"></i> 📝 06. Examination
-                </a>
-                <a href="attendance.html" class="flex items-center gap-2.5 p-2 rounded hover:bg-emerald-800 transition">
-                    <i class="fa-solid fa-clipboard-user w-4"></i> 🕐 07. Attendance
-                </a>
-                <a href="accounts.html" class="flex items-center gap-2.5 p-2 rounded hover:bg-emerald-800 transition">
-                    <i class="fa-solid fa-wallet w-4"></i> 💰 08. Accounts
-                </a>
-                <a href="fees.html" class="flex items-center gap-2.5 p-2 rounded hover:bg-emerald-800 transition">
-                    <i class="fa-solid fa-receipt w-4"></i> 🧾 09. Fees Management
-                </a>
-                <a href="dashboard.html" class="flex items-center gap-2.5 p-2 rounded hover:bg-emerald-800 transition">
-                    <i class="fa-solid fa-chart-pie w-4"></i> 📊 10. Dashboard
-                </a>
-                <a href="notice.html" class="flex items-center gap-2.5 p-2 rounded hover:bg-emerald-800 transition">
-                    <i class="fa-solid fa-bullhorn w-4"></i> 📢 11. Notice Management
-                </a>
-                <a href="routine.html" class="flex items-center gap-2.5 p-2 rounded hover:bg-emerald-800 transition">
-                    <i class="fa-solid fa-calendar-days w-4"></i> 📅 12. Routine & Calendar
-                </a>
-                <a href="certificates.html" class="flex items-center gap-2.5 p-2 rounded hover:bg-emerald-800 transition">
-                    <i class="fa-solid fa-award w-4"></i> 📄 13. Certificates
-                </a>
-                <a href="inventory.html" class="flex items-center gap-2.5 p-2 rounded hover:bg-emerald-800 transition">
-                    <i class="fa-solid fa-boxes-stacked w-4"></i> 📦 14. Inventory
-                </a>
-                <a href="library.html" class="flex items-center gap-2.5 p-2 rounded bg-emerald-800 text-white font-medium">
-                    <i class="fa-solid fa-book-bookmark w-4"></i> 📖 15. Library
-                </a>
-                <a href="transport.html" class="flex items-center gap-2.5 p-2 rounded hover:bg-emerald-800 transition">
-                    <i class="fa-solid fa-bus w-4"></i> 🚌 16. Transport
-                </a>
-                <a href="hostel.html" class="flex items-center gap-2.5 p-2 rounded hover:bg-emerald-800 transition">
-                    <i class="fa-solid fa-bed w-4"></i> 🍚 17. Hostel / Facilities
-                </a>
-                <a href="communication.html" class="flex items-center gap-2.5 p-2 rounded hover:bg-emerald-800 transition">
-                    <i class="fa-solid fa-comments w-4"></i> 📱 18. Communication
-                </a>
-                <a href="users.html" class="flex items-center gap-2.5 p-2 rounded hover:bg-emerald-800 transition">
-                    <i class="fa-solid fa-shield-halved w-4"></i> 🔐 19. User & Security
-                </a>
-                <a href="cloud-backup.html" class="flex items-center gap-2.5 p-2 rounded hover:bg-emerald-800 transition">
-                    <i class="fa-solid fa-cloud-arrow-up w-4"></i> ☁️ 20. Cloud & Backup
-                </a>
-                <a href="reports.html" class="flex items-center gap-2.5 p-2 rounded hover:bg-emerald-800 transition">
-                    <i class="fa-solid fa-chart-line w-4"></i> 📈 21. Reports
-                </a>
-                <a href="settings.html" class="flex items-center gap-2.5 p-2 rounded hover:bg-emerald-800 transition">
-                    <i class="fa-solid fa-gear w-4"></i> ⚙️ 22. Settings
-                </a>
+                <a href="index.html" class="flex items-center gap-2.5 p-2 rounded hover:bg-emerald-800 transition"><i class="fa-solid fa-house w-4"></i> 🏠 01. Home</a>
+                <a href="institution.html" class="flex items-center gap-2.5 p-2 rounded hover:bg-emerald-800 transition"><i class="fa-solid fa-school w-4"></i> 🏫 02. Institution</a>
+                <a href="students.html" class="flex items-center gap-2.5 p-2 rounded hover:bg-emerald-800 transition"><i class="fa-solid fa-user-graduate w-4"></i> 👨‍🎓 03. Student Management</a>
+                <a href="teachers.html" class="flex items-center gap-2.5 p-2 rounded hover:bg-emerald-800 transition"><i class="fa-solid fa-chalkboard-user w-4"></i> 👨‍🏫 04. Teacher & Staff</a>
+                <a href="academic.html" class="flex items-center gap-2.5 p-2 rounded hover:bg-emerald-800 transition"><i class="fa-solid fa-book-open w-4"></i> 📚 05. Academic Management</a>
+                <a href="examination.html" class="flex items-center gap-2.5 p-2 rounded hover:bg-emerald-800 transition"><i class="fa-solid fa-file-lines w-4"></i> 📝 06. Examination</a>
+                <a href="attendance.html" class="flex items-center gap-2.5 p-2 rounded hover:bg-emerald-800 transition"><i class="fa-solid fa-clipboard-user w-4"></i> 🕐 07. Attendance</a>
+                <a href="accounts.html" class="flex items-center gap-2.5 p-2 rounded hover:bg-emerald-800 transition"><i class="fa-solid fa-wallet w-4"></i> 💰 08. Accounts</a>
+                <a href="fees.html" class="flex items-center gap-2.5 p-2 rounded hover:bg-emerald-800 transition"><i class="fa-solid fa-receipt w-4"></i> 🧾 09. Fees Management</a>
+                <a href="dashboard.html" class="flex items-center gap-2.5 p-2 rounded hover:bg-emerald-800 transition"><i class="fa-solid fa-chart-pie w-4"></i> 📊 10. Dashboard</a>
+                <a href="notice.html" class="flex items-center gap-2.5 p-2 rounded hover:bg-emerald-800 transition"><i class="fa-solid fa-bullhorn w-4"></i> 📢 11. Notice Management</a>
+                <a href="routine.html" class="flex items-center gap-2.5 p-2 rounded hover:bg-emerald-800 transition"><i class="fa-solid fa-calendar-days w-4"></i> 📅 12. Routine & Calendar</a>
+                <a href="certificates.html" class="flex items-center gap-2.5 p-2 rounded hover:bg-emerald-800 transition"><i class="fa-solid fa-award w-4"></i> 📄 13. Certificates</a>
+                <a href="inventory.html" class="flex items-center gap-2.5 p-2 rounded hover:bg-emerald-800 transition"><i class="fa-solid fa-boxes-stacked w-4"></i> 📦 14. Inventory</a>
+                <a href="library.html" class="flex items-center gap-2.5 p-2 rounded bg-emerald-800 text-white font-medium"><i class="fa-solid fa-book-bookmark w-4"></i> 📖 15. Library</a>
+                <a href="transport.html" class="flex items-center gap-2.5 p-2 rounded hover:bg-emerald-800 transition"><i class="fa-solid fa-bus w-4"></i> 🚌 16. Transport</a>
+                <a href="hostel.html" class="flex items-center gap-2.5 p-2 rounded hover:bg-emerald-800 transition"><i class="fa-solid fa-bed w-4"></i> 🍚 17. Hostel / Facilities</a>
+                <a href="communication.html" class="flex items-center gap-2.5 p-2 rounded hover:bg-emerald-800 transition"><i class="fa-solid fa-comments w-4"></i> 📱 18. Communication</a>
+                <a href="users.html" class="flex items-center gap-2.5 p-2 rounded hover:bg-emerald-800 transition"><i class="fa-solid fa-shield-halved w-4"></i> 🔐 19. User & Security</a>
+                <a href="cloud-backup.html" class="flex items-center gap-2.5 p-2 rounded hover:bg-emerald-800 transition"><i class="fa-solid fa-cloud-arrow-up w-4"></i> ☁️ 20. Cloud & Backup</a>
+                <a href="reports.html" class="flex items-center gap-2.5 p-2 rounded hover:bg-emerald-800 transition"><i class="fa-solid fa-chart-line w-4"></i> 📈 21. Reports</a>
+                <a href="settings.html" class="flex items-center gap-2.5 p-2 rounded hover:bg-emerald-800 transition"><i class="fa-solid fa-gear w-4"></i> ⚙️ 22. Settings</a>
             </nav>
         </aside>
 
@@ -110,86 +66,87 @@
                 <div class="bg-gradient-to-r from-emerald-800 to-emerald-950 text-white p-6 rounded-2xl shadow-sm flex flex-col md:flex-row justify-between items-center gap-4">
                     <div>
                         <h2 class="text-xl font-bold">মাদ্রাসা লাইব্রেরি ও কিতাবখানা প্যানেল</h2>
-                        <p class="text-emerald-200 text-xs mt-1">বই ও কিতাব ব্যবস্থাপনা, সদস্য অন্তর্ভুক্তি, বই ইস্যু ও রিটার্ন ট্র্যাকিং, জরিমানা আদায় এবং লাইব্রেরি রিপোর্ট।</p>
+                        <p class="text-emerald-200 text-xs mt-1">বই এন্ট্রি, স্থায়ী সদস্য তালিকা, অটো স্টক আপডেট, ডিউ বুক ট্র্যাকিং এবং লাইব্রেরি রিপোর্ট।</p>
                     </div>
                     <div class="flex gap-2">
                         <button onclick="openModal('modalBookAdd')" class="bg-white text-emerald-900 px-4 py-2 rounded-xl font-bold text-xs hover:bg-emerald-50 transition shadow-sm">+ নতুন বই বা কিতাব যোগ করুন</button>
                     </div>
                 </div>
 
-                <!-- Sub-Modules Grid Layout -->
+                <!-- Sub-Modules Grid Layout (7 Modules) -->
                 <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
                     
-                    <!-- 1. Book Management -->
+                    <!-- 1. Book Management & Filtering -->
                     <div class="bg-white p-5 rounded-xl shadow-sm border-t-4 border-emerald-600 space-y-3">
                         <div class="flex items-center justify-between border-b pb-2">
-                            <h3 class="font-bold text-gray-800 text-sm flex items-center gap-2">
-                                <i class="fa-solid fa-book text-emerald-600"></i> Book Management
-                            </h3>
-                            <span class="text-xs bg-emerald-50 text-emerald-700 px-2 py-0.5 rounded font-semibold">বই ম্যানেজমেন্ট</span>
+                            <h3 class="font-bold text-gray-800 text-sm flex items-center gap-2"><i class="fa-solid fa-book text-emerald-600"></i> Book Management</h3>
+                            <span class="text-xs bg-emerald-50 text-emerald-700 px-2 py-0.5 rounded font-semibold">বই তালিকা ও স্টক</span>
                         </div>
-                        <p class="text-xs text-gray-600 leading-relaxed">আরবি, ইংরেজি, বাংলা সহ বিভিন্ন বিষয়ের পাঠ্যবই, হাদিস ও তাফসীরের কিতাব তালিকাভুক্তকরণ।</p>
-                        <button onclick="openModal('modalBookAdd')" class="w-full bg-emerald-50 text-emerald-700 py-1.5 rounded text-xs font-bold hover:bg-emerald-100 transition">বই এন্ট্রি ও তালিকা</button>
+                        <p class="text-xs text-gray-600 leading-relaxed">বই এন্ট্রি, স্থায়ী সংরক্ষণ এবং কিতাব ফিল্টারিং ব্যবস্থা।</p>
+                        <div class="flex gap-2">
+                            <button onclick="openModal('modalBookAdd')" class="flex-1 bg-emerald-50 text-emerald-700 py-1.5 rounded text-xs font-bold hover:bg-emerald-100 transition">বই এন্ট্রি</button>
+                            <button onclick="openModal('modalBookList')" class="flex-1 bg-emerald-700 text-white py-1.5 rounded text-xs font-bold hover:bg-emerald-800 transition">বইয়ের তালিকা</button>
+                        </div>
                     </div>
 
-                    <!-- 2. Student Membership -->
+                    <!-- 2. Student Membership Registration -->
                     <div class="bg-white p-5 rounded-xl shadow-sm border-t-4 border-blue-600 space-y-3">
                         <div class="flex items-center justify-between border-b pb-2">
-                            <h3 class="font-bold text-gray-800 text-sm flex items-center gap-2">
-                                <i class="fa-solid fa-id-card text-blue-600"></i> Student Membership
-                            </h3>
+                            <h3 class="font-bold text-gray-800 text-sm flex items-center gap-2"><i class="fa-solid fa-id-card text-blue-600"></i> Student Membership</h3>
                             <span class="text-xs bg-blue-50 text-blue-700 px-2 py-0.5 rounded font-semibold">সদস্য নিবন্ধন</span>
                         </div>
-                        <p class="text-xs text-gray-600 leading-relaxed">স্টুডেন্ট ম্যানেজমেন্ট মডিউল (Student Profile) থেকে শিক্ষার্থী নির্বাচন করে সরাসরি সদস্য নিবন্ধন।</p>
+                        <p class="text-xs text-gray-600 leading-relaxed">প্রোফাইল আইডি দিয়ে শিক্ষার্থীকে লাইব্রেরি সদস্য হিসেবে পার্মানেন্ট রেজিস্টার করুন।</p>
                         <button onclick="openModal('modalMembership')" class="w-full bg-blue-50 text-blue-700 py-1.5 rounded text-xs font-bold hover:bg-blue-100 transition">সদস্য রেজিস্টার করুন</button>
                     </div>
 
-                    <!-- 3. Members List Panel Button -->
+                    <!-- 3. Library Members List & Filtering -->
                     <div class="bg-white p-5 rounded-xl shadow-sm border-t-4 border-teal-600 space-y-3">
                         <div class="flex items-center justify-between border-b pb-2">
-                            <h3 class="font-bold text-gray-800 text-sm flex items-center gap-2">
-                                <i class="fa-solid fa-users text-teal-600"></i> Library Members List
-                            </h3>
+                            <h3 class="font-bold text-gray-800 text-sm flex items-center gap-2"><i class="fa-solid fa-users text-teal-600"></i> Members List</h3>
                             <span class="text-xs bg-teal-50 text-teal-700 px-2 py-0.5 rounded font-semibold">সদস্য তালিকা</span>
                         </div>
-                        <p class="text-xs text-gray-600 leading-relaxed">লাইব্রেরির সকল নিবন্ধিত সদস্য তালিকা দেখুন এবং শ্রেণি, নাম, রোল ও আইডি দিয়ে ফিল্টার করুন।</p>
-                        <button onclick="openModal('modalMemberList')" class="w-full bg-teal-50 text-teal-700 py-1.5 rounded text-xs font-bold hover:bg-teal-100 transition">সদস্য তালিকা ও ফিল্টারিং</button>
+                        <p class="text-xs text-gray-600 leading-relaxed">শ্রেণি, নাম, রোল ও আইডি দিয়ে ফিল্টারিং সুবিধাসহ সকল সদস্যের তালিকা।</p>
+                        <button onclick="openModal('modalMemberList')" class="w-full bg-teal-50 text-teal-700 py-1.5 rounded text-xs font-bold hover:bg-teal-100 transition">সদস্য তালিকা ও ফিল্টার</button>
                     </div>
 
-                    <!-- 4. Book Issue -->
+                    <!-- 4. Book Issue (Auto Stock Minus) -->
                     <div class="bg-white p-5 rounded-xl shadow-sm border-t-4 border-purple-600 space-y-3">
                         <div class="flex items-center justify-between border-b pb-2">
-                            <h3 class="font-bold text-gray-800 text-sm flex items-center gap-2">
-                                <i class="fa-solid fa-book-arrow-up text-purple-600"></i> Book Issue
-                            </h3>
+                            <h3 class="font-bold text-gray-800 text-sm flex items-center gap-2"><i class="fa-solid fa-book-arrow-up text-purple-600"></i> Book Issue</h3>
                             <span class="text-xs bg-purple-50 text-purple-700 px-2 py-0.5 rounded font-semibold">বই ইস্যু</span>
                         </div>
-                        <p class="text-xs text-gray-600 leading-relaxed">নির্দিষ্ট সময়ের জন্য শিক্ষার্থী বা শিক্ষকদের মাঝে লাইব্রেরির বই বা কিতাব ইস্যু করার প্রক্রিয়া।</p>
+                        <p class="text-xs text-gray-600 leading-relaxed">বই ইস্যু করলে মূল স্টক থেকে স্বয়ংক্রিয়ভাবে সংখ্যা কমে যাবে।</p>
                         <button onclick="openModal('modalBookIssue')" class="w-full bg-purple-50 text-purple-700 py-1.5 rounded text-xs font-bold hover:bg-purple-100 transition">বই ইস্যু করুন</button>
                     </div>
 
-                    <!-- 5. Book Return -->
+                    <!-- 5. Book Return (Auto Stock Plus) -->
                     <div class="bg-white p-5 rounded-xl shadow-sm border-t-4 border-amber-600 space-y-3">
                         <div class="flex items-center justify-between border-b pb-2">
-                            <h3 class="font-bold text-gray-800 text-sm flex items-center gap-2">
-                                <i class="fa-solid fa-book-arrow-down text-amber-600"></i> Book Return
-                            </h3>
+                            <h3 class="font-bold text-gray-800 text-sm flex items-center gap-2"><i class="fa-solid fa-book-arrow-down text-amber-600"></i> Book Return</h3>
                             <span class="text-xs bg-amber-50 text-amber-700 px-2 py-0.5 rounded font-semibold">বই ফেরত</span>
                         </div>
-                        <p class="text-xs text-gray-600 leading-relaxed">ইস্যুকৃত বই বা কিতাব নির্দিষ্ট সময়ে বা পরবর্তীতে লাইব্রেরিতে ফেরত নেওয়া এবং স্টক আপডেট।</p>
+                        <p class="text-xs text-gray-600 leading-relaxed">বই ফেরত দিলে স্টকে স্বয়ংক্রিয়ভাবে আবার যুক্ত হবে।</p>
                         <button onclick="openModal('modalBookReturn')" class="w-full bg-amber-50 text-amber-700 py-1.5 rounded text-xs font-bold hover:bg-amber-100 transition">বই রিটার্ন প্যানেল</button>
                     </div>
 
-                    <!-- 6. Fine Management -->
+                    <!-- 6. NEW: Due Book Tracking -->
                     <div class="bg-white p-5 rounded-xl shadow-sm border-t-4 border-rose-600 space-y-3">
                         <div class="flex items-center justify-between border-b pb-2">
-                            <h3 class="font-bold text-gray-800 text-sm flex items-center gap-2">
-                                <i class="fa-solid fa-triangle-exclamation text-rose-600"></i> Fine Management
-                            </h3>
-                            <span class="text-xs bg-rose-50 text-rose-700 px-2 py-0.5 rounded font-semibold">জরিমানা</span>
+                            <h3 class="font-bold text-gray-800 text-sm flex items-center gap-2"><i class="fa-solid fa-clock-rotate-left text-rose-600"></i> Due Book Tracking</h3>
+                            <span class="text-xs bg-rose-50 text-rose-700 px-2 py-0.5 rounded font-semibold">বকেয়া ট্র্যাকিং</span>
                         </div>
-                        <p class="text-xs text-gray-600 leading-relaxed">নির্ধারিত সময়ের পরে বই ফেরত দিলে বা বই নষ্ট/হারিয়ে ফেললে জরিমানা গণনা ও আদায়করণ।</p>
-                        <button onclick="openModal('modalFine')" class="w-full bg-rose-50 text-rose-700 py-1.5 rounded text-xs font-bold hover:bg-rose-100 transition">জরিমানা এন্ট্রি ও আদায়</button>
+                        <p class="text-xs text-gray-600 leading-relaxed">নির্ধারিত ডেট পার হয়ে যাওয়া বকেয়া বইগুলোর তালিকা স্বয়ংক্রিয়ভাবে শো করবে।</p>
+                        <button onclick="openModal('modalDueTracking')" class="w-full bg-rose-50 text-rose-700 py-1.5 rounded text-xs font-bold hover:bg-rose-100 transition">ডিউ বুক তালিকা দেখুন</button>
+                    </div>
+
+                    <!-- 7. Dynamic Library Report Panel -->
+                    <div class="bg-white p-5 rounded-xl shadow-sm border-t-4 border-indigo-600 space-y-3 md:col-span-2 lg:col-span-3">
+                        <div class="flex items-center justify-between border-b pb-2">
+                            <h3 class="font-bold text-gray-800 text-sm flex items-center gap-2"><i class="fa-solid fa-chart-line text-indigo-600"></i> Automatic Library Report Panel</h3>
+                            <span class="text-xs bg-indigo-50 text-indigo-700 px-2 py-0.5 rounded font-semibold">অটো রিপোর্ট</span>
+                        </div>
+                        <p class="text-xs text-gray-600 leading-relaxed">মোট বই, স্টক, ইস্যুকৃত বই, সদস্য সংখ্যা এবং জরিমানা আয়ের রিয়েল-টাইম অটোমেটিক সামারি রিপোর্ট।</p>
+                        <button onclick="openModal('modalReport')" class="w-full bg-indigo-50 text-indigo-700 py-2 rounded text-xs font-bold hover:bg-indigo-100 transition">লাইব্রেরি রিপোর্ট ও সামারি দেখুন</button>
                     </div>
 
                 </div>
@@ -201,45 +158,76 @@
 
     <!-- ==================== MODALS / FORMS ==================== -->
 
-    <!-- 1. Book Management Form Modal -->
+    <!-- 1. Book Entry Modal -->
     <div id="modalBookAdd" class="fixed inset-0 bg-black/50 hidden flex justify-center items-center z-50 p-4">
         <div class="bg-white w-full max-w-lg rounded-2xl p-6 space-y-4 shadow-xl">
             <div class="flex justify-between items-center border-b pb-3">
-                <h3 class="font-bold text-emerald-800 text-base">📚 নতুন বই/কিতাব যোগ করুন</h3>
+                <h3 class="font-bold text-emerald-800 text-base">📚 নতুন বই/কিতাব এন্ট্রি ও সেভ</h3>
                 <button onclick="closeModal('modalBookAdd')" class="text-gray-500 text-lg">&times;</button>
             </div>
-            <form onsubmit="alert('বই সফলভাবে যোগ করা হয়েছে!'); closeModal('modalBookAdd'); return false;" class="space-y-3 text-xs">
+            <form onsubmit="saveNewBook(event)" class="space-y-3 text-xs">
                 <div>
                     <label class="block font-medium mb-1">বই/কিতাবের নাম</label>
-                    <input type="text" placeholder="যেমন: সহীহ আল-বুখারী" required class="w-full p-2 border rounded">
+                    <input type="text" id="bookName" placeholder="যেমন: সহীহ আল-বুখারী" required class="w-full p-2 border rounded">
                 </div>
                 <div class="grid grid-cols-2 gap-3">
                     <div>
                         <label class="block font-medium mb-1">লেখক/মুসান্নিফ</label>
-                        <input type="text" placeholder="ইমাম বুখারী (র.)" class="w-full p-2 border rounded">
+                        <input type="text" id="bookAuthor" placeholder="ইমাম বুখারী (র.)" class="w-full p-2 border rounded">
                     </div>
                     <div>
                         <label class="block font-medium mb-1">ক্যাটাগরি</label>
-                        <select class="w-full p-2 border rounded">
+                        <select id="bookCategory" class="w-full p-2 border rounded">
                             <option>হাদিস শরীফ</option>
                             <option>তাফসীর</option>
                             <option>ফিকহ</option>
                             <option>পাঠ্যবই</option>
+                            <option>ইতিহাস ও অন্যান্য</option>
                         </select>
                     </div>
                 </div>
                 <div class="grid grid-cols-2 gap-3">
                     <div>
-                        <label class="block font-medium mb-1">বই আইডি/আইএসবিএন (ISBN)</label>
-                        <input type="text" placeholder="BK-1020" required class="w-full p-2 border rounded">
+                        <label class="block font-medium mb-1">বই আইডি/কোড (ISBN)</label>
+                        <input type="text" id="bookIdCode" placeholder="BK-1020" required class="w-full p-2 border rounded">
                     </div>
                     <div>
                         <label class="block font-medium mb-1">মোট সংখ্যা (Quantity)</label>
-                        <input type="number" value="5" min="1" class="w-full p-2 border rounded">
+                        <input type="number" id="bookQty" value="5" min="1" required class="w-full p-2 border rounded">
                     </div>
                 </div>
-                <button type="submit" class="w-full bg-emerald-700 text-white py-2 rounded font-bold hover:bg-emerald-800">বই সেভ করুন</button>
+                <button type="submit" class="w-full bg-emerald-700 text-white py-2 rounded font-bold hover:bg-emerald-800">বই স্থায়ীভাবে সেভ করুন</button>
             </form>
+        </div>
+    </div>
+
+    <!-- Book List Modal with Filtering -->
+    <div id="modalBookList" class="fixed inset-0 bg-black/50 hidden flex justify-center items-center z-50 p-4">
+        <div class="bg-white w-full max-w-3xl rounded-2xl p-6 space-y-4 shadow-xl max-h-[90vh] flex flex-col">
+            <div class="flex justify-between items-center border-b pb-3">
+                <h3 class="font-bold text-emerald-800 text-base">📖 সংরক্ষিত বই ও কিতাব তালিকা ও ফিল্টার</h3>
+                <button onclick="closeModal('modalBookList')" class="text-gray-500 text-lg">&times;</button>
+            </div>
+            <div>
+                <input type="text" id="filterBookKeyword" onkeyup="renderBookList()" placeholder="বইয়ের নাম, লেখক বা আইডি দিয়ে খুঁজুন..." class="w-full p-2 border rounded text-xs">
+            </div>
+            <div class="flex-1 overflow-y-auto border rounded-xl">
+                <table class="w-full text-left text-xs">
+                    <thead class="bg-emerald-800 text-white sticky top-0">
+                        <tr>
+                            <th class="p-2.5">আইডি</th>
+                            <th class="p-2.5">বইয়ের নাম</th>
+                            <th class="p-2.5">লেখক</th>
+                            <th class="p-2.5">ক্যাটাগরি</th>
+                            <th class="p-2.5">উপলব্ধ স্টক</th>
+                        </tr>
+                    </thead>
+                    <tbody id="bookTableBody" class="divide-y divide-gray-200"></tbody>
+                </table>
+            </div>
+            <div class="text-right">
+                <button onclick="closeModal('modalBookList')" class="bg-gray-600 text-white px-4 py-1.5 rounded text-xs font-bold">বন্ধ করুন</button>
+            </div>
         </div>
     </div>
 
@@ -247,26 +235,24 @@
     <div id="modalMembership" class="fixed inset-0 bg-black/50 hidden flex justify-center items-center z-50 p-4">
         <div class="bg-white w-full max-w-lg rounded-2xl p-6 space-y-4 shadow-xl">
             <div class="flex justify-between items-center border-b pb-3">
-                <h3 class="font-bold text-blue-800 text-base">👨‍🎓 স্টুডেন্ট লাইব্রেরি মেম্বারশিপ (Student Profile Linked)</h3>
+                <h3 class="font-bold text-blue-800 text-base">👨‍🎓 লাইব্রেরি সদস্য নিবন্ধন ও সেভ</h3>
                 <button onclick="closeModal('modalMembership')" class="text-gray-500 text-lg">&times;</button>
             </div>
             <form onsubmit="saveStudentMembership(event)" class="space-y-3 text-xs">
                 <div>
-                    <label class="block font-medium mb-1">শিক্ষার্থী নির্বাচন করুন (Student Profile)</label>
+                    <label class="block font-medium mb-1">শিক্ষার্থী নির্বাচন করুন</label>
                     <select id="studentSelectDropdown" onchange="onStudentSelectChange()" class="w-full p-2 border rounded font-bold text-blue-900 bg-blue-50">
                         <option value="">-- স্টুডেন্ট প্রোফাইল থেকে নির্বাচন করুন --</option>
                     </select>
                 </div>
                 <div class="flex gap-2">
-                    <input type="text" id="studentSearchId" placeholder="বা সরাসরি আইডি লিখুন" class="flex-1 p-2 border rounded font-bold text-blue-900">
-                    <button type="button" onclick="fetchStudentFromProfile()" class="bg-blue-600 text-white px-3 py-1.5 rounded font-bold hover:bg-blue-700">
-                        🔍 সার্চ
-                    </button>
+                    <input type="text" id="studentSearchId" placeholder="বা আইডি লিখুন" class="flex-1 p-2 border rounded font-bold text-blue-900">
+                    <button type="button" onclick="fetchStudentFromProfile()" class="bg-blue-600 text-white px-3 py-1.5 rounded font-bold hover:bg-blue-700">🔍 ফেচ</button>
                 </div>
-                <p id="searchMessage" class="text-[11px] font-semibold mt-1 text-gray-500">* ড্রপডাউন থেকে নির্বাচন করুন অথবা ম্যানুয়ালি আইডি দিয়ে সার্চ করুন।</p>
+                <p id="searchMessage" class="text-[11px] font-semibold mt-1 text-gray-500">* আইডি দিয়ে ফেচ করুন।</p>
                 <div>
                     <label class="block font-medium mb-1">শিক্ষার্থীর নাম</label>
-                    <input type="text" id="studentNameField" placeholder="শিক্ষার্থীর নাম" readonly class="w-full p-2 border rounded bg-gray-50 font-bold text-gray-800">
+                    <input type="text" id="studentNameField" readonly class="w-full p-2 border rounded bg-gray-50 font-bold text-gray-800">
                 </div>
                 <div class="grid grid-cols-2 gap-3">
                     <div>
@@ -278,34 +264,23 @@
                         <input type="text" id="studentRollField" readonly class="w-full p-2 border rounded bg-gray-50 font-semibold">
                     </div>
                 </div>
-                <div>
-                    <label class="block font-medium mb-1">মেম্বারশিপ ক্যাটাগরি</label>
-                    <select class="w-full p-2 border rounded font-semibold">
-                        <option>নিয়মিত শিক্ষার্থী মেম্বার (Regular Student)</option>
-                        <option>বিশেষ আবাসিক শিক্ষার্থী (Residential Student)</option>
-                    </select>
-                </div>
-                <button type="submit" class="w-full bg-blue-700 text-white py-2 rounded font-bold hover:bg-blue-800">
-                    🪪 মেম্বারশিপ রেজিস্টার করুন
-                </button>
+                <button type="submit" class="w-full bg-blue-700 text-white py-2 rounded font-bold hover:bg-blue-800">🪪 সদস্য স্থায়ীভাবে রেজিস্টার করুন</button>
             </form>
         </div>
     </div>
 
-    <!-- 3. NEW: Library Members List Modal with Smart Combined Filter -->
+    <!-- 3. Members List & Filtering Modal -->
     <div id="modalMemberList" class="fixed inset-0 bg-black/50 hidden flex justify-center items-center z-50 p-4">
         <div class="bg-white w-full max-w-4xl rounded-2xl p-6 space-y-4 shadow-xl max-h-[90vh] flex flex-col">
             <div class="flex justify-between items-center border-b pb-3">
                 <h3 class="font-bold text-teal-800 text-base">📋 লাইব্রেরি সদস্য তালিকা ও স্মার্ট ফিল্টারিং</h3>
                 <button onclick="closeModal('modalMemberList')" class="text-gray-500 text-lg">&times;</button>
             </div>
-
-            <!-- Smart Combined Filter Controls -->
             <div class="grid grid-cols-1 md:grid-cols-2 gap-3 bg-teal-50 p-3 rounded-xl border border-teal-200 text-xs">
                 <div>
-                    <label class="block font-bold text-gray-700 mb-1">১. শ্রেণি নির্বাচন করুন (Class Filter):</label>
-                    <select id="filterClass" onchange="filterMembersList()" class="w-full p-2 border rounded font-semibold text-gray-800 bg-white">
-                        <option value="all">সকল শ্রেণি (All Classes)</option>
+                    <label class="block font-bold text-gray-700 mb-1">শ্রেণি ফিল্টার:</label>
+                    <select id="filterClass" onchange="filterMembersList()" class="w-full p-2 border rounded font-semibold bg-white">
+                        <option value="all">সকল শ্রেণি</option>
                         <option value="নুরানী প্রথম শ্রেণি">নুরানী প্রথম শ্রেণি</option>
                         <option value="দাখিল ষষ্ঠ শ্রেণি">দাখিল ষষ্ঠ শ্রেণি</option>
                         <option value="দাখিল অষ্টম শ্রেণি">দাখিল অষ্টম শ্রেণি</option>
@@ -315,29 +290,24 @@
                     </select>
                 </div>
                 <div>
-                    <label class="block font-bold text-gray-700 mb-1">২. নাম / রোল / আইডি দিয়ে খুঁজুন (Keyword Search):</label>
-                    <input type="text" id="filterKeyword" onkeyup="filterMembersList()" placeholder="নাম, রোল অথবা আইডি লিখুন..." class="w-full p-2 border rounded font-semibold text-gray-800 bg-white">
+                    <label class="block font-bold text-gray-700 mb-1">নাম / রোল / আইডি দিয়ে খুঁজুন:</label>
+                    <input type="text" id="filterKeyword" onkeyup="filterMembersList()" placeholder="নাম, রোল অথবা আইডি..." class="w-full p-2 border rounded font-semibold bg-white">
                 </div>
             </div>
-
-            <!-- Members Data Table -->
             <div class="flex-1 overflow-y-auto border rounded-xl">
                 <table class="w-full text-left text-xs">
                     <thead class="bg-teal-800 text-white sticky top-0">
                         <tr>
-                            <th class="p-2.5">আইডি (ID)</th>
-                            <th class="p-2.5">নাম (Name)</th>
-                            <th class="p-2.5">শ্রেণি (Class)</th>
-                            <th class="p-2.5">রোল (Roll)</th>
+                            <th class="p-2.5">আইডি</th>
+                            <th class="p-2.5">নাম</th>
+                            <th class="p-2.5">শ্রেণি</th>
+                            <th class="p-2.5">রোল</th>
                             <th class="p-2.5">স্ট্যাটাস</th>
                         </tr>
                     </thead>
-                    <tbody id="membersTableBody" class="divide-y divide-gray-200 text-gray-700">
-                        <!-- Dynamic Filtered Content Loads Here -->
-                    </tbody>
+                    <tbody id="membersTableBody" class="divide-y divide-gray-200"></tbody>
                 </table>
             </div>
-            
             <div class="flex justify-between items-center pt-2 text-xs">
                 <span id="memberCountText" class="font-bold text-gray-600">মোট সদস্য: 0 জন</span>
                 <button onclick="closeModal('modalMemberList')" class="bg-gray-600 text-white px-4 py-1.5 rounded font-bold">বন্ধ করুন</button>
@@ -345,106 +315,119 @@
         </div>
     </div>
 
-    <!-- 4. Book Issue Modal -->
+    <!-- 4. Book Issue Modal (Auto Stock Minus) -->
     <div id="modalBookIssue" class="fixed inset-0 bg-black/50 hidden flex justify-center items-center z-50 p-4">
         <div class="bg-white w-full max-w-lg rounded-2xl p-6 space-y-4 shadow-xl">
             <div class="flex justify-between items-center border-b pb-3">
-                <h3 class="font-bold text-purple-800 text-base">📤 বই বা কিতাব ইস্যু ফরম</h3>
+                <h3 class="font-bold text-purple-800 text-base">📤 বই ইস্যু (অটো স্টক বিয়োগ)</h3>
                 <button onclick="closeModal('modalBookIssue')" class="text-gray-500 text-lg">&times;</button>
             </div>
-            <form onsubmit="alert('বই ইস্যু সম্পন্ন হয়েছে!'); closeModal('modalBookIssue'); return false;" class="space-y-3 text-xs">
+            <form onsubmit="issueBookToStudent(event)" class="space-y-3 text-xs">
                 <div>
-                    <label class="block font-medium mb-1">মেম্বার আইডি/শিক্ষার্থী আইডি</label>
-                    <input type="text" placeholder="202610001" required class="w-full p-2 border rounded">
+                    <label class="block font-medium mb-1">শিক্ষার্থী আইডি</label>
+                    <input type="text" id="issueStudentId" placeholder="202610001" required class="w-full p-2 border rounded">
                 </div>
                 <div>
-                    <label class="block font-medium mb-1">বইয়ের আইডি/কোড</label>
-                    <input type="text" placeholder="BK-1020" required class="w-full p-2 border rounded">
+                    <label class="block font-medium mb-1">বই আইডি/কোড (যেমন: BK-1020)</label>
+                    <input type="text" id="issueBookId" placeholder="BK-1020" required class="w-full p-2 border rounded">
                 </div>
                 <div class="grid grid-cols-2 gap-3">
                     <div>
                         <label class="block font-medium mb-1">ইস্যুর তারিখ</label>
-                        <input type="date" value="2026-10-17" required class="w-full p-2 border rounded">
+                        <input type="date" id="issueDate" required class="w-full p-2 border rounded">
                     </div>
                     <div>
-                        <label class="block font-medium mb-1">ফেরতের শেষ তারিখ</label>
-                        <input type="date" value="2026-10-24" required class="w-full p-2 border rounded">
+                        <label class="block font-medium mb-1">ফেরতের শেষ তারিখ (Due Date)</label>
+                        <input type="date" id="issueDueDate" required class="w-full p-2 border rounded">
                     </div>
                 </div>
-                <button type="submit" class="w-full bg-purple-700 text-white py-2 rounded font-bold hover:bg-purple-800">ইস্যু নিশ্চিত করুন</button>
+                <button type="submit" class="w-full bg-purple-700 text-white py-2 rounded font-bold hover:bg-purple-800">ইস্যু করুন ও স্টক কমান</button>
             </form>
         </div>
     </div>
 
-    <!-- 5. Book Return Modal -->
+    <!-- 5. Book Return Modal (Auto Stock Plus) -->
     <div id="modalBookReturn" class="fixed inset-0 bg-black/50 hidden flex justify-center items-center z-50 p-4">
         <div class="bg-white w-full max-w-lg rounded-2xl p-6 space-y-4 shadow-xl">
             <div class="flex justify-between items-center border-b pb-3">
-                <h3 class="font-bold text-amber-800 text-base">📥 বই ফেরত (Return) প্যানেল</h3>
+                <h3 class="font-bold text-amber-800 text-base">📥 বই ফেরত / রিটার্ন (অটো স্টক যোগ)</h3>
                 <button onclick="closeModal('modalBookReturn')" class="text-gray-500 text-lg">&times;</button>
             </div>
-            <form onsubmit="alert('বই ফেরত নেওয়া হয়েছে এবং স্টক আপডেট করা হয়েছে!'); closeModal('modalBookReturn'); return false;" class="space-y-3 text-xs">
+            <form onsubmit="returnIssuedBook(event)" class="space-y-3 text-xs">
                 <div>
-                    <label class="block font-medium mb-1">ইস্যু আইডি বা বইয়ের কোড</label>
-                    <input type="text" placeholder="BK-1020" required class="w-full p-2 border rounded">
+                    <label class="block font-medium mb-1">ইস্যুকৃত বইয়ের আইডি বা কোড (যেমন: BK-1020)</label>
+                    <input type="text" id="returnBookId" placeholder="BK-1020" required class="w-full p-2 border rounded">
                 </div>
-                <div>
-                    <label class="block font-medium mb-1">ফেরতের তারিখ</label>
-                    <input type="date" value="2026-10-17" required class="w-full p-2 border rounded">
-                </div>
-                <div>
-                    <label class="block font-medium mb-1">বইয়ের অবস্থা</label>
-                    <select class="w-full p-2 border rounded">
-                        <option>ভালো/অক্ষত</option>
-                        <option>আংশিক ক্ষতিগ্রস্ত (জরিমানা প্রযোজ্য)</option>
-                        <option>হারিয়ে গেছে (সম্পূর্ণ জরিমানা প্রযোজ্য)</option>
-                    </select>
-                </div>
-                <button type="submit" class="w-full bg-amber-700 text-white py-2 rounded font-bold hover:bg-amber-800">রিটার্ন এন্ট্রি করুন</button>
-            </form>
-        </div>
-    </div>
-
-    <!-- 6. Fine Management Modal -->
-    <div id="modalFine" class="fixed inset-0 bg-black/50 hidden flex justify-center items-center z-50 p-4">
-        <div class="bg-white w-full max-w-lg rounded-2xl p-6 space-y-4 shadow-xl">
-            <div class="flex justify-between items-center border-b pb-3">
-                <h3 class="font-bold text-rose-800 text-base">⚠️ জরিমানা গণনা ও জমা (Accounts Integration)</h3>
-                <button onclick="closeModal('modalFine')" class="text-gray-500 text-lg">&times;</button>
-            </div>
-            <form onsubmit="collectFineToAccounts(event)" class="space-y-3 text-xs">
                 <div>
                     <label class="block font-medium mb-1">শিক্ষার্থী আইডি</label>
-                    <input type="text" id="fineStudentId" placeholder="202610001" required class="w-full p-2 border rounded">
+                    <input type="text" id="returnStudentId" placeholder="202610001" required class="w-full p-2 border rounded">
                 </div>
-                <div class="grid grid-cols-2 gap-3">
-                    <div>
-                        <label class="block font-medium mb-1">জমা দেওয়ার স্থান</label>
-                        <select id="fineAccountSector" class="w-full p-2 border rounded bg-rose-50 font-bold">
-                            <option value="Accounts - Library Fine Income">08. Accounts (আয় খাত)</option>
-                            <option value="Fees Management - Fine Collection">09. Fees Management</option>
-                        </select>
-                    </div>
-                    <div>
-                        <label class="block font-medium mb-1">আদায়কৃত জরিমানা (টাকা)</label>
-                        <input type="number" id="fineAmount" value="30" required class="w-full p-2 border rounded font-bold text-rose-600">
-                    </div>
-                </div>
-                <div>
-                    <label class="block font-medium mb-1">বিবরণ/কারণ</label>
-                    <input type="text" id="fineReason" value="লাইব্রেরির বই দেরিতে জমা দেওয়া" class="w-full p-2 border rounded">
-                </div>
-                <button type="submit" class="w-full bg-rose-700 text-white py-2 rounded font-bold hover:bg-rose-800">
-                    💰 জরিমানা ফান্ডে জমা দিন (Deposit Money)
-                </button>
+                <button type="submit" class="w-full bg-amber-700 text-white py-2 rounded font-bold hover:bg-amber-800">বই ফেরত নিন ও স্টকে যোগ করুন</button>
             </form>
         </div>
     </div>
 
-    <!-- JavaScript for Filtering & Student Profiles -->
+    <!-- 6. NEW: Due Book Tracking Modal -->
+    <div id="modalDueTracking" class="fixed inset-0 bg-black/50 hidden flex justify-center items-center z-50 p-4">
+        <div class="bg-white w-full max-w-4xl rounded-2xl p-6 space-y-4 shadow-xl max-h-[90vh] flex flex-col">
+            <div class="flex justify-between items-center border-b pb-3">
+                <h3 class="font-bold text-rose-800 text-base">⏳ ডিউ বুক ট্র্যাকিং প্যানেল (তারিখ পার হওয়া বই)</h3>
+                <button onclick="closeModal('modalDueTracking')" class="text-gray-500 text-lg">&times;</button>
+            </div>
+            <div class="flex-1 overflow-y-auto border rounded-xl">
+                <table class="w-full text-left text-xs">
+                    <thead class="bg-rose-800 text-white sticky top-0">
+                        <tr>
+                            <th class="p-2.5">শিক্ষার্থী আইডি</th>
+                            <th class="p-2.5">বই আইডি</th>
+                            <th class="p-2.5">ইস্যুর তারিখ</th>
+                            <th class="p-2.5">জমার শেষ তারিখ</th>
+                            <th class="p-2.5">অবস্থা</th>
+                        </tr>
+                    </thead>
+                    <tbody id="dueTableBody" class="divide-y divide-gray-200"></tbody>
+                </table>
+            </div>
+            <div class="text-right">
+                <button onclick="closeModal('modalDueTracking')" class="bg-gray-600 text-white px-4 py-1.5 rounded text-xs font-bold">বন্ধ করুন</button>
+            </div>
+        </div>
+    </div>
+
+    <!-- 7. Automatic Library Report Modal -->
+    <div id="modalReport" class="fixed inset-0 bg-black/50 hidden flex justify-center items-center z-50 p-4">
+        <div class="bg-white w-full max-w-xl rounded-2xl p-6 space-y-4 shadow-xl">
+            <div class="flex justify-between items-center border-b pb-3">
+                <h3 class="font-bold text-indigo-800 text-base">📊 স্বয়ংক্রিয় লাইব্রেরি রিপোর্ট সামারি</h3>
+                <button onclick="closeModal('modalReport')" class="text-gray-500 text-lg">&times;</button>
+            </div>
+            <div class="grid grid-cols-2 gap-4 text-xs">
+                <div class="bg-emerald-50 p-3 rounded-lg border border-emerald-200">
+                    <p class="text-gray-600">মোট কিতাব/বই স্টক</p>
+                    <h4 id="reportTotalBooks" class="text-lg font-bold text-emerald-800">0 টি</h4>
+                </div>
+                <div class="bg-purple-50 p-3 rounded-lg border border-purple-200">
+                    <p class="text-gray-600">বর্তমানে ইস্যুকৃত বই</p>
+                    <h4 id="reportIssuedBooks" class="text-lg font-bold text-purple-800">0 টি</h4>
+                </div>
+                <div class="bg-blue-50 p-3 rounded-lg border border-blue-200">
+                    <p class="text-gray-600">মোট লাইব্রেরি সদস্য</p>
+                    <h4 id="reportTotalMembers" class="text-lg font-bold text-blue-800">0 জন</h4>
+                </div>
+                <div class="bg-rose-50 p-3 rounded-lg border border-rose-200">
+                    <p class="text-gray-600">মেয়াদ উত্তীর্ণ (Due) বই</p>
+                    <h4 id="reportDueBooks" class="text-lg font-bold text-rose-800">0 টি</h4>
+                </div>
+            </div>
+            <div class="text-right">
+                <button onclick="window.print()" class="bg-indigo-700 text-white px-4 py-2 rounded text-xs font-bold hover:bg-indigo-800">🖨️ প্রিন্ট রিপোর্ট</button>
+            </div>
+        </div>
+    </div>
+
+    <!-- Comprehensive JavaScript Engine -->
     <script>
-        // Exact Student Database from Student Profile
-        const studentProfileData = [
+        const defaultStudentProfiles = [
             { id: "202606001", name: "মাহবুবা (Mahbuba)", class: "দাখিল ষষ্ঠ শ্রেণি", roll: "001" },
             { id: "202610001", name: "সুস্মিতা (Susmita)", class: "দাখিল অষ্টম শ্রেণি", roll: "001" },
             { id: "202615001", name: "সুস্মিতা (Susmita)", class: "নুরানী প্রথম শ্রেণি", roll: "001" },
@@ -453,26 +436,83 @@
             { id: "202609001", name: "মোত্তাকী (Mottaki)", class: "দাখিল নবম শ্রেণি", roll: "001" }
         ];
 
+        function initLibrarySystem() {
+            // Set default date for issue forms
+            const today = new Date().toISOString().split('T')[0];
+            if(document.getElementById('issueDate')) document.getElementById('issueDate').value = today;
+        }
+
         function openModal(modalId) {
             document.getElementById(modalId).classList.remove('hidden');
-            if (modalId === 'modalMembership') {
-                populateStudentDropdown();
-            }
-            if (modalId === 'modalMemberList') {
-                filterMembersList();
-            }
+            if (modalId === 'modalMembership') populateStudentDropdown();
+            if (modalId === 'modalMemberList') filterMembersList();
+            if (modalId === 'modalBookList') renderBookList();
+            if (modalId === 'modalDueTracking') renderDueTrackingList();
+            if (modalId === 'modalReport') updateAutomaticReport();
         }
 
         function closeModal(modalId) {
             document.getElementById(modalId).classList.add('hidden');
         }
 
-        // Auto-Populate Dropdown
+        // 1. BOOK MANAGEMENT & PERMANENT STORAGE
+        function saveNewBook(event) {
+            event.preventDefault();
+            const name = document.getElementById('bookName').value.trim();
+            const author = document.getElementById('bookAuthor').value.trim();
+            const category = document.getElementById('bookCategory').value;
+            const bookId = document.getElementById('bookIdCode').value.trim();
+            const qty = parseInt(document.getElementById('bookQty').value) || 1;
+
+            let books = JSON.parse(localStorage.getItem('library_books')) || [];
+            
+            // Check if book ID exists
+            let existing = books.find(b => b.bookId === bookId);
+            if(existing) {
+                existing.qty += qty;
+            } else {
+                books.push({ bookId, name, author, category, qty });
+            }
+
+            localStorage.setItem('library_books', JSON.stringify(books));
+            alert(`✅ "${name}" বই সফলভাবে লাইব্রেরিতে এন্ট্রি ও সেভ করা হয়েছে!`);
+            document.getElementById('modalBookAdd').querySelector('form').reset();
+            closeModal('modalBookAdd');
+        }
+
+        function renderBookList() {
+            let books = JSON.parse(localStorage.getItem('library_books')) || [];
+            const keyword = document.getElementById('filterBookKeyword').value.trim().toLowerCase();
+            const tbody = document.getElementById('bookTableBody');
+            tbody.innerHTML = '';
+
+            let filtered = books.filter(b => !keyword || b.name.toLowerCase().includes(keyword) || b.bookId.toLowerCase().includes(keyword) || b.author.toLowerCase().includes(keyword));
+
+            if(filtered.length === 0) {
+                tbody.innerHTML = `<tr><td colspan="5" class="p-4 text-center text-rose-600 font-bold">কোনো বই পাওয়া যায়নি!</td></tr>`;
+                return;
+            }
+
+            filtered.forEach(b => {
+                let row = document.createElement('tr');
+                row.className = "hover:bg-gray-50 border-b";
+                row.innerHTML = `
+                    <td class="p-2.5 font-bold text-emerald-900">${b.bookId}</td>
+                    <td class="p-2.5 font-semibold">${b.name}</td>
+                    <td class="p-2.5">${b.author}</td>
+                    <td class="p-2.5">${b.category}</td>
+                    <td class="p-2.5 font-bold text-emerald-700">${b.qty} টি</td>
+                `;
+                tbody.appendChild(row);
+            });
+        }
+
+        // 2 & 3. STUDENT MEMBERSHIP & FILTERING
         function populateStudentDropdown() {
             const dropdown = document.getElementById('studentSelectDropdown');
             dropdown.innerHTML = '<option value="">-- স্টুডেন্ট প্রোফাইল থেকে নির্বাচন করুন --</option>';
 
-            studentProfileData.forEach(st => {
+            defaultStudentProfiles.forEach(st => {
                 let opt = document.createElement('option');
                 opt.value = st.id;
                 opt.textContent = `${st.name} | আইডি: ${st.id} (${st.class})`;
@@ -491,53 +531,58 @@
         function fetchStudentFromProfile() {
             const searchId = document.getElementById('studentSearchId').value.trim();
             const msg = document.getElementById('searchMessage');
-
-            if (!searchId) {
-                alert('অনুগ্রহ করে আইডি নির্বাচন করুন বা লিখুন!');
-                return;
-            }
-
-            let found = studentProfileData.find(st => st.id === searchId);
+            let found = defaultStudentProfiles.find(st => st.id === searchId);
 
             if (found) {
                 document.getElementById('studentNameField').value = found.name;
                 document.getElementById('studentClassField').value = found.class;
                 document.getElementById('studentRollField').value = found.roll;
-
-                msg.innerText = "✅ Student Profile থেকে তথ্য লোড হয়েছে!";
+                msg.innerText = "✅ সফলভাবে ফেচ হয়েছে!";
                 msg.className = "text-[11px] font-semibold mt-1 text-emerald-600";
             } else {
                 document.getElementById('studentNameField').value = "";
                 document.getElementById('studentClassField').value = "";
                 document.getElementById('studentRollField').value = "";
-
-                msg.innerText = "⚠️ আইডিটি সঠিক নয়! সঠিক আইডি দিন।";
+                msg.innerText = "⚠️ আইডি পাওয়া যায়নি!";
                 msg.className = "text-[11px] font-semibold mt-1 text-rose-600";
             }
         }
 
-        // SMART COMBINED FILTER ENGINE: Class + (Name / Roll / ID)
+        function saveStudentMembership(event) {
+            event.preventDefault();
+            const id = document.getElementById('studentSearchId').value.trim();
+            const name = document.getElementById('studentNameField').value;
+            const cls = document.getElementById('studentClassField').value;
+            const roll = document.getElementById('studentRollField').value;
+
+            if (!name) {
+                alert("প্রথমে শিক্ষার্থী ফেচ করুন!");
+                return;
+            }
+
+            let members = JSON.parse(localStorage.getItem('library_members')) || [];
+            if(!members.some(m => m.id === id)) {
+                members.push({ id, name, class: cls, roll });
+                localStorage.setItem('library_members', JSON.stringify(members));
+            }
+
+            alert(`✅ ${name} সফলভাবে লাইব্রেরি সদস্য হিসেবে সংরক্ষিত হয়েছে!`);
+            closeModal('modalMembership');
+        }
+
         function filterMembersList() {
             const selectedClass = document.getElementById('filterClass').value;
             const keyword = document.getElementById('filterKeyword').value.trim().toLowerCase();
             const tableBody = document.getElementById('membersTableBody');
-
             tableBody.innerHTML = '';
 
-            let filtered = studentProfileData.filter(st => {
-                // 1. Class Matching Logic
+            let members = JSON.parse(localStorage.getItem('library_members')) || [];
+            let filtered = members.filter(st => {
                 let classMatches = (selectedClass === 'all') || (st.class === selectedClass);
-
-                // 2. Keyword Matching Logic (Name or Roll or ID)
-                let keywordMatches = !keyword || 
-                    st.name.toLowerCase().includes(keyword) || 
-                    st.id.toLowerCase().includes(keyword) || 
-                    st.roll.toLowerCase().includes(keyword);
-
+                let keywordMatches = !keyword || st.name.toLowerCase().includes(keyword) || st.id.toLowerCase().includes(keyword) || st.roll.toLowerCase().includes(keyword);
                 return classMatches && keywordMatches;
             });
 
-            // Populate Filtered Results
             if (filtered.length > 0) {
                 filtered.forEach(st => {
                     let row = document.createElement('tr');
@@ -554,29 +599,112 @@
             } else {
                 tableBody.innerHTML = `<tr><td colspan="5" class="p-4 text-center text-rose-600 font-bold">কোনো সদস্য পাওয়া যায়নি!</td></tr>`;
             }
-
             document.getElementById('memberCountText').innerText = `মোট সদস্য: ${filtered.length} জন`;
         }
 
-        // Save Membership
-        function saveStudentMembership(event) {
+        // 3. BOOK ISSUE & AUTO STOCK MINUS
+        function issueBookToStudent(event) {
             event.preventDefault();
-            const name = document.getElementById('studentNameField').value;
-            
-            if (!name) {
-                alert("প্রথমে ড্রপডাউন থেকে সঠিক শিক্ষার্থী ফেচ করুন!");
+            const studentId = document.getElementById('issueStudentId').value.trim();
+            const bookId = document.getElementById('issueBookId').value.trim();
+            const issueDate = document.getElementById('issueDate').value;
+            const dueDate = document.getElementById('issueDueDate').value;
+
+            let books = JSON.parse(localStorage.getItem('library_books')) || [];
+            let book = books.find(b => b.bookId === bookId);
+
+            if(!book || book.qty <= 0) {
+                alert("⚠️ এই বই লাইব্রেরি স্টকে নেই বা আইডি ভুল!");
                 return;
             }
 
-            alert(`✅ ${name}-কে সফলভাবে লাইব্রেরি সদস্য হিসেবে অন্তর্ভূক্ত করা হয়েছে!`);
-            closeModal('modalMembership');
+            // Minus stock
+            book.qty -= 1;
+            localStorage.setItem('library_books', JSON.stringify(books));
+
+            // Save issue log
+            let issues = JSON.parse(localStorage.getItem('library_issues')) || [];
+            issues.push({ studentId, bookId, issueDate, dueDate });
+            localStorage.setItem('library_issues', JSON.stringify(issues));
+
+            alert(`✅ বই সফলভাবে ইস্যু করা হয়েছে এবং স্টক থেকে ১টি কমানো হয়েছে!`);
+            closeModal('modalBookIssue');
         }
 
-        function collectFineToAccounts(event) {
+        // BOOK RETURN & AUTO STOCK PLUS
+        function returnIssuedBook(event) {
             event.preventDefault();
-            const amount = parseFloat(document.getElementById('fineAmount').value) || 0;
-            alert(`✅ ৳${amount} টাকা সফলভাবে একাউন্টস ফান্ডে জমা হয়েছে!`);
-            closeModal('modalFine');
+            const bookId = document.getElementById('returnBookId').value.trim();
+            const studentId = document.getElementById('returnStudentId').value.trim();
+
+            let issues = JSON.parse(localStorage.getItem('library_issues')) || [];
+            let index = issues.findIndex(i => i.bookId === bookId && i.studentId === studentId);
+
+            if(index === -1) {
+                alert("⚠️ এই শিক্ষার্থী ও বইয়ের কোনো ইস্যু রেকর্ড পাওয়া যায়নি!");
+                return;
+            }
+
+            // Remove from issue log
+            issues.splice(index, 1);
+            localStorage.setItem('library_issues', JSON.stringify(issues));
+
+            // Plus stock back
+            let books = JSON.parse(localStorage.getItem('library_books')) || [];
+            let book = books.find(b => b.bookId === bookId);
+            if(book) {
+                book.qty += 1;
+                localStorage.setItem('library_books', JSON.stringify(books));
+            }
+
+            alert(`✅ বই সফলভাবে ফেরত নেওয়া হয়েছে এবং স্টকে স্টক যোগ করা হয়েছে!`);
+            closeModal('modalBookReturn');
+        }
+
+        // 4. DUE BOOK TRACKING PANEL
+        function renderDueTrackingList() {
+            let issues = JSON.parse(localStorage.getItem('library_issues')) || [];
+            const tbody = document.getElementById('dueTableBody');
+            tbody.innerHTML = '';
+            const today = new Date().toISOString().split('T')[0];
+
+            let dueList = issues.filter(i => i.dueDate < today);
+
+            if(dueList.length === 0) {
+                tbody.innerHTML = `<tr><td colspan="5" class="p-4 text-center text-emerald-700 font-bold">বর্তমানে কোনো মেয়াদ উত্তীর্ণ (Due) বই নেই!</td></tr>`;
+                return;
+            }
+
+            dueList.forEach(i => {
+                let row = document.createElement('tr');
+                row.className = "hover:bg-gray-50 border-b";
+                row.innerHTML = `
+                    <td class="p-2.5 font-bold text-rose-900">${i.studentId}</td>
+                    <td class="p-2.5 font-semibold">${i.bookId}</td>
+                    <td class="p-2.5">${i.issueDate}</td>
+                    <td class="p-2.5 font-bold text-rose-600">${i.dueDate}</td>
+                    <td class="p-2.5"><span class="bg-rose-100 text-rose-800 px-2 py-0.5 rounded text-[10px] font-bold">মেয়াদ উত্তীর্ণ!</span></td>
+                `;
+                tbody.appendChild(row);
+            });
+        }
+
+        // 5. AUTOMATIC LIBRARY REPORT PANEL
+        function updateAutomaticReport() {
+            let books = JSON.parse(localStorage.getItem('library_books')) || [];
+            let members = JSON.parse(localStorage.getItem('library_members')) || [];
+            let issues = JSON.parse(localStorage.getItem('library_issues')) || [];
+            const today = new Date().toISOString().split('T')[0];
+
+            let totalStock = books.reduce((sum, b) => sum + b.qty, 0);
+            let totalIssued = issues.length;
+            let totalMembers = members.length;
+            let totalDue = issues.filter(i => i.dueDate < today).length;
+
+            document.getElementById('reportTotalBooks').innerText = `${totalStock + totalIssued} টি`;
+            document.getElementById('reportIssuedBooks').innerText = `${totalIssued} টি`;
+            document.getElementById('reportTotalMembers').innerText = `${totalMembers} জন`;
+            document.getElementById('reportDueBooks').innerText = `${totalDue} টি`;
         }
     </script>
 

@@ -8,7 +8,7 @@
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     <link rel="stylesheet" href="style.css">
 </head>
-<body class="bg-gray-100 font-sans" onload="initLibraryApp()">
+<body class="bg-gray-100 font-sans">
 
     <div class="flex h-screen overflow-hidden">
         
@@ -48,7 +48,7 @@
         <!-- Main Content Area -->
         <div class="flex-1 flex flex-col overflow-y-auto">
             
-            <!-- Top Header -->
+            <!-- Top Navbar -->
             <header class="bg-white shadow-sm p-4 flex justify-between items-center no-print">
                 <div class="flex items-center gap-3">
                     <span class="font-bold text-emerald-800 text-lg">📖 Library Management System</span>
@@ -59,25 +59,25 @@
                 </div>
             </header>
 
-            <!-- Main Page Content -->
+            <!-- Page Content -->
             <main class="p-6 space-y-6">
                 
-                <!-- Banner Header -->
+                <!-- Page Banner -->
                 <div class="bg-gradient-to-r from-emerald-800 to-emerald-950 text-white p-6 rounded-2xl shadow-sm flex flex-col md:flex-row justify-between items-center gap-4">
                     <div>
                         <h2 class="text-xl font-bold">মাদ্রাসা লাইব্রেরি ও কিতাবখানা ডেটা সেন্টার</h2>
-                        <p class="text-emerald-200 text-xs mt-1">সব ফর্মে শতভাগ কার্যকর ডাটা সেভিং ও রিয়েল-টাইম ট্র্যাকিং প্যানেল।</p>
+                        <p class="text-emerald-200 text-xs mt-1">সব ফর্মে কার্যকর ডাটা সেভিং ও রিয়েল-টাইম ট্র্যাকিং প্যানেল।</p>
                     </div>
                     <button onclick="openModal('modalBookAdd')" class="bg-white text-emerald-900 px-4 py-2 rounded-xl font-bold text-xs hover:bg-emerald-50 transition shadow-sm">+ নতুন বই যোগ করুন</button>
                 </div>
 
-                <!-- Sub-Modules Grid Layout -->
+                <!-- 6 Main Sub-Modules + Live Report Grid -->
                 <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
                     
                     <!-- 1. Book Management -->
                     <div class="bg-white p-5 rounded-xl shadow-sm border-t-4 border-emerald-600 space-y-3">
                         <div class="flex items-center justify-between border-b pb-2">
-                            <h3 class="font-bold text-gray-800 text-sm"><i class="fa-solid fa-book text-emerald-600 mr-1"></i> Book Management</h3>
+                            <h3 class="font-bold text-gray-800 text-sm flex items-center gap-2"><i class="fa-solid fa-book text-emerald-600"></i> Book Management</h3>
                             <span class="text-xs bg-emerald-50 text-emerald-700 px-2 py-0.5 rounded font-semibold">বই ও স্টক</span>
                         </div>
                         <p class="text-xs text-gray-600">নতুন বই এন্ট্রি এবং কিতাবের নাম বা আইডি দিয়ে ফিল্টারিং ব্যবস্থা।</p>
@@ -90,17 +90,17 @@
                     <!-- 2. Student Membership -->
                     <div class="bg-white p-5 rounded-xl shadow-sm border-t-4 border-blue-600 space-y-3">
                         <div class="flex items-center justify-between border-b pb-2">
-                            <h3 class="font-bold text-gray-800 text-sm"><i class="fa-solid fa-id-card text-blue-600 mr-1"></i> Student Membership</h3>
+                            <h3 class="font-bold text-gray-800 text-sm flex items-center gap-2"><i class="fa-solid fa-id-card text-blue-600"></i> Student Membership</h3>
                             <span class="text-xs bg-blue-50 text-blue-700 px-2 py-0.5 rounded font-semibold">সদস্য এন্ট্রি</span>
                         </div>
-                        <p class="text-xs text-gray-600">প্রোফাইল থেকে শিক্ষার্থী ফেচ করে স্থায়ী সদস্য নিবন্ধনের সুবিধা।</p>
+                        <p class="text-xs text-gray-600">প্রোফাইল থেকে শিক্ষার্থী লোড করে স্থায়ী সদস্য নিবন্ধনের সুবিধা।</p>
                         <button onclick="openModal('modalMembership')" class="w-full bg-blue-50 text-blue-700 py-1.5 rounded text-xs font-bold hover:bg-blue-100">সদস্য এন্ট্রি করুন</button>
                     </div>
 
-                    <!-- 3. Members List & Search -->
+                    <!-- 3. Members List -->
                     <div class="bg-white p-5 rounded-xl shadow-sm border-t-4 border-teal-600 space-y-3">
                         <div class="flex items-center justify-between border-b pb-2">
-                            <h3 class="font-bold text-gray-800 text-sm"><i class="fa-solid fa-users text-teal-600 mr-1"></i> Members List</h3>
+                            <h3 class="font-bold text-gray-800 text-sm flex items-center gap-2"><i class="fa-solid fa-users text-teal-600"></i> Members List</h3>
                             <span class="text-xs bg-teal-50 text-teal-700 px-2 py-0.5 rounded font-semibold">সদস্য তালিকা</span>
                         </div>
                         <p class="text-xs text-gray-600">শ্রেণি, নাম, রোল ও আইডি দিয়ে সমন্বিত সদস্য ফিল্টারিং প্যানেল।</p>
@@ -110,7 +110,7 @@
                     <!-- 4. Book Issue -->
                     <div class="bg-white p-5 rounded-xl shadow-sm border-t-4 border-purple-600 space-y-3">
                         <div class="flex items-center justify-between border-b pb-2">
-                            <h3 class="font-bold text-gray-800 text-sm"><i class="fa-solid fa-book-arrow-up text-purple-600 mr-1"></i> Book Issue</h3>
+                            <h3 class="font-bold text-gray-800 text-sm flex items-center gap-2"><i class="fa-solid fa-book-arrow-up text-purple-600"></i> Book Issue</h3>
                             <span class="text-xs bg-purple-50 text-purple-700 px-2 py-0.5 rounded font-semibold">বই ইস্যু</span>
                         </div>
                         <p class="text-xs text-gray-600">বই ইস্যু করার সাথে সাথে স্টক থেকে স্বয়ংক্রিয় ১টি বই বিয়োগ হবে।</p>
@@ -120,7 +120,7 @@
                     <!-- 5. Book Return -->
                     <div class="bg-white p-5 rounded-xl shadow-sm border-t-4 border-amber-600 space-y-3">
                         <div class="flex items-center justify-between border-b pb-2">
-                            <h3 class="font-bold text-gray-800 text-sm"><i class="fa-solid fa-book-arrow-down text-amber-600 mr-1"></i> Book Return</h3>
+                            <h3 class="font-bold text-gray-800 text-sm flex items-center gap-2"><i class="fa-solid fa-book-arrow-down text-amber-600"></i> Book Return</h3>
                             <span class="text-xs bg-amber-50 text-amber-700 px-2 py-0.5 rounded font-semibold">বই ফেরত</span>
                         </div>
                         <p class="text-xs text-gray-600">বই ফেরত দিলে স্বয়ংক্রিয়ভাবে স্টক তালিকায় আবার যোগ হবে।</p>
@@ -130,17 +130,17 @@
                     <!-- 6. Due Book Tracking -->
                     <div class="bg-white p-5 rounded-xl shadow-sm border-t-4 border-rose-600 space-y-3">
                         <div class="flex items-center justify-between border-b pb-2">
-                            <h3 class="font-bold text-gray-800 text-sm"><i class="fa-solid fa-clock-rotate-left text-rose-600 mr-1"></i> Due Book Tracking</h3>
+                            <h3 class="font-bold text-gray-800 text-sm flex items-center gap-2"><i class="fa-solid fa-clock-rotate-left text-rose-600"></i> Due Book Tracking</h3>
                             <span class="text-xs bg-rose-50 text-rose-700 px-2 py-0.5 rounded font-semibold">বকেয়া ট্র্যাকিং</span>
                         </div>
                         <p class="text-xs text-gray-600">নির্ধারিত তারিখ পার হওয়া বইগুলোর তালিকা রিয়েল-টাইমে দেখা যাবে।</p>
                         <button onclick="openModal('modalDueTracking')" class="w-full bg-rose-50 text-rose-700 py-1.5 rounded text-xs font-bold hover:bg-rose-100">ডিউ বুক তালিকা</button>
                     </div>
 
-                    <!-- 7. Automatic Library Report -->
+                    <!-- Live Report Card Banner -->
                     <div class="bg-white p-5 rounded-xl shadow-sm border-t-4 border-indigo-600 space-y-3 md:col-span-2 lg:col-span-3">
                         <div class="flex items-center justify-between border-b pb-2">
-                            <h3 class="font-bold text-gray-800 text-sm"><i class="fa-solid fa-chart-line text-indigo-600 mr-1"></i> Live Library Report</h3>
+                            <h3 class="font-bold text-gray-800 text-sm flex items-center gap-2"><i class="fa-solid fa-chart-line text-indigo-600"></i> Live Library Report</h3>
                             <span class="text-xs bg-indigo-50 text-indigo-700 px-2 py-0.5 rounded font-semibold">লাইভ সামারি</span>
                         </div>
                         <p class="text-xs text-gray-600">লাইব্রেরির মোট বই, সদস্য, ইস্যুকৃত বই ও বকেয়া বইয়ের স্বয়ংক্রিয় লাইভ রিপোর্ট।</p>
@@ -154,16 +154,16 @@
         </div>
     </div>
 
-    <!-- ==================== MODALS & FORMS ==================== -->
+    <!-- ==================== ALL MODALS ==================== -->
 
-    <!-- 1. Book Entry Modal -->
+    <!-- 1. Book Add Modal -->
     <div id="modalBookAdd" class="fixed inset-0 bg-black/50 hidden flex justify-center items-center z-50 p-4">
         <div class="bg-white w-full max-w-lg rounded-2xl p-6 space-y-4 shadow-xl">
             <div class="flex justify-between items-center border-b pb-3">
-                <h3 class="font-bold text-emerald-800 text-base">📚 নতুন বই এন্ট্রি</h3>
+                <h3 class="font-bold text-emerald-800 text-base">📚 নতুন বই যোগ করুন</h3>
                 <button onclick="closeModal('modalBookAdd')" class="text-gray-500 text-lg">&times;</button>
             </div>
-            <form onsubmit="handleBookSubmit(event)" class="space-y-3 text-xs">
+            <form id="formBookAdd" class="space-y-3 text-xs">
                 <div>
                     <label class="block font-medium mb-1">বই/কিতাবের নাম</label>
                     <input type="text" id="bName" required placeholder="যেমন: সহীহ আল-বুখারী" class="w-full p-2 border rounded">
@@ -205,7 +205,7 @@
                 <h3 class="font-bold text-emerald-800 text-base">📖 সংরক্ষিত বইয়ের তালিকা</h3>
                 <button onclick="closeModal('modalBookList')" class="text-gray-500 text-lg">&times;</button>
             </div>
-            <input type="text" id="bookSearchKeyword" onkeyup="displayBookTable()" placeholder="বইয়ের নাম, লেখক বা আইডি দিয়ে ফিল্টার করুন..." class="w-full p-2 border rounded text-xs">
+            <input type="text" id="bookSearchKeyword" onkeyup="renderBookTable()" placeholder="বইয়ের নাম, লেখক বা আইডি দিয়ে ফিল্টার করুন..." class="w-full p-2 border rounded text-xs">
             <div class="flex-1 overflow-y-auto border rounded-xl">
                 <table class="w-full text-left text-xs">
                     <thead class="bg-emerald-800 text-white sticky top-0">
@@ -226,25 +226,25 @@
         </div>
     </div>
 
-    <!-- 2. Student Membership Registration Modal -->
+    <!-- 2. Student Membership Modal (Student Profile Auto Linked) -->
     <div id="modalMembership" class="fixed inset-0 bg-black/50 hidden flex justify-center items-center z-50 p-4">
         <div class="bg-white w-full max-w-lg rounded-2xl p-6 space-y-4 shadow-xl">
             <div class="flex justify-between items-center border-b pb-3">
-                <h3 class="font-bold text-blue-800 text-base">👨‍🎓 সদস্য নিবন্ধন</h3>
+                <h3 class="font-bold text-blue-800 text-base">👨‍🎓 সদস্য নিবন্ধন (Student Profile Auto Sync)</h3>
                 <button onclick="closeModal('modalMembership')" class="text-gray-500 text-lg">&times;</button>
             </div>
-            <form onsubmit="handleMembershipSubmit(event)" class="space-y-3 text-xs">
+            <form id="formMembership" class="space-y-3 text-xs">
                 <div>
-                    <label class="block font-medium mb-1">শিক্ষার্থী নির্বাচন করুন</label>
-                    <select id="mStudentSelect" onchange="autoFillStudentDetails()" class="w-full p-2 border rounded font-bold text-blue-900 bg-blue-50">
-                        <option value="">-- ড্রপডাউন থেকে সিলেক্ট করুন --</option>
+                    <label class="block font-medium mb-1">স্টুডেন্ট প্রোফাইল থেকে শিক্ষার্থী নির্বাচন করুন</label>
+                    <select id="mStudentSelect" onchange="autoFillFromSelect()" class="w-full p-2 border rounded font-bold text-blue-900 bg-blue-50">
+                        <option value="">-- লোড হচ্ছে... --</option>
                     </select>
                 </div>
                 <div class="flex gap-2">
-                    <input type="text" id="mStudentId" placeholder="বা আইডি লিখুন (যেমন: 202610001)" class="flex-1 p-2 border rounded font-bold text-blue-900">
-                    <button type="button" onclick="searchStudentById()" class="bg-blue-600 text-white px-3 py-1.5 rounded font-bold hover:bg-blue-700">🔍 ফেচ</button>
+                    <input type="text" id="mStudentId" placeholder="বা আইডি দিয়ে খুঁজুন (যেমন: 202610001)" class="flex-1 p-2 border rounded font-bold text-blue-900">
+                    <button type="button" onclick="fetchStudentProfileById()" class="bg-blue-600 text-white px-3 py-1.5 rounded font-bold hover:bg-blue-700">🔍 ফেচ</button>
                 </div>
-                <p id="mStatusMsg" class="text-[11px] font-semibold text-gray-500">* শিক্ষার্থী নির্বাচন করুন বা আইডি দিয়ে সার্চ করুন।</p>
+                <p id="mStatusMsg" class="text-[11px] font-semibold text-gray-500">* ড্রপডাউন থেকে নির্বাচন করুন অথবা সরাসরি আইডি দিন।</p>
                 <div>
                     <label class="block font-medium mb-1">শিক্ষার্থীর নাম</label>
                     <input type="text" id="mStudentName" readonly class="w-full p-2 border rounded bg-gray-50 font-bold text-gray-800">
@@ -274,7 +274,7 @@
             <div class="grid grid-cols-1 md:grid-cols-2 gap-3 bg-teal-50 p-3 rounded-xl border border-teal-200 text-xs">
                 <div>
                     <label class="block font-bold text-gray-700 mb-1">শ্রেণি ফিল্টার:</label>
-                    <select id="mFilterClass" onchange="displayMembersTable()" class="w-full p-2 border rounded font-semibold bg-white">
+                    <select id="mFilterClass" onchange="renderMembersTable()" class="w-full p-2 border rounded font-semibold bg-white">
                         <option value="all">সকল শ্রেণি</option>
                         <option value="নুরানী প্রথম শ্রেণি">নুরানী প্রথম শ্রেণি</option>
                         <option value="দাখিল ষষ্ঠ শ্রেণি">দাখিল ষষ্ঠ শ্রেণি</option>
@@ -286,7 +286,7 @@
                 </div>
                 <div>
                     <label class="block font-bold text-gray-700 mb-1">নাম / রোল / আইডি দিয়ে ফিল্টার:</label>
-                    <input type="text" id="mSearchKeyword" onkeyup="displayMembersTable()" placeholder="নাম, রোল অথবা আইডি লিখুন..." class="w-full p-2 border rounded font-semibold bg-white">
+                    <input type="text" id="mSearchKeyword" onkeyup="renderMembersTable()" placeholder="নাম, রোল অথবা আইডি লিখুন..." class="w-full p-2 border rounded font-semibold bg-white">
                 </div>
             </div>
             <div class="flex-1 overflow-y-auto border rounded-xl">
@@ -305,7 +305,7 @@
             </div>
             <div class="flex justify-between items-center pt-2 text-xs">
                 <span id="memberCounterText" class="font-bold text-gray-600">মোট সদস্য: 0 জন</span>
-                <button onclick="closeModal('modalMemberList')" class="bg-gray-600 text-white px-4 py-1.5 rounded font-bold">বন্ধ করুন</button>
+                <button onclick="closeModal('modalMemberList')" class="bg-gray-600 text-white px-4 py-1.5 rounded text-xs font-bold">বন্ধ করুন</button>
             </div>
         </div>
     </div>
@@ -317,7 +317,7 @@
                 <h3 class="font-bold text-purple-800 text-base">📤 বই ইস্যু ফরম</h3>
                 <button onclick="closeModal('modalBookIssue')" class="text-gray-500 text-lg">&times;</button>
             </div>
-            <form onsubmit="handleIssueSubmit(event)" class="space-y-3 text-xs">
+            <form id="formBookIssue" class="space-y-3 text-xs">
                 <div>
                     <label class="block font-medium mb-1">শিক্ষার্থীর আইডি (যেমন: 202610001)</label>
                     <input type="text" id="issueSId" required placeholder="202610001" class="w-full p-2 border rounded">
@@ -348,7 +348,7 @@
                 <h3 class="font-bold text-amber-800 text-base">📥 বই ফেরত / রিটার্ন</h3>
                 <button onclick="closeModal('modalBookReturn')" class="text-gray-500 text-lg">&times;</button>
             </div>
-            <form onsubmit="handleReturnSubmit(event)" class="space-y-3 text-xs">
+            <form id="formBookReturn" class="space-y-3 text-xs">
                 <div>
                     <label class="block font-medium mb-1">বইয়ের কোড/আইডি (যেমন: BK-1020)</label>
                     <input type="text" id="retBCode" required placeholder="BK-1020" class="w-full p-2 border rounded">
@@ -389,7 +389,7 @@
         </div>
     </div>
 
-    <!-- 7. Automatic Library Report Modal -->
+    <!-- 7. Dynamic Library Report Modal -->
     <div id="modalReport" class="fixed inset-0 bg-black/50 hidden flex justify-center items-center z-50 p-4">
         <div class="bg-white w-full max-w-xl rounded-2xl p-6 space-y-4 shadow-xl">
             <div class="flex justify-between items-center border-b pb-3">
@@ -420,10 +420,10 @@
         </div>
     </div>
 
-    <!-- JavaScript Data Engine Script -->
+    <!-- JavaScript Application Engine -->
     <script>
-        // Default Student Profile Master List
-        const masterStudentProfiles = [
+        // Master Student Database
+        const masterStudentList = [
             { id: "202606001", name: "মাহবুবা (Mahbuba)", class: "দাখিল ষষ্ঠ শ্রেণি", roll: "001" },
             { id: "202610001", name: "সুস্মিতা (Susmita)", class: "দাখিল অষ্টম শ্রেণি", roll: "001" },
             { id: "202615001", name: "সুস্মিতা (Susmita)", class: "নুরানী প্রথম শ্রেণি", roll: "001" },
@@ -432,42 +432,74 @@
             { id: "202609001", name: "মোত্তাকী (Mottaki)", class: "দাখিল নবম শ্রেণি", roll: "001" }
         ];
 
-        // Safe Initialization Engine
-        function initLibraryApp() {
+        // Fetch Student Profiles from Student Management Module (students_db or LocalStorage)
+        function getStudentProfilesFromSystem() {
+            let list = [...masterStudentList];
+            for (let i = 0; i < localStorage.length; i++) {
+                let key = localStorage.key(i);
+                if (key.includes('student') || key.includes('Student')) {
+                    try {
+                        let data = JSON.parse(localStorage.getItem(key));
+                        if (Array.isArray(data)) {
+                            data.forEach(s => {
+                                let stId = (s.id || s.studentId || s.code || '').toString().trim();
+                                if (stId && !list.some(item => item.id === stId)) {
+                                    list.push({
+                                        id: stId,
+                                        name: s.name || s.studentName || "অজ্ঞাত",
+                                        class: s.class || s.className || "শ্রেণি",
+                                        roll: s.roll || "001"
+                                    });
+                                }
+                            });
+                        }
+                    } catch(e){}
+                }
+            }
+            return list;
+        }
+
+        // Initialize Database Defaults
+        document.addEventListener('DOMContentLoaded', function() {
             const today = new Date().toISOString().split('T')[0];
             if(document.getElementById('issueIDate')) document.getElementById('issueIDate').value = today;
 
             if (!localStorage.getItem('lib_books_db')) {
-                const initBooks = [
+                localStorage.setItem('lib_books_db', JSON.stringify([
                     { code: "BK-1020", name: "সহীহ আল-বুখারী", author: "ইমাম বুখারী (র.)", cat: "হাদিস শরীফ", qty: 5 },
                     { code: "BK-1021", name: "তাফসীরে ইবনে কাসীর", author: "ইবনে কাসীর (র.)", cat: "তাফসীর", qty: 3 }
-                ];
-                localStorage.setItem('lib_books_db', JSON.stringify(initBooks));
+                ]));
             }
 
             if (!localStorage.getItem('lib_members_db')) {
-                localStorage.setItem('lib_members_db', JSON.stringify(masterStudentProfiles));
+                localStorage.setItem('lib_members_db', JSON.stringify(masterStudentList));
             }
 
             if (!localStorage.getItem('lib_issues_db')) {
                 localStorage.setItem('lib_issues_db', JSON.stringify([]));
             }
-        }
+
+            // Attach Forms Submit Handlers with Event Prevention
+            document.getElementById('formBookAdd').addEventListener('submit', handleBookSubmit);
+            document.getElementById('formMembership').addEventListener('submit', handleMembershipSubmit);
+            document.getElementById('formBookIssue').addEventListener('submit', handleIssueSubmit);
+            document.getElementById('formBookReturn').addEventListener('submit', handleReturnSubmit);
+        });
 
         function openModal(id) {
             document.getElementById(id).classList.remove('hidden');
-            if (id === 'modalMembership') populateDropdown();
-            if (id === 'modalMemberList') displayMembersTable();
-            if (id === 'modalBookList') displayBookTable();
-            if (id === 'modalDueTracking') displayDueTable();
-            if (id === 'modalReport') updateReportCards();
+            if (id === 'modalMembership') loadStudentProfilesDropdown();
+            if (id === 'modalMemberList') renderMembersTable();
+            if (id === 'modalBookList') renderBookTable();
+            if (id === 'modalDueTracking') renderDueTable();
+            if (id === 'modalReport') renderReportCards();
         }
 
         function closeModal(id) {
             document.getElementById(id).classList.add('hidden');
         }
 
-        // 1. BOOK ENTRY & SAVING
+        // 1. SAVE BOOK
         function handleBookSubmit(e) {
             e.preventDefault();
             const name = document.getElementById('bName').value.trim();
@@ -486,12 +518,12 @@
             }
 
             localStorage.setItem('lib_books_db', JSON.stringify(books));
-            alert(`✅ "${name}" বইটির ${qty} টি কপি সেভ করা হয়েছে!`);
+            alert(`✅ "${name}" বইটি স্টকে সেভ করা হয়েছে!`);
             e.target.reset();
             closeModal('modalBookAdd');
         }
 
-        function displayBookTable() {
+        function renderBookTable() {
             let books = JSON.parse(localStorage.getItem('lib_books_db')) || [];
             const key = (document.getElementById('bookSearchKeyword').value || '').toLowerCase();
             const tbody = document.getElementById('bookListTableBody');
@@ -519,11 +551,12 @@
         }
 
         // 2 & 3. MEMBERSHIP & SEARCH LIST
-        function populateDropdown() {
+        function loadStudentProfilesDropdown() {
             const dropdown = document.getElementById('mStudentSelect');
-            dropdown.innerHTML = '<option value="">-- ড্রপডাউন থেকে সিলেক্ট করুন --</option>';
+            dropdown.innerHTML = '<option value="">-- স্টুডেন্ট প্রোফাইল থেকে নির্বাচন করুন --</option>';
 
-            masterStudentProfiles.forEach(st => {
+            const profiles = getStudentProfilesFromSystem();
+            profiles.forEach(st => {
                 let opt = document.createElement('option');
                 opt.value = st.id;
                 opt.textContent = `${st.name} | আইডি: ${st.id} (${st.class})`;
@@ -531,24 +564,25 @@
             });
         }
 
-        function autoFillStudentDetails() {
+        function autoFillFromSelect() {
             const selectedId = document.getElementById('mStudentSelect').value;
             if(selectedId) {
                 document.getElementById('mStudentId').value = selectedId;
-                searchStudentById();
+                fetchStudentProfileById();
             }
         }
 
-        function searchStudentById() {
+        function fetchStudentProfileById() {
             const id = document.getElementById('mStudentId').value.trim();
             const msg = document.getElementById('mStatusMsg');
-            let found = masterStudentProfiles.find(st => st.id === id);
+            const profiles = getStudentProfilesFromSystem();
+            let found = profiles.find(st => st.id === id);
 
             if(found) {
                 document.getElementById('mStudentName').value = found.name;
                 document.getElementById('mStudentClass').value = found.class;
                 document.getElementById('mStudentRoll').value = found.roll;
-                msg.innerText = "✅ Student Profile থেকে তথ্য লোড হয়েছে!";
+                msg.innerText = "✅ Student Profile থেকে ডাটা লোড হয়েছে!";
                 msg.className = "text-[11px] font-semibold text-emerald-600";
             } else {
                 document.getElementById('mStudentName').value = "";
@@ -567,7 +601,7 @@
             const roll = document.getElementById('mStudentRoll').value;
 
             if(!name) {
-                alert("প্রথমে সঠিক শিক্ষার্থী ফেচ করুন!");
+                alert("প্রথমে আইডি দিয়ে স্টুডেন্ট ফেচ করুন!");
                 return;
             }
 
@@ -581,11 +615,11 @@
             }
 
             localStorage.setItem('lib_members_db', JSON.stringify(members));
-            alert(`✅ ${name} সফলভাবে লাইব্রেরি সদস্য হিসেবে সেভ হয়েছেন!`);
+            alert(`✅ ${name} স্থায়ীভাবে মেম্বার হিসেবে সেভ হয়েছে!`);
             closeModal('modalMembership');
         }
 
-        function displayMembersTable() {
+        function renderMembersTable() {
             const clsFilter = document.getElementById('mFilterClass').value;
             const key = (document.getElementById('mSearchKeyword').value || '').toLowerCase();
             const tbody = document.getElementById('memberListTableBody');
@@ -618,7 +652,7 @@
             document.getElementById('memberCounterText').innerText = `মোট সদস্য: ${filtered.length} জন`;
         }
 
-        // 4. BOOK ISSUE & STOCK MINUS
+        // 4. BOOK ISSUE
         function handleIssueSubmit(e) {
             e.preventDefault();
             const sId = document.getElementById('issueSId').value.trim();
@@ -630,7 +664,7 @@
             let book = books.find(b => b.code === bCode);
 
             if(!book || book.qty <= 0) {
-                alert("⚠️ এই বইটি লাইব্রেরি স্টকে নেই বা কোড ভুল!");
+                alert("⚠️ বইটি স্টকে নেই বা কোড ভুল!");
                 return;
             }
 
@@ -641,12 +675,12 @@
             issues.push({ sId, bCode, iDate, dDate });
             localStorage.setItem('lib_issues_db', JSON.stringify(issues));
 
-            alert(`✅ বই ইস্যু করা হয়েছে! স্টকে বাকি আছে: ${book.qty}টি।`);
+            alert(`✅ বই ইস্যু করা হয়েছে! স্টকে বাকি: ${book.qty}টি`);
             e.target.reset();
             closeModal('modalBookIssue');
         }
 
-        // 5. BOOK RETURN & STOCK PLUS
+        // 5. BOOK RETURN
         function handleReturnSubmit(e) {
             e.preventDefault();
             const bCode = document.getElementById('retBCode').value.trim();
@@ -656,7 +690,7 @@
             let idx = issues.findIndex(i => i.bCode === bCode && i.sId === sId);
 
             if(idx === -1) {
-                alert("⚠️ এই আইডি ও বইয়ের কোনো ইস্যু রেকর্ড পাওয়া যায়নি!");
+                alert("⚠️ ইস্যু তথ্য পাওয়া যায়নি!");
                 return;
             }
 
@@ -670,13 +704,13 @@
                 localStorage.setItem('lib_books_db', JSON.stringify(books));
             }
 
-            alert(`✅ বই সফলভাবে ফেরত নেওয়া হয়েছে এবং স্টকে যুক্ত করা হয়েছে!`);
+            alert(`✅ বই ফেরত নেওয়া হয়েছে!`);
             e.target.reset();
             closeModal('modalBookReturn');
         }
 
         // 6. DUE TRACKING
-        function displayDueTable() {
+        function renderDueTable() {
             let issues = JSON.parse(localStorage.getItem('lib_issues_db')) || [];
             const tbody = document.getElementById('dueTableBody');
             tbody.innerHTML = '';
@@ -685,7 +719,7 @@
             let dueList = issues.filter(i => i.dDate < today);
 
             if(dueList.length === 0) {
-                tbody.innerHTML = `<tr><td colspan="5" class="p-4 text-center text-emerald-700 font-bold">বর্তমানে কোনো বকেয়া (Due) বই নেই!</td></tr>`;
+                tbody.innerHTML = `<tr><td colspan="5" class="p-4 text-center text-emerald-700 font-bold">কোনো বকেয়া (Due) বই নেই!</td></tr>`;
                 return;
             }
 
@@ -703,8 +737,8 @@
             });
         }
 
-        // 7. AUTO REPORT CARDS
-        function updateReportCards() {
+        // 7. REPORT CARDS
+        function renderReportCards() {
             let books = JSON.parse(localStorage.getItem('lib_books_db')) || [];
             let members = JSON.parse(localStorage.getItem('lib_members_db')) || [];
             let issues = JSON.parse(localStorage.getItem('lib_issues_db')) || [];

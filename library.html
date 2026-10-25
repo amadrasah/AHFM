@@ -226,7 +226,7 @@
         </div>
     </div>
 
-    <!-- 2. Student Membership Modal (Student Profile Auto Linked) -->
+    <!-- 2. Student Membership Modal -->
     <div id="modalMembership" class="fixed inset-0 bg-black/50 hidden flex justify-center items-center z-50 p-4">
         <div class="bg-white w-full max-w-lg rounded-2xl p-6 space-y-4 shadow-xl">
             <div class="flex justify-between items-center border-b pb-3">
@@ -305,7 +305,7 @@
             </div>
             <div class="flex justify-between items-center pt-2 text-xs">
                 <span id="memberCounterText" class="font-bold text-gray-600">মোট সদস্য: 0 জন</span>
-                <button onclick="closeModal('modalMemberList')" class="bg-gray-600 text-white px-4 py-1.5 rounded text-xs font-bold">বন্ধ করুন</button>
+                <button onclick="closeModal('modalMemberList')" class="bg-gray-600 text-white px-4 py-1.5 rounded font-bold">বন্ধ করুন</button>
             </div>
         </div>
     </div>
@@ -389,16 +389,25 @@
         </div>
     </div>
 
-    <!-- 7. Dynamic Library Report Modal -->
+    <!-- 7. Dynamic Library Report Modal (With Print Header & Institution Info) -->
     <div id="modalReport" class="fixed inset-0 bg-black/50 hidden flex justify-center items-center z-50 p-4">
         <div class="bg-white w-full max-w-xl rounded-2xl p-6 space-y-4 shadow-xl">
-            <div class="flex justify-between items-center border-b pb-3">
-                <h3 class="font-bold text-indigo-800 text-base">📊 স্বয়ংক্রিয় লাইব্রেরি সামারি রিপোর্ট</h3>
+            
+            <!-- Print Header (Visible only when printing) -->
+            <div class="hidden print:block text-center space-y-1 mb-4">
+                <h1 class="text-lg font-bold text-emerald-900">Abdullah Hat Islamia Fazil Madrasah</h1>
+                <p class="text-xs text-gray-600">আব্দুল্লাহ হাট ইসলামিয়া ফাজিল মাদ্রাসা, সেনবাগ, নোয়াখালী</p>
+                <h3 class="text-sm font-bold text-gray-800 border-b pb-2 mt-2">লাইব্রেরি ও কিতাবখানা লাইভ সামারি রিপোর্ট</h3>
+            </div>
+
+            <div class="flex justify-between items-center border-b pb-3 no-print">
+                <h3 class="font-bold text-indigo-800 text-base">📊 লাইভ লাইব্রেরি সামারি রিপোর্ট</h3>
                 <button onclick="closeModal('modalReport')" class="text-gray-500 text-lg">&times;</button>
             </div>
+
             <div class="grid grid-cols-2 gap-4 text-xs">
                 <div class="bg-emerald-50 p-3 rounded-lg border border-emerald-200">
-                    <p class="text-gray-600">মোট কিতাব/বই সংখ্যা</p>
+                    <p class="text-gray-600">মোট কিতাব/বই সংখ্যা (স্টক + ইস্যুকৃত)</p>
                     <h4 id="repTotalBooks" class="text-lg font-bold text-emerald-800">0 টি</h4>
                 </div>
                 <div class="bg-purple-50 p-3 rounded-lg border border-purple-200">
@@ -414,7 +423,8 @@
                     <h4 id="repDueBooks" class="text-lg font-bold text-rose-800">0 টি</h4>
                 </div>
             </div>
-            <div class="text-right">
+
+            <div class="text-right pt-2">
                 <button onclick="window.print()" class="bg-indigo-700 text-white px-4 py-2 rounded text-xs font-bold hover:bg-indigo-800">🖨️ প্রিন্ট করুন</button>
             </div>
         </div>
@@ -422,7 +432,6 @@
 
     <!-- JavaScript Application Engine -->
     <script>
-        // Master Student Database
         const masterStudentList = [
             { id: "202606001", name: "মাহবুবা (Mahbuba)", class: "দাখিল ষষ্ঠ শ্রেণি", roll: "001" },
             { id: "202610001", name: "সুস্মিতা (Susmita)", class: "দাখিল অষ্টম শ্রেণি", roll: "001" },
@@ -432,7 +441,6 @@
             { id: "202609001", name: "মোত্তাকী (Mottaki)", class: "দাখিল নবম শ্রেণি", roll: "001" }
         ];
 
-        // Fetch Student Profiles from Student Management Module (students_db or LocalStorage)
         function getStudentProfilesFromSystem() {
             let list = [...masterStudentList];
             for (let i = 0; i < localStorage.length; i++) {
@@ -459,7 +467,6 @@
             return list;
         }
 
-        // Initialize Database Defaults
         document.addEventListener('DOMContentLoaded', function() {
             const today = new Date().toISOString().split('T')[0];
             if(document.getElementById('issueIDate')) document.getElementById('issueIDate').value = today;
@@ -479,7 +486,6 @@
                 localStorage.setItem('lib_issues_db', JSON.stringify([]));
             }
 
-            // Attach Forms Submit Handlers with Event Prevention
             document.getElementById('formBookAdd').addEventListener('submit', handleBookSubmit);
             document.getElementById('formMembership').addEventListener('submit', handleMembershipSubmit);
             document.getElementById('formBookIssue').addEventListener('submit', handleIssueSubmit);
@@ -499,7 +505,6 @@
             document.getElementById(id).classList.add('hidden');
         }
 
-        // 1. SAVE BOOK
         function handleBookSubmit(e) {
             e.preventDefault();
             const name = document.getElementById('bName').value.trim();
@@ -550,7 +555,6 @@
             });
         }
 
-        // 2 & 3. MEMBERSHIP & SEARCH LIST
         function loadStudentProfilesDropdown() {
             const dropdown = document.getElementById('mStudentSelect');
             dropdown.innerHTML = '<option value="">-- স্টুডেন্ট প্রোফাইল থেকে নির্বাচন করুন --</option>';
@@ -652,7 +656,6 @@
             document.getElementById('memberCounterText').innerText = `মোট সদস্য: ${filtered.length} জন`;
         }
 
-        // 4. BOOK ISSUE
         function handleIssueSubmit(e) {
             e.preventDefault();
             const sId = document.getElementById('issueSId').value.trim();
@@ -680,7 +683,6 @@
             closeModal('modalBookIssue');
         }
 
-        // 5. BOOK RETURN
         function handleReturnSubmit(e) {
             e.preventDefault();
             const bCode = document.getElementById('retBCode').value.trim();
@@ -709,7 +711,6 @@
             closeModal('modalBookReturn');
         }
 
-        // 6. DUE TRACKING
         function renderDueTable() {
             let issues = JSON.parse(localStorage.getItem('lib_issues_db')) || [];
             const tbody = document.getElementById('dueTableBody');
@@ -737,20 +738,22 @@
             });
         }
 
-        // 7. REPORT CARDS
+        // Live Report Calculation Engine
         function renderReportCards() {
             let books = JSON.parse(localStorage.getItem('lib_books_db')) || [];
             let members = JSON.parse(localStorage.getItem('lib_members_db')) || [];
             let issues = JSON.parse(localStorage.getItem('lib_issues_db')) || [];
             const today = new Date().toISOString().split('T')[0];
 
-            let stockCount = books.reduce((s, b) => s + b.qty, 0);
+            let currentStock = books.reduce((s, b) => s + b.qty, 0);
             let issuedCount = issues.length;
+            let totalBooksCount = currentStock + issuedCount;
+            let totalMembersCount = members.length;
             let dueCount = issues.filter(i => i.dDate < today).length;
 
-            document.getElementById('repTotalBooks').innerText = `${stockCount + issuedCount} টি`;
+            document.getElementById('repTotalBooks').innerText = `${totalBooksCount} টি`;
             document.getElementById('repIssuedBooks').innerText = `${issuedCount} টি`;
-            document.getElementById('repTotalMembers').innerText = `${members.length} জন`;
+            document.getElementById('repTotalMembers').innerText = `${totalMembersCount} জন`;
             document.getElementById('repDueBooks').innerText = `${dueCount} টি`;
         }
     </script>

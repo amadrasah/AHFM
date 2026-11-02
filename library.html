@@ -66,7 +66,7 @@
                 <div class="bg-gradient-to-r from-emerald-800 to-emerald-950 text-white p-6 rounded-2xl shadow-sm flex flex-col md:flex-row justify-between items-center gap-4">
                     <div>
                         <h2 class="text-xl font-bold">মাদ্রাসা লাইব্রেরি ও কিতাবখানা ডেটা সেন্টার</h2>
-                        <p class="text-emerald-200 text-xs mt-1">সব ফর্মে কার্যকর ডাটা সেভিং ও রিয়েল-টাইম ট্র্যাকিং প্যানেল।</p>
+                        <p class="text-emerald-200 text-xs mt-1">কার্যকর ডাটা সেভিং, সদস্যের বইয়ের হিস্ট্রি ও লাইভ রিপোর্ট প্যানেল।</p>
                     </div>
                     <button onclick="openModal('modalBookAdd')" class="bg-white text-emerald-900 px-4 py-2 rounded-xl font-bold text-xs hover:bg-emerald-50 transition shadow-sm">+ নতুন বই যোগ করুন</button>
                 </div>
@@ -103,7 +103,7 @@
                             <h3 class="font-bold text-gray-800 text-sm flex items-center gap-2"><i class="fa-solid fa-users text-teal-600"></i> Members List</h3>
                             <span class="text-xs bg-teal-50 text-teal-700 px-2 py-0.5 rounded font-semibold">সদস্য তালিকা</span>
                         </div>
-                        <p class="text-xs text-gray-600">শ্রেণি, নাম, রোল ও আইডি দিয়ে সমন্বিত সদস্য ফিল্টারিং প্যানেল।</p>
+                        <p class="text-xs text-gray-600">সক্রিয়/নিষ্ক্রিয় স্ট্যাটাস, ফিল্টার ও সদস্যের বুক হিস্ট্রি ভিউ প্যানেল।</p>
                         <button onclick="openModal('modalMemberList')" class="w-full bg-teal-50 text-teal-700 py-1.5 rounded text-xs font-bold hover:bg-teal-100">সদস্য তালিকা দেখুন</button>
                     </div>
 
@@ -113,7 +113,7 @@
                             <h3 class="font-bold text-gray-800 text-sm flex items-center gap-2"><i class="fa-solid fa-book-arrow-up text-purple-600"></i> Book Issue</h3>
                             <span class="text-xs bg-purple-50 text-purple-700 px-2 py-0.5 rounded font-semibold">বই ইস্যু</span>
                         </div>
-                        <p class="text-xs text-gray-600">বই ইস্যু করার সাথে সাথে স্টক থেকে স্বয়ংক্রিয় ১টি বই বিয়োগ হবে।</p>
+                        <p class="text-xs text-gray-600">বই ইস্যু করার সাথে সাথে স্টক থেকে ১টি কমে যাবে এবং সদস্যের হিস্ট্রিতে যুক্ত হবে।</p>
                         <button onclick="openModal('modalBookIssue')" class="w-full bg-purple-50 text-purple-700 py-1.5 rounded text-xs font-bold hover:bg-purple-100">বই ইস্যু করুন</button>
                     </div>
 
@@ -123,7 +123,7 @@
                             <h3 class="font-bold text-gray-800 text-sm flex items-center gap-2"><i class="fa-solid fa-book-arrow-down text-amber-600"></i> Book Return</h3>
                             <span class="text-xs bg-amber-50 text-amber-700 px-2 py-0.5 rounded font-semibold">বই ফেরত</span>
                         </div>
-                        <p class="text-xs text-gray-600">বই ফেরত দিলে স্বয়ংক্রিয়ভাবে স্টক তালিকায় আবার যোগ হবে।</p>
+                        <p class="text-xs text-gray-600">বই ফেরত দিলে স্টকে যোগ হবে এবং সদস্যের হিস্ট্রিতে ফেরার তারিখ সেভ হবে।</p>
                         <button onclick="openModal('modalBookReturn')" class="w-full bg-amber-50 text-amber-700 py-1.5 rounded text-xs font-bold hover:bg-amber-100">বই ফেরত প্যানেল</button>
                     </div>
 
@@ -266,9 +266,9 @@
 
     <!-- 3. Members List Modal -->
     <div id="modalMemberList" class="fixed inset-0 bg-black/50 hidden flex justify-center items-center z-50 p-4">
-        <div class="bg-white w-full max-w-4xl rounded-2xl p-6 space-y-4 shadow-xl max-h-[90vh] flex flex-col">
+        <div class="bg-white w-full max-w-5xl rounded-2xl p-6 space-y-4 shadow-xl max-h-[90vh] flex flex-col">
             <div class="flex justify-between items-center border-b pb-3">
-                <h3 class="font-bold text-teal-800 text-base">📋 নিবন্ধিত লাইব্রেরি সদস্য তালিকা</h3>
+                <h3 class="font-bold text-teal-800 text-base">📋 নিবন্ধিত লাইব্রেরি সদস্য তালিকা ও স্ট্যাটাস</h3>
                 <button onclick="closeModal('modalMemberList')" class="text-gray-500 text-lg">&times;</button>
             </div>
             <div class="grid grid-cols-1 md:grid-cols-2 gap-3 bg-teal-50 p-3 rounded-xl border border-teal-200 text-xs">
@@ -297,7 +297,8 @@
                             <th class="p-2.5">নাম</th>
                             <th class="p-2.5">শ্রেণি</th>
                             <th class="p-2.5">রোল</th>
-                            <th class="p-2.5">স্ট্যাটাস</th>
+                            <th class="p-2.5">স্ট্যাটাস পরিবর্তন</th>
+                            <th class="p-2.5 text-center">কার্যক্রম (ডিটেইলস)</th>
                         </tr>
                     </thead>
                     <tbody id="memberListTableBody" class="divide-y divide-gray-200"></tbody>
@@ -306,6 +307,33 @@
             <div class="flex justify-between items-center pt-2 text-xs">
                 <span id="memberCounterText" class="font-bold text-gray-600">মোট সদস্য: 0 জন</span>
                 <button onclick="closeModal('modalMemberList')" class="bg-gray-600 text-white px-4 py-1.5 rounded font-bold">বন্ধ করুন</button>
+            </div>
+        </div>
+    </div>
+
+    <!-- Member Details / History Modal -->
+    <div id="modalMemberDetails" class="fixed inset-0 bg-black/50 hidden flex justify-center items-center z-50 p-4">
+        <div class="bg-white w-full max-w-3xl rounded-2xl p-6 space-y-4 shadow-xl max-h-[90vh] flex flex-col">
+            <div class="flex justify-between items-center border-b pb-3">
+                <h3 id="detailsModalTitle" class="font-bold text-teal-800 text-base">📖 সদস্যের বই গ্রহণের হিস্ট্রি</h3>
+                <button onclick="closeModal('modalMemberDetails')" class="text-gray-500 text-lg">&times;</button>
+            </div>
+            <div class="flex-1 overflow-y-auto border rounded-xl">
+                <table class="w-full text-left text-xs">
+                    <thead class="bg-teal-700 text-white sticky top-0">
+                        <tr>
+                            <th class="p-2.5">বই কোড</th>
+                            <th class="p-2.5">ইস্যুর তারিখ</th>
+                            <th class="p-2.5">জমার শেষ তারিখ</th>
+                            <th class="p-2.5">ফেরত দেওয়ার তারিখ</th>
+                            <th class="p-2.5">অবস্থা</th>
+                        </tr>
+                    </thead>
+                    <tbody id="memberHistoryTableBody" class="divide-y divide-gray-200"></tbody>
+                </table>
+            </div>
+            <div class="text-right">
+                <button onclick="closeModal('modalMemberDetails')" class="bg-gray-600 text-white px-4 py-1.5 rounded font-bold text-xs">বন্ধ করুন</button>
             </div>
         </div>
     </div>
@@ -389,11 +417,10 @@
         </div>
     </div>
 
-    <!-- 7. Dynamic Library Report Modal (With Print Header & Institution Info) -->
+    <!-- 7. Dynamic Library Report Modal -->
     <div id="modalReport" class="fixed inset-0 bg-black/50 hidden flex justify-center items-center z-50 p-4">
         <div class="bg-white w-full max-w-xl rounded-2xl p-6 space-y-4 shadow-xl">
             
-            <!-- Print Header (Visible only when printing) -->
             <div class="hidden print:block text-center space-y-1 mb-4">
                 <h1 class="text-lg font-bold text-emerald-900">Abdullah Hat Islamia Fazil Madrasah</h1>
                 <p class="text-xs text-gray-600">আব্দুল্লাহ হাট ইসলামিয়া ফাজিল মাদ্রাসা, সেনবাগ, নোয়াখালী</p>
@@ -479,11 +506,16 @@
             }
 
             if (!localStorage.getItem('lib_members_db')) {
-                localStorage.setItem('lib_members_db', JSON.stringify(masterStudentList));
+                let initialMembers = masterStudentList.map(m => ({ ...m, status: 'active' }));
+                localStorage.setItem('lib_members_db', JSON.stringify(initialMembers));
             }
 
             if (!localStorage.getItem('lib_issues_db')) {
                 localStorage.setItem('lib_issues_db', JSON.stringify([]));
+            }
+
+            if (!localStorage.getItem('lib_history_db')) {
+                localStorage.setItem('lib_history_db', JSON.stringify([]));
             }
 
             document.getElementById('formBookAdd').addEventListener('submit', handleBookSubmit);
@@ -505,6 +537,7 @@
             document.getElementById(id).classList.add('hidden');
         }
 
+        // 1. BOOK ADD
         function handleBookSubmit(e) {
             e.preventDefault();
             const name = document.getElementById('bName').value.trim();
@@ -555,6 +588,7 @@
             });
         }
 
+        // 2 & 3. MEMBERSHIP & MEMBERS LIST WITH STATUS & DETAILS
         function loadStudentProfilesDropdown() {
             const dropdown = document.getElementById('mStudentSelect');
             dropdown.innerHTML = '<option value="">-- স্টুডেন্ট প্রোফাইল থেকে নির্বাচন করুন --</option>';
@@ -613,14 +647,26 @@
             let idx = members.findIndex(m => m.id === id);
 
             if(idx > -1) {
-                members[idx] = { id, name, class: cls, roll };
+                members[idx].name = name;
+                members[idx].class = cls;
+                members[idx].roll = roll;
             } else {
-                members.push({ id, name, class: cls, roll });
+                members.push({ id, name, class: cls, roll, status: 'active' });
             }
 
             localStorage.setItem('lib_members_db', JSON.stringify(members));
             alert(`✅ ${name} স্থায়ীভাবে মেম্বার হিসেবে সেভ হয়েছে!`);
             closeModal('modalMembership');
+        }
+
+        function toggleMemberStatus(id) {
+            let members = JSON.parse(localStorage.getItem('lib_members_db')) || [];
+            let member = members.find(m => m.id === id);
+            if(member) {
+                member.status = member.status === 'active' ? 'inactive' : 'active';
+                localStorage.setItem('lib_members_db', JSON.stringify(members));
+                renderMembersTable();
+            }
         }
 
         function renderMembersTable() {
@@ -638,6 +684,7 @@
 
             if(filtered.length > 0) {
                 filtered.forEach(m => {
+                    let isActive = m.status === 'active' || !m.status;
                     let tr = document.createElement('tr');
                     tr.className = "hover:bg-gray-50 border-b";
                     tr.innerHTML = `
@@ -645,17 +692,54 @@
                         <td class="p-2.5 font-semibold">${m.name}</td>
                         <td class="p-2.5">${m.class}</td>
                         <td class="p-2.5 font-semibold">${m.roll}</td>
-                        <td class="p-2.5"><span class="bg-emerald-100 text-emerald-800 px-2 py-0.5 rounded text-[10px] font-bold">সক্রিয়</span></td>
+                        <td class="p-2.5">
+                            <button onclick="toggleMemberStatus('${m.id}')" class="px-2.5 py-1 rounded text-[10px] font-bold ${isActive ? 'bg-emerald-100 text-emerald-800 hover:bg-emerald-200' : 'bg-rose-100 text-rose-800 hover:bg-rose-200'}">
+                                ${isActive ? 'সক্রিয় (Active)' : 'নিষ্ক্রিয় (Inactive)'}
+                            </button>
+                        </td>
+                        <td class="p-2.5 text-center">
+                            <button onclick="viewMemberHistory('${m.id}', '${m.name}')" class="bg-indigo-600 text-white px-3 py-1 rounded text-[10px] font-bold hover:bg-indigo-700">
+                                <i class="fa-solid fa-eye mr-1"></i> ভিউ ডিটেইলস
+                            </button>
+                        </td>
                     `;
                     tbody.appendChild(tr);
                 });
             } else {
-                tbody.innerHTML = `<tr><td colspan="5" class="p-4 text-center text-rose-600 font-bold">কোনো সদস্য পাওয়া যায়নি!</td></tr>`;
+                tbody.innerHTML = `<tr><td colspan="6" class="p-4 text-center text-rose-600 font-bold">কোনো সদস্য পাওয়া যায়নি!</td></tr>`;
             }
 
             document.getElementById('memberCounterText').innerText = `মোট সদস্য: ${filtered.length} জন`;
         }
 
+        // View Member History Modal
+        function viewMemberHistory(sId, sName) {
+            document.getElementById('detailsModalTitle').innerText = `📖 সদস্যের বই গ্রহণের হিস্ট্রি: ${sName} (আইডি: ${sId})`;
+            let history = JSON.parse(localStorage.getItem('lib_history_db')) || [];
+            let memberHistory = history.filter(h => h.sId === sId);
+            const tbody = document.getElementById('memberHistoryTableBody');
+            tbody.innerHTML = '';
+
+            if(memberHistory.length === 0) {
+                tbody.innerHTML = `<tr><td colspan="5" class="p-4 text-center text-gray-500 font-bold">এই সদস্যের কোনো বই ইস্যু বা ফেরতের রেকর্ড নেই!</td></tr>`;
+            } else {
+                memberHistory.forEach(h => {
+                    let tr = document.createElement('tr');
+                    tr.className = "hover:bg-gray-50 border-b";
+                    tr.innerHTML = `
+                        <td class="p-2.5 font-bold text-emerald-900">${h.bCode}</td>
+                        <td class="p-2.5">${h.iDate}</td>
+                        <td class="p-2.5">${h.dDate}</td>
+                        <td class="p-2.5 font-bold text-blue-700">${h.returnDate || 'এখনো ফেরত দেননি'}</td>
+                        <td class="p-2.5"><span class="px-2 py-0.5 rounded text-[10px] font-bold ${h.status === 'returned' ? 'bg-emerald-100 text-emerald-800' : 'bg-purple-100 text-purple-800'}">${h.status === 'returned' ? 'ফেরত দেওয়া হয়েছে' : 'বর্তমানে ইস্যুকৃত'}</span></td>
+                    `;
+                    tbody.appendChild(tr);
+                });
+            }
+            openModal('modalMemberDetails');
+        }
+
+        // 4. BOOK ISSUE
         function handleIssueSubmit(e) {
             e.preventDefault();
             const sId = document.getElementById('issueSId').value.trim();
@@ -678,15 +762,21 @@
             issues.push({ sId, bCode, iDate, dDate });
             localStorage.setItem('lib_issues_db', JSON.stringify(issues));
 
+            let history = JSON.parse(localStorage.getItem('lib_history_db')) || [];
+            history.push({ sId, bCode, iDate, dDate, returnDate: '', status: 'issued' });
+            localStorage.setItem('lib_history_db', JSON.stringify(history));
+
             alert(`✅ বই ইস্যু করা হয়েছে! স্টকে বাকি: ${book.qty}টি`);
             e.target.reset();
             closeModal('modalBookIssue');
         }
 
+        // 5. BOOK RETURN
         function handleReturnSubmit(e) {
             e.preventDefault();
             const bCode = document.getElementById('retBCode').value.trim();
             const sId = document.getElementById('retSId').value.trim();
+            const today = new Date().toISOString().split('T')[0];
 
             let issues = JSON.parse(localStorage.getItem('lib_issues_db')) || [];
             let idx = issues.findIndex(i => i.bCode === bCode && i.sId === sId);
@@ -699,6 +789,14 @@
             issues.splice(idx, 1);
             localStorage.setItem('lib_issues_db', JSON.stringify(issues));
 
+            let history = JSON.parse(localStorage.getItem('lib_history_db')) || [];
+            let histItem = history.find(h => h.bCode === bCode && h.sId === sId && h.status === 'issued');
+            if(histItem) {
+                histItem.returnDate = today;
+                histItem.status = 'returned';
+                localStorage.setItem('lib_history_db', JSON.stringify(history));
+            }
+
             let books = JSON.parse(localStorage.getItem('lib_books_db')) || [];
             let book = books.find(b => b.code === bCode);
             if(book) {
@@ -706,11 +804,12 @@
                 localStorage.setItem('lib_books_db', JSON.stringify(books));
             }
 
-            alert(`✅ বই ফেরত নেওয়া হয়েছে!`);
+            alert(`✅ বই সফলভাবে ফেরত নেওয়া হয়েছে (${today})!`);
             e.target.reset();
             closeModal('modalBookReturn');
         }
 
+        // 6. DUE TRACKING
         function renderDueTable() {
             let issues = JSON.parse(localStorage.getItem('lib_issues_db')) || [];
             const tbody = document.getElementById('dueTableBody');
@@ -738,16 +837,16 @@
             });
         }
 
-        // Live Report Calculation Engine
+        // 7. REPORT CARDS
         function renderReportCards() {
             let books = JSON.parse(localStorage.getItem('lib_books_db')) || [];
             let members = JSON.parse(localStorage.getItem('lib_members_db')) || [];
             let issues = JSON.parse(localStorage.getItem('lib_issues_db')) || [];
             const today = new Date().toISOString().split('T')[0];
 
-            let currentStock = books.reduce((s, b) => s + b.qty, 0);
+            let stockCount = books.reduce((s, b) => s + b.qty, 0);
             let issuedCount = issues.length;
-            let totalBooksCount = currentStock + issuedCount;
+            let totalBooksCount = stockCount + issuedCount;
             let totalMembersCount = members.length;
             let dueCount = issues.filter(i => i.dDate < today).length;
 

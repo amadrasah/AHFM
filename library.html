@@ -417,7 +417,7 @@
         </div>
     </div>
 
-    <!-- 7. Newly Designed Live Library Report Modal -->
+    <!-- 7. Live Library Report Modal -->
     <div id="modalReport" class="fixed inset-0 bg-black/60 backdrop-blur-sm hidden flex justify-center items-center z-50 p-4 animate-fade-in">
         <div class="bg-white w-full max-w-2xl rounded-3xl p-7 space-y-6 shadow-2xl border border-gray-100">
             
@@ -443,7 +443,7 @@
                 <button onclick="closeModal('modalReport')" class="w-8 h-8 rounded-full bg-gray-100 hover:bg-gray-200 text-gray-600 flex items-center justify-center transition font-bold text-sm">&times;</button>
             </div>
 
-            <!-- Report Cards Grid (Redesigned & Styled) -->
+            <!-- Report Cards Grid -->
             <div class="grid grid-cols-1 sm:grid-cols-2 gap-4 text-xs">
                 
                 <!-- Card 1 -->
@@ -881,6 +881,7 @@
             });
         }
 
+        // Fixed Total Books Calculation Engine
         function renderReportCards() {
             let books = JSON.parse(localStorage.getItem('lib_books_db')) || [];
             let members = JSON.parse(localStorage.getItem('lib_members_db')) || [];
@@ -889,7 +890,7 @@
 
             let stockCount = books.reduce((s, b) => s + b.qty, 0);
             let issuedCount = issues.length;
-            let totalBooksCount = stockCount + issuedCount;
+            let totalBooksCount = stockCount + issuedCount; // স্টক + ইস্যুকৃত বইয়ের সঠিক মোট যোগফল
             let totalMembersCount = members.length;
             let dueCount = issues.filter(i => i.dDate < today).length;
 

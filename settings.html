@@ -13,9 +13,11 @@
             .print-container { 
                 width: 100% !important; 
                 margin: 0 !important; 
-                padding: 20px !important; 
+                padding: 25px !important; 
                 box-shadow: none !important; 
-                border: var(--print-border-width, 3px) solid var(--print-border-color, #065f46) !important;
+                background-image: var(--custom-border-img, none) !important;
+                background-size: 100% 100% !important;
+                background-repeat: no-repeat !important;
                 position: relative !important;
             }
             @page { size: A4 portrait; margin: 10mm; }
@@ -105,7 +107,7 @@
                 <div class="bg-gradient-to-r from-emerald-900 to-emerald-800 text-white p-5 md:p-6 rounded-2xl shadow-md flex flex-col md:flex-row justify-between items-center gap-4 no-print">
                     <div>
                         <h2 class="text-lg md:text-xl font-bold">মাদ্রাসা সেটিংস ও ম্যানেজমেন্ট প্যানেল</h2>
-                        <p class="text-xs text-emerald-200 mt-1">লোগো, ওয়াটারমার্ক, বিষয় কোড, ফি এবং মানি রিসিট সেটিং কনফিগার করুন।</p>
+                        <p class="text-xs text-emerald-200 mt-1">লোগো, ওয়াটারমার্ক, কাস্টম বর্ডার, বিষয় কোড এবং মানি রিসিট সেটিং কনফিগার করুন।</p>
                     </div>
                 </div>
 
@@ -116,8 +118,8 @@
                     </div>
 
                     <div onclick="openSettingsPanel('logo')" class="bg-white p-5 rounded-2xl shadow-sm border border-gray-200 hover:border-blue-500 hover:shadow-md cursor-pointer transition space-y-3">
-                        <div class="flex justify-between items-center border-b pb-2"><h3 class="font-bold text-gray-800 text-sm"><i class="fa-solid fa-image text-blue-600 mr-2"></i> ২. লোগো ও ওয়াটারমার্ক</h3><span class="text-[10px] bg-blue-100 text-blue-800 px-2 py-0.5 rounded font-bold">সিগনেচার সহ</span></div>
-                        <p class="text-xs text-gray-600">লোগো, ওয়াটারমার্ক এবং অধ্যক্ষের স্বাক্ষর বা সিল আপলোড।</p>
+                        <div class="flex justify-between items-center border-b pb-2"><h3 class="font-bold text-gray-800 text-sm"><i class="fa-solid fa-image text-blue-600 mr-2"></i> ২. লোগো, ওয়াটারমার্ক ও বর্ডার</h3><span class="text-[10px] bg-blue-100 text-blue-800 px-2 py-0.5 rounded font-bold">কাস্টম বর্ডার সহ</span></div>
+                        <p class="text-xs text-gray-600">লোগো, ওয়াটারমার্ক, বর্ডার ইমেজ এবং অধ্যক্ষের স্বাক্ষর বা সিল আপলোড।</p>
                     </div>
 
                     <div onclick="openSettingsPanel('session')" class="bg-white p-5 rounded-2xl shadow-sm border border-gray-200 hover:border-purple-500 hover:shadow-md cursor-pointer transition space-y-3">
@@ -184,58 +186,68 @@
                     </div>
                 </div>
 
+                <!-- Panel 2: Logo, Watermark, Custom Border & Signature -->
                 <div id="panel-logo" class="settings-sub-panel bg-white p-5 md:p-6 rounded-2xl shadow-sm border border-gray-200 space-y-4 hidden">
                     <div class="flex justify-between items-center border-b pb-3 no-print">
-                        <h3 class="font-bold text-blue-800 text-sm"><i class="fa-solid fa-image mr-2"></i> ২. লোগো, ওয়াটারমার্ক ও অধ্যক্ষের স্বাক্ষর ম্যানেজমেন্ট</h3>
+                        <h3 class="font-bold text-blue-800 text-sm"><i class="fa-solid fa-image mr-2"></i> ২. লোগো, ওয়াটারমার্ক, কাস্টম বর্ডার ও স্বাক্ষর ম্যানেজমেন্ট</h3>
                         <button onclick="closeAllSettingsPanels()" class="text-xs bg-gray-200 px-3 py-1 rounded font-bold text-gray-700 hover:bg-gray-300">বন্ধ করুন</button>
                     </div>
 
-                    <div class="grid grid-cols-1 md:grid-cols-3 gap-6 text-xs">
+                    <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-4 text-xs">
                         <!-- Logo Section -->
-                        <div class="space-y-4 bg-blue-50 p-4 rounded-xl border border-blue-200">
+                        <div class="space-y-3 bg-blue-50 p-4 rounded-xl border border-blue-200">
                             <h4 class="font-bold text-blue-900"><i class="fa-solid fa-shield-halved mr-1"></i> লোগো ম্যানেজমেন্ট:</h4>
                             <div>
                                 <label class="font-bold block mb-1">লোগো URL বা ফাইল আপলোড:</label>
-                                <input type="text" id="logo_url_input" placeholder="https://example.com/logo.png" class="w-full p-2 border rounded bg-white font-bold mb-2">
+                                <input type="text" id="logo_url_input" placeholder="URL দিন..." class="w-full p-2 border rounded bg-white font-bold mb-2">
                                 <input type="file" id="logo_file_input" onchange="previewLogoFile(this)" class="w-full p-2 border rounded bg-white text-xs">
                             </div>
-                            <button onclick="applyLogoSettings()" class="bg-blue-700 text-white px-4 py-2 rounded font-bold hover:bg-blue-800 shadow">লোগো সেট করুন</button>
-                            <div class="border-2 border-dashed border-blue-300 p-4 rounded-xl bg-white text-center space-y-2">
-                                <p class="font-bold text-blue-900 text-[11px]">লোগো প্রিভিউ</p>
-                                <img id="logo_live_img" src="https://via.placeholder.com/60" class="w-16 h-16 mx-auto object-contain border rounded-full shadow">
+                            <button onclick="applyLogoSettings()" class="w-full bg-blue-700 text-white py-2 rounded font-bold hover:bg-blue-800 shadow">লোগো সেট করুন</button>
+                            <div class="border-2 border-dashed border-blue-300 p-3 rounded-xl bg-white text-center">
+                                <img id="logo_live_img" src="https://via.placeholder.com/50" class="w-12 h-12 mx-auto object-contain border rounded-full shadow">
                             </div>
                         </div>
 
                         <!-- Watermark Section -->
-                        <div class="space-y-4 bg-emerald-50 p-4 rounded-xl border border-emerald-200">
+                        <div class="space-y-3 bg-emerald-50 p-4 rounded-xl border border-emerald-200">
                             <h4 class="font-bold text-emerald-900"><i class="fa-solid fa-water mr-1"></i> ওয়াটারমার্ক ম্যানেজমেন্ট:</h4>
                             <div>
-                                <label class="font-bold block mb-1">ওয়াটারমার্ক URL বা ফাইল আপলোড:</label>
-                                <input type="text" id="watermark_url_input" placeholder="https://example.com/watermark.png" class="w-full p-2 border rounded bg-white font-bold mb-2">
-                                <input type="file" id="watermark_file_input" onchange="previewWatermarkFile(this)" class="w-full p-2 border rounded bg-white text-xs mb-2">
+                                <label class="font-bold block mb-1">ওয়াটারমার্ক URL বা ফাইল:</label>
+                                <input type="text" id="watermark_url_input" placeholder="URL দিন..." class="w-full p-2 border rounded bg-white font-bold mb-2">
+                                <input type="file" id="watermark_file_input" onchange="previewWatermarkFile(this)" class="w-full p-2 border rounded bg-white text-xs mb-1">
                             </div>
                             <div>
                                 <label class="font-bold block mb-1">স্বচ্ছতা (Opacity):</label>
                                 <input type="range" id="watermark_opacity" min="0.02" max="0.2" step="0.01" value="0.05" class="w-full" oninput="updateWatermarkLivePreview()">
                             </div>
-                            <button onclick="applyWatermarkSettings()" class="bg-emerald-700 text-white px-4 py-2 rounded font-bold hover:bg-emerald-800 shadow">ওয়াটারমার্ক সেট করুন</button>
-                            <div class="border-2 border-dashed border-emerald-300 p-4 rounded-xl bg-white text-center relative overflow-hidden h-28 flex flex-col items-center justify-center watermark-bg">
-                                <p class="font-bold text-emerald-900 text-[11px] relative z-10">ওয়াটারমার্ক প্রিভিউ</p>
+                            <button onclick="applyWatermarkSettings()" class="w-full bg-emerald-700 text-white py-2 rounded font-bold hover:bg-emerald-800 shadow">ওয়াটারমার্ক সেট করুন</button>
+                        </div>
+
+                        <!-- Custom Border Upload Section (NEWLY ADDED) -->
+                        <div class="space-y-3 bg-amber-50 p-4 rounded-xl border border-amber-200">
+                            <h4 class="font-bold text-amber-900"><i class="fa-solid fa-border-all mr-1"></i> কাস্টম বর্ডার আপলোড (Border):</h4>
+                            <div>
+                                <label class="font-bold block mb-1">বর্ডার ইমেজ আপলোড বা URL:</label>
+                                <input type="text" id="border_url_input" placeholder="বর্ডার ছবির URL..." class="w-full p-2 border rounded bg-white font-bold mb-2">
+                                <input type="file" id="border_file_input" onchange="previewBorderFile(this)" class="w-full p-2 border rounded bg-white text-xs">
+                            </div>
+                            <button onclick="applyBorderSettings()" class="w-full bg-amber-700 text-white py-2 rounded font-bold hover:bg-amber-800 shadow">বর্ডার সেট করুন</button>
+                            <div class="border-2 border-dashed border-amber-300 p-2 rounded-xl bg-white text-center">
+                                <span class="text-[10px] text-amber-900 font-bold" id="border_status_text">বর্ডার যুক্ত হয়নি</span>
                             </div>
                         </div>
 
                         <!-- Principal Signature Section -->
-                        <div class="space-y-4 bg-purple-50 p-4 rounded-xl border border-purple-200">
-                            <h4 class="font-bold text-purple-900"><i class="fa-solid fa-signature mr-1"></i> অধ্যক্ষের স্বাক্ষর বা সিল (Auto Connect):</h4>
+                        <div class="space-y-3 bg-purple-50 p-4 rounded-xl border border-purple-200">
+                            <h4 class="font-bold text-purple-900"><i class="fa-solid fa-signature mr-1"></i> অধ্যক্ষের স্বাক্ষর ও সিল:</h4>
                             <div>
                                 <label class="font-bold block mb-1">স্বাক্ষর URL বা ফাইল আপলোড:</label>
-                                <input type="text" id="principal_sign_url" placeholder="https://example.com/sign.png" class="w-full p-2 border rounded bg-white font-bold mb-2">
+                                <input type="text" id="principal_sign_url" placeholder="স্বাক্ষর URL..." class="w-full p-2 border rounded bg-white font-bold mb-2">
                                 <input type="file" id="principal_sign_file" onchange="previewPrincipalSign(this)" class="w-full p-2 border rounded bg-white text-xs">
                             </div>
-                            <button onclick="applyPrincipalSignSettings()" class="bg-purple-700 text-white px-4 py-2 rounded font-bold hover:bg-purple-800 shadow">স্বাক্ষর সেট করুন</button>
-                            <div class="border-2 border-dashed border-purple-300 p-4 rounded-xl bg-white text-center space-y-2">
-                                <p class="font-bold text-purple-900 text-[11px]">স্বাক্ষর প্রিভিউ</p>
-                                <img id="principal_sign_preview" src="https://via.placeholder.com/100x40" class="h-10 mx-auto object-contain border rounded shadow">
+                            <button onclick="applyPrincipalSignSettings()" class="w-full bg-purple-700 text-white py-2 rounded font-bold hover:bg-purple-800 shadow">স্বাক্ষর সেট করুন</button>
+                            <div class="border-2 border-dashed border-purple-300 p-2 rounded-xl bg-white text-center">
+                                <img id="principal_sign_preview" src="https://via.placeholder.com/80x30" class="h-8 mx-auto object-contain border rounded shadow">
                             </div>
                         </div>
                     </div>
@@ -371,7 +383,7 @@
                 <!-- 8. Money Receipt Panel with Auto Print Customizations -->
                 <div id="panel-receipt" class="settings-sub-panel bg-white p-5 md:p-6 rounded-2xl shadow-sm border border-gray-200 space-y-4 hidden">
                     <div class="flex justify-between items-center border-b pb-3 no-print">
-                        <h3 class="font-bold text-cyan-800 text-sm"><i class="fa-solid fa-receipt mr-2"></i> ৮. মানি রিসিট ও সিল-স্বাক্ষর (অটো লোগো, ওয়াটারমার্ক ও বর্ডার)</h3>
+                        <h3 class="font-bold text-cyan-800 text-sm"><i class="fa-solid fa-receipt mr-2"></i> ৮. মানি রিসিট ও সিল-স্বাক্ষর (অটো লোগো, ওয়াটারমার্ক ও কাস্টম বর্ডার)</h3>
                         <button onclick="closeAllSettingsPanels()" class="text-xs bg-gray-200 px-3 py-1 rounded font-bold text-gray-700 hover:bg-gray-300">বন্ধ করুন</button>
                     </div>
 
@@ -382,7 +394,7 @@
                             <button id="btnToggleLogo" onclick="togglePrintOption('logo')" class="px-3 py-1.5 rounded-lg font-bold border transition bg-emerald-700 text-white border-emerald-700">📌 লোগো</button>
                             <button id="btnToggleWatermark" onclick="togglePrintOption('watermark')" class="px-3 py-1.5 rounded-lg font-bold border transition bg-emerald-700 text-white border-emerald-700">💧 ওয়াটারমার্ক</button>
                             <button id="btnToggleSign" onclick="togglePrintOption('sign')" class="px-3 py-1.5 rounded-lg font-bold border transition bg-emerald-700 text-white border-emerald-700">✍️ স্বাক্ষর</button>
-                            <button id="btnToggleBorder" onclick="togglePrintOption('border')" class="px-3 py-1.5 rounded-lg font-bold border transition bg-emerald-700 text-white border-emerald-700">🔲 বর্ডার</button>
+                            <button id="btnToggleBorder" onclick="togglePrintOption('border')" class="px-3 py-1.5 rounded-lg font-bold border transition bg-emerald-700 text-white border-emerald-700">🔲 কাস্টম বর্ডার</button>
                         </div>
                         <button onclick="window.print()" class="bg-cyan-700 text-white px-4 py-2 rounded-lg font-bold hover:bg-cyan-800 shadow flex items-center gap-1.5">
                             <i class="fa-solid fa-print"></i> প্রিন্ট করুন
@@ -515,15 +527,49 @@
                 }
             }
 
-            // Border Visibility
+            // Custom Border Image Background in Print
+            let customBorder = localStorage.getItem('madrasah_custom_border_url');
+            if (printSettings.border && customBorder) {
+                watermarkStyle.style.setProperty('--custom-border-img', `url('${customBorder}')`);
+            } else {
+                watermarkStyle.style.setProperty('--custom-border-img', 'none');
+            }
+
+            // Screen Preview Border Fallback
             const printableArea = document.getElementById('printableArea');
             if (printableArea) {
-                if (printSettings.border) {
-                    printableArea.style.border = "2px solid #065f46";
+                if (printSettings.border && customBorder) {
+                    printableArea.style.backgroundImage = `url('${customBorder}')`;
+                    printableArea.style.backgroundSize = "100% 100%";
                 } else {
-                    printableArea.style.border = "none";
+                    printableArea.style.backgroundImage = "none";
                 }
             }
+        }
+
+        // --- Custom Border Upload Handlers ---
+        function previewBorderFile(input) {
+            if (input.files && input.files[0]) {
+                const reader = new FileReader();
+                reader.onload = function(e) {
+                    const imgUrl = e.target.result;
+                    document.getElementById('border_url_input').value = imgUrl;
+                }
+                reader.readAsDataURL(input.files[0]);
+            }
+        }
+
+        function applyBorderSettings() {
+            const url = document.getElementById('border_url_input').value.trim();
+            if(!url) {
+                alert('দয়া করে বর্ডার এর ছবি আপলোড করুন অথবা URL দিন!');
+                return;
+            }
+            localStorage.setItem('madrasah_custom_border_url', url);
+            document.getElementById('border_status_text').innerText = "✅ বর্ডার সফলভাবে সেট হয়েছে";
+            document.getElementById('border_status_text').className = "text-[10px] text-emerald-700 font-bold";
+            updatePrintDOM();
+            alert('কাস্টম বর্ডার ইমেজ সফলভাবে সংরক্ষিত হয়েছে এবং প্রিন্টে অটো-অ্যাড হবে!');
         }
 
         function getGeneralSettings() {
@@ -812,6 +858,7 @@
                 activeYear: localStorage.getItem('madrasah_active_year'),
                 logo: localStorage.getItem('madrasah_logo_url'),
                 watermark: localStorage.getItem('madrasah_watermark_url'),
+                customBorder: localStorage.getItem('madrasah_custom_border_url'),
                 principalSign: localStorage.getItem('madrasah_principal_sign')
             };
             const dataStr = "data:text/json;charset=utf-8," + encodeURIComponent(JSON.stringify(dataObj, null, 2));
@@ -854,6 +901,13 @@
                 document.getElementById('watermark_opacity').value = savedOpacity;
                 document.documentElement.style.setProperty('--watermark-img', `url('${savedWatermark}')`);
                 document.documentElement.style.setProperty('--watermark-opacity', savedOpacity);
+            }
+
+            let savedBorder = localStorage.getItem('madrasah_custom_border_url');
+            if(savedBorder) {
+                document.getElementById('border_url_input').value = savedBorder;
+                document.getElementById('border_status_text').innerText = "✅ বর্ডার সক্রিয় আছে";
+                document.getElementById('border_status_text').className = "text-[10px] text-emerald-700 font-bold";
             }
 
             let principalSign = localStorage.getItem('madrasah_principal_sign') || localStorage.getItem('madrasah_signature');

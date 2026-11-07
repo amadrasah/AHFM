@@ -7,21 +7,28 @@
     <script src="https://cdn.tailwindcss.com"></script>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     <style>
-        /* গ্লোবাল প্রিন্ট এবং অটো বর্ডার/ওয়াটারমার্ক সেটআপ */
+        /* প্রিন্ট এবং অটো বর্ডার/ওয়াটারমার্ক ফিক্সড স্টাইল */
         @media print {
             .no-print { display: none !important; }
-            body { background: white !important; font-size: 11pt !important; -webkit-print-color-adjust: exact; print-color-adjust: exact; }
+            body { 
+                background: white !important; 
+                font-size: 11pt !important; 
+                -webkit-print-color-adjust: exact !important; 
+                print-color-adjust: exact !important; 
+            }
             
             .global-print-page {
                 position: relative !important;
                 width: 100% !important;
                 min-height: 98vh !important;
                 margin: 0 !important;
-                padding: 30px !important;
+                padding: 35px !important;
                 box-shadow: none !important;
                 background-image: var(--global-border-img, none) !important;
                 background-size: 100% 100% !important;
                 background-repeat: no-repeat !important;
+                -webkit-print-color-adjust: exact !important;
+                print-color-adjust: exact !important;
             }
 
             .global-print-page::before {
@@ -31,12 +38,14 @@
                 background-image: var(--global-watermark-img, none) !important;
                 background-repeat: no-repeat !important;
                 background-position: center !important;
-                background-size: 400px !important;
+                background-size: 450px !important;
                 opacity: var(--global-watermark-opacity, 0.08) !important;
                 pointer-events: none !important;
                 z-index: 0 !important;
+                -webkit-print-color-adjust: exact !important;
+                print-color-adjust: exact !important;
             }
-            @page { size: A4 portrait; margin: 8mm; }
+            @page { size: A4 portrait; margin: 5mm; }
         }
 
         /* স্ক্রিন প্রিভিউয়ের জন্য ওয়াটারমার্ক ও বর্ডার ইউটিলিটি */
@@ -393,7 +402,7 @@
 
                     <!-- Action Bar -->
                     <div class="bg-gray-50 p-3 rounded-xl border border-gray-200 flex justify-between items-center text-xs no-print">
-                        <span class="font-bold text-emerald-800"><i class="fa-solid fa-circle-check mr-1"></i> এই পেজটি প্রিন্ট করলেই আপনার ফিক্সড বর্ডার ও ওয়াটারমার্ক স্বয়ংক্রিয়ভাবে বসে যাবে।</span>
+                        <span class="font-bold text-emerald-800"><i class="fa-solid fa-circle-check mr-1"></i> প্রিন্ট করার সময় ব্যাকগ্রাউন্ড গ্রাফিক্স (Background graphics) অপশনটি অন রাখুন।</span>
                         <button onclick="window.print()" class="bg-cyan-700 text-white px-5 py-2 rounded-lg font-bold hover:bg-cyan-800 shadow flex items-center gap-1.5">
                             <i class="fa-solid fa-print"></i> প্রিন্ট করুন
                         </button>

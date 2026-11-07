@@ -7,35 +7,39 @@
     <script src="https://cdn.tailwindcss.com"></script>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     <style>
+        /* গ্লোবাল প্রিন্ট এবং অটো বর্ডার/ওয়াটারমার্ক সেটআপ */
         @media print {
             .no-print { display: none !important; }
-            body { background: white !important; font-size: 11pt !important; }
-            .print-container { 
-                width: 100% !important; 
-                margin: 0 !important; 
-                padding: 25px !important; 
-                box-shadow: none !important; 
-                background-image: var(--custom-border-img, none) !important;
+            body { background: white !important; font-size: 11pt !important; -webkit-print-color-adjust: exact; print-color-adjust: exact; }
+            
+            .global-print-page {
+                position: relative !important;
+                width: 100% !important;
+                min-height: 98vh !important;
+                margin: 0 !important;
+                padding: 30px !important;
+                box-shadow: none !important;
+                background-image: var(--global-border-img, none) !important;
                 background-size: 100% 100% !important;
                 background-repeat: no-repeat !important;
-                position: relative !important;
             }
-            @page { size: A4 portrait; margin: 10mm; }
+
+            .global-print-page::before {
+                content: "";
+                position: absolute;
+                top: 0; left: 0; right: 0; bottom: 0;
+                background-image: var(--global-watermark-img, none) !important;
+                background-repeat: no-repeat !important;
+                background-position: center !important;
+                background-size: 400px !important;
+                opacity: var(--global-watermark-opacity, 0.08) !important;
+                pointer-events: none !important;
+                z-index: 0 !important;
+            }
+            @page { size: A4 portrait; margin: 8mm; }
         }
-        /* Custom Spinner Animation */
-        .spinner {
-            border: 3px solid rgba(0, 0, 0, 0.1);
-            width: 36px;
-            height: 36px;
-            border-radius: 50%;
-            border-left-color: #047857;
-            animation: spin 1s linear infinite;
-        }
-        @keyframes spin {
-            0% { transform: rotate(0deg); }
-            100% { transform: rotate(360deg); }
-        }
-        /* Watermark Utility */
+
+        /* স্ক্রিন প্রিভিউয়ের জন্য ওয়াটারমার্ক ও বর্ডার ইউটিলিটি */
         .watermark-bg {
             position: relative;
         }
@@ -43,11 +47,11 @@
             content: "";
             position: absolute;
             top: 0; left: 0; right: 0; bottom: 0;
-            background-image: var(--watermark-img, none);
+            background-image: var(--global-watermark-img, none);
             background-repeat: no-repeat;
             background-position: center;
             background-size: 300px;
-            opacity: var(--watermark-opacity, 0.05);
+            opacity: var(--global-watermark-opacity, 0.08);
             pointer-events: none;
             z-index: 0;
         }
@@ -106,8 +110,8 @@
 
                 <div class="bg-gradient-to-r from-emerald-900 to-emerald-800 text-white p-5 md:p-6 rounded-2xl shadow-md flex flex-col md:flex-row justify-between items-center gap-4 no-print">
                     <div>
-                        <h2 class="text-lg md:text-xl font-bold">মাদ্রাসা সেটিংস ও ম্যানেজমেন্ট প্যানেল</h2>
-                        <p class="text-xs text-emerald-200 mt-1">লোগো, ওয়াটারমার্ক, কাস্টম বর্ডার, বিষয় কোড এবং মানি রিসিট সেটিং কনফিগার করুন।</p>
+                        <h2 class="text-lg md:text-xl font-bold">মাদ্রাসা সেটিংস ও অটো প্রিন্ট বর্ডার প্যানেল</h2>
+                        <p class="text-xs text-emerald-200 mt-1">স্থায়ী বর্ডার ও ওয়াটারমার্ক আপলোড করুন যা যেকোনো প্রিন্ট পেজে স্বয়ংক্রিয়ভাবে যুক্ত হবে।</p>
                     </div>
                 </div>
 
@@ -118,8 +122,8 @@
                     </div>
 
                     <div onclick="openSettingsPanel('logo')" class="bg-white p-5 rounded-2xl shadow-sm border border-gray-200 hover:border-blue-500 hover:shadow-md cursor-pointer transition space-y-3">
-                        <div class="flex justify-between items-center border-b pb-2"><h3 class="font-bold text-gray-800 text-sm"><i class="fa-solid fa-image text-blue-600 mr-2"></i> ২. লোগো, ওয়াটারমার্ক ও বর্ডার</h3><span class="text-[10px] bg-blue-100 text-blue-800 px-2 py-0.5 rounded font-bold">কাস্টম বর্ডার সহ</span></div>
-                        <p class="text-xs text-gray-600">লোগো, ওয়াটারমার্ক, বর্ডার ইমেজ এবং অধ্যক্ষের স্বাক্ষর বা সিল আপলোড।</p>
+                        <div class="flex justify-between items-center border-b pb-2"><h3 class="font-bold text-gray-800 text-sm"><i class="fa-solid fa-image text-blue-600 mr-2"></i> ২. লোগো, ওয়াটারমার্ক ও বর্ডার</h3><span class="text-[10px] bg-blue-100 text-blue-800 px-2 py-0.5 rounded font-bold">অটো বর্ডার ও ওয়াটারমার্ক</span></div>
+                        <p class="text-xs text-gray-600">প্রিন্ট পেজের জন্য স্থায়ী বর্ডার ইমেজ ও ওয়াটারমার্ক আপলোড করুন।</p>
                     </div>
 
                     <div onclick="openSettingsPanel('session')" class="bg-white p-5 rounded-2xl shadow-sm border border-gray-200 hover:border-purple-500 hover:shadow-md cursor-pointer transition space-y-3">
@@ -189,7 +193,7 @@
                 <!-- Panel 2: Logo, Watermark, Custom Border & Signature -->
                 <div id="panel-logo" class="settings-sub-panel bg-white p-5 md:p-6 rounded-2xl shadow-sm border border-gray-200 space-y-4 hidden">
                     <div class="flex justify-between items-center border-b pb-3 no-print">
-                        <h3 class="font-bold text-blue-800 text-sm"><i class="fa-solid fa-image mr-2"></i> ২. লোগো, ওয়াটারমার্ক, কাস্টম বর্ডার ও স্বাক্ষর ম্যানেজমেন্ট</h3>
+                        <h3 class="font-bold text-blue-800 text-sm"><i class="fa-solid fa-image mr-2"></i> ২. লোগো, ওয়াটারমার্ক ও গ্লোবাল প্রিন্ট বর্ডার ম্যানেজমেন্ট</h3>
                         <button onclick="closeAllSettingsPanels()" class="text-xs bg-gray-200 px-3 py-1 rounded font-bold text-gray-700 hover:bg-gray-300">বন্ধ করুন</button>
                     </div>
 
@@ -203,8 +207,8 @@
                                 <input type="file" id="logo_file_input" onchange="previewLogoFile(this)" class="w-full p-2 border rounded bg-white text-xs">
                             </div>
                             <button onclick="applyLogoSettings()" class="w-full bg-blue-700 text-white py-2 rounded font-bold hover:bg-blue-800 shadow">লোগো সেট করুন</button>
-                            <div class="border-2 border-dashed border-blue-300 p-3 rounded-xl bg-white text-center">
-                                <img id="logo_live_img" src="https://via.placeholder.com/50" class="w-12 h-12 mx-auto object-contain border rounded-full shadow">
+                            <div class="border-2 border-dashed border-blue-300 p-2 rounded-xl bg-white text-center">
+                                <img id="logo_live_img" src="https://via.placeholder.com/40" class="w-10 h-10 mx-auto object-contain border rounded-full shadow">
                             </div>
                         </div>
 
@@ -212,28 +216,28 @@
                         <div class="space-y-3 bg-emerald-50 p-4 rounded-xl border border-emerald-200">
                             <h4 class="font-bold text-emerald-900"><i class="fa-solid fa-water mr-1"></i> ওয়াটারমার্ক ম্যানেজমেন্ট:</h4>
                             <div>
-                                <label class="font-bold block mb-1">ওয়াটারমার্ক URL বা ফাইল:</label>
-                                <input type="text" id="watermark_url_input" placeholder="URL দিন..." class="w-full p-2 border rounded bg-white font-bold mb-2">
+                                <label class="font-bold block mb-1">ওয়াটারমার্ক ইমেজ বা URL:</label>
+                                <input type="text" id="watermark_url_input" placeholder="ওয়াটারমার্ক URL..." class="w-full p-2 border rounded bg-white font-bold mb-2">
                                 <input type="file" id="watermark_file_input" onchange="previewWatermarkFile(this)" class="w-full p-2 border rounded bg-white text-xs mb-1">
                             </div>
                             <div>
                                 <label class="font-bold block mb-1">স্বচ্ছতা (Opacity):</label>
-                                <input type="range" id="watermark_opacity" min="0.02" max="0.2" step="0.01" value="0.05" class="w-full" oninput="updateWatermarkLivePreview()">
+                                <input type="range" id="watermark_opacity" min="0.02" max="0.3" step="0.01" value="0.08" class="w-full" oninput="updateWatermarkLivePreview()">
                             </div>
                             <button onclick="applyWatermarkSettings()" class="w-full bg-emerald-700 text-white py-2 rounded font-bold hover:bg-emerald-800 shadow">ওয়াটারমার্ক সেট করুন</button>
                         </div>
 
-                        <!-- Custom Border Upload Section (NEWLY ADDED) -->
+                        <!-- Global Custom Border Section -->
                         <div class="space-y-3 bg-amber-50 p-4 rounded-xl border border-amber-200">
-                            <h4 class="font-bold text-amber-900"><i class="fa-solid fa-border-all mr-1"></i> কাস্টম বর্ডার আপলোড (Border):</h4>
+                            <h4 class="font-bold text-amber-900"><i class="fa-solid fa-border-all mr-1"></i> গ্লোবাল প্রিন্ট বর্ডার (Border):</h4>
                             <div>
-                                <label class="font-bold block mb-1">বর্ডার ইমেজ আপলোড বা URL:</label>
+                                <label class="font-bold block mb-1">ডিজাইন বর্ডার ইমেজ আপলোড:</label>
                                 <input type="text" id="border_url_input" placeholder="বর্ডার ছবির URL..." class="w-full p-2 border rounded bg-white font-bold mb-2">
                                 <input type="file" id="border_file_input" onchange="previewBorderFile(this)" class="w-full p-2 border rounded bg-white text-xs">
                             </div>
-                            <button onclick="applyBorderSettings()" class="w-full bg-amber-700 text-white py-2 rounded font-bold hover:bg-amber-800 shadow">বর্ডার সেট করুন</button>
+                            <button onclick="applyBorderSettings()" class="w-full bg-amber-700 text-white py-2 rounded font-bold hover:bg-amber-800 shadow">বর্ডার ফিক্সড করুন</button>
                             <div class="border-2 border-dashed border-amber-300 p-2 rounded-xl bg-white text-center">
-                                <span class="text-[10px] text-amber-900 font-bold" id="border_status_text">বর্ডার যুক্ত হয়নি</span>
+                                <span class="text-[10px] text-amber-900 font-bold" id="border_status_text">বর্ডার ফিক্সড করা হয়নি</span>
                             </div>
                         </div>
 
@@ -247,7 +251,7 @@
                             </div>
                             <button onclick="applyPrincipalSignSettings()" class="w-full bg-purple-700 text-white py-2 rounded font-bold hover:bg-purple-800 shadow">স্বাক্ষর সেট করুন</button>
                             <div class="border-2 border-dashed border-purple-300 p-2 rounded-xl bg-white text-center">
-                                <img id="principal_sign_preview" src="https://via.placeholder.com/80x30" class="h-8 mx-auto object-contain border rounded shadow">
+                                <img id="principal_sign_preview" src="https://via.placeholder.com/80x30" class="h-6 mx-auto object-contain border rounded shadow">
                             </div>
                         </div>
                     </div>
@@ -380,29 +384,23 @@
                     </div>
                 </div>
 
-                <!-- 8. Money Receipt Panel with Auto Print Customizations -->
+                <!-- 8. Money Receipt Panel with Global Print Border & Watermark Class -->
                 <div id="panel-receipt" class="settings-sub-panel bg-white p-5 md:p-6 rounded-2xl shadow-sm border border-gray-200 space-y-4 hidden">
                     <div class="flex justify-between items-center border-b pb-3 no-print">
-                        <h3 class="font-bold text-cyan-800 text-sm"><i class="fa-solid fa-receipt mr-2"></i> ৮. মানি রিসিট ও সিল-স্বাক্ষর (অটো লোগো, ওয়াটারমার্ক ও কাস্টম বর্ডার)</h3>
+                        <h3 class="font-bold text-cyan-800 text-sm"><i class="fa-solid fa-receipt mr-2"></i> ৮. মানি রিসিট ও অটো গ্লোবাল প্রিন্ট বর্ডার</h3>
                         <button onclick="closeAllSettingsPanels()" class="text-xs bg-gray-200 px-3 py-1 rounded font-bold text-gray-700 hover:bg-gray-300">বন্ধ করুন</button>
                     </div>
 
-                    <!-- Print Customization Action Bar -->
-                    <div class="bg-gray-50 p-3 rounded-xl border border-gray-200 flex flex-wrap items-center justify-between gap-3 text-xs no-print">
-                        <span class="font-bold text-gray-700"><i class="fa-solid fa-sliders text-emerald-700 mr-1"></i> প্রিন্ট অপশনসমূহ:</span>
-                        <div class="flex flex-wrap items-center gap-2">
-                            <button id="btnToggleLogo" onclick="togglePrintOption('logo')" class="px-3 py-1.5 rounded-lg font-bold border transition bg-emerald-700 text-white border-emerald-700">📌 লোগো</button>
-                            <button id="btnToggleWatermark" onclick="togglePrintOption('watermark')" class="px-3 py-1.5 rounded-lg font-bold border transition bg-emerald-700 text-white border-emerald-700">💧 ওয়াটারমার্ক</button>
-                            <button id="btnToggleSign" onclick="togglePrintOption('sign')" class="px-3 py-1.5 rounded-lg font-bold border transition bg-emerald-700 text-white border-emerald-700">✍️ স্বাক্ষর</button>
-                            <button id="btnToggleBorder" onclick="togglePrintOption('border')" class="px-3 py-1.5 rounded-lg font-bold border transition bg-emerald-700 text-white border-emerald-700">🔲 কাস্টম বর্ডার</button>
-                        </div>
-                        <button onclick="window.print()" class="bg-cyan-700 text-white px-4 py-2 rounded-lg font-bold hover:bg-cyan-800 shadow flex items-center gap-1.5">
+                    <!-- Action Bar -->
+                    <div class="bg-gray-50 p-3 rounded-xl border border-gray-200 flex justify-between items-center text-xs no-print">
+                        <span class="font-bold text-emerald-800"><i class="fa-solid fa-circle-check mr-1"></i> এই পেজটি প্রিন্ট করলেই আপনার ফিক্সড বর্ডার ও ওয়াটারমার্ক স্বয়ংক্রিয়ভাবে বসে যাবে।</span>
+                        <button onclick="window.print()" class="bg-cyan-700 text-white px-5 py-2 rounded-lg font-bold hover:bg-cyan-800 shadow flex items-center gap-1.5">
                             <i class="fa-solid fa-print"></i> প্রিন্ট করুন
                         </button>
                     </div>
 
-                    <!-- Printable Container -->
-                    <div id="printableArea" class="print-container max-w-xl mx-auto bg-white border-2 border-emerald-800 p-6 rounded-xl shadow-lg relative watermark-bg space-y-4 text-xs">
+                    <!-- Printable Container with global-print-page Class -->
+                    <div id="printableArea" class="global-print-page max-w-xl mx-auto bg-white p-6 rounded-xl shadow-lg relative watermark-bg space-y-4 text-xs border border-gray-200">
                         
                         <!-- Header with Auto Logo -->
                         <div class="flex items-center gap-4 border-b-2 border-emerald-800 pb-3 relative z-10">
@@ -477,83 +475,39 @@
     </div>
 
     <script>
-        // Print Settings Toggle State
-        let printSettings = {
-            logo: true,
-            watermark: true,
-            sign: true,
-            border: true
-        };
+        // গ্লোবাল প্রিন্ট বর্ডার ও ওয়াটারমার্ক অটো-লোডিং ইঞ্জিন
+        function updateGlobalPrintStyles() {
+            const rootStyle = document.documentElement;
 
-        function togglePrintOption(type) {
-            printSettings[type] = !printSettings[type];
-            let btn = document.getElementById(type === 'logo' ? 'btnToggleLogo' : type === 'watermark' ? 'btnToggleWatermark' : type === 'sign' ? 'btnToggleSign' : 'btnToggleBorder');
-            
-            if (printSettings[type]) {
-                btn.className = "px-3 py-1.5 rounded-lg font-bold border transition bg-emerald-700 text-white border-emerald-700";
-            } else {
-                btn.className = "px-3 py-1.5 rounded-lg font-bold border transition bg-gray-200 text-gray-600 border-gray-300";
-            }
-            updatePrintDOM();
-        }
-
-        function updatePrintDOM() {
-            // Logo Visibility
-            const logoContainer = document.getElementById('printLogoContainer');
-            if (logoContainer) {
-                logoContainer.style.display = printSettings.logo ? 'block' : 'none';
-            }
-
-            // Watermark Visibility
-            const watermarkStyle = document.documentElement;
-            if (printSettings.watermark) {
-                let savedWatermark = localStorage.getItem('madrasah_watermark_url') || localStorage.getItem('madrasah_logo_url') || "https://via.placeholder.com/150";
-                let savedOpacity = localStorage.getItem('madrasah_watermark_opacity') || "0.05";
-                watermarkStyle.style.setProperty('--watermark-img', `url('${savedWatermark}')`);
-                watermarkStyle.style.setProperty('--watermark-opacity', savedOpacity);
-            } else {
-                watermarkStyle.style.setProperty('--watermark-img', 'none');
-            }
-
-            // Principal Signature Visibility
-            const signImg = document.getElementById('receipt_sign_img');
-            let principalSign = localStorage.getItem('madrasah_principal_sign') || localStorage.getItem('madrasah_signature');
-            if (signImg) {
-                if (printSettings.sign && principalSign) {
-                    signImg.src = principalSign;
-                    signImg.classList.remove('hidden');
-                } else {
-                    signImg.classList.add('hidden');
-                }
-            }
-
-            // Custom Border Image Background in Print
+            // বর্ডার লোড
             let customBorder = localStorage.getItem('madrasah_custom_border_url');
-            if (printSettings.border && customBorder) {
-                watermarkStyle.style.setProperty('--custom-border-img', `url('${customBorder}')`);
-            } else {
-                watermarkStyle.style.setProperty('--custom-border-img', 'none');
+            if (customBorder) {
+                rootStyle.style.setProperty('--global-border-img', `url('${customBorder}')`);
             }
 
-            // Screen Preview Border Fallback
-            const printableArea = document.getElementById('printableArea');
-            if (printableArea) {
-                if (printSettings.border && customBorder) {
-                    printableArea.style.backgroundImage = `url('${customBorder}')`;
-                    printableArea.style.backgroundSize = "100% 100%";
-                } else {
-                    printableArea.style.backgroundImage = "none";
-                }
+            // ওয়াটারমার্ক লোড
+            let savedWatermark = localStorage.getItem('madrasah_watermark_url') || localStorage.getItem('madrasah_logo_url');
+            let savedOpacity = localStorage.getItem('madrasah_watermark_opacity') || "0.08";
+            if (savedWatermark) {
+                rootStyle.style.setProperty('--global-watermark-img', `url('${savedWatermark}')`);
+                rootStyle.style.setProperty('--global-watermark-opacity', savedOpacity);
+            }
+
+            // স্বাক্ষর লোড
+            let principalSign = localStorage.getItem('madrasah_principal_sign') || localStorage.getItem('madrasah_signature');
+            const signImg = document.getElementById('receipt_sign_img');
+            if (signImg && principalSign) {
+                signImg.src = principalSign;
+                signImg.classList.remove('hidden');
             }
         }
 
-        // --- Custom Border Upload Handlers ---
+        // --- কাস্টম বর্ডার আপলোড হ্যান্ডলার ---
         function previewBorderFile(input) {
             if (input.files && input.files[0]) {
                 const reader = new FileReader();
                 reader.onload = function(e) {
-                    const imgUrl = e.target.result;
-                    document.getElementById('border_url_input').value = imgUrl;
+                    document.getElementById('border_url_input').value = e.target.result;
                 }
                 reader.readAsDataURL(input.files[0]);
             }
@@ -566,10 +520,10 @@
                 return;
             }
             localStorage.setItem('madrasah_custom_border_url', url);
-            document.getElementById('border_status_text').innerText = "✅ বর্ডার সফলভাবে সেট হয়েছে";
+            document.getElementById('border_status_text').innerText = "✅ বর্ডার সফলভাবে ফিক্সড হয়েছে";
             document.getElementById('border_status_text').className = "text-[10px] text-emerald-700 font-bold";
-            updatePrintDOM();
-            alert('কাস্টম বর্ডার ইমেজ সফলভাবে সংরক্ষিত হয়েছে এবং প্রিন্টে অটো-অ্যাড হবে!');
+            updateGlobalPrintStyles();
+            alert('আপনার ডিজাইন করা বর্ডারটি গ্লোবাল প্রিন্টের জন্য ফিক্সড হয়ে গেছে! এখন থেকে যেকোনো প্রিন্ট পেজে এটি অটো-সেট হবে।');
         }
 
         function getGeneralSettings() {
@@ -600,7 +554,7 @@
             const rYear = document.getElementById('receipt_active_year');
             if(rYear) rYear.innerText = activeYear;
 
-            updatePrintDOM();
+            updateGlobalPrintStyles();
         }
 
         function saveGeneralSettings() {
@@ -671,9 +625,8 @@
             if (input.files && input.files[0]) {
                 const reader = new FileReader();
                 reader.onload = function(e) {
-                    const imgUrl = e.target.result;
-                    document.getElementById('logo_url_input').value = imgUrl;
-                    document.getElementById('logo_live_img').src = imgUrl;
+                    document.getElementById('logo_url_input').value = e.target.result;
+                    document.getElementById('logo_live_img').src = e.target.result;
                 }
                 reader.readAsDataURL(input.files[0]);
             }
@@ -692,8 +645,7 @@
             if (input.files && input.files[0]) {
                 const reader = new FileReader();
                 reader.onload = function(e) {
-                    const imgUrl = e.target.result;
-                    document.getElementById('watermark_url_input').value = imgUrl;
+                    document.getElementById('watermark_url_input').value = e.target.result;
                 }
                 reader.readAsDataURL(input.files[0]);
             }
@@ -701,27 +653,26 @@
 
         function updateWatermarkLivePreview() {
             const opacity = document.getElementById('watermark_opacity').value;
-            document.documentElement.style.setProperty('--watermark-opacity', opacity);
+            document.documentElement.style.setProperty('--global-watermark-opacity', opacity);
         }
 
         function applyWatermarkSettings() {
-            const url = document.getElementById('watermark_url_input').value.trim() || localStorage.getItem('madrasah_logo_url') || "https://via.placeholder.com/150";
+            const url = document.getElementById('watermark_url_input').value.trim() || localStorage.getItem('madrasah_logo_url');
             const opacity = document.getElementById('watermark_opacity').value;
             localStorage.setItem('madrasah_watermark_url', url);
             localStorage.setItem('madrasah_watermark_opacity', opacity);
             
-            document.documentElement.style.setProperty('--watermark-img', `url('${url}')`);
-            document.documentElement.style.setProperty('--watermark-opacity', opacity);
-            alert('ব্যাকগ্রাউন্ড ওয়াটারমার্ক সফলভাবে সেট ও আপডেট করা হয়েছে!');
+            document.documentElement.style.setProperty('--global-watermark-img', `url('${url}')`);
+            document.documentElement.style.setProperty('--global-watermark-opacity', opacity);
+            alert('ওয়াটারমার্ক সফলভাবে ফিক্সড করা হয়েছে!');
         }
 
         function previewPrincipalSign(input) {
             if (input.files && input.files[0]) {
                 const reader = new FileReader();
                 reader.onload = function(e) {
-                    const imgUrl = e.target.result;
-                    document.getElementById('principal_sign_url').value = imgUrl;
-                    document.getElementById('principal_sign_preview').src = imgUrl;
+                    document.getElementById('principal_sign_url').value = e.target.result;
+                    document.getElementById('principal_sign_preview').src = e.target.result;
                 }
                 reader.readAsDataURL(input.files[0]);
             }
@@ -736,9 +687,8 @@
             localStorage.setItem('madrasah_principal_sign', url);
             localStorage.setItem('madrasah_signature', url);
             document.getElementById('principal_sign_preview').src = url;
-            
-            updatePrintDOM();
-            alert('অধ্যক্ষের স্বাক্ষর বা সিল সফলভাবে সংরক্ষিত হয়েছে এবং সব মডিউলে অটো-কানেক্ট হয়ে গেছে!');
+            updateGlobalPrintStyles();
+            alert('অধ্যক্ষের স্বাক্ষর সফলভাবে সংরক্ষিত হয়েছে!');
         }
 
         function addNewYear() {
@@ -895,18 +845,16 @@
             }
 
             let savedWatermark = localStorage.getItem('madrasah_watermark_url') || savedLogo;
-            let savedOpacity = localStorage.getItem('madrasah_watermark_opacity') || "0.05";
+            let savedOpacity = localStorage.getItem('madrasah_watermark_opacity') || "0.08";
             if(savedWatermark) {
                 document.getElementById('watermark_url_input').value = savedWatermark;
                 document.getElementById('watermark_opacity').value = savedOpacity;
-                document.documentElement.style.setProperty('--watermark-img', `url('${savedWatermark}')`);
-                document.documentElement.style.setProperty('--watermark-opacity', savedOpacity);
             }
 
             let savedBorder = localStorage.getItem('madrasah_custom_border_url');
             if(savedBorder) {
                 document.getElementById('border_url_input').value = savedBorder;
-                document.getElementById('border_status_text').innerText = "✅ বর্ডার সক্রিয় আছে";
+                document.getElementById('border_status_text').innerText = "✅ বর্ডার ফিক্সড আছে";
                 document.getElementById('border_status_text').className = "text-[10px] text-emerald-700 font-bold";
             }
 
@@ -916,7 +864,7 @@
                 document.getElementById('principal_sign_preview').src = principalSign;
             }
 
-            updatePrintDOM();
+            updateGlobalPrintStyles();
         };
     </script>
 </body>

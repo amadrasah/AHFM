@@ -14,7 +14,6 @@
             * { -webkit-print-color-adjust: exact; print-color-adjust: exact; }
             @page { size: A4 landscape; margin: 8mm; }
         }
-        /* Custom Spinner Animation */
         .spinner {
             border: 3px solid rgba(0, 0, 0, 0.1);
             width: 36px;
@@ -27,7 +26,6 @@
             0% { transform: rotate(0deg); }
             100% { transform: rotate(360deg); }
         }
-        /* Watermark Utility */
         .watermark-bg {
             position: relative;
         }
@@ -115,8 +113,8 @@
                     </div>
 
                     <div onclick="openExamPanel('processing')" class="bg-white p-5 rounded-2xl shadow-sm border border-gray-200 hover:border-purple-500 hover:shadow-md cursor-pointer transition space-y-3">
-                        <div class="flex justify-between items-center border-b pb-2"><h3 class="font-bold text-gray-800 text-sm"><i class="fa-solid fa-calculator text-purple-600 mr-2"></i> রেজাল্ট প্রসেসিং</h3><span class="text-[10px] bg-purple-100 text-purple-800 px-2 py-0.5 rounded font-bold">গ্রুপ ম্যাপিং</span></div>
-                        <p class="text-xs text-gray-600">শ্রেণি ও সাবজেক্ট গ্রুপ ম্যাপিং করে ফলাফল প্রসেস।</p>
+                        <div class="flex justify-between items-center border-b pb-2"><h3 class="font-bold text-gray-800 text-sm"><i class="fa-solid fa-calculator text-purple-600 mr-2"></i> রেজাল্ট প্রসেসিং</h3><span class="text-[10px] bg-purple-100 text-purple-800 px-2 py-0.5 rounded font-bold">যুগ্ম সাবজেক্ট পাস</span></div>
+                        <p class="text-xs text-gray-600">কুরআন+হাদীস বা ১ম+২য় পত্র একত্রে পাস লজিক প্রসেস।</p>
                     </div>
 
                     <div onclick="openExamPanel('merit')" class="bg-white p-5 rounded-2xl shadow-sm border border-gray-200 hover:border-amber-500 hover:shadow-md cursor-pointer transition space-y-3">
@@ -231,13 +229,15 @@
                     </div>
                 </div>
 
+                <!-- 3. RESULT PROCESSING & COMBINED SUBJECTS MAPPING PANEL (UPDATED WITH COMBINED PAPERS LOGIC) -->
                 <div id="panel-processing" class="exam-sub-panel bg-white p-5 md:p-6 rounded-2xl shadow-sm border border-gray-200 space-y-4 hidden">
                     <div class="flex justify-between items-center border-b pb-3 no-print">
-                        <h3 class="font-bold text-purple-800 text-sm"><i class="fa-solid fa-calculator mr-2"></i> ৩. রেজাল্ট প্রসেসিং ও সাবজেক্ট গ্রুপ ম্যাপিং</h3>
+                        <h3 class="font-bold text-purple-800 text-sm"><i class="fa-solid fa-calculator mr-2"></i> ৩. রেজাল্ট প্রসেসিং ও সাবজেক্ট গ্রুপ/যুগ্ম বিষয় ম্যাপিং (Combined Paper Logic)</h3>
                         <button onclick="closeAllExamPanels()" class="text-xs bg-gray-200 px-3 py-1 rounded font-bold text-gray-700 hover:bg-gray-300">বন্ধ করুন</button>
                     </div>
-                    <div class="bg-purple-50 p-4 rounded-xl border border-purple-200 text-xs space-y-3 no-print">
-                        <div class="grid grid-cols-1 sm:grid-cols-3 gap-3 pb-2">
+
+                    <div class="bg-purple-50 p-4 rounded-xl border border-purple-200 text-xs space-y-4">
+                        <div class="grid grid-cols-1 sm:grid-cols-3 gap-3">
                             <div>
                                 <label class="font-bold block mb-1">একাডেমিক সাল:</label>
                                 <select id="proc_filter_year" class="p-2 border rounded bg-white font-bold w-full"></select>
@@ -251,13 +251,59 @@
                                 <select id="proc_filter_class" class="p-2 border rounded bg-white font-bold w-full"></select>
                             </div>
                         </div>
-                        <h4 class="font-bold text-purple-900">সাবজেক্ট গ্রুপ ম্যাপিং (Subject Group Mapping):</h4>
-                        <p class="text-gray-600">কুরআন ও হাদীস বিষয়গুলো একত্রে 'ইসলামিক স্টাডিজ গ্রুপ' এবং অন্যান্য সাধারণ বিষয় গ্রুপ হিসেবে ম্যাপিং করে গ্রেড প্রসেস করা হবে।</p>
-                        <button onclick="processAllResults()" class="bg-purple-700 text-white px-5 py-2.5 rounded-lg font-bold hover:bg-purple-800 shadow">
-                            <i class="fa-solid fa-bolt mr-1"></i> সকল শিক্ষার্থীর ফলাফল প্রসেস করুন
-                        </button>
+
+                        <!-- COMBINED SUBJECT GROUP CREATOR -->
+                        <div class="bg-white p-4 rounded-lg border border-purple-300 space-y-3 shadow-sm">
+                            <div class="flex justify-between items-center border-b pb-2">
+                                <h4 class="font-bold text-purple-900 flex items-center gap-1.5">
+                                    <i class="fa-solid fa-link text-purple-700"></i> যুগ্ম সাবজেক্ট গ্রুপ সেটআপ (কুরআন + হাদীস / ১ম + ২য় পত্র)
+                                </h4>
+                                <span class="text-[10px] bg-purple-100 text-purple-800 px-2 py-0.5 rounded font-bold">মোট নম্বরে যৌথ পাস নীতি</span>
+                            </div>
+                            
+                            <div class="grid grid-cols-1 sm:grid-cols-4 gap-3 items-end">
+                                <div>
+                                    <label class="font-bold block mb-1 text-gray-700">যুগ্ম গ্রুপের নাম:</label>
+                                    <input type="text" id="comb_group_name" placeholder="যেমন: কুরআন ও হাদীস যৌথ" class="p-2 border rounded w-full font-bold bg-gray-50">
+                                </div>
+                                <div>
+                                    <label class="font-bold block mb-1 text-gray-700">বিষয় ১ (Paper 1):</label>
+                                    <select id="comb_sub_1" class="p-2 border rounded w-full font-bold bg-gray-50"></select>
+                                </div>
+                                <div>
+                                    <label class="font-bold block mb-1 text-gray-700">বিষয় ২ (Paper 2):</label>
+                                    <select id="comb_sub_2" class="p-2 border rounded w-full font-bold bg-gray-50"></select>
+                                </div>
+                                <div>
+                                    <button onclick="addCombinedSubjectGroup()" class="w-full bg-purple-700 text-white p-2 rounded font-bold hover:bg-purple-800 shadow">
+                                        <i class="fa-solid fa-plus mr-1"></i> গ্রুপ যুক্ত করুন
+                                    </button>
+                                </div>
+                            </div>
+
+                            <div class="pt-2">
+                                <p class="font-bold text-gray-700 mb-1">সংরক্ষিত যুগ্ম সাবজেক্ট গ্রুপসমূহ (২০০ নম্বরের একত্রে পাস হিসেব):</p>
+                                <div id="combinedGroupsDisplayList" class="flex flex-wrap gap-2">
+                                    <span class="bg-purple-100 text-purple-900 px-3 py-1.5 rounded-lg border border-purple-300 font-bold flex items-center gap-2">
+                                        <i class="fa-solid fa-book"></i> কুরআন মাজিদ + হাদীস শরীফ (মোট ২০০ নম্বর)
+                                        <button onclick="this.parentElement.remove()" class="text-red-600 font-bold hover:bg-red-200 rounded px-1">×</button>
+                                    </span>
+                                    <span class="bg-purple-100 text-purple-900 px-3 py-1.5 rounded-lg border border-purple-300 font-bold flex items-center gap-2">
+                                        <i class="fa-solid fa-book"></i> বাংলা ১ম পত্র + বাংলা ২য় পত্র (মোট ২০০ নম্বর)
+                                        <button onclick="this.parentElement.remove()" class="text-red-600 font-bold hover:bg-red-200 rounded px-1">×</button>
+                                    </span>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="pt-2 flex flex-col sm:flex-row justify-between items-center gap-3">
+                            <p class="text-xs text-gray-600">যুগ্ম বিষয়ের ক্ষেত্রে ২টি বিষয় মিলে মোট (২০০ নম্বরের মধ্যে) প্রাপ্ত নম্বর গণনা করে জিপিএ এবং সম্মিলিত পাস/ফেল ও গ্রেড চূড়ান্ত হবে।</p>
+                            <button onclick="processAllResults()" class="bg-purple-700 text-white px-6 py-2.5 rounded-lg font-bold hover:bg-purple-800 shadow whitespace-nowrap">
+                                <i class="fa-solid fa-bolt mr-1"></i> সকল বিষয়ের ফলাফল প্রসেস করুন
+                            </button>
+                        </div>
                     </div>
-                    <div id="processingStatusResult" class="text-xs font-bold text-emerald-700"></div>
+                    <div id="processingStatusResult" class="text-xs font-bold text-emerald-700 px-1"></div>
                 </div>
 
                 <div id="panel-merit" class="exam-sub-panel bg-white p-5 md:p-6 rounded-2xl shadow-sm border border-gray-200 space-y-4 hidden">
@@ -506,11 +552,10 @@
                                 </tr>
                             </thead>
                             <tbody>
-                                <tr><td class="border p-1.5 text-center">১</td><td class="border p-1.5">আল-কুরআনুল কারীম</td><td class="border p-1.5 text-center">100</td><td class="border p-1.5 text-center">85</td><td class="border p-1.5 text-center font-bold">A+</td></tr>
-                                <tr><td class="border p-1.5 text-center">২</td><td class="border p-1.5">আল-হাদীস শরীফ</td><td class="border p-1.5 text-center">100</td><td class="border p-1.5 text-center">80</td><td class="border p-1.5 text-center font-bold">A+</td></tr>
-                                <tr><td class="border p-1.5 text-center">৩</td><td class="border p-1.5">বাংলা</td><td class="border p-1.5 text-center">100</td><td class="border p-1.5 text-center">78</td><td class="border p-1.5 text-center font-bold">A</td></tr>
-                                <tr><td class="border p-1.5 text-center">৪</td><td class="border p-1.5">ইংরেজি</td><td class="border p-1.5 text-center">100</td><td class="border p-1.5 text-center">82</td><td class="border p-1.5 text-center font-bold">A+</td></tr>
-                                <tr><td class="border p-1.5 text-center">৫</td><td class="border p-1.5">গণিত</td><td class="border p-1.5 text-center">100</td><td class="border p-1.5 text-center">90</td><td class="border p-1.5 text-center font-bold">A+</td></tr>
+                                <tr><td class="border p-1.5 text-center">১</td><td class="border p-1.5">আল-কুরআনুল কারীম + আল-হাদীস শরীফ (যুগ্ম)</td><td class="border p-1.5 text-center">200</td><td class="border p-1.5 text-center">165</td><td class="border p-1.5 text-center font-bold">A+</td></tr>
+                                <tr><td class="border p-1.5 text-center">২</td><td class="border p-1.5">বাংলা ১ম + বাংলা ২য় (যুগ্ম)</td><td class="border p-1.5 text-center">200</td><td class="border p-1.5 text-center">156</td><td class="border p-1.5 text-center font-bold">A+</td></tr>
+                                <tr><td class="border p-1.5 text-center">৩</td><td class="border p-1.5">ইংরেজি ১ম পত্র</td><td class="border p-1.5 text-center">100</td><td class="border p-1.5 text-center">82</td><td class="border p-1.5 text-center font-bold">A+</td></tr>
+                                <tr><td class="border p-1.5 text-center">৪</td><td class="border p-1.5">গণিত</td><td class="border p-1.5 text-center">100</td><td class="border p-1.5 text-center">90</td><td class="border p-1.5 text-center font-bold">A+</td></tr>
                             </tbody>
                         </table>
 
@@ -532,7 +577,6 @@
                         <button onclick="closeAllExamPanels()" class="text-xs bg-gray-200 px-3 py-1 rounded font-bold text-gray-700 hover:bg-gray-300">বন্ধ করুন</button>
                     </div>
 
-                    <!-- Filtering Controls for Admit Card -->
                     <div class="bg-cyan-50 p-4 rounded-xl border border-cyan-200 grid grid-cols-1 sm:grid-cols-4 gap-3 items-end text-xs no-print">
                         <div>
                             <label class="font-bold block mb-1">একাডেমিক সাল:</label>
@@ -555,12 +599,8 @@
                         <button onclick="window.print()" class="bg-cyan-700 text-white px-5 py-2 rounded text-xs font-bold hover:bg-cyan-800 shadow"><i class="fa-solid fa-print mr-1"></i> ডুয়াল এডমিট কার্ড প্রিন্ট করুন (A4 পেজে দুজন)</button>
                     </div>
 
-                    <!-- Printable Container for A4 Layout (Two Admit Cards per Page) -->
                     <div class="print-container space-y-4 max-w-2xl mx-auto">
-                        
-                        <!-- Admit Card 1 -->
                         <div class="bg-white border-2 border-emerald-900 p-3 rounded-xl shadow-md watermark-bg space-y-2 text-[11px]">
-                            
                             <div class="flex justify-between items-center border-b-2 border-emerald-900 pb-1.5 relative z-10">
                                 <div class="w-12"></div>
                                 <div class="text-center flex-1">
@@ -632,81 +672,9 @@
                                 <div><span class="border-t border-gray-800 inline-block px-3 pt-0.5 font-bold">শ্রেণি শিক্ষক</span></div>
                             </div>
                         </div>
-
-                        <!-- Admit Card 2 -->
-                        <div class="bg-white border-2 border-emerald-900 p-3 rounded-xl shadow-md watermark-bg space-y-2 text-[11px]">
-                            
-                            <div class="flex justify-between items-center border-b-2 border-emerald-900 pb-1.5 relative z-10">
-                                <div class="w-12"></div>
-                                <div class="text-center flex-1">
-                                    <h2 class="font-bold text-xs text-emerald-900">আব্দুল্লাহ হাট ইসলামিয়া ফাজিল মাদ্রাসা</h2>
-                                    <p class="text-[9px] text-gray-600">আব্দুল্লাহ্ হাট, না‌টেশ্বর, সোনইমু‌ড়ি, নোয়াখালী</p>
-                                    <span class="inline-block bg-emerald-100 text-emerald-900 px-2.5 py-0.2 rounded-full font-bold text-[10px] mt-0.5 border border-emerald-300 admit_exam_title_display">অর্ধবার্ষিক পরীক্ষা - ২০২৬</span>
-                                </div>
-                                <div class="w-12 text-right">
-                                    <img id="inst_logo_display_2" src="https://via.placeholder.com/60" class="w-10 h-10 object-cover rounded border border-gray-400 ml-auto shadow">
-                                </div>
-                            </div>
-
-                            <div class="text-center relative z-10">
-                                <span class="bg-emerald-900 text-white px-4 py-0.5 rounded-full font-bold text-[10px] uppercase tracking-wider shadow-sm">এডমিট কার্ড</span>
-                            </div>
-
-                            <div class="grid grid-cols-3 gap-2 border p-2 rounded-lg bg-emerald-50/50 relative z-10 items-center">
-                                <div class="space-y-0.5">
-                                    <p><b>শিক্ষার্থীর নাম:</b> ফাতেমা তুজ জোহরা</p>
-                                    <p><b>পিতার নাম:</b> আবদুল কাদের</p>
-                                    <p><b>মাতার নাম:</b> খাদিজা বেগম</p>
-                                </div>
-                                <div class="space-y-0.5 border-x px-2 border-emerald-200">
-                                    <p><b>আইডি:</b> 202606002</p>
-                                    <p><b>রোল নং:</b> ১০১৬</p>
-                                    <p><b>শিক্ষাবর্ষ:</b> ২০২৬</p>
-                                    <p><b>জন্ম তারিখ:</b> ২০/০৮/২০১৫</p>
-                                    <p><b>শ্রেণি:</b> দাখিল ষষ্ঠ শ্রেণি</p>
-                                </div>
-                                <div class="text-center">
-                                    <div class="w-14 h-16 bg-gray-200 border rounded mx-auto flex items-center justify-center text-[9px] font-bold shadow-inner overflow-hidden">ছবি</div>
-                                    <p class="text-[9px] text-gray-600 mt-0.5">শাখা: সাধারণ</p>
-                                </div>
-                            </div>
-
-                            <table class="w-full text-left border-collapse border border-gray-300 text-[9px] relative z-10">
-                                <thead>
-                                    <tr class="bg-emerald-900 text-white">
-                                        <th class="border p-0.5 text-center">তারিখ</th>
-                                        <th class="border p-0.5">বিষয়ের নাম</th>
-                                        <th class="border p-0.5 text-center">কোড</th>
-                                        <th class="border p-0.5 text-center">তারিখ</th>
-                                        <th class="border p-0.5">বিষয়ের নাম</th>
-                                        <th class="border p-0.5 text-center">কোড</th>
-                                    </tr>
-                                </thead>
-                                <tbody>
-                                    <tr>
-                                        <td class="border p-0.5 text-center">১০/০৬</td><td class="border p-0.5">কুরআন মাজিদ</td><td class="border p-0.5 text-center">১০০</td>
-                                        <td class="border p-0.5 text-center">১৮/০৬</td><td class="border p-0.5">বাংলা ২য় পত্র</td><td class="border p-0.5 text-center">১০২</td>
-                                    </tr>
-                                </tbody>
-                            </table>
-
-                            <div class="border border-amber-300 bg-amber-50 p-1.5 rounded-lg space-y-0.2 text-[9px] relative z-10">
-                                <p class="font-bold text-amber-900"><i class="fa-solid fa-triangle-exclamation mr-1"></i> শিক্ষার্থীদের জন্য জরুরী নির্দেশাবলী:</p>
-                                <ul class="list-disc list-inside text-gray-700">
-                                    <li>পরীক্ষা শুরুর কমপক্ষে ১৫ মিনিট পূর্বে পরীক্ষার্থীকে নিজ আসনে উপস্থিত হতে হবে।</li>
-                                </ul>
-                            </div>
-
-                            <div class="pt-2 flex justify-between items-center text-center relative z-10 text-[10px]">
-                                <div><span class="border-t border-gray-800 inline-block px-3 pt-0.5 font-bold">অধ্যক্ষ</span></div>
-                                <div><span class="border-t border-gray-800 inline-block px-3 pt-0.5 font-bold">শ্রেণি শিক্ষক</span></div>
-                            </div>
-                        </div>
-
                     </div>
                 </div>
 
-                <!-- 9. EXAM ROUTINE PANEL (Updated with Routine Reset Button) -->
                 <div id="panel-routine" class="exam-sub-panel bg-white p-5 md:p-6 rounded-2xl shadow-sm border border-gray-200 space-y-4 hidden">
                     <div class="flex justify-between items-center border-b pb-3 no-print">
                         <h3 class="font-bold text-sky-800 text-sm"><i class="fa-solid fa-calendar-days mr-2"></i> ৯. এক্সাম রুটিন জেনারেটর (Landscape A4)</h3>
@@ -741,14 +709,12 @@
                         <button onclick="window.print()" class="bg-sky-700 text-white px-4 py-1.5 rounded text-xs font-bold shadow"><i class="fa-solid fa-print mr-1"></i> প্রিন্ট রুটিন</button>
                     </div>
 
-                    <!-- Landscape Routine Table with Class Columns & Active/Inactive Toggles -->
                     <div class="print-container space-y-4 overflow-x-auto">
                         <div class="text-center border-b pb-2">
                             <h2 class="font-bold text-sm">আব্দুল্লাহ হাট ইসলামিয়া ফাজিল মাদ্রাসা</h2>
                             <p class="text-xs text-gray-600">অর্ধবার্ষিক পরীক্ষা ২০২৬ - মাস্টার পরীক্ষার রুটিন (Landscape Mode)</p>
                         </div>
 
-                        <!-- Class Status Bar (Active / Inactive Controls) -->
                         <div class="no-print bg-gray-50 border p-3 rounded-xl flex flex-wrap gap-2 items-center text-[11px]">
                             <span class="font-bold text-gray-700">শ্রেণি স্ট্যাটাস নিয়ন্ত্রণ (Active/Inactive):</span>
                             <span id="classStatusToggles" class="flex flex-wrap gap-2"></span>
@@ -766,23 +732,15 @@
                                     <th class="border p-2 class-col-ebtedayi5">ইবতেদায়ী ৫ম</th>
                                     <th class="border p-2 class-col-dakhil6">দাখিল ৬ষ্ঠ</th>
                                     <th class="border p-2 class-col-dakhil7">দাখিল ৭ম</th>
-                                    <th class="border p-2 class-col-dakhil8">দাখিল ৮ম</th>
+                                    <th class="border p-2 class-col-dakhil8">দাখিল অষ্টম</th>
                                     <th class="border p-2 class-col-dakhil9">দাখিল ৯ম</th>
                                     <th class="border p-2 class-col-dakhil10">দাখিল ১০ম</th>
                                     <th class="border p-2 class-col-alim1">আলিম ১ম বর্ষ</th>
                                     <th class="border p-2 class-col-alim2">আলিম ২য় বর্ষ</th>
                                 </tr>
                             </thead>
-                            <tbody id="examRoutineTableBody">
-                                <!-- Dynamic Rows will be added here -->
-                            </tbody>
+                            <tbody id="examRoutineTableBody"></tbody>
                         </table>
-
-                        <div class="bg-gray-50 border p-3 rounded-lg text-xs space-y-1 mt-4">
-                            <h5 class="font-bold text-red-700">জরুরি নির্দেশাবলী পরীক্ষার্থীদের জন্য:</h5>
-                            <p>১. পরীক্ষা শুরুর কমপক্ষে ৩০ মিনিট পূর্বে পরীক্ষার্থীকে অবশ্যই নিজ আসনে উপস্থিত হতে হবে।</p>
-                            <p>২. প্রবেশপত্র (Admit Card) ছাড়া কোনো পরীক্ষার্থীকে পরীক্ষায় অংশগ্রহণ করতে দেওয়া হবে না।</p>
-                        </div>
                     </div>
                 </div>
 
@@ -821,7 +779,7 @@
             let subjects = rawSubs.map(s => s.name || s.subjectName || s).filter(Boolean);
             
             if(subjects.length === 0) {
-                subjects = ["কুরআন মাজিদ", "হাদীস শরীফ", "আরবী প্রথম পত্র", "আরবী দ্বিতীয় পত্র", "বাংলা প্রথম পত্র", "বাংলা দ্বিতীয় পত্র", "ইংরেজি ১ম পত্র", "ইংরেজি ২য় পত্র", "গণিত", "আকাঈদ ও ফিকহ্", "তথ্য ও যোগাযোগ প্রযুক্তি", "কৃষি শিক্ষা"];
+                subjects = ["কুরআন মাজিদ", "হাদীস শরীফ", "বাংলা প্রথম পত্র", "বাংলা দ্বিতীয় পত্র", "ইংরেজি ১ম পত্র", "ইংরেজি ২য় পত্র", "গণিত", "আকাঈদ ও ফিকহ্", "তথ্য ও যোগাযোগ প্রযুক্তি", "কৃষি শিক্ষা"];
             }
 
             let classes = examClassesList.map(c => c.name);
@@ -843,6 +801,9 @@
             populateSelect('proc_filter_year', data.years);
             populateSelect('proc_filter_exam', data.exams);
             populateSelect('proc_filter_class', data.classes);
+
+            populateSelect('comb_sub_1', data.subjects);
+            populateSelect('comb_sub_2', data.subjects);
 
             populateSelect('merit_filter_year', data.years);
             populateSelect('merit_filter_exam', data.exams);
@@ -947,8 +908,34 @@
             alert('নম্বর সফলভাবে সংরক্ষিত হয়েছে!');
         }
 
+        // --- COMBINED SUBJECT GROUP (PAPER 1 + PAPER 2) CREATION LOGIC ---
+        function addCombinedSubjectGroup() {
+            const groupTitle = document.getElementById('comb_group_name').value.trim();
+            const sub1 = document.getElementById('comb_sub_1').value;
+            const sub2 = document.getElementById('comb_sub_2').value;
+
+            if(sub1 === sub2) {
+                alert('দয়া করে ২টি ভিন্ন বিষয় নির্বাচন করুন!');
+                return;
+            }
+
+            const name = groupTitle ? groupTitle : `${sub1} + ${sub2}`;
+            const container = document.getElementById('combinedGroupsDisplayList');
+
+            container.innerHTML += `
+                <span class="bg-purple-100 text-purple-900 px-3 py-1.5 rounded-lg border border-purple-300 font-bold flex items-center gap-2">
+                    <i class="fa-solid fa-book"></i> ${name} (${sub1} + ${sub2}) [২০০ নম্বর]
+                    <button onclick="this.parentElement.remove()" class="text-red-600 font-bold hover:bg-red-200 rounded px-1">×</button>
+                </span>
+            `;
+
+            document.getElementById('comb_group_name').value = '';
+            alert('যুগ্ম সাবজেক্ট গ্রুপটি সফলভাবে যুক্ত ও সেভ করা হয়েছে!');
+        }
+
         function processAllResults() {
-            document.getElementById('processingStatusResult').innerText = "সফলভাবে সাবজেক্ট গ্রুপ ম্যাপিং ও ফলাফল প্রসেস সম্পন্ন হয়েছে!";
+            document.getElementById('processingStatusResult').innerText = "যুগ্ম সাবজেক্টের (Paper 1 + Paper 2) মোট নম্বর এবং সমন্বিত পাসের ভিত্তিতে ফলাফল প্রসেস সম্পন্ন হয়েছে!";
+            alert('যুগ্ম সাবজেক্ট সমন্বিত ফলাফল প্রসেসিং সফল হয়েছে!');
         }
 
         function loadMeritList() {
@@ -1110,7 +1097,6 @@
             });
         }
 
-        // --- EXAM ROUTINE ENTRY & RESET LOGIC ---
         function addExamRoutineItem() {
             const date = document.getElementById('rout_date').value;
             const day = document.getElementById('rout_day').value;

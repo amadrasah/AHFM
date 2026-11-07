@@ -285,7 +285,7 @@
                                 <h4 class="font-bold text-xs">আবদুল্লাহ হাট ইসলামিয়া ফাজিল মাদ্রাসা</h4>
                                 <p class="text-[9px] text-emerald-200">কোম্পানীগঞ্জ, নোয়াখালী - হটলাইন: 01814716405</p>
                             </div>
-                            <div class="w-8 h-8 bg-white text-emerald-900 rounded-full flex items-center justify-center font-bold text-[10px]">ਲੋਗੋ</div>
+                            <div class="w-8 h-8 bg-white text-emerald-900 rounded-full flex items-center justify-center font-bold text-[10px]">লোগো</div>
                         </div>
 
                         <div class="flex gap-3 items-center">
@@ -638,11 +638,25 @@
             }
 
             document.getElementById('modalProfileContent').innerHTML = `
-                <p><b>আইডি:</b> ${s.id}</p>
-                <p><b>নাম (বাংলা):</b> ${s.name_bn}</p>
-                <p><b>নাম (English):</b> ${s.name_en}</p>
-                <p><b>ভর্তি সাল:</b> ${s.year}</p>
-                <p class="font-bold text-emerald-800 mt-2">অধ্যয়ন ও অর্জন রেকর্ড:</p>
+                <div class="flex gap-4 items-center border-b pb-3">
+                    <div class="w-16 h-20 bg-gray-200 rounded border flex items-center justify-center overflow-hidden">
+                        ${s.photo ? `<img src="${s.photo}" class="w-full h-full object-cover">` : 'ছবি নেই'}
+                    </div>
+                    <div>
+                        <p class="text-sm font-bold text-emerald-800">${s.name_bn} (${s.name_en})</p>
+                        <p><b>আইডি:</b> ${s.id} | <b>রোল:</b> ${s.roll}</p>
+                        <p><b>শ্রেণি:</b> ${s.cls} | <b>রক্তের গ্রুপ:</b> ${s.blood || 'N/A'}</p>
+                    </div>
+                </div>
+                <div class="grid grid-cols-2 gap-2 pt-2">
+                    <p><b>পিতার নাম:</b> ${s.father}</p>
+                    <p><b>মাতার নাম:</b> ${s.mother}</p>
+                    <p><b>জন্ম তারিখ:</b> ${s.dob}</p>
+                    <p><b>ভর্তির তারিখ:</b> ${s.date}</p>
+                    <p><b>অভিভাবক মোবাইল:</b> ${s.f_mobile}</p>
+                    <p><b>গ্রাম/ঠিকানা:</b> ${s.village}</p>
+                </div>
+                <p class="font-bold text-emerald-800 mt-3 border-t pt-2">অধ্যয়ন ও লাইফটাইম অর্জন রেকর্ড:</p>
                 <ul class="list-disc pl-5 space-y-1">${historyHtml}</ul>
             `;
             document.getElementById('profileViewModal').classList.remove('hidden');
@@ -846,9 +860,8 @@
             const doRegBody = document.getElementById('admissionListForReg');
             doRegBody.innerHTML = '';
             students.forEach((s, index) => {
-                if(!s.registered) {
-                    doRegBody.innerHTML += `<tr><td class="border p-2 font-bold">${s.id}</td><td class="border p-2">${s.name_bn}</td><td class="border p-2">${s.cls}</td><td class="border p-2 text-center"><button onclick="approveReg(${index})" class="bg-blue-600 text-white px-3 py-1 rounded font-bold">Yes</button></td></tr>`;
-                }
+                let regStatus = s.registered ? `<span class="bg-green-100 text-green-800 px-2 py-0.5 rounded font-bold">অনুমোদিত</span>` : `<button onclick="approveReg(${index})" class="bg-blue-600 text-white px-3 py-1 rounded font-bold">অনুমোদন দিন</button>`;
+                doRegBody.innerHTML += `<tr><td class="border p-2 font-bold">${s.id}</td><td class="border p-2">${s.name_bn}</td><td class="border p-2">${s.cls}</td><td class="border p-2 text-center">${regStatus}</td></tr>`;
             });
         }
 
@@ -874,7 +887,7 @@
             const tbody = document.getElementById('tcTableBody');
             tbody.innerHTML = '';
             students.forEach((s, i) => {
-                let st = s.tc ? `<span class="text-rose-600 font-bold">TC Issued</span>` : `<span class="text-emerald-700 font-bold">Active</span>`;
+                let st = s.tc ? `<span class="text-rose-600 font-bold">TC Issued (${s.tcDate})</span>` : `<span class="text-emerald-700 font-bold">Active</span>`;
                 let btn = s.tc ? `Issued` : `<button onclick="issueTc(${i})" class="bg-rose-600 text-white px-2 py-1 rounded">টিসি দিন</button>`;
                 tbody.innerHTML += `<tr><td class="border p-2">${s.id}</td><td class="border p-2">${s.name_bn}</td><td class="border p-2">${s.cls}</td><td class="border p-2">${st}</td><td class="border p-2 text-center">${btn}</td></tr>`;
             });
@@ -884,6 +897,7 @@
             let students = getStoredStudents();
             students[i].tc = true;
             students[i].tcDate = new Date().toLocaleDateString('bn-BD');
+            students[i].status = 'Inactive';
             localStorage.setItem('madrasah_students_all', JSON.stringify(students));
             loadTcTable();
             alert('টিসি ইস্যু করা হয়েছে!');

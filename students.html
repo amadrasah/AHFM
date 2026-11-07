@@ -276,7 +276,7 @@
                     
                     <div class="flex gap-2 max-w-md mx-auto">
                         <input type="text" id="idCardSearchInput" placeholder="শিক্ষার্থীর আইডি বা রোল লিখুন..." class="p-2 border rounded-lg w-full text-xs font-bold">
-                        <button onclick="generateIdCard()" class="bg-purple-700 text-white px-4 py-2 rounded-lg text-xs font-bold hover:bg-purple-800">সার্চ করুন</button>
+                        <button type="button" onclick="generateIdCard()" class="bg-purple-700 text-white px-4 py-2 rounded-lg text-xs font-bold hover:bg-purple-800">সার্চ করুন</button>
                     </div>
 
                     <div id="idCardPreviewContainer" class="hidden max-w-sm mx-auto bg-gradient-to-b from-purple-900 to-emerald-900 text-white rounded-2xl p-4 shadow-xl space-y-3 border-2 border-purple-400">
@@ -407,7 +407,7 @@
                     </div>
                     <div class="flex gap-2">
                         <input type="text" id="liveSearchInput" placeholder="নাম, আইডি বা মোবাইল দিয়ে খুঁজুন..." class="p-2 border rounded-lg w-full text-xs font-bold">
-                        <button onclick="executeSearch()" class="bg-cyan-700 text-white px-5 py-2 rounded-lg text-xs font-bold hover:bg-cyan-800">সার্চ করুন</button>
+                        <button type="button" onclick="executeSearch()" class="bg-cyan-700 text-white px-5 py-2 rounded-lg text-xs font-bold hover:bg-cyan-800">সার্চ করুন</button>
                     </div>
                     <div class="overflow-x-auto">
                         <table class="w-full text-left border-collapse border border-gray-200 text-xs">
@@ -440,7 +440,7 @@
                             <input type="file" id="doc_file" class="p-1 border rounded bg-white">
                         </div>
                         <div class="flex justify-end">
-                            <button onclick="saveStudentDocument()" class="bg-sky-700 text-white px-4 py-2 rounded font-bold hover:bg-sky-800">ডকুমেন্ট সংরক্ষণ করুন</button>
+                            <button type="button" onclick="saveStudentDocument()" class="bg-sky-700 text-white px-4 py-2 rounded font-bold hover:bg-sky-800">ডকুমেন্ট সংরক্ষণ করুন</button>
                         </div>
                     </div>
 
@@ -492,7 +492,7 @@
             document.getElementById('adm_id').value = year + classCode + roll;
         }
 
-        // Save Admission with Photo Base64 & LocalStorage Fix
+        // 1. Admission Form Save Fix with Absolute LocalStorage Commit
         function saveNewAdmission(event) {
             event.preventDefault();
             const editIndex = parseInt(document.getElementById('edit_index').value);
@@ -526,20 +526,20 @@
             function proceedSave(photoBase64) {
                 if(photoBase64) {
                     studentData.photo = photoBase64;
-                } else if(editIndex >= 0 && students[editIndex].photo) {
+                } else if(editIndex >= 0 && students[editIndex] && students[editIndex].photo) {
                     studentData.photo = students[editIndex].photo;
                 }
 
-                if(editIndex >= 0) {
+                if(editIndex >= 0 && students[editIndex]) {
                     students[editIndex] = studentData;
                     document.getElementById('edit_index').value = "-1";
-                    alert('শিক্ষার্থীর তথ্য সফলভাবে আপডেট হয়েছে!');
+                    alert('শিক্ষার্থীর তথ্য সফলভাবে আপডেট করা হয়েছে!');
                 } else {
                     students.push(studentData);
-                    alert('নতুন শিক্ষার্থীর ভর্তি সফলভাবে সম্পন্ন ও সংরক্ষিত হয়েছে!');
+                    alert('নতুন শিক্ষার্থীর ভর্তি সফলভাবে সংরক্ষিত হয়েছে!');
                 }
                 
-                // Save safely to LocalStorage
+                // Forceful Storage Commit
                 localStorage.setItem('madrasah_students_all', JSON.stringify(students));
                 
                 document.getElementById('admissionForm').reset();
@@ -567,7 +567,7 @@
             return students;
         }
 
-        // Real QR Code Generator for ID Card with Search Button Fix
+        // 2. ID Card Search Button Fix
         function generateIdCard() {
             const query = document.getElementById('idCardSearchInput').value.trim();
             if(!query) {
@@ -623,8 +623,8 @@
                             <p class="text-gray-600">শ্রেণি: ${s.cls} | রোল: ${s.roll} | স্ট্যাটাস: ${statusBadge}</p>
                         </div>
                         <div class="space-x-2">
-                            <button onclick="toggleStatus(${i})" class="bg-gray-700 text-white px-3 py-1 rounded font-bold">সুইচ স্ট্যাটাস</button>
-                            <button onclick="viewStudentProfile(${i})" class="bg-amber-700 text-white px-3 py-1 rounded font-bold">ভিউ (View)</button>
+                            <button type="button" onclick="toggleStatus(${i})" class="bg-gray-700 text-white px-3 py-1 rounded font-bold">সুইচ স্ট্যাটাস</button>
+                            <button type="button" onclick="viewStudentProfile(${i})" class="bg-amber-700 text-white px-3 py-1 rounded font-bold">ভিউ (View)</button>
                         </div>
                     </div>
                 `;
@@ -707,7 +707,7 @@
                                 <select id="promo_target_${i}" class="p-1 border rounded text-xs font-bold">${nextClassOptions}</select>
                             </td>
                             <td class="border p-2 text-center">
-                                <button onclick="executePromotion(${i})" class="bg-indigo-600 text-white px-3 py-1 rounded font-bold hover:bg-indigo-700">প্রমোশন দিন</button>
+                                <button type="button" onclick="executePromotion(${i})" class="bg-indigo-600 text-white px-3 py-1 rounded font-bold hover:bg-indigo-700">প্রমোশন দিন</button>
                             </td>
                         </tr>
                     `;
@@ -746,8 +746,8 @@
                         <td class="border p-2">${s.cls}</td>
                         <td class="border p-2">${s.f_mobile}</td>
                         <td class="border p-2 text-center space-x-2">
-                            <button onclick="editStudent(${index})" class="text-blue-600 font-bold hover:underline">এডিট</button>
-                            <button onclick="deleteStudent(${index})" class="text-red-600 font-bold hover:underline">ডিলিট</button>
+                            <button type="button" onclick="editStudent(${index})" class="text-blue-600 font-bold hover:underline">এডিট</button>
+                            <button type="button" onclick="deleteStudent(${index})" class="text-red-600 font-bold hover:underline">ডিলিট</button>
                         </td>
                     </tr>
                 `;
@@ -850,7 +850,7 @@
                         <td class="border p-2">${d.date}</td>
                         <td class="border p-2 text-center space-x-2">
                             ${viewLink}
-                            <button onclick="deleteDoc(${i})" class="text-red-600 font-bold">ডিলিট</button>
+                            <button type="button" onclick="deleteDoc(${i})" class="text-red-600 font-bold">ডিলিট</button>
                         </td>
                     </tr>
                 `;
@@ -870,7 +870,7 @@
             const doRegBody = document.getElementById('admissionListForReg');
             doRegBody.innerHTML = '';
             students.forEach((s, index) => {
-                let regStatus = s.registered ? `<span class="bg-green-100 text-green-800 px-2 py-0.5 rounded font-bold">অনুমোদিত</span>` : `<button onclick="approveReg(${index})" class="bg-blue-600 text-white px-3 py-1 rounded font-bold">অনুমোদন দিন</button>`;
+                let regStatus = s.registered ? `<span class="bg-green-100 text-green-800 px-2 py-0.5 rounded font-bold">অনুমোদিত</span>` : `<button type="button" onclick="approveReg(${index})" class="bg-blue-600 text-white px-3 py-1 rounded font-bold">অনুমোদন দিন</button>`;
                 doRegBody.innerHTML += `<tr><td class="border p-2 font-bold">${s.id}</td><td class="border p-2">${s.name_bn}</td><td class="border p-2">${s.cls}</td><td class="border p-2 text-center">${regStatus}</td></tr>`;
             });
         }
@@ -898,7 +898,7 @@
             tbody.innerHTML = '';
             students.forEach((s, i) => {
                 let st = s.tc ? `<span class="text-rose-600 font-bold">TC Issued (${s.tcDate})</span>` : `<span class="text-emerald-700 font-bold">Active</span>`;
-                let btn = s.tc ? `Issued` : `<button onclick="issueTc(${i})" class="bg-rose-600 text-white px-2 py-1 rounded">টিসি দিন</button>`;
+                let btn = s.tc ? `Issued` : `<button type="button" onclick="issueTc(${i})" class="bg-rose-600 text-white px-2 py-1 rounded">টিসি দিন</button>`;
                 tbody.innerHTML += `<tr><td class="border p-2">${s.id}</td><td class="border p-2">${s.name_bn}</td><td class="border p-2">${s.cls}</td><td class="border p-2">${st}</td><td class="border p-2 text-center">${btn}</td></tr>`;
             });
         }

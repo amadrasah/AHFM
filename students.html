@@ -492,7 +492,7 @@
             document.getElementById('adm_id').value = year + classCode + roll;
         }
 
-        // Save Admission with Photo Base64
+        // Save Admission with Photo Base64 & LocalStorage Fix
         function saveNewAdmission(event) {
             event.preventDefault();
             const editIndex = parseInt(document.getElementById('edit_index').value);
@@ -524,8 +524,11 @@
             let students = JSON.parse(localStorage.getItem('madrasah_students_all')) || [];
 
             function proceedSave(photoBase64) {
-                if(photoBase64) studentData.photo = photoBase64;
-                else if(editIndex >= 0 && students[editIndex].photo) studentData.photo = students[editIndex].photo;
+                if(photoBase64) {
+                    studentData.photo = photoBase64;
+                } else if(editIndex >= 0 && students[editIndex].photo) {
+                    studentData.photo = students[editIndex].photo;
+                }
 
                 if(editIndex >= 0) {
                     students[editIndex] = studentData;
@@ -533,9 +536,12 @@
                     alert('শিক্ষার্থীর তথ্য সফলভাবে আপডেট হয়েছে!');
                 } else {
                     students.push(studentData);
-                    alert('নতুন শিক্ষার্থীর ভর্তি সফলভাবে সম্পন্ন হয়েছে!');
+                    alert('নতুন শিক্ষার্থীর ভর্তি সফলভাবে সম্পন্ন ও সংরক্ষিত হয়েছে!');
                 }
+                
+                // Save safely to LocalStorage
                 localStorage.setItem('madrasah_students_all', JSON.stringify(students));
+                
                 document.getElementById('admissionForm').reset();
                 generateStudentId();
                 openStudentPanel('search');
@@ -561,14 +567,18 @@
             return students;
         }
 
-        // Real QR Code Generator for ID Card
+        // Real QR Code Generator for ID Card with Search Button Fix
         function generateIdCard() {
             const query = document.getElementById('idCardSearchInput').value.trim();
+            if(!query) {
+                alert('দয়া করে শিক্ষার্থীর আইডি বা রোল নম্বর লিখুন!');
+                return;
+            }
             const students = getStoredStudents();
             const found = students.find(s => s.id === query || s.roll === query);
 
             if(!found) {
-                alert('শিক্ষার্থী পাওয়া যায়নি!');
+                alert('এই আইডি বা রোলের কোনো শিক্ষার্থী পাওয়া যায়নি!');
                 document.getElementById('idCardPreviewContainer').classList.add('hidden');
                 return;
             }

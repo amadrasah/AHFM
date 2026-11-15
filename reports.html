@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Reports - Abdullah Hat Islamia Fazil Madrasah</title>
+    <title>Reports & Analytics - Abdullah Hat Islamia Fazil Madrasah</title>
     <script src="https://cdn.tailwindcss.com"></script>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     <style>
@@ -35,9 +35,8 @@
             position: relative;
         }
 
-        /* টেবিল হেডারকে একটু স্বচ্ছ করা হয়েছে যেন পেছনের লোগো/ওয়াটারমার্ক স্পষ্ট দেখা যায় */
         .transparent-header th {
-            background-color: rgba(6, 95, 70, 0.85) !important; /* Emerald-800 with 85% opacity */
+            background-color: rgba(6, 95, 70, 0.85) !important;
             backdrop-filter: blur(2px);
         }
 
@@ -98,7 +97,7 @@
             <!-- Top Navbar -->
             <header class="bg-white shadow-sm p-4 flex justify-between items-center no-print sticky top-0 z-20">
                 <div class="flex items-center gap-3">
-                    <span class="font-bold text-emerald-800 text-lg">📈 Reports Management (প্রতিবেদন ও অ্যানালিটিক্স প্যানেল)</span>
+                    <span class="font-bold text-emerald-800 text-lg">📈 Advanced Reports & Analytics (অ্যাডভান্সড রিপোর্ট ও পরিসংখ্যান)</span>
                 </div>
                 <div class="flex items-center gap-4">
                     <span class="text-sm text-gray-600 font-medium"><i class="fa-solid fa-user-shield text-emerald-700 mr-1"></i> সুপার অ্যাডমিন</span>
@@ -112,26 +111,26 @@
                 <!-- Page Header Banner -->
                 <div class="bg-gradient-to-r from-emerald-800 to-emerald-950 text-white p-6 rounded-2xl shadow-sm flex flex-col md:flex-row justify-between items-center gap-4 no-print">
                     <div>
-                        <h2 class="text-xl font-bold">মাদ্রাসা রিপোর্ট ও পরিসংখ্যান জেনারেটর প্যানেল</h2>
-                        <p class="text-emerald-200 text-xs mt-1">শিক্ষার্থী, ফলাফল, হাজিরা, আয়-ব্যয়, ফি কালেকশন, শিক্ষক ও বার্ষিক সার্বিক রিপোর্ট তৈরি ও প্রিন্ট সুবিধা।</p>
+                        <h2 class="text-xl font-bold">মাদ্রাসা ম্যানেজমেন্ট মাস্টার রিপোর্ট জেনারেটর</h2>
+                        <p class="text-emerald-200 text-xs mt-1">সেকশনভিত্তিক শিক্ষার্থী, এমপিও/নন-এমপিও শিক্ষক, আর্থিক হিসাব ও পরীক্ষার সামগ্রিক অ্যানালিটিক্স রিপোর্ট।</p>
                     </div>
                     <div class="flex gap-2">
                         <button onclick="window.print()" class="bg-white text-emerald-900 px-4 py-2 rounded-xl font-bold text-xs hover:bg-emerald-50 transition shadow-sm"><i class="fa-solid fa-print mr-1"></i> সার্বিক মাস্টার রিপোর্ট প্রিন্ট</button>
                     </div>
                 </div>
 
-                <!-- Sub-Modules Grid Layout (8 Features) -->
+                <!-- Sub-Modules Grid Layout (8 Enhanced Features) -->
                 <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 no-print">
                     
                     <!-- 1. Student Report -->
                     <div onclick="openReportPanel('student')" class="bg-white p-5 rounded-xl shadow-sm border-t-4 border-emerald-600 space-y-3 cursor-pointer hover:shadow-md transition">
                         <div class="flex items-center justify-between border-b pb-2">
                             <h3 class="font-bold text-gray-800 text-sm flex items-center gap-2">
-                                <i class="fa-solid fa-user-graduate text-emerald-600"></i> Student Report
+                                <i class="fa-solid fa-user-graduate text-emerald-600"></i> Student Demographics
                             </h3>
-                            <span class="text-xs bg-emerald-50 text-emerald-700 px-2 py-0.5 rounded font-semibold">শিক্ষার্থী রিপোর্ট</span>
+                            <span class="text-xs bg-emerald-50 text-emerald-700 px-2 py-0.5 rounded font-semibold">ইবতেদায়ী ও দাখিল</span>
                         </div>
-                        <p class="text-xs text-gray-600 leading-relaxed">শ্রেণিভিত্তিক শিক্ষার্থী সংখ্যা, জেন্ডার অনুপাত, ভর্তি ও ড্রপআউটের বিস্তারিত পরিসংখ্যান রিপোর্ট।</p>
+                        <p class="text-xs text-gray-600 leading-relaxed">ইবতেদায়ী ও দাখিল সেকশনের শ্রেণিভিত্তিক শিক্ষার্থী সংখ্যা, জেন্ডার অনুপাত ও ভর্তি পরিসংখ্যান।</p>
                         <button class="w-full bg-emerald-50 text-emerald-700 py-1.5 rounded text-xs font-bold hover:bg-emerald-100 transition">রিপোর্ট দেখুন</button>
                     </div>
 
@@ -139,11 +138,11 @@
                     <div onclick="openReportPanel('result')" class="bg-white p-5 rounded-xl shadow-sm border-t-4 border-blue-600 space-y-3 cursor-pointer hover:shadow-md transition">
                         <div class="flex items-center justify-between border-b pb-2">
                             <h3 class="font-bold text-gray-800 text-sm flex items-center gap-2">
-                                <i class="fa-solid fa-file-lines text-blue-600"></i> Result Report
+                                <i class="fa-solid fa-file-lines text-blue-600"></i> Exam Result Analysis
                             </h3>
-                            <span class="text-xs bg-blue-50 text-blue-700 px-2 py-0.5 rounded font-semibold">ফলাফল রিপোর্ট</span>
+                            <span class="text-xs bg-blue-50 text-blue-700 px-2 py-0.5 rounded font-semibold">পাসের হার ও জিপিএ</span>
                         </div>
-                        <p class="text-xs text-gray-600 leading-relaxed">বার্ষিক ও অর্ধবার্ষিক পরীক্ষার পাসের হার, জিপিএ-৫ প্রাপ্তি এবং গ্রেডওয়ার্ক সামারি রিপোর্ট।</p>
+                        <p class="text-xs text-gray-600 leading-relaxed">পরীক্ষার পাসের হার, যুগ্ম বিষয়ভিত্তিক সাফল্য, জিপিএ-৫ প্রাপ্তি ও গ্রেডওয়ার্ক সামারি।</p>
                         <button class="w-full bg-blue-50 text-blue-700 py-1.5 rounded text-xs font-bold hover:bg-blue-100 transition">ফলাফল রিপোর্ট প্যানেল</button>
                     </div>
 
@@ -151,11 +150,11 @@
                     <div onclick="openReportPanel('attendance')" class="bg-white p-5 rounded-xl shadow-sm border-t-4 border-purple-600 space-y-3 cursor-pointer hover:shadow-md transition">
                         <div class="flex items-center justify-between border-b pb-2">
                             <h3 class="font-bold text-gray-800 text-sm flex items-center gap-2">
-                                <i class="fa-solid fa-clipboard-user text-purple-600"></i> Attendance Report
+                                <i class="fa-solid fa-clipboard-user text-purple-600"></i> Attendance Summary
                             </h3>
-                            <span class="text-xs bg-purple-50 text-purple-700 px-2 py-0.5 rounded font-semibold">হাজিরা রিপোর্ট</span>
+                            <span class="text-xs bg-purple-50 text-purple-700 px-2 py-0.5 rounded font-semibold">উপস্থিতি হার</span>
                         </div>
-                        <p class="text-xs text-gray-600 leading-relaxed">দৈনিক, সাপ্তাহিক ও মাসিক শিক্ষার্থী এবং শিক্ষকদের উপস্থিতির শতাংশ ও অনুপস্থিতির তালিকা।</p>
+                        <p class="text-xs text-gray-600 leading-relaxed">দৈনিক ও মাসিক মাদ্রাসার উপস্থিতি শতকরা হার এবং অনুপস্থিত শিক্ষার্থীদের তালিকা।</p>
                         <button class="w-full bg-purple-50 text-purple-700 py-1.5 rounded text-xs font-bold hover:bg-purple-100 transition">হাজিরা রিপোর্ট</button>
                     </div>
 
@@ -163,11 +162,11 @@
                     <div onclick="openReportPanel('income')" class="bg-white p-5 rounded-xl shadow-sm border-t-4 border-amber-600 space-y-3 cursor-pointer hover:shadow-md transition">
                         <div class="flex items-center justify-between border-b pb-2">
                             <h3 class="font-bold text-gray-800 text-sm flex items-center gap-2">
-                                <i class="fa-solid fa-arrow-trend-up text-amber-600"></i> Income Report
+                                <i class="fa-solid fa-arrow-trend-up text-amber-600"></i> Income & Grants
                             </h3>
-                            <span class="text-xs bg-amber-50 text-amber-700 px-2 py-0.5 rounded font-semibold">আয় রিপোর্ট</span>
+                            <span class="text-xs bg-amber-50 text-amber-700 px-2 py-0.5 rounded font-semibold">মাসিক আয়</span>
                         </div>
-                        <p class="text-xs text-gray-600 leading-relaxed">বিভিন্ন খাত থেকে মাদ্রাসার মোট আয়, অনুদান, ফি কালেকশন ও ব্যাংক জমার হিসাব বিবরণী।</p>
+                        <p class="text-xs text-gray-600 leading-relaxed">ফি কালেকশন, সরকারি অনুদান (MPO), অনুদান ও ব্যাংক জমার খাতওয়ারি হিসাব।</p>
                         <button class="w-full bg-amber-50 text-amber-700 py-1.5 rounded text-xs font-bold hover:bg-amber-100 transition">আয় বিবরণী</button>
                     </div>
 
@@ -175,11 +174,11 @@
                     <div onclick="openReportPanel('expense')" class="bg-white p-5 rounded-xl shadow-sm border-t-4 border-rose-600 space-y-3 cursor-pointer hover:shadow-md transition">
                         <div class="flex items-center justify-between border-b pb-2">
                             <h3 class="font-bold text-gray-800 text-sm flex items-center gap-2">
-                                <i class="fa-solid fa-arrow-trend-down text-rose-600"></i> Expense Report
+                                <i class="fa-solid fa-arrow-trend-down text-rose-600"></i> Expense Statement
                             </h3>
-                            <span class="text-xs bg-rose-50 text-rose-700 px-2 py-0.5 rounded font-semibold">ব্যয় রিপোর্ট</span>
+                            <span class="text-xs bg-rose-50 text-rose-700 px-2 py-0.5 rounded font-semibold">বেতন ও খরচ</span>
                         </div>
-                        <p class="text-xs text-gray-600 leading-relaxed">শিক্ষক-কর্মচারীদের বেতন, বিদ্যুৎ বিল, মেইনটেনেন্স এবং অন্যান্য প্রাতিষ্ঠানিক ব্যয়ের হিসাব।</p>
+                        <p class="text-xs text-gray-600 leading-relaxed">শিক্ষক-কর্মচারীদের বেতন-ভাতা, মেইনটেনেন্স এবং প্রাতিষ্ঠানিক অন্যান্য ব্যয়ের বিবরণী।</p>
                         <button class="w-full bg-rose-50 text-rose-700 py-1.5 rounded text-xs font-bold hover:bg-rose-100 transition">ব্যয় বিবরণী প্যানেল</button>
                     </div>
 
@@ -187,11 +186,11 @@
                     <div onclick="openReportPanel('fee')" class="bg-white p-5 rounded-xl shadow-sm border-t-4 border-indigo-600 space-y-3 cursor-pointer hover:shadow-md transition">
                         <div class="flex items-center justify-between border-b pb-2">
                             <h3 class="font-bold text-gray-800 text-sm flex items-center gap-2">
-                                <i class="fa-solid fa-receipt text-indigo-600"></i> Fee Collection Report
+                                <i class="fa-solid fa-receipt text-indigo-600"></i> Fee Collection & Dues
                             </h3>
-                            <span class="text-xs bg-indigo-50 text-indigo-700 px-2 py-0.5 rounded font-semibold">ফি রিপোর্ট</span>
+                            <span class="text-xs bg-indigo-50 text-indigo-700 px-2 py-0.5 rounded font-semibold">বকেয়া ফি</span>
                         </div>
-                        <p class="text-xs text-gray-600 leading-relaxed">টিউশন ফি, সেশন ফি ও পরীক্ষার ফির আদায়কৃত অংক এবং বকেয়া (Due) ফি’র তালিকা রিপোর্ট।</p>
+                        <p class="text-xs text-gray-600 leading-relaxed">টিউশন ফি ও সেশন ফি আদায় এবং বকেয়া (Due) থাকা শিক্ষার্থীদের বিস্তারিত তালিকা।</p>
                         <button class="w-full bg-indigo-50 text-indigo-700 py-1.5 rounded text-xs font-bold hover:bg-indigo-100 transition">ফি রিপোর্ট</button>
                     </div>
 
@@ -199,11 +198,11 @@
                     <div onclick="openReportPanel('teacher')" class="bg-white p-5 rounded-xl shadow-sm border-t-4 border-teal-600 space-y-3 cursor-pointer hover:shadow-md transition">
                         <div class="flex items-center justify-between border-b pb-2">
                             <h3 class="font-bold text-gray-800 text-sm flex items-center gap-2">
-                                <i class="fa-solid fa-chalkboard-user text-teal-600"></i> Teacher Report
+                                <i class="fa-solid fa-chalkboard-user text-teal-600"></i> Teacher & Staff (MPO)
                             </h3>
-                            <span class="text-xs bg-teal-50 text-teal-700 px-2 py-0.5 rounded font-semibold">শিক্ষক রিপোর্ট</span>
+                            <span class="text-xs bg-teal-50 text-teal-700 px-2 py-0.5 rounded font-semibold">এমপিও / নন-এমপিও</span>
                         </div>
-                        <p class="text-xs text-gray-600 leading-relaxed">শিক্ষকদের ক্লাস লোড, এমপিও বা নন-এমপিও তথ্য, হাজিরা ও কার্যবিবরণীর সামারি রিপোর্ট।</p>
+                        <p class="text-xs text-gray-600 leading-relaxed">এমপিওভুক্ত ও নন-এমপিও শিক্ষক-স্টাফদের তথ্য, ক্লাস লোড এবং হাজিরা সামারি রিপোর্ট।</p>
                         <button class="w-full bg-teal-50 text-teal-700 py-1.5 rounded text-xs font-bold hover:bg-teal-100 transition">শিক্ষক রিপোর্ট প্যানেল</button>
                     </div>
 
@@ -211,11 +210,11 @@
                     <div onclick="openReportPanel('annual')" class="bg-white p-5 rounded-xl shadow-sm border-t-4 border-cyan-600 space-y-3 cursor-pointer hover:shadow-md transition">
                         <div class="flex items-center justify-between border-b pb-2">
                             <h3 class="font-bold text-gray-800 text-sm flex items-center gap-2">
-                                <i class="fa-solid fa-calendar-check text-cyan-600"></i> Annual Report
+                                <i class="fa-solid fa-calendar-check text-cyan-600"></i> Annual Comprehensive
                             </h3>
-                            <span class="text-xs bg-cyan-50 text-cyan-700 px-2 py-0.5 rounded font-semibold">বার্ষিক রিপোর্ট</span>
+                            <span class="text-xs bg-cyan-50 text-cyan-700 px-2 py-0.5 rounded font-semibold">বার্ষিক অডিট</span>
                         </div>
-                        <p class="text-xs text-gray-600 leading-relaxed">মাদ্রাসার বার্ষিক আর্থিক হিসাব, সামগ্রিক অর্জন, প্রগতি ও বার্ষিক কমপ্রিহেনসিভ রিপোর্ট।</p>
+                        <p class="text-xs text-gray-600 leading-relaxed">মাদ্রাসার বার্ষিক আর্থিক ব্যালেন্স শীট, সামগ্রিক অর্জন ও কমপ্রিহেনসিভ রিপোর্ট জেনারেট।</p>
                         <button class="w-full bg-cyan-50 text-cyan-700 py-1.5 rounded text-xs font-bold hover:bg-cyan-100 transition">বার্ষিক রিপোর্ট জেনারেট</button>
                     </div>
 
@@ -228,9 +227,40 @@
                         <button onclick="closeReportPanel()" class="text-xs bg-gray-200 px-3 py-1 rounded font-bold text-gray-700 hover:bg-gray-300">বন্ধ করুন</button>
                     </div>
 
+                    <!-- Filter Options Bar (Month & Year) -->
+                    <div class="flex flex-wrap gap-3 bg-emerald-50 p-3 rounded-xl border border-emerald-200 text-xs items-center no-print">
+                        <div>
+                            <label class="font-bold mr-1">মাস নির্বাচন:</label>
+                            <select id="filter_month" class="p-1.5 border rounded bg-white font-bold">
+                                <option value="জানুয়ারি">জানুয়ারি</option>
+                                <option value="ফেব্রুয়ারি">ফেব্রুয়ারি</option>
+                                <option value="মার্চ">মার্চ</option>
+                                <option value="এপ্রিল">এপ্রিল</option>
+                                <option value="মে" selected>মে</option>
+                                <option value="জুন">জুন</option>
+                                <option value="জুলাই">জুলাই</option>
+                                <option value="আগস্ট">আগস্ট</option>
+                                <option value="সেপ্টেম্বর">সেপ্টেম্বর</option>
+                                <option value="অক্টোবর">অক্টোবর</option>
+                                <option value="নভেম্বর">নভেম্বর</option>
+                                <option value="ডিসেম্বর">ডিসেম্বর</option>
+                            </select>
+                        </div>
+                        <div>
+                            <label class="font-bold mr-1">শিক্ষাবর্ষ:</label>
+                            <select id="filter_year" class="p-1.5 border rounded bg-white font-bold">
+                                <option value="২০২৬" selected>২০২৬</option>
+                                <option value="২০২৫">২০২৫</option>
+                            </select>
+                        </div>
+                        <div>
+                            <button onclick="refreshReportData()" class="bg-emerald-700 text-white px-3 py-1.5 rounded font-bold hover:bg-emerald-800 shadow">ফিল্টার করুন</button>
+                        </div>
+                    </div>
+
                     <div id="loading_report" class="hidden flex justify-center items-center py-10">
                         <div class="spinner"></div>
-                        <span class="ml-3 text-xs font-bold text-emerald-800">রিপোর্ট ডেটা লোড হচ্ছে...</span>
+                        <span class="ml-3 text-xs font-bold text-emerald-800">রিপোর্ট ডেটা প্রসেস হচ্ছে...</span>
                     </div>
 
                     <div class="print-container space-y-4 p-6 bg-white/95 rounded-xl shadow-sm" id="reportContentBox">
@@ -256,29 +286,43 @@
     </div>
 
     <script>
+        let currentReportType = 'student';
+
         const reportTitles = {
-            student: "শিক্ষার্থী পরিসংখ্যান ও রিপোর্ট (Student Report)",
-            result: "পরীক্ষার ফলাফল ও পাসের হার রিপোর্ট (Result Report)",
-            attendance: "হাজিরা ও উপস্থিতি সামারি রিপোর্ট (Attendance Report)",
-            income: "মাদ্রাসার আয় বিবরণী রিপোর্ট (Income Report)",
-            expense: "প্রাতিষ্ঠানিক ব্যয় বিবরণী রিপোর্ট (Expense Report)",
-            fee: "ফি কালেকশন ও বকেয়া রিপোর্ট (Fee Collection Report)",
-            teacher: "শিক্ষক ও স্টাফ কার্যবিবরণী রিপোর্ট (Teacher Report)",
-            annual: "মাদ্রাসার বার্ষিক কমপ্রিহেনসিভ রিপোর্ট (Annual Report)"
+            student: "ইবতেদায়ী ও দাখিল সেকশনভিত্তিক শিক্ষার্থী পরিসংখ্যান",
+            result: "অর্ধবার্ষিক ও বার্ষিক পরীক্ষা ফলাফল বিশ্লেষণ রিপোর্ট",
+            attendance: "শিক্ষক ও শিক্ষার্থী মাসিক উপস্থিতি সামারি রিপোর্ট",
+            income: "মাদ্রাসার মাসিক আয় ও সরকারি অনুদান (MPO) বিবরণী",
+            expense: "প্রাতিষ্ঠানিক ও বেতন-ভাতা ব্যয় বিবরণী রিপোর্ট",
+            fee: "ফি কালেকশন এবং বকেয়া (Due) ফি’র তালিকা রিপোর্ট",
+            teacher: "এমপিও ও নন-এমপিও শিক্ষক-স্টাফ কার্যবিবরণী রিপোর্ট",
+            annual: "মাদ্রাসার বার্ষিক কমপ্রিহেনসিভ আর্থিক ও অ্যাকাডেমিক রিপোর্ট"
         };
 
         function openReportPanel(type) {
+            currentReportType = type;
             const panel = document.getElementById('reportActivePanel');
             const titleEl = document.getElementById('reportPanelTitle');
-            const subTitleEl = document.getElementById('reportSubTitle');
-            const spinner = document.getElementById('loading_report');
-            const tableArea = document.getElementById('reportDynamicTableArea');
-
+            
             panel.classList.remove('hidden');
             panel.scrollIntoView({ behavior: 'smooth' });
 
             titleEl.innerHTML = `<i class="fa-solid fa-chart-line mr-2 text-emerald-700"></i> ${reportTitles[type] || 'রিপোর্ট প্যানেল'}`;
-            subTitleEl.innerText = reportTitles[type];
+            loadReportContent(type);
+        }
+
+        function refreshReportData() {
+            loadReportContent(currentReportType);
+        }
+
+        function loadReportContent(type) {
+            const spinner = document.getElementById('loading_report');
+            const tableArea = document.getElementById('reportDynamicTableArea');
+            const subTitleEl = document.getElementById('reportSubTitle');
+            const month = document.getElementById('filter_month').value;
+            const year = document.getElementById('filter_year').value;
+
+            subTitleEl.innerText = `${reportTitles[type]} (${month} ${year})`;
 
             spinner.classList.remove('hidden');
             tableArea.innerHTML = '';
@@ -291,16 +335,39 @@
                         <table class="w-full text-left border-collapse border border-gray-300 transparent-header">
                             <thead>
                                 <tr class="bg-emerald-800 text-white">
-                                    <th class="border p-2">শ্রেণি</th>
+                                    <th class="border p-2">সেকশন / শ্রেণি</th>
                                     <th class="border p-2 text-center">ছাত্র</th>
                                     <th class="border p-2 text-center">ছাত্রী</th>
                                     <th class="border p-2 text-center">মোট শিক্ষার্থী</th>
+                                    <th class="border p-2 text-center">উপস্থিতির গড় হার</th>
                                 </tr>
                             </thead>
                             <tbody>
-                                <tr><td class="border p-2 font-bold">দাখিল ষষ্ঠ শ্রেণি</td><td class="border p-2 text-center">45</td><td class="border p-2 text-center">40</td><td class="border p-2 text-center font-bold">85</td></tr>
-                                <tr><td class="border p-2 font-bold">দাখিল সপ্তম শ্রেণি</td><td class="border p-2 text-center">40</td><td class="border p-2 text-center">38</td><td class="border p-2 text-center font-bold">78</td></tr>
-                                <tr><td class="border p-2 font-bold">দাখিল অষ্টম শ্রেণি</td><td class="border p-2 text-center">50</td><td class="border p-2 text-center">42</td><td class="border p-2 text-center font-bold">92</td></tr>
+                                <tr><td class="border p-2 font-bold text-emerald-900 bg-emerald-50/50" colspan="5">--- ইবতেদায়ী সেকশন (প্রাথমিক) ---</td></tr>
+                                <tr><td class="border p-2">ইবতেদায়ী চতুর্থ শ্রেণি</td><td class="border p-2 text-center">30</td><td class="border p-2 text-center">25</td><td class="border p-2 text-center font-bold">55</td><td class="border p-2 text-center">۹২%</td></tr>
+                                <tr><td class="border p-2">ইবতেদায়ী পঞ্চম শ্রেণি</td><td class="border p-2 text-center">35</td><td class="border p-2 text-center">30</td><td class="border p-2 text-center font-bold">65</td><td class="border p-2 text-center">৯৫%</td></tr>
+                                <tr><td class="border p-2 font-bold text-emerald-900 bg-emerald-50/50" colspan="5">--- দাখিল সেকশন (মাধ্যমিক) ---</td></tr>
+                                <tr><td class="border p-2">দাখিল ষষ্ঠ শ্রেণি</td><td class="border p-2 text-center">45</td><td class="border p-2 text-center">40</td><td class="border p-2 text-center font-bold">85</td><td class="border p-2 text-center">৯০%</td></tr>
+                                <tr><td class="border p-2">দাখিল সপ্তম শ্রেণি</td><td class="border p-2 text-center">40</td><td class="border p-2 text-center">38</td><td class="border p-2 text-center font-bold">78</td><td class="border p-2 text-center">৮৮%</td></tr>
+                                <tr><td class="border p-2">দাখিল অষ্টম শ্রেণি</td><td class="border p-2 text-center">50</td><td class="border p-2 text-center">42</td><td class="border p-2 text-center font-bold">92</td><td class="border p-2 text-center">৯৪%</td></tr>
+                            </tbody>
+                        </table>`;
+                } else if(type === 'teacher') {
+                    tableArea.innerHTML = `
+                        <table class="w-full text-left border-collapse border border-gray-300 transparent-header">
+                            <thead>
+                                <tr class="bg-emerald-800 text-white">
+                                    <th class="border p-2">শিক্ষক/স্টাফের নাম</th>
+                                    <th class="border p-2">পদবী</th>
+                                    <th class="border p-2 text-center">এমপিও স্ট্যাটাস</th>
+                                    <th class="border p-2 text-center">সাপ্তাহিক ক্লাস লোড</th>
+                                    <th class="border p-2 text-center">উপস্থিতি</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr><td class="border p-2 font-bold">মাওলানা নজির আহমেদ</td><td class="border p-2">প্রধান শিক্ষক</td><td class="border p-2 text-center text-emerald-700 font-bold">এমপিওভুক্ত</td><td class="border p-2 text-center">১২ টি</td><td class="border p-2 text-center">শতভাগ</td></tr>
+                                <tr><td class="border p-2 font-bold">হাফিজ মাওলানা ইব্রাহিম</td><td class="border p-2">সহকারী শিক্ষক (কুরআন)</td><td class="border p-2 text-center text-emerald-700 font-bold">এমপিওভুক্ত</td><td class="border p-2 text-center">১৮ টি</td><td class="border p-2 text-center">৯৬%</td></tr>
+                                <tr><td class="border p-2 font-bold">মাওলানা আব্দুল কুদ্দুস</td><td class="border p-2">ইবতেদায়ী শিক্ষক</td><td class="border p-2 text-center text-amber-700 font-bold">নন-এমপিও</td><td class="border p-2 text-center">২২ টি</td><td class="border p-2 text-center">৯২%</td></tr>
                             </tbody>
                         </table>`;
                 } else if(type === 'income' || type === 'expense') {
@@ -309,13 +376,15 @@
                             <thead>
                                 <tr class="bg-emerald-800 text-white">
                                     <th class="border p-2">খাতের বিবরণ</th>
-                                    <th class="border p-2 text-center">তারিখ / মাস</th>
+                                    <th class="border p-2 text-center">ধরন / ক্যাটাগরি</th>
+                                    <th class="border p-2 text-center">মাস</th>
                                     <th class="border p-2 text-center">পরিমাণ (টাকা)</th>
                                 </tr>
                             </thead>
                             <tbody>
-                                <tr><td class="border p-2 font-bold">টিউশন ফি ও সেশন ফি বাবদ আদায়</td><td class="border p-2 text-center">মে ২০২৬</td><td class="border p-2 text-center font-bold text-emerald-700">১,২৫,০০০/-</td></tr>
-                                <tr><td class="border p-2 font-bold">সরকারি অনুদান</td><td class="border p-2 text-center">মে ২০২৬</td><td class="border p-2 text-center font-bold text-emerald-700">৩,৫০,০০০/-</td></tr>
+                                <tr><td class="border p-2 font-bold">সরকারি বেতন অনুদান (MPO Salary)</td><td class="border p-2 text-center">সরকারি অনুদান</td><td class="border p-2 text-center">${month} ${year}</td><td class="border p-2 text-center font-bold text-emerald-700">৪,৫০,০০০/-</td></tr>
+                                <tr><td class="border p-2 font-bold">শিক্ষার্থীদের টিউশন ও সেশন ফি</td><td class="border p-2 text-center">প্রাতিষ্ঠানিক আয়</td><td class="border p-2 text-center">${month} ${year}</td><td class="border p-2 text-center font-bold text-emerald-700">১,২৫,০০০/-</td></tr>
+                                <tr><td class="border p-2 font-bold">স্থানীয় দান ও ওয়াকফ ফান্ড</td><td class="border p-2 text-center">অনুদান</td><td class="border p-2 text-center">${month} ${year}</td><td class="border p-2 text-center font-bold text-emerald-700">৩৫,০০০/-</td></tr>
                             </tbody>
                         </table>`;
                 } else {
@@ -323,13 +392,13 @@
                         <table class="w-full text-left border-collapse border border-gray-300 transparent-header">
                             <thead>
                                 <tr class="bg-emerald-800 text-white">
-                                    <th class="border p-2">বিবরণ</th>
-                                    <th class="border p-2 text-center">স্ট্যাটাস</th>
-                                    <th class="border p-2 text-center">মন্তব্য</th>
+                                    <th class="border p-2">রিপোর্ট ক্যাটাগরি</th>
+                                    <th class="border p-2 text-center">মূল্যায়ন স্ট্যাটাস</th>
+                                    <th class="border p-2 text-center">মন্তব্য ও সুপারিশ</th>
                                 </tr>
                             </thead>
                             <tbody>
-                                <tr><td class="border p-2 font-bold">প্রাতিষ্ঠানিক অগ্রগতি ও মূল্যায়ন</td><td class="border p-2 text-center text-emerald-700 font-bold">সফলভাবে সম্পন্ন</td><td class="border p-2 text-center">সন্তোষজনক</td></tr>
+                                <tr><td class="border p-2 font-bold">${reportTitles[type]}</td><td class="border p-2 text-center text-emerald-700 font-bold">সন্তোষজনক ও আপডেটকৃত</td><td class="border p-2 text-center">মাদ্রাসার অ্যাকাডেমিক শৃঙ্খলা বজায় রয়েছে।</td></tr>
                             </tbody>
                         </table>`;
                 }

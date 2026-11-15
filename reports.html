@@ -13,7 +13,7 @@
             .print-container { 
                 width: 100% !important; 
                 margin: 0 !important; 
-                padding: 20px !important; 
+                padding: 15px !important; 
                 box-shadow: none !important; 
                 border: none !important; 
                 background-image: url('marksheet-bg.png') !important;
@@ -24,7 +24,7 @@
                 print-color-adjust: exact; 
             }
             * { -webkit-print-color-adjust: exact; print-color-adjust: exact; }
-            @page { size: A4 landscape; margin: 8mm; }
+            @page { size: A4 landscape; margin: 10mm; }
         }
         
         .print-container {
@@ -33,6 +33,12 @@
             background-position: center;
             background-repeat: no-repeat;
             position: relative;
+        }
+
+        /* টেবিল হেডারকে একটু স্বচ্ছ করা হয়েছে যেন পেছনের লোগো/ওয়াটারমার্ক স্পষ্ট দেখা যায় */
+        .transparent-header th {
+            background-color: rgba(6, 95, 70, 0.85) !important; /* Emerald-800 with 85% opacity */
+            backdrop-filter: blur(2px);
         }
 
         .spinner {
@@ -227,10 +233,10 @@
                         <span class="ml-3 text-xs font-bold text-emerald-800">রিপোর্ট ডেটা লোড হচ্ছে...</span>
                     </div>
 
-                    <div class="print-container space-y-4 p-4 bg-white rounded-xl" id="reportContentBox">
+                    <div class="print-container space-y-4 p-6 bg-white/95 rounded-xl shadow-sm" id="reportContentBox">
                         <div class="text-center border-b pb-3">
                             <h2 class="font-bold text-base text-emerald-900">আবদুল্লাহ হাট ইসলামিয়া ফাজিল মাদ্রাসা</h2>
-                            <p class="text-xs text-gray-600">আবদুল্লাহ হাট, না‌টেশ্বর, সোনাইমুড়ি, নোয়াখালী</p>
+                            <p class="text-xs text-gray-600">কোম্পানীগঞ্জ, নোয়াখালী</p>
                             <p id="reportSubTitle" class="font-bold text-xs mt-1 bg-emerald-50 py-1 inline-block px-4 rounded border border-emerald-200 text-emerald-800">রিপোর্ট বিবরণী</p>
                         </div>
                         
@@ -282,8 +288,15 @@
                 
                 if(type === 'student') {
                     tableArea.innerHTML = `
-                        <table class="w-full text-left border-collapse border border-gray-300">
-                            <thead><tr class="bg-emerald-800 text-white"><th class="border p-2">শ্রেণি</th><th class="border p-2 text-center">ছাত্র</th><th class="border p-2 text-center">ছাত্রী</th><th class="border p-2 text-center">মোট শিক্ষার্থী</th></tr></thead>
+                        <table class="w-full text-left border-collapse border border-gray-300 transparent-header">
+                            <thead>
+                                <tr class="bg-emerald-800 text-white">
+                                    <th class="border p-2">শ্রেণি</th>
+                                    <th class="border p-2 text-center">ছাত্র</th>
+                                    <th class="border p-2 text-center">ছাত্রী</th>
+                                    <th class="border p-2 text-center">মোট শিক্ষার্থী</th>
+                                </tr>
+                            </thead>
                             <tbody>
                                 <tr><td class="border p-2 font-bold">দাখিল ষষ্ঠ শ্রেণি</td><td class="border p-2 text-center">45</td><td class="border p-2 text-center">40</td><td class="border p-2 text-center font-bold">85</td></tr>
                                 <tr><td class="border p-2 font-bold">দাখিল সপ্তম শ্রেণি</td><td class="border p-2 text-center">40</td><td class="border p-2 text-center">38</td><td class="border p-2 text-center font-bold">78</td></tr>
@@ -292,8 +305,14 @@
                         </table>`;
                 } else if(type === 'income' || type === 'expense') {
                     tableArea.innerHTML = `
-                        <table class="w-full text-left border-collapse border border-gray-300">
-                            <thead><tr class="bg-emerald-800 text-white"><th class="border p-2">খাতের বিবরণ</th><th class="border p-2 text-center">তারিখ / মাস</th><th class="border p-2 text-center">পরিমাণ (টাকা)</th></tr></thead>
+                        <table class="w-full text-left border-collapse border border-gray-300 transparent-header">
+                            <thead>
+                                <tr class="bg-emerald-800 text-white">
+                                    <th class="border p-2">খাতের বিবরণ</th>
+                                    <th class="border p-2 text-center">তারিখ / মাস</th>
+                                    <th class="border p-2 text-center">পরিমাণ (টাকা)</th>
+                                </tr>
+                            </thead>
                             <tbody>
                                 <tr><td class="border p-2 font-bold">টিউশন ফি ও সেশন ফি বাবদ আদায়</td><td class="border p-2 text-center">মে ২০২৬</td><td class="border p-2 text-center font-bold text-emerald-700">১,২৫,০০০/-</td></tr>
                                 <tr><td class="border p-2 font-bold">সরকারি অনুদান</td><td class="border p-2 text-center">মে ২০২৬</td><td class="border p-2 text-center font-bold text-emerald-700">৩,৫০,০০০/-</td></tr>
@@ -301,8 +320,14 @@
                         </table>`;
                 } else {
                     tableArea.innerHTML = `
-                        <table class="w-full text-left border-collapse border border-gray-300">
-                            <thead><tr class="bg-emerald-800 text-white"><th class="border p-2">বিবরণ</th><th class="border p-2 text-center">স্ট্যাটাস</th><th class="border p-2 text-center">মন্তব্য</th></tr></thead>
+                        <table class="w-full text-left border-collapse border border-gray-300 transparent-header">
+                            <thead>
+                                <tr class="bg-emerald-800 text-white">
+                                    <th class="border p-2">বিবরণ</th>
+                                    <th class="border p-2 text-center">স্ট্যাটাস</th>
+                                    <th class="border p-2 text-center">মন্তব্য</th>
+                                </tr>
+                            </thead>
                             <tbody>
                                 <tr><td class="border p-2 font-bold">প্রাতিষ্ঠানিক অগ্রগতি ও মূল্যায়ন</td><td class="border p-2 text-center text-emerald-700 font-bold">সফলভাবে সম্পন্ন</td><td class="border p-2 text-center">সন্তোষজনক</td></tr>
                             </tbody>

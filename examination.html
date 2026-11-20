@@ -158,32 +158,39 @@
                     <div onclick="openExamPanel('monitoring')" class="bg-white p-5 rounded-2xl shadow-sm border border-gray-200 hover:border-emerald-600 hover:shadow-md cursor-pointer transition space-y-3">
                         <div class="flex justify-between items-center border-b pb-2">
                             <h3 class="font-bold text-gray-800 text-sm"><i class="fa-solid fa-user-check text-emerald-700 mr-2"></i> এক্সাম মনিটরিং</h3>
-                            <span class="text-[10px] bg-emerald-100 text-emerald-900 px-2 py-0.5 rounded font-bold">মাল্টি-ভিজিট</span>
+                            <span class="text-[10px] bg-emerald-100 text-emerald-900 px-2 py-0.5 rounded font-bold">মাল্টি-ভিজিট ম্যাট্রিক্স</span>
                         </div>
-                        <p class="text-xs text-gray-600">তারিখ, রুম ও শ্রেণি সেট করে ১ম বার, ২য় বার ভিজিট অ্যাড ও রিয়েল-টাইম সেভ করুন।</p>
+                        <p class="text-xs text-gray-600">রুমে একাধিক শ্রেণি, ১ম/২য়/৩য় ভিজিট কলাম, দিনভিত্তিক ফিল্টার ও শিক্ষক রিপোর্ট।</p>
                     </div>
                 </div>
 
                 <!-- এক্সাম মনিটরিং প্যানেল -->
-                <div id="panel-monitoring" class="exam-sub-panel bg-white p-5 md:p-6 rounded-2xl shadow-sm border border-gray-200 space-y-4 hidden">
+                <div id="panel-monitoring" class="exam-sub-panel bg-white p-5 md:p-6 rounded-2xl shadow-sm border border-gray-200 space-y-6 hidden">
                     <div class="flex justify-between items-center border-b pb-3 no-print">
                         <div>
-                            <h3 class="font-bold text-emerald-900 text-sm"><i class="fa-solid fa-user-check mr-2"></i> ১০. এক্সাম মনিটরিং — রুম ভিজিট ও রিয়েল-টাইম উপস্থিতি</h3>
-                            <p class="text-[11px] text-emerald-700 mt-0.5"><i class="fa-solid fa-circle-check mr-1"></i> প্রতিটি আপডেট, শিক্ষক সংযোজন ও ভিজিট রাউন্ড স্বয়ংক্রিয়ভাবে রিয়েল-টাইম সেভ হয়।</p>
+                            <h3 class="font-bold text-emerald-900 text-sm"><i class="fa-solid fa-user-check mr-2"></i> ১০. এক্সাম মনিটরিং — রুমভিত্তিক ভিজিট কলাম ও শিক্ষক রিপোর্ট</h3>
+                            <p class="text-[11px] text-emerald-700 mt-0.5"><i class="fa-solid fa-circle-check mr-1"></i> প্রতিটি ভিজিট (১ম, ২য়, ৩য়...), শ্রেণি ও শিক্ষকের উপস্থিতি সাথে সাথেই রিয়েল-টাইম সেভ হয়।</p>
                         </div>
                         <button onclick="closeAllExamPanels()" class="text-xs bg-gray-200 px-3 py-1 rounded font-bold text-gray-700 hover:bg-gray-300">বন্ধ করুন</button>
                     </div>
 
-                    <!-- ব্যবহারকারীর সেট করার কন্ট্রোল বার: ডেট, রুম নম্বর, শ্রেণি ও ভিজিট অ্যাড -->
-                    <div class="bg-emerald-50 p-4 rounded-xl border border-emerald-200 text-xs space-y-3 no-print">
-                        <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-5 gap-3 items-end">
+                    <!-- ফিল্টার ও রুম/শ্রেণি/ভিজিট সেটআপ কন্ট্রোল -->
+                    <div class="bg-emerald-50 p-4 rounded-xl border border-emerald-200 text-xs space-y-4 no-print">
+                        <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-3 items-end">
                             <div>
-                                <label class="font-bold block mb-1 text-emerald-950">১. ভিজিটের তারিখ সেট করুন:</label>
-                                <input type="date" id="mon_visit_date" onchange="loadMonitoringSheet()" class="p-2 border rounded bg-white font-bold w-full">
+                                <label class="font-bold block mb-1 text-emerald-950">১. দিনের ভিজিট ফিল্টার (তারিখ):</label>
+                                <input type="date" id="mon_filter_date" onchange="onMonitoringContextChange()" class="p-2 border rounded bg-white font-bold w-full">
                             </div>
                             <div>
-                                <label class="font-bold block mb-1 text-emerald-950">২. রুম নম্বর সেট করুন:</label>
-                                <input type="text" id="mon_room_no" list="roomSuggestions" onchange="loadMonitoringSheet()" placeholder="যেমন: ১০১ বা রুম-১০১" class="p-2 border rounded bg-white font-bold w-full">
+                                <label class="font-bold block mb-1 text-emerald-950">দিন ফিল্টার মোড:</label>
+                                <select id="mon_date_mode" onchange="onMonitoringContextChange()" class="p-2 border rounded bg-white font-bold w-full">
+                                    <option value="selected_date">নির্বাচিত দিনের ভিজিট</option>
+                                    <option value="all_dates">সকল দিন (পুরো পরীক্ষা)</option>
+                                </select>
+                            </div>
+                            <div>
+                                <label class="font-bold block mb-1 text-emerald-950">২. রুম নম্বর নির্বাচন / সেট করুন:</label>
+                                <input type="text" id="mon_room_no" list="roomSuggestions" onchange="onMonitoringContextChange()" placeholder="যেমন: রুম নং-১০১" class="p-2 border rounded bg-white font-bold w-full">
                                 <datalist id="roomSuggestions">
                                     <option value="রুম নং-১০১">
                                     <option value="রুম নং-১০২">
@@ -192,17 +199,9 @@
                                     <option value="রুম নং-১০৫">
                                 </datalist>
                             </div>
-                            <div>
-                                <label class="font-bold block mb-1 text-emerald-950">৩. শ্রেণি সেট করুন:</label>
-                                <select id="mon_class_select" onchange="loadMonitoringSheet()" class="p-2 border rounded bg-white font-bold w-full"></select>
-                            </div>
-                            <div>
-                                <label class="font-bold block mb-1 text-emerald-950">ভিজিট রাউন্ড (১ম, ২য়...):</label>
-                                <select id="mon_visit_round" onchange="loadMonitoringSheet()" class="p-2 border rounded bg-white font-bold w-full"></select>
-                            </div>
                             <div class="flex gap-2">
-                                <button onclick="addNextVisitRound()" class="bg-emerald-700 text-white px-3 py-2 rounded font-bold hover:bg-emerald-800 shadow flex-1 whitespace-nowrap">
-                                    <i class="fa-solid fa-plus mr-1"></i> নতুন ভিজিট অ্যাড
+                                <button onclick="addVisitColumn()" class="bg-emerald-700 text-white px-3 py-2 rounded font-bold hover:bg-emerald-800 shadow flex-1 whitespace-nowrap">
+                                    <i class="fa-solid fa-columns mr-1"></i> নতুন ভিজিট কলাম যোগ
                                 </button>
                                 <button onclick="window.print()" class="bg-gray-800 text-white px-3 py-2 rounded font-bold hover:bg-black shadow" title="প্রিন্ট করুন">
                                     <i class="fa-solid fa-print"></i>
@@ -210,73 +209,52 @@
                             </div>
                         </div>
 
-                        <!-- এই ভিজিট রাউন্ডে নতুন শিক্ষক যুক্ত করার বার -->
+                        <!-- রুম নম্বরের পাশে একাধিক শ্রেণি যুক্ত করার অংশ -->
+                        <div class="bg-white p-3 rounded-lg border border-emerald-300 space-y-2">
+                            <div class="flex flex-wrap justify-between items-center gap-2">
+                                <span class="font-bold text-emerald-950"><i class="fa-solid fa-layer-group mr-1 text-emerald-700"></i> এই রুমের পাশে একাধিক শ্রেণি যুক্ত করুন:</span>
+                                <div class="flex gap-2 items-center">
+                                    <select id="mon_add_class_select" class="p-1.5 border rounded bg-emerald-50 font-bold text-xs"></select>
+                                    <button onclick="addClassToCurrentRoom()" class="bg-teal-700 text-white px-3 py-1.5 rounded font-bold hover:bg-teal-800 text-xs">
+                                        <i class="fa-solid fa-plus mr-1"></i> শ্রেণি যোগ করুন
+                                    </button>
+                                </div>
+                            </div>
+                            <div id="mon_room_classes_tags" class="flex flex-wrap gap-1.5 pt-1"></div>
+                        </div>
+
+                        <!-- নতুন পরিদর্শক শিক্ষক যুক্ত করার বার -->
                         <div class="grid grid-cols-1 sm:grid-cols-3 gap-3 pt-2 border-t border-emerald-200/80 items-end">
                             <div>
-                                <label class="font-bold block mb-1 text-emerald-950">পরিদর্শক শিক্ষকের নাম যুক্ত করুন:</label>
+                                <label class="font-bold block mb-1 text-emerald-950">পরিদর্শক শিক্ষকের নাম:</label>
                                 <input type="text" id="mon_new_teacher_name" placeholder="শিক্ষকের নাম লিখুন..." class="p-2 border rounded bg-white font-bold w-full">
                             </div>
                             <div>
-                                <label class="font-bold block mb-1 text-emerald-950">পদবী / বিষয়:</label>
+                                <label class="font-bold block mb-1 text-emerald-950">পদবী / বিষয় (ঐচ্ছিক):</label>
                                 <input type="text" id="mon_new_teacher_role" placeholder="যেমন: সহকারী শিক্ষক (আরবি)" class="p-2 border rounded bg-white font-bold w-full">
                             </div>
                             <div>
-                                <button onclick="addInvigilatorToCurrentVisit()" class="w-full bg-teal-700 text-white px-4 py-2 rounded font-bold hover:bg-teal-800 shadow">
-                                    <i class="fa-solid fa-user-plus mr-1"></i> শিক্ষক তালিকায় যুক্ত করুন
+                                <button onclick="addTeacherRow()" class="w-full bg-blue-700 text-white px-4 py-2 rounded font-bold hover:bg-blue-800 shadow">
+                                    <i class="fa-solid fa-user-plus mr-1"></i> শিক্ষক সারিতে যুক্ত করুন
                                 </button>
                             </div>
                         </div>
-
-                        <!-- একই দিনে করা সব ভিজিটের কুইক সুইচার -->
-                        <div class="flex flex-wrap items-center gap-2 pt-2 border-t border-emerald-200/80">
-                            <span class="font-bold text-emerald-900">এই তারিখ, রুম ও শ্রেণির ভিজিটসমূহ:</span>
-                            <div id="visitRoundTabs" class="flex flex-wrap gap-1.5"></div>
-                        </div>
                     </div>
 
-                    <!-- লাইভ সামারি কার্ড -->
-                    <div class="grid grid-cols-2 sm:grid-cols-4 gap-3 text-xs font-bold text-center no-print">
-                        <div class="bg-slate-50 p-3 rounded-xl border border-slate-200">
-                            <p class="text-gray-500">পরিদর্শক সংখ্যা</p>
-                            <p id="mon_total_count" class="text-base text-slate-800 mt-0.5">0</p>
-                        </div>
-                        <div class="bg-emerald-50 p-3 rounded-xl border border-emerald-200">
-                            <p class="text-emerald-700">রিয়েল-টাইম উপস্থিত</p>
-                            <p id="mon_present_count" class="text-base text-emerald-800 mt-0.5">0</p>
-                        </div>
-                        <div class="bg-amber-50 p-3 rounded-xl border border-amber-200">
-                            <p class="text-amber-700">বিলম্বে উপস্থিত</p>
-                            <p id="mon_late_count" class="text-base text-amber-800 mt-0.5">0</p>
-                        </div>
-                        <div class="bg-rose-50 p-3 rounded-xl border border-rose-200">
-                            <p class="text-rose-700">অনুপস্থিত</p>
-                            <p id="mon_absent_count" class="text-base text-rose-800 mt-0.5">0</p>
-                        </div>
-                    </div>
-
-                    <!-- প্রিন্টযোগ্য ও রিয়েল-টাইম ভিজিট কন্টেইনার -->
+                    <!-- রুম নম্বর অনুযায়ী একত্রে ভিজিট কলাম টেবিল -->
                     <div class="print-container p-5 bg-white rounded-xl border border-gray-200 space-y-4">
                         <div class="text-center border-b pb-3">
                             <h2 class="font-bold text-sm text-emerald-950">আবদুল্লাহ হাট ইসলামিয়া ফাজিল মাদ্রাসা</h2>
-                            <p class="text-[11px] text-gray-600">পরীক্ষা কক্ষ পরিদর্শন — শিক্ষক রিয়েল-টাইম উপস্থিতি প্রতিবেদন</p>
-                            <p class="text-xs font-bold text-emerald-800 mt-1 bg-emerald-50/90 inline-block px-4 py-1 rounded border border-emerald-200">
-                                তারিখ: <span id="mon_display_date">---</span> | রুম: <span id="mon_display_room">---</span> | শ্রেণি: <span id="mon_display_class">---</span> | <span id="mon_display_round">১ম ভিজিট</span>
+                            <p class="text-[11px] text-gray-600">পরীক্ষা কক্ষ পরিদর্শন — রুমভিত্তিক ধারাবাহিক ভিজিট কলাম প্রতিবেদন</p>
+                            <p class="text-xs font-bold text-emerald-800 mt-1.5 bg-emerald-50/90 inline-block px-4 py-1.5 rounded border border-emerald-200">
+                                তারিখ: <span id="mon_display_date">---</span> | রুম নম্বর: <span id="mon_display_room">---</span> | সংযুক্ত শ্রেণিসমূহ: <span id="mon_display_classes">---</span>
                             </p>
                         </div>
 
                         <div class="overflow-x-auto">
-                            <table class="w-full text-left border-collapse border border-gray-300 text-xs whitespace-nowrap bg-white/85">
-                                <thead>
-                                    <tr class="bg-emerald-800/90 text-white">
-                                        <th class="border p-2">শিক্ষকের নাম</th>
-                                        <th class="border p-2">পদবী / বিষয়</th>
-                                        <th class="border p-2 text-center">ভিজিট সময়</th>
-                                        <th class="border p-2 text-center">উপস্থিতি স্ট্যাটাস</th>
-                                        <th class="border p-2">ভিজিট নোট / মন্তব্য</th>
-                                        <th class="border p-2 text-center no-print">রিয়েল-টাইম মার্ক করুন</th>
-                                    </tr>
-                                </thead>
-                                <tbody id="monitoringTableBody"></tbody>
+                            <table class="w-full text-left border-collapse border border-gray-300 text-xs whitespace-nowrap bg-white/90">
+                                <thead id="mon_matrix_thead"></thead>
+                                <tbody id="mon_matrix_tbody"></tbody>
                             </table>
                         </div>
                     </div>
@@ -285,9 +263,46 @@
                         <span id="mon_realtime_badge" class="text-xs font-bold text-emerald-700">
                             <i class="fa-solid fa-shield-check mr-1"></i> রিয়েল-টাইম অটো-সেভ সক্রিয়
                         </span>
-                        <button onclick="saveMonitoringData(true)" class="bg-emerald-700 text-white px-5 py-2 rounded-lg text-xs font-bold hover:bg-emerald-800 shadow">
-                            <i class="fa-solid fa-floppy-disk mr-1"></i> এখনই সেভ নিশ্চিত করুন
+                        <button onclick="saveCurrentRoomMatrix(true)" class="bg-emerald-700 text-white px-5 py-2 rounded-lg text-xs font-bold hover:bg-emerald-800 shadow">
+                            <i class="fa-solid fa-floppy-disk mr-1"></i> রিয়েল-টাইম সেভ নিশ্চিত করুন
                         </button>
+                    </div>
+
+                    <!-- পরীক্ষা শেষে পুরো পরীক্ষার সংরক্ষিত ভিজিট রিপোর্ট ও শিক্ষক দিয়ে ফিল্টারিং -->
+                    <div class="bg-slate-50 p-5 rounded-2xl border border-slate-300 space-y-4">
+                        <div class="flex flex-col md:flex-row justify-between items-start md:items-center gap-3 border-b pb-3">
+                            <div>
+                                <h4 class="font-bold text-slate-900 text-sm"><i class="fa-solid fa-file-contract mr-2 text-emerald-700"></i> পুরো পরীক্ষার সংরক্ষিত ভিজিট রিপোর্ট (শিক্ষক ফিল্টার)</h4>
+                                <p class="text-[11px] text-gray-600">পরীক্ষার শুরু থেকে শেষ পর্যন্ত সব দিনের সব রুম ও ভিজিটের রিপোর্ট সংরক্ষিত থাকে। শিক্ষকের নাম দিয়ে ফিল্টার করুন।</p>
+                            </div>
+                            <div class="flex flex-wrap gap-2 items-center no-print">
+                                <select id="mon_report_teacher_filter" onchange="renderFullExamVisitReport()" class="p-2 border rounded bg-white font-bold text-xs min-w-[200px]">
+                                    <option value="ALL">সকল শিক্ষক (পুরো পরীক্ষার রিপোর্ট)</option>
+                                </select>
+                                <input type="text" id="mon_report_teacher_search" oninput="renderFullExamVisitReport()" placeholder="শিক্ষকের নাম লিখে খুঁজুন..." class="p-2 border rounded bg-white font-bold text-xs">
+                                <button onclick="window.print()" class="bg-slate-800 text-white px-3 py-2 rounded font-bold text-xs hover:bg-black shadow">
+                                    <i class="fa-solid fa-print mr-1"></i> রিপোর্ট প্রিন্ট
+                                </button>
+                            </div>
+                        </div>
+
+                        <div class="overflow-x-auto bg-white rounded-xl border border-gray-200">
+                            <table class="w-full text-left border-collapse border border-gray-200 text-xs whitespace-nowrap">
+                                <thead>
+                                    <tr class="bg-slate-800 text-white">
+                                        <th class="border p-2">শিক্ষকের নাম</th>
+                                        <th class="border p-2 text-center">তারিখ</th>
+                                        <th class="border p-2">রুম নম্বর</th>
+                                        <th class="border p-2">শ্রেণিসমূহ</th>
+                                        <th class="border p-2 text-center">ভিজিট রাউন্ড</th>
+                                        <th class="border p-2 text-center">উপস্থিতি</th>
+                                        <th class="border p-2 text-center">সময়</th>
+                                        <th class="border p-2">নোট / মন্তব্য</th>
+                                    </tr>
+                                </thead>
+                                <tbody id="mon_full_report_tbody"></tbody>
+                            </table>
+                        </div>
                     </div>
                 </div>
 
@@ -909,13 +924,475 @@
             alim1: true, alim2: true
         };
 
-        const defaultInvigilators = [
-            { id: "T-101", name: "মাওলানা মো: ইব্রাহিম", role: "সহকারী মৌলভী", status: "অপেক্ষমাণ", time: "-", note: "" },
-            { id: "T-102", name: "জনাব আব্দুল করিম", role: "সহকারী শিক্ষক (গণিত)", status: "অপেক্ষমাণ", time: "-", note: "" },
-            { id: "T-103", name: "মাওলানা নজির আহমেদ", role: "সিনিয়র শিক্ষক (আরবি)", status: "অপেক্ষমাণ", time: "-", note: "" }
+        const FULL_EXAM_MONITORING_KEY = "ahifm_exam_full_monitoring_v2";
+
+        const defaultTeachers = [
+            { name: "মাওলানা মো: ইব্রাহিম", role: "সহকারী মৌলভী" },
+            { name: "জনাব আব্দুল করিম", role: "সহকারী শিক্ষক (গণিত)" },
+            { name: "মাওলানা নজির আহমেদ", role: "সিনিয়র শিক্ষক (আরবি)" }
         ];
 
-        let currentMonitoringRows = [];
+        function toBengaliOrdinal(num) {
+            const ordinals = {
+                1: "১ম ভিজিট",
+                2: "২য় ভিজিট",
+                3: "৩য় ভিজিট",
+                4: "৪র্থ ভিজিট",
+                5: "৫ম ভিজিট"
+            };
+            return ordinals[num] || `${num}ম ভিজিট`;
+        }
+
+        function getAllMonitoringRecords() {
+            return JSON.parse(localStorage.getItem(FULL_EXAM_MONITORING_KEY)) || {};
+        }
+
+        function saveAllMonitoringRecords(allData) {
+            localStorage.setItem(FULL_EXAM_MONITORING_KEY, JSON.stringify(allData));
+        }
+
+        function getRoomEntryKey(dateStr, roomStr) {
+            return `${dateStr}__${roomStr.trim()}`;
+        }
+
+        function ensureRoomEntry(dateStr, roomStr) {
+            const allData = getAllMonitoringRecords();
+            const key = getRoomEntryKey(dateStr, roomStr);
+
+            if (!allData[key]) {
+                allData[key] = {
+                    date: dateStr,
+                    room: roomStr.trim(),
+                    classes: ["দাখিল ষষ্ঠ শ্রেণি"],
+                    visitCount: 2,
+                    teachers: defaultTeachers.map(t => ({
+                        name: t.name,
+                        role: t.role,
+                        visits: {
+                            1: { status: "অপেক্ষমাণ", time: "-", note: "" },
+                            2: { status: "অপেক্ষমাণ", time: "-", note: "" }
+                        }
+                    }))
+                };
+                saveAllMonitoringRecords(allData);
+            }
+            return allData[key];
+        }
+
+        function initMonitoringPanel() {
+            const dateInput = document.getElementById('mon_filter_date');
+            if (!dateInput.value) {
+                const today = new Date();
+                const yyyy = today.getFullYear();
+                const mm = String(today.getMonth() + 1).padStart(2, '0');
+                const dd = String(today.getDate()).padStart(2, '0');
+                dateInput.value = `${yyyy}-${mm}-${dd}`;
+            }
+
+            const roomInput = document.getElementById('mon_room_no');
+            if (!roomInput.value.trim()) {
+                roomInput.value = "রুম নং-১০১";
+            }
+
+            onMonitoringContextChange();
+        }
+
+        function onMonitoringContextChange() {
+            const dateStr = document.getElementById('mon_filter_date').value;
+            const roomStr = document.getElementById('mon_room_no').value.trim() || "রুম নং-১০১";
+            const mode = document.getElementById('mon_date_mode').value;
+
+            if (!dateStr) return;
+
+            ensureRoomEntry(dateStr, roomStr);
+            renderRoomClassesTags(dateStr, roomStr);
+            renderMonitoringMatrix(dateStr, roomStr, mode);
+            refreshTeacherFilterDropdown();
+            renderFullExamVisitReport();
+        }
+
+        function renderRoomClassesTags(dateStr, roomStr) {
+            const allData = getAllMonitoringRecords();
+            const key = getRoomEntryKey(dateStr, roomStr);
+            const entry = allData[key];
+            const container = document.getElementById('mon_room_classes_tags');
+            container.innerHTML = '';
+
+            if (!entry || !Array.isArray(entry.classes)) return;
+
+            entry.classes.forEach((clsName, idx) => {
+                container.innerHTML += `
+                    <span class="bg-emerald-100 text-emerald-950 px-2.5 py-1 rounded-full border border-emerald-300 font-bold text-[11px] inline-flex items-center gap-1.5">
+                        <i class="fa-solid fa-graduation-cap text-emerald-700"></i> ${clsName}
+                        <button onclick="removeClassFromRoom(${idx})" class="text-rose-600 hover:text-rose-800 font-bold" title="শ্রেণি বাদ দিন">×</button>
+                    </span>
+                `;
+            });
+        }
+
+        function addClassToCurrentRoom() {
+            const dateStr = document.getElementById('mon_filter_date').value;
+            const roomStr = document.getElementById('mon_room_no').value.trim() || "রুম নং-১০১";
+            const clsToAdd = document.getElementById('mon_add_class_select').value;
+
+            const allData = getAllMonitoringRecords();
+            const key = getRoomEntryKey(dateStr, roomStr);
+            const entry = ensureRoomEntry(dateStr, roomStr);
+
+            if (!entry.classes.includes(clsToAdd)) {
+                entry.classes.push(clsToAdd);
+                allData[key] = entry;
+                saveAllMonitoringRecords(allData);
+                flashRealtimeSaved(`"${clsToAdd}" রুমের পাশে যুক্ত ও রিয়েল-টাইম সেভ হয়েছে`);
+            }
+            onMonitoringContextChange();
+        }
+
+        function removeClassFromRoom(classIdx) {
+            const dateStr = document.getElementById('mon_filter_date').value;
+            const roomStr = document.getElementById('mon_room_no').value.trim() || "রুম নং-১০১";
+            const allData = getAllMonitoringRecords();
+            const key = getRoomEntryKey(dateStr, roomStr);
+            const entry = allData[key];
+
+            if (!entry || entry.classes.length <= 1) {
+                alert('রুমে অন্তত ১টি শ্রেণি থাকা আবশ্যক!');
+                return;
+            }
+            entry.classes.splice(classIdx, 1);
+            allData[key] = entry;
+            saveAllMonitoringRecords(allData);
+            flashRealtimeSaved("শ্রেণি আপডেট ও রিয়েল-টাইম সেভ হয়েছে");
+            onMonitoringContextChange();
+        }
+
+        function addVisitColumn() {
+            const dateStr = document.getElementById('mon_filter_date').value;
+            const roomStr = document.getElementById('mon_room_no').value.trim() || "রুম নং-১০১";
+            const allData = getAllMonitoringRecords();
+            const key = getRoomEntryKey(dateStr, roomStr);
+            const entry = ensureRoomEntry(dateStr, roomStr);
+
+            const nextVisitNum = (entry.visitCount || 1) + 1;
+            entry.visitCount = nextVisitNum;
+
+            entry.teachers.forEach(t => {
+                if (!t.visits) t.visits = {};
+                if (!t.visits[nextVisitNum]) {
+                    t.visits[nextVisitNum] = { status: "অপেক্ষমাণ", time: "-", note: "" };
+                }
+            });
+
+            allData[key] = entry;
+            saveAllMonitoringRecords(allData);
+            flashRealtimeSaved(`${toBengaliOrdinal(nextVisitNum)} কলাম যুক্ত ও রিয়েল-টাইম সেভ হয়েছে`);
+            onMonitoringContextChange();
+        }
+
+        function addTeacherRow() {
+            const nameInput = document.getElementById('mon_new_teacher_name');
+            const roleInput = document.getElementById('mon_new_teacher_role');
+            const teacherName = nameInput.value.trim();
+            const teacherRole = roleInput.value.trim() || "সহকারী শিক্ষক";
+
+            if (!teacherName) {
+                alert('দয়া করে শিক্ষকের নাম লিখুন!');
+                return;
+            }
+
+            const dateStr = document.getElementById('mon_filter_date').value;
+            const roomStr = document.getElementById('mon_room_no').value.trim() || "রুম নং-১০১";
+            const allData = getAllMonitoringRecords();
+            const key = getRoomEntryKey(dateStr, roomStr);
+            const entry = ensureRoomEntry(dateStr, roomStr);
+
+            const visitsObj = {};
+            for (let v = 1; v <= (entry.visitCount || 1); v++) {
+                visitsObj[v] = { status: "অপেক্ষমাণ", time: "-", note: "" };
+            }
+
+            entry.teachers.push({
+                name: teacherName,
+                role: teacherRole,
+                visits: visitsObj
+            });
+
+            allData[key] = entry;
+            saveAllMonitoringRecords(allData);
+            nameInput.value = '';
+            roleInput.value = '';
+            flashRealtimeSaved(`"${teacherName}" সারিতে যুক্ত ও রিয়েল-টাইম সেভ হয়েছে`);
+            onMonitoringContextChange();
+        }
+
+        function removeTeacherRow(entryKey, teacherIdx) {
+            const allData = getAllMonitoringRecords();
+            const entry = allData[entryKey];
+            if (!entry || !entry.teachers[teacherIdx]) return;
+
+            const removedName = entry.teachers[teacherIdx].name;
+            entry.teachers.splice(teacherIdx, 1);
+            allData[entryKey] = entry;
+            saveAllMonitoringRecords(allData);
+            flashRealtimeSaved(`"${removedName}" সরানো ও রিয়েল-টাইম সেভ হয়েছে`);
+            onMonitoringContextChange();
+        }
+
+        function updateVisitCellStatus(entryKey, teacherIdx, visitNum, newStatus) {
+            const allData = getAllMonitoringRecords();
+            const entry = allData[entryKey];
+            if (!entry || !entry.teachers[teacherIdx]) return;
+
+            if (!entry.teachers[teacherIdx].visits) entry.teachers[teacherIdx].visits = {};
+            const now = new Date();
+            const timeStr = now.toLocaleTimeString('bn-BD', { hour: '2-digit', minute: '2-digit' });
+
+            const existingNote = (entry.teachers[teacherIdx].visits[visitNum] && entry.teachers[teacherIdx].visits[visitNum].note) || "";
+            entry.teachers[teacherIdx].visits[visitNum] = {
+                status: newStatus,
+                time: timeStr,
+                note: existingNote
+            };
+
+            allData[entryKey] = entry;
+            saveAllMonitoringRecords(allData);
+            flashRealtimeSaved(`${entry.teachers[teacherIdx].name} (${toBengaliOrdinal(visitNum)}) — "${newStatus}" রিয়েল-টাইম সেভ হয়েছে`);
+            onMonitoringContextChange();
+        }
+
+        function updateVisitCellNote(entryKey, teacherIdx, visitNum, noteVal) {
+            const allData = getAllMonitoringRecords();
+            const entry = allData[entryKey];
+            if (!entry || !entry.teachers[teacherIdx]) return;
+
+            if (!entry.teachers[teacherIdx].visits) entry.teachers[teacherIdx].visits = {};
+            const currentCell = entry.teachers[teacherIdx].visits[visitNum] || { status: "অপেক্ষমাণ", time: "-", note: "" };
+            currentCell.note = noteVal;
+            entry.teachers[teacherIdx].visits[visitNum] = currentCell;
+
+            allData[entryKey] = entry;
+            saveAllMonitoringRecords(allData);
+            flashRealtimeSaved("নোট রিয়েল-টাইম সেভ হয়েছে");
+            renderFullExamVisitReport();
+        }
+
+        function updateTeacherInfo(entryKey, teacherIdx, field, val) {
+            const allData = getAllMonitoringRecords();
+            const entry = allData[entryKey];
+            if (!entry || !entry.teachers[teacherIdx]) return;
+
+            entry.teachers[teacherIdx][field] = val;
+            allData[entryKey] = entry;
+            saveAllMonitoringRecords(allData);
+            flashRealtimeSaved("শিক্ষকের তথ্য রিয়েল-টাইম সেভ হয়েছে");
+            refreshTeacherFilterDropdown();
+            renderFullExamVisitReport();
+        }
+
+        function renderMonitoringMatrix(dateStr, roomStr, mode) {
+            const allData = getAllMonitoringRecords();
+            const currentKey = getRoomEntryKey(dateStr, roomStr);
+            const currentEntry = allData[currentKey];
+
+            document.getElementById('mon_display_date').innerText = mode === 'all_dates' ? "সকল দিন (পুরো পরীক্ষা)" : dateStr;
+            document.getElementById('mon_display_room').innerText = mode === 'all_dates' ? "সকল রুম" : roomStr;
+            document.getElementById('mon_display_classes').innerText = (currentEntry && currentEntry.classes && currentEntry.classes.length)
+                ? currentEntry.classes.join(", ")
+                : "---";
+
+            let targetKeys = [];
+            if (mode === 'all_dates') {
+                targetKeys = Object.keys(allData).sort();
+            } else {
+                targetKeys = [currentKey];
+            }
+
+            let maxVisits = 1;
+            targetKeys.forEach(k => {
+                if (allData[k] && (allData[k].visitCount || 1) > maxVisits) {
+                    maxVisits = allData[k].visitCount;
+                }
+            });
+
+            const thead = document.getElementById('mon_matrix_thead');
+            const tbody = document.getElementById('mon_matrix_tbody');
+
+            let headerCells = `<th class="border p-2">শিক্ষকের নাম</th>`;
+            if (mode === 'all_dates') {
+                headerCells += `<th class="border p-2">তারিখ ও রুম (শ্রেণিসমূহ)</th>`;
+            } else {
+                headerCells += `<th class="border p-2">শ্রেণিসমূহ</th>`;
+            }
+
+            for (let v = 1; v <= maxVisits; v++) {
+                headerCells += `<th class="border p-2 text-center bg-emerald-900">${toBengaliOrdinal(v)}</th>`;
+            }
+            headerCells += `<th class="border p-2 text-center no-print">মুছুন</th>`;
+
+            thead.innerHTML = `<tr class="bg-emerald-800 text-white">${headerCells}</tr>`;
+            tbody.innerHTML = '';
+
+            targetKeys.forEach(k => {
+                const entry = allData[k];
+                if (!entry) return;
+                const roomClassText = (entry.classes || []).join(", ");
+
+                entry.teachers.forEach((teacher, tIdx) => {
+                    let visitCellsHtml = '';
+                    for (let v = 1; v <= maxVisits; v++) {
+                        const cellData = (teacher.visits && teacher.visits[v]) || { status: "অপেক্ষমাণ", time: "-", note: "" };
+                        let statusBadgeClass = "bg-gray-100 text-gray-700 border-gray-300";
+                        if (cellData.status === "উপস্থিত") statusBadgeClass = "bg-emerald-100 text-emerald-800 border-emerald-300";
+                        else if (cellData.status === "বিলম্বে উপস্থিত") statusBadgeClass = "bg-amber-100 text-amber-800 border-amber-300";
+                        else if (cellData.status === "অনুপস্থিত") statusBadgeClass = "bg-rose-100 text-rose-800 border-rose-300";
+
+                        visitCellsHtml += `
+                            <td class="border p-2 align-top min-w-[175px]">
+                                <div class="flex items-center justify-between gap-1 mb-1">
+                                    <span class="px-2 py-0.5 rounded-full border font-bold text-[10px] ${statusBadgeClass}">${cellData.status}</span>
+                                    <span class="text-[10px] text-gray-500 font-semibold">${cellData.time}</span>
+                                </div>
+                                <div class="flex gap-1 mb-1.5 no-print">
+                                    <button onclick="updateVisitCellStatus('${k}', ${tIdx}, ${v}, 'উপস্থিত')" class="bg-emerald-600 text-white px-1.5 py-0.5 rounded text-[10px] font-bold hover:bg-emerald-700">উপস্থিত</button>
+                                    <button onclick="updateVisitCellStatus('${k}', ${tIdx}, ${v}, 'বিলম্বে উপস্থিত')" class="bg-amber-500 text-white px-1.5 py-0.5 rounded text-[10px] font-bold hover:bg-amber-600">বিলম্বে</button>
+                                    <button onclick="updateVisitCellStatus('${k}', ${tIdx}, ${v}, 'অনুপস্থিত')" class="bg-rose-600 text-white px-1.5 py-0.5 rounded text-[10px] font-bold hover:bg-rose-700">অনুপস্থিত</button>
+                                </div>
+                                <input type="text" value="${cellData.note || ''}" oninput="updateVisitCellNote('${k}', ${tIdx}, ${v}, this.value)" placeholder="${toBengaliOrdinal(v)} নোট..." class="p-1 border rounded w-full text-[11px] bg-white">
+                            </td>
+                        `;
+                    }
+
+                    const contextColHtml = mode === 'all_dates'
+                        ? `<td class="border p-2 text-[11px]"><span class="font-bold text-slate-800">${entry.date}</span> — <span class="font-bold text-emerald-800">${entry.room}</span><br><span class="text-gray-600">${roomClassText}</span></td>`
+                        : `<td class="border p-2 text-[11px] font-semibold text-emerald-900">${roomClassText}</td>`;
+
+                    tbody.innerHTML += `
+                        <tr>
+                            <td class="border p-2 font-bold">
+                                <input type="text" value="${teacher.name}" oninput="updateTeacherInfo('${k}', ${tIdx}, 'name', this.value)" class="p-1 border rounded w-40 font-bold text-xs bg-white">
+                                <div class="text-[10px] text-gray-500 font-normal mt-0.5">${teacher.role || ''}</div>
+                            </td>
+                            ${contextColHtml}
+                            ${visitCellsHtml}
+                            <td class="border p-2 text-center no-print">
+                                <button onclick="removeTeacherRow('${k}', ${tIdx})" class="bg-rose-100 text-rose-700 px-2 py-1 rounded font-bold text-[11px] hover:bg-rose-200" title="সারি মুছুন">
+                                    <i class="fa-solid fa-trash"></i>
+                                </button>
+                            </td>
+                        </tr>
+                    `;
+                });
+            });
+        }
+
+        function refreshTeacherFilterDropdown() {
+            const allData = getAllMonitoringRecords();
+            const selectEl = document.getElementById('mon_report_teacher_filter');
+            if (!selectEl) return;
+
+            const currentVal = selectEl.value;
+            const teacherNamesSet = new Set();
+
+            Object.values(allData).forEach(entry => {
+                (entry.teachers || []).forEach(t => {
+                    if (t.name && t.name.trim()) {
+                        teacherNamesSet.add(t.name.trim());
+                    }
+                });
+            });
+
+            selectEl.innerHTML = `<option value="ALL">সকল শিক্ষক (পুরো পরীক্ষার রিপোর্ট)</option>`;
+            Array.from(teacherNamesSet).sort().forEach(name => {
+                const selected = name === currentVal ? 'selected' : '';
+                selectEl.innerHTML += `<option value="${name}" ${selected}>${name}</option>`;
+            });
+        }
+
+        function renderFullExamVisitReport() {
+            const allData = getAllMonitoringRecords();
+            const selectedTeacher = document.getElementById('mon_report_teacher_filter')?.value || "ALL";
+            const searchQuery = (document.getElementById('mon_report_teacher_search')?.value || "").trim().toLowerCase();
+            const tbody = document.getElementById('mon_full_report_tbody');
+            if (!tbody) return;
+
+            tbody.innerHTML = '';
+            const rows = [];
+
+            Object.keys(allData).sort().forEach(key => {
+                const entry = allData[key];
+                const classesStr = (entry.classes || []).join(", ");
+
+                (entry.teachers || []).forEach(t => {
+                    const tName = t.name || "";
+                    const visits = t.visits || {};
+                    const visitNums = Object.keys(visits).map(Number).sort((a, b) => a - b);
+
+                    visitNums.forEach(vNum => {
+                        const vInfo = visits[vNum];
+                        rows.push({
+                            teacherName: tName,
+                            date: entry.date,
+                            room: entry.room,
+                            classesStr: classesStr,
+                            visitLabel: toBengaliOrdinal(vNum),
+                            status: vInfo.status || "অপেক্ষমাণ",
+                            time: vInfo.time || "-",
+                            note: vInfo.note || ""
+                        });
+                    });
+                });
+            });
+
+            const filteredRows = rows.filter(r => {
+                const matchesDropdown = selectedTeacher === "ALL" || r.teacherName === selectedTeacher;
+                const matchesSearch = !searchQuery || r.teacherName.toLowerCase().includes(searchQuery);
+                return matchesDropdown && matchesSearch;
+            });
+
+            if (filteredRows.length === 0) {
+                tbody.innerHTML = `<tr><td colspan="8" class="p-4 text-center text-gray-500 font-bold">নির্বাচিত শিক্ষকের কোনো ভিজিট রেকর্ড পাওয়া যায়নি।</td></tr>`;
+                return;
+            }
+
+            filteredRows.forEach(r => {
+                let badgeClass = "bg-gray-100 text-gray-700 border-gray-300";
+                if (r.status === "উপস্থিত") badgeClass = "bg-emerald-100 text-emerald-800 border-emerald-300";
+                else if (r.status === "বিলম্বে উপস্থিত") badgeClass = "bg-amber-100 text-amber-800 border-amber-300";
+                else if (r.status === "অনুপস্থিত") badgeClass = "bg-rose-100 text-rose-800 border-rose-300";
+
+                tbody.innerHTML += `
+                    <tr>
+                        <td class="border p-2 font-bold text-slate-900">${r.teacherName}</td>
+                        <td class="border p-2 text-center font-semibold">${r.date}</td>
+                        <td class="border p-2 font-bold text-emerald-900">${r.room}</td>
+                        <td class="border p-2 text-gray-700">${r.classesStr}</td>
+                        <td class="border p-2 text-center font-bold text-blue-800">${r.visitLabel}</td>
+                        <td class="border p-2 text-center"><span class="px-2 py-0.5 rounded-full border font-bold text-[10px] ${badgeClass}">${r.status}</span></td>
+                        <td class="border p-2 text-center">${r.time}</td>
+                        <td class="border p-2 text-gray-700">${r.note || "-"}</td>
+                    </tr>
+                `;
+            });
+        }
+
+        function saveCurrentRoomMatrix(showAlert = false) {
+            const dateStr = document.getElementById('mon_filter_date').value;
+            const roomStr = document.getElementById('mon_room_no').value.trim() || "রুম নং-১০১";
+            ensureRoomEntry(dateStr, roomStr);
+            onMonitoringContextChange();
+            if (showAlert) {
+                alert(`${dateStr} | ${roomStr} এর সব ভিজিট কলাম ও শ্রেণির ডেটা রিয়েল-টাইম সংরক্ষিত আছে!`);
+            }
+        }
+
+        function flashRealtimeSaved(message) {
+            const badge = document.getElementById('mon_realtime_badge');
+            if (!badge) return;
+            badge.innerHTML = `<i class="fa-solid fa-check-circle mr-1 text-emerald-600"></i> ${message}`;
+            setTimeout(() => {
+                badge.innerHTML = `<i class="fa-solid fa-shield-check mr-1"></i> রিয়েল-টাইম অটো-সেভ সক্রিয়`;
+            }, 2500);
+        }
 
         function getSettingsData() {
             let years = JSON.parse(localStorage.getItem('madrasah_years')) || ["২০২৬", "২০২৭"];
@@ -973,7 +1450,7 @@
             populateSelect('rout_class', data.classes);
             populateSelect('rout_subject', data.subjects);
 
-            populateSelect('mon_class_select', data.classes);
+            populateSelect('mon_add_class_select', data.classes);
 
             renderClassToggles();
         }
@@ -998,273 +1475,12 @@
             if(panelName === 'merit') loadMeritList();
             if(panelName === 'tabulation') loadTabulationSheet();
             if(panelName === 'summary') loadResultSummary();
-            if(panelName === 'monitoring') initMonitoringDefaultsAndLoad();
+            if(panelName === 'monitoring') initMonitoringPanel();
         }
 
         function closeAllExamPanels() {
             document.querySelectorAll('.exam-sub-panel').forEach(p => p.classList.add('hidden'));
             window.scrollTo({ top: 0, behavior: 'smooth' });
-        }
-
-        function toBengaliOrdinal(num) {
-            const ordinals = {
-                1: "১ম ভিজিট",
-                2: "২য় ভিজিট",
-                3: "৩য় ভিজিট",
-                4: "৪র্থ ভিজিট",
-                5: "৫ম ভিজিট"
-            };
-            return ordinals[num] || `${num}ম ভিজিট`;
-        }
-
-        function getSessionStorageKey(dateStr, roomStr, classStr) {
-            return `ahifm_mon_sessions_${dateStr}_${encodeURIComponent(roomStr)}_${encodeURIComponent(classStr)}`;
-        }
-
-        function initMonitoringDefaultsAndLoad() {
-            const dateInput = document.getElementById('mon_visit_date');
-            if (!dateInput.value) {
-                const today = new Date();
-                const yyyy = today.getFullYear();
-                const mm = String(today.getMonth() + 1).padStart(2, '0');
-                const dd = String(today.getDate()).padStart(2, '0');
-                dateInput.value = `${yyyy}-${mm}-${dd}`;
-            }
-
-            const roomInput = document.getElementById('mon_room_no');
-            if (!roomInput.value.trim()) {
-                roomInput.value = "রুম নং-১০১";
-            }
-
-            loadMonitoringSheet();
-        }
-
-        function getOrCreateSessions(dateStr, roomStr, classStr) {
-            const key = getSessionStorageKey(dateStr, roomStr, classStr);
-            let sessions = JSON.parse(localStorage.getItem(key));
-            if (!Array.isArray(sessions) || sessions.length === 0) {
-                sessions = [
-                    {
-                        roundNumber: 1,
-                        roundLabel: toBengaliOrdinal(1),
-                        rows: defaultInvigilators.map(item => ({ ...item }))
-                    }
-                ];
-                localStorage.setItem(key, JSON.stringify(sessions));
-            }
-            return sessions;
-        }
-
-        function syncRoundDropdownAndTabs(sessions, activeRoundNum) {
-            const roundSelect = document.getElementById('mon_visit_round');
-            const tabsContainer = document.getElementById('visitRoundTabs');
-            roundSelect.innerHTML = '';
-            tabsContainer.innerHTML = '';
-
-            sessions.forEach(s => {
-                const selectedAttr = Number(s.roundNumber) === Number(activeRoundNum) ? 'selected' : '';
-                roundSelect.innerHTML += `<option value="${s.roundNumber}" ${selectedAttr}>${s.roundLabel}</option>`;
-
-                const activeClass = Number(s.roundNumber) === Number(activeRoundNum)
-                    ? "bg-emerald-700 text-white border-emerald-800 shadow-sm"
-                    : "bg-white text-emerald-900 border-emerald-300 hover:bg-emerald-100";
-
-                tabsContainer.innerHTML += `
-                    <button onclick="switchVisitRound(${s.roundNumber})" class="px-2.5 py-1 rounded-lg border font-bold text-[11px] transition ${activeClass}">
-                        ${s.roundLabel}
-                    </button>
-                `;
-            });
-        }
-
-        function switchVisitRound(roundNum) {
-            document.getElementById('mon_visit_round').value = roundNum;
-            loadMonitoringSheet();
-        }
-
-        function addNextVisitRound() {
-            const visitDate = document.getElementById('mon_visit_date').value;
-            const roomNo = document.getElementById('mon_room_no').value.trim() || "নির্ধারিত রুম";
-            const className = document.getElementById('mon_class_select').value;
-
-            if (!visitDate) {
-                alert('দয়া করে আগে ভিজিটের তারিখ সেট করুন!');
-                return;
-            }
-
-            const sessions = getOrCreateSessions(visitDate, roomNo, className);
-            const nextNum = sessions.length + 1;
-            const newSession = {
-                roundNumber: nextNum,
-                roundLabel: toBengaliOrdinal(nextNum),
-                rows: defaultInvigilators.map(item => ({ ...item, status: "অপেক্ষমাণ", time: "-", note: "" }))
-            };
-
-            sessions.push(newSession);
-            localStorage.setItem(getSessionStorageKey(visitDate, roomNo, className), JSON.stringify(sessions));
-
-            syncRoundDropdownAndTabs(sessions, nextNum);
-            loadMonitoringSheet();
-            flashRealtimeSaved(`${toBengaliOrdinal(nextNum)} যুক্ত ও রিয়েল-টাইম সেভ হয়েছে`);
-        }
-
-        function addInvigilatorToCurrentVisit() {
-            const nameInput = document.getElementById('mon_new_teacher_name');
-            const roleInput = document.getElementById('mon_new_teacher_role');
-            const name = nameInput.value.trim();
-            const role = roleInput.value.trim() || "সহকারী শিক্ষক";
-
-            if (!name) {
-                alert('দয়া করে শিক্ষকের নাম লিখুন!');
-                return;
-            }
-
-            currentMonitoringRows.push({
-                id: "T-" + Date.now(),
-                name: name,
-                role: role,
-                status: "অপেক্ষমাণ",
-                time: "-",
-                note: ""
-            });
-
-            nameInput.value = '';
-            roleInput.value = '';
-            saveMonitoringData(false);
-            loadMonitoringSheet();
-            flashRealtimeSaved(`"${name}" তালিকায় যুক্ত ও রিয়েল-টাইম সেভ হয়েছে`);
-        }
-
-        function removeInvigilatorFromVisit(index) {
-            if (!currentMonitoringRows[index]) return;
-            const removedName = currentMonitoringRows[index].name;
-            currentMonitoringRows.splice(index, 1);
-            saveMonitoringData(false);
-            loadMonitoringSheet();
-            flashRealtimeSaved(`"${removedName}" তালিকা থেকে সরানো ও রিয়েল-টাইম সেভ হয়েছে`);
-        }
-
-        function loadMonitoringSheet() {
-            const visitDate = document.getElementById('mon_visit_date').value;
-            const roomNo = document.getElementById('mon_room_no').value.trim() || "নির্ধারিত রুম";
-            const className = document.getElementById('mon_class_select').value;
-
-            if (!visitDate) return;
-
-            const sessions = getOrCreateSessions(visitDate, roomNo, className);
-            let roundSelect = document.getElementById('mon_visit_round');
-            let activeRound = Number(roundSelect.value) || sessions[0].roundNumber;
-
-            if (!sessions.some(s => Number(s.roundNumber) === activeRound)) {
-                activeRound = sessions[0].roundNumber;
-            }
-
-            syncRoundDropdownAndTabs(sessions, activeRound);
-
-            const currentSession = sessions.find(s => Number(s.roundNumber) === activeRound);
-            currentMonitoringRows = currentSession.rows;
-
-            document.getElementById('mon_display_date').innerText = visitDate;
-            document.getElementById('mon_display_room').innerText = roomNo;
-            document.getElementById('mon_display_class').innerText = className;
-            document.getElementById('mon_display_round').innerText = currentSession.roundLabel;
-
-            const tbody = document.getElementById('monitoringTableBody');
-            tbody.innerHTML = '';
-
-            currentMonitoringRows.forEach((row, idx) => {
-                let badgeClass = "bg-gray-100 text-gray-700 border-gray-300";
-                if (row.status === "উপস্থিত") badgeClass = "bg-emerald-100 text-emerald-800 border-emerald-300";
-                else if (row.status === "বিলম্বে উপস্থিত") badgeClass = "bg-amber-100 text-amber-800 border-amber-300";
-                else if (row.status === "অনুপস্থিত") badgeClass = "bg-rose-100 text-rose-800 border-rose-300";
-
-                tbody.innerHTML += `
-                    <tr>
-                        <td class="border p-2 font-bold">
-                            <input type="text" value="${row.name}" oninput="updateMonitoringField(${idx}, 'name', this.value)" class="p-1 border rounded bg-white/90 w-40 font-bold text-xs">
-                        </td>
-                        <td class="border p-2 text-gray-600">
-                            <input type="text" value="${row.role}" oninput="updateMonitoringField(${idx}, 'role', this.value)" class="p-1 border rounded bg-white/90 w-40 text-xs">
-                        </td>
-                        <td class="border p-2 text-center font-semibold">${row.time}</td>
-                        <td class="border p-2 text-center">
-                            <span class="px-2.5 py-1 rounded-full border font-bold text-[11px] ${badgeClass}">${row.status}</span>
-                        </td>
-                        <td class="border p-2">
-                            <input type="text" value="${row.note || ''}" oninput="updateMonitoringField(${idx}, 'note', this.value)" placeholder="ভিজিট নোট লিখুন..." class="p-1 border rounded bg-white/90 w-40 text-xs">
-                        </td>
-                        <td class="border p-2 text-center no-print space-x-1">
-                            <button onclick="setTeacherMonitoringStatus(${idx}, 'উপস্থিত')" class="bg-emerald-600 text-white px-2 py-1 rounded font-bold text-[11px] hover:bg-emerald-700">উপস্থিত</button>
-                            <button onclick="setTeacherMonitoringStatus(${idx}, 'বিলম্বে উপস্থিত')" class="bg-amber-500 text-white px-2 py-1 rounded font-bold text-[11px] hover:bg-amber-600">বিলম্বে</button>
-                            <button onclick="setTeacherMonitoringStatus(${idx}, 'অনুপস্থিত')" class="bg-rose-600 text-white px-2 py-1 rounded font-bold text-[11px] hover:bg-rose-700">অনুপস্থিত</button>
-                            <button onclick="removeInvigilatorFromVisit(${idx})" class="bg-gray-200 text-rose-700 px-2 py-1 rounded font-bold text-[11px] hover:bg-rose-100" title="মুছুন"><i class="fa-solid fa-trash"></i></button>
-                        </td>
-                    </tr>
-                `;
-            });
-
-            updateMonitoringSummary();
-        }
-
-        function setTeacherMonitoringStatus(index, newStatus) {
-            if (!currentMonitoringRows[index]) return;
-            const now = new Date();
-            const currentTime = now.toLocaleTimeString('bn-BD', { hour: '2-digit', minute: '2-digit' });
-            currentMonitoringRows[index].status = newStatus;
-            currentMonitoringRows[index].time = currentTime;
-            saveMonitoringData(false);
-            loadMonitoringSheet();
-            flashRealtimeSaved(`${currentMonitoringRows[index].name} — "${newStatus}" রিয়েল-টাইম সেভ হয়েছে`);
-        }
-
-        function updateMonitoringField(index, field, val) {
-            if (!currentMonitoringRows[index]) return;
-            currentMonitoringRows[index][field] = val;
-            saveMonitoringData(false);
-            flashRealtimeSaved("পরিবর্তন রিয়েল-টাইম সেভ হয়েছে");
-        }
-
-        function saveMonitoringData(showAlert = false) {
-            const visitDate = document.getElementById('mon_visit_date').value;
-            const roomNo = document.getElementById('mon_room_no').value.trim() || "নির্ধারিত রুম";
-            const className = document.getElementById('mon_class_select').value;
-            const activeRound = Number(document.getElementById('mon_visit_round').value) || 1;
-
-            const key = getSessionStorageKey(visitDate, roomNo, className);
-            const sessions = getOrCreateSessions(visitDate, roomNo, className);
-            const targetSession = sessions.find(s => Number(s.roundNumber) === activeRound);
-
-            if (targetSession) {
-                targetSession.rows = currentMonitoringRows;
-            }
-
-            localStorage.setItem(key, JSON.stringify(sessions));
-            updateMonitoringSummary();
-
-            if (showAlert) {
-                alert(`${visitDate} | ${roomNo} | ${className} (${toBengaliOrdinal(activeRound)}) এর ডেটা রিয়েল-টাইম সংরক্ষিত আছে!`);
-            }
-        }
-
-        function flashRealtimeSaved(message) {
-            const badge = document.getElementById('mon_realtime_badge');
-            if (!badge) return;
-            badge.innerHTML = `<i class="fa-solid fa-check-circle mr-1 text-emerald-600"></i> ${message}`;
-            setTimeout(() => {
-                badge.innerHTML = `<i class="fa-solid fa-shield-check mr-1"></i> রিয়েল-টাইম অটো-সেভ সক্রিয়`;
-            }, 2500);
-        }
-
-        function updateMonitoringSummary() {
-            const total = currentMonitoringRows.length;
-            const present = currentMonitoringRows.filter(r => r.status === "উপস্থিত").length;
-            const late = currentMonitoringRows.filter(r => r.status === "বিলম্বে উপস্থিত").length;
-            const absent = currentMonitoringRows.filter(r => r.status === "অনুপস্থিত").length;
-
-            document.getElementById('mon_total_count').innerText = total;
-            document.getElementById('mon_present_count').innerText = present;
-            document.getElementById('mon_late_count').innerText = late;
-            document.getElementById('mon_absent_count').innerText = absent;
         }
 
         function saveExamSettings() {

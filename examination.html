@@ -160,21 +160,21 @@
                             <h3 class="font-bold text-gray-800 text-sm"><i class="fa-solid fa-user-check text-emerald-700 mr-2"></i> এক্সাম মনিটরিং</h3>
                             <span class="text-[10px] bg-emerald-100 text-emerald-900 px-2 py-0.5 rounded font-bold">মাল্টি-ভিজিট ম্যাট্রিক্স</span>
                         </div>
-                        <p class="text-xs text-gray-600">রুমে একাধিক শ্রেণি, ১ম/২য়/৩য় ভিজিট কলাম, দিনভিত্তিক ফিল্টার ও শিক্ষক রিপোর্ট।</p>
+                        <p class="text-xs text-gray-600">রুম অনুযায়ী ১ম, ২য়, ৩য় ভিজিট কলাম, দিনভিত্তিক ফিল্টার ও শিক্ষক রিপোর্ট।</p>
                     </div>
                 </div>
 
                 <!-- এক্সাম মনিটরিং প্যানেল -->
-                <div id="panel-monitoring" class="exam-sub-panel bg-white p-5 md:p-6 rounded-2xl shadow-sm border border-gray-200 space-y-6 hidden">
+                <div id="panel-monitoring" class="exam-sub-panel bg-white p-4 md:p-6 rounded-2xl shadow-sm border border-gray-200 space-y-6 hidden">
                     <div class="flex justify-between items-center border-b pb-3 no-print">
                         <div>
-                            <h3 class="font-bold text-emerald-900 text-sm"><i class="fa-solid fa-user-check mr-2"></i> ১০. এক্সাম মনিটরিং — রুমভিত্তিক ভিজিট কলাম ও শিক্ষক রিপোর্ট</h3>
-                            <p class="text-[11px] text-emerald-700 mt-0.5"><i class="fa-solid fa-circle-check mr-1"></i> প্রতিটি ভিজিট (১ম, ২য়, ৩য়...), শ্রেণি ও শিক্ষকের উপস্থিতি সাথে সাথেই রিয়েল-টাইম সেভ হয়।</p>
+                            <h3 class="font-bold text-emerald-900 text-sm"><i class="fa-solid fa-user-check mr-2"></i> ১০. এক্সাম মনিটরিং — রুমভিত্তিক ধারাবাহিক ভিজিট কলাম</h3>
+                            <p class="text-[11px] text-emerald-700 mt-0.5"><i class="fa-solid fa-circle-check mr-1"></i> প্রতিটি ভিজিট (১ম, ২য়, ৩য়...) ও শিক্ষকের উপস্থিতি সাথে সাথেই রিয়েল-টাইম সেভ হয়।</p>
                         </div>
                         <button onclick="closeAllExamPanels()" class="text-xs bg-gray-200 px-3 py-1 rounded font-bold text-gray-700 hover:bg-gray-300">বন্ধ করুন</button>
                     </div>
 
-                    <!-- ফিল্টার ও রুম/শ্রেণি/ভিজিট সেটআপ কন্ট্রোল -->
+                    <!-- ফিল্টার ও রুম/ভিজিট সেটআপ কন্ট্রোল -->
                     <div class="bg-emerald-50 p-4 rounded-xl border border-emerald-200 text-xs space-y-4 no-print">
                         <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-3 items-end">
                             <div>
@@ -209,20 +209,6 @@
                             </div>
                         </div>
 
-                        <!-- রুম নম্বরের পাশে একাধিক শ্রেণি যুক্ত করার অংশ -->
-                        <div class="bg-white p-3 rounded-lg border border-emerald-300 space-y-2">
-                            <div class="flex flex-wrap justify-between items-center gap-2">
-                                <span class="font-bold text-emerald-950"><i class="fa-solid fa-layer-group mr-1 text-emerald-700"></i> এই রুমের পাশে একাধিক শ্রেণি যুক্ত করুন:</span>
-                                <div class="flex gap-2 items-center">
-                                    <select id="mon_add_class_select" class="p-1.5 border rounded bg-emerald-50 font-bold text-xs"></select>
-                                    <button onclick="addClassToCurrentRoom()" class="bg-teal-700 text-white px-3 py-1.5 rounded font-bold hover:bg-teal-800 text-xs">
-                                        <i class="fa-solid fa-plus mr-1"></i> শ্রেণি যোগ করুন
-                                    </button>
-                                </div>
-                            </div>
-                            <div id="mon_room_classes_tags" class="flex flex-wrap gap-1.5 pt-1"></div>
-                        </div>
-
                         <!-- নতুন পরিদর্শক শিক্ষক যুক্ত করার বার -->
                         <div class="grid grid-cols-1 sm:grid-cols-3 gap-3 pt-2 border-t border-emerald-200/80 items-end">
                             <div>
@@ -241,18 +227,18 @@
                         </div>
                     </div>
 
-                    <!-- রুম নম্বর অনুযায়ী একত্রে ভিজিট কলাম টেবিল -->
-                    <div class="print-container p-5 bg-white rounded-xl border border-gray-200 space-y-4">
-                        <div class="text-center border-b pb-3">
+                    <!-- রুম নম্বর অনুযায়ী একত্রে ভিজিট কলাম টেবিল (বর্ডার-সেফ কম্প্যাক্ট লেআউট) -->
+                    <div class="print-container p-6 sm:p-8 bg-white rounded-xl border border-gray-200 space-y-3 overflow-hidden">
+                        <div class="text-center border-b pb-2">
                             <h2 class="font-bold text-sm text-emerald-950">আবদুল্লাহ হাট ইসলামিয়া ফাজিল মাদ্রাসা</h2>
                             <p class="text-[11px] text-gray-600">পরীক্ষা কক্ষ পরিদর্শন — রুমভিত্তিক ধারাবাহিক ভিজিট কলাম প্রতিবেদন</p>
-                            <p class="text-xs font-bold text-emerald-800 mt-1.5 bg-emerald-50/90 inline-block px-4 py-1.5 rounded border border-emerald-200">
-                                তারিখ: <span id="mon_display_date">---</span> | রুম নম্বর: <span id="mon_display_room">---</span> | সংযুক্ত শ্রেণিসমূহ: <span id="mon_display_classes">---</span>
+                            <p class="text-[11px] font-bold text-emerald-800 mt-1 bg-emerald-50/90 inline-block px-3 py-1 rounded border border-emerald-200">
+                                তারিখ: <span id="mon_display_date">---</span> | রুম নম্বর: <span id="mon_display_room">---</span>
                             </p>
                         </div>
 
-                        <div class="overflow-x-auto">
-                            <table class="w-full text-left border-collapse border border-gray-300 text-xs whitespace-nowrap bg-white/90">
+                        <div class="w-full overflow-x-auto pb-1">
+                            <table class="w-full text-left border-collapse border border-gray-300 text-[11px] bg-white/95">
                                 <thead id="mon_matrix_thead"></thead>
                                 <tbody id="mon_matrix_tbody"></tbody>
                             </table>
@@ -269,14 +255,14 @@
                     </div>
 
                     <!-- পরীক্ষা শেষে পুরো পরীক্ষার সংরক্ষিত ভিজিট রিপোর্ট ও শিক্ষক দিয়ে ফিল্টারিং -->
-                    <div class="bg-slate-50 p-5 rounded-2xl border border-slate-300 space-y-4">
+                    <div class="bg-slate-50 p-4 sm:p-5 rounded-2xl border border-slate-300 space-y-4">
                         <div class="flex flex-col md:flex-row justify-between items-start md:items-center gap-3 border-b pb-3">
                             <div>
                                 <h4 class="font-bold text-slate-900 text-sm"><i class="fa-solid fa-file-contract mr-2 text-emerald-700"></i> পুরো পরীক্ষার সংরক্ষিত ভিজিট রিপোর্ট (শিক্ষক ফিল্টার)</h4>
                                 <p class="text-[11px] text-gray-600">পরীক্ষার শুরু থেকে শেষ পর্যন্ত সব দিনের সব রুম ও ভিজিটের রিপোর্ট সংরক্ষিত থাকে। শিক্ষকের নাম দিয়ে ফিল্টার করুন।</p>
                             </div>
                             <div class="flex flex-wrap gap-2 items-center no-print">
-                                <select id="mon_report_teacher_filter" onchange="renderFullExamVisitReport()" class="p-2 border rounded bg-white font-bold text-xs min-w-[200px]">
+                                <select id="mon_report_teacher_filter" onchange="renderFullExamVisitReport()" class="p-2 border rounded bg-white font-bold text-xs min-w-[190px]">
                                     <option value="ALL">সকল শিক্ষক (পুরো পরীক্ষার রিপোর্ট)</option>
                                 </select>
                                 <input type="text" id="mon_report_teacher_search" oninput="renderFullExamVisitReport()" placeholder="শিক্ষকের নাম লিখে খুঁজুন..." class="p-2 border rounded bg-white font-bold text-xs">
@@ -287,13 +273,12 @@
                         </div>
 
                         <div class="overflow-x-auto bg-white rounded-xl border border-gray-200">
-                            <table class="w-full text-left border-collapse border border-gray-200 text-xs whitespace-nowrap">
+                            <table class="w-full text-left border-collapse border border-gray-200 text-xs">
                                 <thead>
                                     <tr class="bg-slate-800 text-white">
                                         <th class="border p-2">শিক্ষকের নাম</th>
                                         <th class="border p-2 text-center">তারিখ</th>
                                         <th class="border p-2">রুম নম্বর</th>
-                                        <th class="border p-2">শ্রেণিসমূহ</th>
                                         <th class="border p-2 text-center">ভিজিট রাউন্ড</th>
                                         <th class="border p-2 text-center">উপস্থিতি</th>
                                         <th class="border p-2 text-center">সময়</th>
@@ -924,7 +909,7 @@
             alim1: true, alim2: true
         };
 
-        const FULL_EXAM_MONITORING_KEY = "ahifm_exam_full_monitoring_v2";
+        const FULL_EXAM_MONITORING_KEY = "ahifm_exam_full_monitoring_v3";
 
         const defaultTeachers = [
             { name: "মাওলানা মো: ইব্রাহিম", role: "সহকারী মৌলভী" },
@@ -963,7 +948,6 @@
                 allData[key] = {
                     date: dateStr,
                     room: roomStr.trim(),
-                    classes: ["দাখিল ষষ্ঠ শ্রেণি"],
                     visitCount: 2,
                     teachers: defaultTeachers.map(t => ({
                         name: t.name,
@@ -1005,65 +989,9 @@
             if (!dateStr) return;
 
             ensureRoomEntry(dateStr, roomStr);
-            renderRoomClassesTags(dateStr, roomStr);
             renderMonitoringMatrix(dateStr, roomStr, mode);
             refreshTeacherFilterDropdown();
             renderFullExamVisitReport();
-        }
-
-        function renderRoomClassesTags(dateStr, roomStr) {
-            const allData = getAllMonitoringRecords();
-            const key = getRoomEntryKey(dateStr, roomStr);
-            const entry = allData[key];
-            const container = document.getElementById('mon_room_classes_tags');
-            container.innerHTML = '';
-
-            if (!entry || !Array.isArray(entry.classes)) return;
-
-            entry.classes.forEach((clsName, idx) => {
-                container.innerHTML += `
-                    <span class="bg-emerald-100 text-emerald-950 px-2.5 py-1 rounded-full border border-emerald-300 font-bold text-[11px] inline-flex items-center gap-1.5">
-                        <i class="fa-solid fa-graduation-cap text-emerald-700"></i> ${clsName}
-                        <button onclick="removeClassFromRoom(${idx})" class="text-rose-600 hover:text-rose-800 font-bold" title="শ্রেণি বাদ দিন">×</button>
-                    </span>
-                `;
-            });
-        }
-
-        function addClassToCurrentRoom() {
-            const dateStr = document.getElementById('mon_filter_date').value;
-            const roomStr = document.getElementById('mon_room_no').value.trim() || "রুম নং-১০১";
-            const clsToAdd = document.getElementById('mon_add_class_select').value;
-
-            const allData = getAllMonitoringRecords();
-            const key = getRoomEntryKey(dateStr, roomStr);
-            const entry = ensureRoomEntry(dateStr, roomStr);
-
-            if (!entry.classes.includes(clsToAdd)) {
-                entry.classes.push(clsToAdd);
-                allData[key] = entry;
-                saveAllMonitoringRecords(allData);
-                flashRealtimeSaved(`"${clsToAdd}" রুমের পাশে যুক্ত ও রিয়েল-টাইম সেভ হয়েছে`);
-            }
-            onMonitoringContextChange();
-        }
-
-        function removeClassFromRoom(classIdx) {
-            const dateStr = document.getElementById('mon_filter_date').value;
-            const roomStr = document.getElementById('mon_room_no').value.trim() || "রুম নং-১০১";
-            const allData = getAllMonitoringRecords();
-            const key = getRoomEntryKey(dateStr, roomStr);
-            const entry = allData[key];
-
-            if (!entry || entry.classes.length <= 1) {
-                alert('রুমে অন্তত ১টি শ্রেণি থাকা আবশ্যক!');
-                return;
-            }
-            entry.classes.splice(classIdx, 1);
-            allData[key] = entry;
-            saveAllMonitoringRecords(allData);
-            flashRealtimeSaved("শ্রেণি আপডেট ও রিয়েল-টাইম সেভ হয়েছে");
-            onMonitoringContextChange();
         }
 
         function addVisitColumn() {
@@ -1192,20 +1120,11 @@
         function renderMonitoringMatrix(dateStr, roomStr, mode) {
             const allData = getAllMonitoringRecords();
             const currentKey = getRoomEntryKey(dateStr, roomStr);
-            const currentEntry = allData[currentKey];
 
             document.getElementById('mon_display_date').innerText = mode === 'all_dates' ? "সকল দিন (পুরো পরীক্ষা)" : dateStr;
             document.getElementById('mon_display_room').innerText = mode === 'all_dates' ? "সকল রুম" : roomStr;
-            document.getElementById('mon_display_classes').innerText = (currentEntry && currentEntry.classes && currentEntry.classes.length)
-                ? currentEntry.classes.join(", ")
-                : "---";
 
-            let targetKeys = [];
-            if (mode === 'all_dates') {
-                targetKeys = Object.keys(allData).sort();
-            } else {
-                targetKeys = [currentKey];
-            }
+            let targetKeys = mode === 'all_dates' ? Object.keys(allData).sort() : [currentKey];
 
             let maxVisits = 1;
             targetKeys.forEach(k => {
@@ -1217,17 +1136,15 @@
             const thead = document.getElementById('mon_matrix_thead');
             const tbody = document.getElementById('mon_matrix_tbody');
 
-            let headerCells = `<th class="border p-2">শিক্ষকের নাম</th>`;
+            let headerCells = `<th class="border px-1.5 py-1.5 w-32">শিক্ষকের নাম</th>`;
             if (mode === 'all_dates') {
-                headerCells += `<th class="border p-2">তারিখ ও রুম (শ্রেণিসমূহ)</th>`;
-            } else {
-                headerCells += `<th class="border p-2">শ্রেণিসমূহ</th>`;
+                headerCells += `<th class="border px-1.5 py-1.5 w-28">তারিখ ও রুম</th>`;
             }
 
             for (let v = 1; v <= maxVisits; v++) {
-                headerCells += `<th class="border p-2 text-center bg-emerald-900">${toBengaliOrdinal(v)}</th>`;
+                headerCells += `<th class="border px-1.5 py-1.5 text-center bg-emerald-900">${toBengaliOrdinal(v)}</th>`;
             }
-            headerCells += `<th class="border p-2 text-center no-print">মুছুন</th>`;
+            headerCells += `<th class="border px-1 py-1.5 text-center w-8 no-print"><i class="fa-solid fa-trash"></i></th>`;
 
             thead.innerHTML = `<tr class="bg-emerald-800 text-white">${headerCells}</tr>`;
             tbody.innerHTML = '';
@@ -1235,7 +1152,6 @@
             targetKeys.forEach(k => {
                 const entry = allData[k];
                 if (!entry) return;
-                const roomClassText = (entry.classes || []).join(", ");
 
                 entry.teachers.forEach((teacher, tIdx) => {
                     let visitCellsHtml = '';
@@ -1247,35 +1163,35 @@
                         else if (cellData.status === "অনুপস্থিত") statusBadgeClass = "bg-rose-100 text-rose-800 border-rose-300";
 
                         visitCellsHtml += `
-                            <td class="border p-2 align-top min-w-[175px]">
+                            <td class="border px-1.5 py-1.5 align-top">
                                 <div class="flex items-center justify-between gap-1 mb-1">
-                                    <span class="px-2 py-0.5 rounded-full border font-bold text-[10px] ${statusBadgeClass}">${cellData.status}</span>
-                                    <span class="text-[10px] text-gray-500 font-semibold">${cellData.time}</span>
+                                    <span class="px-1.5 py-0.5 rounded border font-bold text-[10px] leading-tight ${statusBadgeClass}">${cellData.status}</span>
+                                    <span class="text-[9px] text-gray-500 font-semibold">${cellData.time}</span>
                                 </div>
-                                <div class="flex gap-1 mb-1.5 no-print">
-                                    <button onclick="updateVisitCellStatus('${k}', ${tIdx}, ${v}, 'উপস্থিত')" class="bg-emerald-600 text-white px-1.5 py-0.5 rounded text-[10px] font-bold hover:bg-emerald-700">উপস্থিত</button>
-                                    <button onclick="updateVisitCellStatus('${k}', ${tIdx}, ${v}, 'বিলম্বে উপস্থিত')" class="bg-amber-500 text-white px-1.5 py-0.5 rounded text-[10px] font-bold hover:bg-amber-600">বিলম্বে</button>
-                                    <button onclick="updateVisitCellStatus('${k}', ${tIdx}, ${v}, 'অনুপস্থিত')" class="bg-rose-600 text-white px-1.5 py-0.5 rounded text-[10px] font-bold hover:bg-rose-700">অনুপস্থিত</button>
+                                <div class="flex flex-wrap gap-1 mb-1 no-print">
+                                    <button onclick="updateVisitCellStatus('${k}', ${tIdx}, ${v}, 'উপস্থিত')" class="bg-emerald-600 text-white px-1 py-0.5 rounded text-[9px] font-bold hover:bg-emerald-700">উপস্থিত</button>
+                                    <button onclick="updateVisitCellStatus('${k}', ${tIdx}, ${v}, 'বিলম্বে উপস্থিত')" class="bg-amber-500 text-white px-1 py-0.5 rounded text-[9px] font-bold hover:bg-amber-600">বিলম্বে</button>
+                                    <button onclick="updateVisitCellStatus('${k}', ${tIdx}, ${v}, 'অনুপস্থিত')" class="bg-rose-600 text-white px-1 py-0.5 rounded text-[9px] font-bold hover:bg-rose-700">অনুপস্থিত</button>
                                 </div>
-                                <input type="text" value="${cellData.note || ''}" oninput="updateVisitCellNote('${k}', ${tIdx}, ${v}, this.value)" placeholder="${toBengaliOrdinal(v)} নোট..." class="p-1 border rounded w-full text-[11px] bg-white">
+                                <input type="text" value="${cellData.note || ''}" oninput="updateVisitCellNote('${k}', ${tIdx}, ${v}, this.value)" placeholder="নোট..." class="px-1.5 py-0.5 border rounded w-full text-[10px] bg-white">
                             </td>
                         `;
                     }
 
                     const contextColHtml = mode === 'all_dates'
-                        ? `<td class="border p-2 text-[11px]"><span class="font-bold text-slate-800">${entry.date}</span> — <span class="font-bold text-emerald-800">${entry.room}</span><br><span class="text-gray-600">${roomClassText}</span></td>`
-                        : `<td class="border p-2 text-[11px] font-semibold text-emerald-900">${roomClassText}</td>`;
+                        ? `<td class="border px-1.5 py-1.5 text-[10px]"><div class="font-bold text-slate-800">${entry.date}</div><div class="font-bold text-emerald-800">${entry.room}</div></td>`
+                        : ``;
 
                     tbody.innerHTML += `
                         <tr>
-                            <td class="border p-2 font-bold">
-                                <input type="text" value="${teacher.name}" oninput="updateTeacherInfo('${k}', ${tIdx}, 'name', this.value)" class="p-1 border rounded w-40 font-bold text-xs bg-white">
-                                <div class="text-[10px] text-gray-500 font-normal mt-0.5">${teacher.role || ''}</div>
+                            <td class="border px-1.5 py-1.5 font-bold align-top">
+                                <input type="text" value="${teacher.name}" oninput="updateTeacherInfo('${k}', ${tIdx}, 'name', this.value)" class="px-1.5 py-1 border rounded w-full font-bold text-[11px] bg-white">
+                                <div class="text-[9px] text-gray-500 font-normal mt-0.5 truncate max-w-[125px]">${teacher.role || ''}</div>
                             </td>
                             ${contextColHtml}
                             ${visitCellsHtml}
-                            <td class="border p-2 text-center no-print">
-                                <button onclick="removeTeacherRow('${k}', ${tIdx})" class="bg-rose-100 text-rose-700 px-2 py-1 rounded font-bold text-[11px] hover:bg-rose-200" title="সারি মুছুন">
+                            <td class="border px-1 py-1.5 text-center align-top no-print">
+                                <button onclick="removeTeacherRow('${k}', ${tIdx})" class="bg-rose-100 text-rose-700 px-1.5 py-1 rounded font-bold text-[10px] hover:bg-rose-200" title="সারি মুছুন">
                                     <i class="fa-solid fa-trash"></i>
                                 </button>
                             </td>
@@ -1320,7 +1236,6 @@
 
             Object.keys(allData).sort().forEach(key => {
                 const entry = allData[key];
-                const classesStr = (entry.classes || []).join(", ");
 
                 (entry.teachers || []).forEach(t => {
                     const tName = t.name || "";
@@ -1333,7 +1248,6 @@
                             teacherName: tName,
                             date: entry.date,
                             room: entry.room,
-                            classesStr: classesStr,
                             visitLabel: toBengaliOrdinal(vNum),
                             status: vInfo.status || "অপেক্ষমাণ",
                             time: vInfo.time || "-",
@@ -1350,7 +1264,7 @@
             });
 
             if (filteredRows.length === 0) {
-                tbody.innerHTML = `<tr><td colspan="8" class="p-4 text-center text-gray-500 font-bold">নির্বাচিত শিক্ষকের কোনো ভিজিট রেকর্ড পাওয়া যায়নি।</td></tr>`;
+                tbody.innerHTML = `<tr><td colspan="7" class="p-4 text-center text-gray-500 font-bold">নির্বাচিত শিক্ষকের কোনো ভিজিট রেকর্ড পাওয়া যায়নি।</td></tr>`;
                 return;
             }
 
@@ -1365,7 +1279,6 @@
                         <td class="border p-2 font-bold text-slate-900">${r.teacherName}</td>
                         <td class="border p-2 text-center font-semibold">${r.date}</td>
                         <td class="border p-2 font-bold text-emerald-900">${r.room}</td>
-                        <td class="border p-2 text-gray-700">${r.classesStr}</td>
                         <td class="border p-2 text-center font-bold text-blue-800">${r.visitLabel}</td>
                         <td class="border p-2 text-center"><span class="px-2 py-0.5 rounded-full border font-bold text-[10px] ${badgeClass}">${r.status}</span></td>
                         <td class="border p-2 text-center">${r.time}</td>
@@ -1381,7 +1294,7 @@
             ensureRoomEntry(dateStr, roomStr);
             onMonitoringContextChange();
             if (showAlert) {
-                alert(`${dateStr} | ${roomStr} এর সব ভিজিট কলাম ও শ্রেণির ডেটা রিয়েল-টাইম সংরক্ষিত আছে!`);
+                alert(`${dateStr} | ${roomStr} এর সব ভিজিট কলামের ডেটা রিয়েল-টাইম সংরক্ষিত আছে!`);
             }
         }
 
@@ -1449,8 +1362,6 @@
 
             populateSelect('rout_class', data.classes);
             populateSelect('rout_subject', data.subjects);
-
-            populateSelect('mon_add_class_select', data.classes);
 
             renderClassToggles();
         }

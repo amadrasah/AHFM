@@ -230,7 +230,7 @@
                         </table>
                     </div>
 
-                    <!-- ছুটির দিন / বন্ধের কারণ নোট (পাশাপাশি) -->
+                    <!-- ছুটির দিন / বন্ধের কারণ নোট (পাশাপাশি ও গ্রুপিংসহ) -->
                     <div id="print_holidays_note_box" class="hidden mt-3 p-3 rounded-xl border border-amber-300 bg-amber-50/70 text-xs text-gray-800">
                         <p class="font-bold text-amber-950 mb-2">
                             <i class="fa-solid fa-note-sticky mr-1 text-amber-700"></i> বন্ধের দিন ও উপলক্ষ / কারণ (নোট):
@@ -764,10 +764,39 @@
                 return;
             }
 
+            const weeklyDays = [];
+            const reasonGroups = new Map();
+
+            closedDays.forEach(d => {
+                const rawReason = (d.holidayName || 'প্রতিষ্ঠান বন্ধ / ছুটি').toString().trim();
+                const isWeekly = rawReason.includes('সাপ্তাহিক ছুটি') || rawReason.includes('শুক্রবার') || rawReason.includes('শনিবার');
+
+                if (isWeekly) {
+                    weeklyDays.push(d.day);
+                } else {
+                    if (!reasonGroups.has(rawReason)) {
+                        reasonGroups.set(rawReason, []);
+                    }
+                    reasonGroups.get(rawReason).push(d.day);
+                }
+            });
+
+            const parts = [];
+
+            if (weeklyDays.length > 0) {
+                parts.push(
+                    `<span class="inline-block bg-white border border-amber-300 rounded-md px-2.5 py-1"><b>${weeklyDays.join(', ')} তারিখ</b> — <span>সাপ্তাহিক ছুটি</span></span>`
+                );
+            }
+
+            reasonGroups.forEach((daysArr, reasonText) => {
+                parts.push(
+                    `<span class="inline-block bg-white border border-amber-300 rounded-md px-2.5 py-1"><b>${daysArr.join(', ')} তারিখ</b> — <span>${reasonText}</span></span>`
+                );
+            });
+
             noteBox.classList.remove('hidden');
-            noteList.innerHTML = closedDays
-                .map(d => `<span class="inline-block bg-white border border-amber-300 rounded-md px-2 py-0.5"><b>${d.dateKey}</b> (${d.day} তারিখ): <span>${d.holidayName || 'প্রতিষ্ঠান বন্ধ / ছুটি'}</span></span>`)
-                .join("");
+            noteList.innerHTML = parts.join("");
         }
 
         function renderMonthlyTable() {

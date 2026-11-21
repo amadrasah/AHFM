@@ -9,11 +9,11 @@
     <link rel="stylesheet" href="style.css">
     <style>
         @media print {
-            .no-print { display: none !important; }
+            .no-print, .closed-day-print-hide { display: none !important; }
             body { background: white !important; }
             table { width: 100% !important; border-collapse: collapse !important; }
             th, td { border: 1px solid #000 !important; padding: 4px !important; font-size: 9px !important; }
-            .empty-col { display: none !important; }
+            @page { size: A4 landscape; margin: 8mm; }
         }
     </style>
 </head>
@@ -75,7 +75,7 @@
                     <button onclick="openMainModule('daily')" class="bg-gradient-to-r from-emerald-700 to-emerald-900 text-white p-5 rounded-2xl shadow-md hover:from-emerald-800 hover:to-emerald-950 transition flex items-center justify-between">
                         <div class="text-left">
                             <h2 class="text-lg font-bold"><i class="fa-solid fa-calendar-check mr-2"></i> ডেইলি এটেন্ডেন্স (Daily Attendance)</h2>
-                            <p class="text-xs text-emerald-200 mt-1">শিক্ষার্থী, শিক্ষক ও স্টাফদের রিয়েল-টাইম হাজিরা ও ক্লিক টাইম এন্ট্রি।</p>
+                            <p class="text-xs text-emerald-200 mt-1">শিক্ষার্থী, শিক্ষক ও স্টাফদের রিয়েল-টাইম হাজিরা ও শ্রেণিভিত্তিক অনুপস্থিত অ্যালার্ট।</p>
                         </div>
                         <i class="fa-solid fa-arrow-right text-xl"></i>
                     </button>
@@ -83,7 +83,7 @@
                     <button onclick="openMainModule('monthly')" class="bg-gradient-to-r from-blue-700 to-indigo-900 text-white p-5 rounded-2xl shadow-md hover:from-blue-800 hover:to-indigo-950 transition flex items-center justify-between">
                         <div class="text-left">
                             <h2 class="text-lg font-bold"><i class="fa-solid fa-calendar-days mr-2"></i> মাসিক ও বার্ষিক রিপোর্ট (Monthly/Annual Report)</h2>
-                            <p class="text-xs text-blue-200 mt-1">তারিখ, মাস ও বছরভিত্তিক ক্লিক টাইম শিট এবং প্রিন্ট সিস্টেম।</p>
+                            <p class="text-xs text-blue-200 mt-1">বন্ধের দিন ক্যালেন্ডার অনুযায়ী প্রদর্শন, প্রিন্টে বন্ধের কলাম বাদ ও নিচে নোট।</p>
                         </div>
                         <i class="fa-solid fa-arrow-right text-xl"></i>
                     </button>
@@ -92,14 +92,16 @@
                 <!-- SUB-CONTAINER FOR DAILY ATTENDANCE -->
                 <div id="daily_sub_buttons" class="bg-white p-4 rounded-xl shadow-sm border space-y-4 no-print">
                     <div class="flex flex-wrap justify-between items-center gap-4 border-b pb-2">
-                        <h3 class="font-bold text-emerald-900 text-sm"><i class="fa-solid fa-list-check mr-1"></i> ডেইলি এটেন্ডেন্স ক্যাটাগরি ও মেসেজ চ্যানেল:</h3>
+                        <h3 class="font-bold text-emerald-900 text-sm"><i class="fa-solid fa-list-check mr-1"></i> ডেইলি এটেন্ডেন্স ক্যাটাগরি ও শ্রেণিভিত্তিক অনুপস্থিত অ্যালার্ট:</h3>
                         <div class="flex flex-wrap items-center gap-2">
-                            <label class="text-xs font-bold text-gray-700">অনুপস্থিতি মেসেজ চ্যানেল:</label>
+                            <label class="text-xs font-bold text-gray-700">অ্যালার্ট চ্যানেল:</label>
                             <select id="attendance_msg_channel" class="p-1.5 border rounded bg-white text-xs font-bold text-emerald-900">
                                 <option value="SIM SMS">মোবাইল সিম (SIM SMS)</option>
                                 <option value="WhatsApp">WhatsApp Direct</option>
-                                <option value="NONE">শুধু লিস্টে সেভ (অটো পপ-আপ নয়)</option>
                             </select>
+                            <button type="button" onclick="sendClassWiseAbsentAlerts()" class="bg-rose-600 hover:bg-rose-700 text-white px-3 py-1.5 rounded-lg font-bold text-xs shadow transition flex items-center gap-1.5">
+                                <i class="fa-solid fa-bullhorn"></i> শ্রেণিভিত্তিক অনুপস্থিত অ্যালার্ট পাঠান (<span id="absent_alert_count_badge">0</span>)
+                            </button>
                         </div>
                     </div>
 
@@ -129,6 +131,25 @@
                         <div class="flex-1">
                             <label class="font-bold text-gray-700 block mb-1">অনুসন্ধান (নাম বা আইডি/রোল):</label>
                             <input type="text" id="daily_search_input" placeholder="নাম বা আইডি দিয়ে খুঁজুন..." class="p-2 border rounded bg-white w-full" onkeyup="renderDailyTable()">
+                        </div>
+                    </div>
+
+                    <!-- শ্রেণিভিত্তিক অনুপস্থিত তালিকা বার -->
+                    <div id="class_absent_summary_bar" class="bg-rose-50/80 border border-rose-200 rounded-xl p-3 text-xs space-y-1.5">
+                        <div class="flex flex-wrap justify-between items-center gap-2">
+                            <span class="font-bold text-rose-900"><i class="fa-solid fa-user-xmark mr-1"></i> অনুপস্থিত তালিকা (শ্রেণিভিত্তিক একসাথে অ্যালার্টের জন্য প্রস্তুত):</span>
+                            <div id="class_absent_queue_bar" class="hidden flex items-center gap-2">
+                                <span id="class_absent_queue_status" class="font-bold text-amber-900">0 / 0</span>
+                                <button type="button" onclick="sendNextClassAbsentInQueue()" class="bg-amber-600 hover:bg-amber-700 text-white px-2.5 py-1 rounded font-bold text-[11px]">
+                                    পরবর্তী অভিভাবক পাঠান
+                                </button>
+                                <button type="button" onclick="resetClassAbsentQueue()" class="bg-gray-200 hover:bg-gray-300 text-gray-800 px-2 py-1 rounded font-bold text-[11px]">
+                                    বাতিল
+                                </button>
+                            </div>
+                        </div>
+                        <div id="absent_students_preview_chips" class="flex flex-wrap gap-1.5 text-[11px] text-rose-950 font-medium">
+                            এই তারিখে কোনো অনুপস্থিত শিক্ষার্থী মার্ক করা হয়নি।
                         </div>
                     </div>
                 </div>
@@ -208,6 +229,14 @@
                             <tbody id="table_body"></tbody>
                         </table>
                     </div>
+
+                    <!-- ছুটির দিন / বন্ধের কারণ নোট -->
+                    <div id="print_holidays_note_box" class="hidden mt-3 p-3 rounded-xl border border-amber-300 bg-amber-50/70 text-xs text-gray-800">
+                        <p class="font-bold text-amber-950 mb-1">
+                            <i class="fa-solid fa-note-sticky mr-1 text-amber-700"></i> বন্ধের দিন ও উপলক্ষ / কারণ (নোট):
+                        </p>
+                        <ul id="print_holidays_note_list" class="list-disc list-inside space-y-0.5 text-[11px] text-gray-700"></ul>
+                    </div>
                 </div>
 
             </main>
@@ -220,6 +249,10 @@
         let currentMode = 'daily';
         let currentCategory = 'student';
         const ATTENDANCE_RECORDS_KEY = 'madrasah_attendance_records';
+
+        let classAbsentQueue = [];
+        let classAbsentQueueIndex = 0;
+        let classAbsentQueueChannel = 'SIM SMS';
 
         window.onload = function() {
             const now = new Date();
@@ -315,6 +348,42 @@
             });
         }
 
+        function getHolidayNameForDate(dateKey) {
+            const candidateKeys = [
+                'madrasah_holidays',
+                'madrasah_holiday_list',
+                'madrasah_calendar_events',
+                'madrasah_events',
+                'holiday_list'
+            ];
+
+            for (const key of candidateKeys) {
+                try {
+                    const raw = JSON.parse(localStorage.getItem(key));
+                    if (!raw) continue;
+
+                    if (Array.isArray(raw)) {
+                        const hit = raw.find(item => {
+                            if (!item) return false;
+                            const d = (item.date || item.start || item.holidayDate || "").toString().slice(0, 10);
+                            return d === dateKey;
+                        });
+                        if (hit) {
+                            return (hit.title || hit.name || hit.reason || hit.holiday || "ছুটি / প্রতিষ্ঠান বন্ধ").toString().trim();
+                        }
+                    } else if (typeof raw === 'object' && raw[dateKey]) {
+                        const val = raw[dateKey];
+                        if (typeof val === 'string') return val;
+                        return (val.title || val.name || val.reason || "ছুটি / প্রতিষ্ঠান বন্ধ").toString().trim();
+                    }
+                } catch (e) {}
+            }
+
+            const dayOfWeek = new Date(`${dateKey}T00:00:00`).getDay();
+            if (dayOfWeek === 5) return "শুক্রবার (সাপ্তাহিক ছুটি)";
+            return "";
+        }
+
         function loadDailyForm(cat) {
             currentCategory = cat;
             const titleEl = document.getElementById('workspace_title');
@@ -362,10 +431,119 @@
             localStorage.setItem(ATTENDANCE_RECORDS_KEY, JSON.stringify(allLogs));
         }
 
+        function getAbsentStudentsForCurrentSelection() {
+            const selectedDate = document.getElementById('daily_date_input')?.value || "";
+            const filterClass = document.getElementById('daily_class_select')?.value || "all";
+            const students = JSON.parse(localStorage.getItem('madrasah_students_all')) || [];
+
+            const absentList = [];
+            students.forEach(s => {
+                const sClass = s.cls || s.studentClass || s.class || "নুরানী প্রথম শ্রেণি";
+                const sRoll = String(s.roll || s.id || s.studentId || "001").replace(/'/g, "");
+                const sUniqueId = String(s.id || sRoll).replace(/'/g, "");
+                const sName = String(s.name_bn || s.name || "শিক্ষার্থী").replace(/'/g, "");
+                const sPhone = String(s.f_mobile || s.guardian_phone || s.m_mobile || s.phone || s.guardianPhone || "").replace(/'/g, "");
+
+                if (filterClass !== 'all' && sClass !== filterClass) return;
+
+                const rec = JSON.parse(localStorage.getItem(`att_s_${sUniqueId}_${selectedDate}`));
+                if (rec && rec.status === 'অনুপস্থিত') {
+                    absentList.push({
+                        id: sUniqueId,
+                        roll: sRoll,
+                        name: sName,
+                        cls: sClass,
+                        phone: sPhone,
+                        date: selectedDate
+                    });
+                }
+            });
+
+            return absentList;
+        }
+
+        function updateClassAbsentPreviewUI() {
+            const absentList = getAbsentStudentsForCurrentSelection();
+            const badge = document.getElementById('absent_alert_count_badge');
+            const chipsBox = document.getElementById('absent_students_preview_chips');
+
+            if (badge) badge.innerText = absentList.length;
+            if (!chipsBox) return;
+
+            if (absentList.length === 0) {
+                chipsBox.innerHTML = `<span class="text-gray-600">এই তারিখে ও নির্বাচিত শ্রেণিতে কোনো অনুপস্থিত শিক্ষার্থী মার্ক করা হয়নি।</span>`;
+                return;
+            }
+
+            chipsBox.innerHTML = absentList.map(st => `
+                <span class="bg-white border border-rose-300 text-rose-900 px-2 py-0.5 rounded-md">
+                    <b>${st.name}</b> (${st.cls}) — ${st.phone || 'নম্বর নেই'}
+                </span>
+            `).join("");
+        }
+
+        function openAlertForAbsentStudent(channel, st) {
+            const cleanDigits = (st.phone || "").replace(/[^\d]/g, '');
+            if (!cleanDigits) return;
+            const intlPhone = cleanDigits.startsWith('880')
+                ? ('+' + cleanDigits)
+                : (cleanDigits.startsWith('0') ? '+88' + cleanDigits : '+880' + cleanDigits);
+
+            const msgBody = `[AHIFM] সম্মানিত অভিভাবক, আবদুল্লাহ হাট ইসলামিয়া ফাজিল মাদ্রাসার পক্ষ থেকে জানানো যাচ্ছে যে, ${st.cls} শ্রেণির শিক্ষার্থী ${st.name} (রোল: ${st.roll}) আজ (${st.date}) অনুপস্থিত রয়েছে।`;
+
+            if (channel === 'SIM SMS') {
+                window.location.href = `sms:${intlPhone}?body=${encodeURIComponent(msgBody)}`;
+            } else if (channel === 'WhatsApp') {
+                window.open(`https://wa.me/${intlPhone.replace('+', '')}?text=${encodeURIComponent(msgBody)}`, '_blank');
+            }
+        }
+
+        function sendClassWiseAbsentAlerts() {
+            const listWithPhone = getAbsentStudentsForCurrentSelection().filter(st => (st.phone || "").replace(/[^\d]/g, '').length > 0);
+            if (listWithPhone.length === 0) {
+                alert('শ্রেণিভিত্তিক অনুপস্থিত অ্যালার্ট পাঠানোর মতো ফোন নম্বরসহ কোনো অনুপস্থিত শিক্ষার্থী পাওয়া যায়নি!');
+                return;
+            }
+
+            classAbsentQueue = listWithPhone;
+            classAbsentQueueIndex = 0;
+            classAbsentQueueChannel = document.getElementById('attendance_msg_channel').value;
+
+            document.getElementById('class_absent_queue_bar')?.classList.remove('hidden');
+            sendNextClassAbsentInQueue();
+
+            if (classAbsentQueue.length > 1) {
+                alert(`মোট ${classAbsentQueue.length} জন অনুপস্থিত শিক্ষার্থীর শ্রেণিভিত্তিক কিউ শুরু হয়েছে। প্রথম জন পাঠানো হয়েছে—বাকিদের জন্য "পরবর্তী অভিভাবক পাঠান" বাটনে ক্লিক করুন।`);
+            }
+        }
+
+        function sendNextClassAbsentInQueue() {
+            if (classAbsentQueueIndex >= classAbsentQueue.length) {
+                alert('নির্বাচিত শ্রেণির সব অনুপস্থিত শিক্ষার্থীর অভিভাবককে অ্যালার্ট পাঠানো সম্পন্ন হয়েছে!');
+                resetClassAbsentQueue();
+                return;
+            }
+            const target = classAbsentQueue[classAbsentQueueIndex];
+            openAlertForAbsentStudent(classAbsentQueueChannel, target);
+            classAbsentQueueIndex++;
+            const statusEl = document.getElementById('class_absent_queue_status');
+            if (statusEl) {
+                statusEl.innerText = `${Math.min(classAbsentQueueIndex, classAbsentQueue.length)} / ${classAbsentQueue.length} পাঠানো হয়েছে`;
+            }
+        }
+
+        function resetClassAbsentQueue() {
+            classAbsentQueue = [];
+            classAbsentQueueIndex = 0;
+            document.getElementById('class_absent_queue_bar')?.classList.add('hidden');
+        }
+
         function renderDailyTable() {
             const tbody = document.getElementById('table_body');
             const thead = document.getElementById('table_header');
             tbody.innerHTML = '';
+
+            document.getElementById('print_holidays_note_box')?.classList.add('hidden');
 
             const selectedDate = document.getElementById('daily_date_input').value;
             const filterClass = document.getElementById('daily_class_select').value;
@@ -504,6 +682,8 @@
                     `;
                 });
             }
+
+            updateClassAbsentPreviewUI();
         }
 
         function markDailyAttendance(type, id, roll, cls, date, status, phone, name) {
@@ -514,19 +694,6 @@
             localStorage.setItem(attKey, JSON.stringify(newRecord));
             syncAttendanceToSharedLog(type, id, roll, name, cls, phone, date, status, clickTime);
 
-            if (status === 'অনুপস্থিত' && phone) {
-                const channel = document.getElementById('attendance_msg_channel').value;
-                const cleanDigits = phone.replace(/[^\d]/g, '');
-                const intlPhone = cleanDigits.startsWith('880') ? ('+' + cleanDigits) : (cleanDigits.startsWith('0') ? '+88' + cleanDigits : '+880' + cleanDigits);
-                const msgBody = `[AHIFM] সম্মানিত অভিভাবক, আবদুল্লাহ হাট ইসলামিয়া ফাজিল মাদ্রাসার পক্ষ থেকে জানানো যাচ্ছে যে, ${name} আজ (${date}) অনুপস্থিত রয়েছে।`;
-
-                if (channel === 'SIM SMS') {
-                    window.location.href = `sms:${intlPhone}?body=${encodeURIComponent(msgBody)}`;
-                } else if (channel === 'WhatsApp') {
-                    window.open(`https://wa.me/${intlPhone.replace('+', '')}?text=${encodeURIComponent(msgBody)}`, '_blank');
-                }
-            }
-
             renderDailyTable();
         }
 
@@ -536,31 +703,70 @@
             const classBox = document.getElementById('monthly_class_box');
 
             if (cat === 'student') {
-                titleEl.innerHTML = `<i class="fa-solid fa-user-graduate mr-2"></i> স্টুডেন্টস মাসিক ও বার্ষিক উপস্থিতি রিপোর্ট (ক্লিক টাইমসহ)`;
+                titleEl.innerHTML = `<i class="fa-solid fa-user-graduate mr-2"></i> স্টুডেন্টস মাসিক ও বার্ষিক উপস্থিতি রিপোর্ট (বন্ধের দিন ক্যালেন্ডার অনুযায়ী)`;
                 classBox.style.display = 'block';
             } else if (cat === 'teacher') {
-                titleEl.innerHTML = `<i class="fa-solid fa-chalkboard-user mr-2"></i> শিক্ষক মাসিক ও বার্ষিক উপস্থিতি রিপোর্ট (ক্লিক টাইমসহ)`;
+                titleEl.innerHTML = `<i class="fa-solid fa-chalkboard-user mr-2"></i> শিক্ষক মাসিক ও বার্ষিক উপস্থিতি রিপোর্ট (বন্ধের দিন ক্যালেন্ডার অনুযায়ী)`;
                 classBox.style.display = 'none';
             } else if (cat === 'staff') {
-                titleEl.innerHTML = `<i class="fa-solid fa-users mr-2"></i> স্টাফ মাসিক ও বার্ষিক উপস্থিতি রিপোর্ট (ক্লিক টাইমসহ)`;
+                titleEl.innerHTML = `<i class="fa-solid fa-users mr-2"></i> স্টাফ মাসিক ও বার্ষিক উপস্থিতি রিপোর্ট (বন্ধের দিন ক্যালেন্ডার অনুযায়ী)`;
                 classBox.style.display = 'none';
             }
 
             renderMonthlyTable();
         }
 
-        function getWorkingDatesForMonth(year, month) {
+        function getMonthDatesWithAttendanceInfo(year, month, list, prefix) {
             const daysInMonth = new Date(parseInt(year, 10), parseInt(month, 10), 0).getDate();
-            const dates = [];
+            const result = [];
+
             for (let d = 1; d <= daysInMonth; d++) {
                 const dayStr = String(d).padStart(2, '0');
                 const dateKey = `${year}-${month}-${dayStr}`;
-                const dayOfWeek = new Date(`${dateKey}T00:00:00`).getDay();
-                if (dayOfWeek !== 5) {
-                    dates.push({ day: d, dateKey });
-                }
+
+                let hasAnyAttendanceOnDate = false;
+                list.forEach(item => {
+                    const itemId = String(item.id || item.indexNo || "ID");
+                    const rec = JSON.parse(localStorage.getItem(`att_${prefix}_${itemId}_${dateKey}`));
+                    if (rec && (rec.status === 'উপস্থিত' || rec.status === 'অনুপস্থিত')) {
+                        hasAnyAttendanceOnDate = true;
+                    }
+                });
+
+                const holidayName = hasAnyAttendanceOnDate ? "" : (getHolidayNameForDate(dateKey) || "বন্ধ");
+                result.push({
+                    day: d,
+                    dateKey,
+                    isClosedDay: !hasAnyAttendanceOnDate,
+                    holidayName
+                });
             }
-            return dates;
+
+            return result;
+        }
+
+        function renderClosedDaysNote(monthDatesInfo, rType) {
+            const noteBox = document.getElementById('print_holidays_note_box');
+            const noteList = document.getElementById('print_holidays_note_list');
+            if (!noteBox || !noteList) return;
+
+            if (rType === 'annual') {
+                noteBox.classList.add('hidden');
+                noteList.innerHTML = '';
+                return;
+            }
+
+            const closedDays = monthDatesInfo.filter(d => d.isClosedDay);
+            if (closedDays.length === 0) {
+                noteBox.classList.add('hidden');
+                noteList.innerHTML = '';
+                return;
+            }
+
+            noteBox.classList.remove('hidden');
+            noteList.innerHTML = closedDays
+                .map(d => `<li><b>${d.dateKey}</b> (তারিখ: ${d.day}) — <span>${d.holidayName || 'প্রতিষ্ঠান বন্ধ / ছুটি'}</span></li>`)
+                .join("");
         }
 
         function renderMonthlyTable() {
@@ -579,7 +785,13 @@
             const staffList = JSON.parse(localStorage.getItem('madrasah_staff_master')) || [];
 
             const targetMonths = ["01", "02", "03", "04", "05", "06", "07", "08", "09", "10", "11", "12"];
-            const workingDates = getWorkingDatesForMonth(filterYear, filterMonth);
+
+            const activeListForDates = currentCategory === 'student'
+                ? students.filter(s => filterClass === 'all' || (s.cls || s.studentClass || s.class || "নুরানী প্রথম শ্রেণি") === filterClass)
+                : (currentCategory === 'teacher' ? teachers : staffList);
+            const activePrefix = currentCategory === 'student' ? 's' : (currentCategory === 'teacher' ? 't' : 'st');
+
+            const monthDatesInfo = getMonthDatesWithAttendanceInfo(filterYear, filterMonth, activeListForDates, activePrefix);
 
             let headerHTML = `<th class="border p-2">আইডি</th><th class="border p-2">নাম</th>`;
             if (rType === 'annual') {
@@ -587,8 +799,10 @@
                     headerHTML += `<th class="border p-1 text-center text-[10px]">মাস ${m}</th>`;
                 });
             } else {
-                workingDates.forEach(wd => {
-                    headerHTML += `<th class="border p-1 text-center text-[10px]">${wd.day}</th>`;
+                monthDatesInfo.forEach(info => {
+                    const closedClass = info.isClosedDay ? 'closed-day-print-hide bg-amber-900/80' : '';
+                    const subLabel = info.isClosedDay ? `<span class="block text-[8px] font-normal text-amber-200">${info.holidayName}</span>` : '';
+                    headerHTML += `<th class="border p-1 text-center text-[10px] ${closedClass}">${info.day}${subLabel}</th>`;
                 });
             }
             headerHTML += `<th class="border p-2 text-center">কার্যদিবস</th><th class="border p-2 text-center text-green-700">উপস্থিত</th><th class="border p-2 text-center text-red-700">অনুপস্থিত</th>`;
@@ -611,21 +825,31 @@
                     if (rType === 'annual') {
                         targetMonths.forEach(m => {
                             let monthPresent = 0;
-                            const mDates = getWorkingDatesForMonth(filterYear, m);
-                            mDates.forEach(wd => {
-                                const rec = JSON.parse(localStorage.getItem(`att_s_${sUniqueId}_${wd.dateKey}`));
-                                if (rec && rec.status === 'উপস্থিত') monthPresent++;
+                            let monthWorking = 0;
+                            const mDates = getMonthDatesWithAttendanceInfo(filterYear, m, activeListForDates, 's');
+                            mDates.forEach(info => {
+                                if (!info.isClosedDay) {
+                                    monthWorking++;
+                                    const rec = JSON.parse(localStorage.getItem(`att_s_${sUniqueId}_${info.dateKey}`));
+                                    if (rec && rec.status === 'উপস্থিত') monthPresent++;
+                                }
                             });
-                            totalWorkingDays += mDates.length;
+                            totalWorkingDays += monthWorking;
                             totalPresent += monthPresent;
                             rowHTML += `<td class="border p-1 text-center font-bold ${monthPresent > 0 ? 'text-green-700' : 'text-gray-400'}">${monthPresent}</td>`;
                         });
                     } else {
-                        workingDates.forEach(wd => {
+                        monthDatesInfo.forEach(info => {
+                            const closedClass = info.isClosedDay ? 'closed-day-print-hide bg-amber-50/70 text-amber-800 text-[9px] font-semibold' : '';
+                            if (info.isClosedDay) {
+                                rowHTML += `<td class="border p-1 text-center ${closedClass}" title="${info.dateKey} - ${info.holidayName}">${info.holidayName}</td>`;
+                                return;
+                            }
+
                             totalWorkingDays++;
-                            const record = JSON.parse(localStorage.getItem(`att_s_${sUniqueId}_${wd.dateKey}`));
+                            const record = JSON.parse(localStorage.getItem(`att_s_${sUniqueId}_${info.dateKey}`));
                             let mark = '-';
-                            let colorClass = 'text-gray-400 empty-col';
+                            let colorClass = 'text-gray-400';
                             if (record && record.status === 'উপস্থিত') {
                                 mark = record.time;
                                 colorClass = 'text-green-700 font-bold text-[9px]';
@@ -634,7 +858,7 @@
                                 mark = '✖';
                                 colorClass = 'text-red-600 font-bold';
                             }
-                            rowHTML += `<td class="border p-1 text-center ${colorClass}" title="${wd.dateKey}">${mark}</td>`;
+                            rowHTML += `<td class="border p-1 text-center ${colorClass}" title="${info.dateKey}">${mark}</td>`;
                         });
                     }
 
@@ -660,21 +884,31 @@
                     if (rType === 'annual') {
                         targetMonths.forEach(m => {
                             let monthPresent = 0;
-                            const mDates = getWorkingDatesForMonth(filterYear, m);
-                            mDates.forEach(wd => {
-                                const rec = JSON.parse(localStorage.getItem(`att_${prefix}_${itemId}_${wd.dateKey}`));
-                                if (rec && rec.status === 'উপস্থিত') monthPresent++;
+                            let monthWorking = 0;
+                            const mDates = getMonthDatesWithAttendanceInfo(filterYear, m, list, prefix);
+                            mDates.forEach(info => {
+                                if (!info.isClosedDay) {
+                                    monthWorking++;
+                                    const rec = JSON.parse(localStorage.getItem(`att_${prefix}_${itemId}_${info.dateKey}`));
+                                    if (rec && rec.status === 'উপস্থিত') monthPresent++;
+                                }
                             });
-                            totalWorkingDays += mDates.length;
+                            totalWorkingDays += monthWorking;
                             totalPresent += monthPresent;
                             rowHTML += `<td class="border p-1 text-center font-bold ${monthPresent > 0 ? 'text-green-700' : 'text-gray-400'}">${monthPresent}</td>`;
                         });
                     } else {
-                        workingDates.forEach(wd => {
+                        monthDatesInfo.forEach(info => {
+                            const closedClass = info.isClosedDay ? 'closed-day-print-hide bg-amber-50/70 text-amber-800 text-[9px] font-semibold' : '';
+                            if (info.isClosedDay) {
+                                rowHTML += `<td class="border p-1 text-center ${closedClass}" title="${info.dateKey} - ${info.holidayName}">${info.holidayName}</td>`;
+                                return;
+                            }
+
                             totalWorkingDays++;
-                            const record = JSON.parse(localStorage.getItem(`att_${prefix}_${itemId}_${wd.dateKey}`));
+                            const record = JSON.parse(localStorage.getItem(`att_${prefix}_${itemId}_${info.dateKey}`));
                             let mark = '-';
-                            let colorClass = 'text-gray-400 empty-col';
+                            let colorClass = 'text-gray-400';
                             if (record && record.status === 'উপস্থিত') {
                                 mark = record.time;
                                 colorClass = 'text-green-700 font-bold text-[9px]';
@@ -683,7 +917,7 @@
                                 mark = '✖';
                                 colorClass = 'text-red-600 font-bold';
                             }
-                            rowHTML += `<td class="border p-1 text-center ${colorClass}" title="${wd.dateKey}">${mark}</td>`;
+                            rowHTML += `<td class="border p-1 text-center ${colorClass}" title="${info.dateKey}">${mark}</td>`;
                         });
                     }
 
@@ -692,6 +926,8 @@
                     tbody.innerHTML += rowHTML;
                 });
             }
+
+            renderClosedDaysNote(monthDatesInfo, rType);
         }
     </script>
 </body>

@@ -9,7 +9,7 @@
     <link rel="stylesheet" href="style.css">
     <style>
         @media print {
-            .no-print, .closed-day-print-hide { display: none !important; }
+            .no-print, .closed-day-print-hide, .empty-col-print-hide { display: none !important; }
             body { background: white !important; }
             table { width: 100% !important; border-collapse: collapse !important; }
             th, td { border: 1px solid #000 !important; padding: 4px !important; font-size: 9px !important; }
@@ -83,7 +83,7 @@
                     <button onclick="openMainModule('monthly')" class="bg-gradient-to-r from-blue-700 to-indigo-900 text-white p-5 rounded-2xl shadow-md hover:from-blue-800 hover:to-indigo-950 transition flex items-center justify-between">
                         <div class="text-left">
                             <h2 class="text-lg font-bold"><i class="fa-solid fa-calendar-days mr-2"></i> মাসিক ও বার্ষিক রিপোর্ট (Monthly/Annual Report)</h2>
-                            <p class="text-xs text-blue-200 mt-1">শুক্র-শনি ও ক্যালেন্ডারের ছুটি অনুযায়ী রিপোর্ট, প্রিন্টে ছুটির কলাম বাদ ও নিচে পাশাপাশি নোট।</p>
+                            <p class="text-xs text-blue-200 mt-1">শুক্র-শনি ও ক্যালেন্ডারের ছুটি অনুযায়ী রিপোর্ট, প্রিন্টে ছুটির ও ফাঁকা কলাম বাদ এবং নিচে পাশাপাশি নোট।</p>
                         </div>
                         <i class="fa-solid fa-arrow-right text-xl"></i>
                     </button>
@@ -723,7 +723,7 @@
             renderMonthlyTable();
         }
 
-        function getMonthDatesInfo(year, month) {
+        function getMonthDatesInfo(year, month, visibleList, prefix) {
             const daysInMonth = new Date(parseInt(year, 10), parseInt(month, 10), 0).getDate();
             const result = [];
 
@@ -731,12 +731,23 @@
                 const dayStr = String(d).padStart(2, '0');
                 const dateKey = `${year}-${month}-${dayStr}`;
                 const holidayName = getHolidayNameForDate(dateKey);
+                const isClosedDay = Boolean(holidayName);
+
+                let hasAnyMarkedRecord = false;
+                if (!isClosedDay && Array.isArray(visibleList)) {
+                    hasAnyMarkedRecord = visibleList.some(item => {
+                        const itemId = String(item.id || item.indexNo || item.roll || "ID");
+                        const rec = JSON.parse(localStorage.getItem(`att_${prefix}_${itemId}_${dateKey}`));
+                        return rec && (rec.status === 'উপস্থিত' || rec.status === 'অনুপস্থিত');
+                    });
+                }
 
                 result.push({
                     day: d,
                     dateKey,
-                    isClosedDay: Boolean(holidayName),
-                    holidayName
+                    isClosedDay,
+                    holidayName,
+                    isEmptyColumn: !isClosedDay && !hasAnyMarkedRecord
                 });
             }
 
@@ -812,7 +823,28 @@
             const staffList = JSON.parse(localStorage.getItem('madrasah_staff_master')) || [];
 
             const targetMonths = ["01", "02", "03", "04", "05", "06", "07", "08", "09", "10", "11", "12"];
-            const monthDatesInfo = getMonthDatesInfo(filterYear, filterMonth);
+
+            const filteredStudents = students.filter(s => {
+                const sClass = s.cls || s.studentClass || s.class || "নুরানী প্রথম শ্রেণি";
+                const sRoll = String(s.roll || s.id || "001");
+                const sUniqueId = String(s.id || sRoll);
+                const sName = s.name_bn || s.name || "শিক্ষার্থী";
+                if (filterClass !== 'all' && sClass !== filterClass) return false;
+                if (searchKey && !sName.toLowerCase().includes(searchKey) && !sRoll.toLowerCase().includes(searchKey) && !sUniqueId.toLowerCase().includes(searchKey)) return false;
+                return true;
+            });
+
+            const activeList = currentCategory === 'student'
+                ? filteredStudents
+                : (currentCategory === 'teacher' ? teachers : staffList).filter(item => {
+                    const itemId = String(item.id || item.indexNo || "ID");
+                    const itemName = item.name_bn || item.name || "নাম";
+                    if (searchKey && !itemName.toLowerCase().includes(searchKey) && !itemId.toLowerCase().includes(searchKey)) return false;
+                    return true;
+                });
+
+            const activePrefix = currentCategory === 'student' ? 's' : (currentCategory === 'teacher' ? 't' : 'st');
+            const monthDatesInfo = getMonthDatesInfo(filterYear, filterMonth, activeList, activePrefix);
 
             let headerHTML = `<th class="border p-2">আইডি</th><th class="border p-2">নাম</th>`;
             if (rType === 'annual') {
@@ -821,23 +853,23 @@
                 });
             } else {
                 monthDatesInfo.forEach(info => {
-                    const closedClass = info.isClosedDay ? 'closed-day-print-hide bg-amber-900/80' : '';
+                    const hideClasses = [
+                        info.isClosedDay ? 'closed-day-print-hide bg-amber-900/80' : '',
+                        info.isEmptyColumn ? 'empty-col-print-hide' : ''
+                    ].join(' ').trim();
                     const subLabel = info.isClosedDay ? `<span class="block text-[8px] font-normal text-amber-200">${info.holidayName}</span>` : '';
-                    headerHTML += `<th class="border p-1 text-center text-[10px] ${closedClass}">${info.day}${subLabel}</th>`;
+                    headerHTML += `<th class="border p-1 text-center text-[10px] ${hideClasses}">${info.day}${subLabel}</th>`;
                 });
             }
             headerHTML += `<th class="border p-2 text-center">কার্যদিবস</th><th class="border p-2 text-center text-green-700">উপস্থিত</th><th class="border p-2 text-center text-red-700">অনুপস্থিত</th>`;
             thead.innerHTML = headerHTML;
 
             if (currentCategory === 'student') {
-                students.forEach(s => {
+                filteredStudents.forEach(s => {
                     const sClass = s.cls || s.studentClass || s.class || "নুরানী প্রথম শ্রেণি";
                     const sRoll = String(s.roll || s.id || "001");
                     const sUniqueId = String(s.id || sRoll);
                     const sName = s.name_bn || s.name || "শিক্ষার্থী";
-
-                    if (filterClass !== 'all' && sClass !== filterClass) return;
-                    if (searchKey && !sName.toLowerCase().includes(searchKey) && !sRoll.toLowerCase().includes(searchKey) && !sUniqueId.toLowerCase().includes(searchKey)) return;
 
                     let rowHTML = `<tr><td class="border p-2 font-bold text-blue-700">${sUniqueId}</td><td class="border p-2 font-bold">${sName} <span class="text-[10px] text-gray-500 block">${sClass}</span></td>`;
                     let totalPresent = 0;
@@ -847,7 +879,7 @@
                         targetMonths.forEach(m => {
                             let monthPresent = 0;
                             let monthWorking = 0;
-                            const mDates = getMonthDatesInfo(filterYear, m);
+                            const mDates = getMonthDatesInfo(filterYear, m, filteredStudents, 's');
                             mDates.forEach(info => {
                                 if (!info.isClosedDay) {
                                     monthWorking++;
@@ -861,9 +893,9 @@
                         });
                     } else {
                         monthDatesInfo.forEach(info => {
-                            const closedClass = info.isClosedDay ? 'closed-day-print-hide bg-amber-50/70 text-amber-800 text-[9px] font-semibold' : '';
+                            const emptyHideClass = info.isEmptyColumn ? 'empty-col-print-hide' : '';
                             if (info.isClosedDay) {
-                                rowHTML += `<td class="border p-1 text-center ${closedClass}" title="${info.dateKey} - ${info.holidayName}">${info.holidayName}</td>`;
+                                rowHTML += `<td class="border p-1 text-center closed-day-print-hide bg-amber-50/70 text-amber-800 text-[9px] font-semibold" title="${info.dateKey} - ${info.holidayName}">${info.holidayName}</td>`;
                                 return;
                             }
 
@@ -879,7 +911,7 @@
                                 mark = '✖';
                                 colorClass = 'text-red-600 font-bold';
                             }
-                            rowHTML += `<td class="border p-1 text-center ${colorClass}" title="${info.dateKey}">${mark}</td>`;
+                            rowHTML += `<td class="border p-1 text-center ${colorClass} ${emptyHideClass}" title="${info.dateKey}">${mark}</td>`;
                         });
                     }
 
@@ -888,15 +920,12 @@
                     tbody.innerHTML += rowHTML;
                 });
             } else {
-                const list = (currentCategory === 'teacher') ? teachers : staffList;
                 const prefix = (currentCategory === 'teacher') ? 't' : 'st';
 
-                list.forEach(item => {
+                activeList.forEach(item => {
                     const itemId = String(item.id || item.indexNo || "ID");
                     const itemName = item.name_bn || item.name || "নাম";
                     const itemDesig = item.designation || "";
-
-                    if (searchKey && !itemName.toLowerCase().includes(searchKey) && !itemId.toLowerCase().includes(searchKey)) return;
 
                     let rowHTML = `<tr><td class="border p-2 font-bold text-emerald-700">${itemId}</td><td class="border p-2 font-bold">${itemName} <br><span class="text-[10px] text-gray-500">${itemDesig}</span></td>`;
                     let totalPresent = 0;
@@ -906,7 +935,7 @@
                         targetMonths.forEach(m => {
                             let monthPresent = 0;
                             let monthWorking = 0;
-                            const mDates = getMonthDatesInfo(filterYear, m);
+                            const mDates = getMonthDatesInfo(filterYear, m, activeList, prefix);
                             mDates.forEach(info => {
                                 if (!info.isClosedDay) {
                                     monthWorking++;
@@ -920,9 +949,9 @@
                         });
                     } else {
                         monthDatesInfo.forEach(info => {
-                            const closedClass = info.isClosedDay ? 'closed-day-print-hide bg-amber-50/70 text-amber-800 text-[9px] font-semibold' : '';
+                            const emptyHideClass = info.isEmptyColumn ? 'empty-col-print-hide' : '';
                             if (info.isClosedDay) {
-                                rowHTML += `<td class="border p-1 text-center ${closedClass}" title="${info.dateKey} - ${info.holidayName}">${info.holidayName}</td>`;
+                                rowHTML += `<td class="border p-1 text-center closed-day-print-hide bg-amber-50/70 text-amber-800 text-[9px] font-semibold" title="${info.dateKey} - ${info.holidayName}">${info.holidayName}</td>`;
                                 return;
                             }
 
@@ -938,7 +967,7 @@
                                 mark = '✖';
                                 colorClass = 'text-red-600 font-bold';
                             }
-                            rowHTML += `<td class="border p-1 text-center ${colorClass}" title="${info.dateKey}">${mark}</td>`;
+                            rowHTML += `<td class="border p-1 text-center ${colorClass} ${emptyHideClass}" title="${info.dateKey}">${mark}</td>`;
                         });
                     }
 

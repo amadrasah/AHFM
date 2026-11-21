@@ -209,7 +209,6 @@
                         </div>
                     </div>
 
-                    <!-- প্রথম লাইনে মিটিংয়ের তারিখ ও জমাদানের শেষ তারিখ -->
                     <div class="bg-violet-50 p-4 rounded-xl border border-violet-200 text-xs space-y-4 no-print">
                         <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
                             <div>
@@ -222,7 +221,6 @@
                             </div>
                         </div>
 
-                        <!-- Teacher & Staff থেকে শিক্ষক নির্বাচন বা সব শিক্ষক লোড করার সেকশন -->
                         <div class="grid grid-cols-1 sm:grid-cols-12 gap-3 pt-3 border-t border-violet-200 items-end">
                             <div class="sm:col-span-5">
                                 <label class="font-bold block mb-1 text-violet-950">Teacher & Staff থেকে শিক্ষক নির্বাচন করুন:</label>
@@ -247,7 +245,6 @@
                         </div>
                     </div>
 
-                    <!-- প্রিন্ট ও ডিসপ্লে কন্টেইনার -->
                     <div class="print-container p-6 sm:p-8 rounded-xl border border-gray-200 space-y-3 overflow-hidden">
                         <div class="text-center border-b pb-2">
                             <h2 class="font-bold text-sm text-violet-950">আবদুল্লাহ হাট ইসলামিয়া ফাজিল মাদ্রাসা</h2>
@@ -257,7 +254,6 @@
                             </p>
                         </div>
 
-                        <!-- পাশাপাশি ৭টি কলাম -->
                         <div class="w-full overflow-x-auto pb-1">
                             <table class="w-full text-left border-collapse border border-gray-300 text-[11px]">
                                 <thead>
@@ -294,7 +290,6 @@
                         <button onclick="closeAllExamPanels()" class="text-xs bg-gray-200 px-3 py-1 rounded font-bold text-gray-700 hover:bg-gray-300">বন্ধ করুন</button>
                     </div>
 
-                    <!-- ফিল্টার ও রুম/ভিজিট সেটআপ কন্ট্রোল -->
                     <div class="bg-emerald-50 p-4 rounded-xl border border-emerald-200 text-xs space-y-4 no-print">
                         <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-3 items-end">
                             <div>
@@ -329,7 +324,6 @@
                             </div>
                         </div>
 
-                        <!-- Teacher & Staff থেকে পরিদর্শক শিক্ষক যুক্ত করার বার -->
                         <div class="grid grid-cols-1 sm:grid-cols-12 gap-3 pt-2 border-t border-emerald-200/80 items-end">
                             <div class="sm:col-span-5">
                                 <label class="font-bold block mb-1 text-emerald-950">Teacher & Staff থেকে শিক্ষক নির্বাচন:</label>
@@ -354,7 +348,6 @@
                         </div>
                     </div>
 
-                    <!-- রুম নম্বর অনুযায়ী একত্রে ভিজিট কলাম টেবিল -->
                     <div class="print-container p-6 sm:p-8 rounded-xl border border-gray-200 space-y-3 overflow-hidden">
                         <div class="text-center border-b pb-2">
                             <h2 class="font-bold text-sm text-emerald-950">আবদুল্লাহ হাট ইসলামিয়া ফাজিল মাদ্রাসা</h2>
@@ -381,7 +374,6 @@
                         </button>
                     </div>
 
-                    <!-- পরীক্ষা শেষে পুরো পরীক্ষার সংরক্ষিত ভিজিট রিপোর্ট ও শিক্ষক দিয়ে ফিল্টারিং -->
                     <div class="bg-slate-50 p-4 sm:p-5 rounded-2xl border border-slate-300 space-y-4">
                         <div class="flex flex-col md:flex-row justify-between items-start md:items-center gap-3 border-b pb-3">
                             <div>
@@ -418,7 +410,7 @@
                     </div>
                 </div>
 
-                <!-- বাকি প্যানেলগুলো অপরিবর্তিত রাখা হয়েছে -->
+                <!-- বাকি প্যানেলগুলো -->
                 <div id="panel-setup" class="exam-sub-panel bg-white p-5 md:p-6 rounded-2xl shadow-sm border border-gray-200 space-y-4 hidden">
                     <div class="flex justify-between items-center border-b pb-3 no-print">
                         <h3 class="font-bold text-emerald-800 text-sm"><i class="fa-solid fa-gear mr-2"></i> ১. এক্সাম সেটআপ (সেটিংস ও একাডেমিক ম্যানেজমেন্ট লিংকড)</h3>
@@ -706,85 +698,69 @@
         };
 
         /* ===================================================
-           TEACHER & STAFF CONNECTOR (LOCALSTORAGE SYNC)
+           TEACHER & STAFF CONNECTOR (madrasah_teachers_master & madrasah_staff_master)
            =================================================== */
         function getTeacherAndStaffList() {
-            const candidateKeys = [
-                'madrasah_teachers_all',
-                'madrasah_teachers',
-                'teachers_list',
-                'madrasah_staff_all',
-                'madrasah_staff',
-                'staff_list'
-            ];
-
             const normalizedMap = new Map();
 
-            candidateKeys.forEach(key => {
-                try {
-                    const raw = localStorage.getItem(key);
-                    if (!raw) return;
-                    const parsed = JSON.parse(raw);
-                    if (!Array.isArray(parsed)) return;
+            try {
+                const teachersRaw = localStorage.getItem('madrasah_teachers_master');
+                if (teachersRaw) {
+                    const teachers = JSON.parse(teachersRaw);
+                    if (Array.isArray(teachers)) {
+                        teachers.forEach(t => {
+                            if (!t) return;
+                            const name = (t.name_bn || t.name_en || t.name || "").toString().trim();
+                            if (!name) return;
 
-                    parsed.forEach(item => {
-                        if (!item) return;
+                            const designation = (t.designation || "").toString().trim();
+                            const subject = (t.subject || "").toString().trim();
+                            const role = (designation && subject)
+                                ? `${designation} - ${subject}`
+                                : (designation || subject || "শিক্ষক");
 
-                        let name = "";
-                        let designation = "";
-                        let subject = "";
-
-                        if (typeof item === "string") {
-                            name = item.trim();
-                        } else if (typeof item === "object") {
-                            name = (
-                                item.name_bn ||
-                                item.name ||
-                                item.teacher_name ||
-                                item.fullName ||
-                                item.title ||
-                                ""
-                            ).toString().trim();
-
-                            designation = (
-                                item.designation ||
-                                item.post ||
-                                item.role ||
-                                item.পদবী ||
-                                ""
-                            ).toString().trim();
-
-                            subject = (
-                                item.subject ||
-                                item.subject_name ||
-                                item.department ||
-                                item.বিষয় ||
-                                ""
-                            ).toString().trim();
-                        }
-
-                        if (!name) return;
-
-                        let combinedRole = "";
-                        if (designation && subject) {
-                            combinedRole = `${designation} - ${subject}`;
-                        } else {
-                            combinedRole = designation || subject || "শিক্ষক / স্টাফ";
-                        }
-
-                        if (!normalizedMap.has(name)) {
-                            normalizedMap.set(name, {
-                                name: name,
-                                designation: designation,
-                                subject: subject,
-                                role: combinedRole
-                            });
-                        }
-                    });
-                } catch (e) {
-                    console.warn("Teacher list parse error for key:", key, e);
+                            if (!normalizedMap.has(name)) {
+                                normalizedMap.set(name, {
+                                    name,
+                                    designation,
+                                    subject,
+                                    role
+                                });
+                            }
+                        });
+                    }
                 }
-            });
+            } catch (e) {
+                console.warn("madrasah_teachers_master read error:", e);
+            }
+
+            try {
+                const staffRaw = localStorage.getItem('madrasah_staff_master');
+                if (staffRaw) {
+                    const staffList = JSON.parse(staffRaw);
+                    if (Array.isArray(staffList)) {
+                        staffList.forEach(s => {
+                            if (!s) return;
+                            const name = (s.name || s.name_bn || "").toString().trim();
+                            if (!name) return;
+
+                            const designation = (s.designation || "").toString().trim();
+                            const role = designation || "স্টাফ";
+
+                            if (!normalizedMap.has(name)) {
+                                normalizedMap.set(name, {
+                                    name,
+                                    designation,
+                                    subject: "",
+                                    role
+                                });
+                            }
+                        });
+                    }
+                }
+            } catch (e) {
+                console.warn("madrasah_staff_master read error:", e);
+            }
 
             return Array.from(normalizedMap.values());
         }

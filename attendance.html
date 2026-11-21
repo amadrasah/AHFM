@@ -93,11 +93,12 @@
                 <div id="daily_sub_buttons" class="bg-white p-4 rounded-xl shadow-sm border space-y-4 no-print">
                     <div class="flex flex-wrap justify-between items-center gap-4 border-b pb-2">
                         <h3 class="font-bold text-emerald-900 text-sm"><i class="fa-solid fa-list-check mr-1"></i> ডেইলি এটেন্ডেন্স ক্যাটাগরি ও মেসেজ চ্যানেল:</h3>
-                        <div class="flex items-center gap-2">
+                        <div class="flex flex-wrap items-center gap-2">
                             <label class="text-xs font-bold text-gray-700">অনুপস্থিতি মেসেজ চ্যানেল:</label>
                             <select id="attendance_msg_channel" class="p-1.5 border rounded bg-white text-xs font-bold text-emerald-900">
                                 <option value="SIM SMS">মোবাইল সিম (SIM SMS)</option>
                                 <option value="WhatsApp">WhatsApp Direct</option>
+                                <option value="NONE">শুধু লিস্টে সেভ (অটো পপ-আপ নয়)</option>
                             </select>
                         </div>
                     </div>
@@ -166,7 +167,7 @@
                             <select id="monthly_month_select" class="p-2 border rounded bg-white font-bold" onchange="renderMonthlyTable()">
                                 <option value="01">জানুয়ারি</option><option value="02">ফেব্রুয়ারি</option><option value="03">মার্চ</option>
                                 <option value="04">এপ্রিল</option><option value="05">মে</option><option value="06">জুন</option>
-                                <option value="07" selected>জুলাই</option><option value="08">আগস্ট</option><option value="09">সেপ্টেম্বর</option>
+                                <option value="07">জুলাই</option><option value="08">আগস্ট</option><option value="09">সেপ্টেম্বর</option>
                                 <option value="10">অক্টোবর</option><option value="11">নভেম্বর</option><option value="12">ডিসেম্বর</option>
                             </select>
                         </div>
@@ -201,7 +202,7 @@
                                     <th class="border p-2">রোল / আইডি</th>
                                     <th class="border p-2">নাম</th>
                                     <th class="border p-2">শ্রেণি / পদবি</th>
-                                    <th class="border p-2 text-center">حاضر / উপস্থিতি নির্ধারণ (উপস্থিত / অনুপস্থিত)</th>
+                                    <th class="border p-2 text-center">উপস্থিতি নির্ধারণ (উপস্থিত / অনুপস্থিত)</th>
                                 </tr>
                             </thead>
                             <tbody id="table_body"></tbody>
@@ -216,20 +217,32 @@
 
     <!-- JavaScript & LocalStorage Engine -->
     <script>
-        let currentMode = 'daily'; 
-        let currentCategory = 'student'; 
+        let currentMode = 'daily';
+        let currentCategory = 'student';
+        const ATTENDANCE_RECORDS_KEY = 'madrasah_attendance_records';
 
         window.onload = function() {
-            let todayStr = new Date().toISOString().split('T')[0];
+            const now = new Date();
+            const todayStr = now.toISOString().split('T')[0];
             document.getElementById('daily_date_input').value = todayStr;
-            
+
+            const currentMonth = String(now.getMonth() + 1).padStart(2, '0');
+            const monthSel = document.getElementById('monthly_month_select');
+            if (monthSel) monthSel.value = currentMonth;
+
+            const currentYear = String(now.getFullYear());
+            const yearSel = document.getElementById('monthly_year_select');
+            if (yearSel && Array.from(yearSel.options).some(o => o.value === currentYear)) {
+                yearSel.value = currentYear;
+            }
+
             loadDynamicClasses();
             loadDailyForm('student');
         };
 
         function openMainModule(mode) {
             currentMode = mode;
-            if(mode === 'daily') {
+            if (mode === 'daily') {
                 document.getElementById('daily_sub_buttons').style.display = 'block';
                 document.getElementById('monthly_sub_buttons').style.display = 'none';
                 loadDailyForm('student');
@@ -241,15 +254,17 @@
         }
 
         function addNewYearOption() {
-            let newY = prompt("নতুন বছর লিখুন (যেমন: 2028):");
-            if(newY && newY.trim() !== "") {
-                let yearSelects = [document.getElementById('monthly_year_select')];
+            const newY = prompt("নতুন বছর লিখুন (যেমন: 2028):");
+            if (newY && newY.trim() !== "") {
+                const yearSelects = [document.getElementById('monthly_year_select')];
                 yearSelects.forEach(sel => {
-                    if(sel) {
-                        let opt = document.createElement('option');
-                        opt.value = newY.trim();
-                        opt.text = newY.trim();
-                        sel.add(opt);
+                    if (sel) {
+                        if (!Array.from(sel.options).some(o => o.value === newY.trim())) {
+                            const opt = document.createElement('option');
+                            opt.value = newY.trim();
+                            opt.text = newY.trim();
+                            sel.add(opt);
+                        }
                         sel.value = newY.trim();
                     }
                 });
@@ -259,41 +274,44 @@
         }
 
         function toggleReportTypeFields() {
-            let rType = document.getElementById('report_type').value;
-            let monthBox = document.getElementById('month_filter_container');
-            if(rType === 'annual') {
-                monthBox.style.display = 'none';
-            } else {
-                monthBox.style.display = 'block';
-            }
+            const rType = document.getElementById('report_type').value;
+            const monthBox = document.getElementById('month_filter_container');
+            monthBox.style.display = (rType === 'annual') ? 'none' : 'block';
             renderMonthlyTable();
         }
 
         function loadDynamicClasses() {
-            let classSelects = [document.getElementById('daily_class_select'), document.getElementById('monthly_class_select')];
-            let students = JSON.parse(localStorage.getItem('madrasah_students_all')) || [];
+            const classSelects = [document.getElementById('daily_class_select'), document.getElementById('monthly_class_select')];
+            const students = JSON.parse(localStorage.getItem('madrasah_students_all')) || [];
 
-            let classSet = new Set();
+            const classSet = new Set();
             students.forEach(s => {
-                let cName = s.cls || s.studentClass || s.class || s.grade;
-                if(cName) classSet.add(cName.trim());
+                const cName = s.cls || s.studentClass || s.class || s.grade;
+                if (cName) classSet.add(cName.trim());
             });
 
-            if(classSet.size === 0) {
-                ["নুরানী প্রথম শ্রেণি", "নুরানী দ্বিতীয় শ্রেণি", "নুরানী তৃতীয় শ্রেণি", "ইবতেদায়ী চতুর্থ শ্রেণি", "ইবতেদায়ী পঞ্চম শ্রেণি", "দাখিল ষষ্ঠ শ্রেণি", "দাখিল সপ্তম শ্রেণি", "দাখিল অষ্টম শ্রেণি", "দাখিল নবম শ্রেণি", "দাখিল দশম শ্রেণি", "আলিম প্রথম বর্ষ", "আলিম দ্বিতীয় বর্ষ", "ফাজিল প্রথম বর্ষ", "ফাজিল দ্বিতীয় বর্ষ", "ফাজিল তৃতীয় বর্ষ"].forEach(c => classSet.add(c));
+            if (classSet.size === 0) {
+                [
+                    "নুরানী প্রথম শ্রেণি", "নুরানী দ্বিতীয় শ্রেণি", "নুরানী তৃতীয় শ্রেণি",
+                    "ইবতেদায়ী চতুর্থ শ্রেণি", "ইবতেদায়ী পঞ্চম শ্রেণি", "দাখিল ষষ্ঠ শ্রেণি",
+                    "দাখিল সপ্তম শ্রেণি", "দাখিল অষ্টম শ্রেণি", "দাখিল নবম শ্রেণি", "দাখিল দশম শ্রেণি",
+                    "আলিম প্রথম বর্ষ", "আলিম দ্বিতীয় বর্ষ", "ফাজিল প্রথম বর্ষ", "ফাজিল দ্বিতীয় বর্ষ", "ফাজিল তৃতীয় বর্ষ"
+                ].forEach(c => classSet.add(c));
             }
 
             classSelects.forEach(sel => {
-                if(!sel) return;
-                let currentVal = sel.value;
+                if (!sel) return;
+                const currentVal = sel.value;
                 sel.innerHTML = `<option value="all">সকল শ্রেণি</option>`;
                 classSet.forEach(cls => {
-                    let opt = document.createElement('option');
+                    const opt = document.createElement('option');
                     opt.value = cls;
                     opt.text = cls;
                     sel.add(opt);
                 });
-                sel.value = currentVal;
+                if (Array.from(sel.options).some(o => o.value === currentVal)) {
+                    sel.value = currentVal;
+                }
             });
         }
 
@@ -302,18 +320,46 @@
             const titleEl = document.getElementById('workspace_title');
             const classBox = document.getElementById('daily_class_box');
 
-            if(cat === 'student') {
+            if (cat === 'student') {
                 titleEl.innerHTML = `<i class="fa-solid fa-user-graduate mr-2"></i> স্টুডেন্ট ডেইলি এটেন্ডেন্স ফরম (সঠিক আইডি ও রোল সহ)`;
                 classBox.style.display = 'block';
-            } else if(cat === 'teacher') {
+            } else if (cat === 'teacher') {
                 titleEl.innerHTML = `<i class="fa-solid fa-chalkboard-user mr-2"></i> শিক্ষক এটেন্ডেন্স ফরম (শিক্ষক প্রোফাইল থেকে অটো-লিঙ্কড)`;
                 classBox.style.display = 'none';
-            } else if(cat === 'staff') {
+            } else if (cat === 'staff') {
                 titleEl.innerHTML = `<i class="fa-solid fa-users mr-2"></i> স্টাফ এটেন্ডেন্স ফরম (স্টাফ প্রোফাইল থেকে অটো-লিঙ্কড)`;
                 classBox.style.display = 'none';
             }
 
             renderDailyTable();
+        }
+
+        function syncAttendanceToSharedLog(type, id, roll, name, cls, phone, date, status, clickTime) {
+            const allLogs = JSON.parse(localStorage.getItem(ATTENDANCE_RECORDS_KEY)) || {};
+            if (!Array.isArray(allLogs[date])) {
+                allLogs[date] = [];
+            }
+
+            const existingIdx = allLogs[date].findIndex(item => String(item.id) === String(id) && item.type === type);
+            const entryObj = {
+                type,
+                id: String(id),
+                roll: String(roll || ""),
+                name,
+                cls: cls || "",
+                phone: phone || "",
+                date,
+                status,
+                time: clickTime
+            };
+
+            if (existingIdx >= 0) {
+                allLogs[date][existingIdx] = entryObj;
+            } else {
+                allLogs[date].push(entryObj);
+            }
+
+            localStorage.setItem(ATTENDANCE_RECORDS_KEY, JSON.stringify(allLogs));
         }
 
         function renderDailyTable() {
@@ -325,34 +371,34 @@
             const filterClass = document.getElementById('daily_class_select').value;
             const searchKey = document.getElementById('daily_search_input').value.toLowerCase().trim();
 
-            let students = JSON.parse(localStorage.getItem('madrasah_students_all')) || [];
-            let teachers = JSON.parse(localStorage.getItem('madrasah_teachers_master')) || [];
-            let staffList = JSON.parse(localStorage.getItem('madrasah_staff_master')) || [];
+            const students = JSON.parse(localStorage.getItem('madrasah_students_all')) || [];
+            const teachers = JSON.parse(localStorage.getItem('madrasah_teachers_master')) || [];
+            const staffList = JSON.parse(localStorage.getItem('madrasah_staff_master')) || [];
 
-            if(currentCategory === 'student') {
+            if (currentCategory === 'student') {
                 thead.innerHTML = `
                     <th class="border p-2">তারিখ</th>
                     <th class="border p-2">আইডি ও রোল</th>
                     <th class="border p-2">শিক্ষার্থীর নাম</th>
                     <th class="border p-2">শ্রেণি</th>
-                    <th class="border p-2 text-center">حاضر / উপস্থিতি নির্ধারণ (উপস্থিত / অনুপস্থিত)</th>
+                    <th class="border p-2 text-center">উপস্থিতি নির্ধারণ (উপস্থিত / অনুপস্থিত)</th>
                 `;
 
                 students.forEach(s => {
-                    let sClass = s.cls || s.studentClass || s.class || "নুরানী প্রথম শ্রেণি";
-                    let sRoll = s.roll || s.id || s.studentId || "001";
-                    let sUniqueId = String(s.id || sRoll).replace(/'/g, "");
-                    let sName = String(s.name_bn || s.name || "শিক্ষার্থী").replace(/'/g, "");
-                    let sPhone = String(s.phone || s.guardianPhone || "01640388584").replace(/'/g, "");
+                    const sClass = s.cls || s.studentClass || s.class || "নুরানী প্রথম শ্রেণি";
+                    const sRoll = String(s.roll || s.id || s.studentId || "001").replace(/'/g, "");
+                    const sUniqueId = String(s.id || sRoll).replace(/'/g, "");
+                    const sName = String(s.name_bn || s.name || "শিক্ষার্থী").replace(/'/g, "");
+                    const sPhone = String(s.f_mobile || s.guardian_phone || s.m_mobile || s.phone || s.guardianPhone || "").replace(/'/g, "");
 
-                    if(filterClass !== 'all' && sClass !== filterClass) return;
-                    if(searchKey && !sName.toLowerCase().includes(searchKey) && !sRoll.toLowerCase().includes(searchKey) && !sUniqueId.toLowerCase().includes(searchKey)) return;
+                    if (filterClass !== 'all' && sClass !== filterClass) return;
+                    if (searchKey && !sName.toLowerCase().includes(searchKey) && !sRoll.toLowerCase().includes(searchKey) && !sUniqueId.toLowerCase().includes(searchKey)) return;
 
-                    let attKey = `att_s_${sUniqueId}_${selectedDate}`;
-                    let record = JSON.parse(localStorage.getItem(attKey)) || { status: 'অনির্ধারিত', time: '-' };
+                    const attKey = `att_s_${sUniqueId}_${selectedDate}`;
+                    const record = JSON.parse(localStorage.getItem(attKey)) || { status: 'অনির্ধারিত', time: '-' };
 
-                    let presentBtnStyle = record.status === 'উপস্থিত' ? 'bg-green-600 text-white shadow' : 'bg-gray-100 text-green-700 hover:bg-green-100';
-                    let absentBtnStyle = record.status === 'অনুপস্থিত' ? 'bg-red-600 text-white shadow' : 'bg-gray-100 text-red-700 hover:bg-red-100';
+                    const presentBtnStyle = record.status === 'উপস্থিত' ? 'bg-green-600 text-white shadow' : 'bg-gray-100 text-green-700 hover:bg-green-100';
+                    const absentBtnStyle = record.status === 'অনুপস্থিত' ? 'bg-red-600 text-white shadow' : 'bg-gray-100 text-red-700 hover:bg-red-100';
 
                     tbody.innerHTML += `
                         <tr>
@@ -361,11 +407,11 @@
                             <td class="border p-2 font-bold">${sName}</td>
                             <td class="border p-2">${sClass}</td>
                             <td class="border p-2 text-center space-x-2">
-                                <button onclick="markDailyAttendance('s', '${sUniqueId}', '${selectedDate}', 'উপস্থিত', '${sPhone}', '${sName}')" class="${presentBtnStyle} px-3 py-1 rounded font-bold text-xs border border-green-300 transition">
+                                <button onclick="markDailyAttendance('s', '${sUniqueId}', '${sRoll}', '${sClass}', '${selectedDate}', 'উপস্থিত', '${sPhone}', '${sName}')" class="${presentBtnStyle} px-3 py-1 rounded font-bold text-xs border border-green-300 transition">
                                     <i class="fa-solid fa-check mr-1"></i> উপস্থিত 
                                     ${record.status === 'উপস্থিত' ? `<span class="text-[10px] block font-normal">(${record.time})</span>` : ''}
                                 </button>
-                                <button onclick="markDailyAttendance('s', '${sUniqueId}', '${selectedDate}', 'অনুপস্থিত', '${sPhone}', '${sName}')" class="${absentBtnStyle} px-3 py-1 rounded font-bold text-xs border border-red-300 transition">
+                                <button onclick="markDailyAttendance('s', '${sUniqueId}', '${sRoll}', '${sClass}', '${selectedDate}', 'অনুপস্থিত', '${sPhone}', '${sName}')" class="${absentBtnStyle} px-3 py-1 rounded font-bold text-xs border border-red-300 transition">
                                     <i class="fa-solid fa-xmark mr-1"></i> অনুপস্থিত
                                     ${record.status === 'অনুপস্থিত' ? `<span class="text-[10px] block font-normal">(${record.time})</span>` : ''}
                                 </button>
@@ -373,28 +419,28 @@
                         </tr>
                     `;
                 });
-            } else if(currentCategory === 'teacher') {
+            } else if (currentCategory === 'teacher') {
                 thead.innerHTML = `
                     <th class="border p-2">তারিখ</th>
                     <th class="border p-2">ইনডেক্স/আইডি</th>
                     <th class="border p-2">শিক্ষকের নাম</th>
                     <th class="border p-2">পদবি (Designation)</th>
-                    <th class="border p-2 text-center">حاضر / উপস্থিতি নির্ধারণ (উপস্থিত / অনুপস্থিত)</th>
+                    <th class="border p-2 text-center">উপস্থিতি নির্ধারণ (উপস্থিত / অনুপস্থিত)</th>
                 `;
 
                 teachers.forEach(t => {
-                    let tId = String(t.id || t.indexNo || "ID").replace(/'/g, "");
-                    let tName = String(t.name_bn || "শিক্ষক").replace(/'/g, "");
-                    let tDesig = t.designation || "শিক্ষক";
-                    let tPhone = String(t.phone || "01640388584").replace(/'/g, "");
+                    const tId = String(t.id || t.indexNo || "ID").replace(/'/g, "");
+                    const tName = String(t.name_bn || t.name || "শিক্ষক").replace(/'/g, "");
+                    const tDesig = t.designation || "শিক্ষক";
+                    const tPhone = String(t.phone || t.mobile || "").replace(/'/g, "");
 
-                    if(searchKey && !tName.toLowerCase().includes(searchKey) && !tId.toLowerCase().includes(searchKey)) return;
+                    if (searchKey && !tName.toLowerCase().includes(searchKey) && !tId.toLowerCase().includes(searchKey)) return;
 
-                    let attKey = `att_t_${tId}_${selectedDate}`;
-                    let record = JSON.parse(localStorage.getItem(attKey)) || { status: 'অনির্ধারিত', time: '-' };
+                    const attKey = `att_t_${tId}_${selectedDate}`;
+                    const record = JSON.parse(localStorage.getItem(attKey)) || { status: 'অনির্ধারিত', time: '-' };
 
-                    let presentBtnStyle = record.status === 'উপস্থিত' ? 'bg-green-600 text-white shadow' : 'bg-gray-100 text-green-700 hover:bg-green-100';
-                    let absentBtnStyle = record.status === 'অনুপস্থিত' ? 'bg-red-600 text-white shadow' : 'bg-gray-100 text-red-700 hover:bg-red-100';
+                    const presentBtnStyle = record.status === 'উপস্থিত' ? 'bg-green-600 text-white shadow' : 'bg-gray-100 text-green-700 hover:bg-green-100';
+                    const absentBtnStyle = record.status === 'অনুপস্থিত' ? 'bg-red-600 text-white shadow' : 'bg-gray-100 text-red-700 hover:bg-red-100';
 
                     tbody.innerHTML += `
                         <tr>
@@ -403,11 +449,11 @@
                             <td class="border p-2 font-bold">${tName}</td>
                             <td class="border p-2">${tDesig}</td>
                             <td class="border p-2 text-center space-x-2">
-                                <button onclick="markDailyAttendance('t', '${tId}', '${selectedDate}', 'উপস্থিত', '${tPhone}', '${tName}')" class="${presentBtnStyle} px-3 py-1 rounded font-bold text-xs border border-green-300 transition">
+                                <button onclick="markDailyAttendance('t', '${tId}', '', '${tDesig}', '${selectedDate}', 'উপস্থিত', '${tPhone}', '${tName}')" class="${presentBtnStyle} px-3 py-1 rounded font-bold text-xs border border-green-300 transition">
                                     <i class="fa-solid fa-check mr-1"></i> উপস্থিত
                                     ${record.status === 'উপস্থিত' ? `<span class="text-[10px] block font-normal">(${record.time})</span>` : ''}
                                 </button>
-                                <button onclick="markDailyAttendance('t', '${tId}', '${selectedDate}', 'অনুপস্থিত', '${tPhone}', '${tName}')" class="${absentBtnStyle} px-3 py-1 rounded font-bold text-xs border border-red-300 transition">
+                                <button onclick="markDailyAttendance('t', '${tId}', '', '${tDesig}', '${selectedDate}', 'অনুপস্থিত', '${tPhone}', '${tName}')" class="${absentBtnStyle} px-3 py-1 rounded font-bold text-xs border border-red-300 transition">
                                     <i class="fa-solid fa-xmark mr-1"></i> অনুপস্থিত
                                     ${record.status === 'অনুপস্থিত' ? `<span class="text-[10px] block font-normal">(${record.time})</span>` : ''}
                                 </button>
@@ -415,28 +461,28 @@
                         </tr>
                     `;
                 });
-            } else if(currentCategory === 'staff') {
+            } else if (currentCategory === 'staff') {
                 thead.innerHTML = `
                     <th class="border p-2">তারিখ</th>
                     <th class="border p-2">আইডি</th>
                     <th class="border p-2">স্টাফের নাম</th>
                     <th class="border p-2">পদবি (Designation)</th>
-                    <th class="border p-2 text-center">حاضر / উপস্থিতি নির্ধারণ (উপস্থিত / অনুপস্থিত)</th>
+                    <th class="border p-2 text-center">উপস্থিতি নির্ধারণ (উপস্থিত / অনুপস্থিত)</th>
                 `;
 
                 staffList.forEach(st => {
-                    let stId = String(st.id || "STF").replace(/'/g, "");
-                    let stName = String(st.name || "স্টাফ").replace(/'/g, "");
-                    let stDesig = st.designation || "স্টাফ";
-                    let stPhone = String(st.phone || "01640388584").replace(/'/g, "");
+                    const stId = String(st.id || "STF").replace(/'/g, "");
+                    const stName = String(st.name || st.name_bn || "স্টাফ").replace(/'/g, "");
+                    const stDesig = st.designation || "স্টাফ";
+                    const stPhone = String(st.phone || st.mobile || "").replace(/'/g, "");
 
-                    if(searchKey && !stName.toLowerCase().includes(searchKey) && !stId.toLowerCase().includes(searchKey)) return;
+                    if (searchKey && !stName.toLowerCase().includes(searchKey) && !stId.toLowerCase().includes(searchKey)) return;
 
-                    let attKey = `att_st_${stId}_${selectedDate}`;
-                    let record = JSON.parse(localStorage.getItem(attKey)) || { status: 'অনির্ধারিত', time: '-' };
+                    const attKey = `att_st_${stId}_${selectedDate}`;
+                    const record = JSON.parse(localStorage.getItem(attKey)) || { status: 'অনির্ধারিত', time: '-' };
 
-                    let presentBtnStyle = record.status === 'উপস্থিত' ? 'bg-green-600 text-white shadow' : 'bg-gray-100 text-green-700 hover:bg-green-100';
-                    let absentBtnStyle = record.status === 'অনুপস্থিত' ? 'bg-red-600 text-white shadow' : 'bg-gray-100 text-red-700 hover:bg-red-100';
+                    const presentBtnStyle = record.status === 'উপস্থিত' ? 'bg-green-600 text-white shadow' : 'bg-gray-100 text-green-700 hover:bg-green-100';
+                    const absentBtnStyle = record.status === 'অনুপস্থিত' ? 'bg-red-600 text-white shadow' : 'bg-gray-100 text-red-700 hover:bg-red-100';
 
                     tbody.innerHTML += `
                         <tr>
@@ -445,11 +491,11 @@
                             <td class="border p-2 font-bold">${stName}</td>
                             <td class="border p-2">${stDesig}</td>
                             <td class="border p-2 text-center space-x-2">
-                                <button onclick="markDailyAttendance('st', '${stId}', '${selectedDate}', 'উপস্থিত', '${stPhone}', '${stName}')" class="${presentBtnStyle} px-3 py-1 rounded font-bold text-xs border border-green-300 transition">
+                                <button onclick="markDailyAttendance('st', '${stId}', '', '${stDesig}', '${selectedDate}', 'উপস্থিত', '${stPhone}', '${stName}')" class="${presentBtnStyle} px-3 py-1 rounded font-bold text-xs border border-green-300 transition">
                                     <i class="fa-solid fa-check mr-1"></i> উপস্থিত
                                     ${record.status === 'উপস্থিত' ? `<span class="text-[10px] block font-normal">(${record.time})</span>` : ''}
                                 </button>
-                                <button onclick="markDailyAttendance('st', '${stId}', '${selectedDate}', 'অনুপস্থিত', '${stPhone}', '${stName}')" class="${absentBtnStyle} px-3 py-1 rounded font-bold text-xs border border-red-300 transition">
+                                <button onclick="markDailyAttendance('st', '${stId}', '', '${stDesig}', '${selectedDate}', 'অনুপস্থিত', '${stPhone}', '${stName}')" class="${absentBtnStyle} px-3 py-1 rounded font-bold text-xs border border-red-300 transition">
                                     <i class="fa-solid fa-xmark mr-1"></i> অনুপস্থিত
                                     ${record.status === 'অনুপস্থিত' ? `<span class="text-[10px] block font-normal">(${record.time})</span>` : ''}
                                 </button>
@@ -460,28 +506,24 @@
             }
         }
 
-        // সম্পূর্ণ নির্ভরযোগ্য রিয়েল-টাইম সেভ ও মেসেজিং ফাংশন
-        function markDailyAttendance(type, id, date, status, phone, name) {
-            let attKey = `att_${type}_${id}_${date}`;
-            
-            // রিয়েল টাইম ফরমেট (যেমন: 02:58 PM)
-            let clickTime = new Date().toLocaleTimeString('en-US', { hour: '2-digit', minute: '2-digit', hour12: true });
+        function markDailyAttendance(type, id, roll, cls, date, status, phone, name) {
+            const attKey = `att_${type}_${id}_${date}`;
+            const clickTime = new Date().toLocaleTimeString('en-US', { hour: '2-digit', minute: '2-digit', hour12: true });
 
-            let newRecord = { status: status, time: clickTime };
+            const newRecord = { status: status, time: clickTime };
             localStorage.setItem(attKey, JSON.stringify(newRecord));
+            syncAttendanceToSharedLog(type, id, roll, name, cls, phone, date, status, clickTime);
 
-            // 'অনুপস্থিত' হলে মেসেজ পাঠাবে
-            if (status === 'অনুপস্থিত') {
-                let channel = document.getElementById('attendance_msg_channel').value;
-                let formattedPhone = phone.startsWith('0') ? '+88' + phone : phone;
-                let msgBody = `[AHIFM] সম্মানিত অভিভাবক, আবদুল্লাহ হাট ইসলামিয়া ফাজিল মাদ্রাসার পক্ষ থেকে জানানো যাচ্ছে যে, আপনার সন্তান/প্রতিষ্ঠান সদস্য ${name} আজ (${date}) অনুপস্থিত রয়েছে।`;
+            if (status === 'অনুপস্থিত' && phone) {
+                const channel = document.getElementById('attendance_msg_channel').value;
+                const cleanDigits = phone.replace(/[^\d]/g, '');
+                const intlPhone = cleanDigits.startsWith('880') ? ('+' + cleanDigits) : (cleanDigits.startsWith('0') ? '+88' + cleanDigits : '+880' + cleanDigits);
+                const msgBody = `[AHIFM] সম্মানিত অভিভাবক, আবদুল্লাহ হাট ইসলামিয়া ফাজিল মাদ্রাসার পক্ষ থেকে জানানো যাচ্ছে যে, ${name} আজ (${date}) অনুপস্থিত রয়েছে।`;
 
                 if (channel === 'SIM SMS') {
-                    const smsUri = `sms:${formattedPhone}?body=${encodeURIComponent(msgBody)}`;
-                    window.location.href = smsUri;
+                    window.location.href = `sms:${intlPhone}?body=${encodeURIComponent(msgBody)}`;
                 } else if (channel === 'WhatsApp') {
-                    const waUri = `https://wa.me/${formattedPhone.replace('+', '')}?text=${encodeURIComponent(msgBody)}`;
-                    window.open(waUri, '_blank');
+                    window.open(`https://wa.me/${intlPhone.replace('+', '')}?text=${encodeURIComponent(msgBody)}`, '_blank');
                 }
             }
 
@@ -493,18 +535,32 @@
             const titleEl = document.getElementById('workspace_title');
             const classBox = document.getElementById('monthly_class_box');
 
-            if(cat === 'student') {
+            if (cat === 'student') {
                 titleEl.innerHTML = `<i class="fa-solid fa-user-graduate mr-2"></i> স্টুডেন্টস মাসিক ও বার্ষিক উপস্থিতি রিপোর্ট (ক্লিক টাইমসহ)`;
                 classBox.style.display = 'block';
-            } else if(cat === 'teacher') {
+            } else if (cat === 'teacher') {
                 titleEl.innerHTML = `<i class="fa-solid fa-chalkboard-user mr-2"></i> শিক্ষক মাসিক ও বার্ষিক উপস্থিতি রিপোর্ট (ক্লিক টাইমসহ)`;
                 classBox.style.display = 'none';
-            } else if(cat === 'staff') {
+            } else if (cat === 'staff') {
                 titleEl.innerHTML = `<i class="fa-solid fa-users mr-2"></i> স্টাফ মাসিক ও বার্ষিক উপস্থিতি রিপোর্ট (ক্লিক টাইমসহ)`;
                 classBox.style.display = 'none';
             }
 
             renderMonthlyTable();
+        }
+
+        function getWorkingDatesForMonth(year, month) {
+            const daysInMonth = new Date(parseInt(year, 10), parseInt(month, 10), 0).getDate();
+            const dates = [];
+            for (let d = 1; d <= daysInMonth; d++) {
+                const dayStr = String(d).padStart(2, '0');
+                const dateKey = `${year}-${month}-${dayStr}`;
+                const dayOfWeek = new Date(`${dateKey}T00:00:00`).getDay();
+                if (dayOfWeek !== 5) {
+                    dates.push({ day: d, dateKey });
+                }
+            }
+            return dates;
         }
 
         function renderMonthlyTable() {
@@ -518,132 +574,120 @@
             const filterYear = document.getElementById('monthly_year_select').value;
             const searchKey = document.getElementById('monthly_search_input').value.toLowerCase().trim();
 
-            let students = JSON.parse(localStorage.getItem('madrasah_students_all')) || [];
-            let teachers = JSON.parse(localStorage.getItem('madrasah_teachers_master')) || [];
-            let staffList = JSON.parse(localStorage.getItem('madrasah_staff_master')) || [];
+            const students = JSON.parse(localStorage.getItem('madrasah_students_all')) || [];
+            const teachers = JSON.parse(localStorage.getItem('madrasah_teachers_master')) || [];
+            const staffList = JSON.parse(localStorage.getItem('madrasah_staff_master')) || [];
 
-            let targetMonths = (rType === 'annual') ? ["01","02","03","04","05","06","07","08","09","10","11","12"] : [filterMonth];
+            const targetMonths = ["01", "02", "03", "04", "05", "06", "07", "08", "09", "10", "11", "12"];
+            const workingDates = getWorkingDatesForMonth(filterYear, filterMonth);
 
-            let headerHTML = `<th class="border p-2">আইডি ও রোল</th><th class="border p-2">নাম</th>`;
-            
-            if(rType === 'annual') {
+            let headerHTML = `<th class="border p-2">আইডি</th><th class="border p-2">নাম</th>`;
+            if (rType === 'annual') {
                 targetMonths.forEach(m => {
                     headerHTML += `<th class="border p-1 text-center text-[10px]">মাস ${m}</th>`;
                 });
             } else {
-                let daysInMonth = new Date(parseInt(filterYear), parseInt(filterMonth), 0).getDate();
-                for(let d=1; d<=daysInMonth; d++) {
-                    headerHTML += `<th class="border p-1 text-center text-[10px]">${d}</th>`;
-                }
+                workingDates.forEach(wd => {
+                    headerHTML += `<th class="border p-1 text-center text-[10px]">${wd.day}</th>`;
+                });
             }
             headerHTML += `<th class="border p-2 text-center">কার্যদিবস</th><th class="border p-2 text-center text-green-700">উপস্থিত</th><th class="border p-2 text-center text-red-700">অনুপস্থিত</th>`;
             thead.innerHTML = headerHTML;
 
-            if(currentCategory === 'student') {
+            if (currentCategory === 'student') {
                 students.forEach(s => {
-                    let sClass = s.cls || s.studentClass || s.class || "নুরানী প্রথম শ্রেণি";
-                    let sRoll = s.roll || s.id || "001";
-                    let sUniqueId = s.id || sRoll;
-                    let sName = s.name_bn || s.name || "শিক্ষার্থী";
+                    const sClass = s.cls || s.studentClass || s.class || "নুরানী প্রথম শ্রেণি";
+                    const sRoll = String(s.roll || s.id || "001");
+                    const sUniqueId = String(s.id || sRoll);
+                    const sName = s.name_bn || s.name || "শিক্ষার্থী";
 
-                    if(filterClass !== 'all' && sClass !== filterClass) return;
-                    if(searchKey && !sName.toLowerCase().includes(searchKey) && !sRoll.toLowerCase().includes(searchKey) && !sUniqueId.toLowerCase().includes(searchKey)) return;
+                    if (filterClass !== 'all' && sClass !== filterClass) return;
+                    if (searchKey && !sName.toLowerCase().includes(searchKey) && !sRoll.toLowerCase().includes(searchKey) && !sUniqueId.toLowerCase().includes(searchKey)) return;
 
-                    let rowHTML = `<tr><td class="border p-2 font-bold text-blue-700">ID: ${sUniqueId}</td><td class="border p-2 font-bold">${sName}</td>`;
-                    
+                    let rowHTML = `<tr><td class="border p-2 font-bold text-blue-700">${sUniqueId}</td><td class="border p-2 font-bold">${sName} <span class="text-[10px] text-gray-500 block">${sClass}</span></td>`;
                     let totalPresent = 0;
                     let totalWorkingDays = 0;
 
-                    if(rType === 'annual') {
+                    if (rType === 'annual') {
                         targetMonths.forEach(m => {
-                            let dateKey = `${filterYear}-${m}-15`;
-                            let attKey = `att_s_${sUniqueId}_${dateKey}`;
-                            let record = JSON.parse(localStorage.getItem(attKey));
+                            let monthPresent = 0;
+                            const mDates = getWorkingDatesForMonth(filterYear, m);
+                            mDates.forEach(wd => {
+                                const rec = JSON.parse(localStorage.getItem(`att_s_${sUniqueId}_${wd.dateKey}`));
+                                if (rec && rec.status === 'উপস্থিত') monthPresent++;
+                            });
+                            totalWorkingDays += mDates.length;
+                            totalPresent += monthPresent;
+                            rowHTML += `<td class="border p-1 text-center font-bold ${monthPresent > 0 ? 'text-green-700' : 'text-gray-400'}">${monthPresent}</td>`;
+                        });
+                    } else {
+                        workingDates.forEach(wd => {
+                            totalWorkingDays++;
+                            const record = JSON.parse(localStorage.getItem(`att_s_${sUniqueId}_${wd.dateKey}`));
                             let mark = '-';
-                            let colorClass = 'text-gray-400';
-                            if(record && record.status === 'উপস্থিত') {
+                            let colorClass = 'text-gray-400 empty-col';
+                            if (record && record.status === 'উপস্থিত') {
                                 mark = record.time;
                                 colorClass = 'text-green-700 font-bold text-[9px]';
                                 totalPresent++;
+                            } else if (record && record.status === 'অনুপস্থিত') {
+                                mark = '✖';
+                                colorClass = 'text-red-600 font-bold';
                             }
-                            totalWorkingDays++;
-                            rowHTML += `<td class="border p-1 text-center ${colorClass}">${mark}</td>`;
+                            rowHTML += `<td class="border p-1 text-center ${colorClass}" title="${wd.dateKey}">${mark}</td>`;
                         });
-                    } else {
-                        let daysInMonth = new Date(parseInt(filterYear), parseInt(filterMonth), 0).getDate();
-                        for(let d=1; d<=daysInMonth; d++) {
-                            let dayStr = d < 10 ? '0' + d : '' + d;
-                            let dateKey = `${filterYear}-${filterMonth}-${dayStr}`;
-                            let dayOfWeek = new Date(dateKey).getDay();
-                            
-                            if(dayOfWeek !== 5) {
-                                totalWorkingDays++;
-                                let attKey = `att_s_${sUniqueId}_${dateKey}`;
-                                let record = JSON.parse(localStorage.getItem(attKey));
-
-                                let mark = '-';
-                                let colorClass = 'text-gray-400 empty-col';
-                                if(record && record.status === 'উপস্থিত') {
-                                    mark = record.time;
-                                    colorClass = 'text-green-700 font-bold text-[9px]';
-                                    totalPresent++;
-                                } else if(record && record.status === 'অনুপস্থিত') {
-                                    mark = '✖';
-                                    colorClass = 'text-red-600 font-bold';
-                                }
-
-                                rowHTML += `<td class="border p-1 text-center ${colorClass}" title="${dateKey}">${mark}</td>`;
-                            }
-                        }
                     }
 
-                    let totalAbsent = totalWorkingDays - totalPresent;
+                    const totalAbsent = totalWorkingDays - totalPresent;
                     rowHTML += `<td class="border p-2 text-center font-bold">${totalWorkingDays}</td><td class="border p-2 text-center font-bold text-green-700">${totalPresent}</td><td class="border p-2 text-center font-bold text-red-700">${totalAbsent}</td></tr>`;
                     tbody.innerHTML += rowHTML;
                 });
             } else {
-                let list = (currentCategory === 'teacher') ? teachers : staffList;
-                let prefix = (currentCategory === 'teacher') ? 't' : 'st';
+                const list = (currentCategory === 'teacher') ? teachers : staffList;
+                const prefix = (currentCategory === 'teacher') ? 't' : 'st';
 
                 list.forEach(item => {
-                    let itemId = item.id || item.indexNo || "ID";
-                    let itemName = item.name_bn || item.name || "নাম";
-                    let itemDesig = item.designation || "";
+                    const itemId = String(item.id || item.indexNo || "ID");
+                    const itemName = item.name_bn || item.name || "নাম";
+                    const itemDesig = item.designation || "";
 
-                    if(searchKey && !itemName.toLowerCase().includes(searchKey) && !itemId.toLowerCase().includes(searchKey)) return;
+                    if (searchKey && !itemName.toLowerCase().includes(searchKey) && !itemId.toLowerCase().includes(searchKey)) return;
 
                     let rowHTML = `<tr><td class="border p-2 font-bold text-emerald-700">${itemId}</td><td class="border p-2 font-bold">${itemName} <br><span class="text-[10px] text-gray-500">${itemDesig}</span></td>`;
-                    
                     let totalPresent = 0;
                     let totalWorkingDays = 0;
 
-                    let daysInMonth = new Date(parseInt(filterYear), parseInt(filterMonth), 0).getDate();
-                    for(let d=1; d<=daysInMonth; d++) {
-                        let dayStr = d < 10 ? '0' + d : '' + d;
-                        let dateKey = `${filterYear}-${filterMonth}-${dayStr}`;
-                        let dayOfWeek = new Date(dateKey).getDay();
-
-                        if(dayOfWeek !== 5) {
+                    if (rType === 'annual') {
+                        targetMonths.forEach(m => {
+                            let monthPresent = 0;
+                            const mDates = getWorkingDatesForMonth(filterYear, m);
+                            mDates.forEach(wd => {
+                                const rec = JSON.parse(localStorage.getItem(`att_${prefix}_${itemId}_${wd.dateKey}`));
+                                if (rec && rec.status === 'উপস্থিত') monthPresent++;
+                            });
+                            totalWorkingDays += mDates.length;
+                            totalPresent += monthPresent;
+                            rowHTML += `<td class="border p-1 text-center font-bold ${monthPresent > 0 ? 'text-green-700' : 'text-gray-400'}">${monthPresent}</td>`;
+                        });
+                    } else {
+                        workingDates.forEach(wd => {
                             totalWorkingDays++;
-                            let attKey = `att_${prefix}_${itemId}_${dateKey}`;
-                            let record = JSON.parse(localStorage.getItem(attKey));
-
+                            const record = JSON.parse(localStorage.getItem(`att_${prefix}_${itemId}_${wd.dateKey}`));
                             let mark = '-';
                             let colorClass = 'text-gray-400 empty-col';
-                            if(record && record.status === 'উপস্থিত') {
+                            if (record && record.status === 'উপস্থিত') {
                                 mark = record.time;
                                 colorClass = 'text-green-700 font-bold text-[9px]';
                                 totalPresent++;
-                            } else if(record && record.status === 'অনুপস্থিত') {
+                            } else if (record && record.status === 'অনুপস্থিত') {
                                 mark = '✖';
                                 colorClass = 'text-red-600 font-bold';
                             }
-
-                            rowHTML += `<td class="border p-1 text-center ${colorClass}" title="${dateKey}">${mark}</td>`;
-                        }
+                            rowHTML += `<td class="border p-1 text-center ${colorClass}" title="${wd.dateKey}">${mark}</td>`;
+                        });
                     }
 
-                    let totalAbsent = totalWorkingDays - totalPresent;
+                    const totalAbsent = totalWorkingDays - totalPresent;
                     rowHTML += `<td class="border p-2 text-center font-bold">${totalWorkingDays}</td><td class="border p-2 text-center font-bold text-green-700">${totalPresent}</td><td class="border p-2 text-center font-bold text-red-700">${totalAbsent}</td></tr>`;
                     tbody.innerHTML += rowHTML;
                 });

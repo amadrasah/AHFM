@@ -27,7 +27,6 @@
             @page { size: A4 landscape; margin: 8mm; }
         }
         
-        /* স্ক্রিন প্রিভিউয়ের জন্য ব্যাকগ্রাউন্ড বর্ডার সেটআপ */
         .print-container {
             background-image: url('marksheet-bg.png');
             background-size: 100% 100%;
@@ -36,7 +35,6 @@
             position: relative;
         }
 
-        /* ওয়াটারমার্ক ও ডিজাইন দৃশ্যমান রাখতে টেবিল ও সেলের সেমি-ট্রান্সপারেন্ট স্টাইল */
         .print-container table,
         .print-container tbody,
         .print-container tr {
@@ -125,24 +123,25 @@
                 <div class="bg-gradient-to-r from-emerald-900 to-emerald-800 text-white p-5 md:p-6 rounded-2xl shadow-md flex flex-col md:flex-row justify-between items-center gap-4 no-print">
                     <div>
                         <h2 class="text-lg md:text-xl font-bold">পরীক্ষা, নম্বর এন্ট্রি, ফলাফল ও রিপোর্ট কার্ড মডিউল</h2>
-                        <p class="text-xs text-emerald-200 mt-1">Teacher & Staff ও সেটিংস থেকে স্বয়ংক্রিয়ভাবে শিক্ষক লিস্ট ও একাডেমিক তথ্য যুক্ত করুন।</p>
+                        <p class="text-xs text-emerald-200 mt-1">Teacher & Staff ও 22. Settings Management থেকে স্বয়ংক্রিয়ভাবে সেশন/সাল, শিক্ষক ও বিষয় যুক্ত করুন।</p>
                     </div>
                 </div>
 
+                <!-- 11 Cards -->
                 <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4 md:gap-6 no-print">
                     <div onclick="openExamPanel('setup')" class="bg-white p-5 rounded-2xl shadow-sm border border-gray-200 hover:border-emerald-500 hover:shadow-md cursor-pointer transition space-y-3">
-                        <div class="flex justify-between items-center border-b pb-2"><h3 class="font-bold text-gray-800 text-sm"><i class="fa-solid fa-gear text-emerald-600 mr-2"></i> এক্সাম সেটআপ</h3><span class="text-[10px] bg-emerald-100 text-emerald-800 px-2 py-0.5 rounded font-bold">সেটিংস লিংকড</span></div>
-                        <p class="text-xs text-gray-600">একাডেমিক ইয়ার, ক্লাস, সাবজেক্ট, এক্সাম ও গ্রেডিং সেটআপ।</p>
+                        <div class="flex justify-between items-center border-b pb-2"><h3 class="font-bold text-gray-800 text-sm"><i class="fa-solid fa-gear text-emerald-600 mr-2"></i> এক্সাম সেটআপ</h3><span class="text-[10px] bg-emerald-100 text-emerald-800 px-2 py-0.5 rounded font-bold">Settings লিংকড</span></div>
+                        <p class="text-xs text-gray-600">Settings সেশন/সাল, শ্রেণিভিত্তিক বিষয়, পূর্ণমান, পাস মার্ক ও নতুন বিষয় যোগ।</p>
                     </div>
 
                     <div onclick="openExamPanel('marks')" class="bg-white p-5 rounded-2xl shadow-sm border border-gray-200 hover:border-blue-500 hover:shadow-md cursor-pointer transition space-y-3">
-                        <div class="flex justify-between items-center border-b pb-2"><h3 class="font-bold text-gray-800 text-sm"><i class="fa-solid fa-pen-to-square text-blue-600 mr-2"></i> মার্কস এন্ট্রি</h3><span class="text-[10px] bg-blue-100 text-blue-800 px-2 py-0.5 rounded font-bold">নম্বর ইনপুট</span></div>
-                        <p class="text-xs text-gray-600">লিখিত, নৈর্ব্যক্তিক ও ব্যবহারিক নম্বর এন্ট্রি প্যানেল।</p>
+                        <div class="flex justify-between items-center border-b pb-2"><h3 class="font-bold text-gray-800 text-sm"><i class="fa-solid fa-pen-to-square text-blue-600 mr-2"></i> মার্কস এন্ট্রি</h3><span class="text-[10px] bg-blue-100 text-blue-800 px-2 py-0.5 rounded font-bold">বিষয় ড্রপডাউন</span></div>
+                        <p class="text-xs text-gray-600">সাল, পরীক্ষা, শ্রেণি ও বিষয় ড্রপডাউন অনুযায়ী নম্বর ইনপুট প্যানেল।</p>
                     </div>
 
                     <div onclick="openExamPanel('processing')" class="bg-white p-5 rounded-2xl shadow-sm border border-gray-200 hover:border-purple-500 hover:shadow-md cursor-pointer transition space-y-3">
-                        <div class="flex justify-between items-center border-b pb-2"><h3 class="font-bold text-gray-800 text-sm"><i class="fa-solid fa-calculator text-purple-600 mr-2"></i> রেজাল্ট প্রসেসিং</h3><span class="text-[10px] bg-purple-100 text-purple-800 px-2 py-0.5 rounded font-bold">যুগ্ম সাবজেক্ট পাস</span></div>
-                        <p class="text-xs text-gray-600">কুরআন+হাদীস বা ১ম+২য় পত্র একত্রে পাস লজিক প্রসেস।</p>
+                        <div class="flex justify-between items-center border-b pb-2"><h3 class="font-bold text-gray-800 text-sm"><i class="fa-solid fa-calculator text-purple-600 mr-2"></i> রেজাল্ট প্রসেসিং</h3><span class="text-[10px] bg-purple-100 text-purple-800 px-2 py-0.5 rounded font-bold">গ্রুপ মার্কস + গ্রেড</span></div>
+                        <p class="text-xs text-gray-600">গ্রুপ বিষয়ের আলাদা নম্বর এন্ট্রি/শো এবং একত্রে গ্রেড ও GPA পয়েন্ট।</p>
                     </div>
 
                     <div onclick="openExamPanel('merit')" class="bg-white p-5 rounded-2xl shadow-sm border border-gray-200 hover:border-amber-500 hover:shadow-md cursor-pointer transition space-y-3">
@@ -161,21 +160,20 @@
                     </div>
 
                     <div onclick="openExamPanel('reportcard')" class="bg-white p-5 rounded-2xl shadow-sm border border-gray-200 hover:border-rose-500 hover:shadow-md cursor-pointer transition space-y-3">
-                        <div class="flex justify-between items-center border-b pb-2"><h3 class="font-bold text-gray-800 text-sm"><i class="fa-solid fa-award text-rose-600 mr-2"></i> প্রোগ্রেস রিপোর্ট কার্ড</h3><span class="text-[10px] bg-rose-100 text-rose-800 px-2 py-0.5 rounded font-bold">নম্বরপত্র</span></div>
-                        <p class="text-xs text-gray-600">লোগো, ওয়াটারমার্ক ও স্বাক্ষরযুক্ত প্রোগ্রেস কার্ড প্রিন্ট।</p>
+                        <div class="flex justify-between items-center border-b pb-2"><h3 class="font-bold text-gray-800 text-sm"><i class="fa-solid fa-award text-rose-600 mr-2"></i> প্রোগ্রেস রিপোর্ট কার্ড</h3><span class="text-[10px] bg-rose-100 text-rose-800 px-2 py-0.5 rounded font-bold">শ্রেণি ও আইডি ফিল্টার</span></div>
+                        <p class="text-xs text-gray-600">শ্রেণিভিত্তিক লোড ও আইডি ফিল্টারিংসহ প্রোগ্রেস কার্ড প্রিন্ট।</p>
                     </div>
 
                     <div onclick="openExamPanel('admit')" class="bg-white p-5 rounded-2xl shadow-sm border border-gray-200 hover:border-cyan-500 hover:shadow-md cursor-pointer transition space-y-3">
-                        <div class="flex justify-between items-center border-b pb-2"><h3 class="font-bold text-gray-800 text-sm"><i class="fa-solid fa-id-card text-cyan-600 mr-2"></i> এডমিট কার্ড</h3><span class="text-[10px] bg-cyan-100 text-cyan-800 px-2 py-0.5 rounded font-bold">ডুয়াল এডমিট</span></div>
-                        <p class="text-xs text-gray-600">এক পেজে ২ জন শিক্ষার্থীর ডুয়াল এডমিট কার্ড প্রিন্ট।</p>
+                        <div class="flex justify-between items-center border-b pb-2"><h3 class="font-bold text-gray-800 text-sm"><i class="fa-solid fa-id-card text-cyan-600 mr-2"></i> এডমিট কার্ড</h3><span class="text-[10px] bg-cyan-100 text-cyan-800 px-2 py-0.5 rounded font-bold">শ্রেণি ও আইডি ফিল্টার</span></div>
+                        <p class="text-xs text-gray-600">শ্রেণিভিত্তিক শিক্ষার্থী লোড ও আইডি ফিল্টারিংসহ এডমিট কার্ড প্রিন্ট।</p>
                     </div>
 
                     <div onclick="openExamPanel('routine')" class="bg-white p-5 rounded-2xl shadow-sm border border-gray-200 hover:border-sky-500 hover:shadow-md cursor-pointer transition space-y-3">
-                        <div class="flex justify-between items-center border-b pb-2"><h3 class="font-bold text-gray-800 text-sm"><i class="fa-solid fa-calendar-days text-sky-600 mr-2"></i> এক্সাম রুটিন</h3><span class="text-[10px] bg-sky-100 text-sky-800 px-2 py-0.5 rounded font-bold">গ্লোবাল ক্যালেন্ডার</span></div>
-                        <p class="text-xs text-gray-600">স্বয়ংক্রিয় রুটিন ও মাস্টার মাস্টার্স রুটিন জেনারেটর।</p>
+                        <div class="flex justify-between items-center border-b pb-2"><h3 class="font-bold text-gray-800 text-sm"><i class="fa-solid fa-calendar-days text-sky-600 mr-2"></i> এক্সাম রুটিন</h3><span class="text-[10px] bg-sky-100 text-sky-800 px-2 py-0.5 rounded font-bold">শ্রেণি ফিল্টার ও প্রিন্ট</span></div>
+                        <p class="text-xs text-gray-600">স্বয়ংক্রিয় এক্সাম রুটিন, শ্রেণিভিত্তিক ফিল্টারিং ও প্রিন্ট ব্যবস্থা।</p>
                     </div>
 
-                    <!-- এক্সাম মনিটরিং কার্ড -->
                     <div onclick="openExamPanel('monitoring')" class="bg-white p-5 rounded-2xl shadow-sm border border-gray-200 hover:border-emerald-600 hover:shadow-md cursor-pointer transition space-y-3">
                         <div class="flex justify-between items-center border-b pb-2">
                             <h3 class="font-bold text-gray-800 text-sm"><i class="fa-solid fa-user-check text-emerald-700 mr-2"></i> এক্সাম মনিটরিং</h3>
@@ -184,7 +182,6 @@
                         <p class="text-xs text-gray-600">রুম অনুযায়ী ১ম, ২য়, ৩য় ভিজিট কলাম, দিনভিত্তিক ফিল্টার ও শিক্ষক রিপোর্ট।</p>
                     </div>
 
-                    <!-- Question Management কার্ড -->
                     <div onclick="openExamPanel('question_management')" class="bg-white p-5 rounded-2xl shadow-sm border border-gray-200 hover:border-violet-600 hover:shadow-md cursor-pointer transition space-y-3">
                         <div class="flex justify-between items-center border-b pb-2">
                             <h3 class="font-bold text-gray-800 text-sm"><i class="fa-solid fa-file-circle-question text-violet-700 mr-2"></i> Question Management</h3>
@@ -194,93 +191,434 @@
                     </div>
                 </div>
 
-                <!-- Question Management প্যানেল -->
-                <div id="panel-question_management" class="exam-sub-panel bg-white p-4 md:p-6 rounded-2xl shadow-sm border border-gray-200 space-y-6 hidden">
+                <!-- ১. এক্সাম সেটআপ প্যানেল (Settings সেশন/সাল লিংক + শ্রেণিভিত্তিক বিষয়, পূর্ণমান, পাস মার্ক ও নতুন বিষয় যোগ) -->
+                <div id="panel-setup" class="exam-sub-panel bg-white p-5 md:p-6 rounded-2xl shadow-sm border border-gray-200 space-y-6 hidden">
                     <div class="flex justify-between items-center border-b pb-3 no-print">
                         <div>
-                            <h3 class="font-bold text-violet-900 text-sm"><i class="fa-solid fa-file-circle-question mr-2"></i> ১১. Question Management (Teacher & Staff সংযুক্ত)</h3>
-                            <p class="text-[11px] text-violet-700 mt-0.5"><i class="fa-solid fa-lock mr-1"></i> প্রতিটি ধাপে একবার ক্লিক করলে বর্তমান তারিখসহ স্থায়ীভাবে লক ও রিয়েল-টাইম সেভ হবে।</p>
+                            <h3 class="font-bold text-emerald-800 text-sm"><i class="fa-solid fa-gear mr-2"></i> ১. এক্সাম সেটআপ (22. Settings সেশন/সাল লিংক ও শ্রেণিভিত্তিক বিষয়/নম্বর)</h3>
+                            <p class="text-[11px] text-gray-600 mt-0.5">Settings মডিউলের সেশন ও সাল বাটন থেকে লিংক করুন এবং শ্রেণিভিত্তিক বিষয়, পূর্ণমান ও পাস মার্ক সেট করুন।</p>
                         </div>
-                        <div class="flex items-center gap-2">
-                            <button onclick="window.print()" class="bg-gray-800 text-white px-3 py-1 rounded text-xs font-bold hover:bg-black shadow">
-                                <i class="fa-solid fa-print mr-1"></i> প্রিন্ট
-                            </button>
-                            <button onclick="closeAllExamPanels()" class="text-xs bg-gray-200 px-3 py-1 rounded font-bold text-gray-700 hover:bg-gray-300">বন্ধ করুন</button>
+                        <button onclick="closeAllExamPanels()" class="text-xs bg-gray-200 px-3 py-1 rounded font-bold text-gray-700 hover:bg-gray-300">বন্ধ করুন</button>
+                    </div>
+
+                    <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4 text-xs">
+                        <div class="p-4 bg-emerald-50 rounded-xl border border-emerald-200 space-y-2">
+                            <div class="flex justify-between items-center">
+                                <h4 class="font-bold text-emerald-900">সেশন ও সাল (Settings)</h4>
+                                <button type="button" onclick="linkFromSettingsSessionPanel()" class="bg-emerald-700 text-white px-2 py-1 rounded text-[10px] font-bold hover:bg-emerald-800">
+                                    <i class="fa-solid fa-link mr-1"></i> লিংক করুন
+                                </button>
+                            </div>
+                            <select id="set_year" onchange="syncSelectedYearAcrossExam()" class="w-full p-2 border rounded bg-white font-bold"></select>
+                            <p id="settings_link_status" class="text-[10px] text-emerald-800 font-semibold">22. Settings সেশন/সাল সংযুক্ত</p>
+                        </div>
+
+                        <div class="p-4 bg-emerald-50 rounded-xl border border-emerald-200 space-y-2">
+                            <h4 class="font-bold text-emerald-900">শ্রেণি নির্বাচন</h4>
+                            <select id="set_class" onchange="renderClassSubjectsSetupTable()" class="w-full p-2 border rounded bg-white font-bold"></select>
+                        </div>
+
+                        <div class="p-4 bg-emerald-50 rounded-xl border border-emerald-200 space-y-2">
+                            <h4 class="font-bold text-emerald-900">পরীক্ষার নাম</h4>
+                            <select id="set_exam_name" class="w-full p-2 border rounded bg-white font-bold"></select>
+                        </div>
+
+                        <div class="p-4 bg-emerald-50 rounded-xl border border-emerald-200 space-y-2">
+                            <h4 class="font-bold text-emerald-900">গ্রেডিং সিস্টেম</h4>
+                            <select id="set_grading" class="w-full p-2 border rounded bg-white font-bold">
+                                <option value="General (GPA 5.00 Scale)">General (GPA 5.00 Scale)</option>
+                                <option value="Madrasah Board Scale">Madrasah Board Scale</option>
+                            </select>
                         </div>
                     </div>
 
-                    <div class="bg-violet-50 p-4 rounded-xl border border-violet-200 text-xs space-y-4 no-print">
-                        <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
-                            <div>
-                                <label class="font-bold block mb-1 text-violet-950">মিটিংয়ের তারিখ:</label>
-                                <input type="date" id="qm_meeting_date" onchange="saveQuestionMetaDates()" class="p-2 border rounded bg-white font-bold w-full">
-                            </div>
-                            <div>
-                                <label class="font-bold block mb-1 text-violet-950">জমাদানের শেষ তারিখ:</label>
-                                <input type="date" id="qm_submission_deadline" onchange="saveQuestionMetaDates()" class="p-2 border rounded bg-white font-bold w-full">
-                            </div>
+                    <!-- শ্রেণিভিত্তিক বিষয়, পূর্ণমান, পাস মার্ক ও নতুন বিষয় যুক্তকরণ -->
+                    <div class="bg-slate-50 p-4 rounded-xl border border-slate-200 space-y-4 text-xs">
+                        <div class="flex flex-col md:flex-row justify-between items-start md:items-center gap-2 border-b pb-2">
+                            <h4 class="font-bold text-slate-900"><i class="fa-solid fa-book-medical mr-1 text-emerald-700"></i> শ্রেণিভিত্তিক বিষয়, পূর্ণমান ও পাস মার্ক সেটআপ</h4>
+                            <span id="setup_current_class_badge" class="bg-emerald-100 text-emerald-900 px-3 py-1 rounded-full font-bold text-[11px]">শ্রেণি: ---</span>
                         </div>
 
-                        <div class="grid grid-cols-1 sm:grid-cols-12 gap-3 pt-3 border-t border-violet-200 items-end">
+                        <div class="grid grid-cols-1 sm:grid-cols-12 gap-3 items-end bg-white p-3 rounded-lg border">
                             <div class="sm:col-span-5">
-                                <label class="font-bold block mb-1 text-violet-950">Teacher & Staff থেকে শিক্ষক নির্বাচন করুন:</label>
-                                <select id="qm_teacher_select" onchange="onQmTeacherSelectChange()" class="p-2 border rounded bg-white font-bold w-full">
-                                    <option value="">-- শিক্ষক নির্বাচন করুন --</option>
-                                </select>
+                                <label class="font-bold block mb-1 text-gray-700">নতুন বিষয় যুক্ত করুন:</label>
+                                <input type="text" id="new_class_sub_name" placeholder="যেমন: তাফসীর / ফিকহ্ / সাধারণ বিজ্ঞান" class="p-2 border rounded w-full font-bold">
                             </div>
                             <div class="sm:col-span-3">
-                                <label class="font-bold block mb-1 text-violet-950">পদবী ও বিষয়:</label>
-                                <input type="text" id="qm_new_designation_subject" placeholder="স্বয়ংক্রিয় বা লিখুন..." class="p-2 border rounded bg-white font-bold w-full">
+                                <label class="font-bold block mb-1 text-gray-700">পূর্ণমান (Full Marks):</label>
+                                <input type="number" id="new_class_sub_full" value="100" min="1" class="p-2 border rounded w-full font-bold text-blue-800">
                             </div>
                             <div class="sm:col-span-2">
-                                <button onclick="addQuestionTeacherRow()" class="w-full bg-violet-700 text-white px-3 py-2 rounded font-bold hover:bg-violet-800 shadow">
-                                    <i class="fa-solid fa-user-plus mr-1"></i> যুক্ত করুন
-                                </button>
+                                <label class="font-bold block mb-1 text-gray-700">পাস মার্ক (Pass):</label>
+                                <input type="number" id="new_class_sub_pass" value="33" min="0" class="p-2 border rounded w-full font-bold text-rose-700">
                             </div>
                             <div class="sm:col-span-2">
-                                <button onclick="loadAllTeachersIntoQuestionManagement()" class="w-full bg-emerald-700 text-white px-3 py-2 rounded font-bold hover:bg-emerald-800 shadow" title="Teacher & Staff এর সকল শিক্ষক তালিকায় আনুন">
-                                    <i class="fa-solid fa-users mr-1"></i> সবার লিস্ট আনুন
+                                <button type="button" onclick="addSubjectToSelectedClass()" class="w-full bg-emerald-700 text-white p-2 rounded font-bold hover:bg-emerald-800 shadow">
+                                    <i class="fa-solid fa-plus mr-1"></i> বিষয় এড
                                 </button>
                             </div>
                         </div>
-                    </div>
 
-                    <div class="print-container p-6 sm:p-8 rounded-xl border border-gray-200 space-y-3 overflow-hidden">
-                        <div class="text-center border-b pb-2">
-                            <h2 class="font-bold text-sm text-violet-950">আবদুল্লাহ হাট ইসলামিয়া ফাজিল মাদ্রাসা</h2>
-                            <p class="text-[11px] text-gray-600">Question Management — প্রশ্ন প্রস্তুত, জমাদান, মুদ্রণ, সংশোধন ও সংরক্ষণ রেজিস্টার</p>
-                            <p class="text-[11px] font-bold text-violet-900 mt-1 bg-violet-50/75 inline-block px-3 py-1 rounded border border-violet-200">
-                                মিটিংয়ের তারিখ: <span id="qm_display_meeting_date">---</span> | জমাদানের শেষ তারিখ: <span id="qm_display_deadline_date">---</span>
-                            </p>
-                        </div>
-
-                        <div class="w-full overflow-x-auto pb-1">
-                            <table class="w-full text-left border-collapse border border-gray-300 text-[11px]">
+                        <div class="overflow-x-auto bg-white rounded-lg border">
+                            <table class="w-full text-left border-collapse text-xs">
                                 <thead>
-                                    <tr>
-                                        <th class="border px-2 py-2">১. শিক্ষকের নাম</th>
-                                        <th class="border px-2 py-2">২. পদবী ও বিষয়</th>
-                                        <th class="border px-2 py-2 text-center">৩. প্রশ্ন জমাদান</th>
-                                        <th class="border px-2 py-2 text-center">৪. মুদ্রণে প্রেরণ</th>
-                                        <th class="border px-2 py-2 text-center">৫. সংশোধনের জন্য প্রেরণ</th>
-                                        <th class="border px-2 py-2 text-center">৬. সংরক্ষণ</th>
-                                        <th class="border px-2 py-2">৭. মন্তব্য</th>
-                                        <th class="border px-1.5 py-2 text-center w-8 no-print"><i class="fa-solid fa-trash"></i></th>
+                                    <tr class="bg-emerald-800 text-white">
+                                        <th class="border p-2">বিষয়ের নাম</th>
+                                        <th class="border p-2 text-center">পূর্ণমান</th>
+                                        <th class="border p-2 text-center">পাস মার্ক</th>
+                                        <th class="border p-2 text-center w-24 no-print">মুছুন</th>
                                     </tr>
                                 </thead>
-                                <tbody id="qm_table_tbody"></tbody>
+                                <tbody id="class_subjects_setup_tbody"></tbody>
                             </table>
                         </div>
                     </div>
 
-                    <div class="flex justify-between items-center pt-1 no-print">
-                        <span id="qm_realtime_badge" class="text-xs font-bold text-violet-700">
-                            <i class="fa-solid fa-shield-check mr-1"></i> Teacher & Staff সিঙ্ক, ওয়ান-টাইম ক্লিক ও রিয়েল-টাইম অটো-সেভ সক্রিয়
-                        </span>
+                    <div class="flex justify-end no-print">
+                        <button onclick="saveExamSettings()" class="bg-emerald-700 text-white px-5 py-2 rounded-lg font-bold text-xs hover:bg-emerald-800 shadow">সেটআপ সংরক্ষণ করুন</button>
                     </div>
                 </div>
 
-                <!-- এক্সাম মনিটরিং প্যানেল -->
+                <!-- ২. মার্কস এন্ট্রি প্যানেল (বিষয় ড্রপডাউনসহ) -->
+                <div id="panel-marks" class="exam-sub-panel bg-white p-5 md:p-6 rounded-2xl shadow-sm border border-gray-200 space-y-4 hidden">
+                    <div class="flex justify-between items-center border-b pb-3 no-print">
+                        <h3 class="font-bold text-blue-800 text-sm"><i class="fa-solid fa-pen-to-square mr-2"></i> ২. মার্কস এন্ট্রি প্যানেল</h3>
+                        <button onclick="closeAllExamPanels()" class="text-xs bg-gray-200 px-3 py-1 rounded font-bold text-gray-700 hover:bg-gray-300">বন্ধ করুন</button>
+                    </div>
+                    <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-5 gap-3 bg-blue-50 p-4 rounded-xl border border-blue-200 text-xs items-end no-print">
+                        <div>
+                            <label class="font-bold block mb-1">সেশন / সাল:</label>
+                            <select id="mark_filter_year" class="p-2 border rounded bg-white font-bold w-full"></select>
+                        </div>
+                        <div>
+                            <label class="font-bold block mb-1">পরীক্ষার নাম:</label>
+                            <select id="mark_filter_exam" class="p-2 border rounded bg-white font-bold w-full"></select>
+                        </div>
+                        <div>
+                            <label class="font-bold block mb-1">শ্রেণি নির্বাচন:</label>
+                            <select id="mark_filter_class" class="p-2 border rounded bg-white font-bold w-full" onchange="onMarksClassOrSubjectChange()"></select>
+                        </div>
+                        <div>
+                            <label class="font-bold block mb-1">বিষয় নির্বাচন (ড্রপডাউন):</label>
+                            <select id="mark_filter_subject" class="p-2 border rounded bg-white font-bold w-full text-blue-900" onchange="loadMarksTable()"></select>
+                        </div>
+                        <div>
+                            <button onclick="loadMarksTable()" class="w-full bg-blue-700 text-white px-4 py-2 rounded font-bold hover:bg-blue-800 shadow">নম্বর এন্ট্রি লোড করুন</button>
+                        </div>
+                    </div>
+
+                    <div id="marks_subject_meta_info" class="text-xs font-bold text-blue-900 bg-blue-50/70 px-3 py-2 rounded-lg border border-blue-100">
+                        নির্বাচিত বিষয়: --- | পূর্ণমান: --- | পাস মার্ক: ---
+                    </div>
+
+                    <div id="loading_marks" class="hidden flex justify-center items-center py-10">
+                        <div class="spinner"></div><span class="ml-3 text-xs font-bold text-blue-800">ডেটা লোড হচ্ছে...</span>
+                    </div>
+                    <div class="overflow-x-auto" id="marksTableContainer">
+                        <table class="w-full text-left border-collapse border border-gray-200 text-xs whitespace-nowrap">
+                            <thead>
+                                <tr class="bg-blue-700 text-white">
+                                    <th class="border p-2">আইডি</th>
+                                    <th class="border p-2">শিক্ষার্থীর নাম</th>
+                                    <th class="border p-2">বিষয়</th>
+                                    <th class="border p-2">লিখিত</th>
+                                    <th class="border p-2">নৈর্ব্যক্তিক</th>
+                                    <th class="border p-2">ব্যবহারিক</th>
+                                    <th class="border p-2 text-center">মোট / স্ট্যাটাস</th>
+                                    <th class="border p-2 text-center">সংরক্ষণ</th>
+                                </tr>
+                            </thead>
+                            <tbody id="marksEntryTableBody"></tbody>
+                        </table>
+                    </div>
+                </div>
+
+                <!-- ৩. রেজাল্ট প্রসেসিং প্যানেল (গ্রুপ বিষয়ের আলাদা নম্বর এন্ট্রি ও শো, একত্রে গ্রেড ও পয়েন্ট) -->
+                <div id="panel-processing" class="exam-sub-panel bg-white p-5 md:p-6 rounded-2xl shadow-sm border border-gray-200 space-y-4 hidden">
+                    <div class="flex justify-between items-center border-b pb-3 no-print">
+                        <h3 class="font-bold text-purple-800 text-sm"><i class="fa-solid fa-calculator mr-2"></i> ৩. রেজাল্ট প্রসেসিং (গ্রুপ বিষয়ের আলাদা নম্বর ও একত্রে গ্রেড/পয়েন্ট)</h3>
+                        <button onclick="closeAllExamPanels()" class="text-xs bg-gray-200 px-3 py-1 rounded font-bold text-gray-700 hover:bg-gray-300">বন্ধ করুন</button>
+                    </div>
+                    <div class="bg-purple-50 p-4 rounded-xl border border-purple-200 text-xs space-y-4">
+                        <div class="grid grid-cols-1 sm:grid-cols-3 gap-3">
+                            <div><label class="font-bold block mb-1">সেশন / সাল:</label><select id="proc_filter_year" class="p-2 border rounded bg-white font-bold w-full"></select></div>
+                            <div><label class="font-bold block mb-1">পরীক্ষার নাম:</label><select id="proc_filter_exam" class="p-2 border rounded bg-white font-bold w-full"></select></div>
+                            <div><label class="font-bold block mb-1">শ্রেণি:</label><select id="proc_filter_class" onchange="populateGroupSubjectDropdowns()" class="p-2 border rounded bg-white font-bold w-full"></select></div>
+                        </div>
+
+                        <div class="bg-white p-4 rounded-lg border border-purple-300 space-y-3 shadow-sm">
+                            <p class="font-bold text-purple-900">গ্রুপ বিষয় তৈরি করুন (বিষয়গুলোর আলাদা নম্বর থাকবে, কিন্তু গ্রেড ও GPA পয়েন্ট একত্রে হবে):</p>
+                            <div class="grid grid-cols-1 sm:grid-cols-4 gap-3 items-end">
+                                <div><label class="font-bold block mb-1 text-gray-700">গ্রুপের নাম:</label><input type="text" id="comb_group_name" placeholder="যেমন: কুরআন ও হাদীস গ্রুপ" class="p-2 border rounded w-full font-bold bg-gray-50"></div>
+                                <div><label class="font-bold block mb-1 text-gray-700">বিষয় ১:</label><select id="comb_sub_1" class="p-2 border rounded w-full font-bold bg-gray-50"></select></div>
+                                <div><label class="font-bold block mb-1 text-gray-700">বিষয় ২:</label><select id="comb_sub_2" class="p-2 border rounded w-full font-bold bg-gray-50"></select></div>
+                                <div><button onclick="addCombinedSubjectGroup()" class="w-full bg-purple-700 text-white p-2 rounded font-bold hover:bg-purple-800 shadow">গ্রুপ যুক্ত করুন</button></div>
+                            </div>
+                            <div id="combinedGroupsDisplayList" class="flex flex-wrap gap-2 pt-2"></div>
+                        </div>
+
+                        <!-- গ্রুপ বিষয়ের আলাদা নম্বর এন্ট্রি ও শো টেবিল -->
+                        <div class="bg-white p-4 rounded-lg border border-purple-200 space-y-3">
+                            <div class="flex justify-between items-center">
+                                <h4 class="font-bold text-purple-900">গ্রুপ বিষয়ের আলাদা নম্বর এন্ট্রি ও সমন্বিত গ্রেড/পয়েন্ট</h4>
+                                <button onclick="renderGroupMarksProcessingTable()" class="bg-purple-600 text-white px-3 py-1.5 rounded font-bold text-xs hover:bg-purple-700">গ্রুপ মার্কস লিস্ট লোড</button>
+                            </div>
+                            <div class="overflow-x-auto">
+                                <table class="w-full text-left border-collapse border border-gray-200 text-xs whitespace-nowrap">
+                                    <thead>
+                                        <tr class="bg-purple-800 text-white">
+                                            <th class="border p-2">শিক্ষার্থী</th>
+                                            <th class="border p-2">বিষয় ১ নম্বর (আলাদা)</th>
+                                            <th class="border p-2">বিষয় ২ নম্বর (আলাদা)</th>
+                                            <th class="border p-2 text-center">মোট নম্বর</th>
+                                            <th class="border p-2 text-center">যৌথ গ্রেড ও পয়েন্ট</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody id="groupMarksProcessingBody"></tbody>
+                                </table>
+                            </div>
+                        </div>
+
+                        <div class="flex justify-end">
+                            <button onclick="processAllResults()" class="bg-purple-700 text-white px-6 py-2.5 rounded-lg font-bold hover:bg-purple-800 shadow">সকল বিষয়ের ফলাফল প্রসেস করুন</button>
+                        </div>
+                    </div>
+                    <div id="processingStatusResult" class="text-xs font-bold text-emerald-700 px-1"></div>
+                </div>
+
+                <!-- ৪. মেরিট লিস্ট -->
+                <div id="panel-merit" class="exam-sub-panel bg-white p-5 md:p-6 rounded-2xl shadow-sm border border-gray-200 space-y-4 hidden">
+                    <div class="flex justify-between items-center border-b pb-3 no-print">
+                        <h3 class="font-bold text-amber-800 text-sm"><i class="fa-solid fa-trophy mr-2"></i> ৪. মেরিট লিস্ট</h3>
+                        <button onclick="closeAllExamPanels()" class="text-xs bg-gray-200 px-3 py-1 rounded font-bold text-gray-700 hover:bg-gray-300">বন্ধ করুন</button>
+                    </div>
+                    <div class="grid grid-cols-1 sm:grid-cols-4 gap-3 bg-amber-50 p-4 rounded-xl border border-amber-200 text-xs items-center no-print">
+                        <div><label class="font-bold block mb-1">সেশন / সাল:</label><select id="merit_filter_year" class="p-2 border rounded bg-white font-bold w-full"></select></div>
+                        <div><label class="font-bold block mb-1">পরীক্ষা:</label><select id="merit_filter_exam" class="p-2 border rounded bg-white font-bold w-full"></select></div>
+                        <div><label class="font-bold block mb-1">শ্রেণি:</label><select id="merit_filter_class" class="p-2 border rounded bg-white font-bold w-full" onchange="loadMeritList()"></select></div>
+                        <div class="pt-4 flex gap-2">
+                            <button onclick="loadMeritList()" class="bg-amber-700 text-white px-3 py-2 rounded font-bold hover:bg-amber-800 shadow flex-1">লোড</button>
+                            <button onclick="window.print()" class="bg-gray-800 text-white px-3 py-2 rounded font-bold hover:bg-black shadow"><i class="fa-solid fa-print"></i></button>
+                        </div>
+                    </div>
+                    <div id="loading_merit" class="hidden flex justify-center items-center py-10"><div class="spinner"></div></div>
+                    <div class="overflow-x-auto print-container" id="meritTableContainer">
+                        <div class="text-center pb-4 border-b">
+                            <h2 class="font-bold text-sm">আবদুল্লাহ হাট ইসলামিয়া ফাজিল মাদ্রাসা</h2>
+                            <p class="text-xs text-gray-600">মেরিট লিস্ট - <span id="merit_exam_title_display">অর্ধবার্ষিক পরীক্ষা ২০২৬</span></p>
+                        </div>
+                        <table class="w-full text-left border-collapse border border-gray-200 text-xs mt-3 whitespace-nowrap">
+                            <thead><tr><th class="border p-2 text-center">মেধা</th><th class="border p-2">আইডি</th><th class="border p-2">নাম</th><th class="border p-2">শ্রেণি</th><th class="border p-2 text-center">মোট</th><th class="border p-2 text-center">GPA</th><th class="border p-2 text-center">গ্রেড</th></tr></thead>
+                            <tbody id="meritTableBody"></tbody>
+                        </table>
+                    </div>
+                </div>
+
+                <!-- ৫. ট্যাবুলেশন শীট -->
+                <div id="panel-tabulation" class="exam-sub-panel bg-white p-5 md:p-6 rounded-2xl shadow-sm border border-gray-200 space-y-4 hidden">
+                    <div class="flex justify-between items-center border-b pb-3 no-print">
+                        <h3 class="font-bold text-teal-800 text-sm"><i class="fa-solid fa-table mr-2"></i> ৫. ট্যাবুলেশন শীট</h3>
+                        <button onclick="closeAllExamPanels()" class="text-xs bg-gray-200 px-3 py-1 rounded font-bold text-gray-700 hover:bg-gray-300">বন্ধ করুন</button>
+                    </div>
+                    <div class="grid grid-cols-1 sm:grid-cols-4 gap-3 bg-teal-50 p-4 rounded-xl border border-teal-200 text-xs items-center no-print">
+                        <div><label class="font-bold block mb-1">সেশন / সাল:</label><select id="tab_filter_year" class="p-2 border rounded bg-white font-bold w-full"></select></div>
+                        <div><label class="font-bold block mb-1">পরীক্ষা:</label><select id="tab_filter_exam" class="p-2 border rounded bg-white font-bold w-full"></select></div>
+                        <div><label class="font-bold block mb-1">শ্রেণি:</label><select id="tab_filter_class" class="p-2 border rounded bg-white font-bold w-full" onchange="loadTabulationSheet()"></select></div>
+                        <div class="pt-4"><button onclick="loadTabulationSheet()" class="w-full bg-teal-700 text-white px-4 py-2 rounded font-bold hover:bg-teal-800 shadow">ট্যাবুলেশন লোড</button></div>
+                    </div>
+                    <div id="loading_tab" class="hidden flex justify-center items-center py-10"><div class="spinner"></div></div>
+                    <div class="overflow-x-auto print-container" id="tabContainer">
+                        <div class="text-center pb-4 border-b">
+                            <h2 class="font-bold text-sm">আবদুল্লাহ হাট ইসলামিয়া ফাজিল মাদ্রাসা</h2>
+                            <p class="text-xs text-gray-600">ট্যাবুলেশন শীট - <span id="tab_exam_title_display">অর্ধবার্ষিক পরীক্ষা ২০২৬</span></p>
+                        </div>
+                        <table class="w-full text-left border-collapse border border-gray-200 text-xs mt-3 whitespace-nowrap">
+                            <thead><tr><th class="border p-2">আইডি</th><th class="border p-2">নাম</th><th class="border p-2 text-center">কুরআন</th><th class="border p-2 text-center">হাদীস</th><th class="border p-2 text-center">বাংলা</th><th class="border p-2 text-center">ইংরেজি</th><th class="border p-2 text-center">গণিত</th><th class="border p-2 text-center">মোট</th><th class="border p-2 text-center">GPA</th></tr></thead>
+                            <tbody id="tabulationTableBody"></tbody>
+                        </table>
+                    </div>
+                </div>
+
+                <!-- ৬. রেজাল্ট সামারি -->
+                <div id="panel-summary" class="exam-sub-panel bg-white p-5 md:p-6 rounded-2xl shadow-sm border border-gray-200 space-y-4 hidden">
+                    <div class="flex justify-between items-center border-b pb-3 no-print">
+                        <h3 class="font-bold text-indigo-800 text-sm"><i class="fa-solid fa-chart-pie mr-2"></i> ৬. রেজাল্ট সামারি</h3>
+                        <button onclick="closeAllExamPanels()" class="text-xs bg-gray-200 px-3 py-1 rounded font-bold text-gray-700 hover:bg-gray-300">বন্ধ করুন</button>
+                    </div>
+                    <div class="grid grid-cols-1 sm:grid-cols-4 gap-3 bg-indigo-50 p-4 rounded-xl border border-indigo-200 text-xs items-center no-print">
+                        <div><label class="font-bold block mb-1">সেশন / সাল:</label><select id="sum_filter_year" class="p-2 border rounded bg-white font-bold w-full"></select></div>
+                        <div><label class="font-bold block mb-1">পরীক্ষা:</label><select id="sum_filter_exam" class="p-2 border rounded bg-white font-bold w-full"></select></div>
+                        <div><label class="font-bold block mb-1">শ্রেণি:</label><select id="sum_filter_class" class="p-2 border rounded bg-white font-bold w-full" onchange="loadResultSummary()"></select></div>
+                        <div class="pt-4"><button onclick="loadResultSummary()" class="w-full bg-indigo-700 text-white px-4 py-2 rounded font-bold hover:bg-indigo-800 shadow">সামারি লোড</button></div>
+                    </div>
+                    <div id="loading_sum" class="hidden flex justify-center items-center py-10"><div class="spinner"></div></div>
+                    <div class="print-container space-y-4 p-4" id="sumContainer">
+                        <div class="text-center border-b pb-3">
+                            <h2 class="font-bold text-sm text-emerald-900">আবদুল্লাহ হাট ইসলামিয়া ফাজিল মাদ্রাসা</h2>
+                            <p class="font-bold text-xs mt-1">ফলাফল সামারি - <span id="sum_exam_title_display">অর্ধবার্ষিক পরীক্ষা ২০২৬</span></p>
+                        </div>
+                        <div class="grid grid-cols-2 lg:grid-cols-4 gap-4 text-xs font-bold text-center">
+                            <div class="bg-blue-50/80 p-3 rounded-xl border border-blue-200"><p>মোট পরীক্ষার্থী</p><p id="sum_total_students" class="text-lg text-blue-800">0</p></div>
+                            <div class="bg-green-50/80 p-3 rounded-xl border border-green-200"><p>পাস</p><p id="sum_total_passed" class="text-lg text-green-800">0</p></div>
+                            <div class="bg-rose-50/80 p-3 rounded-xl border border-rose-200"><p>ফেল</p><p id="sum_total_failed" class="text-lg text-rose-800">0</p></div>
+                            <div class="bg-amber-50/80 p-3 rounded-xl border border-amber-200"><p>পাসের হার</p><p id="sum_pass_rate" class="text-lg text-amber-800">0%</p></div>
+                        </div>
+                        <table class="w-full text-left border-collapse border border-gray-200 text-xs">
+                            <thead><tr><th class="border p-2">গ্রেড</th><th class="border p-2 text-center">GPA</th><th class="border p-2 text-center">সংখ্যা</th></tr></thead>
+                            <tbody>
+                                <tr><td class="border p-2 font-bold">A+</td><td class="border p-2 text-center">5.00</td><td id="grade_aplus_count" class="border p-2 text-center font-bold">0</td></tr>
+                                <tr><td class="border p-2 font-bold">A</td><td class="border p-2 text-center">4.00 - 4.99</td><td id="grade_a_count" class="border p-2 text-center font-bold">0</td></tr>
+                                <tr><td class="border p-2 font-bold">A-</td><td class="border p-2 text-center">3.50 - 3.99</td><td id="grade_aminus_count" class="border p-2 text-center font-bold">0</td></tr>
+                                <tr><td class="border p-2 font-bold">B</td><td class="border p-2 text-center">3.00 - 3.49</td><td id="grade_b_count" class="border p-2 text-center font-bold">0</td></tr>
+                                <tr><td class="border p-2 font-bold">F</td><td class="border p-2 text-center">0.00</td><td id="grade_f_count" class="border p-2 text-center font-bold">0</td></tr>
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+
+                <!-- ৭. প্রোগ্রেস রিপোর্ট কার্ড (শ্রেণিভিত্তিক লোড ও আইডি ফিল্টারিং) -->
+                <div id="panel-reportcard" class="exam-sub-panel bg-white p-5 md:p-6 rounded-2xl shadow-sm border border-gray-200 space-y-4 hidden">
+                    <div class="flex justify-between items-center border-b pb-3 no-print">
+                        <h3 class="font-bold text-rose-800 text-sm"><i class="fa-solid fa-award mr-2"></i> ৭. প্রোগ্রেস রিপোর্ট কার্ড</h3>
+                        <button onclick="closeAllExamPanels()" class="text-xs bg-gray-200 px-3 py-1 rounded font-bold text-gray-700 hover:bg-gray-300">বন্ধ করুন</button>
+                    </div>
+                    <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-5 gap-2 bg-rose-50 p-4 rounded-xl border border-rose-200 text-xs items-end no-print">
+                        <div>
+                            <label class="font-bold block mb-1">সেশন / সাল:</label>
+                            <select id="rc_filter_year" class="p-2 border rounded bg-white font-bold w-full"></select>
+                        </div>
+                        <div>
+                            <label class="font-bold block mb-1">পরীক্ষা:</label>
+                            <select id="rc_filter_exam" class="p-2 border rounded bg-white font-bold w-full"></select>
+                        </div>
+                        <div>
+                            <label class="font-bold block mb-1">শ্রেণি লোড করুন:</label>
+                            <select id="rc_filter_class" onchange="onReportCardClassChange()" class="p-2 border rounded bg-white font-bold w-full"></select>
+                        </div>
+                        <div>
+                            <label class="font-bold block mb-1">আইডি ফিল্টার / নির্বাচন:</label>
+                            <input type="text" id="reportCardSearchId" list="rcStudentIdList" oninput="filterReportCardStudentsById()" placeholder="আইডি লিখুন বা বাছুন..." class="p-2 border rounded bg-white w-full font-bold">
+                            <datalist id="rcStudentIdList"></datalist>
+                        </div>
+                        <div>
+                            <button onclick="generateReportCard()" class="w-full bg-rose-700 text-white px-4 py-2 rounded text-xs font-bold hover:bg-rose-800 shadow">রিপোর্ট কার্ড দেখুন</button>
+                        </div>
+                    </div>
+
+                    <!-- শ্রেণিভিত্তিক লোডকৃত শিক্ষার্থীদের আইডি ফিল্টার লিস্ট -->
+                    <div class="bg-slate-50 p-3 rounded-xl border border-slate-200 text-xs no-print">
+                        <p class="font-bold text-slate-800 mb-2">শ্রেণিভিত্তিক শিক্ষার্থী তালিকা (আইডি ফিল্টার সক্রিয়):</p>
+                        <div id="rc_class_students_list" class="flex flex-wrap gap-2"></div>
+                    </div>
+
+                    <div id="loading_rc" class="hidden flex justify-center items-center py-10"><div class="spinner"></div></div>
+                    <div id="reportCardContainer" class="hidden print-container max-w-2xl mx-auto p-8 rounded-xl shadow-lg relative space-y-4 text-xs">
+                        <div class="text-center border-b-2 border-emerald-800 pb-3">
+                            <h1 class="font-bold text-base text-emerald-900">আবদুল্লাহ হাট ইসলামিয়া ফাজিল মাদ্রাসা</h1>
+                            <h3 id="rc_exam_title_banner" class="font-bold text-xs bg-emerald-800 text-white py-1 mt-2 inline-block px-6 rounded">একাডেমিক প্রোগ্রেস রিপোর্ট কার্ড</h3>
+                        </div>
+                        <div class="grid grid-cols-2 gap-2 border p-3 rounded-lg bg-emerald-50/55">
+                            <div><p><b>আইডি:</b> <span id="rc_id"></span></p><p><b>নাম:</b> <span id="rc_name_bn"></span></p><p><b>পিতা:</b> <span id="rc_father"></span></p></div>
+                            <div><p><b>শ্রেণি:</b> <span id="rc_class"></span></p><p><b>রোল:</b> <span id="rc_roll"></span></p><p><b>GPA:</b> <span id="rc_gpa" class="font-bold text-emerald-700">5.00 (A+)</span></p></div>
+                        </div>
+                    </div>
+                    <div class="text-center pt-2 no-print">
+                        <button onclick="window.print()" class="bg-rose-700 text-white px-6 py-2 rounded-lg text-xs font-bold hover:bg-rose-800 shadow">প্রিন্ট করুন</button>
+                    </div>
+                </div>
+
+                <!-- ৮. এডমিট কার্ড (শ্রেণিভিত্তিক লোড ও আইডি ফিল্টারিং) -->
+                <div id="panel-admit" class="exam-sub-panel bg-white p-5 md:p-6 rounded-2xl shadow-sm border border-gray-200 space-y-4 hidden">
+                    <div class="flex justify-between items-center border-b pb-3 no-print">
+                        <h3 class="font-bold text-cyan-800 text-sm"><i class="fa-solid fa-id-card mr-2"></i> ৮. এডমিট কার্ড</h3>
+                        <button onclick="closeAllExamPanels()" class="text-xs bg-gray-200 px-3 py-1 rounded font-bold text-gray-700 hover:bg-gray-300">বন্ধ করুন</button>
+                    </div>
+                    <div class="bg-cyan-50 p-4 rounded-xl border border-cyan-200 grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-5 gap-3 items-end text-xs no-print">
+                        <div>
+                            <label class="font-bold block mb-1">সেশন / সাল:</label>
+                            <select id="admit_filter_year" class="p-2 border rounded bg-white font-bold w-full"></select>
+                        </div>
+                        <div>
+                            <label class="font-bold block mb-1">পরীক্ষা:</label>
+                            <select id="admit_filter_exam" class="p-2 border rounded bg-white font-bold w-full"></select>
+                        </div>
+                        <div>
+                            <label class="font-bold block mb-1">শ্রেণি লোড করুন:</label>
+                            <select id="admit_filter_class" onchange="applyAdmitFilter()" class="p-2 border rounded bg-white font-bold w-full"></select>
+                        </div>
+                        <div>
+                            <label class="font-bold block mb-1">আইডি ফিল্টার:</label>
+                            <input type="text" id="admit_filter_id" oninput="applyAdmitFilter()" placeholder="আইডি দিয়ে খুঁজুন..." class="p-2 border rounded bg-white font-bold w-full">
+                        </div>
+                        <div class="flex gap-2">
+                            <button onclick="applyAdmitFilter()" class="flex-1 bg-cyan-700 text-white p-2 rounded font-bold hover:bg-cyan-800 shadow">ফিল্টার</button>
+                            <button onclick="window.print()" class="bg-gray-800 text-white px-3 py-2 rounded font-bold hover:bg-black shadow"><i class="fa-solid fa-print"></i></button>
+                        </div>
+                    </div>
+
+                    <div id="admit_cards_output" class="print-container space-y-4 max-w-3xl mx-auto p-4">
+                        <div class="p-4 rounded-xl space-y-2 text-[11px]">
+                            <div class="text-center border-b-2 border-emerald-900 pb-1.5">
+                                <h2 class="font-bold text-xs text-emerald-900" id="admit_inst_name">আব্দুল্লাহ হাট ইসলামিয়া ফাজিল মাদ্রাসা</h2>
+                                <span class="inline-block bg-emerald-100/85 text-emerald-900 px-2.5 py-0.5 rounded-full font-bold text-[10px] mt-0.5 admit_exam_title_display">অর্ধবার্ষিক পরীক্ষা - ২০২৬</span>
+                            </div>
+                            <img id="inst_logo_display_1" src="https://via.placeholder.com/60" class="w-10 h-10 object-cover rounded border hidden">
+                            <div id="admit_students_list" class="grid grid-cols-1 md:grid-cols-2 gap-3 pt-2"></div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- ৯. এক্সাম রুটিন জেনারেটর (শ্রেণিভিত্তিক ফিল্টারিং ও প্রিন্ট ব্যবস্থা) -->
+                <div id="panel-routine" class="exam-sub-panel bg-white p-5 md:p-6 rounded-2xl shadow-sm border border-gray-200 space-y-4 hidden">
+                    <div class="flex justify-between items-center border-b pb-3 no-print">
+                        <h3 class="font-bold text-sky-800 text-sm"><i class="fa-solid fa-calendar-days mr-2"></i> ৯. এক্সাম রুটিন জেনারেটর</h3>
+                        <div class="flex gap-2">
+                            <button onclick="window.print()" class="bg-sky-800 text-white px-3 py-1 rounded text-xs font-bold hover:bg-sky-900 shadow">
+                                <i class="fa-solid fa-print mr-1"></i> রুটিন প্রিন্ট
+                            </button>
+                            <button onclick="closeAllExamPanels()" class="text-xs bg-gray-200 px-3 py-1 rounded font-bold text-gray-700 hover:bg-gray-300">বন্ধ করুন</button>
+                        </div>
+                    </div>
+                    <div class="bg-sky-50 p-4 rounded-xl border border-sky-200 grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-5 gap-3 text-xs items-end no-print">
+                        <div><label class="font-bold block mb-1">তারিখ:</label><input type="date" id="rout_date" onchange="autoDetectDay(this)" class="p-2 border rounded bg-white w-full font-bold"></div>
+                        <div><label class="font-bold block mb-1">বার:</label><input type="text" id="rout_day" readonly class="p-2 border rounded bg-gray-100 w-full font-bold text-emerald-800"></div>
+                        <div><label class="font-bold block mb-1">শ্রেণি:</label><select id="rout_class" class="p-2 border rounded bg-white w-full font-bold"></select></div>
+                        <div><label class="font-bold block mb-1">বিষয়:</label><select id="rout_subject" class="p-2 border rounded bg-white w-full font-bold"></select></div>
+                        <div class="flex gap-2">
+                            <button onclick="addExamRoutineItem()" class="bg-sky-700 text-white px-3 py-2 rounded font-bold hover:bg-sky-800 shadow flex-1">এন্ট্রি</button>
+                            <button onclick="resetExamRoutine()" class="bg-rose-600 text-white px-3 py-2 rounded font-bold hover:bg-rose-700 shadow"><i class="fa-solid fa-rotate-left"></i></button>
+                        </div>
+                    </div>
+
+                    <div class="print-container space-y-4 overflow-x-auto p-4">
+                        <div class="no-print bg-gray-50 border p-3 rounded-xl flex flex-wrap gap-3 items-center justify-between text-[11px]">
+                            <div class="flex items-center gap-2">
+                                <span class="font-bold text-gray-800"><i class="fa-solid fa-filter mr-1 text-sky-700"></i> শ্রেণিভিত্তিক ফিল্টার:</span>
+                                <select id="routine_class_filter" onchange="applyRoutineClassFilter()" class="p-1.5 border rounded bg-white font-bold text-xs">
+                                    <option value="ALL">সকল শ্রেণি</option>
+                                </select>
+                            </div>
+                            <div class="flex flex-wrap gap-2 items-center">
+                                <span class="font-bold text-gray-700">শ্রেণি স্ট্যাটাস:</span>
+                                <span id="classStatusToggles" class="flex flex-wrap gap-2"></span>
+                            </div>
+                        </div>
+                        <table class="w-full text-left border-collapse border border-gray-300 text-[11px] whitespace-nowrap">
+                            <thead>
+                                <tr class="text-center">
+                                    <th class="border p-2">তারিখ</th><th class="border p-2">বার</th>
+                                    <th class="border p-2 class-col-nurani3">নুরানী ৩য়</th><th class="border p-2 class-col-nurani4">নুরানী ৪র্থ</th><th class="border p-2 class-col-nurani5">নুরানী ৫ম</th>
+                                    <th class="border p-2 class-col-ebtedayi4">ইবতেদায়ী ৪র্থ</th><th class="border p-2 class-col-ebtedayi5">ইবতেদায়ী ৫ম</th>
+                                    <th class="border p-2 class-col-dakhil6">দাখিল ৬ষ্ঠ</th><th class="border p-2 class-col-dakhil7">দাখিল ৭ম</th><th class="border p-2 class-col-dakhil8">দাখিল অষ্টম</th><th class="border p-2 class-col-dakhil9">দাখিল ৯ম</th><th class="border p-2 class-col-dakhil10">দাখিল ১০ম</th>
+                                    <th class="border p-2 class-col-alim1">আলিম ১ম বর্ষ</th><th class="border p-2 class-col-alim2">আলিম ২য় বর্ষ</th>
+                                </tr>
+                            </thead>
+                            <tbody id="examRoutineTableBody"></tbody>
+                        </table>
+                    </div>
+                </div>
+
+                <!-- ১০. এক্সাম মনিটরিং -->
                 <div id="panel-monitoring" class="exam-sub-panel bg-white p-4 md:p-6 rounded-2xl shadow-sm border border-gray-200 space-y-6 hidden">
                     <div class="flex justify-between items-center border-b pb-3 no-print">
                         <div>
@@ -410,263 +748,89 @@
                     </div>
                 </div>
 
-                <!-- বাকি প্যানেলগুলো -->
-                <div id="panel-setup" class="exam-sub-panel bg-white p-5 md:p-6 rounded-2xl shadow-sm border border-gray-200 space-y-4 hidden">
+                <!-- ১১. Question Management -->
+                <div id="panel-question_management" class="exam-sub-panel bg-white p-4 md:p-6 rounded-2xl shadow-sm border border-gray-200 space-y-6 hidden">
                     <div class="flex justify-between items-center border-b pb-3 no-print">
-                        <h3 class="font-bold text-emerald-800 text-sm"><i class="fa-solid fa-gear mr-2"></i> ১. এক্সাম সেটআপ (সেটিংস ও একাডেমিক ম্যানেজমেন্ট লিংকড)</h3>
-                        <button onclick="closeAllExamPanels()" class="text-xs bg-gray-200 px-3 py-1 rounded font-bold text-gray-700 hover:bg-gray-300">বন্ধ করুন</button>
-                    </div>
-                    <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-5 gap-4 text-xs">
-                        <div class="p-4 bg-emerald-50 rounded-xl border border-emerald-200 space-y-2">
-                            <h4 class="font-bold text-emerald-900">Academic Year</h4>
-                            <select id="set_year" class="w-full p-2 border rounded bg-white font-bold"></select>
+                        <div>
+                            <h3 class="font-bold text-violet-900 text-sm"><i class="fa-solid fa-file-circle-question mr-2"></i> ১১. Question Management (Teacher & Staff সংযুক্ত)</h3>
+                            <p class="text-[11px] text-violet-700 mt-0.5"><i class="fa-solid fa-lock mr-1"></i> প্রতিটি ধাপে একবার ক্লিক করলে বর্তমান তারিখসহ স্থায়ীভাবে লক ও রিয়েল-টাইম সেভ হবে।</p>
                         </div>
-                        <div class="p-4 bg-emerald-50 rounded-xl border border-emerald-200 space-y-2">
-                            <h4 class="font-bold text-emerald-900">Classes Setup</h4>
-                            <select id="set_class" class="w-full p-2 border rounded bg-white font-bold"></select>
-                        </div>
-                        <div class="p-4 bg-emerald-50 rounded-xl border border-emerald-200 space-y-2">
-                            <h4 class="font-bold text-emerald-900">Subjects Link</h4>
-                            <select id="set_subject" class="w-full p-2 border rounded bg-white font-bold"></select>
-                        </div>
-                        <div class="p-4 bg-emerald-50 rounded-xl border border-emerald-200 space-y-2">
-                            <h4 class="font-bold text-emerald-900">Exams Setup</h4>
-                            <select id="set_exam_name" class="w-full p-2 border rounded bg-white font-bold"></select>
-                        </div>
-                        <div class="p-4 bg-emerald-50 rounded-xl border border-emerald-200 space-y-2">
-                            <h4 class="font-bold text-emerald-900">Grading System</h4>
-                            <select id="set_grading" class="w-full p-2 border rounded bg-white font-bold">
-                                <option value="General (GPA 5.00 Scale)">General (GPA 5.00 Scale)</option>
-                                <option value="Madrasah Board Scale">Madrasah Board Scale</option>
-                            </select>
+                        <div class="flex items-center gap-2">
+                            <button onclick="window.print()" class="bg-gray-800 text-white px-3 py-1 rounded text-xs font-bold hover:bg-black shadow">
+                                <i class="fa-solid fa-print mr-1"></i> প্রিন্ট
+                            </button>
+                            <button onclick="closeAllExamPanels()" class="text-xs bg-gray-200 px-3 py-1 rounded font-bold text-gray-700 hover:bg-gray-300">বন্ধ করুন</button>
                         </div>
                     </div>
-                    <div class="flex justify-end no-print">
-                        <button onclick="saveExamSettings()" class="bg-emerald-700 text-white px-5 py-2 rounded-lg font-bold text-xs hover:bg-emerald-800 shadow">সেটআপ সংরক্ষণ করুন</button>
-                    </div>
-                </div>
 
-                <div id="panel-marks" class="exam-sub-panel bg-white p-5 md:p-6 rounded-2xl shadow-sm border border-gray-200 space-y-4 hidden">
-                    <div class="flex justify-between items-center border-b pb-3 no-print">
-                        <h3 class="font-bold text-blue-800 text-sm"><i class="fa-solid fa-pen-to-square mr-2"></i> ২. মার্কস এন্ট্রি প্যানেল</h3>
-                        <button onclick="closeAllExamPanels()" class="text-xs bg-gray-200 px-3 py-1 rounded font-bold text-gray-700 hover:bg-gray-300">বন্ধ করুন</button>
-                    </div>
-                    <div class="grid grid-cols-1 sm:grid-cols-4 gap-3 bg-blue-50 p-4 rounded-xl border border-blue-200 text-xs items-center no-print">
-                        <div><label class="font-bold block mb-1">একাডেমিক সাল:</label><select id="mark_filter_year" class="p-2 border rounded bg-white font-bold w-full"></select></div>
-                        <div><label class="font-bold block mb-1">পরীক্ষার নাম:</label><select id="mark_filter_exam" class="p-2 border rounded bg-white font-bold w-full"></select></div>
-                        <div><label class="font-bold block mb-1">শ্রেণি নির্বাচন:</label><select id="mark_filter_class" class="p-2 border rounded bg-white font-bold w-full" onchange="loadMarksTable()"></select></div>
-                        <div class="pt-4"><button onclick="loadMarksTable()" class="w-full bg-blue-700 text-white px-4 py-2 rounded font-bold hover:bg-blue-800 shadow">নম্বর এন্ট্রি লোড করুন</button></div>
-                    </div>
-                    <div id="loading_marks" class="hidden flex justify-center items-center py-10">
-                        <div class="spinner"></div><span class="ml-3 text-xs font-bold text-blue-800">ডেটা লোড হচ্ছে...</span>
-                    </div>
-                    <div class="overflow-x-auto" id="marksTableContainer">
-                        <table class="w-full text-left border-collapse border border-gray-200 text-xs whitespace-nowrap">
-                            <thead>
-                                <tr class="bg-blue-700 text-white">
-                                    <th class="border p-2">আইডি</th><th class="border p-2">শিক্ষার্থীর নাম</th><th class="border p-2">লিখিত</th><th class="border p-2">নৈর্ব্যক্তিক</th><th class="border p-2">ব্যবহারিক</th><th class="border p-2 text-center">সংরক্ষণ</th>
-                                </tr>
-                            </thead>
-                            <tbody id="marksEntryTableBody"></tbody>
-                        </table>
-                    </div>
-                </div>
-
-                <div id="panel-processing" class="exam-sub-panel bg-white p-5 md:p-6 rounded-2xl shadow-sm border border-gray-200 space-y-4 hidden">
-                    <div class="flex justify-between items-center border-b pb-3 no-print">
-                        <h3 class="font-bold text-purple-800 text-sm"><i class="fa-solid fa-calculator mr-2"></i> ৩. রেজাল্ট প্রসেসিং</h3>
-                        <button onclick="closeAllExamPanels()" class="text-xs bg-gray-200 px-3 py-1 rounded font-bold text-gray-700 hover:bg-gray-300">বন্ধ করুন</button>
-                    </div>
-                    <div class="bg-purple-50 p-4 rounded-xl border border-purple-200 text-xs space-y-4">
-                        <div class="grid grid-cols-1 sm:grid-cols-3 gap-3">
-                            <div><label class="font-bold block mb-1">একাডেমিক সাল:</label><select id="proc_filter_year" class="p-2 border rounded bg-white font-bold w-full"></select></div>
-                            <div><label class="font-bold block mb-1">পরীক্ষার নাম:</label><select id="proc_filter_exam" class="p-2 border rounded bg-white font-bold w-full"></select></div>
-                            <div><label class="font-bold block mb-1">শ্রেণি:</label><select id="proc_filter_class" class="p-2 border rounded bg-white font-bold w-full"></select></div>
-                        </div>
-                        <div class="bg-white p-4 rounded-lg border border-purple-300 space-y-3 shadow-sm">
-                            <div class="grid grid-cols-1 sm:grid-cols-4 gap-3 items-end">
-                                <div><label class="font-bold block mb-1 text-gray-700">যুগ্ম গ্রুপের নাম:</label><input type="text" id="comb_group_name" class="p-2 border rounded w-full font-bold bg-gray-50"></div>
-                                <div><label class="font-bold block mb-1 text-gray-700">বিষয় ১:</label><select id="comb_sub_1" class="p-2 border rounded w-full font-bold bg-gray-50"></select></div>
-                                <div><label class="font-bold block mb-1 text-gray-700">বিষয় ২:</label><select id="comb_sub_2" class="p-2 border rounded w-full font-bold bg-gray-50"></select></div>
-                                <div><button onclick="addCombinedSubjectGroup()" class="w-full bg-purple-700 text-white p-2 rounded font-bold hover:bg-purple-800 shadow">গ্রুপ যুক্ত করুন</button></div>
+                    <div class="bg-violet-50 p-4 rounded-xl border border-violet-200 text-xs space-y-4 no-print">
+                        <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
+                            <div>
+                                <label class="font-bold block mb-1 text-violet-950">মিটিংয়ের তারিখ:</label>
+                                <input type="date" id="qm_meeting_date" onchange="saveQuestionMetaDates()" class="p-2 border rounded bg-white font-bold w-full">
                             </div>
-                            <div id="combinedGroupsDisplayList" class="flex flex-wrap gap-2 pt-2"></div>
-                        </div>
-                        <div class="flex justify-end">
-                            <button onclick="processAllResults()" class="bg-purple-700 text-white px-6 py-2.5 rounded-lg font-bold hover:bg-purple-800 shadow">সকল বিষয়ের ফলাফল প্রসেস করুন</button>
-                        </div>
-                    </div>
-                    <div id="processingStatusResult" class="text-xs font-bold text-emerald-700 px-1"></div>
-                </div>
-
-                <div id="panel-merit" class="exam-sub-panel bg-white p-5 md:p-6 rounded-2xl shadow-sm border border-gray-200 space-y-4 hidden">
-                    <div class="flex justify-between items-center border-b pb-3 no-print">
-                        <h3 class="font-bold text-amber-800 text-sm"><i class="fa-solid fa-trophy mr-2"></i> ৪. মেরিট লিস্ট</h3>
-                        <button onclick="closeAllExamPanels()" class="text-xs bg-gray-200 px-3 py-1 rounded font-bold text-gray-700 hover:bg-gray-300">বন্ধ করুন</button>
-                    </div>
-                    <div class="grid grid-cols-1 sm:grid-cols-4 gap-3 bg-amber-50 p-4 rounded-xl border border-amber-200 text-xs items-center no-print">
-                        <div><label class="font-bold block mb-1">সাল:</label><select id="merit_filter_year" class="p-2 border rounded bg-white font-bold w-full"></select></div>
-                        <div><label class="font-bold block mb-1">পরীক্ষা:</label><select id="merit_filter_exam" class="p-2 border rounded bg-white font-bold w-full"></select></div>
-                        <div><label class="font-bold block mb-1">শ্রেণি:</label><select id="merit_filter_class" class="p-2 border rounded bg-white font-bold w-full" onchange="loadMeritList()"></select></div>
-                        <div class="pt-4 flex gap-2">
-                            <button onclick="loadMeritList()" class="bg-amber-700 text-white px-3 py-2 rounded font-bold hover:bg-amber-800 shadow flex-1">লোড</button>
-                            <button onclick="window.print()" class="bg-gray-800 text-white px-3 py-2 rounded font-bold hover:bg-black shadow"><i class="fa-solid fa-print"></i></button>
-                        </div>
-                    </div>
-                    <div id="loading_merit" class="hidden flex justify-center items-center py-10"><div class="spinner"></div></div>
-                    <div class="overflow-x-auto print-container" id="meritTableContainer">
-                        <div class="text-center pb-4 border-b">
-                            <h2 class="font-bold text-sm">আবদুল্লাহ হাট ইসলামিয়া ফাজিল মাদ্রাসা</h2>
-                            <p class="text-xs text-gray-600">মেরিট লিস্ট - <span id="merit_exam_title_display">অর্ধবার্ষিক পরীক্ষা ২০২৬</span></p>
-                        </div>
-                        <table class="w-full text-left border-collapse border border-gray-200 text-xs mt-3 whitespace-nowrap">
-                            <thead><tr><th class="border p-2 text-center">মেধা</th><th class="border p-2">আইডি</th><th class="border p-2">নাম</th><th class="border p-2">শ্রেণি</th><th class="border p-2 text-center">মোট</th><th class="border p-2 text-center">GPA</th><th class="border p-2 text-center">গ্রেড</th></tr></thead>
-                            <tbody id="meritTableBody"></tbody>
-                        </table>
-                    </div>
-                </div>
-
-                <div id="panel-tabulation" class="exam-sub-panel bg-white p-5 md:p-6 rounded-2xl shadow-sm border border-gray-200 space-y-4 hidden">
-                    <div class="flex justify-between items-center border-b pb-3 no-print">
-                        <h3 class="font-bold text-teal-800 text-sm"><i class="fa-solid fa-table mr-2"></i> ৫. ট্যাবুলেশন শীট</h3>
-                        <button onclick="closeAllExamPanels()" class="text-xs bg-gray-200 px-3 py-1 rounded font-bold text-gray-700 hover:bg-gray-300">বন্ধ করুন</button>
-                    </div>
-                    <div class="grid grid-cols-1 sm:grid-cols-4 gap-3 bg-teal-50 p-4 rounded-xl border border-teal-200 text-xs items-center no-print">
-                        <div><label class="font-bold block mb-1">সাল:</label><select id="tab_filter_year" class="p-2 border rounded bg-white font-bold w-full"></select></div>
-                        <div><label class="font-bold block mb-1">পরীক্ষা:</label><select id="tab_filter_exam" class="p-2 border rounded bg-white font-bold w-full"></select></div>
-                        <div><label class="font-bold block mb-1">শ্রেণি:</label><select id="tab_filter_class" class="p-2 border rounded bg-white font-bold w-full" onchange="loadTabulationSheet()"></select></div>
-                        <div class="pt-4"><button onclick="loadTabulationSheet()" class="w-full bg-teal-700 text-white px-4 py-2 rounded font-bold hover:bg-teal-800 shadow">ট্যাবুলেশন লোড</button></div>
-                    </div>
-                    <div id="loading_tab" class="hidden flex justify-center items-center py-10"><div class="spinner"></div></div>
-                    <div class="overflow-x-auto print-container" id="tabContainer">
-                        <div class="text-center pb-4 border-b">
-                            <h2 class="font-bold text-sm">আবদুল্লাহ হাট ইসলামিয়া ফাজিল মাদ্রাসা</h2>
-                            <p class="text-xs text-gray-600">ট্যাবুলেশন শীট - <span id="tab_exam_title_display">অর্ধবার্ষিক পরীক্ষা ২০২৬</span></p>
-                        </div>
-                        <table class="w-full text-left border-collapse border border-gray-200 text-xs mt-3 whitespace-nowrap">
-                            <thead><tr><th class="border p-2">আইডি</th><th class="border p-2">নাম</th><th class="border p-2 text-center">কুরআন</th><th class="border p-2 text-center">হাদীস</th><th class="border p-2 text-center">বাংলা</th><th class="border p-2 text-center">ইংরেজি</th><th class="border p-2 text-center">গণিত</th><th class="border p-2 text-center">মোট</th><th class="border p-2 text-center">GPA</th></tr></thead>
-                            <tbody id="tabulationTableBody"></tbody>
-                        </table>
-                    </div>
-                </div>
-
-                <div id="panel-summary" class="exam-sub-panel bg-white p-5 md:p-6 rounded-2xl shadow-sm border border-gray-200 space-y-4 hidden">
-                    <div class="flex justify-between items-center border-b pb-3 no-print">
-                        <h3 class="font-bold text-indigo-800 text-sm"><i class="fa-solid fa-chart-pie mr-2"></i> ৬. রেজাল্ট সামারি</h3>
-                        <button onclick="closeAllExamPanels()" class="text-xs bg-gray-200 px-3 py-1 rounded font-bold text-gray-700 hover:bg-gray-300">বন্ধ করুন</button>
-                    </div>
-                    <div class="grid grid-cols-1 sm:grid-cols-4 gap-3 bg-indigo-50 p-4 rounded-xl border border-indigo-200 text-xs items-center no-print">
-                        <div><label class="font-bold block mb-1">সাল:</label><select id="sum_filter_year" class="p-2 border rounded bg-white font-bold w-full"></select></div>
-                        <div><label class="font-bold block mb-1">পরীক্ষা:</label><select id="sum_filter_exam" class="p-2 border rounded bg-white font-bold w-full"></select></div>
-                        <div><label class="font-bold block mb-1">শ্রেণি:</label><select id="sum_filter_class" class="p-2 border rounded bg-white font-bold w-full" onchange="loadResultSummary()"></select></div>
-                        <div class="pt-4"><button onclick="loadResultSummary()" class="w-full bg-indigo-700 text-white px-4 py-2 rounded font-bold hover:bg-indigo-800 shadow">সামারি লোড</button></div>
-                    </div>
-                    <div id="loading_sum" class="hidden flex justify-center items-center py-10"><div class="spinner"></div></div>
-                    <div class="print-container space-y-4 p-4" id="sumContainer">
-                        <div class="text-center border-b pb-3">
-                            <h2 class="font-bold text-sm text-emerald-900">আবদুল্লাহ হাট ইসলামিয়া ফাজিল মাদ্রাসা</h2>
-                            <p class="font-bold text-xs mt-1">ফলাফল সামারি - <span id="sum_exam_title_display">অর্ধবার্ষিক পরীক্ষা ২০২৬</span></p>
-                        </div>
-                        <div class="grid grid-cols-2 lg:grid-cols-4 gap-4 text-xs font-bold text-center">
-                            <div class="bg-blue-50/80 p-3 rounded-xl border border-blue-200"><p>মোট পরীক্ষার্থী</p><p id="sum_total_students" class="text-lg text-blue-800">0</p></div>
-                            <div class="bg-green-50/80 p-3 rounded-xl border border-green-200"><p>পাস</p><p id="sum_total_passed" class="text-lg text-green-800">0</p></div>
-                            <div class="bg-rose-50/80 p-3 rounded-xl border border-rose-200"><p>ফেল</p><p id="sum_total_failed" class="text-lg text-rose-800">0</p></div>
-                            <div class="bg-amber-50/80 p-3 rounded-xl border border-amber-200"><p>পাসের হার</p><p id="sum_pass_rate" class="text-lg text-amber-800">0%</p></div>
-                        </div>
-                        <table class="w-full text-left border-collapse border border-gray-200 text-xs">
-                            <thead><tr><th class="border p-2">গ্রেড</th><th class="border p-2 text-center">GPA</th><th class="border p-2 text-center">সংখ্যা</th></tr></thead>
-                            <tbody>
-                                <tr><td class="border p-2 font-bold">A+</td><td class="border p-2 text-center">5.00</td><td id="grade_aplus_count" class="border p-2 text-center font-bold">0</td></tr>
-                                <tr><td class="border p-2 font-bold">A</td><td class="border p-2 text-center">4.00 - 4.99</td><td id="grade_a_count" class="border p-2 text-center font-bold">0</td></tr>
-                                <tr><td class="border p-2 font-bold">A-</td><td class="border p-2 text-center">3.50 - 3.99</td><td id="grade_aminus_count" class="border p-2 text-center font-bold">0</td></tr>
-                                <tr><td class="border p-2 font-bold">B</td><td class="border p-2 text-center">3.00 - 3.49</td><td id="grade_b_count" class="border p-2 text-center font-bold">0</td></tr>
-                                <tr><td class="border p-2 font-bold">F</td><td class="border p-2 text-center">0.00</td><td id="grade_f_count" class="border p-2 text-center font-bold">0</td></tr>
-                            </tbody>
-                        </table>
-                    </div>
-                </div>
-
-                <div id="panel-reportcard" class="exam-sub-panel bg-white p-5 md:p-6 rounded-2xl shadow-sm border border-gray-200 space-y-4 hidden">
-                    <div class="flex justify-between items-center border-b pb-3 no-print">
-                        <h3 class="font-bold text-rose-800 text-sm"><i class="fa-solid fa-award mr-2"></i> ৭. প্রোগ্রেস রিপোর্ট কার্ড</h3>
-                        <button onclick="closeAllExamPanels()" class="text-xs bg-gray-200 px-3 py-1 rounded font-bold text-gray-700 hover:bg-gray-300">বন্ধ করুন</button>
-                    </div>
-                    <div class="grid grid-cols-1 sm:grid-cols-4 gap-2 bg-rose-50 p-4 rounded-xl border border-rose-200 text-xs items-end no-print">
-                        <div><label class="font-bold block mb-1">সাল:</label><select id="rc_filter_year" class="p-2 border rounded bg-white font-bold w-full"></select></div>
-                        <div><label class="font-bold block mb-1">পরীক্ষা:</label><select id="rc_filter_exam" class="p-2 border rounded bg-white font-bold w-full"></select></div>
-                        <div><label class="font-bold block mb-1">আইডি:</label><input type="text" id="reportCardSearchId" class="p-2 border rounded bg-white w-full font-bold"></div>
-                        <div><button onclick="generateReportCard()" class="w-full bg-rose-700 text-white px-4 py-2 rounded text-xs font-bold hover:bg-rose-800 shadow">রিপোর্ট কার্ড দেখুন</button></div>
-                    </div>
-                    <div id="loading_rc" class="hidden flex justify-center items-center py-10"><div class="spinner"></div></div>
-                    <div id="reportCardContainer" class="hidden print-container max-w-2xl mx-auto p-8 rounded-xl shadow-lg relative space-y-4 text-xs">
-                        <div class="text-center border-b-2 border-emerald-800 pb-3">
-                            <h1 class="font-bold text-base text-emerald-900">আবদুল্লাহ হাট ইসলামিয়া ফাজিল মাদ্রাসা</h1>
-                            <h3 id="rc_exam_title_banner" class="font-bold text-xs bg-emerald-800 text-white py-1 mt-2 inline-block px-6 rounded">একাডেমিক প্রোগ্রেস রিপোর্ট কার্ড</h3>
-                        </div>
-                        <div class="grid grid-cols-2 gap-2 border p-3 rounded-lg bg-emerald-50/55">
-                            <div><p><b>আইডি:</b> <span id="rc_id"></span></p><p><b>নাম:</b> <span id="rc_name_bn"></span></p><p><b>পিতা:</b> <span id="rc_father"></span></p></div>
-                            <div><p><b>শ্রেণি:</b> <span id="rc_class"></span></p><p><b>রোল:</b> <span id="rc_roll"></span></p><p><b>GPA:</b> <span id="rc_gpa" class="font-bold text-emerald-700">5.00 (A+)</span></p></div>
-                        </div>
-                    </div>
-                    <div class="text-center pt-2 no-print">
-                        <button onclick="window.print()" class="bg-rose-700 text-white px-6 py-2 rounded-lg text-xs font-bold hover:bg-rose-800 shadow">প্রিন্ট করুন</button>
-                    </div>
-                </div>
-
-                <div id="panel-admit" class="exam-sub-panel bg-white p-5 md:p-6 rounded-2xl shadow-sm border border-gray-200 space-y-4 hidden">
-                    <div class="flex justify-between items-center border-b pb-3 no-print">
-                        <h3 class="font-bold text-cyan-800 text-sm"><i class="fa-solid fa-id-card mr-2"></i> ৮. এডমিট কার্ড</h3>
-                        <button onclick="closeAllExamPanels()" class="text-xs bg-gray-200 px-3 py-1 rounded font-bold text-gray-700 hover:bg-gray-300">বন্ধ করুন</button>
-                    </div>
-                    <div class="bg-cyan-50 p-4 rounded-xl border border-cyan-200 grid grid-cols-1 sm:grid-cols-4 gap-3 items-end text-xs no-print">
-                        <div><label class="font-bold block mb-1">সাল:</label><select id="admit_filter_year" class="p-2 border rounded bg-white font-bold w-full"></select></div>
-                        <div><label class="font-bold block mb-1">পরীক্ষা:</label><select id="admit_filter_exam" class="p-2 border rounded bg-white font-bold w-full"></select></div>
-                        <div><label class="font-bold block mb-1">শ্রেণি:</label><select id="admit_filter_class" class="p-2 border rounded bg-white font-bold w-full"></select></div>
-                        <div><button onclick="applyAdmitFilter()" class="w-full bg-cyan-700 text-white p-2 rounded font-bold hover:bg-cyan-800 shadow">ফিল্টার করুন</button></div>
-                    </div>
-                    <div class="print-container space-y-4 max-w-2xl mx-auto p-4">
-                        <div class="p-4 rounded-xl space-y-2 text-[11px]">
-                            <div class="text-center border-b-2 border-emerald-900 pb-1.5">
-                                <h2 class="font-bold text-xs text-emerald-900" id="admit_inst_name">আব্দুল্লাহ হাট ইসলামিয়া ফাজিল মাদ্রাসা</h2>
-                                <span class="inline-block bg-emerald-100/85 text-emerald-900 px-2.5 py-0.5 rounded-full font-bold text-[10px] mt-0.5 admit_exam_title_display">অর্ধবার্ষিক পরীক্ষা - ২০২৬</span>
+                            <div>
+                                <label class="font-bold block mb-1 text-violet-950">জমাদানের শেষ তারিখ:</label>
+                                <input type="date" id="qm_submission_deadline" onchange="saveQuestionMetaDates()" class="p-2 border rounded bg-white font-bold w-full">
                             </div>
-                            <img id="inst_logo_display_1" src="https://via.placeholder.com/60" class="w-10 h-10 object-cover rounded border hidden">
                         </div>
-                    </div>
-                </div>
 
-                <div id="panel-routine" class="exam-sub-panel bg-white p-5 md:p-6 rounded-2xl shadow-sm border border-gray-200 space-y-4 hidden">
-                    <div class="flex justify-between items-center border-b pb-3 no-print">
-                        <h3 class="font-bold text-sky-800 text-sm"><i class="fa-solid fa-calendar-days mr-2"></i> ৯. এক্সাম রুটিন জেনারেটর</h3>
-                        <button onclick="closeAllExamPanels()" class="text-xs bg-gray-200 px-3 py-1 rounded font-bold text-gray-700 hover:bg-gray-300">বন্ধ করুন</button>
-                    </div>
-                    <div class="bg-sky-50 p-4 rounded-xl border border-sky-200 grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-5 gap-3 text-xs items-end no-print">
-                        <div><label class="font-bold block mb-1">তারিখ:</label><input type="date" id="rout_date" onchange="autoDetectDay(this)" class="p-2 border rounded bg-white w-full font-bold"></div>
-                        <div><label class="font-bold block mb-1">বার:</label><input type="text" id="rout_day" readonly class="p-2 border rounded bg-gray-100 w-full font-bold text-emerald-800"></div>
-                        <div><label class="font-bold block mb-1">শ্রেণি:</label><select id="rout_class" class="p-2 border rounded bg-white w-full font-bold"></select></div>
-                        <div><label class="font-bold block mb-1">বিষয়:</label><select id="rout_subject" class="p-2 border rounded bg-white w-full font-bold"></select></div>
-                        <div class="flex gap-2">
-                            <button onclick="addExamRoutineItem()" class="bg-sky-700 text-white px-3 py-2 rounded font-bold hover:bg-sky-800 shadow flex-1">এন্ট্রি</button>
-                            <button onclick="resetExamRoutine()" class="bg-rose-600 text-white px-3 py-2 rounded font-bold hover:bg-rose-700 shadow"><i class="fa-solid fa-rotate-left"></i></button>
+                        <div class="grid grid-cols-1 sm:grid-cols-12 gap-3 pt-3 border-t border-violet-200 items-end">
+                            <div class="sm:col-span-5">
+                                <label class="font-bold block mb-1 text-violet-950">Teacher & Staff থেকে শিক্ষক নির্বাচন করুন:</label>
+                                <select id="qm_teacher_select" onchange="onQmTeacherSelectChange()" class="p-2 border rounded bg-white font-bold w-full">
+                                    <option value="">-- শিক্ষক নির্বাচন করুন --</option>
+                                </select>
+                            </div>
+                            <div class="sm:col-span-3">
+                                <label class="font-bold block mb-1 text-violet-950">পদবী ও বিষয়:</label>
+                                <input type="text" id="qm_new_designation_subject" placeholder="স্বয়ংক্রিয় বা লিখুন..." class="p-2 border rounded bg-white font-bold w-full">
+                            </div>
+                            <div class="sm:col-span-2">
+                                <button onclick="addQuestionTeacherRow()" class="w-full bg-violet-700 text-white px-3 py-2 rounded font-bold hover:bg-violet-800 shadow">
+                                    <i class="fa-solid fa-user-plus mr-1"></i> যুক্ত করুন
+                                </button>
+                            </div>
+                            <div class="sm:col-span-2">
+                                <button onclick="loadAllTeachersIntoQuestionManagement()" class="w-full bg-emerald-700 text-white px-3 py-2 rounded font-bold hover:bg-emerald-800 shadow" title="Teacher & Staff এর সকল শিক্ষক তালিকায় আনুন">
+                                    <i class="fa-solid fa-users mr-1"></i> সবার লিস্ট আনুন
+                                </button>
+                            </div>
                         </div>
                     </div>
-                    <div class="print-container space-y-4 overflow-x-auto p-4">
-                        <div class="no-print bg-gray-50 border p-3 rounded-xl flex flex-wrap gap-2 items-center text-[11px]">
-                            <span class="font-bold text-gray-700">শ্রেণি স্ট্যাটাস:</span>
-                            <span id="classStatusToggles" class="flex flex-wrap gap-2"></span>
+
+                    <div class="print-container p-6 sm:p-8 rounded-xl border border-gray-200 space-y-3 overflow-hidden">
+                        <div class="text-center border-b pb-2">
+                            <h2 class="font-bold text-sm text-violet-950">আবদুল্লাহ হাট ইসলামিয়া ফাজিল মাদ্রাসা</h2>
+                            <p class="text-[11px] text-gray-600">Question Management — প্রশ্ন প্রস্তুত, জমাদান, মুদ্রণ, সংশোধন ও সংরক্ষণ রেজিস্টার</p>
+                            <p class="text-[11px] font-bold text-violet-900 mt-1 bg-violet-50/75 inline-block px-3 py-1 rounded border border-violet-200">
+                                মিটিংয়ের তারিখ: <span id="qm_display_meeting_date">---</span> | জমাদানের শেষ তারিখ: <span id="qm_display_deadline_date">---</span>
+                            </p>
                         </div>
-                        <table class="w-full text-left border-collapse border border-gray-300 text-[11px] whitespace-nowrap">
-                            <thead>
-                                <tr class="text-center">
-                                    <th class="border p-2">তারিখ</th><th class="border p-2">বার</th>
-                                    <th class="border p-2 class-col-nurani3">নুরানী ৩য়</th><th class="border p-2 class-col-nurani4">নুরানী ৪র্থ</th><th class="border p-2 class-col-nurani5">নুরানী ৫ম</th>
-                                    <th class="border p-2 class-col-ebtedayi4">ইবতেদায়ী ৪র্থ</th><th class="border p-2 class-col-ebtedayi5">ইবতেদায়ী ৫ম</th>
-                                    <th class="border p-2 class-col-dakhil6">দাখিল ৬ষ্ঠ</th><th class="border p-2 class-col-dakhil7">দাখিল ৭ম</th><th class="border p-2 class-col-dakhil8">দাখিল অষ্টম</th><th class="border p-2 class-col-dakhil9">দাখিল ৯ম</th><th class="border p-2 class-col-dakhil10">দাখিল ১০ম</th>
-                                    <th class="border p-2 class-col-alim1">আলিম ১ম বর্ষ</th><th class="border p-2 class-col-alim2">আলিম ২য় বর্ষ</th>
-                                </tr>
-                            </thead>
-                            <tbody id="examRoutineTableBody"></tbody>
-                        </table>
+
+                        <div class="w-full overflow-x-auto pb-1">
+                            <table class="w-full text-left border-collapse border border-gray-300 text-[11px]">
+                                <thead>
+                                    <tr>
+                                        <th class="border px-2 py-2">১. শিক্ষকের নাম</th>
+                                        <th class="border px-2 py-2">২. পদবী ও বিষয়</th>
+                                        <th class="border px-2 py-2 text-center">৩. প্রশ্ন জমাদান</th>
+                                        <th class="border px-2 py-2 text-center">৪. মুদ্রণে প্রেরণ</th>
+                                        <th class="border px-2 py-2 text-center">৫. সংশোধনের জন্য প্রেরণ</th>
+                                        <th class="border px-2 py-2 text-center">৬. সংরক্ষণ</th>
+                                        <th class="border px-2 py-2">৭. মন্তব্য</th>
+                                        <th class="border px-1.5 py-2 text-center w-8 no-print"><i class="fa-solid fa-trash"></i></th>
+                                    </tr>
+                                </thead>
+                                <tbody id="qm_table_tbody"></tbody>
+                            </table>
+                        </div>
+                    </div>
+
+                    <div class="flex justify-between items-center pt-1 no-print">
+                        <span id="qm_realtime_badge" class="text-xs font-bold text-violet-700">
+                            <i class="fa-solid fa-shield-check mr-1"></i> Teacher & Staff সিঙ্ক, ওয়ান-টাইম ক্লিক ও রিয়েল-টাইম অটো-সেভ সক্রিয়
+                        </span>
                     </div>
                 </div>
 
@@ -697,9 +861,11 @@
             alim1: true, alim2: true
         };
 
-        /* ===================================================
-           TEACHER & STAFF CONNECTOR (BANGLA ONLY DISPLAY)
-           =================================================== */
+        const CLASS_SUBJECTS_CONFIG_KEY = "ahifm_class_subjects_config_v1";
+        const COMBINED_GROUPS_KEY = "ahifm_combined_subject_groups_v1";
+        const GROUP_MARKS_KEY = "ahifm_group_subject_marks_v1";
+        const STUDENT_MARKS_KEY = "ahifm_student_marks_v1";
+
         function keepBanglaOnly(text) {
             if (!text) return "";
             return text
@@ -711,6 +877,179 @@
                 .trim();
         }
 
+        /* ===================================================
+           1 & 2. SETTINGS SESSION/YEAR LINK + CLASS SUBJECTS
+           =================================================== */
+        function getSettingsSessionAndYears() {
+            const candidateKeys = [
+                'madrasah_session_years',
+                'madrasah_sessions',
+                'madrasah_academic_sessions',
+                'madrasah_years'
+            ];
+            const found = new Set();
+
+            candidateKeys.forEach(k => {
+                try {
+                    const raw = localStorage.getItem(k);
+                    if (!raw) return;
+                    const parsed = JSON.parse(raw);
+                    if (Array.isArray(parsed)) {
+                        parsed.forEach(item => {
+                            if (!item) return;
+                            const label = typeof item === 'string'
+                                ? item
+                                : (item.session || item.year || item.name || item.title || "");
+                            if (label && label.toString().trim()) {
+                                found.add(label.toString().trim());
+                            }
+                        });
+                    }
+                } catch (e) {}
+            });
+
+            if (found.size === 0) {
+                found.add("২০২৬");
+                found.add("২০২৭");
+            }
+            return Array.from(found);
+        }
+
+        function linkFromSettingsSessionPanel() {
+            const years = getSettingsSessionAndYears();
+            const yearSelectIds = [
+                'set_year', 'mark_filter_year', 'proc_filter_year',
+                'merit_filter_year', 'tab_filter_year', 'sum_filter_year',
+                'rc_filter_year', 'admit_filter_year'
+            ];
+            yearSelectIds.forEach(id => populateSelect(id, years));
+
+            const statusEl = document.getElementById('settings_link_status');
+            if (statusEl) {
+                statusEl.innerHTML = `<i class="fa-solid fa-check mr-1"></i> লিংক সম্পন্ন (${years.length}টি সেশন/সাল)`;
+            }
+            alert(`22. Settings সেশন ও সাল প্যানেল থেকে ${years.join(', ')} লিংক করা হয়েছে!`);
+        }
+
+        function syncSelectedYearAcrossExam() {
+            const chosenYear = document.getElementById('set_year')?.value;
+            if (!chosenYear) return;
+            ['mark_filter_year', 'proc_filter_year', 'merit_filter_year', 'tab_filter_year', 'sum_filter_year', 'rc_filter_year', 'admit_filter_year'].forEach(id => {
+                const el = document.getElementById(id);
+                if (el && Array.from(el.options).some(o => o.value === chosenYear)) {
+                    el.value = chosenYear;
+                }
+            });
+        }
+
+        function getClassSubjectsConfig() {
+            let cfg = JSON.parse(localStorage.getItem(CLASS_SUBJECTS_CONFIG_KEY));
+            if (!cfg) {
+                const defaultSubs = [
+                    { name: "কুরআন মাজিদ", fullMarks: 100, passMarks: 33 },
+                    { name: "হাদীস শরীফ", fullMarks: 100, passMarks: 33 },
+                    { name: "বাংলা", fullMarks: 100, passMarks: 33 },
+                    { name: "ইংরেজি", fullMarks: 100, passMarks: 33 },
+                    { name: "গণিত", fullMarks: 100, passMarks: 33 }
+                ];
+                cfg = {};
+                examClassesList.forEach(c => {
+                    cfg[c.name] = defaultSubs.map(s => ({ ...s }));
+                });
+                localStorage.setItem(CLASS_SUBJECTS_CONFIG_KEY, JSON.stringify(cfg));
+            }
+            return cfg;
+        }
+
+        function saveClassSubjectsConfig(cfg) {
+            localStorage.setItem(CLASS_SUBJECTS_CONFIG_KEY, JSON.stringify(cfg));
+        }
+
+        function getSubjectsForClass(className) {
+            const cfg = getClassSubjectsConfig();
+            return cfg[className] || [];
+        }
+
+        function renderClassSubjectsSetupTable() {
+            const clsName = document.getElementById('set_class')?.value;
+            const tbody = document.getElementById('class_subjects_setup_tbody');
+            const badge = document.getElementById('setup_current_class_badge');
+            if (!clsName || !tbody) return;
+
+            if (badge) badge.innerText = `শ্রেণি: ${clsName}`;
+            const subs = getSubjectsForClass(clsName);
+            tbody.innerHTML = '';
+
+            if (subs.length === 0) {
+                tbody.innerHTML = `<tr><td colspan="4" class="p-3 text-center text-gray-500 font-bold">এই শ্রেণিতে কোনো বিষয় নেই। উপরে নতুন বিষয় যুক্ত করুন।</td></tr>`;
+                return;
+            }
+
+            subs.forEach((s, idx) => {
+                tbody.innerHTML += `
+                    <tr>
+                        <td class="border p-2 font-bold">${s.name}</td>
+                        <td class="border p-2 text-center">
+                            <input type="number" value="${s.fullMarks}" min="1" onchange="updateSubjectMarks('${clsName}', ${idx}, 'fullMarks', this.value)" class="p-1 border rounded w-20 text-center font-bold text-blue-800">
+                        </td>
+                        <td class="border p-2 text-center">
+                            <input type="number" value="${s.passMarks}" min="0" onchange="updateSubjectMarks('${clsName}', ${idx}, 'passMarks', this.value)" class="p-1 border rounded w-20 text-center font-bold text-rose-700">
+                        </td>
+                        <td class="border p-2 text-center no-print">
+                            <button type="button" onclick="deleteSubjectFromClass('${clsName}', ${idx})" class="bg-rose-100 text-rose-700 px-2 py-1 rounded font-bold text-[10px] hover:bg-rose-200">মুছুন</button>
+                        </td>
+                    </tr>
+                `;
+            });
+        }
+
+        function addSubjectToSelectedClass() {
+            const clsName = document.getElementById('set_class').value;
+            const subName = document.getElementById('new_class_sub_name').value.trim();
+            const fullMarks = parseInt(document.getElementById('new_class_sub_full').value, 10) || 100;
+            const passMarks = parseInt(document.getElementById('new_class_sub_pass').value, 10) || 33;
+
+            if (!subName) {
+                alert('দয়া করে নতুন বিষয়ের নাম লিখুন!');
+                return;
+            }
+            if (passMarks > fullMarks) {
+                alert('পাস মার্ক পূর্ণমানের চেয়ে বেশি হতে পারে না!');
+                return;
+            }
+
+            const cfg = getClassSubjectsConfig();
+            if (!cfg[clsName]) cfg[clsName] = [];
+            cfg[clsName].push({ name: subName, fullMarks, passMarks });
+            saveClassSubjectsConfig(cfg);
+
+            document.getElementById('new_class_sub_name').value = '';
+            renderClassSubjectsSetupTable();
+            onMarksClassOrSubjectChange();
+            populateGroupSubjectDropdowns();
+        }
+
+        function updateSubjectMarks(clsName, idx, field, val) {
+            const cfg = getClassSubjectsConfig();
+            if (!cfg[clsName] || !cfg[clsName][idx]) return;
+            cfg[clsName][idx][field] = parseInt(val, 10) || 0;
+            saveClassSubjectsConfig(cfg);
+            onMarksClassOrSubjectChange();
+        }
+
+        function deleteSubjectFromClass(clsName, idx) {
+            const cfg = getClassSubjectsConfig();
+            if (!cfg[clsName]) return;
+            cfg[clsName].splice(idx, 1);
+            saveClassSubjectsConfig(cfg);
+            renderClassSubjectsSetupTable();
+            onMarksClassOrSubjectChange();
+            populateGroupSubjectDropdowns();
+        }
+
+        /* ===================================================
+           TEACHER & STAFF CONNECTOR (BANGLA ONLY DISPLAY)
+           =================================================== */
         function getTeacherAndStaffList() {
             const normalizedMap = new Map();
 
@@ -726,25 +1065,17 @@
 
                             const designation = keepBanglaOnly(t.designation || "");
                             const subject = keepBanglaOnly(t.subject || "");
-
                             const role = (designation && subject)
                                 ? `${designation} - ${subject}`
                                 : (designation || subject || "শিক্ষক");
 
                             if (!normalizedMap.has(name)) {
-                                normalizedMap.set(name, {
-                                    name,
-                                    designation,
-                                    subject,
-                                    role
-                                });
+                                normalizedMap.set(name, { name, designation, subject, role });
                             }
                         });
                     }
                 }
-            } catch (e) {
-                console.warn("madrasah_teachers_master read error:", e);
-            }
+            } catch (e) {}
 
             try {
                 const staffRaw = localStorage.getItem('madrasah_staff_master');
@@ -760,49 +1091,30 @@
                             const role = designation || "স্টাফ";
 
                             if (!normalizedMap.has(name)) {
-                                normalizedMap.set(name, {
-                                    name,
-                                    designation,
-                                    subject: "",
-                                    role
-                                });
+                                normalizedMap.set(name, { name, designation, subject: "", role });
                             }
                         });
                     }
                 }
-            } catch (e) {
-                console.warn("madrasah_staff_master read error:", e);
-            }
+            } catch (e) {}
 
             return Array.from(normalizedMap.values());
         }
 
         function populateTeacherDropdowns() {
             const teachers = getTeacherAndStaffList();
-
-            const qmSelect = document.getElementById('qm_teacher_select');
-            if (qmSelect) {
-                qmSelect.innerHTML = `<option value="">-- Teacher & Staff থেকে শিক্ষক নির্বাচন করুন (${teachers.length} জন) --</option>`;
+            ['qm_teacher_select', 'mon_teacher_select'].forEach(id => {
+                const sel = document.getElementById(id);
+                if (!sel) return;
+                sel.innerHTML = `<option value="">-- Teacher & Staff থেকে শিক্ষক নির্বাচন করুন (${teachers.length} জন) --</option>`;
                 teachers.forEach(t => {
                     const opt = document.createElement('option');
                     opt.value = t.name;
                     opt.dataset.role = t.role;
                     opt.textContent = `${t.name} (${t.role})`;
-                    qmSelect.appendChild(opt);
+                    sel.appendChild(opt);
                 });
-            }
-
-            const monSelect = document.getElementById('mon_teacher_select');
-            if (monSelect) {
-                monSelect.innerHTML = `<option value="">-- Teacher & Staff থেকে শিক্ষক নির্বাচন করুন (${teachers.length} জন) --</option>`;
-                teachers.forEach(t => {
-                    const opt = document.createElement('option');
-                    opt.value = t.name;
-                    opt.dataset.role = t.role;
-                    opt.textContent = `${t.name} (${t.role})`;
-                    monSelect.appendChild(opt);
-                });
-            }
+            });
         }
 
         function onQmTeacherSelectChange() {
@@ -823,17 +1135,13 @@
             }
         }
 
-        /* ==========================================
-           QUESTION MANAGEMENT (ONE-TIME CLICK LOCK)
-           ========================================== */
+        /* ===================================================
+           QUESTION MANAGEMENT
+           =================================================== */
         const QUESTION_MGMT_KEY = "ahifm_question_management_v1";
 
         function getQuestionManagementData() {
-            return JSON.parse(localStorage.getItem(QUESTION_MGMT_KEY)) || {
-                meetingDate: "",
-                deadlineDate: "",
-                rows: []
-            };
+            return JSON.parse(localStorage.getItem(QUESTION_MGMT_KEY)) || { meetingDate: "", deadlineDate: "", rows: [] };
         }
 
         function saveQuestionManagementData(data) {
@@ -876,7 +1184,6 @@
         function addQuestionTeacherRow() {
             const selectEl = document.getElementById('qm_teacher_select');
             const desigSubEl = document.getElementById('qm_new_designation_subject');
-
             const teacherName = selectEl.value.trim();
             const designationSubject = keepBanglaOnly(desigSubEl.value.trim());
 
@@ -886,15 +1193,14 @@
             }
 
             const data = getQuestionManagementData();
-            const alreadyExists = data.rows.some(r => r.teacherName === teacherName);
-            if (alreadyExists) {
+            if (data.rows.some(r => r.teacherName === teacherName)) {
                 alert('এই শিক্ষক ইতিমধ্যে তালিকায় যুক্ত আছেন!');
                 return;
             }
 
             data.rows.push({
-                teacherName: teacherName,
-                designationSubject: designationSubject,
+                teacherName,
+                designationSubject,
                 submitted: "",
                 sentForPrint: "",
                 sentForCorrection: "",
@@ -920,8 +1226,7 @@
             let addedCount = 0;
 
             teachers.forEach(t => {
-                const exists = data.rows.some(r => r.teacherName === t.name);
-                if (!exists) {
+                if (!data.rows.some(r => r.teacherName === t.name)) {
                     data.rows.push({
                         teacherName: t.name,
                         designationSubject: t.role || "",
@@ -1001,7 +1306,6 @@
             const data = getQuestionManagementData();
             const tbody = document.getElementById('qm_table_tbody');
             if (!tbody) return;
-
             tbody.innerHTML = '';
 
             if (!data.rows || data.rows.length === 0) {
@@ -1036,19 +1340,13 @@
             });
         }
 
-        /* ============================
-           EXAM MONITORING (REAL-TIME)
-           ============================ */
+        /* ===================================================
+           EXAM MONITORING
+           =================================================== */
         const FULL_EXAM_MONITORING_KEY = "ahifm_exam_full_monitoring_v4";
 
         function toBengaliOrdinal(num) {
-            const ordinals = {
-                1: "১ম ভিজিট",
-                2: "২য় ভিজিট",
-                3: "৩য় ভিজিট",
-                4: "৪র্থ ভিজিট",
-                5: "৫ম ভিজিট"
-            };
+            const ordinals = { 1: "১ম ভিজিট", 2: "২য় ভিজিট", 3: "৩য় ভিজিট", 4: "৪র্থ ভিজিট", 5: "৫ম ভিজিট" };
             return ordinals[num] || `${num}ম ভিজিট`;
         }
 
@@ -1067,14 +1365,8 @@
         function ensureRoomEntry(dateStr, roomStr) {
             const allData = getAllMonitoringRecords();
             const key = getRoomEntryKey(dateStr, roomStr);
-
             if (!allData[key]) {
-                allData[key] = {
-                    date: dateStr,
-                    room: roomStr.trim(),
-                    visitCount: 2,
-                    teachers: []
-                };
+                allData[key] = { date: dateStr, room: roomStr.trim(), visitCount: 2, teachers: [] };
                 saveAllMonitoringRecords(allData);
             }
             return allData[key];
@@ -1085,17 +1377,10 @@
             const dateInput = document.getElementById('mon_filter_date');
             if (!dateInput.value) {
                 const today = new Date();
-                const yyyy = today.getFullYear();
-                const mm = String(today.getMonth() + 1).padStart(2, '0');
-                const dd = String(today.getDate()).padStart(2, '0');
-                dateInput.value = `${yyyy}-${mm}-${dd}`;
+                dateInput.value = `${today.getFullYear()}-${String(today.getMonth() + 1).padStart(2, '0')}-${String(today.getDate()).padStart(2, '0')}`;
             }
-
             const roomInput = document.getElementById('mon_room_no');
-            if (!roomInput.value.trim()) {
-                roomInput.value = "রুম নং-১০১";
-            }
-
+            if (!roomInput.value.trim()) roomInput.value = "রুম নং-১০১";
             onMonitoringContextChange();
         }
 
@@ -1103,9 +1388,7 @@
             const dateStr = document.getElementById('mon_filter_date').value;
             const roomStr = document.getElementById('mon_room_no').value.trim() || "রুম নং-১০১";
             const mode = document.getElementById('mon_date_mode').value;
-
             if (!dateStr) return;
-
             ensureRoomEntry(dateStr, roomStr);
             renderMonitoringMatrix(dateStr, roomStr, mode);
             refreshTeacherFilterDropdown();
@@ -1118,17 +1401,12 @@
             const allData = getAllMonitoringRecords();
             const key = getRoomEntryKey(dateStr, roomStr);
             const entry = ensureRoomEntry(dateStr, roomStr);
-
             const nextVisitNum = (entry.visitCount || 1) + 1;
             entry.visitCount = nextVisitNum;
-
             entry.teachers.forEach(t => {
                 if (!t.visits) t.visits = {};
-                if (!t.visits[nextVisitNum]) {
-                    t.visits[nextVisitNum] = { status: "অপেক্ষমাণ", time: "-", note: "" };
-                }
+                if (!t.visits[nextVisitNum]) t.visits[nextVisitNum] = { status: "অপেক্ষমাণ", time: "-", note: "" };
             });
-
             allData[key] = entry;
             saveAllMonitoringRecords(allData);
             flashRealtimeSaved(`${toBengaliOrdinal(nextVisitNum)} কলাম যুক্ত ও রিয়েল-টাইম সেভ হয়েছে`);
@@ -1156,13 +1434,7 @@
             for (let v = 1; v <= (entry.visitCount || 1); v++) {
                 visitsObj[v] = { status: "অপেক্ষমাণ", time: "-", note: "" };
             }
-
-            entry.teachers.push({
-                name: teacherName,
-                role: teacherRole,
-                visits: visitsObj
-            });
-
+            entry.teachers.push({ name: teacherName, role: teacherRole, visits: visitsObj });
             allData[key] = entry;
             saveAllMonitoringRecords(allData);
             selectEl.value = '';
@@ -1175,7 +1447,6 @@
             const allData = getAllMonitoringRecords();
             const entry = allData[entryKey];
             if (!entry || !entry.teachers[teacherIdx]) return;
-
             const removedName = entry.teachers[teacherIdx].name;
             entry.teachers.splice(teacherIdx, 1);
             allData[entryKey] = entry;
@@ -1188,18 +1459,10 @@
             const dateStr = document.getElementById('mon_filter_date').value;
             const roomStr = document.getElementById('mon_room_no').value.trim() || "রুম নং-১০১";
             const mode = document.getElementById('mon_date_mode').value;
-
             if (!confirm('আপনি কি এই ভিউয়ের সব শিক্ষকের সারি মুছে ফেলতে চান?')) return;
-
             const allData = getAllMonitoringRecords();
             const targetKeys = mode === 'all_dates' ? Object.keys(allData) : [getRoomEntryKey(dateStr, roomStr)];
-
-            targetKeys.forEach(k => {
-                if (allData[k]) {
-                    allData[k].teachers = [];
-                }
-            });
-
+            targetKeys.forEach(k => { if (allData[k]) allData[k].teachers = []; });
             saveAllMonitoringRecords(allData);
             flashRealtimeSaved("সব শিক্ষকের সারি মুছে ফেলা হয়েছে");
             onMonitoringContextChange();
@@ -1209,18 +1472,11 @@
             const allData = getAllMonitoringRecords();
             const entry = allData[entryKey];
             if (!entry || !entry.teachers[teacherIdx]) return;
-
             if (!entry.teachers[teacherIdx].visits) entry.teachers[teacherIdx].visits = {};
             const now = new Date();
             const timeStr = now.toLocaleTimeString('bn-BD', { hour: '2-digit', minute: '2-digit' });
-
             const existingNote = (entry.teachers[teacherIdx].visits[visitNum] && entry.teachers[teacherIdx].visits[visitNum].note) || "";
-            entry.teachers[teacherIdx].visits[visitNum] = {
-                status: newStatus,
-                time: timeStr,
-                note: existingNote
-            };
-
+            entry.teachers[teacherIdx].visits[visitNum] = { status: newStatus, time: timeStr, note: existingNote };
             allData[entryKey] = entry;
             saveAllMonitoringRecords(allData);
             flashRealtimeSaved(`${entry.teachers[teacherIdx].name} (${toBengaliOrdinal(visitNum)}) — "${newStatus}" রিয়েল-টাইম সেভ হয়েছে`);
@@ -1231,12 +1487,10 @@
             const allData = getAllMonitoringRecords();
             const entry = allData[entryKey];
             if (!entry || !entry.teachers[teacherIdx]) return;
-
             if (!entry.teachers[teacherIdx].visits) entry.teachers[teacherIdx].visits = {};
             const currentCell = entry.teachers[teacherIdx].visits[visitNum] || { status: "অপেক্ষমাণ", time: "-", note: "" };
             currentCell.note = noteVal;
             entry.teachers[teacherIdx].visits[visitNum] = currentCell;
-
             allData[entryKey] = entry;
             saveAllMonitoringRecords(allData);
             flashRealtimeSaved("নোট রিয়েল-টাইম সেভ হয়েছে");
@@ -1247,7 +1501,6 @@
             const allData = getAllMonitoringRecords();
             const entry = allData[entryKey];
             if (!entry || !entry.teachers[teacherIdx]) return;
-
             entry.teachers[teacherIdx][field] = field === 'role' ? keepBanglaOnly(val) : val;
             allData[entryKey] = entry;
             saveAllMonitoringRecords(allData);
@@ -1259,39 +1512,30 @@
         function renderMonitoringMatrix(dateStr, roomStr, mode) {
             const allData = getAllMonitoringRecords();
             const currentKey = getRoomEntryKey(dateStr, roomStr);
-
             document.getElementById('mon_display_date').innerText = mode === 'all_dates' ? "সকল দিন (পুরো পরীক্ষা)" : dateStr;
             document.getElementById('mon_display_room').innerText = mode === 'all_dates' ? "সকল রুম" : roomStr;
-
             let targetKeys = mode === 'all_dates' ? Object.keys(allData).sort() : [currentKey];
 
             let maxVisits = 1;
             targetKeys.forEach(k => {
-                if (allData[k] && (allData[k].visitCount || 1) > maxVisits) {
-                    maxVisits = allData[k].visitCount;
-                }
+                if (allData[k] && (allData[k].visitCount || 1) > maxVisits) maxVisits = allData[k].visitCount;
             });
 
             const thead = document.getElementById('mon_matrix_thead');
             const tbody = document.getElementById('mon_matrix_tbody');
 
             let headerCells = `<th class="border px-1.5 py-1.5 w-32">শিক্ষকের নাম</th>`;
-            if (mode === 'all_dates') {
-                headerCells += `<th class="border px-1.5 py-1.5 w-28">তারিখ ও রুম</th>`;
-            }
-
+            if (mode === 'all_dates') headerCells += `<th class="border px-1.5 py-1.5 w-28">তারিখ ও রুম</th>`;
             for (let v = 1; v <= maxVisits; v++) {
                 headerCells += `<th class="border px-1.5 py-1.5 text-center">${toBengaliOrdinal(v)}</th>`;
             }
             headerCells += `<th class="border px-1 py-1.5 text-center w-8 no-print"><i class="fa-solid fa-trash"></i></th>`;
-
             thead.innerHTML = `<tr>${headerCells}</tr>`;
             tbody.innerHTML = '';
 
             targetKeys.forEach(k => {
                 const entry = allData[k];
                 if (!entry) return;
-
                 entry.teachers.forEach((teacher, tIdx) => {
                     const cleanTeacherRole = keepBanglaOnly(teacher.role || '');
                     let visitCellsHtml = '';
@@ -1345,20 +1589,12 @@
             const allData = getAllMonitoringRecords();
             const selectEl = document.getElementById('mon_report_teacher_filter');
             if (!selectEl) return;
-
             const currentVal = selectEl.value;
             const teacherNamesSet = new Set();
 
-            getTeacherAndStaffList().forEach(t => {
-                if (t.name) teacherNamesSet.add(t.name);
-            });
-
+            getTeacherAndStaffList().forEach(t => { if (t.name) teacherNamesSet.add(t.name); });
             Object.values(allData).forEach(entry => {
-                (entry.teachers || []).forEach(t => {
-                    if (t.name && t.name.trim()) {
-                        teacherNamesSet.add(t.name.trim());
-                    }
-                });
+                (entry.teachers || []).forEach(t => { if (t.name && t.name.trim()) teacherNamesSet.add(t.name.trim()); });
             });
 
             selectEl.innerHTML = `<option value="ALL">সকল শিক্ষক (পুরো পরীক্ষার রিপোর্ট)</option>`;
@@ -1374,19 +1610,15 @@
             const searchQuery = (document.getElementById('mon_report_teacher_search')?.value || "").trim().toLowerCase();
             const tbody = document.getElementById('mon_full_report_tbody');
             if (!tbody) return;
-
             tbody.innerHTML = '';
             const rows = [];
 
             Object.keys(allData).sort().forEach(key => {
                 const entry = allData[key];
-
                 (entry.teachers || []).forEach(t => {
                     const tName = t.name || "";
                     const visits = t.visits || {};
-                    const visitNums = Object.keys(visits).map(Number).sort((a, b) => a - b);
-
-                    visitNums.forEach(vNum => {
+                    Object.keys(visits).map(Number).sort((a, b) => a - b).forEach(vNum => {
                         const vInfo = visits[vNum];
                         rows.push({
                             teacherName: tName,
@@ -1437,9 +1669,7 @@
             const roomStr = document.getElementById('mon_room_no').value.trim() || "রুম নং-১০১";
             ensureRoomEntry(dateStr, roomStr);
             onMonitoringContextChange();
-            if (showAlert) {
-                alert(`${dateStr} | ${roomStr} এর সব ভিজিট কলামের ডেটা রিয়েল-টাইম সংরক্ষিত আছে!`);
-            }
+            if (showAlert) alert(`${dateStr} | ${roomStr} এর সব ভিজিট কলামের ডেটা রিয়েল-টাইম সংরক্ষিত আছে!`);
         }
 
         function flashRealtimeSaved(message) {
@@ -1451,88 +1681,63 @@
             }, 2500);
         }
 
+        /* ===================================================
+           GENERAL DROPDOWNS, MARKS, GROUP PROCESSING, RC, ADMIT, ROUTINE
+           =================================================== */
         function getSettingsData() {
-            let years = JSON.parse(localStorage.getItem('madrasah_years')) || ["২০২৬", "২০২৭"];
-            let exams = JSON.parse(localStorage.getItem('madrasah_exams')) || ["অর্ধবার্ষিক পরীক্ষা ২০২৬", "বার্ষিক পরীক্ষা ২০২৬"];
-            
-            let rawSubs = JSON.parse(localStorage.getItem('madrasah_subjects_detailed')) || JSON.parse(localStorage.getItem('madrasah_subjects')) || [];
-            let subjects = rawSubs.map(s => s.name || s.subjectName || s).filter(Boolean);
-            
-            if(subjects.length === 0) {
-                subjects = ["কুরআন মাজিদ", "হাদীস শরীফ", "বাংলা প্রথম পত্র", "বাংলা দ্বিতীয় পত্র", "ইংরেজি ১ম পত্র", "ইংরেজি ২য় পত্র", "গণিত", "আকাঈদ ও ফিকহ্", "তথ্য ও যোগাযোগ প্রযুক্তি", "কৃষি শিক্ষা"];
-            }
-
-            let classes = examClassesList.map(c => c.name);
+            const years = getSettingsSessionAndYears();
+            const exams = JSON.parse(localStorage.getItem('madrasah_exams')) || ["অর্ধবার্ষিক পরীক্ষা ২০২৬", "বার্ষিক পরীক্ষা ২০২৬"];
+            const classes = examClassesList.map(c => c.name);
+            const firstClassSubs = getSubjectsForClass(classes[0]).map(s => s.name);
+            const subjects = firstClassSubs.length > 0 ? firstClassSubs : ["কুরআন মাজিদ", "হাদীস শরীফ", "বাংলা", "ইংরেজি", "গণিত"];
             return { years, classes, exams, subjects };
         }
 
         function populateAllDropdowns() {
             const data = getSettingsData();
-            
-            populateSelect('set_year', data.years);
-            populateSelect('set_class', data.classes);
-            populateSelect('set_subject', data.subjects);
-            populateSelect('set_exam_name', data.exams);
 
-            populateSelect('mark_filter_year', data.years);
-            populateSelect('mark_filter_exam', data.exams);
-            populateSelect('mark_filter_class', data.classes);
+            ['set_year', 'mark_filter_year', 'proc_filter_year', 'merit_filter_year', 'tab_filter_year', 'sum_filter_year', 'rc_filter_year', 'admit_filter_year'].forEach(id => populateSelect(id, data.years));
+            ['set_exam_name', 'mark_filter_exam', 'proc_filter_exam', 'merit_filter_exam', 'tab_filter_exam', 'sum_filter_exam', 'rc_filter_exam', 'admit_filter_exam'].forEach(id => populateSelect(id, data.exams));
+            ['set_class', 'mark_filter_class', 'proc_filter_class', 'merit_filter_class', 'tab_filter_class', 'sum_filter_class', 'rc_filter_class', 'admit_filter_class', 'rout_class'].forEach(id => populateSelect(id, data.classes));
 
-            populateSelect('proc_filter_year', data.years);
-            populateSelect('proc_filter_exam', data.exams);
-            populateSelect('proc_filter_class', data.classes);
+            const routFilterSel = document.getElementById('routine_class_filter');
+            if (routFilterSel) {
+                routFilterSel.innerHTML = `<option value="ALL">সকল শ্রেণি</option>`;
+                data.classes.forEach(c => { routFilterSel.innerHTML += `<option value="${c}">${c}</option>`; });
+            }
 
-            populateSelect('comb_sub_1', data.subjects);
-            populateSelect('comb_sub_2', data.subjects);
-
-            populateSelect('merit_filter_year', data.years);
-            populateSelect('merit_filter_exam', data.exams);
-            populateSelect('merit_filter_class', data.classes);
-
-            populateSelect('tab_filter_year', data.years);
-            populateSelect('tab_filter_exam', data.exams);
-            populateSelect('tab_filter_class', data.classes);
-
-            populateSelect('sum_filter_year', data.years);
-            populateSelect('sum_filter_exam', data.exams);
-            populateSelect('sum_filter_class', data.classes);
-
-            populateSelect('rc_filter_year', data.years);
-            populateSelect('rc_filter_exam', data.exams);
-
-            populateSelect('admit_filter_year', data.years);
-            populateSelect('admit_filter_exam', data.exams);
-            populateSelect('admit_filter_class', data.classes);
-
-            populateSelect('rout_class', data.classes);
             populateSelect('rout_subject', data.subjects);
-
+            renderClassSubjectsSetupTable();
+            onMarksClassOrSubjectChange();
+            populateGroupSubjectDropdowns();
             populateTeacherDropdowns();
             renderClassToggles();
         }
 
         function populateSelect(elementId, items) {
             const el = document.getElementById(elementId);
-            if(!el) return;
+            if (!el) return;
             el.innerHTML = '';
-            items.forEach(item => {
-                el.innerHTML += `<option value="${item}">${item}</option>`;
-            });
+            items.forEach(item => { el.innerHTML += `<option value="${item}">${item}</option>`; });
         }
 
         function openExamPanel(panelName) {
             document.querySelectorAll('.exam-sub-panel').forEach(p => p.classList.add('hidden'));
             const target = document.getElementById('panel-' + panelName);
-            if(target) {
+            if (target) {
                 target.classList.remove('hidden');
                 target.scrollIntoView({ behavior: 'smooth' });
             }
-            if(panelName === 'marks') loadMarksTable();
-            if(panelName === 'merit') loadMeritList();
-            if(panelName === 'tabulation') loadTabulationSheet();
-            if(panelName === 'summary') loadResultSummary();
-            if(panelName === 'monitoring') initMonitoringPanel();
-            if(panelName === 'question_management') initQuestionManagementPanel();
+            if (panelName === 'setup') renderClassSubjectsSetupTable();
+            if (panelName === 'marks') { onMarksClassOrSubjectChange(); loadMarksTable(); }
+            if (panelName === 'processing') { populateGroupSubjectDropdowns(); renderCombinedGroupsList(); renderGroupMarksProcessingTable(); }
+            if (panelName === 'merit') loadMeritList();
+            if (panelName === 'tabulation') loadTabulationSheet();
+            if (panelName === 'summary') loadResultSummary();
+            if (panelName === 'reportcard') onReportCardClassChange();
+            if (panelName === 'admit') applyAdmitFilter();
+            if (panelName === 'monitoring') initMonitoringPanel();
+            if (panelName === 'question_management') initQuestionManagementPanel();
         }
 
         function closeAllExamPanels() {
@@ -1541,12 +1746,13 @@
         }
 
         function saveExamSettings() {
-            alert('এক্সাম সেটআপ ও সেটিংস সফলভাবে সংরক্ষিত হয়েছে!');
+            renderClassSubjectsSetupTable();
+            alert('এক্সাম সেটআপ, শ্রেণিভিত্তিক বিষয় ও নম্বর সফলভাবে সংরক্ষিত হয়েছে!');
         }
 
         function getStudentsForExam() {
             let students = JSON.parse(localStorage.getItem('madrasah_students_all'));
-            if(!students || students.length === 0) {
+            if (!students || students.length === 0) {
                 students = [
                     { id: "202606001", name_bn: "মো: আব্দুল্লাহ", cls: "দাখিল ষষ্ঠ শ্রেণি", roll: "001", father: "Md. Ibrahim", f_mobile: "01800000000" },
                     { id: "202606002", name_bn: "ফাতেমা তুজ জোহরা", cls: "দাখিল ষষ্ঠ শ্রেণি", roll: "002", father: "Abdul Karim", f_mobile: "01800000001" }
@@ -1556,7 +1762,31 @@
             return students;
         }
 
+        function onMarksClassOrSubjectChange() {
+            const clsName = document.getElementById('mark_filter_class')?.value;
+            const subSelect = document.getElementById('mark_filter_subject');
+            if (!clsName || !subSelect) return;
+
+            const subs = getSubjectsForClass(clsName);
+            const prevSub = subSelect.value;
+            subSelect.innerHTML = '';
+            subs.forEach(s => {
+                subSelect.innerHTML += `<option value="${s.name}">${s.name} (পূর্ণমান: ${s.fullMarks}, পাস: ${s.passMarks})</option>`;
+            });
+            if (prevSub && subs.some(s => s.name === prevSub)) {
+                subSelect.value = prevSub;
+            }
+
+            const chosenSubName = subSelect.value;
+            const subObj = subs.find(s => s.name === chosenSubName) || { fullMarks: 100, passMarks: 33 };
+            const infoEl = document.getElementById('marks_subject_meta_info');
+            if (infoEl) {
+                infoEl.innerText = `শ্রেণি: ${clsName} | বিষয়: ${chosenSubName || '---'} | পূর্ণমান: ${subObj.fullMarks} | পাস মার্ক: ${subObj.passMarks}`;
+            }
+        }
+
         function loadMarksTable() {
+            onMarksClassOrSubjectChange();
             const spinner = document.getElementById('loading_marks');
             const tbody = document.getElementById('marksEntryTableBody');
             spinner.classList.remove('hidden');
@@ -1565,57 +1795,155 @@
             setTimeout(() => {
                 spinner.classList.add('hidden');
                 const selectedClass = document.getElementById('mark_filter_class').value;
+                const selectedSub = document.getElementById('mark_filter_subject').value || 'বিষয়';
+                const subObj = getSubjectsForClass(selectedClass).find(s => s.name === selectedSub) || { fullMarks: 100, passMarks: 33 };
                 const students = getStudentsForExam().filter(s => s.cls === selectedClass);
-                
-                if(students.length === 0) {
-                    tbody.innerHTML = `<tr><td colspan="6" class="p-4 text-center text-gray-500 font-bold">এই শ্রেণিতে কোনো শিক্ষার্থী পাওয়া যায়নি!</td></tr>`;
+
+                if (students.length === 0) {
+                    tbody.innerHTML = `<tr><td colspan="8" class="p-4 text-center text-gray-500 font-bold">এই শ্রেণিতে কোনো শিক্ষার্থী পাওয়া যায়নি!</td></tr>`;
                     return;
                 }
 
                 students.forEach((s, i) => {
+                    const total = 90;
+                    const passed = total >= subObj.passMarks;
                     tbody.innerHTML += `
                         <tr>
                             <td class="border p-2 font-bold">${s.id}</td>
                             <td class="border p-2 font-bold">${s.name_bn}</td>
-                            <td class="border p-2"><input type="number" id="written_${i}" value="75" class="p-1 border rounded w-20 text-xs font-bold"></td>
-                            <td class="border p-2"><input type="number" id="mcq_${i}" value="15" class="p-1 border rounded w-20 text-xs font-bold"></td>
-                            <td class="border p-2"><input type="number" id="prac_${i}" value="0" class="p-1 border rounded w-20 text-xs font-bold"></td>
-                            <td class="border p-2 text-center"><button onclick="saveStudentMarks(${i})" class="bg-blue-600 text-white px-3 py-1 rounded font-bold shadow-sm">সংরক্ষণ</button></td>
+                            <td class="border p-2 font-semibold text-blue-800">${selectedSub}</td>
+                            <td class="border p-2"><input type="number" id="written_${i}" value="75" class="p-1 border rounded w-16 text-xs font-bold"></td>
+                            <td class="border p-2"><input type="number" id="mcq_${i}" value="15" class="p-1 border rounded w-16 text-xs font-bold"></td>
+                            <td class="border p-2"><input type="number" id="prac_${i}" value="0" class="p-1 border rounded w-16 text-xs font-bold"></td>
+                            <td class="border p-2 text-center font-bold ${passed ? 'text-emerald-700' : 'text-rose-700'}">${total}/${subObj.fullMarks} (${passed ? 'পাস' : 'ফেল'})</td>
+                            <td class="border p-2 text-center"><button onclick="saveStudentMarks('${s.id}', '${selectedSub}', ${i})" class="bg-blue-600 text-white px-3 py-1 rounded font-bold shadow-sm">সংরক্ষণ</button></td>
                         </tr>
                     `;
                 });
-            }, 500);
+            }, 300);
         }
 
-        function saveStudentMarks(i) {
-            alert('নম্বর সফলভাবে সংরক্ষিত হয়েছে!');
+        function saveStudentMarks(studentId, subName, i) {
+            const w = parseFloat(document.getElementById(`written_${i}`)?.value) || 0;
+            const m = parseFloat(document.getElementById(`mcq_${i}`)?.value) || 0;
+            const p = parseFloat(document.getElementById(`prac_${i}`)?.value) || 0;
+            const allMarks = JSON.parse(localStorage.getItem(STUDENT_MARKS_KEY)) || {};
+            allMarks[`${studentId}__${subName}`] = { w, m, p, total: w + m + p };
+            localStorage.setItem(STUDENT_MARKS_KEY, JSON.stringify(allMarks));
+            alert(`${studentId} (${subName}) এর নম্বর (${w + m + p}) সংরক্ষিত হয়েছে!`);
+        }
+
+        /* 3. GROUP SUBJECT PROCESSING (SEPARATE MARKS + COMBINED GRADE/GPA) */
+        function populateGroupSubjectDropdowns() {
+            const clsName = document.getElementById('proc_filter_class')?.value;
+            const subs = getSubjectsForClass(clsName).map(s => s.name);
+            ['comb_sub_1', 'comb_sub_2'].forEach(id => populateSelect(id, subs));
+        }
+
+        function getCombinedGroups() {
+            return JSON.parse(localStorage.getItem(COMBINED_GROUPS_KEY)) || [];
+        }
+
+        function saveCombinedGroups(groups) {
+            localStorage.setItem(COMBINED_GROUPS_KEY, JSON.stringify(groups));
         }
 
         function addCombinedSubjectGroup() {
             const groupTitle = document.getElementById('comb_group_name').value.trim();
             const sub1 = document.getElementById('comb_sub_1').value;
             const sub2 = document.getElementById('comb_sub_2').value;
+            const clsName = document.getElementById('proc_filter_class').value;
 
-            if(sub1 === sub2) {
+            if (!sub1 || !sub2 || sub1 === sub2) {
                 alert('দয়া করে ২টি ভিন্ন বিষয় নির্বাচন করুন!');
                 return;
             }
 
             const name = groupTitle ? groupTitle : `${sub1} + ${sub2}`;
-            const container = document.getElementById('combinedGroupsDisplayList');
-
-            container.innerHTML += `
-                <span class="bg-purple-100 text-purple-900 px-3 py-1.5 rounded-lg border border-purple-300 font-bold flex items-center gap-2">
-                    <i class="fa-solid fa-book"></i> ${name} (${sub1} + ${sub2}) [২০০ নম্বর]
-                    <button onclick="this.parentElement.remove()" class="text-red-600 font-bold hover:bg-red-200 rounded px-1">×</button>
-                </span>
-            `;
-
+            const groups = getCombinedGroups();
+            groups.push({ id: Date.now(), className: clsName, name, sub1, sub2 });
+            saveCombinedGroups(groups);
             document.getElementById('comb_group_name').value = '';
+            renderCombinedGroupsList();
+            renderGroupMarksProcessingTable();
+        }
+
+        function removeCombinedGroup(groupId) {
+            const groups = getCombinedGroups().filter(g => g.id !== groupId);
+            saveCombinedGroups(groups);
+            renderCombinedGroupsList();
+            renderGroupMarksProcessingTable();
+        }
+
+        function renderCombinedGroupsList() {
+            const container = document.getElementById('combinedGroupsDisplayList');
+            if (!container) return;
+            const groups = getCombinedGroups();
+            container.innerHTML = '';
+            groups.forEach(g => {
+                container.innerHTML += `
+                    <span class="bg-purple-100 text-purple-900 px-3 py-1.5 rounded-lg border border-purple-300 font-bold flex items-center gap-2">
+                        <i class="fa-solid fa-layer-group"></i> ${g.name} (${g.sub1} ও ${g.sub2} — আলাদা নম্বর, যৌথ গ্রেড/GPA)
+                        <button onclick="removeCombinedGroup(${g.id})" class="text-red-600 font-bold hover:bg-red-200 rounded px-1">×</button>
+                    </span>
+                `;
+            });
+        }
+
+        function calcGradeFromPercent(pct) {
+            if (pct >= 80) return { grade: "A+", gpa: "5.00" };
+            if (pct >= 70) return { grade: "A", gpa: "4.00" };
+            if (pct >= 60) return { grade: "A-", gpa: "3.50" };
+            if (pct >= 50) return { grade: "B", gpa: "3.00" };
+            if (pct >= 33) return { grade: "C", gpa: "2.00" };
+            return { grade: "F", gpa: "0.00" };
+        }
+
+        function renderGroupMarksProcessingTable() {
+            const tbody = document.getElementById('groupMarksProcessingBody');
+            if (!tbody) return;
+            const clsName = document.getElementById('proc_filter_class')?.value;
+            const students = getStudentsForExam().filter(s => s.cls === clsName);
+            const groups = getCombinedGroups();
+            const activeGroup = groups[groups.length - 1] || { sub1: "বিষয় ১", sub2: "বিষয় ২" };
+            const savedGroupMarks = JSON.parse(localStorage.getItem(GROUP_MARKS_KEY)) || {};
+
+            tbody.innerHTML = '';
+            students.forEach(s => {
+                const key = `${s.id}__${activeGroup.sub1}__${activeGroup.sub2}`;
+                const m1 = savedGroupMarks[key]?.m1 ?? 75;
+                const m2 = savedGroupMarks[key]?.m2 ?? 70;
+                const total = m1 + m2;
+                const gInfo = calcGradeFromPercent((total / 200) * 100);
+
+                tbody.innerHTML += `
+                    <tr>
+                        <td class="border p-2 font-bold">${s.name_bn} (${s.id})</td>
+                        <td class="border p-2">
+                            <span class="text-[10px] text-gray-600 block">${activeGroup.sub1}:</span>
+                            <input type="number" value="${m1}" onchange="updateGroupMarkValue('${key}', 'm1', this.value)" class="p-1 border rounded w-20 font-bold">
+                        </td>
+                        <td class="border p-2">
+                            <span class="text-[10px] text-gray-600 block">${activeGroup.sub2}:</span>
+                            <input type="number" value="${m2}" onchange="updateGroupMarkValue('${key}', 'm2', this.value)" class="p-1 border rounded w-20 font-bold">
+                        </td>
+                        <td class="border p-2 text-center font-bold text-blue-900">${total}</td>
+                        <td class="border p-2 text-center font-bold text-purple-900 bg-purple-50">${gInfo.grade} (GPA ${gInfo.gpa})</td>
+                    </tr>
+                `;
+            });
+        }
+
+        function updateGroupMarkValue(key, field, val) {
+            const saved = JSON.parse(localStorage.getItem(GROUP_MARKS_KEY)) || {};
+            if (!saved[key]) saved[key] = { m1: 75, m2: 70 };
+            saved[key][field] = parseFloat(val) || 0;
+            localStorage.setItem(GROUP_MARKS_KEY, JSON.stringify(saved));
+            renderGroupMarksProcessingTable();
         }
 
         function processAllResults() {
-            document.getElementById('processingStatusResult').innerText = "যুগ্ম সাবজেক্টের (Paper 1 + Paper 2) মোট নম্বর এবং সমন্বিত পাসের ভিত্তিতে ফলাফল প্রসেস সম্পন্ন হয়েছে!";
+            document.getElementById('processingStatusResult').innerText = "গ্রুপ বিষয়গুলোর আলাদা নম্বর এবং সমন্বিত গ্রেড ও GPA পয়েন্টসহ ফলাফল প্রসেস সম্পন্ন হয়েছে!";
         }
 
         function loadMeritList() {
@@ -1644,7 +1972,7 @@
                         </tr>
                     `;
                 });
-            }, 500);
+            }, 300);
         }
 
         function loadTabulationSheet() {
@@ -1675,18 +2003,15 @@
                         </tr>
                     `;
                 });
-            }, 500);
+            }, 300);
         }
 
         function loadResultSummary() {
             const spinner = document.getElementById('loading_sum');
             spinner.classList.remove('hidden');
-
             setTimeout(() => {
                 spinner.classList.add('hidden');
-                const selectedExam = document.getElementById('sum_filter_exam').value;
-                document.getElementById('sum_exam_title_display').innerText = selectedExam;
-
+                document.getElementById('sum_exam_title_display').innerText = document.getElementById('sum_filter_exam').value;
                 document.getElementById('sum_total_students').innerText = "2";
                 document.getElementById('sum_total_passed').innerText = "2";
                 document.getElementById('sum_total_failed').innerText = "0";
@@ -1696,7 +2021,47 @@
                 document.getElementById('grade_aminus_count').innerText = "0";
                 document.getElementById('grade_b_count').innerText = "0";
                 document.getElementById('grade_f_count').innerText = "0";
-            }, 500);
+            }, 300);
+        }
+
+        /* 4. PROGRESS REPORT CARD (CLASS LOAD + ID FILTERING) */
+        function onReportCardClassChange() {
+            const clsName = document.getElementById('rc_filter_class')?.value;
+            const idFilterVal = (document.getElementById('reportCardSearchId')?.value || "").trim().toLowerCase();
+            const students = getStudentsForExam().filter(s => !clsName || s.cls === clsName);
+
+            const datalist = document.getElementById('rcStudentIdList');
+            if (datalist) {
+                datalist.innerHTML = '';
+                students.forEach(s => { datalist.innerHTML += `<option value="${s.id}">${s.name_bn}</option>`; });
+            }
+
+            const listContainer = document.getElementById('rc_class_students_list');
+            if (!listContainer) return;
+            listContainer.innerHTML = '';
+
+            const matched = students.filter(s => !idFilterVal || s.id.toLowerCase().includes(idFilterVal) || s.name_bn.toLowerCase().includes(idFilterVal));
+            if (matched.length === 0) {
+                listContainer.innerHTML = `<span class="text-gray-500">এই শ্রেণি বা আইডিতে কোনো শিক্ষার্থী পাওয়া যায়নি।</span>`;
+                return;
+            }
+
+            matched.forEach(s => {
+                listContainer.innerHTML += `
+                    <button type="button" onclick="selectStudentForReportCard('${s.id}')" class="bg-white border border-rose-300 hover:bg-rose-100 px-3 py-1 rounded-lg font-bold text-rose-900 shadow-sm">
+                        ID: ${s.id} — ${s.name_bn}
+                    </button>
+                `;
+            });
+        }
+
+        function filterReportCardStudentsById() {
+            onReportCardClassChange();
+        }
+
+        function selectStudentForReportCard(id) {
+            document.getElementById('reportCardSearchId').value = id;
+            generateReportCard();
         }
 
         function generateReportCard() {
@@ -1708,14 +2073,15 @@
                 spinner.classList.add('hidden');
                 const id = document.getElementById('reportCardSearchId').value.trim();
                 const selectedExam = document.getElementById('rc_filter_exam').value;
-                const students = getStudentsForExam();
-                const found = students.find(s => s.id === id);
-                
-                if(!found) {
-                    alert('শিক্ষার্থী আইডি পাওয়া যায়নি!');
+                const selectedClass = document.getElementById('rc_filter_class').value;
+                const students = getStudentsForExam().filter(s => s.cls === selectedClass);
+                const found = students.find(s => s.id === id) || students[0];
+
+                if (!found) {
+                    alert('নির্বাচিত শ্রেণিতে কোনো শিক্ষার্থী পাওয়া যায়নি!');
                     return;
                 }
-                
+
                 document.getElementById('rc_exam_title_banner').innerText = selectedExam + " - প্রোগ্রেস রিপোর্ট কার্ড";
                 document.getElementById('rc_id').innerText = found.id;
                 document.getElementById('rc_name_bn').innerText = found.name_bn;
@@ -1723,17 +2089,47 @@
                 document.getElementById('rc_class').innerText = found.cls;
                 document.getElementById('rc_roll').innerText = found.roll || '001';
                 document.getElementById('reportCardContainer').classList.remove('hidden');
-            }, 500);
+            }, 300);
         }
 
+        /* 5. ADMIT CARD (CLASS LOAD + ID FILTERING) */
         function applyAdmitFilter() {
-            const examName = document.getElementById('admit_filter_exam').value;
-            document.querySelectorAll('.admit_exam_title_display').forEach(el => el.innerText = `${examName}`);
+            const examName = document.getElementById('admit_filter_exam')?.value || 'অর্ধবার্ষিক পরীক্ষা';
+            const clsName = document.getElementById('admit_filter_class')?.value || '';
+            const idQuery = (document.getElementById('admit_filter_id')?.value || '').trim().toLowerCase();
+
+            document.querySelectorAll('.admit_exam_title_display').forEach(el => el.innerText = examName);
+            const listEl = document.getElementById('admit_students_list');
+            if (!listEl) return;
+
+            const filtered = getStudentsForExam().filter(s => {
+                const matchClass = !clsName || s.cls === clsName;
+                const matchId = !idQuery || s.id.toLowerCase().includes(idQuery) || s.name_bn.toLowerCase().includes(idQuery);
+                return matchClass && matchId;
+            });
+
+            listEl.innerHTML = '';
+            if (filtered.length === 0) {
+                listEl.innerHTML = `<div class="col-span-2 text-center text-gray-500 font-bold py-4">কোনো শিক্ষার্থীর এডমিট কার্ড পাওয়া যায়নি।</div>`;
+                return;
+            }
+
+            filtered.forEach(s => {
+                listEl.innerHTML += `
+                    <div class="border border-emerald-800 rounded-lg p-3 bg-white/85 space-y-1">
+                        <div class="font-bold text-emerald-950 border-b pb-1">প্রবেশপত্র / এডমিট কার্ড</div>
+                        <p><b>আইডি:</b> ${s.id} | <b>রোল:</b> ${s.roll || '001'}</p>
+                        <p><b>নাম:</b> ${s.name_bn}</p>
+                        <p><b>শ্রেণি:</b> ${s.cls}</p>
+                    </div>
+                `;
+            });
         }
 
+        /* 6. EXAM ROUTINE (CLASS FILTER + PRINT) */
         function autoDetectDay(input) {
             const val = input.value;
-            if(!val) {
+            if (!val) {
                 document.getElementById('rout_day').value = "";
                 return;
             }
@@ -1744,7 +2140,7 @@
 
         function renderClassToggles() {
             const container = document.getElementById('classStatusToggles');
-            if(!container) return;
+            if (!container) return;
             container.innerHTML = '';
             examClassesList.forEach(c => {
                 let isActive = classActiveStatus[c.id];
@@ -1759,13 +2155,18 @@
             renderClassToggles();
         }
 
-        function applyClassColumnVisibility() {
+        function applyRoutineClassFilter() {
+            const filterVal = document.getElementById('routine_class_filter')?.value || 'ALL';
             examClassesList.forEach(c => {
-                let visible = classActiveStatus[c.id];
+                const visible = filterVal === 'ALL' ? classActiveStatus[c.id] : (c.name === filterVal);
                 document.querySelectorAll(`.class-col-${c.id}`).forEach(el => {
                     el.style.display = visible ? "" : "none";
                 });
             });
+        }
+
+        function applyClassColumnVisibility() {
+            applyRoutineClassFilter();
         }
 
         function addExamRoutineItem() {
@@ -1774,7 +2175,7 @@
             const clsName = document.getElementById('rout_class').value;
             const subj = document.getElementById('rout_subject').value;
 
-            if(!date) {
+            if (!date) {
                 alert('দয়া করে তারিখ নির্বাচন করুন!');
                 return;
             }
@@ -1820,17 +2221,18 @@
         }
 
         function resetExamRoutine() {
-            if(confirm('আপনি কি নিশ্চিতভাবে সমস্ত রুটিন রিসেট করতে চান?')) {
+            if (confirm('আপনি কি নিশ্চিতভাবে সমস্ত রুটিন রিসেট করতে চান?')) {
                 document.getElementById('examRoutineTableBody').innerHTML = '';
             }
         }
 
         window.onload = function() {
+            getClassSubjectsConfig();
             populateAllDropdowns();
             getStudentsForExam();
 
             const tbody = document.getElementById('examRoutineTableBody');
-            if(tbody) {
+            if (tbody) {
                 let defaultCells = "";
                 examClassesList.forEach(c => {
                     let content = (c.id === 'dakhil6') ? `<span class="font-bold text-emerald-800 bg-emerald-50/90 px-2 py-0.5 rounded border border-emerald-200">আল-কুরআনুল কারীম</span>` : `<span class="text-gray-400">-</span>`;
@@ -1846,7 +2248,7 @@
             }
 
             let savedLogo = localStorage.getItem('madrasah_logo_url');
-            if(savedLogo) {
+            if (savedLogo) {
                 document.getElementById('inst_logo_display_1').src = savedLogo;
             }
         };

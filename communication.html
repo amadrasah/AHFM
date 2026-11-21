@@ -70,14 +70,20 @@
                 <div class="bg-gradient-to-r from-emerald-800 to-emerald-950 text-white p-5 md:p-6 rounded-2xl shadow-sm flex flex-col md:flex-row justify-between items-center gap-4 no-print">
                     <div>
                         <h2 class="text-lg md:text-xl font-bold">যোগাযোগ ও নোটিফিকেশন ম্যানেজমেন্ট প্যানেল</h2>
-                        <p class="text-emerald-200 text-xs mt-1">গ্রুপ ও শ্রেণিভিত্তিক মোবাইল সিম এবং WhatsApp মেসেজিংয়ের মাধ্যমে তাৎক্ষণিক বার্তা প্রেরণ।</p>
+                        <p class="text-emerald-200 text-xs mt-1">সকল ছাত্র, অভিভাবক ও শিক্ষক-স্টাফকে একসাথে মোবাইল সিম বা WhatsApp-এর মাধ্যমে তথ্য ও নোটিশ পাঠান।</p>
+                    </div>
+                    <div class="bg-emerald-900/80 border border-emerald-700 px-4 py-2 rounded-xl text-xs font-bold">
+                        মোট সংগৃহীত নম্বর: <span id="total_matched_count" class="text-amber-300 text-sm">0</span> জন
                     </div>
                 </div>
 
                 <!-- DYNAMIC MESSAGE & NOTIFICATION PANEL -->
                 <div id="comm_form_panel" class="bg-white p-5 md:p-6 rounded-2xl shadow-sm border border-gray-200 space-y-6">
-                    <div class="flex justify-between items-center border-b pb-3 no-print">
-                        <h3 class="font-bold text-emerald-800 text-base"><i class="fa-solid fa-paper-plane mr-2"></i> সরাসরি বার্তা ও এসএমএস সেন্ডিং প্যানেল</h3>
+                    <div class="flex flex-wrap justify-between items-center gap-2 border-b pb-3 no-print">
+                        <h3 class="font-bold text-emerald-800 text-base"><i class="fa-solid fa-paper-plane mr-2"></i> একসাথে বার্তা ও নোটিশ সেন্ডিং প্যানেল</h3>
+                        <button type="button" onclick="copyRecipientNumbers()" class="bg-slate-100 hover:bg-slate-200 text-slate-800 border border-slate-300 px-3 py-1.5 rounded-lg text-xs font-bold transition">
+                            <i class="fa-solid fa-copy mr-1"></i> সব নম্বর কপি করুন
+                        </button>
                     </div>
 
                     <div class="grid grid-cols-1 sm:grid-cols-3 gap-4 bg-emerald-50/70 p-4 rounded-xl border border-emerald-200 text-xs no-print">
@@ -91,23 +97,13 @@
 
                         <div>
                             <label class="font-bold block mb-1 text-gray-700">গ্রাহকের ধরন (Recipient Group) *:</label>
-                            <select id="msg_recipient_group" onchange="toggleStudentClassSelect()" class="p-2 border rounded bg-white w-full font-bold">
-                                <option value="সকল শিক্ষার্থী ও অভিভাবক">১. সকল শিক্ষার্থী ও অভিভাবক</option>
-                                <option value="নির্দিষ্ট শ্রেণির শিক্ষার্থী">২. নির্দিষ্ট শ্রেণির শিক্ষার্থী</option>
-                                <option value="নির্দিষ্ট মোবাইল নম্বর (Custom)">৩. নির্দিষ্ট মোবাইল নম্বর (Custom)</option>
-                                <option value="সকল শিক্ষক ও স্টাফ">৪. সকল শিক্ষক ও স্টাফ</option>
-                                <option value="জরুরি ব্রডকাস্ট (সবাই)">৫. জরুরি ব্রডকাস্ট (সবাই)</option>
+                            <select id="msg_recipient_group" onchange="onRecipientGroupChange()" class="p-2 border rounded bg-white w-full font-bold">
+                                <option value="সকল ছাত্র, অভিভাবক ও শিক্ষক-স্টাফ">১. সকল ছাত্র, অভিভাবক ও শিক্ষক-স্টাফ (সবাই একসাথে)</option>
+                                <option value="সকল শিক্ষার্থী ও অভিভাবক">২. সকল শিক্ষার্থী ও অভিভাবক</option>
+                                <option value="সকল শিক্ষক ও স্টাফ">৩. সকল শিক্ষক ও স্টাফ</option>
+                                <option value="নির্দিষ্ট শ্রেণির শিক্ষার্থী">৪. নির্দিষ্ট শ্রেণির শিক্ষার্থী</option>
+                                <option value="নির্দিষ্ট মোবাইল নম্বর (Custom)">৫. নির্দিষ্ট মোবাইল নম্বর (একাধিক নম্বর কমা দিয়ে)</option>
                             </select>
-                        </div>
-
-                        <div id="class_select_wrapper" class="hidden">
-                            <label class="font-bold block mb-1 text-gray-700">শ্রেণি নির্বাচন করুন *:</label>
-                            <select id="msg_class_select" class="p-2 border rounded bg-white w-full font-bold master-class-dropdown"></select>
-                        </div>
-
-                        <div id="custom_number_wrapper" class="hidden">
-                            <label class="font-bold block mb-1 text-gray-700">মোবাইল নম্বর *:</label>
-                            <input type="text" id="msg_custom_phone" value="01640388584" placeholder="01XXXXXXXXX" class="p-2 border rounded bg-white w-full font-bold">
                         </div>
 
                         <div>
@@ -121,18 +117,53 @@
                             </select>
                         </div>
 
+                        <div id="class_select_wrapper" class="hidden">
+                            <label class="font-bold block mb-1 text-gray-700">শ্রেণি নির্বাচন করুন *:</label>
+                            <select id="msg_class_select" onchange="refreshRecipientPreview()" class="p-2 border rounded bg-white w-full font-bold master-class-dropdown"></select>
+                        </div>
+
+                        <div id="custom_number_wrapper" class="hidden sm:col-span-2">
+                            <label class="font-bold block mb-1 text-gray-700">মোবাইল নম্বর (একাধিক নম্বর কমা ',' দিয়ে লিখুন) *:</label>
+                            <input type="text" id="msg_custom_phone" oninput="refreshRecipientPreview()" value="01640388584" placeholder="01XXXXXXXXX, 01YYYYYYYYY" class="p-2 border rounded bg-white w-full font-bold">
+                        </div>
+
+                        <!-- প্রাপক নম্বর প্রিভিউ বক্স -->
+                        <div class="sm:col-span-3 bg-white p-3 rounded-xl border border-emerald-200 space-y-1.5">
+                            <div class="flex justify-between items-center">
+                                <span class="font-bold text-emerald-900"><i class="fa-solid fa-users mr-1"></i> নির্বাচিত প্রাপক তালিকা ও নম্বর:</span>
+                                <span id="recipient_summary_badge" class="bg-emerald-100 text-emerald-900 px-2.5 py-0.5 rounded-full font-bold text-[11px]">0 জন প্রাপক</span>
+                            </div>
+                            <div id="recipient_preview_box" class="text-[11px] text-gray-700 max-h-24 overflow-y-auto bg-slate-50 p-2 rounded border font-medium leading-relaxed">
+                                নম্বর লোড হচ্ছে...
+                            </div>
+                        </div>
+
                         <div class="sm:col-span-3">
                             <label class="font-bold block mb-1 text-gray-700">বার্তার বিষয়/শিরোনাম (Subject):</label>
-                            <input type="text" id="msg_subject_input" placeholder="যেমন: বার্ষিক পরীক্ষার রুটিন সংক্রান্ত নোটিশ" class="p-2 border rounded bg-white w-full font-bold">
+                            <input type="text" id="msg_subject_input" placeholder="যেমন: জরুরি নোটিশ / পরীক্ষার রুটিন / অভিভাবক সমাবেশ" class="p-2 border rounded bg-white w-full font-bold">
                         </div>
 
                         <div class="sm:col-span-3">
                             <label class="font-bold block mb-1 text-gray-700">বার্তার বিস্তারিত তথ্য (Message Body) *:</label>
-                            <textarea id="msg_body_input" rows="4" placeholder="এখানে বার্তার মূল বক্তব্য লিখুন..." class="p-2 border rounded bg-white w-full font-semibold">সম্মানিত অভিভাবক, আবদুল্লাহ হাট ইসলামিয়া ফাজিল মাদ্রাসার পক্ষ থেকে আপনাকে জানানো যাচ্ছে যে...</textarea>
+                            <textarea id="msg_body_input" rows="4" placeholder="এখানে বার্তার মূল বক্তব্য লিখুন..." class="p-2 border rounded bg-white w-full font-semibold">সম্মানিত অভিভাবক, শিক্ষক ও শিক্ষার্থীবৃন্দ, আবদুল্লাহ হাট ইসলামিয়া ফাজিল মাদ্রাসার পক্ষ থেকে আপনাকে জানানো যাচ্ছে যে...</textarea>
                         </div>
 
-                        <div class="sm:col-span-3 flex justify-end gap-2 pt-2">
-                            <button onclick="sendDirectGatewayMessage()" class="bg-emerald-700 text-white px-6 py-2.5 rounded-lg font-bold text-xs hover:bg-emerald-800 shadow transition flex items-center gap-1.5"><i class="fa-solid fa-paper-plane"></i> রিয়েল মেসেজ পাঠান (Send Now)</button>
+                        <div class="sm:col-span-3 flex flex-wrap justify-between items-center gap-3 pt-2">
+                            <div id="batch_queue_controls" class="hidden flex items-center gap-2 bg-amber-50 border border-amber-300 px-3 py-2 rounded-lg">
+                                <span id="batch_progress_text" class="font-bold text-amber-900 text-xs">কিউ: 0 / 0</span>
+                                <button type="button" onclick="sendNextInBatch()" class="bg-amber-600 hover:bg-amber-700 text-white px-3 py-1 rounded font-bold text-xs shadow">
+                                    <i class="fa-solid fa-forward-step mr-1"></i> পরবর্তী প্রাপক পাঠান
+                                </button>
+                                <button type="button" onclick="stopBatchQueue()" class="bg-gray-200 hover:bg-gray-300 text-gray-800 px-2.5 py-1 rounded font-bold text-xs">
+                                    বন্ধ
+                                </button>
+                            </div>
+
+                            <div class="flex gap-2 ml-auto">
+                                <button type="button" onclick="sendDirectGatewayMessage()" class="bg-emerald-700 text-white px-6 py-2.5 rounded-lg font-bold text-xs hover:bg-emerald-800 shadow transition flex items-center gap-1.5">
+                                    <i class="fa-solid fa-paper-plane"></i> সবাইকে একসাথে মেসেজ পাঠান (Send All)
+                                </button>
+                            </div>
                         </div>
                     </div>
 
@@ -147,7 +178,7 @@
                                 <tr class="bg-emerald-800 text-white">
                                     <th class="border p-2 text-center">তারিখ ও সময়</th>
                                     <th class="border p-2">মাধ্যম (Channel)</th>
-                                    <th class="border p-2">গ্রাপ / প্রাপক</th>
+                                    <th class="border p-2">গ্রুপ / প্রাপক</th>
                                     <th class="border p-2">বার্তার বিবরণ</th>
                                     <th class="border p-2 text-center">স্ট্যাটাস</th>
                                     <th class="border p-2 text-center">মুছে ফেলুন</th>
@@ -171,6 +202,11 @@
             "আলিম প্রথম বর্ষ", "আলিম দ্বিতীয় বর্ষ", "ফাজিল প্রথম বর্ষ", "ফাজিল দ্বিতীয় বর্ষ", "ফাজিল তৃতীয় বর্ষ"
         ];
 
+        let batchQueue = [];
+        let batchIndex = 0;
+        let batchFullMessage = "";
+        let batchChannel = "";
+
         function populateClassDropdowns() {
             document.querySelectorAll('.master-class-dropdown').forEach(el => {
                 el.innerHTML = '<option value="">শ্রেণি নির্বাচন করুন</option>';
@@ -178,7 +214,108 @@
             });
         }
 
-        function toggleStudentClassSelect() {
+        function cleanPhone(raw) {
+            if (!raw) return "";
+            let digits = raw.toString().replace(/[^\d+]/g, '').trim();
+            if (digits.startsWith('+88')) digits = digits.slice(3);
+            else if (digits.startsWith('880')) digits = digits.slice(3);
+            if (digits.length === 10 && digits.startsWith('1')) digits = '0' + digits;
+            return /^01[3-9]\d{8}$/.test(digits) ? digits : "";
+        }
+
+        function getAllContactsFromStorage() {
+            const students = [];
+            const teachersAndStaff = [];
+
+            try {
+                const rawStudents = JSON.parse(localStorage.getItem('madrasah_students_all')) || [];
+                rawStudents.forEach(s => {
+                    const name = (s.name_bn || s.name || "শিক্ষার্থী").toString().trim();
+                    const cls = (s.cls || s.class || "").toString().trim();
+                    const phone = cleanPhone(s.f_mobile || s.guardian_phone || s.m_mobile || s.phone || s.mobile || "");
+                    if (phone) {
+                        students.push({ name: `${name} (অভিভাবক/ছাত্র)`, cls, phone, type: "student" });
+                    }
+                });
+            } catch (e) {}
+
+            try {
+                const rawTeachers = JSON.parse(localStorage.getItem('madrasah_teachers_master')) || [];
+                rawTeachers.forEach(t => {
+                    const name = (t.name_bn || t.name || "শিক্ষক").toString().trim();
+                    const phone = cleanPhone(t.phone || t.mobile || "");
+                    if (phone) {
+                        teachersAndStaff.push({ name: `${name} (শিক্ষক)`, cls: "", phone, type: "teacher" });
+                    }
+                });
+            } catch (e) {}
+
+            try {
+                const rawStaff = JSON.parse(localStorage.getItem('madrasah_staff_master')) || [];
+                rawStaff.forEach(st => {
+                    const name = (st.name || st.name_bn || "স্টাফ").toString().trim();
+                    const phone = cleanPhone(st.phone || st.mobile || "");
+                    if (phone) {
+                        teachersAndStaff.push({ name: `${name} (স্টাফ)`, cls: "", phone, type: "staff" });
+                    }
+                });
+            } catch (e) {}
+
+            return { students, teachersAndStaff };
+        }
+
+        function getSelectedRecipients() {
+            const group = document.getElementById('msg_recipient_group').value;
+            const selectedClass = document.getElementById('msg_class_select').value;
+            const customRaw = document.getElementById('msg_custom_phone').value || "";
+            const { students, teachersAndStaff } = getAllContactsFromStorage();
+
+            let list = [];
+            if (group === "সকল ছাত্র, অভিভাবক ও শিক্ষক-স্টাফ") {
+                list = [...students, ...teachersAndStaff];
+            } else if (group === "সকল শিক্ষার্থী ও অভিভাবক") {
+                list = students;
+            } else if (group === "সকল শিক্ষক ও স্টাফ") {
+                list = teachersAndStaff;
+            } else if (group === "নির্দিষ্ট শ্রেণির শিক্ষার্থী") {
+                list = students.filter(item => !selectedClass || item.cls === selectedClass);
+            } else if (group === "নির্দিষ্ট মোবাইল নম্বর (Custom)") {
+                customRaw.split(/[,\n\s]+/).forEach(part => {
+                    const p = cleanPhone(part);
+                    if (p) list.push({ name: "কাস্টম নম্বর", cls: "", phone: p, type: "custom" });
+                });
+            }
+
+            const uniqueByPhone = new Map();
+            list.forEach(item => {
+                if (!uniqueByPhone.has(item.phone)) {
+                    uniqueByPhone.set(item.phone, item);
+                }
+            });
+            return Array.from(uniqueByPhone.values());
+        }
+
+        function refreshRecipientPreview() {
+            const recipients = getSelectedRecipients();
+            const badge = document.getElementById('recipient_summary_badge');
+            const totalHeader = document.getElementById('total_matched_count');
+            const box = document.getElementById('recipient_preview_box');
+
+            if (badge) badge.innerText = `${recipients.length} জন প্রাপক`;
+            if (totalHeader) totalHeader.innerText = recipients.length;
+
+            if (!box) return;
+            if (recipients.length === 0) {
+                box.innerHTML = `<span class="text-rose-600 font-bold">কোনো বৈধ মোবাইল নম্বর পাওয়া যায়নি। Student/Teacher মডিউলে নম্বর যুক্ত করুন অথবা কাস্টম নম্বর দিন।</span>`;
+                return;
+            }
+
+            box.innerHTML = recipients
+                .map(r => `<span class="inline-block bg-emerald-50 border border-emerald-200 text-emerald-950 px-2 py-0.5 rounded m-0.5 font-semibold">${r.name}: <b>${r.phone}</b></span>`)
+                .join("");
+        }
+
+        function onRecipientGroupChange() {
             const group = document.getElementById('msg_recipient_group').value;
             const classWrapper = document.getElementById('class_select_wrapper');
             const customNumWrapper = document.getElementById('custom_number_wrapper');
@@ -186,95 +323,145 @@
             classWrapper.classList.add('hidden');
             customNumWrapper.classList.add('hidden');
 
-            if(group === "নির্দিষ্ট শ্রেণির শিক্ষার্থী") {
+            if (group === "নির্দিষ্ট শ্রেণির শিক্ষার্থী") {
                 classWrapper.classList.remove('hidden');
-            } else if(group === "নির্দিষ্ট মোবাইল নম্বর (Custom)") {
+            } else if (group === "নির্দিষ্ট মোবাইল নম্বর (Custom)") {
                 customNumWrapper.classList.remove('hidden');
             }
+            refreshRecipientPreview();
+        }
+
+        function copyRecipientNumbers() {
+            const recipients = getSelectedRecipients();
+            if (recipients.length === 0) {
+                alert('কপি করার মতো কোনো নম্বর নেই!');
+                return;
+            }
+            const nums = recipients.map(r => r.phone).join(', ');
+            navigator.clipboard?.writeText(nums);
+            alert(`${recipients.length}টি মোবাইল নম্বর ক্লিপবোর্ডে কপি করা হয়েছে!`);
+        }
+
+        function openChannelForPhone(channel, phone, fullMessage) {
+            const intlPhone = phone.startsWith('0') ? ('88' + phone) : phone.replace('+', '');
+            if (channel === "Mobile SIM SMS") {
+                const smsUri = `sms:+${intlPhone}?body=${encodeURIComponent(fullMessage)}`;
+                window.location.href = smsUri;
+            } else if (channel === "WhatsApp Direct") {
+                const waUri = `https://wa.me/${intlPhone}?text=${encodeURIComponent(fullMessage)}`;
+                window.open(waUri, '_blank');
+            }
+        }
+
+        function sendNextInBatch() {
+            if (batchIndex >= batchQueue.length) {
+                alert('সব প্রাপকের মেসেজ প্রেরণ সম্পন্ন হয়েছে!');
+                stopBatchQueue();
+                return;
+            }
+            const target = batchQueue[batchIndex];
+            openChannelForPhone(batchChannel, target.phone, batchFullMessage);
+            batchIndex++;
+            updateBatchProgressUI();
+        }
+
+        function updateBatchProgressUI() {
+            const prog = document.getElementById('batch_progress_text');
+            if (prog) {
+                prog.innerText = `কিউ: ${Math.min(batchIndex, batchQueue.length)} / ${batchQueue.length} পাঠানো হয়েছে`;
+            }
+        }
+
+        function stopBatchQueue() {
+            batchQueue = [];
+            batchIndex = 0;
+            batchFullMessage = "";
+            batchChannel = "";
+            document.getElementById('batch_queue_controls')?.classList.add('hidden');
         }
 
         function sendDirectGatewayMessage() {
             const channel = document.getElementById('msg_channel_select').value;
             const group = document.getElementById('msg_recipient_group').value;
             const selectedClass = document.getElementById('msg_class_select').value;
-            let phone = document.getElementById('msg_custom_phone').value.trim();
             const subject = document.getElementById('msg_subject_input').value.trim();
             const body = document.getElementById('msg_body_input').value.trim();
             const category = document.getElementById('msg_category_select').value;
 
-            if(!body) {
+            if (!body) {
                 alert('দয়া করে বার্তার বিবরণ লিখুন!');
                 return;
             }
 
+            if (group === "নির্দিষ্ট শ্রেণির শিক্ষার্থী" && !selectedClass) {
+                alert('দয়া করে শ্রেণি নির্বাচন করুন!');
+                return;
+            }
+
+            const recipients = getSelectedRecipients();
+            if (recipients.length === 0) {
+                alert('কোনো প্রাপকের মোবাইল নম্বর পাওয়া যায়নি!');
+                return;
+            }
+
             let recipientText = group;
-            let targetPhone = phone || "01640388584";
-
-            if(group === "নির্দিষ্ট শ্রেণির শিক্ষার্থী") {
-                if(!selectedClass) {
-                    alert('দয়া করে শ্রেণি নির্বাচন করুন!');
-                    return;
-                }
+            if (group === "নির্দিষ্ট শ্রেণির শিক্ষার্থী") {
                 recipientText += ` (${selectedClass})`;
-            } else if(group === "নির্দিষ্ট মোবাইল নম্বর (Custom)") {
-                if(!phone) {
-                    alert('দয়া করে সঠিক মোবাইল নম্বর দিন!');
-                    return;
-                }
-                recipientText += ` [নম্বর: ${phone}]`;
+            }
+            recipientText += ` — মোট ${recipients.length} জন [${recipients.map(r => r.phone).join(', ')}]`;
+
+            const fullMessage = `[AHIFM | ${category}] ${subject ? subject + '\n' : ''}${body}`;
+
+            // প্রথম প্রাপকের জন্য সাথে সাথে খুলে দেবে এবং একাধিক প্রাপক থাকলে কিউ চালু করবে
+            batchQueue = recipients;
+            batchChannel = channel;
+            batchFullMessage = fullMessage;
+            batchIndex = 0;
+
+            document.getElementById('batch_queue_controls')?.classList.remove('hidden');
+            sendNextInBatch();
+
+            if (recipients.length > 1) {
+                alert(`${recipients.length} জন প্রাপকের লিস্ট তৈরি হয়েছে। প্রথম প্রাপক খোলা হয়েছে—বাকিদের জন্য "পরবর্তী প্রাপক পাঠান" বাটনে ক্লিক করুন।`);
             }
 
-            if(targetPhone.startsWith('0')) {
-                targetPhone = '+88' + targetPhone;
-            }
-
-            let fullMessage = `[AHIFM] ${subject ? subject + '\n' : ''}${body}`;
-
-            if(channel === "Mobile SIM SMS") {
-                const smsUri = `sms:${targetPhone}?body=${encodeURIComponent(fullMessage)}`;
-                window.location.href = smsUri;
-            } else if(channel === "WhatsApp Direct") {
-                const waUri = `https://wa.me/${targetPhone.replace('+', '')}?text=${encodeURIComponent(fullMessage)}`;
-                window.open(waUri, '_blank');
-            }
-
-            let msgRecord = {
+            const msgRecord = {
                 date: new Date().toLocaleString('bn-BD'),
                 channel: channel,
                 recipient: recipientText,
-                subject: subject || 'সাধারণ নোটিশ',
+                subject: subject || category,
                 body: body,
-                status: 'সফলভাবে ট্রিগার হয়েছে (Triggered)'
+                status: `${recipients.length} জন প্রাপকের জন্য ট্রিগার হয়েছে`
             };
 
-            let allMsgs = JSON.parse(localStorage.getItem('madrasah_sent_messages')) || [];
+            const allMsgs = JSON.parse(localStorage.getItem('madrasah_sent_messages')) || [];
             allMsgs.push(msgRecord);
             localStorage.setItem('madrasah_sent_messages', JSON.stringify(allMsgs));
 
             document.getElementById('msg_subject_input').value = '';
-            document.getElementById('msg_body_input').value = '';
             renderSentMessagesTable();
         }
 
         function deleteMessageLog(index) {
-            let allMsgs = JSON.parse(localStorage.getItem('madrasah_sent_messages')) || [];
+            const allMsgs = JSON.parse(localStorage.getItem('madrasah_sent_messages')) || [];
             allMsgs.splice(index, 1);
             localStorage.setItem('madrasah_sent_messages', JSON.stringify(allMsgs));
             renderSentMessagesTable();
         }
 
         function renderSentMessagesTable() {
-            let allMsgs = JSON.parse(localStorage.getItem('madrasah_sent_messages')) || [];
-            let tbody = document.getElementById('sentMessagesTableBody');
+            const allMsgs = JSON.parse(localStorage.getItem('madrasah_sent_messages')) || [];
+            const tbody = document.getElementById('sentMessagesTableBody');
             tbody.innerHTML = '';
 
-            if(allMsgs.length === 0) {
+            if (allMsgs.length === 0) {
                 tbody.innerHTML = `<tr><td colspan="6" class="border p-3 text-center text-gray-500 font-bold">এখনো কোনো বার্তা পাঠানো হয়নি!</td></tr>`;
                 return;
             }
 
-            allMsgs.reverse().forEach((m, idx) => {
-                let channelBadge = m.channel === 'WhatsApp Direct' 
+            [...allMsgs].reverse().forEach((m, revIdx) => {
+                const actualIdx = allMsgs.length - 1 - revIdx;
+                const channelBadge = m.channel === 'WhatsApp Direct' 
                     ? `<span class="bg-emerald-100 text-emerald-800 px-2 py-0.5 rounded font-bold"><i class="fa-brands fa-whatsapp"></i> WhatsApp</span>` 
                     : `<span class="bg-teal-100 text-teal-800 px-2 py-0.5 rounded font-bold"><i class="fa-solid fa-mobile-screen"></i> SIM SMS</span>`;
 
@@ -288,7 +475,7 @@
                             <p class="text-[11px] text-gray-600">${m.body}</p>
                         </td>
                         <td class="border p-2 text-center font-bold text-emerald-700">${m.status}</td>
-                        <td class="border p-2 text-center"><button onclick="deleteMessageLog(${idx})" class="bg-red-500 text-white px-2 py-1 rounded text-[10px] hover:bg-red-600"><i class="fa-solid fa-trash"></i></button></td>
+                        <td class="border p-2 text-center"><button onclick="deleteMessageLog(${actualIdx})" class="bg-red-500 text-white px-2 py-1 rounded text-[10px] hover:bg-red-600"><i class="fa-solid fa-trash"></i></button></td>
                     </tr>
                 `;
             });
@@ -296,6 +483,7 @@
 
         window.onload = function() {
             populateClassDropdowns();
+            refreshRecipientPreview();
             renderSentMessagesTable();
         };
     </script>

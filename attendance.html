@@ -83,7 +83,7 @@
                     <button onclick="openMainModule('monthly')" class="bg-gradient-to-r from-blue-700 to-indigo-900 text-white p-5 rounded-2xl shadow-md hover:from-blue-800 hover:to-indigo-950 transition flex items-center justify-between">
                         <div class="text-left">
                             <h2 class="text-lg font-bold"><i class="fa-solid fa-calendar-days mr-2"></i> মাসিক ও বার্ষিক রিপোর্ট (Monthly/Annual Report)</h2>
-                            <p class="text-xs text-blue-200 mt-1">শুক্র-শনি ও ক্যালেন্ডারের ছুটি অনুযায়ী রিপোর্ট, প্রিন্টে বন্ধের কলাম বাদ ও নিচে পাশাপাশি নোট।</p>
+                            <p class="text-xs text-blue-200 mt-1">শুক্র-শনি ও ক্যালেন্ডারের ছুটি অনুযায়ী রিপোর্ট, প্রিন্টে ছুটির কলাম বাদ ও নিচে পাশাপাশি নোট।</p>
                         </div>
                         <i class="fa-solid fa-arrow-right text-xl"></i>
                     </button>
@@ -233,7 +233,7 @@
                     <!-- ছুটির দিন / বন্ধের কারণ নোট (পাশাপাশি ও গ্রুপিংসহ) -->
                     <div id="print_holidays_note_box" class="hidden mt-3 p-3 rounded-xl border border-amber-300 bg-amber-50/70 text-xs text-gray-800">
                         <p class="font-bold text-amber-950 mb-2">
-                            <i class="fa-solid fa-note-sticky mr-1 text-amber-700"></i> বন্ধের দিন ও উপলক্ষ / কারণ (নোট):
+                            <i class="fa-solid fa-note-sticky mr-1 text-amber-700"></i> ছুটির দিন ও উপলক্ষ / কারণ (নোট):
                         </p>
                         <div id="print_holidays_note_list" class="flex flex-wrap gap-1.5 text-[11px] text-gray-800"></div>
                     </div>
@@ -348,7 +348,7 @@
             });
         }
 
-        function getHolidayNameForDate(dateKey) {
+        function getCalendarHolidayName(dateKey) {
             const candidateKeys = [
                 'madrasah_holidays',
                 'madrasah_holiday_list',
@@ -369,19 +369,25 @@
                             return d === dateKey;
                         });
                         if (hit) {
-                            return (hit.title || hit.name || hit.reason || hit.holiday || "ছুটি / প্রতিষ্ঠান বন্ধ").toString().trim();
+                            return (hit.title || hit.name || hit.reason || hit.holiday || "ছুটি").toString().trim();
                         }
                     } else if (typeof raw === 'object' && raw[dateKey]) {
                         const val = raw[dateKey];
                         if (typeof val === 'string') return val;
-                        return (val.title || val.name || val.reason || "ছুটি / প্রতিষ্ঠান বন্ধ").toString().trim();
+                        return (val.title || val.name || val.reason || "ছুটি").toString().trim();
                     }
                 } catch (e) {}
             }
 
+            return "";
+        }
+
+        function getHolidayNameForDate(dateKey) {
+            const calHoliday = getCalendarHolidayName(dateKey);
+            if (calHoliday) return calHoliday;
+
             const dayOfWeek = new Date(`${dateKey}T00:00:00`).getDay();
-            if (dayOfWeek === 5) return "শুক্রবার (সাপ্তাহিক ছুটি)";
-            if (dayOfWeek === 6) return "শনিবার (সাপ্তাহিক ছুটি)";
+            if (dayOfWeek === 5 || dayOfWeek === 6) return "সাপ্তাহিক ছুটি";
             return "";
         }
 
@@ -717,28 +723,19 @@
             renderMonthlyTable();
         }
 
-        function getMonthDatesWithAttendanceInfo(year, month, list, prefix) {
+        function getMonthDatesInfo(year, month) {
             const daysInMonth = new Date(parseInt(year, 10), parseInt(month, 10), 0).getDate();
             const result = [];
 
             for (let d = 1; d <= daysInMonth; d++) {
                 const dayStr = String(d).padStart(2, '0');
                 const dateKey = `${year}-${month}-${dayStr}`;
+                const holidayName = getHolidayNameForDate(dateKey);
 
-                let hasAnyAttendanceOnDate = false;
-                list.forEach(item => {
-                    const itemId = String(item.id || item.indexNo || "ID");
-                    const rec = JSON.parse(localStorage.getItem(`att_${prefix}_${itemId}_${dateKey}`));
-                    if (rec && (rec.status === 'উপস্থিত' || rec.status === 'অনুপস্থিত')) {
-                        hasAnyAttendanceOnDate = true;
-                    }
-                });
-
-                const holidayName = hasAnyAttendanceOnDate ? "" : (getHolidayNameForDate(dateKey) || "বন্ধ");
                 result.push({
                     day: d,
                     dateKey,
-                    isClosedDay: !hasAnyAttendanceOnDate,
+                    isClosedDay: Boolean(holidayName),
                     holidayName
                 });
             }
@@ -768,7 +765,7 @@
             const reasonGroups = new Map();
 
             closedDays.forEach(d => {
-                const rawReason = (d.holidayName || 'প্রতিষ্ঠান বন্ধ / ছুটি').toString().trim();
+                const rawReason = (d.holidayName || 'ছুটি').toString().trim();
                 const isWeekly = rawReason.includes('সাপ্তাহিক ছুটি') || rawReason.includes('শুক্রবার') || rawReason.includes('শনিবার');
 
                 if (isWeekly) {
@@ -815,13 +812,7 @@
             const staffList = JSON.parse(localStorage.getItem('madrasah_staff_master')) || [];
 
             const targetMonths = ["01", "02", "03", "04", "05", "06", "07", "08", "09", "10", "11", "12"];
-
-            const activeListForDates = currentCategory === 'student'
-                ? students.filter(s => filterClass === 'all' || (s.cls || s.studentClass || s.class || "নুরানী প্রথম শ্রেণি") === filterClass)
-                : (currentCategory === 'teacher' ? teachers : staffList);
-            const activePrefix = currentCategory === 'student' ? 's' : (currentCategory === 'teacher' ? 't' : 'st');
-
-            const monthDatesInfo = getMonthDatesWithAttendanceInfo(filterYear, filterMonth, activeListForDates, activePrefix);
+            const monthDatesInfo = getMonthDatesInfo(filterYear, filterMonth);
 
             let headerHTML = `<th class="border p-2">আইডি</th><th class="border p-2">নাম</th>`;
             if (rType === 'annual') {
@@ -856,7 +847,7 @@
                         targetMonths.forEach(m => {
                             let monthPresent = 0;
                             let monthWorking = 0;
-                            const mDates = getMonthDatesWithAttendanceInfo(filterYear, m, activeListForDates, 's');
+                            const mDates = getMonthDatesInfo(filterYear, m);
                             mDates.forEach(info => {
                                 if (!info.isClosedDay) {
                                     monthWorking++;
@@ -915,7 +906,7 @@
                         targetMonths.forEach(m => {
                             let monthPresent = 0;
                             let monthWorking = 0;
-                            const mDates = getMonthDatesWithAttendanceInfo(filterYear, m, list, prefix);
+                            const mDates = getMonthDatesInfo(filterYear, m);
                             mDates.forEach(info => {
                                 if (!info.isClosedDay) {
                                     monthWorking++;

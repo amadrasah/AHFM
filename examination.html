@@ -167,7 +167,7 @@
                     <div onclick="openExamPanel('question_management')" class="bg-white p-5 rounded-2xl shadow-sm border border-gray-200 hover:border-violet-600 hover:shadow-md cursor-pointer transition space-y-3">
                         <div class="flex justify-between items-center border-b pb-2">
                             <h3 class="font-bold text-gray-800 text-sm"><i class="fa-solid fa-file-circle-question text-violet-700 mr-2"></i> Question Management</h3>
-                            <span class="text-[10px] bg-violet-100 text-violet-900 px-2 py-0.5 rounded font-bold">রিয়েল-টাইম ট্র্যাকার</span>
+                            <span class="text-[10px] bg-violet-100 text-violet-900 px-2 py-0.5 rounded font-bold">ওয়ান-টাইম ক্লিক</span>
                         </div>
                         <p class="text-xs text-gray-600">মিটিং ও জমাদানের তারিখ, প্রশ্ন জমাদান, মুদ্রণ, সংশোধন ও সংরক্ষণ ট্র্যাকিং।</p>
                     </div>
@@ -177,8 +177,8 @@
                 <div id="panel-question_management" class="exam-sub-panel bg-white p-4 md:p-6 rounded-2xl shadow-sm border border-gray-200 space-y-6 hidden">
                     <div class="flex justify-between items-center border-b pb-3 no-print">
                         <div>
-                            <h3 class="font-bold text-violet-900 text-sm"><i class="fa-solid fa-file-circle-question mr-2"></i> ১১. Question Management</h3>
-                            <p class="text-[11px] text-violet-700 mt-0.5"><i class="fa-solid fa-circle-check mr-1"></i> প্রতিটি ক্লিক, তারিখ ও মন্তব্য সাথে সাথেই রিয়েল-টাইম সেভ হয়।</p>
+                            <h3 class="font-bold text-violet-900 text-sm"><i class="fa-solid fa-file-circle-question mr-2"></i> ১১. Question Management (ওয়ান-টাইম ক্লিক সিস্টেম)</h3>
+                            <p class="text-[11px] text-violet-700 mt-0.5"><i class="fa-solid fa-lock mr-1"></i> প্রতিটি ধাপে একবার ক্লিক করলে বর্তমান তারিখসহ স্থায়ীভাবে লক ও রিয়েল-টাইম সেভ হবে।</p>
                         </div>
                         <div class="flex items-center gap-2">
                             <button onclick="window.print()" class="bg-gray-800 text-white px-3 py-1 rounded text-xs font-bold hover:bg-black shadow">
@@ -251,7 +251,7 @@
 
                     <div class="flex justify-between items-center pt-1 no-print">
                         <span id="qm_realtime_badge" class="text-xs font-bold text-violet-700">
-                            <i class="fa-solid fa-shield-check mr-1"></i> রিয়েল-টাইম অটো-সেভ সক্রিয়
+                            <i class="fa-solid fa-shield-check mr-1"></i> ওয়ান-টাইম ক্লিক ও রিয়েল-টাইম অটো-সেভ সক্রিয়
                         </span>
                     </div>
                 </div>
@@ -1006,9 +1006,9 @@
             alim1: true, alim2: true
         };
 
-        /* ============================
-           QUESTION MANAGEMENT (REAL-TIME)
-           ============================ */
+        /* ==========================================
+           QUESTION MANAGEMENT (ONE-TIME CLICK LOCK)
+           ========================================== */
         const QUESTION_MGMT_KEY = "ahifm_question_management_v1";
 
         function getQuestionManagementData() {
@@ -1028,7 +1028,7 @@
             if (!badge) return;
             badge.innerHTML = `<i class="fa-solid fa-check-circle mr-1 text-violet-600"></i> ${msg}`;
             setTimeout(() => {
-                badge.innerHTML = `<i class="fa-solid fa-shield-check mr-1"></i> রিয়েল-টাইম অটো-সেভ সক্রিয়`;
+                badge.innerHTML = `<i class="fa-solid fa-shield-check mr-1"></i> ওয়ান-টাইম ক্লিক ও রিয়েল-টাইম অটো-সেভ সক্রিয়`;
             }, 2500);
         }
 
@@ -1085,10 +1085,16 @@
             flashQmRealtimeSaved(`"${teacherName}" যুক্ত ও রিয়েল-টাইম সেভ হয়েছে`);
         }
 
-        function triggerQmStageClick(rowIdx, stageKey, stageLabel) {
+        // ওয়ান-টাইম ক্লিক ফাংশন: একবার সেভ হয়ে গেলে আর পুনরায় ক্লিক করে পরিবর্তন করা যাবে না
+        function triggerQmOneTimeClick(rowIdx, stageKey, stageLabel) {
             const data = getQuestionManagementData();
             const row = data.rows[rowIdx];
             if (!row) return;
+
+            // ইতিমধ্যে সেভ হয়ে থাকলে লক করা থাকবে
+            if (row[stageKey]) {
+                return;
+            }
 
             const now = new Date();
             const datePart = now.toLocaleDateString('bn-BD');
@@ -1097,18 +1103,7 @@
 
             saveQuestionManagementData(data);
             renderQuestionManagementTable();
-            flashQmRealtimeSaved(`${row.teacherName} — "${stageLabel}" তারিখসহ রিয়েল-টাইম সেভ হয়েছে`);
-        }
-
-        function clearQmStage(rowIdx, stageKey) {
-            const data = getQuestionManagementData();
-            const row = data.rows[rowIdx];
-            if (!row) return;
-
-            row[stageKey] = "";
-            saveQuestionManagementData(data);
-            renderQuestionManagementTable();
-            flashQmRealtimeSaved("তারিখ ক্লিয়ার ও রিয়েল-টাইম সেভ হয়েছে");
+            flashQmRealtimeSaved(`${row.teacherName} — "${stageLabel}" ওয়ান-টাইম লক ও সেভ হয়েছে`);
         }
 
         function updateQmRowField(rowIdx, field, val) {
@@ -1133,18 +1128,23 @@
             const data = getQuestionManagementData();
             const val = (data.rows[rowIdx] && data.rows[rowIdx][stageKey]) || "";
 
+            // একবার ক্লিক হয়ে গেলে বাটন লক হয়ে যাবে এবং শুধু স্থায়ী তারিখ দেখাবে
+            if (val) {
+                return `
+                    <td class="border px-2 py-1.5 text-center align-middle">
+                        <div class="inline-flex flex-col items-center gap-0.5 px-2 py-1 rounded border font-bold text-[10px] ${badgeColorClass}">
+                            <span><i class="fa-solid fa-lock mr-1"></i>${val}</span>
+                        </div>
+                    </td>
+                `;
+            }
+
             return `
-                <td class="border px-2 py-1.5 text-center align-top">
-                    <div class="mb-1 min-h-[20px] flex items-center justify-center gap-1">
-                        ${val
-                            ? `<span class="px-1.5 py-0.5 rounded border font-bold text-[10px] ${badgeColorClass}">${val}</span>
-                               <button onclick="clearQmStage(${rowIdx}, '${stageKey}')" class="text-gray-400 hover:text-rose-600 text-[10px] no-print" title="মুছুন">×</button>`
-                            : `<span class="text-[10px] text-gray-400">তারিখ নেই</span>`
-                        }
-                    </div>
-                    <button onclick="triggerQmStageClick(${rowIdx}, '${stageKey}', '${stageLabel}')" class="${btnColorClass} text-white px-2 py-1 rounded text-[10px] font-bold shadow-sm no-print whitespace-nowrap">
-                        <i class="fa-solid fa-calendar-check mr-1"></i> ${stageLabel}
+                <td class="border px-2 py-1.5 text-center align-middle">
+                    <button onclick="triggerQmOneTimeClick(${rowIdx}, '${stageKey}', '${stageLabel}')" class="${btnColorClass} text-white px-2.5 py-1.5 rounded text-[10px] font-bold shadow-sm no-print whitespace-nowrap">
+                        <i class="fa-solid fa-hand-pointer mr-1"></i> ${stageLabel}
                     </button>
+                    <span class="hidden print:inline text-[10px] text-gray-400">---</span>
                 </td>
             `;
         }
@@ -1164,20 +1164,20 @@
             data.rows.forEach((row, idx) => {
                 tbody.innerHTML += `
                     <tr>
-                        <td class="border px-2 py-1.5 font-bold align-top">
+                        <td class="border px-2 py-1.5 font-bold align-middle">
                             <input type="text" value="${row.teacherName || ''}" oninput="updateQmRowField(${idx}, 'teacherName', this.value)" class="px-1.5 py-1 border rounded w-full font-bold text-[11px] bg-white">
                         </td>
-                        <td class="border px-2 py-1.5 align-top">
+                        <td class="border px-2 py-1.5 align-middle">
                             <input type="text" value="${row.designationSubject || ''}" oninput="updateQmRowField(${idx}, 'designationSubject', this.value)" placeholder="পদবী ও বিষয়" class="px-1.5 py-1 border rounded w-full text-[11px] bg-white">
                         </td>
                         ${renderStageCell(idx, 'submitted', 'প্রশ্ন জমাদান', 'bg-emerald-600 hover:bg-emerald-700', 'bg-emerald-100 text-emerald-800 border-emerald-300')}
                         ${renderStageCell(idx, 'sentForPrint', 'মুদ্রণে প্রেরণ', 'bg-blue-600 hover:bg-blue-700', 'bg-blue-100 text-blue-800 border-blue-300')}
                         ${renderStageCell(idx, 'sentForCorrection', 'সংশোধনের জন্য প্রেরণ', 'bg-amber-600 hover:bg-amber-700', 'bg-amber-100 text-amber-800 border-amber-300')}
                         ${renderStageCell(idx, 'preserved', 'সংরক্ষণ', 'bg-violet-700 hover:bg-violet-800', 'bg-violet-100 text-violet-900 border-violet-300')}
-                        <td class="border px-2 py-1.5 align-top">
+                        <td class="border px-2 py-1.5 align-middle">
                             <input type="text" value="${row.comment || ''}" oninput="updateQmRowField(${idx}, 'comment', this.value)" placeholder="মন্তব্য লিখুন..." class="px-1.5 py-1 border rounded w-full text-[11px] bg-white">
                         </td>
-                        <td class="border px-1.5 py-1.5 text-center align-top no-print">
+                        <td class="border px-1.5 py-1.5 text-center align-middle no-print">
                             <button onclick="deleteQmRow(${idx})" class="bg-rose-100 text-rose-700 px-1.5 py-1 rounded font-bold text-[10px] hover:bg-rose-200" title="সারি মুছুন">
                                 <i class="fa-solid fa-trash"></i>
                             </button>

@@ -83,7 +83,7 @@
                     <button onclick="openMainModule('monthly')" class="bg-gradient-to-r from-blue-700 to-indigo-900 text-white p-5 rounded-2xl shadow-md hover:from-blue-800 hover:to-indigo-950 transition flex items-center justify-between">
                         <div class="text-left">
                             <h2 class="text-lg font-bold"><i class="fa-solid fa-calendar-days mr-2"></i> মাসিক ও বার্ষিক রিপোর্ট (Monthly/Annual Report)</h2>
-                            <p class="text-xs text-blue-200 mt-1">বন্ধের দিন ক্যালেন্ডার অনুযায়ী প্রদর্শন, প্রিন্টে বন্ধের কলাম বাদ ও নিচে নোট।</p>
+                            <p class="text-xs text-blue-200 mt-1">শুক্র-শনি ও ক্যালেন্ডারের ছুটি অনুযায়ী রিপোর্ট, প্রিন্টে বন্ধের কলাম বাদ ও নিচে পাশাপাশি নোট।</p>
                         </div>
                         <i class="fa-solid fa-arrow-right text-xl"></i>
                     </button>
@@ -230,12 +230,12 @@
                         </table>
                     </div>
 
-                    <!-- ছুটির দিন / বন্ধের কারণ নোট -->
+                    <!-- ছুটির দিন / বন্ধের কারণ নোট (পাশাপাশি) -->
                     <div id="print_holidays_note_box" class="hidden mt-3 p-3 rounded-xl border border-amber-300 bg-amber-50/70 text-xs text-gray-800">
-                        <p class="font-bold text-amber-950 mb-1">
+                        <p class="font-bold text-amber-950 mb-2">
                             <i class="fa-solid fa-note-sticky mr-1 text-amber-700"></i> বন্ধের দিন ও উপলক্ষ / কারণ (নোট):
                         </p>
-                        <ul id="print_holidays_note_list" class="list-disc list-inside space-y-0.5 text-[11px] text-gray-700"></ul>
+                        <div id="print_holidays_note_list" class="flex flex-wrap gap-1.5 text-[11px] text-gray-800"></div>
                     </div>
                 </div>
 
@@ -381,6 +381,7 @@
 
             const dayOfWeek = new Date(`${dateKey}T00:00:00`).getDay();
             if (dayOfWeek === 5) return "শুক্রবার (সাপ্তাহিক ছুটি)";
+            if (dayOfWeek === 6) return "শনিবার (সাপ্তাহিক ছুটি)";
             return "";
         }
 
@@ -703,13 +704,13 @@
             const classBox = document.getElementById('monthly_class_box');
 
             if (cat === 'student') {
-                titleEl.innerHTML = `<i class="fa-solid fa-user-graduate mr-2"></i> স্টুডেন্টস মাসিক ও বার্ষিক উপস্থিতি রিপোর্ট (বন্ধের দিন ক্যালেন্ডার অনুযায়ী)`;
+                titleEl.innerHTML = `<i class="fa-solid fa-user-graduate mr-2"></i> স্টুডেন্টস মাসিক ও বার্ষিক উপস্থিতি রিপোর্ট (শুক্র-শনি ও ক্যালেন্ডার অনুযায়ী)`;
                 classBox.style.display = 'block';
             } else if (cat === 'teacher') {
-                titleEl.innerHTML = `<i class="fa-solid fa-chalkboard-user mr-2"></i> শিক্ষক মাসিক ও বার্ষিক উপস্থিতি রিপোর্ট (বন্ধের দিন ক্যালেন্ডার অনুযায়ী)`;
+                titleEl.innerHTML = `<i class="fa-solid fa-chalkboard-user mr-2"></i> শিক্ষক মাসিক ও বার্ষিক উপস্থিতি রিপোর্ট (শুক্র-শনি ও ক্যালেন্ডার অনুযায়ী)`;
                 classBox.style.display = 'none';
             } else if (cat === 'staff') {
-                titleEl.innerHTML = `<i class="fa-solid fa-users mr-2"></i> স্টাফ মাসিক ও বার্ষিক উপস্থিতি রিপোর্ট (বন্ধের দিন ক্যালেন্ডার অনুযায়ী)`;
+                titleEl.innerHTML = `<i class="fa-solid fa-users mr-2"></i> স্টাফ মাসিক ও বার্ষিক উপস্থিতি রিপোর্ট (শুক্র-শনি ও ক্যালেন্ডার অনুযায়ী)`;
                 classBox.style.display = 'none';
             }
 
@@ -765,7 +766,7 @@
 
             noteBox.classList.remove('hidden');
             noteList.innerHTML = closedDays
-                .map(d => `<li><b>${d.dateKey}</b> (তারিখ: ${d.day}) — <span>${d.holidayName || 'প্রতিষ্ঠান বন্ধ / ছুটি'}</span></li>`)
+                .map(d => `<span class="inline-block bg-white border border-amber-300 rounded-md px-2 py-0.5"><b>${d.dateKey}</b> (${d.day} তারিখ): <span>${d.holidayName || 'প্রতিষ্ঠান বন্ধ / ছুটি'}</span></span>`)
                 .join("");
         }
 

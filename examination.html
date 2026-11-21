@@ -333,7 +333,7 @@
                             </div>
                             <div class="sm:col-span-3">
                                 <label class="font-bold block mb-1 text-emerald-950">পদবী / বিষয়:</label>
-                                <input type="text" id="mon_new_teacher_role" placeholder="যেমন: সহকারী শিক্ষক (আরবি)" class="p-2 border rounded bg-white font-bold w-full">
+                                <input type="text" id="mon_new_teacher_role" placeholder="যেমন: সহকারী শিক্ষক - আরবি" class="p-2 border rounded bg-white font-bold w-full">
                             </div>
                             <div class="sm:col-span-2">
                                 <button onclick="addTeacherRow()" class="w-full bg-blue-700 text-white px-3 py-2 rounded font-bold hover:bg-blue-800 shadow">
@@ -698,8 +698,19 @@
         };
 
         /* ===================================================
-           TEACHER & STAFF CONNECTOR (madrasah_teachers_master & madrasah_staff_master)
+           TEACHER & STAFF CONNECTOR (BANGLA ONLY DISPLAY)
            =================================================== */
+        function keepBanglaOnly(text) {
+            if (!text) return "";
+            return text
+                .toString()
+                .replace(/\([^)]*\)/g, "")
+                .replace(/[A-Za-z]/g, "")
+                .replace(/\s+/g, " ")
+                .replace(/\s*-\s*$/g, "")
+                .trim();
+        }
+
         function getTeacherAndStaffList() {
             const normalizedMap = new Map();
 
@@ -710,11 +721,12 @@
                     if (Array.isArray(teachers)) {
                         teachers.forEach(t => {
                             if (!t) return;
-                            const name = (t.name_bn || t.name_en || t.name || "").toString().trim();
+                            const name = (t.name_bn || t.name || "").toString().trim();
                             if (!name) return;
 
-                            const designation = (t.designation || "").toString().trim();
-                            const subject = (t.subject || "").toString().trim();
+                            const designation = keepBanglaOnly(t.designation || "");
+                            const subject = keepBanglaOnly(t.subject || "");
+
                             const role = (designation && subject)
                                 ? `${designation} - ${subject}`
                                 : (designation || subject || "শিক্ষক");
@@ -744,7 +756,7 @@
                             const name = (s.name || s.name_bn || "").toString().trim();
                             if (!name) return;
 
-                            const designation = (s.designation || "").toString().trim();
+                            const designation = keepBanglaOnly(s.designation || "");
                             const role = designation || "স্টাফ";
 
                             if (!normalizedMap.has(name)) {
@@ -866,7 +878,7 @@
             const desigSubEl = document.getElementById('qm_new_designation_subject');
 
             const teacherName = selectEl.value.trim();
-            const designationSubject = desigSubEl.value.trim();
+            const designationSubject = keepBanglaOnly(desigSubEl.value.trim());
 
             if (!teacherName) {
                 alert('দয়া করে Teacher & Staff ড্রপডাউন থেকে শিক্ষক নির্বাচন করুন!');
@@ -946,7 +958,7 @@
         function updateQmRowField(rowIdx, field, val) {
             const data = getQuestionManagementData();
             if (!data.rows[rowIdx]) return;
-            data.rows[rowIdx][field] = val;
+            data.rows[rowIdx][field] = field === 'designationSubject' ? keepBanglaOnly(val) : val;
             saveQuestionManagementData(data);
             flashQmRealtimeSaved("তথ্য রিয়েল-টাইম সেভ হয়েছে");
         }
@@ -998,13 +1010,14 @@
             }
 
             data.rows.forEach((row, idx) => {
+                const cleanRole = keepBanglaOnly(row.designationSubject || '');
                 tbody.innerHTML += `
                     <tr>
                         <td class="border px-2 py-1.5 font-bold align-middle">
                             <input type="text" value="${row.teacherName || ''}" oninput="updateQmRowField(${idx}, 'teacherName', this.value)" class="px-1.5 py-1 border rounded w-full font-bold text-[11px]">
                         </td>
                         <td class="border px-2 py-1.5 align-middle">
-                            <input type="text" value="${row.designationSubject || ''}" oninput="updateQmRowField(${idx}, 'designationSubject', this.value)" placeholder="পদবী ও বিষয়" class="px-1.5 py-1 border rounded w-full text-[11px]">
+                            <input type="text" value="${cleanRole}" oninput="updateQmRowField(${idx}, 'designationSubject', this.value)" placeholder="পদবী ও বিষয়" class="px-1.5 py-1 border rounded w-full text-[11px]">
                         </td>
                         ${renderStageCell(idx, 'submitted', 'প্রশ্ন জমাদান', 'bg-emerald-600 hover:bg-emerald-700', 'bg-emerald-100 text-emerald-800 border-emerald-300')}
                         ${renderStageCell(idx, 'sentForPrint', 'মুদ্রণে প্রেরণ', 'bg-blue-600 hover:bg-blue-700', 'bg-blue-100 text-blue-800 border-blue-300')}
@@ -1126,7 +1139,7 @@
             const selectEl = document.getElementById('mon_teacher_select');
             const roleInput = document.getElementById('mon_new_teacher_role');
             const teacherName = selectEl.value.trim();
-            const teacherRole = roleInput.value.trim() || "শিক্ষক / স্টাফ";
+            const teacherRole = keepBanglaOnly(roleInput.value.trim()) || "শিক্ষক";
 
             if (!teacherName) {
                 alert('দয়া করে Teacher & Staff ড্রপডাউন থেকে শিক্ষক নির্বাচন করুন!');
@@ -1235,7 +1248,7 @@
             const entry = allData[entryKey];
             if (!entry || !entry.teachers[teacherIdx]) return;
 
-            entry.teachers[teacherIdx][field] = val;
+            entry.teachers[teacherIdx][field] = field === 'role' ? keepBanglaOnly(val) : val;
             allData[entryKey] = entry;
             saveAllMonitoringRecords(allData);
             flashRealtimeSaved("শিক্ষকের তথ্য রিয়েল-টাইম সেভ হয়েছে");
@@ -1280,6 +1293,7 @@
                 if (!entry) return;
 
                 entry.teachers.forEach((teacher, tIdx) => {
+                    const cleanTeacherRole = keepBanglaOnly(teacher.role || '');
                     let visitCellsHtml = '';
                     for (let v = 1; v <= maxVisits; v++) {
                         const cellData = (teacher.visits && teacher.visits[v]) || { status: "অপেক্ষমাণ", time: "-", note: "" };
@@ -1312,7 +1326,7 @@
                         <tr>
                             <td class="border px-1.5 py-1.5 font-bold align-top">
                                 <input type="text" value="${teacher.name}" oninput="updateTeacherInfo('${k}', ${tIdx}, 'name', this.value)" class="px-1.5 py-1 border rounded w-full font-bold text-[11px]">
-                                <div class="text-[9px] text-gray-600 font-normal mt-0.5 truncate max-w-[125px]">${teacher.role || ''}</div>
+                                <div class="text-[9px] text-gray-600 font-normal mt-0.5 truncate max-w-[125px]">${cleanTeacherRole}</div>
                             </td>
                             ${contextColHtml}
                             ${visitCellsHtml}

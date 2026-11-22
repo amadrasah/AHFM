@@ -127,7 +127,7 @@
                             <select id="recipient_group" class="w-full p-2.5 border rounded-lg bg-white font-bold" onchange="handleGroupChange()">
                                 <option value="custom">৫. নির্দিষ্ট মোবাইল নম্বর (একাধিক নম্বর কমা দিয়ে)</option>
                                 <option value="absent_today">আজকের অনুপস্থিত শিক্ষার্থী (অভিভাবক)</option>
-                                <option value="all_students">সকল শিক্ষার্থী (শ্রেণিভিত্তিক ও সিলেকশন)</option>
+                                <option value="all_students">সকল শিক্ষার্থী (শ্রেণিভিত্তিক অভিভাবক নম্বর)</option>
                                 <option value="all_teachers">সকল শিক্ষক ও স্টাফ (সিলেকশনসহ)</option>
                             </select>
                         </div>
@@ -156,11 +156,11 @@
                                 <select id="student_class_filter" class="p-1.5 border border-sky-300 rounded-lg bg-white font-bold text-sky-950" onchange="renderStudentSelectionList()">
                                     <option value="all">সকল শ্রেণি</option>
                                 </select>
-                                <input type="text" id="student_search_filter" placeholder="নাম বা রোল দিয়ে খুঁজুন..." class="p-1.5 border border-sky-300 rounded-lg bg-white" oninput="renderStudentSelectionList()">
+                                <input type="text" id="student_search_filter" placeholder="নাম, রোল বা অভিভাবক নম্বর..." class="p-1.5 border border-sky-300 rounded-lg bg-white" oninput="renderStudentSelectionList()">
                             </div>
                             <div class="flex items-center gap-2">
                                 <button type="button" onclick="toggleAllVisibleRecipients('student', true)" class="bg-sky-700 hover:bg-sky-800 text-white px-2.5 py-1 rounded-lg font-bold text-[11px]">
-                                    সব সিলেক্ট
+                                    এই শ্রেণির সব সিলেক্ট
                                 </button>
                                 <button type="button" onclick="toggleAllVisibleRecipients('student', false)" class="bg-gray-200 hover:bg-gray-300 text-gray-800 px-2.5 py-1 rounded-lg font-bold text-[11px]">
                                     সব আনসিলেক্ট
@@ -262,6 +262,25 @@
         const WA_TOKEN_STORAGE_KEY = 'ahifm_wa_access_token';
         const MSG_LOG_STORAGE_KEY = 'ahifm_communication_logs';
 
+        // Linked with #adm_class in 03. Student Management (Admission Panel)
+        const ADMISSION_CLASSES = [
+            { code: '01', name: 'নুরানী প্রথম শ্রেণি' },
+            { code: '02', name: 'নুরানী দ্বিতীয় শ্রেণি' },
+            { code: '03', name: 'নুরানী তৃতীয় শ্রেণি' },
+            { code: '04', name: 'ইবতেদায়ী চতুর্থ শ্রেণি' },
+            { code: '05', name: 'ইবতেদায়ী পঞ্চম শ্রেণি' },
+            { code: '06', name: 'দাখিল ষষ্ঠ শ্রেণি' },
+            { code: '07', name: 'দাখিল সপ্তম শ্রেণি' },
+            { code: '08', name: 'দাখিল অষ্টম শ্রেণি' },
+            { code: '09', name: 'দাখিল নবম শ্রেণি' },
+            { code: '10', name: 'দাখিল দশম শ্রেণি' },
+            { code: '11', name: 'আলিম প্রথম বর্ষ' },
+            { code: '12', name: 'আলিম দ্বিতীয় বর্ষ' },
+            { code: '13', name: 'ফাজিল প্রথম বর্ষ' },
+            { code: '14', name: 'ফাজিল দ্বিতীয় বর্ষ' },
+            { code: '15', name: 'ফাজিল তৃতীয় বর্ষ' }
+        ];
+
         let allStudentsCache = [];
         let allStaffCache = [];
         let selectedStudentKeys = new Set();
@@ -275,68 +294,43 @@
             renderMessageLogs();
         };
 
-        function extractClassesFromStorage() {
-            const foundClasses = new Set();
+        // Match student against admission classes via classCode OR class name
+        function resolveAdmissionClass(rawCls, rawCode) {
+            const cleanCode = String(rawCode || '').trim().padStart(2, '0');
+            if (cleanCode && cleanCode !== '00') {
+                const byCode = ADMISSION_CLASSES.find(c => c.code === cleanCode);
+                if (byCode) return byCode.name;
+            }
 
-            const directArrayKeys = [
-                'madrasah_classes',
-                'madrasah_class_list',
-                'madrasah_admission_classes',
-                'madrasah_academic_classes',
-                'admission_classes',
-                'class_list'
-            ];
+            const cleanName = String(rawCls || '').trim();
+            if (cleanName) {
+                const byName = ADMISSION_CLASSES.find(c => c.name === cleanName || c.code === cleanName);
+                if (byName) return byName.name;
+                return cleanName;
+            }
 
-            directArrayKeys.forEach(key => {
-                try {
-                    const raw = JSON.parse(localStorage.getItem(key));
-                    if (!raw) return;
+            return 'নুরানী প্রথম শ্রেণি';
+        }
 
-                    if (Array.isArray(raw)) {
-                        raw.forEach(item => {
-                            if (typeof item === 'string' && item.trim()) {
-                                foundClasses.add(item.trim());
-                            } else if (item && typeof item === 'object') {
-                                const cName = item.name || item.className || item.cls || item.title || item.class || '';
-                                if (String(cName).trim()) foundClasses.add(String(cName).trim());
-                            }
-                        });
-                    } else if (typeof raw === 'object') {
-                        if (Array.isArray(raw.classes)) {
-                            raw.classes.forEach(c => {
-                                const name = typeof c === 'string' ? c : (c?.name || c?.className || c?.cls || '');
-                                if (String(name).trim()) foundClasses.add(String(name).trim());
-                            });
-                        }
-                    }
-                } catch (e) {}
-            });
-
-            ['madrasah_settings', 'madrasah_admission_config', 'ahifm_settings'].forEach(key => {
-                try {
-                    const raw = JSON.parse(localStorage.getItem(key));
-                    if (raw && typeof raw === 'object') {
-                        const list = raw.classes || raw.admissionClasses || raw.classList || [];
-                        if (Array.isArray(list)) {
-                            list.forEach(c => {
-                                const name = typeof c === 'string' ? c : (c?.name || c?.className || c?.cls || '');
-                                if (String(name).trim()) foundClasses.add(String(name).trim());
-                            });
-                        }
-                    }
-                } catch (e) {}
-            });
-
-            return Array.from(foundClasses);
+        function extractGuardianPhone(studentObj) {
+            return String(
+                studentObj.f_mobile ||
+                studentObj.guardian_phone ||
+                studentObj.guardianPhone ||
+                studentObj.m_mobile ||
+                studentObj.phone ||
+                studentObj.mobile ||
+                ''
+            ).trim();
         }
 
         function loadPeopleDirectories() {
             const rawStudents = JSON.parse(localStorage.getItem('madrasah_students_all')) || [];
             allStudentsCache = rawStudents.map((s, idx) => {
                 const name = String(s.name_bn || s.name || `শিক্ষার্থী ${idx + 1}`).trim();
-                const cls = String(s.cls || s.studentClass || s.class || s.grade || 'নুরানী প্রথম শ্রেণি').trim();
+                const cls = resolveAdmissionClass(s.cls || s.studentClass || s.class || s.grade, s.classCode);
                 const roll = String(s.roll || s.id || s.studentId || '').trim();
-                const phone = String(s.f_mobile || s.guardian_phone || s.m_mobile || s.phone || s.guardianPhone || '').trim();
+                const phone = extractGuardianPhone(s);
                 const key = `stu_${s.id || roll || idx}_${phone}`;
                 return { key, name, cls, roll, phone };
             }).filter(st => Boolean(st.phone));
@@ -344,14 +338,16 @@
             selectedStudentKeys = new Set(allStudentsCache.map(st => st.key));
 
             const classSelect = document.getElementById('student_class_filter');
-            const admissionClasses = extractClassesFromStorage();
-            const studentClasses = allStudentsCache.map(st => st.cls);
+            const extraClasses = allStudentsCache
+                .map(st => st.cls)
+                .filter(c => !ADMISSION_CLASSES.some(ac => ac.name === c));
 
-            const mergedClasses = admissionClasses.length > 0
-                ? Array.from(new Set([...admissionClasses, ...studentClasses]))
-                : Array.from(new Set(studentClasses));
+            const mergedClasses = [
+                ...ADMISSION_CLASSES.map(ac => ac.name),
+                ...Array.from(new Set(extraClasses))
+            ];
 
-            classSelect.innerHTML = `<option value="all">সকল শ্রেণি (${allStudentsCache.length})</option>`;
+            classSelect.innerHTML = `<option value="all">সকল শ্রেণি (${allStudentsCache.length} অভিভাবক নম্বর)</option>`;
             mergedClasses.forEach(c => {
                 const countInClass = allStudentsCache.filter(st => st.cls === c).length;
                 const opt = document.createElement('option');
@@ -455,12 +451,12 @@
                 const sRoll = String(s.roll || s.id || s.studentId || '');
                 const sUniqueId = String(s.id || sRoll);
                 const sName = String(s.name_bn || s.name || 'শিক্ষার্থী');
-                const sClass = String(s.cls || s.studentClass || s.class || 'শ্রেণি');
-                const sPhone = String(s.f_mobile || s.guardian_phone || s.m_mobile || s.phone || s.guardianPhone || '');
+                const sClass = resolveAdmissionClass(s.cls || s.studentClass || s.class, s.classCode);
+                const sPhone = extractGuardianPhone(s);
 
                 const rec = JSON.parse(localStorage.getItem(`att_s_${sUniqueId}_${todayStr}`));
-                if (rec && rec.status === 'অনুপস্থিত' && sPhone.trim()) {
-                    list.push({ label: `${sName} (${sClass})`, phone: sPhone.trim() });
+                if (rec && rec.status === 'অনুপস্থিত' && sPhone) {
+                    list.push({ label: `${sName} (${sClass})`, phone: sPhone });
                 }
             });
 
@@ -493,7 +489,7 @@
 
             const list = getFilteredStudentsForSelection();
             if (list.length === 0) {
-                container.innerHTML = `<div class="col-span-full text-gray-500 py-2">এই শ্রেণি বা সার্চে কোনো শিক্ষার্থী পাওয়া যায়নি।</div>`;
+                container.innerHTML = `<div class="col-span-full text-gray-500 py-2">এই শ্রেণিতে অভিভাবকের নম্বরসহ কোনো শিক্ষার্থী পাওয়া যায়নি।</div>`;
                 updateRecipientPreview();
                 return;
             }
@@ -506,7 +502,7 @@
                         <div class="leading-tight">
                             <span class="font-bold text-gray-900 block">${st.name} ${st.roll ? `(রোল: ${st.roll})` : ''}</span>
                             <span class="text-[10px] text-sky-800 font-semibold">${st.cls}</span>
-                            <span class="text-[10px] text-gray-600 block">${st.phone}</span>
+                            <span class="text-[10px] text-emerald-900 font-bold block">অভিভাবক: ${st.phone}</span>
                         </div>
                     </label>
                 `;
@@ -597,8 +593,9 @@
             } else if (group === 'absent_today') {
                 return getTodayAbsentStudents();
             } else if (group === 'all_students') {
+                const clsFilter = document.getElementById('student_class_filter')?.value || 'all';
                 allStudentsCache
-                    .filter(st => selectedStudentKeys.has(st.key))
+                    .filter(st => (clsFilter === 'all' || st.cls === clsFilter) && selectedStudentKeys.has(st.key))
                     .forEach(st => {
                         recipients.push({
                             label: `${st.name} (${st.cls})`,
@@ -620,6 +617,7 @@
         }
 
         function handleGroupChange() {
+            loadPeopleDirectories();
             const group = document.getElementById('recipient_group').value;
             const customBox = document.getElementById('custom_numbers_box');
             const studentBox = document.getElementById('student_selection_box');

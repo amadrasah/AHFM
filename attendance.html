@@ -89,6 +89,34 @@
                     </button>
                 </div>
 
+                <!-- Safe Local API Configuration Card for One-Click WhatsApp Cloud API -->
+                <div class="bg-rose-50/70 border border-rose-200 rounded-xl p-4 space-y-2.5 shadow-sm no-print">
+                    <div class="flex flex-wrap justify-between items-center gap-2">
+                        <h3 class="text-xs font-bold text-rose-900 flex items-center gap-1.5">
+                            <i class="fa-solid fa-key text-rose-600"></i> WhatsApp Cloud API কনফিগারেশন (শুধু এই ব্রাউজারে সেভ থাকবে, কোডে পাবলিক নয়)
+                        </h3>
+                        <div class="flex items-center gap-2">
+                            <span id="att_wa_api_badge" class="text-[11px] px-2.5 py-0.5 rounded-full font-bold bg-gray-200 text-gray-700">টোকেন সেভ নেই</span>
+                            <button type="button" onclick="saveAttWaConfig()" class="bg-emerald-700 hover:bg-emerald-800 text-white px-3 py-1 rounded-lg text-xs font-bold transition">
+                                সংরক্ষণ করুন
+                            </button>
+                            <button type="button" onclick="clearAttWaConfig()" class="bg-gray-200 hover:bg-gray-300 text-gray-800 px-2.5 py-1 rounded-lg text-xs font-bold transition">
+                                মুছুন
+                            </button>
+                        </div>
+                    </div>
+                    <div class="grid grid-cols-1 md:grid-cols-2 gap-3 text-xs">
+                        <div>
+                            <label class="font-bold text-gray-700 block mb-1">Phone Number ID:</label>
+                            <input type="text" id="att_wa_phone_id" placeholder="যেমন: 123456789012345" class="w-full p-2 border border-rose-200 rounded-lg bg-white">
+                        </div>
+                        <div>
+                            <label class="font-bold text-gray-700 block mb-1">Access Token (শুধু এই ব্রাউজারের localStorage-এ থাকবে):</label>
+                            <input type="password" id="att_wa_token" placeholder="EAA... টোকেন এখানে দিন" class="w-full p-2 border border-rose-200 rounded-lg bg-white">
+                        </div>
+                    </div>
+                </div>
+
                 <!-- SUB-CONTAINER FOR DAILY ATTENDANCE -->
                 <div id="daily_sub_buttons" class="bg-white p-4 rounded-xl shadow-sm border space-y-4 no-print">
                     <div class="flex flex-wrap justify-between items-center gap-4 border-b pb-2">
@@ -96,10 +124,11 @@
                         <div class="flex flex-wrap items-center gap-2">
                             <label class="text-xs font-bold text-gray-700">অ্যালার্ট চ্যানেল:</label>
                             <select id="attendance_msg_channel" class="p-1.5 border rounded bg-white text-xs font-bold text-emerald-900">
+                                <option value="WhatsApp Cloud API">WhatsApp Cloud API (এক ক্লিকে সবার কাছে)</option>
                                 <option value="SIM SMS">মোবাইল সিম (SIM SMS)</option>
                                 <option value="WhatsApp">WhatsApp Direct</option>
                             </select>
-                            <button type="button" onclick="sendClassWiseAbsentAlerts()" class="bg-rose-600 hover:bg-rose-700 text-white px-3 py-1.5 rounded-lg font-bold text-xs shadow transition flex items-center gap-1.5">
+                            <button type="button" id="att_send_absent_btn" onclick="sendClassWiseAbsentAlerts()" class="bg-rose-600 hover:bg-rose-700 text-white px-3 py-1.5 rounded-lg font-bold text-xs shadow transition flex items-center gap-1.5">
                                 <i class="fa-solid fa-bullhorn"></i> শ্রেণিভিত্তিক অনুপস্থিত অ্যালার্ট পাঠান (<span id="absent_alert_count_badge">0</span>)
                             </button>
                         </div>
@@ -134,16 +163,22 @@
                         </div>
                     </div>
 
+                    <!-- One-click bulk progress bar -->
+                    <div id="att_bulk_progress_box" class="hidden bg-amber-50 border border-amber-300 rounded-lg p-2.5 text-xs text-amber-950 font-bold flex items-center justify-between">
+                        <span id="att_bulk_progress_text">পাঠানো হচ্ছে...</span>
+                        <span id="att_bulk_summary_text" class="text-emerald-800"></span>
+                    </div>
+
                     <!-- শ্রেণিভিত্তিক অনুপস্থিত তালিকা বার -->
                     <div id="class_absent_summary_bar" class="bg-rose-50/80 border border-rose-200 rounded-xl p-3 text-xs space-y-1.5">
                         <div class="flex flex-wrap justify-between items-center gap-2">
-                            <span class="font-bold text-rose-900"><i class="fa-solid fa-user-xmark mr-1"></i> অনুপস্থিত তালিকা (শ্রেণিভিত্তিক একসাথে অ্যালার্টের জন্য প্রস্তুত):</span>
+                            <span class="font-bold text-rose-900"><i class="fa-solid fa-user-xmark mr-1"></i> অনুপস্থিত তালিকা (শ্রেণিভিত্তিক অভিভাবকের নম্বরসহ):</span>
                             <div id="class_absent_queue_bar" class="hidden flex items-center gap-2">
                                 <span id="class_absent_queue_status" class="font-bold text-amber-900">0 / 0</span>
                                 <button type="button" onclick="sendNextClassAbsentInQueue()" class="bg-amber-600 hover:bg-amber-700 text-white px-2.5 py-1 rounded font-bold text-[11px]">
                                     পরবর্তী অভিভাবক পাঠান
                                 </button>
-                                <button type="button" onclick="resetClassAbsentQueue()" class="bg-gray-200 hover:bg-gray-300 text-gray-800 px-2 py-1 rounded font-bold text-[11px]">
+                                <button type="button" onclick="resetClassAbsentQueue()" class="bg-gray-200 hover:bg-gray-300 text-gray-800 px-2.5 py-1 rounded font-bold text-[11px]">
                                     বাতিল
                                 </button>
                             </div>
@@ -249,10 +284,31 @@
         let currentMode = 'daily';
         let currentCategory = 'student';
         const ATTENDANCE_RECORDS_KEY = 'madrasah_attendance_records';
+        const WA_PHONE_ID_STORAGE_KEY = 'ahifm_wa_phone_number_id';
+        const WA_TOKEN_STORAGE_KEY = 'ahifm_wa_access_token';
+
+        // Linked with #adm_class in 03. Student Management (Admission Panel)
+        const ADMISSION_CLASSES = [
+            { code: '01', name: 'নুরানী প্রথম শ্রেণি' },
+            { code: '02', name: 'নুরানী দ্বিতীয় শ্রেণি' },
+            { code: '03', name: 'নুরানী তৃতীয় শ্রেণি' },
+            { code: '04', name: 'ইবতেদায়ী চতুর্থ শ্রেণি' },
+            { code: '05', name: 'ইবতেদায়ী পঞ্চম শ্রেণি' },
+            { code: '06', name: 'দাখিল ষষ্ঠ শ্রেণি' },
+            { code: '07', name: 'দাখিল সপ্তম শ্রেণি' },
+            { code: '08', name: 'দাখিল অষ্টম শ্রেণি' },
+            { code: '09', name: 'দাখিল নবম শ্রেণি' },
+            { code: '10', name: 'দাখিল দশম শ্রেণি' },
+            { code: '11', name: 'আলিম প্রথম বর্ষ' },
+            { code: '12', name: 'আলিম দ্বিতীয় বর্ষ' },
+            { code: '13', name: 'ফাজিল প্রথম বর্ষ' },
+            { code: '14', name: 'ফাজিল দ্বিতীয় বর্ষ' },
+            { code: '15', name: 'ফাজিল তৃতীয় বর্ষ' }
+        ];
 
         let classAbsentQueue = [];
         let classAbsentQueueIndex = 0;
-        let classAbsentQueueChannel = 'SIM SMS';
+        let classAbsentQueueChannel = 'WhatsApp Cloud API';
 
         window.onload = function() {
             const now = new Date();
@@ -269,9 +325,87 @@
                 yearSel.value = currentYear;
             }
 
+            loadAttWaConfigIntoInputs();
             loadDynamicClasses();
             loadDailyForm('student');
         };
+
+        function loadAttWaConfigIntoInputs() {
+            const savedId = localStorage.getItem(WA_PHONE_ID_STORAGE_KEY) || '';
+            const savedToken = localStorage.getItem(WA_TOKEN_STORAGE_KEY) || '';
+            document.getElementById('att_wa_phone_id').value = savedId;
+            document.getElementById('att_wa_token').value = savedToken;
+            updateAttWaBadge(Boolean(savedId && savedToken));
+        }
+
+        function saveAttWaConfig() {
+            const phoneId = document.getElementById('att_wa_phone_id').value.trim();
+            const token = document.getElementById('att_wa_token').value.trim();
+            if (!phoneId || !token) {
+                alert('দয়া করে Phone Number ID এবং Access Token উভয়ই দিন।');
+                return;
+            }
+            localStorage.setItem(WA_PHONE_ID_STORAGE_KEY, phoneId);
+            localStorage.setItem(WA_TOKEN_STORAGE_KEY, token);
+            updateAttWaBadge(true);
+            alert('WhatsApp Cloud API তথ্য শুধু এই ব্রাউজারে সংরক্ষিত হয়েছে।');
+        }
+
+        function clearAttWaConfig() {
+            localStorage.removeItem(WA_PHONE_ID_STORAGE_KEY);
+            localStorage.removeItem(WA_TOKEN_STORAGE_KEY);
+            document.getElementById('att_wa_phone_id').value = '';
+            document.getElementById('att_wa_token').value = '';
+            updateAttWaBadge(false);
+            alert('ব্রাউজার থেকে API তথ্য মুছে ফেলা হয়েছে।');
+        }
+
+        function updateAttWaBadge(isReady) {
+            const badge = document.getElementById('att_wa_api_badge');
+            if (!badge) return;
+            if (isReady) {
+                badge.className = 'text-[11px] px-2.5 py-0.5 rounded-full font-bold bg-emerald-100 text-emerald-800 border border-emerald-300';
+                badge.innerText = 'API প্রস্তুত (এই ব্রাউজারে সেভড)';
+            } else {
+                badge.className = 'text-[11px] px-2.5 py-0.5 rounded-full font-bold bg-gray-200 text-gray-700';
+                badge.innerText = 'টোকেন সেভ নেই';
+            }
+        }
+
+        function resolveAdmissionClass(rawCls, rawCode) {
+            const cleanCode = String(rawCode || '').trim().padStart(2, '0');
+            if (cleanCode && cleanCode !== '00') {
+                const byCode = ADMISSION_CLASSES.find(c => c.code === cleanCode);
+                if (byCode) return byCode.name;
+            }
+            const cleanName = String(rawCls || '').trim();
+            if (cleanName) {
+                const byName = ADMISSION_CLASSES.find(c => c.name === cleanName || c.code === cleanName);
+                if (byName) return byName.name;
+                return cleanName;
+            }
+            return 'নুরানী প্রথম শ্রেণি';
+        }
+
+        function extractGuardianPhone(studentObj) {
+            return String(
+                studentObj.f_mobile ||
+                studentObj.guardian_phone ||
+                studentObj.guardianPhone ||
+                studentObj.m_mobile ||
+                studentObj.phone ||
+                studentObj.mobile ||
+                ''
+            ).trim();
+        }
+
+        function formatBdToIntlPhone(rawPhone) {
+            const digits = String(rawPhone || '').replace(/[^\d]/g, '');
+            if (!digits) return '';
+            if (digits.startsWith('880')) return digits;
+            if (digits.startsWith('0')) return '88' + digits;
+            return '880' + digits;
+        }
 
         function openMainModule(mode) {
             currentMode = mode;
@@ -317,29 +451,26 @@
             const classSelects = [document.getElementById('daily_class_select'), document.getElementById('monthly_class_select')];
             const students = JSON.parse(localStorage.getItem('madrasah_students_all')) || [];
 
-            const classSet = new Set();
-            students.forEach(s => {
-                const cName = s.cls || s.studentClass || s.class || s.grade;
-                if (cName) classSet.add(cName.trim());
-            });
+            const extraClasses = students
+                .map(s => resolveAdmissionClass(s.cls || s.studentClass || s.class || s.grade, s.classCode))
+                .filter(c => c && !ADMISSION_CLASSES.some(ac => ac.name === c));
 
-            if (classSet.size === 0) {
-                [
-                    "নুরানী প্রথম শ্রেণি", "নুরানী দ্বিতীয় শ্রেণি", "নুরানী তৃতীয় শ্রেণি",
-                    "ইবতেদায়ী চতুর্থ শ্রেণি", "ইবতেদায়ী পঞ্চম শ্রেণি", "দাখিল ষষ্ঠ শ্রেণি",
-                    "দাখিল সপ্তম শ্রেণি", "দাখিল অষ্টম শ্রেণি", "দাখিল নবম শ্রেণি", "দাখিল দশম শ্রেণি",
-                    "আলিম প্রথম বর্ষ", "আলিম দ্বিতীয় বর্ষ", "ফাজিল প্রথম বর্ষ", "ফাজিল দ্বিতীয় বর্ষ", "ফাজিল তৃতীয় বর্ষ"
-                ].forEach(c => classSet.add(c));
-            }
+            const mergedClasses = [
+                ...ADMISSION_CLASSES.map(ac => ac.name),
+                ...Array.from(new Set(extraClasses))
+            ];
 
             classSelects.forEach(sel => {
                 if (!sel) return;
                 const currentVal = sel.value;
                 sel.innerHTML = `<option value="all">সকল শ্রেণি</option>`;
-                classSet.forEach(cls => {
+                mergedClasses.forEach(cls => {
+                    const countInClass = students.filter(s =>
+                        resolveAdmissionClass(s.cls || s.studentClass || s.class || s.grade, s.classCode) === cls
+                    ).length;
                     const opt = document.createElement('option');
                     opt.value = cls;
-                    opt.text = cls;
+                    opt.text = `${cls} (${countInClass})`;
                     sel.add(opt);
                 });
                 if (Array.from(sel.options).some(o => o.value === currentVal)) {
@@ -393,6 +524,7 @@
 
         function loadDailyForm(cat) {
             currentCategory = cat;
+            loadDynamicClasses();
             const titleEl = document.getElementById('workspace_title');
             const classBox = document.getElementById('daily_class_box');
 
@@ -445,11 +577,11 @@
 
             const absentList = [];
             students.forEach(s => {
-                const sClass = s.cls || s.studentClass || s.class || "নুরানী প্রথম শ্রেণি";
+                const sClass = resolveAdmissionClass(s.cls || s.studentClass || s.class || s.grade, s.classCode);
                 const sRoll = String(s.roll || s.id || s.studentId || "001").replace(/'/g, "");
                 const sUniqueId = String(s.id || sRoll).replace(/'/g, "");
                 const sName = String(s.name_bn || s.name || "শিক্ষার্থী").replace(/'/g, "");
-                const sPhone = String(s.f_mobile || s.guardian_phone || s.m_mobile || s.phone || s.guardianPhone || "").replace(/'/g, "");
+                const sPhone = extractGuardianPhone(s).replace(/'/g, "");
 
                 if (filterClass !== 'all' && sClass !== filterClass) return;
 
@@ -484,9 +616,13 @@
 
             chipsBox.innerHTML = absentList.map(st => `
                 <span class="bg-white border border-rose-300 text-rose-900 px-2 py-0.5 rounded-md">
-                    <b>${st.name}</b> (${st.cls}) — ${st.phone || 'নম্বর নেই'}
+                    <b>${st.name}</b> (${st.cls}) — ${st.phone || 'অভিভাবক নম্বর নেই'}
                 </span>
             `).join("");
+        }
+
+        function buildAbsentAlertMessage(st) {
+            return `[AHIFM] সম্মানিত অভিভাবক, আবদুল্লাহ হাট ইসলামিয়া ফাজিল মাদ্রাসার পক্ষ থেকে জানানো যাচ্ছে যে, ${st.cls} শ্রেণির শিক্ষার্থী ${st.name} (রোল: ${st.roll}) আজ (${st.date}) অনুপস্থিত রয়েছে।`;
         }
 
         function openAlertForAbsentStudent(channel, st) {
@@ -496,7 +632,7 @@
                 ? ('+' + cleanDigits)
                 : (cleanDigits.startsWith('0') ? '+88' + cleanDigits : '+880' + cleanDigits);
 
-            const msgBody = `[AHIFM] সম্মানিত অভিভাবক, আবদুল্লাহ হাট ইসলামিয়া ফাজিল মাদ্রাসার পক্ষ থেকে জানানো যাচ্ছে যে, ${st.cls} শ্রেণির শিক্ষার্থী ${st.name} (রোল: ${st.roll}) আজ (${st.date}) অনুপস্থিত রয়েছে।`;
+            const msgBody = buildAbsentAlertMessage(st);
 
             if (channel === 'SIM SMS') {
                 window.location.href = `sms:${intlPhone}?body=${encodeURIComponent(msgBody)}`;
@@ -505,16 +641,89 @@
             }
         }
 
-        function sendClassWiseAbsentAlerts() {
+        async function sendAbsentAlertsViaWhatsAppCloudOneClick(listWithPhone, phoneNumberId, accessToken) {
+            const btn = document.getElementById('att_send_absent_btn');
+            const progBox = document.getElementById('att_bulk_progress_box');
+            const progText = document.getElementById('att_bulk_progress_text');
+            const sumText = document.getElementById('att_bulk_summary_text');
+
+            btn.disabled = true;
+            btn.classList.add('opacity-60', 'cursor-not-allowed');
+            progBox.classList.remove('hidden');
+
+            const endpoint = `https://graph.facebook.com/v20.0/${encodeURIComponent(phoneNumberId)}/messages`;
+            let sent = 0;
+            let failed = 0;
+
+            for (let i = 0; i < listWithPhone.length; i++) {
+                const st = listWithPhone[i];
+                const toPhone = formatBdToIntlPhone(st.phone);
+                progText.innerText = `WhatsApp Cloud API পাঠানো হচ্ছে: ${i + 1} / ${listWithPhone.length} (${st.name})`;
+
+                if (!toPhone) {
+                    failed++;
+                    continue;
+                }
+
+                try {
+                    const res = await fetch(endpoint, {
+                        method: 'POST',
+                        headers: {
+                            'Content-Type': 'application/json',
+                            'Authorization': `Bearer ${accessToken}`
+                        },
+                        body: JSON.stringify({
+                            messaging_product: 'whatsapp',
+                            recipient_type: 'individual',
+                            to: toPhone,
+                            type: 'text',
+                            text: {
+                                preview_url: false,
+                                body: buildAbsentAlertMessage(st)
+                            }
+                        })
+                    });
+
+                    if (res.ok) sent++;
+                    else failed++;
+                } catch (err) {
+                    failed++;
+                }
+
+                sumText.innerText = `সফল: ${sent} | ব্যর্থ: ${failed}`;
+            }
+
+            progText.innerText = `এক-ক্লিক অ্যালার্ট সম্পন্ন (${listWithPhone.length} জন অভিভাবক)`;
+            sumText.innerText = `সফল: ${sent}টি, ব্যর্থ: ${failed}টি`;
+
+            btn.disabled = false;
+            btn.classList.remove('opacity-60', 'cursor-not-allowed');
+            alert(`এক ক্লিকে সম্পন্ন হয়েছে! সফল: ${sent}টি, ব্যর্থ: ${failed}টি।`);
+        }
+
+        async function sendClassWiseAbsentAlerts() {
             const listWithPhone = getAbsentStudentsForCurrentSelection().filter(st => (st.phone || "").replace(/[^\d]/g, '').length > 0);
             if (listWithPhone.length === 0) {
                 alert('শ্রেণিভিত্তিক অনুপস্থিত অ্যালার্ট পাঠানোর মতো ফোন নম্বরসহ কোনো অনুপস্থিত শিক্ষার্থী পাওয়া যায়নি!');
                 return;
             }
 
+            const chosenChannel = document.getElementById('attendance_msg_channel').value;
+
+            if (chosenChannel === 'WhatsApp Cloud API') {
+                const phoneId = (localStorage.getItem(WA_PHONE_ID_STORAGE_KEY) || document.getElementById('att_wa_phone_id').value || '').trim();
+                const token = (localStorage.getItem(WA_TOKEN_STORAGE_KEY) || document.getElementById('att_wa_token').value || '').trim();
+                if (!phoneId || !token) {
+                    alert('আগে উপরে Phone Number ID এবং Access Token বসিয়ে সংরক্ষণ করুন।');
+                    return;
+                }
+                await sendAbsentAlertsViaWhatsAppCloudOneClick(listWithPhone, phoneId, token);
+                return;
+            }
+
             classAbsentQueue = listWithPhone;
             classAbsentQueueIndex = 0;
-            classAbsentQueueChannel = document.getElementById('attendance_msg_channel').value;
+            classAbsentQueueChannel = chosenChannel;
 
             document.getElementById('class_absent_queue_bar')?.classList.remove('hidden');
             sendNextClassAbsentInQueue();
@@ -570,11 +779,11 @@
                 `;
 
                 students.forEach(s => {
-                    const sClass = s.cls || s.studentClass || s.class || "নুরানী প্রথম শ্রেণি";
+                    const sClass = resolveAdmissionClass(s.cls || s.studentClass || s.class || s.grade, s.classCode);
                     const sRoll = String(s.roll || s.id || s.studentId || "001").replace(/'/g, "");
                     const sUniqueId = String(s.id || sRoll).replace(/'/g, "");
                     const sName = String(s.name_bn || s.name || "শিক্ষার্থী").replace(/'/g, "");
-                    const sPhone = String(s.f_mobile || s.guardian_phone || s.m_mobile || s.phone || s.guardianPhone || "").replace(/'/g, "");
+                    const sPhone = extractGuardianPhone(s).replace(/'/g, "");
 
                     if (filterClass !== 'all' && sClass !== filterClass) return;
                     if (searchKey && !sName.toLowerCase().includes(searchKey) && !sRoll.toLowerCase().includes(searchKey) && !sUniqueId.toLowerCase().includes(searchKey)) return;
@@ -706,6 +915,7 @@
 
         function loadMonthlyReport(cat) {
             currentCategory = cat;
+            loadDynamicClasses();
             const titleEl = document.getElementById('workspace_title');
             const classBox = document.getElementById('monthly_class_box');
 
@@ -825,7 +1035,7 @@
             const targetMonths = ["01", "02", "03", "04", "05", "06", "07", "08", "09", "10", "11", "12"];
 
             const filteredStudents = students.filter(s => {
-                const sClass = s.cls || s.studentClass || s.class || "নুরানী প্রথম শ্রেণি";
+                const sClass = resolveAdmissionClass(s.cls || s.studentClass || s.class || s.grade, s.classCode);
                 const sRoll = String(s.roll || s.id || "001");
                 const sUniqueId = String(s.id || sRoll);
                 const sName = s.name_bn || s.name || "শিক্ষার্থী";
@@ -866,7 +1076,7 @@
 
             if (currentCategory === 'student') {
                 filteredStudents.forEach(s => {
-                    const sClass = s.cls || s.studentClass || s.class || "নুরানী প্রথম শ্রেণি";
+                    const sClass = resolveAdmissionClass(s.cls || s.studentClass || s.class || s.grade, s.classCode);
                     const sRoll = String(s.roll || s.id || "001");
                     const sUniqueId = String(s.id || sRoll);
                     const sName = s.name_bn || s.name || "শিক্ষার্থী";

@@ -275,6 +275,61 @@
             renderMessageLogs();
         };
 
+        function extractClassesFromStorage() {
+            const foundClasses = new Set();
+
+            const directArrayKeys = [
+                'madrasah_classes',
+                'madrasah_class_list',
+                'madrasah_admission_classes',
+                'madrasah_academic_classes',
+                'admission_classes',
+                'class_list'
+            ];
+
+            directArrayKeys.forEach(key => {
+                try {
+                    const raw = JSON.parse(localStorage.getItem(key));
+                    if (!raw) return;
+
+                    if (Array.isArray(raw)) {
+                        raw.forEach(item => {
+                            if (typeof item === 'string' && item.trim()) {
+                                foundClasses.add(item.trim());
+                            } else if (item && typeof item === 'object') {
+                                const cName = item.name || item.className || item.cls || item.title || item.class || '';
+                                if (String(cName).trim()) foundClasses.add(String(cName).trim());
+                            }
+                        });
+                    } else if (typeof raw === 'object') {
+                        if (Array.isArray(raw.classes)) {
+                            raw.classes.forEach(c => {
+                                const name = typeof c === 'string' ? c : (c?.name || c?.className || c?.cls || '');
+                                if (String(name).trim()) foundClasses.add(String(name).trim());
+                            });
+                        }
+                    }
+                } catch (e) {}
+            });
+
+            ['madrasah_settings', 'madrasah_admission_config', 'ahifm_settings'].forEach(key => {
+                try {
+                    const raw = JSON.parse(localStorage.getItem(key));
+                    if (raw && typeof raw === 'object') {
+                        const list = raw.classes || raw.admissionClasses || raw.classList || [];
+                        if (Array.isArray(list)) {
+                            list.forEach(c => {
+                                const name = typeof c === 'string' ? c : (c?.name || c?.className || c?.cls || '');
+                                if (String(name).trim()) foundClasses.add(String(name).trim());
+                            });
+                        }
+                    }
+                } catch (e) {}
+            });
+
+            return Array.from(foundClasses);
+        }
+
         function loadPeopleDirectories() {
             const rawStudents = JSON.parse(localStorage.getItem('madrasah_students_all')) || [];
             allStudentsCache = rawStudents.map((s, idx) => {
@@ -289,9 +344,15 @@
             selectedStudentKeys = new Set(allStudentsCache.map(st => st.key));
 
             const classSelect = document.getElementById('student_class_filter');
-            const uniqueClasses = Array.from(new Set(allStudentsCache.map(st => st.cls)));
+            const admissionClasses = extractClassesFromStorage();
+            const studentClasses = allStudentsCache.map(st => st.cls);
+
+            const mergedClasses = admissionClasses.length > 0
+                ? Array.from(new Set([...admissionClasses, ...studentClasses]))
+                : Array.from(new Set(studentClasses));
+
             classSelect.innerHTML = `<option value="all">সকল শ্রেণি (${allStudentsCache.length})</option>`;
-            uniqueClasses.forEach(c => {
+            mergedClasses.forEach(c => {
                 const countInClass = allStudentsCache.filter(st => st.cls === c).length;
                 const opt = document.createElement('option');
                 opt.value = c;

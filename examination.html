@@ -9,22 +9,48 @@
     <style>
         @media print {
             .no-print { display: none !important; }
-            body { background: white !important; font-size: 10pt !important; -webkit-print-color-adjust: exact; print-color-adjust: exact; }
-            .print-container { 
-                width: 100% !important; 
-                margin: 0 !important; 
-                padding: 20px !important; 
-                box-shadow: none !important; 
-                border: none !important; 
+            body {
+                background: white !important;
+                font-size: 9pt !important;
+                margin: 0 !important;
+                padding: 0 !important;
+                -webkit-print-color-adjust: exact;
+                print-color-adjust: exact;
+            }
+            .flex.h-screen, .flex-1.flex.flex-col, main {
+                display: block !important;
+                height: auto !important;
+                overflow: visible !important;
+                padding: 0 !important;
+                margin: 0 !important;
+            }
+            .print-container {
+                width: 100% !important;
+                max-width: 100% !important;
+                margin: 0 !important;
+                padding: 4px !important;
+                box-shadow: none !important;
+                border: none !important;
                 background-image: url('marksheet-bg.png') !important;
                 background-size: 100% 100% !important;
                 background-position: center !important;
                 background-repeat: no-repeat !important;
-                -webkit-print-color-adjust: exact; 
-                print-color-adjust: exact; 
+                -webkit-print-color-adjust: exact;
+                print-color-adjust: exact;
+            }
+            .admit-card-item {
+                break-inside: avoid !important;
+                page-break-inside: avoid !important;
+                padding: 7px 11px !important;
+                margin-bottom: 6px !important;
+                border-width: 2px !important;
+            }
+            .admit-card-item:nth-child(2n) {
+                break-after: page !important;
+                page-break-after: always !important;
             }
             * { -webkit-print-color-adjust: exact; print-color-adjust: exact; }
-            @page { size: A4 landscape; margin: 8mm; }
+            @page { size: A4 portrait; margin: 6mm; }
         }
         
         .print-container {
@@ -165,8 +191,8 @@
                     </div>
 
                     <div onclick="openExamPanel('admit')" class="bg-white p-5 rounded-2xl shadow-sm border border-gray-200 hover:border-cyan-500 hover:shadow-md cursor-pointer transition space-y-3">
-                        <div class="flex justify-between items-center border-b pb-2"><h3 class="font-bold text-gray-800 text-sm"><i class="fa-solid fa-id-card text-cyan-600 mr-2"></i> এডমিট কার্ড</h3><span class="text-[10px] bg-cyan-100 text-cyan-800 px-2 py-0.5 rounded font-bold">শ্রেণি ও আইডি ফিল্টার</span></div>
-                        <p class="text-xs text-gray-600">শ্রেণিভিত্তিক শিক্ষার্থী লোড ও আইডি ফিল্টারিংসহ এডমিট কার্ড প্রিন্ট।</p>
+                        <div class="flex justify-between items-center border-b pb-2"><h3 class="font-bold text-gray-800 text-sm"><i class="fa-solid fa-id-card text-cyan-600 mr-2"></i> এডমিট কার্ড</h3><span class="text-[10px] bg-cyan-100 text-cyan-800 px-2 py-0.5 rounded font-bold">A4 এ ২টি কার্ড</span></div>
+                        <p class="text-xs text-gray-600">শিক্ষার্থীর ছবি, ৩ স্লট রুটিন (শুধু তারিখ ও বিষয়), ৩টি নির্দেশনা ও ৩টি স্বাক্ষর।</p>
                     </div>
 
                     <div onclick="openExamPanel('routine')" class="bg-white p-5 rounded-2xl shadow-sm border border-gray-200 hover:border-sky-500 hover:shadow-md cursor-pointer transition space-y-3">
@@ -527,10 +553,10 @@
                     </div>
                 </div>
 
-                <!-- ৮. এডমিট কার্ড (৩টি স্বাক্ষর যুক্ত) -->
+                <!-- ৮. এডমিট কার্ড (ছবি, ৩ স্লট রুটিন [তারিখ+বিষয়], ৩টি নির্দেশনা ও ৩টি স্বাক্ষর) -->
                 <div id="panel-admit" class="exam-sub-panel bg-white p-5 md:p-6 rounded-2xl shadow-sm border border-gray-200 space-y-4 hidden">
                     <div class="flex justify-between items-center border-b pb-3 no-print">
-                        <h3 class="font-bold text-cyan-800 text-sm"><i class="fa-solid fa-id-card mr-2"></i> ৮. এডমিট কার্ড</h3>
+                        <h3 class="font-bold text-cyan-800 text-sm"><i class="fa-solid fa-id-card mr-2"></i> ৮. এডমিট কার্ড (A4 পেজে ২টি ভিন্ন স্টুডেন্ট)</h3>
                         <button onclick="closeAllExamPanels()" class="text-xs bg-gray-200 px-3 py-1 rounded font-bold text-gray-700 hover:bg-gray-300">বন্ধ করুন</button>
                     </div>
                     <div class="bg-cyan-50 p-4 rounded-xl border border-cyan-200 grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-5 gap-3 items-end text-xs no-print">
@@ -556,8 +582,8 @@
                         </div>
                     </div>
 
-                    <div id="admit_cards_output" class="print-container space-y-6 max-w-3xl mx-auto p-4">
-                        <div id="admit_students_list" class="space-y-6"></div>
+                    <div id="admit_cards_output" class="print-container space-y-4 max-w-4xl mx-auto p-3">
+                        <div id="admit_students_list" class="space-y-4"></div>
                     </div>
                 </div>
 
@@ -876,6 +902,7 @@
         const COMBINED_GROUPS_KEY = "ahifm_combined_subject_groups_v1";
         const GROUP_MARKS_KEY = "ahifm_group_subject_marks_v1";
         const STUDENT_MARKS_KEY = "ahifm_student_marks_v1";
+        const EXAM_ROUTINE_DATA_KEY = "ahifm_exam_routine_rows_v1";
 
         function resolveExamAdmissionClass(rawCls, rawCode) {
             const cleanCode = String(rawCode || '').trim().padStart(2, '0');
@@ -1800,8 +1827,8 @@
             let students = JSON.parse(localStorage.getItem('madrasah_students_all'));
             if (!students || students.length === 0) {
                 students = [
-                    { id: "202606001", name_bn: "মো: আব্দুল্লাহ", cls: "দাখিল ষষ্ঠ শ্রেণি", classCode: "06", roll: "001", father: "মো: ইব্রাহিম", mother: "মোছা: আমেনা", f_mobile: "01800000000" },
-                    { id: "202606002", name_bn: "ফাতেমা তুজ জোহরা", cls: "দাখিল ষষ্ঠ শ্রেণি", classCode: "06", roll: "002", father: "আব্দুল করিম", mother: "মোছা: জোহরা", f_mobile: "01800000001" }
+                    { id: "202606001", name_bn: "মো: আব্দুল্লাহ", cls: "দাখিল ষষ্ঠ শ্রেণি", classCode: "06", roll: "001", father: "মো: ইব্রাহিম", mother: "মোছা: আমেনা", f_mobile: "01800000000", photo: "" },
+                    { id: "202606002", name_bn: "ফাতেমা তুজ জোহরা", cls: "দাখিল ষষ্ঠ শ্রেণি", classCode: "06", roll: "002", father: "আব্দুল করিম", mother: "মোছা: জোহরা", f_mobile: "01800000001", photo: "" }
                 ];
                 localStorage.setItem('madrasah_students_all', JSON.stringify(students));
             }
@@ -2140,74 +2167,79 @@
         }
 
         /* ===================================================
-           ADMIT CARD (3 SIGNATURES: CLASS TEACHER, CONTROLLER, PRINCIPAL)
+           EXAM ROUTINE (CLASS FILTERING + STORAGE SYNC)
            =================================================== */
-        function applyAdmitFilter() {
-            const yearVal = document.getElementById('admit_filter_year')?.value || '২০২৬';
-            const examName = document.getElementById('admit_filter_exam')?.value || 'অর্ধবার্ষিক পরীক্ষা';
-            const clsName = document.getElementById('admit_filter_class')?.value || '';
-            const idQuery = (document.getElementById('admit_filter_id')?.value || '').trim().toLowerCase();
-
-            const listEl = document.getElementById('admit_students_list');
-            if (!listEl) return;
-
-            const savedLogo = localStorage.getItem('madrasah_logo_url') || '';
-            const logoHtml = savedLogo
-                ? `<img src="${savedLogo}" alt="Logo" class="w-12 h-12 object-cover rounded-full border border-emerald-800 mx-auto">`
-                : `<div class="w-11 h-11 rounded-full border border-emerald-800 bg-emerald-50 flex items-center justify-center text-emerald-900 font-bold text-xs mx-auto"><i class="fa-solid fa-mosque"></i></div>`;
-
-            const filtered = getStudentsForExam().filter(s => {
-                const matchClass = !clsName || s.cls === clsName;
-                const matchId = !idQuery || String(s.id || '').toLowerCase().includes(idQuery) || String(s.name_bn || s.name || '').toLowerCase().includes(idQuery);
-                return matchClass && matchId;
-            });
-
-            listEl.innerHTML = '';
-            if (filtered.length === 0) {
-                listEl.innerHTML = `<div class="text-center text-gray-500 font-bold py-6 border-double border-4 border-emerald-900 rounded-xl bg-white/85">কোনো শিক্ষার্থীর এডমিট কার্ড পাওয়া যায়নি।</div>`;
-                return;
-            }
-
-            filtered.forEach(s => {
-                const sName = s.name_bn || s.name || 'শিক্ষার্থী';
-                const sFather = s.father || s.f_name || '---';
-                const sMother = s.mother || s.m_name || '---';
-                const sRoll = s.roll || '001';
-
-                listEl.innerHTML += `
-                    <div class="border-double border-4 border-emerald-900 rounded-xl p-5 bg-white/88 space-y-3 shadow-sm">
-                        <div class="flex items-center justify-between gap-3 border-b-2 border-emerald-900 pb-2.5">
-                            <div class="shrink-0">${logoHtml}</div>
-                            <div class="text-center flex-1">
-                                <h2 class="font-bold text-sm md:text-base text-emerald-950">আবদুল্লাহ হাট ইসলামিয়া ফাজিল মাদ্রাসা</h2>
-                                <p class="text-[10px] text-gray-700 font-semibold">প্রবেশপত্র / এডমিট কার্ড (${yearVal})</p>
-                                <span class="inline-block bg-emerald-900 text-white px-3 py-0.5 rounded-full font-bold text-[10px] mt-1">${examName}</span>
-                            </div>
-                            <div class="w-11 shrink-0"></div>
-                        </div>
-
-                        <div class="grid grid-cols-1 sm:grid-cols-2 gap-2 text-xs bg-emerald-50/60 p-3 rounded-lg border border-emerald-200">
-                            <p><b>আইডি নম্বর:</b> <span class="font-bold text-emerald-950">${s.id}</span></p>
-                            <p><b>রোল নম্বর:</b> <span class="font-bold text-blue-900">${sRoll}</span></p>
-                            <p><b>শিক্ষার্থীর নাম:</b> <span class="font-bold">${sName}</span></p>
-                            <p><b>শ্রেণি:</b> <span class="font-bold text-emerald-900">${s.cls}</span></p>
-                            <p><b>পিতার নাম:</b> <span>${sFather}</span></p>
-                            <p><b>মাতার নাম:</b> <span>${sMother}</span></p>
-                        </div>
-
-                        <div class="pt-7 pb-1 grid grid-cols-3 gap-4 items-end text-[11px] font-bold text-gray-800">
-                            <div class="text-center border-t border-gray-700 pt-1">শ্রেণি শিক্ষকের স্বাক্ষর</div>
-                            <div class="text-center border-t border-gray-700 pt-1">পরীক্ষা নিয়ন্ত্রকের স্বাক্ষর</div>
-                            <div class="text-center border-t border-gray-700 pt-1">অধ্যক্ষের স্বাক্ষর</div>
-                        </div>
-                    </div>
-                `;
-            });
+        function getSavedRoutineRows() {
+            try {
+                const raw = localStorage.getItem(EXAM_ROUTINE_DATA_KEY);
+                if (raw) {
+                    const parsed = JSON.parse(raw);
+                    if (Array.isArray(parsed) && parsed.length > 0) return parsed;
+                }
+            } catch (e) {}
+            return [
+                { date: "২০২৬-০৬-১০", day: "বুধবার", subjectsByClass: { dakhil6: "আল-কুরআনুল কারীম" } }
+            ];
         }
 
-        /* ===================================================
-           EXAM ROUTINE (CLASS FILTERING + PRINT)
-           =================================================== */
+        function saveRoutineRowsToStorage(rows) {
+            localStorage.setItem(EXAM_ROUTINE_DATA_KEY, JSON.stringify(rows));
+        }
+
+        function getRoutineScheduleForClass(className) {
+            const matchedClassObj = examClassesList.find(c => c.name === className);
+            const rows = getSavedRoutineRows();
+            const schedule = [];
+
+            rows.forEach(r => {
+                let subj = "";
+                if (matchedClassObj && r.subjectsByClass && r.subjectsByClass[matchedClassObj.id]) {
+                    subj = r.subjectsByClass[matchedClassObj.id];
+                } else if (r.subjectsByClass && r.subjectsByClass[className]) {
+                    subj = r.subjectsByClass[className];
+                }
+                if (subj && subj !== "-") {
+                    schedule.push({ date: r.date, subject: subj });
+                }
+            });
+
+            if (schedule.length === 0) {
+                const subs = getSubjectsForClass(className);
+                return subs.map((s, idx) => ({
+                    date: `২০২৬-০৬-${String(10 + idx).padStart(2, '0')}`,
+                    subject: s.name
+                }));
+            }
+            return schedule;
+        }
+
+        function renderRoutineTableFromStorage() {
+            const tbody = document.getElementById('examRoutineTableBody');
+            if (!tbody) return;
+            const rows = getSavedRoutineRows();
+            tbody.innerHTML = '';
+
+            rows.forEach(r => {
+                let classCellsHTML = "";
+                examClassesList.forEach(c => {
+                    const subj = r.subjectsByClass && r.subjectsByClass[c.id];
+                    const cellContent = subj
+                        ? `<span class="font-bold text-emerald-800 bg-emerald-50/90 px-2 py-0.5 rounded border border-emerald-200">${subj}</span>`
+                        : `<span class="text-gray-400">-</span>`;
+                    classCellsHTML += `<td class="border p-2 text-center class-col-${c.id}">${cellContent}</td>`;
+                });
+
+                tbody.innerHTML += `
+                    <tr>
+                        <td class="border p-2 text-center font-bold">${r.date}</td>
+                        <td class="border p-2 text-center font-semibold text-purple-800">${r.day || '-'}</td>
+                        ${classCellsHTML}
+                    </tr>
+                `;
+            });
+            applyClassColumnVisibility();
+        }
+
         function autoDetectDay(input) {
             const val = input.value;
             if (!val) {
@@ -2261,72 +2293,159 @@
                 return;
             }
 
-            const tbody = document.getElementById('examRoutineTableBody');
-            let existingRow = null;
-            for (let row of tbody.rows) {
-                let dateCell = row.cells[0];
-                if (dateCell && dateCell.innerText.trim() === date) {
-                    existingRow = row;
-                    break;
-                }
-            }
+            const matchedClassObj = examClassesList.find(c => c.name === clsName);
+            const classKey = matchedClassObj ? matchedClassObj.id : clsName;
+            const rows = getSavedRoutineRows();
 
-            let matchedClassObj = examClassesList.find(c => c.name === clsName);
-            let classKey = matchedClassObj ? matchedClassObj.id : 'dakhil6';
-            let subjectBadge = `<span class="font-bold text-emerald-800 bg-emerald-50/90 px-2 py-0.5 rounded border border-emerald-200">${subj}</span>`;
-
-            if (existingRow) {
-                examClassesList.forEach((c, index) => {
-                    if (c.id === classKey) {
-                        let cell = existingRow.cells[index + 2];
-                        if (cell) cell.innerHTML = subjectBadge;
-                    }
-                });
+            let existing = rows.find(r => r.date === date);
+            if (existing) {
+                existing.day = day || existing.day;
+                if (!existing.subjectsByClass) existing.subjectsByClass = {};
+                existing.subjectsByClass[classKey] = subj;
             } else {
-                let classCellsHTML = "";
-                examClassesList.forEach(c => {
-                    let cellContent = (c.id === classKey) ? subjectBadge : `<span class="text-gray-400">-</span>`;
-                    classCellsHTML += `<td class="border p-2 text-center class-col-${c.id}">${cellContent}</td>`;
+                rows.push({
+                    date,
+                    day,
+                    subjectsByClass: { [classKey]: subj }
                 });
-
-                tbody.innerHTML += `
-                    <tr>
-                        <td class="border p-2 text-center font-bold">${date}</td>
-                        <td class="border p-2 text-center font-semibold text-purple-800">${day}</td>
-                        ${classCellsHTML}
-                    </tr>
-                `;
             }
 
-            applyClassColumnVisibility();
+            saveRoutineRowsToStorage(rows);
+            renderRoutineTableFromStorage();
         }
 
         function resetExamRoutine() {
             if (confirm('আপনি কি নিশ্চিতভাবে সমস্ত রুটিন রিসেট করতে চান?')) {
-                document.getElementById('examRoutineTableBody').innerHTML = '';
+                saveRoutineRowsToStorage([]);
+                renderRoutineTableFromStorage();
             }
+        }
+
+        /* ===================================================
+           ADMIT CARD (PHOTO + 3-SLOT ROUTINE [DATE+SUBJECT] + 3 INSTRUCTIONS + 3 SIGNATURES, 2 PER A4 PAGE)
+           =================================================== */
+        function applyAdmitFilter() {
+            const yearVal = document.getElementById('admit_filter_year')?.value || '২০২৬';
+            const examName = document.getElementById('admit_filter_exam')?.value || 'অর্ধবার্ষিক পরীক্ষা';
+            const clsName = document.getElementById('admit_filter_class')?.value || '';
+            const idQuery = (document.getElementById('admit_filter_id')?.value || '').trim().toLowerCase();
+
+            const listEl = document.getElementById('admit_students_list');
+            if (!listEl) return;
+
+            const savedLogo = localStorage.getItem('madrasah_logo_url') || '';
+            const logoHtml = savedLogo
+                ? `<img src="${savedLogo}" alt="Logo" class="w-9 h-9 object-cover rounded-full border border-emerald-800 mx-auto">`
+                : `<div class="w-9 h-9 rounded-full border border-emerald-800 bg-emerald-50 flex items-center justify-center text-emerald-900 font-bold text-xs mx-auto"><i class="fa-solid fa-mosque"></i></div>`;
+
+            const filtered = getStudentsForExam().filter(s => {
+                const matchClass = !clsName || s.cls === clsName;
+                const matchId = !idQuery || String(s.id || '').toLowerCase().includes(idQuery) || String(s.name_bn || s.name || '').toLowerCase().includes(idQuery);
+                return matchClass && matchId;
+            });
+
+            listEl.innerHTML = '';
+            if (filtered.length === 0) {
+                listEl.innerHTML = `<div class="text-center text-gray-500 font-bold py-6 border-double border-4 border-emerald-900 rounded-xl bg-white/85">কোনো শিক্ষার্থীর এডমিট কার্ড পাওয়া যায়নি।</div>`;
+                return;
+            }
+
+            filtered.forEach(s => {
+                const sName = s.name_bn || s.name || 'শিক্ষার্থী';
+                const sFather = s.father || s.f_name || '---';
+                const sMother = s.mother || s.m_name || '---';
+                const sRoll = s.roll || '001';
+                const photoSrc = s.photo || s.student_photo || s.image || s.avatar || '';
+                const photoHtml = photoSrc
+                    ? `<img src="${photoSrc}" alt="${sName}" class="w-16 h-20 object-cover rounded border border-emerald-800 shadow-sm">`
+                    : `<div class="w-16 h-20 rounded border border-dashed border-emerald-800 bg-emerald-50/80 flex flex-col items-center justify-center text-emerald-900 text-[9px] font-bold text-center p-0.5">
+                           <i class="fa-solid fa-user text-sm mb-0.5 text-emerald-700"></i>
+                           <span>ছবি</span>
+                       </div>`;
+
+                const classSchedule = getRoutineScheduleForClass(s.cls);
+                const routinePairRows = [];
+                for (let i = 0; i < classSchedule.length; i += 3) {
+                    const slots = [0, 1, 2].map(offset => classSchedule[i + offset] || { date: '-', subject: '-' });
+                    routinePairRows.push(`
+                        <tr>
+                            <td class="border border-emerald-900/40 px-1.5 py-0.5 font-semibold text-[10px] whitespace-nowrap">${slots[0].date}</td>
+                            <td class="border border-emerald-900/40 px-1.5 py-0.5 font-bold text-emerald-950 text-[10px]">${slots[0].subject}</td>
+                            <td class="border border-emerald-900/40 px-1.5 py-0.5 font-semibold text-[10px] whitespace-nowrap">${slots[1].date}</td>
+                            <td class="border border-emerald-900/40 px-1.5 py-0.5 font-bold text-emerald-950 text-[10px]">${slots[1].subject}</td>
+                            <td class="border border-emerald-900/40 px-1.5 py-0.5 font-semibold text-[10px] whitespace-nowrap">${slots[2].date}</td>
+                            <td class="border border-emerald-900/40 px-1.5 py-0.5 font-bold text-emerald-950 text-[10px]">${slots[2].subject}</td>
+                        </tr>
+                    `);
+                }
+
+                listEl.innerHTML += `
+                    <div class="admit-card-item border-double border-4 border-emerald-900 rounded-xl p-3 bg-white/88 space-y-2 shadow-sm">
+                        <div class="flex items-center justify-between gap-2 border-b border-emerald-900 pb-1.5">
+                            <div class="shrink-0">${logoHtml}</div>
+                            <div class="text-center flex-1 leading-tight">
+                                <h2 class="font-bold text-xs md:text-sm text-emerald-950">আবদুল্লাহ হাট ইসলামিয়া ফাজিল মাদ্রাসা</h2>
+                                <p class="text-[9.5px] text-gray-700 font-semibold">প্রবেশপত্র / এডমিট কার্ড (${yearVal}) — <span class="bg-emerald-900 text-white px-2 py-0.2 rounded font-bold">${examName}</span></p>
+                            </div>
+                            <div class="w-9 shrink-0"></div>
+                        </div>
+
+                        <div class="flex flex-row justify-between items-center gap-2 bg-emerald-50/60 px-2.5 py-1.5 rounded-lg border border-emerald-200 text-[10.5px] leading-snug">
+                            <div class="grid grid-cols-2 gap-x-3 gap-y-0.5 flex-1">
+                                <p><b>আইডি:</b> <span class="font-bold text-emerald-950">${s.id}</span></p>
+                                <p><b>রোল:</b> <span class="font-bold text-blue-900">${sRoll}</span></p>
+                                <p><b>নাম:</b> <span class="font-bold">${sName}</span></p>
+                                <p><b>শ্রেণি:</b> <span class="font-bold text-emerald-900">${s.cls}</span></p>
+                                <p><b>পিতা:</b> <span>${sFather}</span></p>
+                                <p><b>মাতা:</b> <span>${sMother}</span></p>
+                            </div>
+                            <div class="shrink-0">
+                                ${photoHtml}
+                            </div>
+                        </div>
+
+                        <div class="overflow-x-auto">
+                            <table class="w-full text-left border-collapse border border-emerald-900/40 text-[10px]">
+                                <thead>
+                                    <tr class="bg-emerald-900 text-white">
+                                        <th class="border border-emerald-900/40 px-1.5 py-0.5">তারিখ</th>
+                                        <th class="border border-emerald-900/40 px-1.5 py-0.5">বিষয়</th>
+                                        <th class="border border-emerald-900/40 px-1.5 py-0.5">তারিখ</th>
+                                        <th class="border border-emerald-900/40 px-1.5 py-0.5">বিষয়</th>
+                                        <th class="border border-emerald-900/40 px-1.5 py-0.5">তারিখ</th>
+                                        <th class="border border-emerald-900/40 px-1.5 py-0.5">বিষয়</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    ${routinePairRows.join('')}
+                                </tbody>
+                            </table>
+                        </div>
+
+                        <div class="bg-amber-50/75 border border-amber-300 rounded px-2 py-1 text-[10px] leading-tight">
+                            <p class="font-bold text-amber-950 mb-0.5">নির্দেশনা:</p>
+                            <ol class="list-decimal list-inside space-y-0.2 text-gray-800">
+                                <li>পরীক্ষা শুরুর অন্তত ১৫ মিনিট পূর্বে এডমিট কার্ডসহ নিজ নিজ আসন গ্রহণ করতে হবে।</li>
+                                <li>পরীক্ষা কক্ষে মোবাইল ফোন, স্মার্টওয়াচ বা যেকোনো প্রকার নকল সামগ্রী আনা সম্পূর্ণ নিষিদ্ধ।</li>
+                                <li>এডমিট কার্ড ব্যতীত কোনো পরীক্ষার্থীকে পরীক্ষা কক্ষে প্রবেশের অনুমতি দেওয়া হবে না।</li>
+                            </ol>
+                        </div>
+
+                        <div class="pt-5 grid grid-cols-3 gap-3 items-end text-[10px] font-bold text-gray-800">
+                            <div class="text-center border-t border-gray-700 pt-0.5">শ্রেণি শিক্ষকের স্বাক্ষর</div>
+                            <div class="text-center border-t border-gray-700 pt-0.5">পরীক্ষা নিয়ন্ত্রকের স্বাক্ষর</div>
+                            <div class="text-center border-t border-gray-700 pt-0.5">অধ্যক্ষের স্বাক্ষর</div>
+                        </div>
+                    </div>
+                `;
+            });
         }
 
         window.onload = function() {
             getClassSubjectsConfig();
             populateAllDropdowns();
             getStudentsForExam();
-
-            const tbody = document.getElementById('examRoutineTableBody');
-            if (tbody) {
-                let defaultCells = "";
-                examClassesList.forEach(c => {
-                    let content = (c.id === 'dakhil6') ? `<span class="font-bold text-emerald-800 bg-emerald-50/90 px-2 py-0.5 rounded border border-emerald-200">আল-কুরআনুল কারীম</span>` : `<span class="text-gray-400">-</span>`;
-                    defaultCells += `<td class="border p-2 text-center class-col-${c.id}">${content}</td>`;
-                });
-                tbody.innerHTML = `
-                    <tr>
-                        <td class="border p-2 text-center font-bold">২০২৬-০৬-১০</td>
-                        <td class="border p-2 text-center font-semibold text-purple-800">বুধবার</td>
-                        ${defaultCells}
-                    </tr>
-                `;
-            }
+            renderRoutineTableFromStorage();
         };
     </script>
 </body>

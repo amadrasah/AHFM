@@ -64,7 +64,7 @@
                 <div class="bg-gradient-to-r from-emerald-800 to-emerald-950 text-white p-5 rounded-2xl shadow flex flex-wrap justify-between items-center gap-4">
                     <div>
                         <h2 class="text-lg font-bold">যোগাযোগ ও নোটিফিকেশন ম্যানেজমেন্ট প্যানেল</h2>
-                        <p class="text-xs text-emerald-200 mt-1">সকল ছাত্র, অভিভাবক ও শিক্ষক-স্টাফকে একসাথে মোবাইল সিম বা WhatsApp-এর মাধ্যমে বার্তা ও নোটিশ পাঠান।</p>
+                        <p class="text-xs text-emerald-200 mt-1">সকল ছাত্র, অভিভাবক ও শিক্ষক-স্টাফকে একসাথে বা সিলেক্ট করে মোবাইল সিম বা WhatsApp-এর মাধ্যমে বার্তা পাঠান।</p>
                     </div>
                     <div class="bg-emerald-900/90 border border-emerald-700 px-4 py-2.5 rounded-xl text-right">
                         <span class="text-[11px] text-emerald-200 block">মোট অনুপস্থিত ছাত্র</span>
@@ -72,7 +72,7 @@
                     </div>
                 </div>
 
-                <!-- Safe Local API Configuration Card (Token is stored only in browser localStorage, never in source code) -->
+                <!-- Safe Local API Configuration Card -->
                 <div class="bg-rose-50/70 border border-rose-200 rounded-2xl p-4 space-y-3 shadow-sm">
                     <div class="flex flex-wrap justify-between items-center gap-2">
                         <h3 class="text-xs font-bold text-rose-900 flex items-center gap-1.5">
@@ -108,7 +108,7 @@
                             <i class="fa-solid fa-paper-plane text-emerald-700"></i> একসাথে বার্তা ও নোটিশ সেন্ডিং প্যানেল
                         </h3>
                         <button type="button" onclick="copyAllRecipientNumbers()" class="bg-gray-100 hover:bg-gray-200 text-gray-800 border px-3 py-1.5 rounded-lg text-xs font-bold transition">
-                            <i class="fa-solid fa-copy mr-1"></i> সব নম্বর কপি করুন
+                            <i class="fa-solid fa-copy mr-1"></i> সিলেক্টেড নম্বর কপি করুন
                         </button>
                     </div>
 
@@ -127,8 +127,8 @@
                             <select id="recipient_group" class="w-full p-2.5 border rounded-lg bg-white font-bold" onchange="handleGroupChange()">
                                 <option value="custom">৫. নির্দিষ্ট মোবাইল নম্বর (একাধিক নম্বর কমা দিয়ে)</option>
                                 <option value="absent_today">আজকের অনুপস্থিত শিক্ষার্থী (অভিভাবক)</option>
-                                <option value="all_students">সকল শিক্ষার্থী (অভিভাবক)</option>
-                                <option value="all_teachers">সকল শিক্ষক ও স্টাফ</option>
+                                <option value="all_students">সকল শিক্ষার্থী (শ্রেণিভিত্তিক ও সিলেকশন)</option>
+                                <option value="all_teachers">সকল শিক্ষক ও স্টাফ (সিলেকশনসহ)</option>
                             </select>
                         </div>
 
@@ -142,9 +142,51 @@
                         </div>
                     </div>
 
+                    <!-- Custom Numbers Box -->
                     <div id="custom_numbers_box" class="text-xs">
                         <label class="font-bold text-gray-700 block mb-1">মোবাইল নম্বর (একাধিক নম্বর কমা ',' দিয়ে লিখুন) *:</label>
                         <input type="text" id="custom_phones_input" placeholder="01640388584, 01717312805" class="w-full p-2.5 border rounded-lg bg-white" oninput="updateRecipientPreview()">
+                    </div>
+
+                    <!-- Class-wise Student Selection Box -->
+                    <div id="student_selection_box" class="hidden bg-sky-50/70 border border-sky-200 rounded-xl p-3.5 space-y-3 text-xs">
+                        <div class="flex flex-wrap justify-between items-center gap-2">
+                            <div class="flex flex-wrap items-center gap-2">
+                                <label class="font-bold text-sky-950"><i class="fa-solid fa-filter mr-1"></i> শ্রেণি নির্বাচন:</label>
+                                <select id="student_class_filter" class="p-1.5 border border-sky-300 rounded-lg bg-white font-bold text-sky-950" onchange="renderStudentSelectionList()">
+                                    <option value="all">সকল শ্রেণি</option>
+                                </select>
+                                <input type="text" id="student_search_filter" placeholder="নাম বা রোল দিয়ে খুঁজুন..." class="p-1.5 border border-sky-300 rounded-lg bg-white" oninput="renderStudentSelectionList()">
+                            </div>
+                            <div class="flex items-center gap-2">
+                                <button type="button" onclick="toggleAllVisibleRecipients('student', true)" class="bg-sky-700 hover:bg-sky-800 text-white px-2.5 py-1 rounded-lg font-bold text-[11px]">
+                                    সব সিলেক্ট
+                                </button>
+                                <button type="button" onclick="toggleAllVisibleRecipients('student', false)" class="bg-gray-200 hover:bg-gray-300 text-gray-800 px-2.5 py-1 rounded-lg font-bold text-[11px]">
+                                    সব আনসিলেক্ট
+                                </button>
+                            </div>
+                        </div>
+                        <div id="student_checklist_container" class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-2 max-h-56 overflow-y-auto pr-1"></div>
+                    </div>
+
+                    <!-- Teacher & Staff Selection Box -->
+                    <div id="teacher_staff_selection_box" class="hidden bg-indigo-50/70 border border-indigo-200 rounded-xl p-3.5 space-y-3 text-xs">
+                        <div class="flex flex-wrap justify-between items-center gap-2">
+                            <div class="flex flex-wrap items-center gap-2">
+                                <span class="font-bold text-indigo-950"><i class="fa-solid fa-user-check mr-1"></i> শিক্ষক ও স্টাফ তালিকা (যাদের পাঠাবেন সিলেক্ট করুন):</span>
+                                <input type="text" id="staff_search_filter" placeholder="নাম, পদবি বা নম্বর খুঁজুন..." class="p-1.5 border border-indigo-300 rounded-lg bg-white" oninput="renderTeacherStaffSelectionList()">
+                            </div>
+                            <div class="flex items-center gap-2">
+                                <button type="button" onclick="toggleAllVisibleRecipients('staff', true)" class="bg-indigo-700 hover:bg-indigo-800 text-white px-2.5 py-1 rounded-lg font-bold text-[11px]">
+                                    সব সিলেক্ট
+                                </button>
+                                <button type="button" onclick="toggleAllVisibleRecipients('staff', false)" class="bg-gray-200 hover:bg-gray-300 text-gray-800 px-2.5 py-1 rounded-lg font-bold text-[11px]">
+                                    সব আনসিলেক্ট
+                                </button>
+                            </div>
+                        </div>
+                        <div id="teacher_staff_checklist_container" class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-2 max-h-56 overflow-y-auto pr-1"></div>
                     </div>
 
                     <!-- Selected Recipients Preview -->
@@ -220,12 +262,75 @@
         const WA_TOKEN_STORAGE_KEY = 'ahifm_wa_access_token';
         const MSG_LOG_STORAGE_KEY = 'ahifm_communication_logs';
 
+        let allStudentsCache = [];
+        let allStaffCache = [];
+        let selectedStudentKeys = new Set();
+        let selectedStaffKeys = new Set();
+
         window.onload = function () {
             loadWaCloudConfigIntoInputs();
+            loadPeopleDirectories();
             updateAbsentCountBadge();
             handleGroupChange();
             renderMessageLogs();
         };
+
+        function loadPeopleDirectories() {
+            const rawStudents = JSON.parse(localStorage.getItem('madrasah_students_all')) || [];
+            allStudentsCache = rawStudents.map((s, idx) => {
+                const name = String(s.name_bn || s.name || `শিক্ষার্থী ${idx + 1}`).trim();
+                const cls = String(s.cls || s.studentClass || s.class || s.grade || 'নুরানী প্রথম শ্রেণি').trim();
+                const roll = String(s.roll || s.id || s.studentId || '').trim();
+                const phone = String(s.f_mobile || s.guardian_phone || s.m_mobile || s.phone || s.guardianPhone || '').trim();
+                const key = `stu_${s.id || roll || idx}_${phone}`;
+                return { key, name, cls, roll, phone };
+            }).filter(st => Boolean(st.phone));
+
+            selectedStudentKeys = new Set(allStudentsCache.map(st => st.key));
+
+            const classSelect = document.getElementById('student_class_filter');
+            const uniqueClasses = Array.from(new Set(allStudentsCache.map(st => st.cls)));
+            classSelect.innerHTML = `<option value="all">সকল শ্রেণি (${allStudentsCache.length})</option>`;
+            uniqueClasses.forEach(c => {
+                const countInClass = allStudentsCache.filter(st => st.cls === c).length;
+                const opt = document.createElement('option');
+                opt.value = c;
+                opt.text = `${c} (${countInClass})`;
+                classSelect.appendChild(opt);
+            });
+
+            const teachers = JSON.parse(localStorage.getItem('madrasah_teachers_master')) || [];
+            const staff = JSON.parse(localStorage.getItem('madrasah_staff_master')) || [];
+
+            const combinedStaff = [
+                ...teachers.map((t, idx) => ({
+                    roleType: 'শিক্ষক',
+                    name: String(t.name_bn || t.name || `শিক্ষক ${idx + 1}`).trim(),
+                    designation: String(t.designation || 'শিক্ষক').trim(),
+                    phone: String(t.phone || t.mobile || '').trim(),
+                    id: t.id || t.indexNo || `t_${idx}`
+                })),
+                ...staff.map((st, idx) => ({
+                    roleType: 'স্টাফ',
+                    name: String(st.name_bn || st.name || `স্টাফ ${idx + 1}`).trim(),
+                    designation: String(st.designation || 'স্টাফ').trim(),
+                    phone: String(st.phone || st.mobile || '').trim(),
+                    id: st.id || `st_${idx}`
+                }))
+            ];
+
+            allStaffCache = combinedStaff
+                .map((p, idx) => ({
+                    key: `staff_${p.roleType}_${p.id}_${idx}_${p.phone}`,
+                    roleType: p.roleType,
+                    name: p.name,
+                    designation: p.designation,
+                    phone: p.phone
+                }))
+                .filter(p => Boolean(p.phone));
+
+            selectedStaffKeys = new Set(allStaffCache.map(p => p.key));
+        }
 
         function loadWaCloudConfigIntoInputs() {
             const savedId = localStorage.getItem(WA_PHONE_ID_STORAGE_KEY) || '';
@@ -307,6 +412,115 @@
             if (badge) badge.innerText = `${absentList.length} জন`;
         }
 
+        function getFilteredStudentsForSelection() {
+            const clsFilter = document.getElementById('student_class_filter')?.value || 'all';
+            const searchQ = (document.getElementById('student_search_filter')?.value || '').toLowerCase().trim();
+
+            return allStudentsCache.filter(st => {
+                if (clsFilter !== 'all' && st.cls !== clsFilter) return false;
+                if (searchQ) {
+                    const hay = `${st.name} ${st.roll} ${st.cls} ${st.phone}`.toLowerCase();
+                    if (!hay.includes(searchQ)) return false;
+                }
+                return true;
+            });
+        }
+
+        function renderStudentSelectionList() {
+            const container = document.getElementById('student_checklist_container');
+            if (!container) return;
+
+            const list = getFilteredStudentsForSelection();
+            if (list.length === 0) {
+                container.innerHTML = `<div class="col-span-full text-gray-500 py-2">এই শ্রেণি বা সার্চে কোনো শিক্ষার্থী পাওয়া যায়নি।</div>`;
+                updateRecipientPreview();
+                return;
+            }
+
+            container.innerHTML = list.map(st => {
+                const checked = selectedStudentKeys.has(st.key) ? 'checked' : '';
+                return `
+                    <label class="flex items-start gap-2 bg-white border border-sky-200 rounded-lg p-2 cursor-pointer hover:border-sky-400 transition">
+                        <input type="checkbox" ${checked} onchange="toggleStudentSelection('${st.key}', this.checked)" class="mt-0.5 accent-sky-700">
+                        <div class="leading-tight">
+                            <span class="font-bold text-gray-900 block">${st.name} ${st.roll ? `(রোল: ${st.roll})` : ''}</span>
+                            <span class="text-[10px] text-sky-800 font-semibold">${st.cls}</span>
+                            <span class="text-[10px] text-gray-600 block">${st.phone}</span>
+                        </div>
+                    </label>
+                `;
+            }).join('');
+
+            updateRecipientPreview();
+        }
+
+        function toggleStudentSelection(key, isChecked) {
+            if (isChecked) selectedStudentKeys.add(key);
+            else selectedStudentKeys.delete(key);
+            updateRecipientPreview();
+        }
+
+        function getFilteredStaffForSelection() {
+            const searchQ = (document.getElementById('staff_search_filter')?.value || '').toLowerCase().trim();
+            return allStaffCache.filter(p => {
+                if (!searchQ) return true;
+                const hay = `${p.name} ${p.designation} ${p.roleType} ${p.phone}`.toLowerCase();
+                return hay.includes(searchQ);
+            });
+        }
+
+        function renderTeacherStaffSelectionList() {
+            const container = document.getElementById('teacher_staff_checklist_container');
+            if (!container) return;
+
+            const list = getFilteredStaffForSelection();
+            if (list.length === 0) {
+                container.innerHTML = `<div class="col-span-full text-gray-500 py-2">কোনো শিক্ষক বা স্টাফ পাওয়া যায়নি।</div>`;
+                updateRecipientPreview();
+                return;
+            }
+
+            container.innerHTML = list.map(p => {
+                const checked = selectedStaffKeys.has(p.key) ? 'checked' : '';
+                return `
+                    <label class="flex items-start gap-2 bg-white border border-indigo-200 rounded-lg p-2 cursor-pointer hover:border-indigo-400 transition">
+                        <input type="checkbox" ${checked} onchange="toggleStaffSelection('${p.key}', this.checked)" class="mt-0.5 accent-indigo-700">
+                        <div class="leading-tight">
+                            <span class="font-bold text-gray-900 block">${p.name}</span>
+                            <span class="text-[10px] text-indigo-800 font-semibold">${p.designation} (${p.roleType})</span>
+                            <span class="text-[10px] text-gray-600 block">${p.phone}</span>
+                        </div>
+                    </label>
+                `;
+            }).join('');
+
+            updateRecipientPreview();
+        }
+
+        function toggleStaffSelection(key, isChecked) {
+            if (isChecked) selectedStaffKeys.add(key);
+            else selectedStaffKeys.delete(key);
+            updateRecipientPreview();
+        }
+
+        function toggleAllVisibleRecipients(targetType, selectAll) {
+            if (targetType === 'student') {
+                const visible = getFilteredStudentsForSelection();
+                visible.forEach(st => {
+                    if (selectAll) selectedStudentKeys.add(st.key);
+                    else selectedStudentKeys.delete(st.key);
+                });
+                renderStudentSelectionList();
+            } else if (targetType === 'staff') {
+                const visible = getFilteredStaffForSelection();
+                visible.forEach(p => {
+                    if (selectAll) selectedStaffKeys.add(p.key);
+                    else selectedStaffKeys.delete(p.key);
+                });
+                renderTeacherStaffSelectionList();
+            }
+        }
+
         function getSelectedRecipients() {
             const group = document.getElementById('recipient_group').value;
             const recipients = [];
@@ -322,24 +536,23 @@
             } else if (group === 'absent_today') {
                 return getTodayAbsentStudents();
             } else if (group === 'all_students') {
-                const students = JSON.parse(localStorage.getItem('madrasah_students_all')) || [];
-                students.forEach(s => {
-                    const name = s.name_bn || s.name || 'শিক্ষার্থী';
-                    const phone = s.f_mobile || s.guardian_phone || s.m_mobile || s.phone || '';
-                    if (String(phone).trim()) {
-                        recipients.push({ label: name, phone: String(phone).trim() });
-                    }
-                });
+                allStudentsCache
+                    .filter(st => selectedStudentKeys.has(st.key))
+                    .forEach(st => {
+                        recipients.push({
+                            label: `${st.name} (${st.cls})`,
+                            phone: st.phone
+                        });
+                    });
             } else if (group === 'all_teachers') {
-                const teachers = JSON.parse(localStorage.getItem('madrasah_teachers_master')) || [];
-                const staff = JSON.parse(localStorage.getItem('madrasah_staff_master')) || [];
-                [...teachers, ...staff].forEach(p => {
-                    const name = p.name_bn || p.name || 'কর্মী';
-                    const phone = p.phone || p.mobile || '';
-                    if (String(phone).trim()) {
-                        recipients.push({ label: name, phone: String(phone).trim() });
-                    }
-                });
+                allStaffCache
+                    .filter(p => selectedStaffKeys.has(p.key))
+                    .forEach(p => {
+                        recipients.push({
+                            label: `${p.name} (${p.designation})`,
+                            phone: p.phone
+                        });
+                    });
             }
 
             return recipients;
@@ -348,8 +561,20 @@
         function handleGroupChange() {
             const group = document.getElementById('recipient_group').value;
             const customBox = document.getElementById('custom_numbers_box');
+            const studentBox = document.getElementById('student_selection_box');
+            const staffBox = document.getElementById('teacher_staff_selection_box');
+
             customBox.style.display = group === 'custom' ? 'block' : 'none';
-            updateRecipientPreview();
+            studentBox.classList.toggle('hidden', group !== 'all_students');
+            staffBox.classList.toggle('hidden', group !== 'all_teachers');
+
+            if (group === 'all_students') {
+                renderStudentSelectionList();
+            } else if (group === 'all_teachers') {
+                renderTeacherStaffSelectionList();
+            } else {
+                updateRecipientPreview();
+            }
         }
 
         function applyCategoryTemplate() {
@@ -393,7 +618,7 @@
             }
             const numbersStr = recipients.map(r => r.phone).join(', ');
             navigator.clipboard.writeText(numbersStr).then(() => {
-                alert('সব নম্বর কপি করা হয়েছে!');
+                alert('সিলেক্টেড সব নম্বর কপি করা হয়েছে!');
             });
         }
 
@@ -404,7 +629,7 @@
             const recipients = getSelectedRecipients();
 
             if (recipients.length === 0) {
-                alert('দয়া করে অন্তত একটি মোবাইল নম্বর নির্বাচন করুন।');
+                alert('দয়া করে অন্তত একজন প্রাপক বা মোবাইল নম্বর সিলেক্ট করুন।');
                 return;
             }
 
@@ -441,7 +666,6 @@
                 return;
             }
 
-            // WhatsApp Direct (single click opens first recipient)
             const firstIntl = formatBdToIntlPhone(recipients[0].phone);
             if (firstIntl) {
                 window.open(`https://wa.me/${firstIntl}?text=${encodeURIComponent(finalMessage)}`, '_blank');

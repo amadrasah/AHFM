@@ -157,17 +157,17 @@
                 <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4 md:gap-6 no-print">
                     <div onclick="openExamPanel('setup')" class="bg-white p-5 rounded-2xl shadow-sm border border-gray-200 hover:border-emerald-500 hover:shadow-md cursor-pointer transition space-y-3">
                         <div class="flex justify-between items-center border-b pb-2"><h3 class="font-bold text-gray-800 text-sm"><i class="fa-solid fa-gear text-emerald-600 mr-2"></i> এক্সাম সেটআপ</h3><span class="text-[10px] bg-emerald-100 text-emerald-800 px-2 py-0.5 rounded font-bold">Settings লিংকড</span></div>
-                        <p class="text-xs text-gray-600">Settings সেশন/সাল, শ্রেণিভিত্তিক বিষয়, পূর্ণমান, পাস মার্ক ও নতুন বিষয় যোগ।</p>
+                        <p class="text-xs text-gray-600">Settings সেশন/সাল, শ্রেণিভিত্তিক বিষয়, পূর্ণমান, পাস মার্ক ও ৪র্থ বিষয় সেট।</p>
                     </div>
 
                     <div onclick="openExamPanel('marks')" class="bg-white p-5 rounded-2xl shadow-sm border border-gray-200 hover:border-blue-500 hover:shadow-md cursor-pointer transition space-y-3">
-                        <div class="flex justify-between items-center border-b pb-2"><h3 class="font-bold text-gray-800 text-sm"><i class="fa-solid fa-pen-to-square text-blue-600 mr-2"></i> মার্কস এন্ট্রি</h3><span class="text-[10px] bg-blue-100 text-blue-800 px-2 py-0.5 rounded font-bold">বিষয় ড্রপডাউন</span></div>
-                        <p class="text-xs text-gray-600">সাল, পরীক্ষা, শ্রেণি ও বিষয় ড্রপডাউন অনুযায়ী নম্বর ইনপুট প্যানেল।</p>
+                        <div class="flex justify-between items-center border-b pb-2"><h3 class="font-bold text-gray-800 text-sm"><i class="fa-solid fa-pen-to-square text-blue-600 mr-2"></i> মার্কস এন্ট্রি</h3><span class="text-[10px] bg-blue-100 text-blue-800 px-2 py-0.5 rounded font-bold">পূর্ণমান লেখা বিন্যাস</span></div>
+                        <p class="text-xs text-gray-600">বিষয় সিলেক্ট করে CQ, MCQ, Practical পূর্ণমান লিখে সেট ও নম্বর এন্ট্রি।</p>
                     </div>
 
                     <div onclick="openExamPanel('processing')" class="bg-white p-5 rounded-2xl shadow-sm border border-gray-200 hover:border-purple-500 hover:shadow-md cursor-pointer transition space-y-3">
                         <div class="flex justify-between items-center border-b pb-2"><h3 class="font-bold text-gray-800 text-sm"><i class="fa-solid fa-calculator text-purple-600 mr-2"></i> রেজাল্ট প্রসেসিং</h3><span class="text-[10px] bg-purple-100 text-purple-800 px-2 py-0.5 rounded font-bold">গ্রুপ মার্কস + গ্রেড</span></div>
-                        <p class="text-xs text-gray-600">গ্রুপ বিষয়ের আলাদা নম্বর এন্ট্রি/শো এবং একত্রে গ্রেড ও GPA পয়েন্ট।</p>
+                        <p class="text-xs text-gray-600">গ্রুপ বিষয়ের আলাদা নম্বর, আলাদা পাস যাচাই ও ৪র্থ বিষয়সহ GPA।</p>
                     </div>
 
                     <div onclick="openExamPanel('merit')" class="bg-white p-5 rounded-2xl shadow-sm border border-gray-200 hover:border-amber-500 hover:shadow-md cursor-pointer transition space-y-3">
@@ -221,7 +221,7 @@
                 <div id="panel-setup" class="exam-sub-panel bg-white p-5 md:p-6 rounded-2xl shadow-sm border border-gray-200 space-y-6 hidden">
                     <div class="flex justify-between items-center border-b pb-3 no-print">
                         <div>
-                            <h3 class="font-bold text-emerald-800 text-sm"><i class="fa-solid fa-gear mr-2"></i> ১. এক্সাম সেটআপ (22. Settings সেশন/সাল লিংক ও শ্রেণিভিত্তিক বিষয়/নম্বর)</h3>
+                            <h3 class="font-bold text-emerald-800 text-sm"><i class="fa-solid fa-gear mr-2"></i> ১. এক্সাম সেটআপ (22. Settings সেশন/সাল লিংক, ৪র্থ বিষয় ও শ্রেণিভিত্তিক বিষয়/নম্বর)</h3>
                             <p class="text-[11px] text-gray-600 mt-0.5">Settings মডিউলের সেশন ও সাল বাটন থেকে লিংক করুন এবং শ্রেণিভিত্তিক বিষয়, পূর্ণমান ও পাস মার্ক সেট করুন।</p>
                         </div>
                         <button onclick="closeAllExamPanels()" class="text-xs bg-gray-200 px-3 py-1 rounded font-bold text-gray-700 hover:bg-gray-300">বন্ধ করুন</button>
@@ -261,13 +261,19 @@
                     <div class="bg-slate-50 p-4 rounded-xl border border-slate-200 space-y-4 text-xs">
                         <div class="flex flex-col md:flex-row justify-between items-start md:items-center gap-2 border-b pb-2">
                             <h4 class="font-bold text-slate-900"><i class="fa-solid fa-book-medical mr-1 text-emerald-700"></i> শ্রেণিভিত্তিক বিষয়, পূর্ণমান ও পাস মার্ক সেটআপ</h4>
-                            <span id="setup_current_class_badge" class="bg-emerald-100 text-emerald-900 px-3 py-1 rounded-full font-bold text-[11px]">শ্রেণি: ---</span>
+                            <div class="flex flex-wrap items-center gap-2">
+                                <label class="font-bold text-emerald-950">ঐচ্ছিক / ৪র্থ বিষয়:</label>
+                                <select id="set_fourth_subject" onchange="onFourthSubjectChange()" class="p-1.5 border rounded bg-white font-bold text-xs">
+                                    <option value="">-- নেই --</option>
+                                </select>
+                                <span id="setup_current_class_badge" class="bg-emerald-100 text-emerald-900 px-3 py-1 rounded-full font-bold text-[11px]">শ্রেণি: ---</span>
+                            </div>
                         </div>
 
                         <div class="grid grid-cols-1 sm:grid-cols-12 gap-3 items-end bg-white p-3 rounded-lg border">
                             <div class="sm:col-span-5">
                                 <label class="font-bold block mb-1 text-gray-700">নতুন বিষয় যুক্ত করুন:</label>
-                                <input type="text" id="new_class_sub_name" placeholder="যেমন: তাফসীর / ফিকহ্ / সাধারণ বিজ্ঞান" class="p-2 border rounded w-full font-bold">
+                                <input type="text" id="new_class_sub_name" placeholder="যেমন: ইসলামের ইতিহাস / তাফসীর / সাধারণ বিজ্ঞান" class="p-2 border rounded w-full font-bold">
                             </div>
                             <div class="sm:col-span-3">
                                 <label class="font-bold block mb-1 text-gray-700">পূর্ণমান (Full Marks):</label>
@@ -291,6 +297,7 @@
                                         <th class="border p-2">বিষয়ের নাম</th>
                                         <th class="border p-2 text-center">পূর্ণমান</th>
                                         <th class="border p-2 text-center">পাস মার্ক</th>
+                                        <th class="border p-2">বিন্যাস</th>
                                         <th class="border p-2 text-center w-24 no-print">মুছুন</th>
                                     </tr>
                                 </thead>
@@ -325,15 +332,43 @@
                         </div>
                         <div>
                             <label class="font-bold block mb-1">বিষয় নির্বাচন (ড্রপডাউন):</label>
-                            <select id="mark_filter_subject" class="p-2 border rounded bg-white font-bold w-full text-blue-900" onchange="loadMarksTable()"></select>
+                            <select id="mark_filter_subject" class="p-2 border rounded bg-white font-bold w-full text-blue-900" onchange="onMarksClassOrSubjectChange()"></select>
                         </div>
                         <div>
                             <button onclick="loadMarksTable()" class="w-full bg-blue-700 text-white px-4 py-2 rounded font-bold hover:bg-blue-800 shadow">নম্বর এন্ট্রি লোড করুন</button>
                         </div>
                     </div>
 
-                    <div id="marks_subject_meta_info" class="text-xs font-bold text-blue-900 bg-blue-50/70 px-3 py-2 rounded-lg border border-blue-100">
-                        নির্বাচিত বিষয়: --- | পূর্ণমান: --- | পাস মার্ক: ---
+                    <div id="marks_subject_meta_info" class="bg-blue-50/80 p-4 rounded-xl border border-blue-200 space-y-3 text-xs">
+                        <div class="flex flex-col md:flex-row justify-between items-start md:items-center gap-2 border-b border-blue-200/70 pb-2">
+                            <span id="marks_subject_summary_text" class="font-bold text-blue-950">
+                                নির্বাচিত বিষয়: --- | পূর্ণমান বিন্যাস: ---
+                            </span>
+                            <button type="button" onclick="saveSubjectDistributionText()" class="bg-blue-700 hover:bg-blue-800 text-white px-3.5 py-1.5 rounded-lg font-bold text-xs shadow">
+                                <i class="fa-solid fa-pen-to-square mr-1"></i> পূর্ণমান লেখা সংরক্ষণ করুন
+                            </button>
+                        </div>
+
+                        <div class="grid grid-cols-1 md:grid-cols-12 gap-3 items-end">
+                            <div class="md:col-span-7">
+                                <label class="font-bold block mb-1 text-gray-800">বিষয়ের পূর্ণমান ও পাস বিন্যাস লিখুন:</label>
+                                <input type="text" id="sub_dist_text_input"
+                                    oninput="onSubjectDistributionTextChange()"
+                                    placeholder="যেমন: CQ 70, MCQ 30 অথবা CQ 60, MCQ 25, Practical 15"
+                                    class="p-2 border rounded bg-white w-full font-bold text-blue-950">
+                            </div>
+                            <div class="md:col-span-3">
+                                <label class="font-bold block mb-1 text-gray-800">পাস মার্ক নোট (ঐচ্ছিক):</label>
+                                <input type="text" id="sub_dist_pass_note"
+                                    oninput="onSubjectDistributionTextChange()"
+                                    placeholder="যেমন: CQ 23, MCQ 10 বা মোট 33"
+                                    class="p-2 border rounded bg-white w-full font-semibold text-rose-800">
+                            </div>
+                            <div class="md:col-span-2 bg-white p-2 rounded-lg border border-blue-200 text-center">
+                                <span class="block text-[10px] text-gray-600 font-bold">মোট পূর্ণমান / পাস</span>
+                                <span id="sub_dist_total_preview" class="font-bold text-emerald-800 text-xs">100 / 33</span>
+                            </div>
+                        </div>
                     </div>
 
                     <div id="loading_marks" class="hidden flex justify-center items-center py-10">
@@ -346,9 +381,9 @@
                                     <th class="border p-2">আইডি</th>
                                     <th class="border p-2">শিক্ষার্থীর নাম</th>
                                     <th class="border p-2">বিষয়</th>
-                                    <th class="border p-2">লিখিত</th>
-                                    <th class="border p-2">নৈর্ব্যক্তিক</th>
-                                    <th class="border p-2">ব্যবহারিক</th>
+                                    <th class="border p-2">CQ (লিখিত)</th>
+                                    <th class="border p-2">MCQ (নৈর্ব্যক্তিক)</th>
+                                    <th class="border p-2">Practical</th>
                                     <th class="border p-2 text-center">মোট / স্ট্যাটাস</th>
                                     <th class="border p-2 text-center">সংরক্ষণ</th>
                                 </tr>
@@ -460,7 +495,7 @@
                             <p class="text-xs text-gray-600">ট্যাবুলেশন শীট - <span id="tab_exam_title_display">অর্ধবার্ষিক পরীক্ষা ২০২৬</span></p>
                         </div>
                         <table class="w-full text-left border-collapse border border-gray-200 text-xs mt-3 whitespace-nowrap">
-                            <thead><tr><th class="border p-2">আইডি</th><th class="border p-2">নাম</th><th class="border p-2 text-center">কুরআন</th><th class="border p-2 text-center">হাদীস</th><th class="border p-2 text-center">বাংলা</th><th class="border p-2 text-center">ইংরেজি</th><th class="border p-2 text-center">গণিত</th><th class="border p-2 text-center">মোট</th><th class="border p-2 text-center">GPA</th></tr></thead>
+                            <thead><tr><th class="border p-2">আইডি</th><th class="border p-2">নাম</th><th class="border p-2 text-center">মোট</th><th class="border p-2 text-center">GPA</th></tr></thead>
                             <tbody id="tabulationTableBody"></tbody>
                         </table>
                     </div>
@@ -538,22 +573,13 @@
                     </div>
 
                     <div id="loading_rc" class="hidden flex justify-center items-center py-10"><div class="spinner"></div></div>
-                    <div id="reportCardContainer" class="hidden print-container max-w-2xl mx-auto p-8 rounded-xl shadow-lg relative space-y-4 text-xs">
-                        <div class="text-center border-b-2 border-emerald-800 pb-3">
-                            <h1 class="font-bold text-base text-emerald-900">আবদুল্লাহ হাট ইসলামিয়া ফাজিল মাদ্রাসা</h1>
-                            <h3 id="rc_exam_title_banner" class="font-bold text-xs bg-emerald-800 text-white py-1 mt-2 inline-block px-6 rounded">একাডেমিক প্রোগ্রেস রিপোর্ট কার্ড</h3>
-                        </div>
-                        <div class="grid grid-cols-2 gap-2 border p-3 rounded-lg bg-emerald-50/55">
-                            <div><p><b>আইডি:</b> <span id="rc_id"></span></p><p><b>নাম:</b> <span id="rc_name_bn"></span></p><p><b>পিতা:</b> <span id="rc_father"></span></p></div>
-                            <div><p><b>শ্রেণি:</b> <span id="rc_class"></span></p><p><b>রোল:</b> <span id="rc_roll"></span></p><p><b>GPA:</b> <span id="rc_gpa" class="font-bold text-emerald-700">5.00 (A+)</span></p></div>
-                        </div>
-                    </div>
+                    <div id="reportCardContainer" class="hidden print-container max-w-2xl mx-auto p-8 rounded-xl shadow-lg relative space-y-4 text-xs"></div>
                     <div class="text-center pt-2 no-print">
                         <button onclick="window.print()" class="bg-rose-700 text-white px-6 py-2 rounded-lg text-xs font-bold hover:bg-rose-800 shadow">প্রিন্ট করুন</button>
                     </div>
                 </div>
 
-                <!-- ৮. এডমিট কার্ড (ছবি, ৩ স্লট রুটিন [তারিখ+বিষয়], ৩টি নির্দেশনা ও ৩টি স্বাক্ষর) -->
+                <!-- ৮. এডমিট কার্ড -->
                 <div id="panel-admit" class="exam-sub-panel bg-white p-5 md:p-6 rounded-2xl shadow-sm border border-gray-200 space-y-4 hidden">
                     <div class="flex justify-between items-center border-b pb-3 no-print">
                         <h3 class="font-bold text-cyan-800 text-sm"><i class="fa-solid fa-id-card mr-2"></i> ৮. এডমিট কার্ড (A4 পেজে ২টি ভিন্ন স্টুডেন্ট)</h3>
@@ -626,10 +652,11 @@
                             <thead>
                                 <tr class="text-center">
                                     <th class="border p-2">তারিখ</th><th class="border p-2">বার</th>
-                                    <th class="border p-2 class-col-nurani3">নুরানী ৩য়</th><th class="border p-2 class-col-nurani4">নুরানী ৪র্থ</th><th class="border p-2 class-col-nurani5">নুরানী ৫ম</th>
+                                    <th class="border p-2 class-col-nurani1">নুরানী ১ম</th><th class="border p-2 class-col-nurani2">নুরানী ২য়</th><th class="border p-2 class-col-nurani3">নুরানী ৩য়</th>
                                     <th class="border p-2 class-col-ebtedayi4">ইবতেদায়ী ৪র্থ</th><th class="border p-2 class-col-ebtedayi5">ইবতেদায়ী ৫ম</th>
                                     <th class="border p-2 class-col-dakhil6">দাখিল ৬ষ্ঠ</th><th class="border p-2 class-col-dakhil7">দাখিল ৭ম</th><th class="border p-2 class-col-dakhil8">দাখিল অষ্টম</th><th class="border p-2 class-col-dakhil9">দাখিল ৯ম</th><th class="border p-2 class-col-dakhil10">দাখিল ১০ম</th>
                                     <th class="border p-2 class-col-alim1">আলিম ১ম বর্ষ</th><th class="border p-2 class-col-alim2">আলিম ২য় বর্ষ</th>
+                                    <th class="border p-2 class-col-fazil1">ফাজিল ১ম বর্ষ</th><th class="border p-2 class-col-fazil2">ফাজিল ২য় বর্ষ</th><th class="border p-2 class-col-fazil3">ফাজিল ৩য় বর্ষ</th>
                                 </tr>
                             </thead>
                             <tbody id="examRoutineTableBody"></tbody>
@@ -877,9 +904,9 @@
         ];
 
         const examClassesList = [
+            { id: "nurani1", name: "নুরানী প্রথম শ্রেণি" },
+            { id: "nurani2", name: "নুরানী দ্বিতীয় শ্রেণি" },
             { id: "nurani3", name: "নুরানী তৃতীয় শ্রেণি" },
-            { id: "nurani4", name: "নুরানী চতুর্থ শ্রেণি" },
-            { id: "nurani5", name: "নুরানী পঞ্চম শ্রেণি" },
             { id: "ebtedayi4", name: "ইবতেদায়ী চতুর্থ শ্রেণি" },
             { id: "ebtedayi5", name: "ইবতেদায়ী পঞ্চম শ্রেণি" },
             { id: "dakhil6", name: "দাখিল ষষ্ঠ শ্রেণি" },
@@ -888,21 +915,82 @@
             { id: "dakhil9", name: "দাখিল নবম শ্রেণি" },
             { id: "dakhil10", name: "দাখিল দশম শ্রেণি" },
             { id: "alim1", name: "আলিম প্রথম বর্ষ" },
-            { id: "alim2", name: "আলিম দ্বিতীয় বর্ষ" }
+            { id: "alim2", name: "আলিম দ্বিতীয় বর্ষ" },
+            { id: "fazil1", name: "ফাজিল প্রথম বর্ষ" },
+            { id: "fazil2", name: "ফাজিল দ্বিতীয় বর্ষ" },
+            { id: "fazil3", name: "ফাজিল তৃতীয় বর্ষ" }
         ];
 
         let classActiveStatus = {
-            nurani3: true, nurani4: true, nurani5: true,
+            nurani1: true, nurani2: true, nurani3: true,
             ebtedayi4: true, ebtedayi5: true,
             dakhil6: true, dakhil7: true, dakhil8: true, dakhil9: true, dakhil10: true,
-            alim1: true, alim2: true
+            alim1: true, alim2: true,
+            fazil1: true, fazil2: true, fazil3: true
         };
 
         const CLASS_SUBJECTS_CONFIG_KEY = "ahifm_class_subjects_config_v1";
+        const FOURTH_SUBJECT_CONFIG_KEY = "ahifm_fourth_subject_config_v1";
         const COMBINED_GROUPS_KEY = "ahifm_combined_subject_groups_v1";
         const GROUP_MARKS_KEY = "ahifm_group_subject_marks_v1";
         const STUDENT_MARKS_KEY = "ahifm_student_marks_v1";
         const EXAM_ROUTINE_DATA_KEY = "ahifm_exam_routine_rows_v1";
+        const PROCESSED_RESULTS_KEY = "ahifm_processed_results_v1";
+
+        /* ===================================================
+           UNIFIED CLASS LIST FOR EVERY DROPDOWN IN EXAMINATION
+           =================================================== */
+        function getUniformClassList() {
+            const students = JSON.parse(localStorage.getItem('madrasah_students_all')) || [];
+            const extraClasses = students
+                .map(s => resolveExamAdmissionClass(s.cls || s.studentClass || s.class || s.grade, s.classCode))
+                .filter(c => c && !ADMISSION_CLASSES.some(ac => ac.name === c));
+
+            return [
+                ...ADMISSION_CLASSES.map(ac => ac.name),
+                ...Array.from(new Set(extraClasses))
+            ];
+        }
+
+        function syncAllClassDropdownsUniformly() {
+            const uniformClasses = getUniformClassList();
+            const classSelectIds = [
+                'set_class',
+                'mark_filter_class',
+                'proc_filter_class',
+                'merit_filter_class',
+                'tab_filter_class',
+                'sum_filter_class',
+                'rc_filter_class',
+                'admit_filter_class',
+                'rout_class'
+            ];
+
+            classSelectIds.forEach(id => {
+                const el = document.getElementById(id);
+                if (!el) return;
+                const prevVal = el.value;
+                el.innerHTML = '';
+                uniformClasses.forEach(clsName => {
+                    el.innerHTML += `<option value="${clsName}">${clsName}</option>`;
+                });
+                if (prevVal && uniformClasses.includes(prevVal)) {
+                    el.value = prevVal;
+                }
+            });
+
+            const routFilterSel = document.getElementById('routine_class_filter');
+            if (routFilterSel) {
+                const prevFilter = routFilterSel.value || 'ALL';
+                routFilterSel.innerHTML = `<option value="ALL">সকল শ্রেণি</option>`;
+                uniformClasses.forEach(clsName => {
+                    routFilterSel.innerHTML += `<option value="${clsName}">${clsName}</option>`;
+                });
+                if (prevFilter === 'ALL' || uniformClasses.includes(prevFilter)) {
+                    routFilterSel.value = prevFilter;
+                }
+            }
+        }
 
         function resolveExamAdmissionClass(rawCls, rawCode) {
             const cleanCode = String(rawCode || '').trim().padStart(2, '0');
@@ -931,7 +1019,7 @@
         }
 
         /* ===================================================
-           1 & 2. SETTINGS SESSION/YEAR LINK + CLASS SUBJECTS
+           1. SETTINGS SESSION/YEAR LINK, FOURTH SUBJECT & CLASS SUBJECTS
            =================================================== */
         function getSettingsSessionAndYears() {
             const candidateKeys = [
@@ -995,29 +1083,52 @@
             });
         }
 
-        function getAllConnectedClassNames() {
-            const students = JSON.parse(localStorage.getItem('madrasah_students_all')) || [];
-            const extra = students
-                .map(s => resolveExamAdmissionClass(s.cls || s.studentClass || s.class || s.grade, s.classCode))
-                .filter(c => c && !ADMISSION_CLASSES.some(ac => ac.name === c));
-            return [
-                ...ADMISSION_CLASSES.map(ac => ac.name),
-                ...Array.from(new Set(extra))
-            ];
+        function getFourthSubjectConfig() {
+            return JSON.parse(localStorage.getItem(FOURTH_SUBJECT_CONFIG_KEY)) || {};
+        }
+
+        function saveFourthSubjectConfig(cfg) {
+            localStorage.setItem(FOURTH_SUBJECT_CONFIG_KEY, JSON.stringify(cfg));
+        }
+
+        function getClassFourthSubject(clsName) {
+            const cfg = getFourthSubjectConfig();
+            return cfg[clsName] || "";
+        }
+
+        function onFourthSubjectChange() {
+            const clsName = document.getElementById('set_class')?.value;
+            const subName = document.getElementById('set_fourth_subject')?.value || "";
+            if (!clsName) return;
+            const cfg = getFourthSubjectConfig();
+            cfg[clsName] = subName;
+            saveFourthSubjectConfig(cfg);
+        }
+
+        function syncFourthSubjectDropdownForClass(clsName) {
+            const sel = document.getElementById('set_fourth_subject');
+            if (!sel || !clsName) return;
+            const subs = getSubjectsForClass(clsName);
+            const currentFourth = getClassFourthSubject(clsName);
+            sel.innerHTML = `<option value="">-- নেই --</option>`;
+            subs.forEach(s => {
+                const selected = s.name === currentFourth ? 'selected' : '';
+                sel.innerHTML += `<option value="${s.name}" ${selected}>${s.name}</option>`;
+            });
         }
 
         function getClassSubjectsConfig() {
             let cfg = JSON.parse(localStorage.getItem(CLASS_SUBJECTS_CONFIG_KEY));
             const defaultSubs = [
-                { name: "কুরআন মাজিদ", fullMarks: 100, passMarks: 33 },
-                { name: "হাদীস শরীফ", fullMarks: 100, passMarks: 33 },
-                { name: "বাংলা", fullMarks: 100, passMarks: 33 },
-                { name: "ইংরেজি", fullMarks: 100, passMarks: 33 },
-                { name: "গণিত", fullMarks: 100, passMarks: 33 }
+                { name: "কুরআন মাজিদ", fullMarks: 100, passMarks: 33, distributionText: "CQ 70, MCQ 30" },
+                { name: "হাদীস শরীফ", fullMarks: 100, passMarks: 33, distributionText: "CQ 70, MCQ 30" },
+                { name: "বাংলা", fullMarks: 100, passMarks: 33, distributionText: "CQ 70, MCQ 30" },
+                { name: "ইংরেজি", fullMarks: 100, passMarks: 33, distributionText: "CQ 70, MCQ 30" },
+                { name: "গণিত", fullMarks: 100, passMarks: 33, distributionText: "CQ 70, MCQ 30" }
             ];
             if (!cfg) {
                 cfg = {};
-                getAllConnectedClassNames().forEach(cName => {
+                getUniformClassList().forEach(cName => {
                     cfg[cName] = defaultSubs.map(s => ({ ...s }));
                 });
                 localStorage.setItem(CLASS_SUBJECTS_CONFIG_KEY, JSON.stringify(cfg));
@@ -1033,11 +1144,11 @@
             const cfg = getClassSubjectsConfig();
             if (cfg[className]) return cfg[className];
             return [
-                { name: "কুরআন মাজিদ", fullMarks: 100, passMarks: 33 },
-                { name: "হাদীস শরীফ", fullMarks: 100, passMarks: 33 },
-                { name: "বাংলা", fullMarks: 100, passMarks: 33 },
-                { name: "ইংরেজি", fullMarks: 100, passMarks: 33 },
-                { name: "গণিত", fullMarks: 100, passMarks: 33 }
+                { name: "কুরআন মাজিদ", fullMarks: 100, passMarks: 33, distributionText: "CQ 70, MCQ 30" },
+                { name: "হাদীস শরীফ", fullMarks: 100, passMarks: 33, distributionText: "CQ 70, MCQ 30" },
+                { name: "বাংলা", fullMarks: 100, passMarks: 33, distributionText: "CQ 70, MCQ 30" },
+                { name: "ইংরেজি", fullMarks: 100, passMarks: 33, distributionText: "CQ 70, MCQ 30" },
+                { name: "গণিত", fullMarks: 100, passMarks: 33, distributionText: "CQ 70, MCQ 30" }
             ];
         }
 
@@ -1048,15 +1159,18 @@
             if (!clsName || !tbody) return;
 
             if (badge) badge.innerText = `শ্রেণি: ${clsName}`;
+            syncFourthSubjectDropdownForClass(clsName);
+
             const subs = getSubjectsForClass(clsName);
             tbody.innerHTML = '';
 
             if (subs.length === 0) {
-                tbody.innerHTML = `<tr><td colspan="4" class="p-3 text-center text-gray-500 font-bold">এই শ্রেণিতে কোনো বিষয় নেই। উপরে নতুন বিষয় যুক্ত করুন।</td></tr>`;
+                tbody.innerHTML = `<tr><td colspan="5" class="p-3 text-center text-gray-500 font-bold">এই শ্রেণিতে কোনো বিষয় নেই। উপরে নতুন বিষয় যুক্ত করুন।</td></tr>`;
                 return;
             }
 
             subs.forEach((s, idx) => {
+                const dist = getSubjectDistribution(s);
                 tbody.innerHTML += `
                     <tr>
                         <td class="border p-2 font-bold">${s.name}</td>
@@ -1066,6 +1180,7 @@
                         <td class="border p-2 text-center">
                             <input type="number" value="${s.passMarks}" min="0" onchange="updateSubjectMarks('${clsName}', ${idx}, 'passMarks', this.value)" class="p-1 border rounded w-20 text-center font-bold text-rose-700">
                         </td>
+                        <td class="border p-2 font-semibold text-blue-900">${dist.distributionText}</td>
                         <td class="border p-2 text-center no-print">
                             <button type="button" onclick="deleteSubjectFromClass('${clsName}', ${idx})" class="bg-rose-100 text-rose-700 px-2 py-1 rounded font-bold text-[10px] hover:bg-rose-200">মুছুন</button>
                         </td>
@@ -1091,7 +1206,13 @@
 
             const cfg = getClassSubjectsConfig();
             if (!cfg[clsName]) cfg[clsName] = getSubjectsForClass(clsName);
-            cfg[clsName].push({ name: subName, fullMarks, passMarks });
+            const defaultDist = parseDistributionText("", "", fullMarks, passMarks);
+            cfg[clsName].push({
+                name: subName,
+                fullMarks,
+                passMarks,
+                distributionText: defaultDist.distributionText
+            });
             saveClassSubjectsConfig(cfg);
 
             document.getElementById('new_class_sub_name').value = '';
@@ -1120,7 +1241,971 @@
         }
 
         /* ===================================================
-           TEACHER & STAFF CONNECTOR (BANGLA ONLY DISPLAY)
+           2. SUBJECT DISTRIBUTION TEXT PARSER & MARKS ENTRY
+           =================================================== */
+        function parseDistributionText(rawText, passNoteText, fallbackFull, fallbackPass) {
+            const text = String(rawText || '').trim();
+            const passText = String(passNoteText || '').trim();
+
+            const extractPart = (source, labels) => {
+                for (const lbl of labels) {
+                    const re = new RegExp(`(?:${lbl})\\s*[:\\-]?\\s*(\\d+)`, 'i');
+                    const m = source.match(re);
+                    if (m && m[1] !== undefined) return Number(m[1]);
+                }
+                return null;
+            };
+
+            const parsedCqFull = extractPart(text, ['CQ', 'লিখিত', 'রচনামূলক']);
+            const parsedMcqFull = extractPart(text, ['MCQ', 'নৈর্ব্যক্তিক', 'বহুনির্বাচনী']);
+            const parsedPracFull = extractPart(text, ['Practical', 'প্র্যাকটিক্যাল', 'ব্যবহারিক', 'PR']);
+
+            let cqFull = parsedCqFull !== null ? parsedCqFull : 0;
+            let mcqFull = parsedMcqFull !== null ? parsedMcqFull : 0;
+            let pracFull = parsedPracFull !== null ? parsedPracFull : 0;
+
+            if (parsedCqFull === null && parsedMcqFull === null && parsedPracFull === null) {
+                const nums = (text.match(/\d+/g) || []).map(Number);
+                if (nums.length === 1 && nums[0] > 0) {
+                    cqFull = nums[0];
+                } else if (nums.length >= 2) {
+                    cqFull = nums[0] || 0;
+                    mcqFull = nums[1] || 0;
+                    pracFull = nums[2] || 0;
+                } else {
+                    const baseFull = Number(fallbackFull) || 100;
+                    cqFull = Math.round(baseFull * 0.7);
+                    mcqFull = baseFull - cqFull;
+                    pracFull = 0;
+                }
+            }
+
+            const sumParts = cqFull + mcqFull + pracFull;
+            const totalFull = sumParts > 0 ? sumParts : (Number(fallbackFull) || 100);
+
+            const parsedCqPass = extractPart(passText, ['CQ', 'লিখিত', 'রচনামূলক']);
+            const parsedMcqPass = extractPart(passText, ['MCQ', 'নৈর্ব্যক্তিক', 'বহুনির্বাচনী']);
+            const parsedPracPass = extractPart(passText, ['Practical', 'প্র্যাকটিক্যাল', 'ব্যবহারিক', 'PR']);
+            const parsedTotalPass = extractPart(passText, ['মোট', 'Total', 'পাস', 'Pass']);
+
+            const cqPass = parsedCqPass !== null
+                ? parsedCqPass
+                : (cqFull > 0 ? Math.ceil(cqFull * 0.33) : 0);
+
+            const mcqPass = parsedMcqPass !== null
+                ? parsedMcqPass
+                : (mcqFull > 0 ? Math.ceil(mcqFull * 0.33) : 0);
+
+            const pracPass = parsedPracPass !== null
+                ? parsedPracPass
+                : (pracFull > 0 ? Math.ceil(pracFull * 0.33) : 0);
+
+            const totalPass = parsedTotalPass !== null
+                ? parsedTotalPass
+                : ((parsedCqPass !== null || parsedMcqPass !== null || parsedPracPass !== null)
+                    ? (cqPass + mcqPass + pracPass)
+                    : (Number(fallbackPass) || Math.ceil(totalFull * 0.33)));
+
+            return {
+                distributionText: text || (pracFull > 0 ? `CQ ${cqFull}, MCQ ${mcqFull}, Practical ${pracFull}` : `CQ ${cqFull}, MCQ ${mcqFull}`),
+                passNoteText: passText,
+                cqFull,
+                cqPass,
+                mcqFull,
+                mcqPass,
+                pracFull,
+                pracPass,
+                totalFull,
+                totalPass
+            };
+        }
+
+        function getSubjectDistribution(subObj) {
+            const fullMarks = Number(subObj?.fullMarks) || 100;
+            const passMarks = Number(subObj?.passMarks) || Math.ceil(fullMarks * 0.33);
+
+            if (subObj?.distributionText) {
+                return parseDistributionText(subObj.distributionText, subObj.passNoteText, fullMarks, passMarks);
+            }
+
+            const hasExplicitDist =
+                subObj?.cqFull !== undefined ||
+                subObj?.mcqFull !== undefined ||
+                subObj?.pracFull !== undefined;
+
+            if (hasExplicitDist) {
+                const cqFull = Number(subObj.cqFull) || 0;
+                const mcqFull = Number(subObj.mcqFull) || 0;
+                const pracFull = Number(subObj.pracFull) || 0;
+                const totalFull = (cqFull + mcqFull + pracFull) > 0 ? (cqFull + mcqFull + pracFull) : fullMarks;
+                return {
+                    distributionText: pracFull > 0
+                        ? `CQ ${cqFull}, MCQ ${mcqFull}, Practical ${pracFull}`
+                        : `CQ ${cqFull}, MCQ ${mcqFull}`,
+                    passNoteText: subObj.passNoteText || "",
+                    cqFull,
+                    cqPass: subObj.cqPass !== undefined ? Number(subObj.cqPass) : (cqFull > 0 ? Math.ceil(cqFull * 0.33) : 0),
+                    mcqFull,
+                    mcqPass: subObj.mcqPass !== undefined ? Number(subObj.mcqPass) : (mcqFull > 0 ? Math.ceil(mcqFull * 0.33) : 0),
+                    pracFull,
+                    pracPass: subObj.pracPass !== undefined ? Number(subObj.pracPass) : (pracFull > 0 ? Math.ceil(pracFull * 0.33) : 0),
+                    totalFull,
+                    totalPass: passMarks
+                };
+            }
+
+            return parseDistributionText("", "", fullMarks, passMarks);
+        }
+
+        function getComponentPassThresholds(subObj) {
+            return getSubjectDistribution(subObj);
+        }
+
+        function syncDistributionInputsForSelectedSubject() {
+            const clsName = document.getElementById('mark_filter_class')?.value;
+            const chosenSubName = document.getElementById('mark_filter_subject')?.value;
+            if (!clsName || !chosenSubName) return;
+
+            const subs = getSubjectsForClass(clsName);
+            const subObj = subs.find(s => s.name === chosenSubName) || { fullMarks: 100, passMarks: 33 };
+            const dist = getSubjectDistribution(subObj);
+
+            const distInput = document.getElementById('sub_dist_text_input');
+            const passInput = document.getElementById('sub_dist_pass_note');
+            if (distInput) distInput.value = dist.distributionText;
+            if (passInput) passInput.value = dist.passNoteText;
+
+            const sumText = document.getElementById('marks_subject_summary_text');
+            if (sumText) {
+                sumText.innerText = `শ্রেণি: ${clsName} | বিষয়: ${chosenSubName} | বিন্যাস: ${dist.distributionText}`;
+            }
+
+            const prevEl = document.getElementById('sub_dist_total_preview');
+            if (prevEl) {
+                prevEl.innerText = `${dist.totalFull} / ${dist.totalPass}`;
+            }
+        }
+
+        function onSubjectDistributionTextChange() {
+            const rawText = document.getElementById('sub_dist_text_input')?.value || "";
+            const passNote = document.getElementById('sub_dist_pass_note')?.value || "";
+            const parsed = parseDistributionText(rawText, passNote, 100, 33);
+
+            const prevEl = document.getElementById('sub_dist_total_preview');
+            if (prevEl) {
+                prevEl.innerText = `${parsed.totalFull} / ${parsed.totalPass}`;
+            }
+        }
+
+        function saveSubjectDistributionText() {
+            const clsName = document.getElementById('mark_filter_class')?.value;
+            const chosenSubName = document.getElementById('mark_filter_subject')?.value;
+            if (!clsName || !chosenSubName) {
+                alert('দয়া করে শ্রেণি ও বিষয় নির্বাচন করুন!');
+                return;
+            }
+
+            const rawText = document.getElementById('sub_dist_text_input')?.value.trim() || "";
+            const passNote = document.getElementById('sub_dist_pass_note')?.value.trim() || "";
+            if (!rawText) {
+                alert('দয়া করে পূর্ণমান বিন্যাস লিখুন (যেমন: CQ 70, MCQ 30)!');
+                return;
+            }
+
+            const parsed = parseDistributionText(rawText, passNote, 100, 33);
+            const cfg = getClassSubjectsConfig();
+            if (!cfg[clsName]) {
+                cfg[clsName] = getSubjectsForClass(clsName);
+            }
+
+            const subIndex = cfg[clsName].findIndex(s => s.name === chosenSubName);
+            const updatedObj = {
+                name: chosenSubName,
+                fullMarks: parsed.totalFull,
+                passMarks: parsed.totalPass,
+                distributionText: parsed.distributionText,
+                passNoteText: parsed.passNoteText,
+                cqFull: parsed.cqFull,
+                cqPass: parsed.cqPass,
+                mcqFull: parsed.mcqFull,
+                mcqPass: parsed.mcqPass,
+                pracFull: parsed.pracFull,
+                pracPass: parsed.pracPass
+            };
+
+            if (subIndex >= 0) {
+                cfg[clsName][subIndex] = { ...cfg[clsName][subIndex], ...updatedObj };
+            } else {
+                cfg[clsName].push(updatedObj);
+            }
+
+            saveClassSubjectsConfig(cfg);
+            renderClassSubjectsSetupTable();
+            onMarksClassOrSubjectChange();
+            loadMarksTable();
+            alert(`"${chosenSubName}" বিষয়ের পূর্ণমান বিন্যাস (${parsed.distributionText} — মোট ${parsed.totalFull}) সংরক্ষিত হয়েছে!`);
+        }
+
+        function onMarksClassOrSubjectChange() {
+            const clsName = document.getElementById('mark_filter_class')?.value;
+            const subSelect = document.getElementById('mark_filter_subject');
+            if (!clsName || !subSelect) return;
+
+            const subs = getSubjectsForClass(clsName);
+            const prevSub = subSelect.value;
+            subSelect.innerHTML = '';
+            subs.forEach(s => {
+                const dist = getSubjectDistribution(s);
+                subSelect.innerHTML += `<option value="${s.name}">${s.name} (${dist.distributionText})</option>`;
+            });
+            if (prevSub && subs.some(s => s.name === prevSub)) {
+                subSelect.value = prevSub;
+            }
+
+            syncDistributionInputsForSelectedSubject();
+        }
+
+        function getDefaultStudentSubjectMarks(student, index, subObj) {
+            const dist = getSubjectDistribution(subObj);
+            const rollNum = parseInt(String(student.roll || student.id || (index + 1)).replace(/\D/g, ''), 10) || (index + 1);
+            const seed = (rollNum * 7 + (index + 1) * 11) % 28;
+
+            const w = dist.cqFull > 0
+                ? Math.min(dist.cqFull, Math.max(0, Math.round(dist.cqFull * 0.65) + (seed % 10) - 4))
+                : 0;
+            const m = dist.mcqFull > 0
+                ? Math.min(dist.mcqFull, Math.max(0, Math.round(dist.mcqFull * 0.65) + ((seed * 3) % 7) - 3))
+                : 0;
+            const p = dist.pracFull > 0
+                ? Math.min(dist.pracFull, Math.max(0, Math.round(dist.pracFull * 0.7) + ((seed * 5) % 6) - 2))
+                : 0;
+
+            const total = w + m + p;
+            return { w, m, p, total };
+        }
+
+        function getGradeAndGpaByMarks(marks, fullMarks, passMarks) {
+            const fm = Number(fullMarks) > 0 ? Number(fullMarks) : 100;
+            const pm = Number(passMarks) >= 0 ? Number(passMarks) : Math.ceil(fm * 0.33);
+            const obt = Number(marks) || 0;
+
+            if (obt < pm) {
+                return { grade: "F", gpa: 0.0, passed: false };
+            }
+
+            const pct = (obt / fm) * 100;
+            if (pct >= 80) return { grade: "A+", gpa: 5.0, passed: true };
+            if (pct >= 70) return { grade: "A", gpa: 4.0, passed: true };
+            if (pct >= 60) return { grade: "A-", gpa: 3.5, passed: true };
+            if (pct >= 50) return { grade: "B", gpa: 3.0, passed: true };
+            if (pct >= 40) return { grade: "C", gpa: 2.0, passed: true };
+            return { grade: "D", gpa: 1.0, passed: true };
+        }
+
+        function evaluateSubjectWithComponents(rec, subObj) {
+            const dist = getSubjectDistribution(subObj);
+            const fullMarks = dist.totalFull;
+
+            const cqOk = dist.cqFull > 0 ? (Number(rec.w) || 0) >= dist.cqPass : true;
+            const mcqOk = dist.mcqFull > 0 ? (Number(rec.m) || 0) >= dist.mcqPass : true;
+            const pracOk = dist.pracFull > 0 ? (Number(rec.p) || 0) >= dist.pracPass : true;
+            const totalOk = (Number(rec.total) || 0) >= dist.totalPass;
+
+            if (!cqOk || !mcqOk || !pracOk || !totalOk) {
+                const reasons = [];
+                if (!cqOk) reasons.push(`CQ<${dist.cqPass}`);
+                if (!mcqOk) reasons.push(`MCQ<${dist.mcqPass}`);
+                if (!pracOk) reasons.push(`Prac<${dist.pracPass}`);
+                if (!totalOk) reasons.push(`মোট<${dist.totalPass}`);
+
+                return {
+                    grade: "F",
+                    gpa: 0.0,
+                    passed: false,
+                    failReason: reasons.join(", ")
+                };
+            }
+
+            const baseEval = getGradeAndGpaByMarks(rec.total, fullMarks, dist.totalPass);
+            return { ...baseEval, failReason: "" };
+        }
+
+        function updateMarksRowLive(i, subObj) {
+            const w = parseFloat(document.getElementById(`written_${i}`)?.value) || 0;
+            const m = parseFloat(document.getElementById(`mcq_${i}`)?.value) || 0;
+            const p = parseFloat(document.getElementById(`prac_${i}`)?.value) || 0;
+            const total = w + m + p;
+            const ev = evaluateSubjectWithComponents({ w, m, p, total }, subObj);
+
+            const statusCell = document.getElementById(`marks_total_status_${i}`);
+            if (statusCell) {
+                statusCell.className = `border p-2 text-center font-bold ${ev.passed ? 'text-emerald-700' : 'text-rose-700'}`;
+                statusCell.innerText = ev.passed
+                    ? `${total}/${subObj.fullMarks} (পাস)`
+                    : `${total}/${subObj.fullMarks} (ফেল: ${ev.failReason})`;
+            }
+        }
+
+        function loadMarksTable() {
+            onMarksClassOrSubjectChange();
+            const spinner = document.getElementById('loading_marks');
+            const tbody = document.getElementById('marksEntryTableBody');
+            spinner.classList.remove('hidden');
+            tbody.innerHTML = '';
+
+            setTimeout(() => {
+                spinner.classList.add('hidden');
+                const selectedYear = document.getElementById('mark_filter_year')?.value || '২০২৬';
+                const selectedExam = document.getElementById('mark_filter_exam')?.value || 'পরীক্ষা';
+                const selectedClass = document.getElementById('mark_filter_class').value;
+                const selectedSub = document.getElementById('mark_filter_subject').value || 'বিষয়';
+                const subObj = getSubjectsForClass(selectedClass).find(s => s.name === selectedSub) || { fullMarks: 100, passMarks: 33 };
+                const students = getStudentsForExam().filter(s => s.cls === selectedClass);
+                const allMarks = JSON.parse(localStorage.getItem(STUDENT_MARKS_KEY)) || {};
+
+                if (students.length === 0) {
+                    tbody.innerHTML = `<tr><td colspan="8" class="p-4 text-center text-gray-500 font-bold">এই শ্রেণিতে কোনো শিক্ষার্থী পাওয়া যায়নি!</td></tr>`;
+                    return;
+                }
+
+                const subJsonEscaped = JSON.stringify(subObj).replace(/"/g, '&quot;');
+
+                students.forEach((s, i) => {
+                    const scopedKey = `${selectedYear}__${selectedExam}__${selectedClass}__${s.id}__${selectedSub}`;
+                    const legacyKey = `${s.id}__${selectedSub}`;
+                    const savedEntry = allMarks[scopedKey] || allMarks[legacyKey];
+
+                    let w, m, p, total, isSaved;
+                    if (savedEntry) {
+                        w = Number(savedEntry.w) || 0;
+                        m = Number(savedEntry.m) || 0;
+                        p = Number(savedEntry.p) || 0;
+                        total = w + m + p;
+                        isSaved = true;
+                    } else {
+                        const def = getDefaultStudentSubjectMarks(s, i, subObj);
+                        w = def.w;
+                        m = def.m;
+                        p = def.p;
+                        total = def.total;
+                        isSaved = false;
+                    }
+
+                    const ev = evaluateSubjectWithComponents({ w, m, p, total }, subObj);
+                    const savedBadge = isSaved
+                        ? `<span class="ml-1 text-[10px] bg-emerald-100 text-emerald-800 px-1.5 py-0.5 rounded font-bold">সেভড</span>`
+                        : `<span class="ml-1 text-[10px] bg-amber-100 text-amber-800 px-1.5 py-0.5 rounded font-bold">অটো</span>`;
+
+                    const statusText = ev.passed
+                        ? `${total}/${subObj.fullMarks} (পাস)`
+                        : `${total}/${subObj.fullMarks} (ফেল: ${ev.failReason})`;
+
+                    tbody.innerHTML += `
+                        <tr>
+                            <td class="border p-2 font-bold">${s.id}</td>
+                            <td class="border p-2 font-bold">${s.name_bn}${savedBadge}</td>
+                            <td class="border p-2 font-semibold text-blue-800">${selectedSub}</td>
+                            <td class="border p-2">
+                                <input type="number" id="written_${i}" value="${w}" min="0"
+                                    oninput='updateMarksRowLive(${i}, ${subJsonEscaped})'
+                                    class="p-1 border rounded w-16 text-xs font-bold">
+                            </td>
+                            <td class="border p-2">
+                                <input type="number" id="mcq_${i}" value="${m}" min="0"
+                                    oninput='updateMarksRowLive(${i}, ${subJsonEscaped})'
+                                    class="p-1 border rounded w-16 text-xs font-bold">
+                            </td>
+                            <td class="border p-2">
+                                <input type="number" id="prac_${i}" value="${p}" min="0"
+                                    oninput='updateMarksRowLive(${i}, ${subJsonEscaped})'
+                                    class="p-1 border rounded w-16 text-xs font-bold">
+                            </td>
+                            <td id="marks_total_status_${i}" class="border p-2 text-center font-bold ${ev.passed ? 'text-emerald-700' : 'text-rose-700'}">
+                                ${statusText}
+                            </td>
+                            <td class="border p-2 text-center">
+                                <button onclick="saveStudentMarks('${s.id}', '${selectedSub}', ${i})"
+                                    class="bg-blue-600 hover:bg-blue-700 text-white px-3 py-1 rounded font-bold shadow-sm">
+                                    সংরক্ষণ
+                                </button>
+                            </td>
+                        </tr>
+                    `;
+                });
+            }, 200);
+        }
+
+        function saveStudentMarks(studentId, subName, i) {
+            const selectedYear = document.getElementById('mark_filter_year')?.value || '২০২৬';
+            const selectedExam = document.getElementById('mark_filter_exam')?.value || 'পরীক্ষা';
+            const selectedClass = document.getElementById('mark_filter_class')?.value || '';
+
+            const w = parseFloat(document.getElementById(`written_${i}`)?.value) || 0;
+            const m = parseFloat(document.getElementById(`mcq_${i}`)?.value) || 0;
+            const p = parseFloat(document.getElementById(`prac_${i}`)?.value) || 0;
+            const total = w + m + p;
+
+            const allMarks = JSON.parse(localStorage.getItem(STUDENT_MARKS_KEY)) || {};
+            const scopedKey = `${selectedYear}__${selectedExam}__${selectedClass}__${studentId}__${subName}`;
+            const payload = { w, m, p, total, year: selectedYear, exam: selectedExam, className: selectedClass, subject: subName };
+
+            allMarks[scopedKey] = payload;
+            allMarks[`${studentId}__${subName}`] = payload;
+            localStorage.setItem(STUDENT_MARKS_KEY, JSON.stringify(allMarks));
+
+            loadMarksTable();
+            alert(`${studentId} (${subName}) এর নম্বর (${total}) সংরক্ষিত হয়েছে!`);
+        }
+
+        /* ===================================================
+           3. RESULT PROCESSING, FOURTH SUBJECT & REPORTS
+           =================================================== */
+        function getSubjectMarkRecord(year, exam, clsName, studentId, subName, index, subObj) {
+            const allMarks = JSON.parse(localStorage.getItem(STUDENT_MARKS_KEY)) || {};
+            const scopedKey = `${year}__${exam}__${clsName}__${studentId}__${subName}`;
+            const legacyKey = `${studentId}__${subName}`;
+            const saved = allMarks[scopedKey] || allMarks[legacyKey];
+
+            if (saved) {
+                const w = Number(saved.w) || 0;
+                const m = Number(saved.m) || 0;
+                const p = Number(saved.p) || 0;
+                const total = w + m + p;
+                return { w, m, p, total, isSaved: true };
+            }
+
+            const def = getDefaultStudentSubjectMarks(
+                { id: studentId, roll: studentId },
+                index,
+                subObj || { fullMarks: 100, passMarks: 33 }
+            );
+            return { w: def.w, m: def.m, p: def.p, total: def.total, isSaved: false };
+        }
+
+        function computeStudentFullResult(year, exam, clsName, student, sIndex) {
+            const subjects = getSubjectsForClass(clsName);
+            const fourthSubName = getClassFourthSubject(clsName);
+            const allGroups = getCombinedGroups().filter(g => !g.className || g.className === clsName);
+            const savedGroupMarks = JSON.parse(localStorage.getItem(GROUP_MARKS_KEY)) || {};
+
+            const groupedSubjectNames = new Set();
+            allGroups.forEach(g => {
+                if (g.sub1) groupedSubjectNames.add(g.sub1);
+                if (g.sub2) groupedSubjectNames.add(g.sub2);
+            });
+
+            const subjectBreakdown = {};
+            let totalMarks = 0;
+            let totalFullMarks = 0;
+            let mainGpaSum = 0;
+            let mainSubjectCount = 0;
+            let allMainPassed = true;
+            let fourthSubGpa = 0;
+            let hasFourthSub = false;
+
+            subjects.forEach((subObj, idx) => {
+                const rec = getSubjectMarkRecord(year, exam, clsName, student.id, subObj.name, idx + sIndex, subObj);
+                const subEval = evaluateSubjectWithComponents(rec, subObj);
+                const isFourth = Boolean(fourthSubName && subObj.name === fourthSubName);
+
+                subjectBreakdown[subObj.name] = {
+                    ...rec,
+                    fullMarks: subObj.fullMarks,
+                    passMarks: subObj.passMarks,
+                    grade: subEval.grade,
+                    gpa: subEval.gpa,
+                    passed: subEval.passed,
+                    failReason: subEval.failReason,
+                    isFourth
+                };
+
+                totalMarks += rec.total;
+                totalFullMarks += Number(subObj.fullMarks) || 100;
+
+                if (isFourth) {
+                    hasFourthSub = true;
+                    fourthSubGpa = subEval.gpa;
+                } else if (!groupedSubjectNames.has(subObj.name)) {
+                    if (!subEval.passed) allMainPassed = false;
+                    mainGpaSum += subEval.gpa;
+                    mainSubjectCount += 1;
+                }
+            });
+
+            allGroups.forEach((grp, gIdx) => {
+                const s1Obj = subjects.find(x => x.name === grp.sub1) || { fullMarks: 100, passMarks: 33 };
+                const s2Obj = subjects.find(x => x.name === grp.sub2) || { fullMarks: 100, passMarks: 33 };
+
+                const r1 = subjectBreakdown[grp.sub1] || getSubjectMarkRecord(year, exam, clsName, student.id, grp.sub1, gIdx + sIndex, s1Obj);
+                const r2 = subjectBreakdown[grp.sub2] || getSubjectMarkRecord(year, exam, clsName, student.id, grp.sub2, gIdx + sIndex + 1, s2Obj);
+
+                const gKey = `${student.id}__${grp.sub1}__${grp.sub2}`;
+                const m1 = savedGroupMarks[gKey]?.m1 !== undefined ? Number(savedGroupMarks[gKey].m1) : Number(r1.total);
+                const m2 = savedGroupMarks[gKey]?.m2 !== undefined ? Number(savedGroupMarks[gKey].m2) : Number(r2.total);
+
+                const grpFull = (Number(s1Obj.fullMarks) || 100) + (Number(s2Obj.fullMarks) || 100);
+                const grpPass = (Number(s1Obj.passMarks) || 33) + (Number(s2Obj.passMarks) || 33);
+                const grpTotal = m1 + m2;
+
+                const e1 = evaluateSubjectWithComponents({ total: m1, w: r1.w, m: r1.m, p: r1.p }, s1Obj);
+                const e2 = evaluateSubjectWithComponents({ total: m2, w: r2.w, m: r2.m, p: r2.p }, s2Obj);
+                const grpEval = getGradeAndGpaByMarks(grpTotal, grpFull, grpPass);
+
+                const grpPassed = e1.passed && e2.passed && grpEval.passed;
+                const finalGrpGpa = grpPassed ? grpEval.gpa : 0.0;
+                const finalGrpGrade = grpPassed ? grpEval.grade : "F";
+
+                const isGrpFourth = Boolean(fourthSubName && (grp.sub1 === fourthSubName || grp.sub2 === fourthSubName));
+
+                if (isGrpFourth) {
+                    hasFourthSub = true;
+                    fourthSubGpa = finalGrpGpa;
+                } else {
+                    if (!grpPassed) allMainPassed = false;
+                    mainGpaSum += finalGrpGpa;
+                    mainSubjectCount += 1;
+                }
+
+                if (subjectBreakdown[grp.sub1]) {
+                    subjectBreakdown[grp.sub1].total = m1;
+                    subjectBreakdown[grp.sub1].grade = finalGrpGrade;
+                    subjectBreakdown[grp.sub1].gpa = finalGrpGpa;
+                    subjectBreakdown[grp.sub1].passed = grpPassed;
+                }
+                if (subjectBreakdown[grp.sub2]) {
+                    subjectBreakdown[grp.sub2].total = m2;
+                    subjectBreakdown[grp.sub2].grade = finalGrpGrade;
+                    subjectBreakdown[grp.sub2].gpa = finalGrpGpa;
+                    subjectBreakdown[grp.sub2].passed = grpPassed;
+                }
+            });
+
+            const fourthBonus = (allMainPassed && hasFourthSub && fourthSubGpa > 2.0)
+                ? (fourthSubGpa - 2.0)
+                : 0;
+
+            const rawGpa = (allMainPassed && mainSubjectCount > 0)
+                ? (mainGpaSum + fourthBonus) / mainSubjectCount
+                : 0.0;
+
+            const finalGpa = allMainPassed
+                ? Number(Math.min(5.0, rawGpa).toFixed(2))
+                : 0.0;
+
+            let finalGrade = "F";
+            if (allMainPassed) {
+                if (finalGpa >= 5.0) finalGrade = "A+";
+                else if (finalGpa >= 4.0) finalGrade = "A";
+                else if (finalGpa >= 3.5) finalGrade = "A-";
+                else if (finalGpa >= 3.0) finalGrade = "B";
+                else if (finalGpa >= 2.0) finalGrade = "C";
+                else finalGrade = "D";
+            }
+
+            return {
+                studentId: student.id,
+                name: student.name_bn || student.name || "শিক্ষার্থী",
+                roll: student.roll || "001",
+                cls: clsName,
+                fourthSubject: fourthSubName || "নেই",
+                subjects: subjectBreakdown,
+                totalMarks,
+                totalFullMarks,
+                gpa: finalGpa,
+                grade: finalGrade,
+                passed: allMainPassed
+            };
+        }
+
+        function getClassProcessedResults(year, exam, clsName) {
+            const students = getStudentsForExam().filter(s => s.cls === clsName);
+            const results = students.map((st, idx) => computeStudentFullResult(year, exam, clsName, st, idx));
+
+            results.sort((a, b) => {
+                if (a.passed !== b.passed) return a.passed ? -1 : 1;
+                if (b.gpa !== a.gpa) return b.gpa - a.gpa;
+                return b.totalMarks - a.totalMarks;
+            });
+
+            return results.map((r, idx) => ({ ...r, meritRank: idx + 1 }));
+        }
+
+        function populateGroupSubjectDropdowns() {
+            const clsName = document.getElementById('proc_filter_class')?.value;
+            const subs = getSubjectsForClass(clsName).map(s => s.name);
+            ['comb_sub_1', 'comb_sub_2'].forEach(id => populateSelect(id, subs));
+        }
+
+        function getCombinedGroups() {
+            return JSON.parse(localStorage.getItem(COMBINED_GROUPS_KEY)) || [];
+        }
+
+        function saveCombinedGroups(groups) {
+            localStorage.setItem(COMBINED_GROUPS_KEY, JSON.stringify(groups));
+        }
+
+        function addCombinedSubjectGroup() {
+            const groupTitle = document.getElementById('comb_group_name').value.trim();
+            const sub1 = document.getElementById('comb_sub_1').value;
+            const sub2 = document.getElementById('comb_sub_2').value;
+            const clsName = document.getElementById('proc_filter_class').value;
+
+            if (!sub1 || !sub2 || sub1 === sub2) {
+                alert('দয়া করে ২টি ভিন্ন বিষয় নির্বাচন করুন!');
+                return;
+            }
+
+            const name = groupTitle ? groupTitle : `${sub1} + ${sub2}`;
+            const groups = getCombinedGroups();
+            groups.push({ id: Date.now(), className: clsName, name, sub1, sub2 });
+            saveCombinedGroups(groups);
+            document.getElementById('comb_group_name').value = '';
+            renderCombinedGroupsList();
+            renderGroupMarksProcessingTable();
+        }
+
+        function removeCombinedGroup(groupId) {
+            const groups = getCombinedGroups().filter(g => g.id !== groupId);
+            saveCombinedGroups(groups);
+            renderCombinedGroupsList();
+            renderGroupMarksProcessingTable();
+        }
+
+        function renderCombinedGroupsList() {
+            const container = document.getElementById('combinedGroupsDisplayList');
+            if (!container) return;
+            const groups = getCombinedGroups();
+            container.innerHTML = '';
+            groups.forEach(g => {
+                container.innerHTML += `
+                    <span class="bg-purple-100 text-purple-900 px-3 py-1.5 rounded-lg border border-purple-300 font-bold flex items-center gap-2">
+                        <i class="fa-solid fa-layer-group"></i> ${g.name} (${g.sub1} ও ${g.sub2} — আলাদা নম্বর, যৌথ গ্রেড/GPA)
+                        <button onclick="removeCombinedGroup(${g.id})" class="text-red-600 font-bold hover:bg-red-200 rounded px-1">×</button>
+                    </span>
+                `;
+            });
+        }
+
+        function renderGroupMarksProcessingTable() {
+            const tbody = document.getElementById('groupMarksProcessingBody');
+            if (!tbody) return;
+            const clsName = document.getElementById('proc_filter_class')?.value;
+            const students = getStudentsForExam().filter(s => s.cls === clsName);
+            const groups = getCombinedGroups().filter(g => !g.className || g.className === clsName);
+            const activeGroup = groups[groups.length - 1] || { sub1: "বিষয় ১", sub2: "বিষয় ২" };
+            const savedGroupMarks = JSON.parse(localStorage.getItem(GROUP_MARKS_KEY)) || {};
+
+            tbody.innerHTML = '';
+            students.forEach(s => {
+                const key = `${s.id}__${activeGroup.sub1}__${activeGroup.sub2}`;
+                const m1 = savedGroupMarks[key]?.m1 ?? 75;
+                const m2 = savedGroupMarks[key]?.m2 ?? 70;
+                const total = Number(m1) + Number(m2);
+                const gInfo = getGradeAndGpaByMarks(total, 200, 66);
+
+                tbody.innerHTML += `
+                    <tr>
+                        <td class="border p-2 font-bold">${s.name_bn} (${s.id})</td>
+                        <td class="border p-2">
+                            <span class="text-[10px] text-gray-600 block">${activeGroup.sub1}:</span>
+                            <input type="number" value="${m1}" onchange="updateGroupMarkValue('${key}', 'm1', this.value)" class="p-1 border rounded w-20 font-bold">
+                        </td>
+                        <td class="border p-2">
+                            <span class="text-[10px] text-gray-600 block">${activeGroup.sub2}:</span>
+                            <input type="number" value="${m2}" onchange="updateGroupMarkValue('${key}', 'm2', this.value)" class="p-1 border rounded w-20 font-bold">
+                        </td>
+                        <td class="border p-2 text-center font-bold text-blue-900">${total}</td>
+                        <td class="border p-2 text-center font-bold text-purple-900 bg-purple-50">${gInfo.grade} (GPA ${gInfo.gpa.toFixed(2)})</td>
+                    </tr>
+                `;
+            });
+        }
+
+        function updateGroupMarkValue(key, field, val) {
+            const saved = JSON.parse(localStorage.getItem(GROUP_MARKS_KEY)) || {};
+            if (!saved[key]) saved[key] = { m1: 75, m2: 70 };
+            saved[key][field] = parseFloat(val) || 0;
+            localStorage.setItem(GROUP_MARKS_KEY, JSON.stringify(saved));
+            renderGroupMarksProcessingTable();
+        }
+
+        function processAllResults() {
+            const year = document.getElementById('proc_filter_year')?.value || '২০২৬';
+            const exam = document.getElementById('proc_filter_exam')?.value || 'অর্ধবার্ষিক পরীক্ষা ২০২৬';
+            const clsName = document.getElementById('proc_filter_class')?.value || '';
+
+            if (!clsName) {
+                alert('দয়া করে একটি শ্রেণি নির্বাচন করুন!');
+                return;
+            }
+
+            const classResults = getClassProcessedResults(year, exam, clsName);
+            const allProcessed = JSON.parse(localStorage.getItem(PROCESSED_RESULTS_KEY)) || {};
+            allProcessed[`${year}__${exam}__${clsName}`] = {
+                updatedAt: new Date().toLocaleString('bn-BD'),
+                results: classResults
+            };
+            localStorage.setItem(PROCESSED_RESULTS_KEY, JSON.stringify(allProcessed));
+
+            const passedCount = classResults.filter(r => r.passed).length;
+            const statusEl = document.getElementById('processingStatusResult');
+            if (statusEl) {
+                statusEl.innerText = `${clsName} (${exam}) এর ${classResults.length} জন শিক্ষার্থীর ফলাফল প্রসেস সম্পন্ন! পাস: ${passedCount} জন, ফেল: ${classResults.length - passedCount} জন।`;
+            }
+
+            loadMeritList();
+            loadTabulationSheet();
+            loadResultSummary();
+        }
+
+        function loadMeritList() {
+            const spinner = document.getElementById('loading_merit');
+            const tbody = document.getElementById('meritTableBody');
+            if (!spinner || !tbody) return;
+            spinner.classList.remove('hidden');
+            tbody.innerHTML = '';
+
+            setTimeout(() => {
+                spinner.classList.add('hidden');
+                const year = document.getElementById('merit_filter_year')?.value || '২০২৬';
+                const selectedExam = document.getElementById('merit_filter_exam')?.value || 'অর্ধবার্ষিক পরীক্ষা ২০২৬';
+                const selectedClass = document.getElementById('merit_filter_class')?.value || '';
+
+                document.getElementById('merit_exam_title_display').innerText = `${selectedExam} (${selectedClass} — ${year})`;
+
+                const rows = getClassProcessedResults(year, selectedExam, selectedClass);
+                if (rows.length === 0) {
+                    tbody.innerHTML = `<tr><td colspan="7" class="p-4 text-center text-gray-500 font-bold">এই শ্রেণিতে কোনো শিক্ষার্থী পাওয়া যায়নি!</td></tr>`;
+                    return;
+                }
+
+                rows.forEach((r) => {
+                    const gpaText = r.passed ? r.gpa.toFixed(2) : "0.00";
+                    const badgeClass = r.passed ? "text-emerald-700" : "text-rose-700";
+                    tbody.innerHTML += `
+                        <tr>
+                            <td class="border p-2 text-center font-bold text-amber-700">${r.meritRank}</td>
+                            <td class="border p-2 font-bold">${r.studentId}</td>
+                            <td class="border p-2 font-bold">${r.name}</td>
+                            <td class="border p-2">${r.cls}</td>
+                            <td class="border p-2 text-center font-bold">${r.totalMarks}</td>
+                            <td class="border p-2 text-center font-bold ${badgeClass}">${gpaText}</td>
+                            <td class="border p-2 text-center font-bold ${badgeClass}">${r.grade}</td>
+                        </tr>
+                    `;
+                });
+            }, 200);
+        }
+
+        function loadTabulationSheet() {
+            const spinner = document.getElementById('loading_tab');
+            const container = document.getElementById('tabContainer');
+            if (!spinner || !container) return;
+            spinner.classList.remove('hidden');
+
+            setTimeout(() => {
+                spinner.classList.add('hidden');
+                const year = document.getElementById('tab_filter_year')?.value || '২০২৬';
+                const selectedExam = document.getElementById('tab_filter_exam')?.value || 'অর্ধবার্ষিক পরীক্ষা ২০২৬';
+                const selectedClass = document.getElementById('tab_filter_class')?.value || '';
+                const subjects = getSubjectsForClass(selectedClass);
+                const rows = getClassProcessedResults(year, selectedExam, selectedClass);
+
+                const subHeaders = subjects.map(s => `<th class="border p-2 text-center">${s.name}</th>`).join('');
+                const bodyHtml = rows.length === 0
+                    ? `<tr><td colspan="${subjects.length + 4}" class="p-4 text-center text-gray-500 font-bold">এই শ্রেণিতে কোনো শিক্ষার্থী পাওয়া যায়নি!</td></tr>`
+                    : rows.map(r => {
+                        const subCells = subjects.map(s => {
+                            const info = r.subjects[s.name] || { total: 0, grade: "F", passed: false };
+                            return `<td class="border p-2 text-center ${info.passed ? '' : 'text-rose-700 font-bold'}">${info.total} (${info.grade})</td>`;
+                        }).join('');
+                        return `
+                            <tr>
+                                <td class="border p-2 font-bold">${r.studentId}</td>
+                                <td class="border p-2 font-bold">${r.name}</td>
+                                ${subCells}
+                                <td class="border p-2 text-center font-bold">${r.totalMarks}</td>
+                                <td class="border p-2 text-center font-bold ${r.passed ? 'text-emerald-700' : 'text-rose-700'}">${r.gpa.toFixed(2)} (${r.grade})</td>
+                            </tr>
+                        `;
+                    }).join('');
+
+                container.innerHTML = `
+                    <div class="text-center pb-4 border-b">
+                        <h2 class="font-bold text-sm">আবদুল্লাহ হাট ইসলামিয়া ফাজিল মাদ্রাসা</h2>
+                        <p class="text-xs text-gray-600">ট্যাবুলেশন শীট - <span id="tab_exam_title_display">${selectedExam} (${selectedClass} — ${year})</span></p>
+                    </div>
+                    <table class="w-full text-left border-collapse border border-gray-200 text-xs mt-3 whitespace-nowrap">
+                        <thead>
+                            <tr>
+                                <th class="border p-2">আইডি</th>
+                                <th class="border p-2">নাম</th>
+                                ${subHeaders}
+                                <th class="border p-2 text-center">মোট</th>
+                                <th class="border p-2 text-center">GPA / গ্রেড</th>
+                            </tr>
+                        </thead>
+                        <tbody id="tabulationTableBody">${bodyHtml}</tbody>
+                    </table>
+                `;
+            }, 200);
+        }
+
+        function loadResultSummary() {
+            const spinner = document.getElementById('loading_sum');
+            if (!spinner) return;
+            spinner.classList.remove('hidden');
+
+            setTimeout(() => {
+                spinner.classList.add('hidden');
+                const year = document.getElementById('sum_filter_year')?.value || '২০২৬';
+                const selectedExam = document.getElementById('sum_filter_exam')?.value || 'অর্ধবার্ষিক পরীক্ষা ২০২৬';
+                const selectedClass = document.getElementById('sum_filter_class')?.value || '';
+
+                document.getElementById('sum_exam_title_display').innerText = `${selectedExam} (${selectedClass} — ${year})`;
+
+                const rows = getClassProcessedResults(year, selectedExam, selectedClass);
+                const total = rows.length;
+                const passed = rows.filter(r => r.passed).length;
+                const failed = total - passed;
+                const passRate = total > 0 ? ((passed / total) * 100).toFixed(1) : "0.0";
+
+                const counts = { "A+": 0, "A": 0, "A-": 0, "B": 0, "F": 0 };
+                rows.forEach(r => {
+                    if (r.grade === "A+") counts["A+"]++;
+                    else if (r.grade === "A") counts["A"]++;
+                    else if (r.grade === "A-") counts["A-"]++;
+                    else if (r.grade === "B") counts["B"]++;
+                    else counts["F"]++;
+                });
+
+                document.getElementById('sum_total_students').innerText = String(total);
+                document.getElementById('sum_total_passed').innerText = String(passed);
+                document.getElementById('sum_total_failed').innerText = String(failed);
+                document.getElementById('sum_pass_rate').innerText = `${passRate}%`;
+                document.getElementById('grade_aplus_count').innerText = String(counts["A+"]);
+                document.getElementById('grade_a_count').innerText = String(counts["A"]);
+                document.getElementById('grade_aminus_count').innerText = String(counts["A-"]);
+                document.getElementById('grade_b_count').innerText = String(counts["B"]);
+                document.getElementById('grade_f_count').innerText = String(counts["F"]);
+            }, 200);
+        }
+
+        function onReportCardClassChange() {
+            const clsName = document.getElementById('rc_filter_class')?.value;
+            const idFilterVal = (document.getElementById('reportCardSearchId')?.value || "").trim().toLowerCase();
+            const students = getStudentsForExam().filter(s => !clsName || s.cls === clsName);
+
+            const datalist = document.getElementById('rcStudentIdList');
+            if (datalist) {
+                datalist.innerHTML = '';
+                students.forEach(s => { datalist.innerHTML += `<option value="${s.id}">${s.name_bn}</option>`; });
+            }
+
+            const listContainer = document.getElementById('rc_class_students_list');
+            if (!listContainer) return;
+            listContainer.innerHTML = '';
+
+            const matched = students.filter(s => !idFilterVal || s.id.toLowerCase().includes(idFilterVal) || s.name_bn.toLowerCase().includes(idFilterVal));
+            if (matched.length === 0) {
+                listContainer.innerHTML = `<span class="text-gray-500">এই শ্রেণি বা আইডিতে কোনো শিক্ষার্থী পাওয়া যায়নি।</span>`;
+                return;
+            }
+
+            matched.forEach(s => {
+                listContainer.innerHTML += `
+                    <button type="button" onclick="selectStudentForReportCard('${s.id}')" class="bg-white border border-rose-300 hover:bg-rose-100 px-3 py-1 rounded-lg font-bold text-rose-900 shadow-sm">
+                        ID: ${s.id} — ${s.name_bn}
+                    </button>
+                `;
+            });
+        }
+
+        function filterReportCardStudentsById() {
+            onReportCardClassChange();
+        }
+
+        function selectStudentForReportCard(id) {
+            document.getElementById('reportCardSearchId').value = id;
+            generateReportCard();
+        }
+
+        function generateReportCard() {
+            const spinner = document.getElementById('loading_rc');
+            const rcContainer = document.getElementById('reportCardContainer');
+            if (!spinner || !rcContainer) return;
+            spinner.classList.remove('hidden');
+            rcContainer.classList.add('hidden');
+
+            setTimeout(() => {
+                spinner.classList.add('hidden');
+                const year = document.getElementById('rc_filter_year')?.value || '২০২৬';
+                const id = document.getElementById('reportCardSearchId').value.trim();
+                const selectedExam = document.getElementById('rc_filter_exam').value;
+                const selectedClass = document.getElementById('rc_filter_class').value;
+
+                const students = getStudentsForExam().filter(s => s.cls === selectedClass);
+                const foundStudent = students.find(s => s.id === id) || students[0];
+                if (!foundStudent) {
+                    alert('নির্বাচিত শ্রেণিতে কোনো শিক্ষার্থী পাওয়া যায়নি!');
+                    return;
+                }
+
+                const classRes = getClassProcessedResults(year, selectedExam, selectedClass);
+                const res = classRes.find(r => r.studentId === foundStudent.id) || computeStudentFullResult(year, selectedExam, selectedClass, foundStudent, 0);
+
+                const subRowsHtml = Object.entries(res.subjects).map(([subName, info]) => `
+                    <tr>
+                        <td class="border p-1.5 font-bold">${subName}${info.isFourth ? ' <span class="text-[10px] text-purple-700">(৪র্থ বিষয়)</span>' : ''}</td>
+                        <td class="border p-1.5 text-center">${info.fullMarks}</td>
+                        <td class="border p-1.5 text-center font-bold">${info.total}</td>
+                        <td class="border p-1.5 text-center font-bold ${info.passed ? 'text-emerald-700' : 'text-rose-700'}">${info.grade}</td>
+                        <td class="border p-1.5 text-center font-bold">${info.gpa.toFixed(2)}</td>
+                    </tr>
+                `).join('');
+
+                rcContainer.innerHTML = `
+                    <div class="text-center border-b-2 border-emerald-800 pb-3">
+                        <h1 class="font-bold text-base text-emerald-900">আবদুল্লাহ হাট ইসলামিয়া ফাজিল মাদ্রাসা</h1>
+                        <h3 class="font-bold text-xs bg-emerald-800 text-white py-1 mt-2 inline-block px-6 rounded">${selectedExam} (${year}) - প্রোগ্রেস রিপোর্ট কার্ড</h3>
+                    </div>
+                    <div class="grid grid-cols-2 gap-2 border p-3 rounded-lg bg-emerald-50/55">
+                        <div>
+                            <p><b>আইডি:</b> <span>${foundStudent.id}</span></p>
+                            <p><b>নাম:</b> <span>${foundStudent.name_bn}</span></p>
+                            <p><b>পিতা:</b> <span>${foundStudent.father || '---'}</span></p>
+                        </div>
+                        <div>
+                            <p><b>শ্রেণি:</b> <span>${foundStudent.cls}</span></p>
+                            <p><b>রোল:</b> <span>${foundStudent.roll || '001'}</span></p>
+                            <p><b>GPA / গ্রেড:</b> <span class="font-bold ${res.passed ? 'text-emerald-700' : 'text-rose-700'}">${res.gpa.toFixed(2)} (${res.grade})</span></p>
+                        </div>
+                    </div>
+                    <div class="overflow-x-auto">
+                        <table class="w-full text-left border-collapse border border-gray-300 text-xs">
+                            <thead>
+                                <tr class="bg-emerald-900 text-white">
+                                    <th class="border p-1.5">বিষয়</th>
+                                    <th class="border p-1.5 text-center">পূর্ণমান</th>
+                                    <th class="border p-1.5 text-center">প্রাপ্ত নম্বর</th>
+                                    <th class="border p-1.5 text-center">গ্রেড</th>
+                                    <th class="border p-1.5 text-center">GPA</th>
+                                </tr>
+                            </thead>
+                            <tbody>${subRowsHtml}</tbody>
+                        </table>
+                    </div>
+                    <div class="flex justify-between items-center border-t pt-2 font-bold text-xs">
+                        <span>সর্বমোট নম্বর: ${res.totalMarks} / ${res.totalFullMarks}</span>
+                        <span>মেধা অবস্থান: ${res.meritRank || '-'} | স্ট্যাটাস: <span class="${res.passed ? 'text-emerald-700' : 'text-rose-700'}">${res.passed ? 'উত্তীর্ণ' : 'অনুত্তীর্ণ'}</span></span>
+                    </div>
+                `;
+                rcContainer.classList.remove('hidden');
+            }, 200);
+        }
+
+        /* ===================================================
+           4. TEACHER & STAFF, MONITORING, QUESTION MGMT, ROUTINE & ADMIT
            =================================================== */
         function getTeacherAndStaffList() {
             const normalizedMap = new Map();
@@ -1207,9 +2292,6 @@
             }
         }
 
-        /* ===================================================
-           QUESTION MANAGEMENT
-           =================================================== */
         const QUESTION_MGMT_KEY = "ahifm_question_management_v1";
 
         function getQuestionManagementData() {
@@ -1412,9 +2494,6 @@
             });
         }
 
-        /* ===================================================
-           EXAM MONITORING
-           =================================================== */
         const FULL_EXAM_MONITORING_KEY = "ahifm_exam_full_monitoring_v4";
 
         function toBengaliOrdinal(num) {
@@ -1753,13 +2832,10 @@
             }, 2500);
         }
 
-        /* ===================================================
-           GENERAL DROPDOWNS, MARKS, GROUP PROCESSING, RC, ADMIT, ROUTINE
-           =================================================== */
         function getSettingsData() {
             const years = getSettingsSessionAndYears();
             const exams = JSON.parse(localStorage.getItem('madrasah_exams')) || ["অর্ধবার্ষিক পরীক্ষা ২০২৬", "বার্ষিক পরীক্ষা ২০২৬"];
-            const classes = getAllConnectedClassNames();
+            const classes = getUniformClassList();
             const firstClassSubs = getSubjectsForClass(classes[0]).map(s => s.name);
             const subjects = firstClassSubs.length > 0 ? firstClassSubs : ["কুরআন মাজিদ", "হাদীস শরীফ", "বাংলা", "ইংরেজি", "গণিত"];
             return { years, classes, exams, subjects };
@@ -1770,14 +2846,8 @@
 
             ['set_year', 'mark_filter_year', 'proc_filter_year', 'merit_filter_year', 'tab_filter_year', 'sum_filter_year', 'rc_filter_year', 'admit_filter_year'].forEach(id => populateSelect(id, data.years));
             ['set_exam_name', 'mark_filter_exam', 'proc_filter_exam', 'merit_filter_exam', 'tab_filter_exam', 'sum_filter_exam', 'rc_filter_exam', 'admit_filter_exam'].forEach(id => populateSelect(id, data.exams));
-            ['set_class', 'mark_filter_class', 'proc_filter_class', 'merit_filter_class', 'tab_filter_class', 'sum_filter_class', 'rc_filter_class', 'admit_filter_class', 'rout_class'].forEach(id => populateSelect(id, data.classes));
 
-            const routFilterSel = document.getElementById('routine_class_filter');
-            if (routFilterSel) {
-                routFilterSel.innerHTML = `<option value="ALL">সকল শ্রেণি</option>`;
-                data.classes.forEach(c => { routFilterSel.innerHTML += `<option value="${c}">${c}</option>`; });
-            }
-
+            syncAllClassDropdownsUniformly();
             populateSelect('rout_subject', data.subjects);
             renderClassSubjectsSetupTable();
             onMarksClassOrSubjectChange();
@@ -1800,6 +2870,7 @@
                 target.classList.remove('hidden');
                 target.scrollIntoView({ behavior: 'smooth' });
             }
+            syncAllClassDropdownsUniformly();
             if (panelName === 'setup') renderClassSubjectsSetupTable();
             if (panelName === 'marks') { onMarksClassOrSubjectChange(); loadMarksTable(); }
             if (panelName === 'processing') { populateGroupSubjectDropdowns(); renderCombinedGroupsList(); renderGroupMarksProcessingTable(); }
@@ -1819,8 +2890,9 @@
         }
 
         function saveExamSettings() {
+            onFourthSubjectChange();
             renderClassSubjectsSetupTable();
-            alert('এক্সাম সেটআপ, শ্রেণিভিত্তিক বিষয় ও নম্বর সফলভাবে সংরক্ষিত হয়েছে!');
+            alert('এক্সাম সেটআপ, ৪র্থ বিষয়, শ্রেণিভিত্তিক বিষয় ও নম্বর সফলভাবে সংরক্ষিত হয়েছে!');
         }
 
         function getStudentsForExam() {
@@ -1838,337 +2910,6 @@
             }));
         }
 
-        function onMarksClassOrSubjectChange() {
-            const clsName = document.getElementById('mark_filter_class')?.value;
-            const subSelect = document.getElementById('mark_filter_subject');
-            if (!clsName || !subSelect) return;
-
-            const subs = getSubjectsForClass(clsName);
-            const prevSub = subSelect.value;
-            subSelect.innerHTML = '';
-            subs.forEach(s => {
-                subSelect.innerHTML += `<option value="${s.name}">${s.name} (পূর্ণমান: ${s.fullMarks}, পাস: ${s.passMarks})</option>`;
-            });
-            if (prevSub && subs.some(s => s.name === prevSub)) {
-                subSelect.value = prevSub;
-            }
-
-            const chosenSubName = subSelect.value;
-            const subObj = subs.find(s => s.name === chosenSubName) || { fullMarks: 100, passMarks: 33 };
-            const infoEl = document.getElementById('marks_subject_meta_info');
-            if (infoEl) {
-                infoEl.innerText = `শ্রেণি: ${clsName} | বিষয়: ${chosenSubName || '---'} | পূর্ণমান: ${subObj.fullMarks} | পাস মার্ক: ${subObj.passMarks}`;
-            }
-        }
-
-        function loadMarksTable() {
-            onMarksClassOrSubjectChange();
-            const spinner = document.getElementById('loading_marks');
-            const tbody = document.getElementById('marksEntryTableBody');
-            spinner.classList.remove('hidden');
-            tbody.innerHTML = '';
-
-            setTimeout(() => {
-                spinner.classList.add('hidden');
-                const selectedClass = document.getElementById('mark_filter_class').value;
-                const selectedSub = document.getElementById('mark_filter_subject').value || 'বিষয়';
-                const subObj = getSubjectsForClass(selectedClass).find(s => s.name === selectedSub) || { fullMarks: 100, passMarks: 33 };
-                const students = getStudentsForExam().filter(s => s.cls === selectedClass);
-
-                if (students.length === 0) {
-                    tbody.innerHTML = `<tr><td colspan="8" class="p-4 text-center text-gray-500 font-bold">এই শ্রেণিতে কোনো শিক্ষার্থী পাওয়া যায়নি!</td></tr>`;
-                    return;
-                }
-
-                students.forEach((s, i) => {
-                    const total = 90;
-                    const passed = total >= subObj.passMarks;
-                    tbody.innerHTML += `
-                        <tr>
-                            <td class="border p-2 font-bold">${s.id}</td>
-                            <td class="border p-2 font-bold">${s.name_bn}</td>
-                            <td class="border p-2 font-semibold text-blue-800">${selectedSub}</td>
-                            <td class="border p-2"><input type="number" id="written_${i}" value="75" class="p-1 border rounded w-16 text-xs font-bold"></td>
-                            <td class="border p-2"><input type="number" id="mcq_${i}" value="15" class="p-1 border rounded w-16 text-xs font-bold"></td>
-                            <td class="border p-2"><input type="number" id="prac_${i}" value="0" class="p-1 border rounded w-16 text-xs font-bold"></td>
-                            <td class="border p-2 text-center font-bold ${passed ? 'text-emerald-700' : 'text-rose-700'}">${total}/${subObj.fullMarks} (${passed ? 'পাস' : 'ফেল'})</td>
-                            <td class="border p-2 text-center"><button onclick="saveStudentMarks('${s.id}', '${selectedSub}', ${i})" class="bg-blue-600 text-white px-3 py-1 rounded font-bold shadow-sm">সংরক্ষণ</button></td>
-                        </tr>
-                    `;
-                });
-            }, 300);
-        }
-
-        function saveStudentMarks(studentId, subName, i) {
-            const w = parseFloat(document.getElementById(`written_${i}`)?.value) || 0;
-            const m = parseFloat(document.getElementById(`mcq_${i}`)?.value) || 0;
-            const p = parseFloat(document.getElementById(`prac_${i}`)?.value) || 0;
-            const allMarks = JSON.parse(localStorage.getItem(STUDENT_MARKS_KEY)) || {};
-            allMarks[`${studentId}__${subName}`] = { w, m, p, total: w + m + p };
-            localStorage.setItem(STUDENT_MARKS_KEY, JSON.stringify(allMarks));
-            alert(`${studentId} (${subName}) এর নম্বর (${w + m + p}) সংরক্ষিত হয়েছে!`);
-        }
-
-        function populateGroupSubjectDropdowns() {
-            const clsName = document.getElementById('proc_filter_class')?.value;
-            const subs = getSubjectsForClass(clsName).map(s => s.name);
-            ['comb_sub_1', 'comb_sub_2'].forEach(id => populateSelect(id, subs));
-        }
-
-        function getCombinedGroups() {
-            return JSON.parse(localStorage.getItem(COMBINED_GROUPS_KEY)) || [];
-        }
-
-        function saveCombinedGroups(groups) {
-            localStorage.setItem(COMBINED_GROUPS_KEY, JSON.stringify(groups));
-        }
-
-        function addCombinedSubjectGroup() {
-            const groupTitle = document.getElementById('comb_group_name').value.trim();
-            const sub1 = document.getElementById('comb_sub_1').value;
-            const sub2 = document.getElementById('comb_sub_2').value;
-            const clsName = document.getElementById('proc_filter_class').value;
-
-            if (!sub1 || !sub2 || sub1 === sub2) {
-                alert('দয়া করে ২টি ভিন্ন বিষয় নির্বাচন করুন!');
-                return;
-            }
-
-            const name = groupTitle ? groupTitle : `${sub1} + ${sub2}`;
-            const groups = getCombinedGroups();
-            groups.push({ id: Date.now(), className: clsName, name, sub1, sub2 });
-            saveCombinedGroups(groups);
-            document.getElementById('comb_group_name').value = '';
-            renderCombinedGroupsList();
-            renderGroupMarksProcessingTable();
-        }
-
-        function removeCombinedGroup(groupId) {
-            const groups = getCombinedGroups().filter(g => g.id !== groupId);
-            saveCombinedGroups(groups);
-            renderCombinedGroupsList();
-            renderGroupMarksProcessingTable();
-        }
-
-        function renderCombinedGroupsList() {
-            const container = document.getElementById('combinedGroupsDisplayList');
-            if (!container) return;
-            const groups = getCombinedGroups();
-            container.innerHTML = '';
-            groups.forEach(g => {
-                container.innerHTML += `
-                    <span class="bg-purple-100 text-purple-900 px-3 py-1.5 rounded-lg border border-purple-300 font-bold flex items-center gap-2">
-                        <i class="fa-solid fa-layer-group"></i> ${g.name} (${g.sub1} ও ${g.sub2} — আলাদা নম্বর, যৌথ গ্রেড/GPA)
-                        <button onclick="removeCombinedGroup(${g.id})" class="text-red-600 font-bold hover:bg-red-200 rounded px-1">×</button>
-                    </span>
-                `;
-            });
-        }
-
-        function calcGradeFromPercent(pct) {
-            if (pct >= 80) return { grade: "A+", gpa: "5.00" };
-            if (pct >= 70) return { grade: "A", gpa: "4.00" };
-            if (pct >= 60) return { grade: "A-", gpa: "3.50" };
-            if (pct >= 50) return { grade: "B", gpa: "3.00" };
-            if (pct >= 33) return { grade: "C", gpa: "2.00" };
-            return { grade: "F", gpa: "0.00" };
-        }
-
-        function renderGroupMarksProcessingTable() {
-            const tbody = document.getElementById('groupMarksProcessingBody');
-            if (!tbody) return;
-            const clsName = document.getElementById('proc_filter_class')?.value;
-            const students = getStudentsForExam().filter(s => s.cls === clsName);
-            const groups = getCombinedGroups();
-            const activeGroup = groups[groups.length - 1] || { sub1: "বিষয় ১", sub2: "বিষয় ২" };
-            const savedGroupMarks = JSON.parse(localStorage.getItem(GROUP_MARKS_KEY)) || {};
-
-            tbody.innerHTML = '';
-            students.forEach(s => {
-                const key = `${s.id}__${activeGroup.sub1}__${activeGroup.sub2}`;
-                const m1 = savedGroupMarks[key]?.m1 ?? 75;
-                const m2 = savedGroupMarks[key]?.m2 ?? 70;
-                const total = m1 + m2;
-                const gInfo = calcGradeFromPercent((total / 200) * 100);
-
-                tbody.innerHTML += `
-                    <tr>
-                        <td class="border p-2 font-bold">${s.name_bn} (${s.id})</td>
-                        <td class="border p-2">
-                            <span class="text-[10px] text-gray-600 block">${activeGroup.sub1}:</span>
-                            <input type="number" value="${m1}" onchange="updateGroupMarkValue('${key}', 'm1', this.value)" class="p-1 border rounded w-20 font-bold">
-                        </td>
-                        <td class="border p-2">
-                            <span class="text-[10px] text-gray-600 block">${activeGroup.sub2}:</span>
-                            <input type="number" value="${m2}" onchange="updateGroupMarkValue('${key}', 'm2', this.value)" class="p-1 border rounded w-20 font-bold">
-                        </td>
-                        <td class="border p-2 text-center font-bold text-blue-900">${total}</td>
-                        <td class="border p-2 text-center font-bold text-purple-900 bg-purple-50">${gInfo.grade} (GPA ${gInfo.gpa})</td>
-                    </tr>
-                `;
-            });
-        }
-
-        function updateGroupMarkValue(key, field, val) {
-            const saved = JSON.parse(localStorage.getItem(GROUP_MARKS_KEY)) || {};
-            if (!saved[key]) saved[key] = { m1: 75, m2: 70 };
-            saved[key][field] = parseFloat(val) || 0;
-            localStorage.setItem(GROUP_MARKS_KEY, JSON.stringify(saved));
-            renderGroupMarksProcessingTable();
-        }
-
-        function processAllResults() {
-            document.getElementById('processingStatusResult').innerText = "গ্রুপ বিষয়গুলোর আলাদা নম্বর এবং সমন্বিত গ্রেড ও GPA পয়েন্টসহ ফলাফল প্রসেস সম্পন্ন হয়েছে!";
-        }
-
-        function loadMeritList() {
-            const spinner = document.getElementById('loading_merit');
-            const tbody = document.getElementById('meritTableBody');
-            spinner.classList.remove('hidden');
-            tbody.innerHTML = '';
-
-            setTimeout(() => {
-                spinner.classList.add('hidden');
-                const selectedClass = document.getElementById('merit_filter_class').value;
-                const selectedExam = document.getElementById('merit_filter_exam').value;
-                document.getElementById('merit_exam_title_display').innerText = selectedExam + " (" + selectedClass + ")";
-
-                const students = getStudentsForExam().filter(s => s.cls === selectedClass);
-                students.forEach((s, i) => {
-                    tbody.innerHTML += `
-                        <tr>
-                            <td class="border p-2 text-center font-bold text-amber-700">${i + 1}</td>
-                            <td class="border p-2 font-bold">${s.id}</td>
-                            <td class="border p-2 font-bold">${s.name_bn}</td>
-                            <td class="border p-2">${s.cls}</td>
-                            <td class="border p-2 text-center font-bold">450</td>
-                            <td class="border p-2 text-center font-bold text-emerald-700">5.00</td>
-                            <td class="border p-2 text-center font-bold text-emerald-700">A+</td>
-                        </tr>
-                    `;
-                });
-            }, 300);
-        }
-
-        function loadTabulationSheet() {
-            const spinner = document.getElementById('loading_tab');
-            const tbody = document.getElementById('tabulationTableBody');
-            spinner.classList.remove('hidden');
-            tbody.innerHTML = '';
-
-            setTimeout(() => {
-                spinner.classList.add('hidden');
-                const selectedClass = document.getElementById('tab_filter_class').value;
-                const selectedExam = document.getElementById('tab_filter_exam').value;
-                document.getElementById('tab_exam_title_display').innerText = selectedExam + " (" + selectedClass + ")";
-
-                const students = getStudentsForExam().filter(s => s.cls === selectedClass);
-                students.forEach(s => {
-                    tbody.innerHTML += `
-                        <tr>
-                            <td class="border p-2 font-bold">${s.id}</td>
-                            <td class="border p-2 font-bold">${s.name_bn}</td>
-                            <td class="border p-2 text-center">85 (A+)</td>
-                            <td class="border p-2 text-center">80 (A+)</td>
-                            <td class="border p-2 text-center">78 (A)</td>
-                            <td class="border p-2 text-center">82 (A+)</td>
-                            <td class="border p-2 text-center">90 (A+)</td>
-                            <td class="border p-2 text-center font-bold">415</td>
-                            <td class="border p-2 text-center font-bold text-emerald-700">5.00</td>
-                        </tr>
-                    `;
-                });
-            }, 300);
-        }
-
-        function loadResultSummary() {
-            const spinner = document.getElementById('loading_sum');
-            spinner.classList.remove('hidden');
-            setTimeout(() => {
-                spinner.classList.add('hidden');
-                document.getElementById('sum_exam_title_display').innerText = document.getElementById('sum_filter_exam').value;
-                document.getElementById('sum_total_students').innerText = "2";
-                document.getElementById('sum_total_passed').innerText = "2";
-                document.getElementById('sum_total_failed').innerText = "0";
-                document.getElementById('sum_pass_rate').innerText = "100%";
-                document.getElementById('grade_aplus_count').innerText = "2";
-                document.getElementById('grade_a_count').innerText = "0";
-                document.getElementById('grade_aminus_count').innerText = "0";
-                document.getElementById('grade_b_count').innerText = "0";
-                document.getElementById('grade_f_count').innerText = "0";
-            }, 300);
-        }
-
-        function onReportCardClassChange() {
-            const clsName = document.getElementById('rc_filter_class')?.value;
-            const idFilterVal = (document.getElementById('reportCardSearchId')?.value || "").trim().toLowerCase();
-            const students = getStudentsForExam().filter(s => !clsName || s.cls === clsName);
-
-            const datalist = document.getElementById('rcStudentIdList');
-            if (datalist) {
-                datalist.innerHTML = '';
-                students.forEach(s => { datalist.innerHTML += `<option value="${s.id}">${s.name_bn}</option>`; });
-            }
-
-            const listContainer = document.getElementById('rc_class_students_list');
-            if (!listContainer) return;
-            listContainer.innerHTML = '';
-
-            const matched = students.filter(s => !idFilterVal || s.id.toLowerCase().includes(idFilterVal) || s.name_bn.toLowerCase().includes(idFilterVal));
-            if (matched.length === 0) {
-                listContainer.innerHTML = `<span class="text-gray-500">এই শ্রেণি বা আইডিতে কোনো শিক্ষার্থী পাওয়া যায়নি।</span>`;
-                return;
-            }
-
-            matched.forEach(s => {
-                listContainer.innerHTML += `
-                    <button type="button" onclick="selectStudentForReportCard('${s.id}')" class="bg-white border border-rose-300 hover:bg-rose-100 px-3 py-1 rounded-lg font-bold text-rose-900 shadow-sm">
-                        ID: ${s.id} — ${s.name_bn}
-                    </button>
-                `;
-            });
-        }
-
-        function filterReportCardStudentsById() {
-            onReportCardClassChange();
-        }
-
-        function selectStudentForReportCard(id) {
-            document.getElementById('reportCardSearchId').value = id;
-            generateReportCard();
-        }
-
-        function generateReportCard() {
-            const spinner = document.getElementById('loading_rc');
-            spinner.classList.remove('hidden');
-            document.getElementById('reportCardContainer').classList.add('hidden');
-
-            setTimeout(() => {
-                spinner.classList.add('hidden');
-                const id = document.getElementById('reportCardSearchId').value.trim();
-                const selectedExam = document.getElementById('rc_filter_exam').value;
-                const selectedClass = document.getElementById('rc_filter_class').value;
-                const students = getStudentsForExam().filter(s => s.cls === selectedClass);
-                const found = students.find(s => s.id === id) || students[0];
-
-                if (!found) {
-                    alert('নির্বাচিত শ্রেণিতে কোনো শিক্ষার্থী পাওয়া যায়নি!');
-                    return;
-                }
-
-                document.getElementById('rc_exam_title_banner').innerText = selectedExam + " - প্রোগ্রেস রিপোর্ট কার্ড";
-                document.getElementById('rc_id').innerText = found.id;
-                document.getElementById('rc_name_bn').innerText = found.name_bn;
-                document.getElementById('rc_father').innerText = found.father;
-                document.getElementById('rc_class').innerText = found.cls;
-                document.getElementById('rc_roll').innerText = found.roll || '001';
-                document.getElementById('reportCardContainer').classList.remove('hidden');
-            }, 300);
-        }
-
-        /* ===================================================
-           EXAM ROUTINE (CLASS FILTERING + STORAGE SYNC)
-           =================================================== */
         function getSavedRoutineRows() {
             try {
                 const raw = localStorage.getItem(EXAM_ROUTINE_DATA_KEY);
@@ -2321,9 +3062,6 @@
             }
         }
 
-        /* ===================================================
-           ADMIT CARD (PHOTO + 3-SLOT ROUTINE [DATE+SUBJECT] + 3 INSTRUCTIONS + 3 SIGNATURES, 2 PER A4 PAGE)
-           =================================================== */
         function applyAdmitFilter() {
             const yearVal = document.getElementById('admit_filter_year')?.value || '২০২৬';
             const examName = document.getElementById('admit_filter_exam')?.value || 'অর্ধবার্ষিক পরীক্ষা';

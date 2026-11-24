@@ -143,7 +143,7 @@
                 <!-- 1. TEACHER FULL BIODATA FORM -->
                 <div id="panel-teacher_form" class="teacher-sub-panel bg-white p-6 rounded-2xl shadow-sm border border-gray-200 space-y-6 hidden">
                     <div class="flex justify-between items-center border-b pb-3">
-                        <h3 class="font-bold text-emerald-800 text-sm"><i class="fa-solid fa-user-plus mr-2"></i> ১. শিক্ষকের পূর্ণাঙ্গ বায়োডাটা ও নিবন্ধন ফরম</h3>
+                        <h3 id="teacherFormHeading" class="font-bold text-emerald-800 text-sm"><i class="fa-solid fa-user-plus mr-2"></i> ১. শিক্ষকের পূর্ণাঙ্গ বায়োডাটা ও নিবন্ধন ফরম</h3>
                         <button onclick="closeAllPanels()" class="text-xs bg-gray-200 px-3 py-1 rounded font-bold text-gray-700 no-print">বন্ধ করুন</button>
                     </div>
 
@@ -227,8 +227,11 @@
                             <textarea id="tb_permanent_address" rows="2" class="w-full p-2 border rounded-lg" required>গ্রাম, ডাকঘর, উপজেলা, জেলা</textarea>
                         </div>
 
-                        <div class="md:col-span-4 flex justify-end pt-3 border-t">
-                            <button type="submit" class="bg-emerald-700 text-white px-6 py-2.5 rounded-lg font-bold hover:bg-emerald-800 transition">
+                        <div class="md:col-span-4 flex justify-end gap-2 pt-3 border-t">
+                            <button type="button" id="cancelTeacherEditBtn" onclick="resetTeacherEditMode()" class="hidden bg-gray-200 text-gray-800 px-4 py-2.5 rounded-lg font-bold hover:bg-gray-300 transition">
+                                এডিট বাতিল
+                            </button>
+                            <button type="submit" id="saveTeacherSubmitBtn" class="bg-emerald-700 text-white px-6 py-2.5 rounded-lg font-bold hover:bg-emerald-800 transition">
                                 <i class="fa-solid fa-floppy-disk mr-1"></i> শিক্ষকের বায়োডাটা সংরক্ষণ করুন
                             </button>
                         </div>
@@ -262,11 +265,12 @@
                 <!-- 3. STAFF PROFILE PANEL -->
                 <div id="panel-staff_profile" class="teacher-sub-panel bg-white p-6 rounded-2xl shadow-sm border border-gray-200 space-y-4 hidden">
                     <div class="flex justify-between items-center border-b pb-3">
-                        <h3 class="font-bold text-purple-800 text-sm"><i class="fa-solid fa-users mr-2"></i> ৩. স্টাফ প্রোফাইল ও বায়োডাটা ফরম</h3>
+                        <h3 id="staffFormHeading" class="font-bold text-purple-800 text-sm"><i class="fa-solid fa-users mr-2"></i> ৩. স্টাফ প্রোফাইল ও বায়োডাটা ফরম</h3>
                         <button onclick="closeAllPanels()" class="text-xs bg-gray-200 px-3 py-1 rounded font-bold text-gray-700 no-print">বন্ধ করুন</button>
                     </div>
 
                     <form id="staffForm" onsubmit="saveStaffRecord(event)" class="grid grid-cols-1 md:grid-cols-4 gap-3 text-xs bg-purple-50 p-4 rounded-xl border border-purple-200 no-print">
+                        <input type="hidden" id="st_edit_idx" value="-1">
                         <div>
                             <label class="font-bold text-purple-900 mb-1 block">স্টাফ নাম *</label>
                             <input type="text" id="st_name" placeholder="নাম" class="p-2 border rounded w-full bg-white" required>
@@ -300,8 +304,9 @@
                             <label class="font-bold text-purple-900 mb-1 block">স্টাফ ছবি</label>
                             <input type="file" id="st_photo" accept="image/*" class="p-1 border rounded w-full bg-white">
                         </div>
-                        <div class="flex items-end">
-                            <button type="submit" class="bg-purple-700 text-white px-4 py-2 rounded font-bold hover:bg-purple-800 w-full">স্টাফ সংরক্ষণ করুন</button>
+                        <div class="flex items-end gap-2">
+                            <button type="submit" id="saveStaffSubmitBtn" class="bg-purple-700 text-white px-4 py-2 rounded font-bold hover:bg-purple-800 w-full">স্টাফ সংরক্ষণ করুন</button>
+                            <button type="button" id="cancelStaffEditBtn" onclick="resetStaffEditMode()" class="hidden bg-gray-200 text-gray-800 px-3 py-2 rounded font-bold hover:bg-gray-300">বাতিল</button>
                         </div>
                     </form>
 
@@ -486,6 +491,8 @@
         }
 
         function autoGenerateTeacherId() {
+            const editIdx = parseInt(document.getElementById('t_edit_idx').value, 10);
+            if(editIdx >= 0) return;
             const desigCode = document.getElementById('tb_designation').value;
             const subCode = document.getElementById('tb_subject').value;
             const joinDate = document.getElementById('tb_join').value;
@@ -493,9 +500,65 @@
             document.getElementById('tb_autoid').value = `${desigCode}-${subCode}-${yearCode}`;
         }
 
+        function editTeacherRecord(index) {
+            const teachers = getStoredTeachers();
+            const t = teachers[index];
+            if(!t) return;
+
+            openTeacherPanel('teacher_form');
+            document.getElementById('t_edit_idx').value = index;
+            document.getElementById('teacherFormHeading').innerHTML = `<i class="fa-solid fa-pen-to-square mr-2"></i> শিক্ষকের বায়োডাটা এডিট করুন (${t.name_bn})`;
+            document.getElementById('saveTeacherSubmitBtn').innerHTML = `<i class="fa-solid fa-check mr-1"></i> তথ্য আপডেট করুন`;
+            document.getElementById('cancelTeacherEditBtn').classList.remove('hidden');
+
+            document.getElementById('tb_name_bn').value = t.name_bn || '';
+            document.getElementById('tb_name_en').value = t.name_en || '';
+
+            const desigSelect = document.getElementById('tb_designation');
+            for(let i = 0; i < desigSelect.options.length; i++) {
+                if(desigSelect.options[i].text === t.designation || desigSelect.options[i].value === t.designation) {
+                    desigSelect.selectedIndex = i;
+                    break;
+                }
+            }
+
+            const subSelect = document.getElementById('tb_subject');
+            for(let i = 0; i < subSelect.options.length; i++) {
+                if(subSelect.options[i].text === t.subject || subSelect.options[i].value === t.subject) {
+                    subSelect.selectedIndex = i;
+                    break;
+                }
+            }
+
+            document.getElementById('tb_index_no').value = t.indexNo || '';
+            document.getElementById('tb_dob').value = t.dob || '';
+            document.getElementById('tb_retirement').value = t.retirement || '';
+            document.getElementById('tb_join').value = t.joinDate || '';
+            document.getElementById('tb_mpo_date').value = t.mpoDate || '';
+            document.getElementById('tb_autoid').value = t.id || '';
+            document.getElementById('tb_edu').value = t.edu || '';
+            document.getElementById('tb_mobile').value = t.mobile || '';
+            document.getElementById('tb_basic').value = t.basic || 35000;
+            document.getElementById('tb_present_address').value = t.presentAddress || '';
+            document.getElementById('tb_permanent_address').value = t.permanentAddress || '';
+            document.getElementById('tb_photo').value = '';
+        }
+
+        function resetTeacherEditMode() {
+            document.getElementById('t_edit_idx').value = '-1';
+            document.getElementById('teacherBiodataForm').reset();
+            document.getElementById('teacherFormHeading').innerHTML = `<i class="fa-solid fa-user-plus mr-2"></i> ১. শিক্ষকের পূর্ণাঙ্গ বায়োডাটা ও নিবন্ধন ফরম`;
+            document.getElementById('saveTeacherSubmitBtn').innerHTML = `<i class="fa-solid fa-floppy-disk mr-1"></i> শিক্ষকের বায়োডাটা সংরক্ষণ করুন`;
+            document.getElementById('cancelTeacherEditBtn').classList.add('hidden');
+            autoGenerateTeacherId();
+        }
+
         function saveTeacherBiodata(event) {
             event.preventDefault();
             const photoInput = document.getElementById('tb_photo');
+            const editIdx = parseInt(document.getElementById('t_edit_idx').value, 10);
+            let teachers = getStoredTeachers();
+            const existingRecord = editIdx >= 0 && teachers[editIdx] ? teachers[editIdx] : null;
 
             let teacherData = {
                 id: document.getElementById('tb_autoid').value || 'PRN-ARB-2026',
@@ -513,18 +576,22 @@
                 basic: parseFloat(document.getElementById('tb_basic').value) || 35000,
                 presentAddress: document.getElementById('tb_present_address').value.trim(),
                 permanentAddress: document.getElementById('tb_permanent_address').value.trim(),
-                leaveTaken: 0
+                leaveTaken: existingRecord ? (existingRecord.leaveTaken || 0) : 0,
+                photo: existingRecord && existingRecord.photo ? existingRecord.photo : undefined
             };
-
-            let teachers = JSON.parse(localStorage.getItem('madrasah_teachers_master')) || [];
 
             function proceedSave(photoBase64) {
                 if(photoBase64) teacherData.photo = photoBase64;
-                teachers.push(teacherData);
-                localStorage.setItem('madrasah_teachers_master', JSON.stringify(teachers));
-                alert('শিক্ষকের পূর্ণাঙ্গ বায়োডাটা ও তথ্য সফলভাবে সংরক্ষিত হয়েছে!');
-                document.getElementById('teacherBiodataForm').reset();
-                autoGenerateTeacherId();
+                if(editIdx >= 0 && teachers[editIdx]) {
+                    teachers[editIdx] = teacherData;
+                    localStorage.setItem('madrasah_teachers_master', JSON.stringify(teachers));
+                    alert('শিক্ষকের তথ্য সফলভাবে আপডেট হয়েছে!');
+                } else {
+                    teachers.push(teacherData);
+                    localStorage.setItem('madrasah_teachers_master', JSON.stringify(teachers));
+                    alert('শিক্ষকের পূর্ণাঙ্গ বায়োডাটা ও তথ্য সফলভাবে সংরক্ষিত হয়েছে!');
+                }
+                resetTeacherEditMode();
                 openTeacherPanel('teacher_profile');
             }
 
@@ -568,7 +635,10 @@
                             <span class="text-emerald-700 text-[10px]">এমপিও: ${t.mpoDate || 'N/A'}</span>
                         </td>
                         <td class="border p-2 font-bold text-rose-700 bg-rose-50">${t.retirement}</td>
-                        <td class="border p-2 text-center no-print"><button onclick="deleteTeacherRecord(${i})" class="text-red-600 font-bold">ডিলিট</button></td>
+                        <td class="border p-2 text-center no-print space-x-2">
+                            <button onclick="editTeacherRecord(${i})" class="text-blue-600 hover:underline font-bold">এডিট</button>
+                            <button onclick="deleteTeacherRecord(${i})" class="text-red-600 hover:underline font-bold">ডিলিট</button>
+                        </td>
                     </tr>
                 `;
             });
@@ -581,27 +651,64 @@
             loadTeacherProfileTable();
         }
 
+        function editStaffRecord(index) {
+            let staffList = JSON.parse(localStorage.getItem('madrasah_staff_master')) || [];
+            const s = staffList[index];
+            if(!s) return;
+
+            document.getElementById('st_edit_idx').value = index;
+            document.getElementById('staffFormHeading').innerHTML = `<i class="fa-solid fa-pen-to-square mr-2"></i> স্টাফ তথ্য এডিট করুন (${s.name})`;
+            document.getElementById('saveStaffSubmitBtn').innerText = `স্টাফ আপডেট করুন`;
+            document.getElementById('cancelStaffEditBtn').classList.remove('hidden');
+
+            document.getElementById('st_name').value = s.name || '';
+            document.getElementById('st_desig').value = s.designation || '';
+            document.getElementById('st_dob').value = s.dob || '';
+            document.getElementById('st_retirement').value = s.retirement || '';
+            document.getElementById('st_join').value = s.joinDate || '';
+            document.getElementById('st_mobile').value = s.mobile || '';
+            document.getElementById('st_photo').value = '';
+            document.getElementById('staffForm').scrollIntoView({ behavior: 'smooth' });
+        }
+
+        function resetStaffEditMode() {
+            document.getElementById('st_edit_idx').value = '-1';
+            document.getElementById('staffForm').reset();
+            document.getElementById('staffFormHeading').innerHTML = `<i class="fa-solid fa-users mr-2"></i> ৩. স্টাফ প্রোফাইল ও বায়োডাটা ফরম`;
+            document.getElementById('saveStaffSubmitBtn').innerText = `স্টাফ সংরক্ষণ করুন`;
+            document.getElementById('cancelStaffEditBtn').classList.add('hidden');
+        }
+
         function saveStaffRecord(event) {
             event.preventDefault();
             const photoInput = document.getElementById('st_photo');
+            const editIdx = parseInt(document.getElementById('st_edit_idx').value, 10);
+            let staffList = JSON.parse(localStorage.getItem('madrasah_staff_master')) || [];
+            const existingStaff = editIdx >= 0 && staffList[editIdx] ? staffList[editIdx] : null;
+
             let staffData = {
-                id: "STF-" + Math.floor(100 + Math.random() * 900),
+                id: existingStaff ? existingStaff.id : ("STF-" + Math.floor(100 + Math.random() * 900)),
                 name: document.getElementById('st_name').value.trim(),
                 designation: document.getElementById('st_desig').value,
                 dob: document.getElementById('st_dob').value,
                 retirement: document.getElementById('st_retirement').value,
                 joinDate: document.getElementById('st_join').value,
-                mobile: document.getElementById('st_mobile').value.trim()
+                mobile: document.getElementById('st_mobile').value.trim(),
+                photo: existingStaff && existingStaff.photo ? existingStaff.photo : undefined
             };
-
-            let staffList = JSON.parse(localStorage.getItem('madrasah_staff_master')) || [];
 
             function proceedStaff(photoBase64) {
                 if(photoBase64) staffData.photo = photoBase64;
-                staffList.push(staffData);
-                localStorage.setItem('madrasah_staff_master', JSON.stringify(staffList));
-                alert('স্টাফ সফলভাবে সংরক্ষিত হয়েছে!');
-                document.getElementById('staffForm').reset();
+                if(editIdx >= 0 && staffList[editIdx]) {
+                    staffList[editIdx] = staffData;
+                    localStorage.setItem('madrasah_staff_master', JSON.stringify(staffList));
+                    alert('স্টাফ তথ্য সফলভাবে আপডেট হয়েছে!');
+                } else {
+                    staffList.push(staffData);
+                    localStorage.setItem('madrasah_staff_master', JSON.stringify(staffList));
+                    alert('স্টাফ সফলভাবে সংরক্ষিত হয়েছে!');
+                }
+                resetStaffEditMode();
                 loadStaffTable();
             }
 
@@ -632,7 +739,10 @@
                         <td class="border p-2">${s.designation}</td>
                         <td class="border p-2">${s.joinDate}</td>
                         <td class="border p-2 font-bold text-rose-700 bg-rose-50">${s.retirement}</td>
-                        <td class="border p-2 text-center no-print"><button onclick="deleteStaff(${i})" class="text-red-600 font-bold">ডিলিট</button></td>
+                        <td class="border p-2 text-center no-print space-x-2">
+                            <button onclick="editStaffRecord(${i})" class="text-purple-700 hover:underline font-bold">এডিট</button>
+                            <button onclick="deleteStaff(${i})" class="text-red-600 hover:underline font-bold">ডিলিট</button>
+                        </td>
                     </tr>
                 `;
             });
